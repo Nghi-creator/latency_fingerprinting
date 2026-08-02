@@ -1,0 +1,22 @@
+.DS_Store
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Raw experiment bundles may contain large files or private machine details.
+experiments/**/raw/
+experiments/**/*.tar
+experiments/**/*.tar.gz
+
+# Sanitized manifests and derived JSON results remain trackable.
+!experiments/**/manifest.json
+!experiments/**/observation.json
+!experiments/**/match-result.json
