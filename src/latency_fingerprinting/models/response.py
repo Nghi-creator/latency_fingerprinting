@@ -1,0 +1,136 @@
+"""Probe, response-delta, normalization, and paired-observation models."""
+
+from __future__ import annotations
+
+import math
+from typing import Literal
+
+from pydantic import Field, JsonValue, model_validator
+
+from .common import (
+    CONTRACT_VERSION,
+    OBSERVATION_SCHEMA_VERSION,
+    ContractModel,
+    FiniteFloat,
+    NonEmptyStr,
+    NonNegativeFiniteFloat,
+    PositiveFiniteFloat,
+    ProbeApplicationMethod,
+    ProbeExecutionStatus,
+    ProvenanceKind,
+    RestorationStatus,
+    WindowPhase,
+)
+from .context import ContextKey, MetricAggregate, ObservationWindow
+
+
+class Probe(ContractModel):
+    probe_id: NonEmptyStr
+    probe_type: NonEmptyStr
+    probe_version: NonEmptyStr
+    requested_settings: dict[str, JsonValue]
+    observed_settings: dict[str, JsonValue] | None = None
+    intensity: NonNegativeFiniteFloat
+    application_method: ProbeApplicationMethod
+    degraded_window_id: NonEmptyStr
+    relief_window_id: NonEmptyStr
+    execution_status: ProbeExecutionStatus
+    paired_window_order: list[Literal["degraded", "relief"]] = Field(
+        default_factory=lambda: ["degraded", "relief"]
+    )
+    restoration_status: RestorationStatus
+    safety_notes: list[NonEmptyStr] = Field(default_factory=list)
+    known_confounders: list[NonEmptyStr] = Field(default_factory=list)
+    quality_cost: dict[str, MetricAggregate] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_simulated_probe(self) -> Probe:
+        if self.degraded_window_id == self.relief_window_id:
+            raise ValueError("a probe requires distinct degraded and relief windows")
+        if self.application_method is ProbeApplicationMethod.SIMULATED_PAIR:
+            if self.execution_status is not ProbeExecutionStatus.NOT_EXECUTED:
+                raise ValueError("simulated_pair probes must not claim execution")
+            if self.restoration_status is not RestorationStatus.NOT_EXECUTED:
+                raise ValueError("simulated_pair probes must state restoration was not executed")
+            if self.observed_settings is not None:
+                raise ValueError("simulated_pair probes cannot have observed runtime settings")
+        return self
+
+
+class FeatureDelta(ContractModel):
+    unit: NonEmptyStr
+    aggregation: NonEmptyStr
+    degraded_value: FiniteFloat
+    relief_value: FiniteFloat
+    raw_delta: FiniteFloat
+
+    @model_validator(mode="after")
+    def validate_delta(self) -> FeatureDelta:
+        expected = self.relief_value - self.degraded_value
+        if not math.isclose(self.raw_delta, expected, rel_tol=1e-12, abs_tol=1e-12):
+            raise ValueError("raw_delta must equal relief_value minus degraded_value")
+        return self
+
+
+class ResponseDelta(ContractModel):
+    degraded_window_id: NonEmptyStr
+    relief_window_id: NonEmptyStr
+    features: dict[NonEmptyStr, FeatureDelta]
+    is_valid: bool
+    invalid_reasons: list[NonEmptyStr] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_response_status(self) -> ResponseDelta:
+        if self.degraded_window_id == self.relief_window_id:
+            raise ValueError("response delta requires distinct windows")
+        if not self.is_valid and not self.invalid_reasons:
+            raise ValueError("an invalid response delta requires at least one reason")
+        return self
+
+
+class NormalizedFeature(ContractModel):
+    value: FiniteFloat
+    epsilon: PositiveFiniteFloat
+    reference_value: FiniteFloat
+    was_clipped: bool = False
+
+
+class NormalizedResponse(ContractModel):
+    features: dict[NonEmptyStr, NormalizedFeature]
+
+
+class ObservationRecord(ContractModel):
+    """The ``observation-v1`` root: paired windows plus their response."""
+
+    schema_version: Literal["observation-v1"] = OBSERVATION_SCHEMA_VERSION
+    contract_version: Literal["1.0.0"] = CONTRACT_VERSION
+    context: ContextKey
+    degraded_window: ObservationWindow
+    relief_window: ObservationWindow
+    probe: Probe
+    response_delta: ResponseDelta
+    normalized_response: NormalizedResponse
+    provenance: ProvenanceKind
+
+    @model_validator(mode="after")
+    def validate_pair(self) -> ObservationRecord:
+        degraded, relief = self.degraded_window, self.relief_window
+        if degraded.phase is not WindowPhase.DEGRADED or relief.phase is not WindowPhase.RELIEF:
+            raise ValueError("observation records require degraded and relief windows")
+        if degraded.context != self.context or relief.context != self.context:
+            raise ValueError("both windows must use the record context")
+        if degraded.provenance is not self.provenance or relief.provenance is not self.provenance:
+            raise ValueError("window provenance must equal record provenance")
+        if degraded.comparison_case_id != relief.comparison_case_id:
+            raise ValueError("paired windows must share comparison_case_id")
+        if (
+            self.probe.degraded_window_id != degraded.window_id
+            or self.probe.relief_window_id != relief.window_id
+        ):
+            raise ValueError("probe window identifiers must reference this pair")
+        if (
+            self.response_delta.degraded_window_id != degraded.window_id
+            or self.response_delta.relief_window_id != relief.window_id
+        ):
+            raise ValueError("response delta window identifiers must reference this pair")
+        return self

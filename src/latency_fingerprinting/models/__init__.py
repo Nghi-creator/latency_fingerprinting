@@ -1,0 +1,96 @@
+"""Public P0 contract model API.
+
+Imports remain available from :mod:`latency_fingerprinting.models` even though
+the implementation is organized into focused modules.
+"""
+
+from .common import (
+    CONTRACT_VERSION,
+    FINGERPRINT_SCHEMA_VERSION,
+    FiniteFloat,
+    MATCH_RESULT_SCHEMA_VERSION,
+    NonEmptyStr,
+    NonNegativeFiniteFloat,
+    NonNegativeInt,
+    OBSERVATION_SCHEMA_VERSION,
+    PositiveFiniteFloat,
+    PositiveInt,
+    ContractModel,
+    MatchDecision,
+    OutcomeResult,
+    ProbeApplicationMethod,
+    ProbeExecutionStatus,
+    ProvenanceKind,
+    RestorationStatus,
+    UnknownReason,
+    ValidationStatus,
+    WindowPhase,
+)
+
+__all__ = [
+    "CONTRACT_VERSION",
+    "OBSERVATION_SCHEMA_VERSION",
+    "FINGERPRINT_SCHEMA_VERSION",
+    "MATCH_RESULT_SCHEMA_VERSION",
+    "NonEmptyStr",
+    "FiniteFloat",
+    "NonNegativeFiniteFloat",
+    "PositiveFiniteFloat",
+    "NonNegativeInt",
+    "PositiveInt",
+    "ContractModel",
+    "WindowPhase",
+    "ProvenanceKind",
+    "ProbeApplicationMethod",
+    "ProbeExecutionStatus",
+    "RestorationStatus",
+    "ValidationStatus",
+    "MatchDecision",
+    "UnknownReason",
+    "OutcomeResult",
+    "ContextKey",
+    "TimeBounds",
+    "MetricAggregate",
+    "ValidityState",
+    "SourceArtifact",
+    "ObservationWindow",
+    "Probe",
+    "FeatureDelta",
+    "ResponseDelta",
+    "NormalizedFeature",
+    "NormalizedResponse",
+    "ObservationRecord",
+    "CompatibilityKey",
+    "Fingerprint",
+    "RankedCandidate",
+    "FeatureEvidence",
+    "CompatibilityResult",
+    "MatchThresholds",
+    "MatchResult",
+    "ValidatedOutcome",
+]
+from .context import (
+    ContextKey,
+    MetricAggregate,
+    ObservationWindow,
+    SourceArtifact,
+    TimeBounds,
+    ValidityState,
+)
+from .fingerprint import CompatibilityKey, Fingerprint
+from .match import (
+    CompatibilityResult,
+    FeatureEvidence,
+    MatchResult,
+    MatchThresholds,
+    RankedCandidate,
+    ValidatedOutcome,
+)
+from .response import (
+    FeatureDelta,
+    NormalizedFeature,
+    NormalizedResponse,
+    ObservationRecord,
+    Probe,
+    ResponseDelta,
+)
