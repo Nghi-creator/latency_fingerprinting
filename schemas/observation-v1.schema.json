@@ -1,0 +1,786 @@
+{
+  "$defs": {
+    "ContextKey": {
+      "additionalProperties": false,
+      "description": "The explicit boundary within which P0 records may be compared.",
+      "properties": {
+        "captureImplementation": {
+          "minLength": 1,
+          "title": "Captureimplementation",
+          "type": "string"
+        },
+        "clientClass": {
+          "minLength": 1,
+          "title": "Clientclass",
+          "type": "string"
+        },
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "connectionMode": {
+          "minLength": 1,
+          "title": "Connectionmode",
+          "type": "string"
+        },
+        "contextId": {
+          "minLength": 1,
+          "title": "Contextid",
+          "type": "string"
+        },
+        "edgeNodeClass": {
+          "minLength": 1,
+          "title": "Edgenodeclass",
+          "type": "string"
+        },
+        "encoderFamily": {
+          "minLength": 1,
+          "title": "Encoderfamily",
+          "type": "string"
+        },
+        "encoderProfile": {
+          "minLength": 1,
+          "title": "Encoderprofile",
+          "type": "string"
+        },
+        "networkScenario": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Networkscenario"
+        },
+        "nodeId": {
+          "minLength": 1,
+          "title": "Nodeid",
+          "type": "string"
+        },
+        "nominalStreamProfile": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Nominalstreamprofile",
+          "type": "object"
+        },
+        "operatingSystem": {
+          "minLength": 1,
+          "title": "Operatingsystem",
+          "type": "string"
+        },
+        "runtimeClass": {
+          "minLength": 1,
+          "title": "Runtimeclass",
+          "type": "string"
+        },
+        "transportImplementation": {
+          "minLength": 1,
+          "title": "Transportimplementation",
+          "type": "string"
+        },
+        "versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Versions",
+          "type": "object"
+        },
+        "workloadId": {
+          "minLength": 1,
+          "title": "Workloadid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId",
+        "compatibilityGroup",
+        "edgeNodeClass",
+        "nodeId",
+        "operatingSystem",
+        "runtimeClass",
+        "workloadId",
+        "captureImplementation",
+        "encoderFamily",
+        "encoderProfile",
+        "transportImplementation",
+        "connectionMode",
+        "clientClass",
+        "nominalStreamProfile"
+      ],
+      "title": "ContextKey",
+      "type": "object"
+    },
+    "FeatureDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "minLength": 1,
+          "title": "Aggregation",
+          "type": "string"
+        },
+        "degradedValue": {
+          "title": "Degradedvalue",
+          "type": "number"
+        },
+        "rawDelta": {
+          "title": "Rawdelta",
+          "type": "number"
+        },
+        "reliefValue": {
+          "title": "Reliefvalue",
+          "type": "number"
+        },
+        "unit": {
+          "minLength": 1,
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "aggregation",
+        "degradedValue",
+        "reliefValue",
+        "rawDelta"
+      ],
+      "title": "FeatureDelta",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MetricAggregate": {
+      "additionalProperties": false,
+      "description": "A finite numeric aggregate with enough detail to audit its derivation.",
+      "properties": {
+        "aggregation": {
+          "minLength": 1,
+          "title": "Aggregation",
+          "type": "string"
+        },
+        "count": {
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximum"
+        },
+        "median": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Median"
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum"
+        },
+        "p95": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "P95"
+        },
+        "unit": {
+          "minLength": 1,
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "aggregation",
+        "value",
+        "count"
+      ],
+      "title": "MetricAggregate",
+      "type": "object"
+    },
+    "NormalizedFeature": {
+      "additionalProperties": false,
+      "properties": {
+        "epsilon": {
+          "exclusiveMinimum": 0,
+          "title": "Epsilon",
+          "type": "number"
+        },
+        "referenceValue": {
+          "title": "Referencevalue",
+          "type": "number"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "wasClipped": {
+          "default": false,
+          "title": "Wasclipped",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value",
+        "epsilon",
+        "referenceValue"
+      ],
+      "title": "NormalizedFeature",
+      "type": "object"
+    },
+    "NormalizedResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "features": {
+          "additionalProperties": {
+            "$ref": "#/$defs/NormalizedFeature"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Features",
+          "type": "object"
+        }
+      },
+      "required": [
+        "features"
+      ],
+      "title": "NormalizedResponse",
+      "type": "object"
+    },
+    "ObservationWindow": {
+      "additionalProperties": false,
+      "description": "One bounded, aggregated measurement window under a stable context.",
+      "properties": {
+        "bounds": {
+          "$ref": "#/$defs/TimeBounds"
+        },
+        "comparisonCaseId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comparisoncaseid"
+        },
+        "confounders": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Confounders",
+          "type": "array"
+        },
+        "context": {
+          "$ref": "#/$defs/ContextKey"
+        },
+        "durationS": {
+          "exclusiveMinimum": 0,
+          "title": "Durations",
+          "type": "number"
+        },
+        "effectiveSettings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Effectivesettings",
+          "type": "object"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetricAggregate"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Metrics",
+          "type": "object"
+        },
+        "missingMetrics": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingmetrics",
+          "type": "array"
+        },
+        "phase": {
+          "$ref": "#/$defs/WindowPhase"
+        },
+        "provenance": {
+          "$ref": "#/$defs/ProvenanceKind"
+        },
+        "rejectedMetrics": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedmetrics",
+          "type": "object"
+        },
+        "runId": {
+          "minLength": 1,
+          "title": "Runid",
+          "type": "string"
+        },
+        "sampleCount": {
+          "minimum": 0,
+          "title": "Samplecount",
+          "type": "integer"
+        },
+        "sourceArtifact": {
+          "$ref": "#/$defs/SourceArtifact"
+        },
+        "validity": {
+          "$ref": "#/$defs/ValidityState"
+        },
+        "windowId": {
+          "minLength": 1,
+          "title": "Windowid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "runId",
+        "windowId",
+        "context",
+        "phase",
+        "bounds",
+        "durationS",
+        "sampleCount",
+        "effectiveSettings",
+        "metrics",
+        "validity",
+        "sourceArtifact",
+        "provenance"
+      ],
+      "title": "ObservationWindow",
+      "type": "object"
+    },
+    "Probe": {
+      "additionalProperties": false,
+      "properties": {
+        "applicationMethod": {
+          "$ref": "#/$defs/ProbeApplicationMethod"
+        },
+        "degradedWindowId": {
+          "minLength": 1,
+          "title": "Degradedwindowid",
+          "type": "string"
+        },
+        "executionStatus": {
+          "$ref": "#/$defs/ProbeExecutionStatus"
+        },
+        "intensity": {
+          "minimum": 0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "knownConfounders": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Knownconfounders",
+          "type": "array"
+        },
+        "observedSettings": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observedsettings"
+        },
+        "pairedWindowOrder": {
+          "items": {
+            "enum": [
+              "degraded",
+              "relief"
+            ],
+            "type": "string"
+          },
+          "title": "Pairedwindoworder",
+          "type": "array"
+        },
+        "probeId": {
+          "minLength": 1,
+          "title": "Probeid",
+          "type": "string"
+        },
+        "probeType": {
+          "minLength": 1,
+          "title": "Probetype",
+          "type": "string"
+        },
+        "probeVersion": {
+          "minLength": 1,
+          "title": "Probeversion",
+          "type": "string"
+        },
+        "qualityCost": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetricAggregate"
+          },
+          "title": "Qualitycost",
+          "type": "object"
+        },
+        "reliefWindowId": {
+          "minLength": 1,
+          "title": "Reliefwindowid",
+          "type": "string"
+        },
+        "requestedSettings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Requestedsettings",
+          "type": "object"
+        },
+        "restorationStatus": {
+          "$ref": "#/$defs/RestorationStatus"
+        },
+        "safetyNotes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Safetynotes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "probeId",
+        "probeType",
+        "probeVersion",
+        "requestedSettings",
+        "intensity",
+        "applicationMethod",
+        "degradedWindowId",
+        "reliefWindowId",
+        "executionStatus",
+        "restorationStatus"
+      ],
+      "title": "Probe",
+      "type": "object"
+    },
+    "ProbeApplicationMethod": {
+      "enum": [
+        "simulated_pair",
+        "paired_run",
+        "live_bounded_probe"
+      ],
+      "title": "ProbeApplicationMethod",
+      "type": "string"
+    },
+    "ProbeExecutionStatus": {
+      "enum": [
+        "not_executed",
+        "executed",
+        "failed"
+      ],
+      "title": "ProbeExecutionStatus",
+      "type": "string"
+    },
+    "ProvenanceKind": {
+      "enum": [
+        "synthetic",
+        "controlled_real",
+        "organic_real"
+      ],
+      "title": "ProvenanceKind",
+      "type": "string"
+    },
+    "ResponseDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "degradedWindowId": {
+          "minLength": 1,
+          "title": "Degradedwindowid",
+          "type": "string"
+        },
+        "features": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FeatureDelta"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "invalidReasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Invalidreasons",
+          "type": "array"
+        },
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "reliefWindowId": {
+          "minLength": 1,
+          "title": "Reliefwindowid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "degradedWindowId",
+        "reliefWindowId",
+        "features",
+        "isValid"
+      ],
+      "title": "ResponseDelta",
+      "type": "object"
+    },
+    "RestorationStatus": {
+      "enum": [
+        "not_applicable",
+        "not_executed",
+        "restored",
+        "not_restored",
+        "unknown"
+      ],
+      "title": "RestorationStatus",
+      "type": "string"
+    },
+    "SourceArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifactId": {
+          "minLength": 1,
+          "title": "Artifactid",
+          "type": "string"
+        },
+        "checksum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checksum"
+        },
+        "producer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Producer"
+        },
+        "sourceType": {
+          "minLength": 1,
+          "title": "Sourcetype",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "sourceType"
+      ],
+      "title": "SourceArtifact",
+      "type": "object"
+    },
+    "TimeBounds": {
+      "additionalProperties": false,
+      "description": "Either UTC wall-clock bounds or elapsed synthetic bounds, never both.",
+      "properties": {
+        "elapsedEndS": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elapsedends"
+        },
+        "elapsedStartS": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elapsedstarts"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Startedat"
+        }
+      },
+      "title": "TimeBounds",
+      "type": "object"
+    },
+    "ValidityState": {
+      "additionalProperties": false,
+      "properties": {
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "reasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "isValid"
+      ],
+      "title": "ValidityState",
+      "type": "object"
+    },
+    "WindowPhase": {
+      "enum": [
+        "baseline",
+        "degraded",
+        "relief",
+        "recovery"
+      ],
+      "title": "WindowPhase",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The ``observation-v1`` root: paired windows plus their response.",
+  "properties": {
+    "context": {
+      "$ref": "#/$defs/ContextKey"
+    },
+    "contractVersion": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "degradedWindow": {
+      "$ref": "#/$defs/ObservationWindow"
+    },
+    "normalizedResponse": {
+      "$ref": "#/$defs/NormalizedResponse"
+    },
+    "probe": {
+      "$ref": "#/$defs/Probe"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceKind"
+    },
+    "reliefWindow": {
+      "$ref": "#/$defs/ObservationWindow"
+    },
+    "responseDelta": {
+      "$ref": "#/$defs/ResponseDelta"
+    },
+    "schemaVersion": {
+      "const": "observation-v1",
+      "default": "observation-v1",
+      "title": "Schemaversion",
+      "type": "string"
+    }
+  },
+  "required": [
+    "context",
+    "degradedWindow",
+    "reliefWindow",
+    "probe",
+    "responseDelta",
+    "normalizedResponse",
+    "provenance"
+  ],
+  "title": "ObservationRecord",
+  "type": "object"
+}

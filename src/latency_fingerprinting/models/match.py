@@ -50,9 +50,7 @@ class FeatureEvidence(ContractModel):
         ):
             raise ValueError("residual must equal observed_value minus candidate_value")
         expected = self.weight * self.residual**2
-        if not math.isclose(
-            self.weighted_squared_residual, expected, rel_tol=1e-12, abs_tol=1e-12
-        ):
+        if not math.isclose(self.weighted_squared_residual, expected, rel_tol=1e-12, abs_tol=1e-12):
             raise ValueError("weighted_squared_residual must equal weight times residual squared")
         return self
 

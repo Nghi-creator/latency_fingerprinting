@@ -7,7 +7,6 @@ from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field
 
-
 CONTRACT_VERSION = "1.0.0"
 OBSERVATION_SCHEMA_VERSION = "observation-v1"
 FINGERPRINT_SCHEMA_VERSION = "fingerprint-v1"
