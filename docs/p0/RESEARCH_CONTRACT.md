@@ -6,9 +6,22 @@
 
 ## Purpose
 
-This document defines what the P0 system means by context, observation, probe, response, fingerprint, match, unknown and validated outcome. Python models, JSON Schemas, fixtures, experiments and explanations must use these meanings.
+This document defines what the P0 system means by context, observation, probe, response, fingerprint, match, unknown and validated outcome. Python models, generated JSON Schemas, fixtures, experiments and explanations must use these meanings.
+
+P0 is an offline software vertical slice. It uses synthetic fixture windows to
+exercise the complete analytical path; it does not collect telemetry from or
+change a live Pixelated engine.
 
 Changes that alter the meaning or required fields of a record require a contract-version change. Editorial clarifications do not.
+
+## Record conventions
+
+- Pydantic models are the implementation source of truth; checked-in JSON Schemas are generated from them.
+- Every schema root carries `schemaVersion` and `contractVersion`.
+- JSON field names use `camelCase`; Python may use `snake_case` with explicit aliases.
+- Identifiers are opaque strings and must not contain secrets or personal machine data.
+- Timestamps use UTC ISO 8601 when real time exists; synthetic fixtures may use elapsed-time bounds.
+- Numeric metric values declare units, and serialized numbers must be finite.
 
 ## 1. Context
 
@@ -26,7 +39,7 @@ It includes:
 - transport implementation and connection mode;
 - network scenario label when controlled;
 - client/browser class;
-- stream profile;
+- nominal stream profile;
 - relevant application, runtime, codec and driver versions when known.
 
 ### Required behavior
@@ -35,6 +48,8 @@ It includes:
 - Context identifiers must be stable for repeated runs but must not expose personal or secret machine data.
 - A `compatibilityGroup` explicitly states which records may be compared during P0.
 - Matching must reject incompatible contract major versions, probe types or compatibility groups.
+- A compatibility group is an explicit P0 test boundary, not proof that records are scientifically comparable.
+- Temporary settings represented by a probe do not mutate the nominal context. Each observation records the effective settings used during that window.
 - Missing context must not be silently replaced with a generic default.
 
 ### P0 limitation
@@ -45,7 +60,10 @@ P0 does not prove transfer across different machines, workloads, codecs or clien
 
 ### Definition
 
-An **observation window** is a set of measurements collected and aggregated over a declared interval under one stable context and experimental phase.
+An **observation window** is a bounded set of measurements collected and aggregated over a declared interval under one stable context and experimental phase.
+
+One `observation-v1` record represents one window. Pairing degraded and relief
+windows is an analytical operation; it does not turn them into one window.
 
 Allowed phases are:
 
@@ -57,12 +75,15 @@ Allowed phases are:
 ### Required fields
 
 - run and window identifiers;
+- comparison-case identifier when the window belongs to a pair;
 - context reference;
 - phase;
 - start/end time or elapsed-time bounds;
 - duration and sample count;
-- aggregate metric values;
+- effective stream and runtime settings;
+- aggregate metric values, units and aggregation functions;
 - missing or rejected metrics;
+- validity state and reasons;
 - source artifact and provenance.
 
 ### Comparability rule
@@ -75,7 +96,7 @@ Two windows are comparable only when:
 - their durations and aggregation rules are sufficiently similar;
 - both pass validity checks such as active playback and usable connection state.
 
-P0 may compare windows from paired runs because the current camera profile is fixed at launch. A paired-run comparison must record run order and all changed settings and must not be described as a live probe.
+For P0 fixtures, comparable degraded and relief windows must share a comparison-case identifier, compatibility group, aggregation rules and declared synthetic probe. Their values are constructed test evidence, not engine measurements.
 
 ## 3. Probe
 
@@ -93,7 +114,10 @@ The preferred probe is:
 
 ### P0 probe form
 
-P0 uses `stream_profile_relief` with `applicationMethod: paired_run`. This is an experimental controlled change, not an automated in-session probe.
+P0 represents `stream_profile_relief` with
+`applicationMethod: simulated_pair`. It describes the change whose response the
+fixture models; the prototype does not execute that change. Real `paired_run`
+and live bounded-probe methods are deferred to engine integration.
 
 Prefer changing one control while holding the others fixed. If a preset changes bitrate, FPS and encoder settings together, record every change and treat the preset as one composite probe. Do not attribute its response to one control.
 
@@ -102,19 +126,23 @@ Prefer changing one control while holding the others fixed. If a preset changes 
 A probe record contains:
 
 - probe type and version;
-- requested and observed settings;
+- requested settings and, only when executed, observed settings;
 - intensity and application method;
 - associated degraded and relief windows;
-- start/end or paired-run ordering;
-- restoration result;
+- execution status and paired-window ordering;
+- restoration status;
 - safety notes and known confounders;
 - quality cost when measurable.
+
+For `simulated_pair`, execution and restoration status must both state that no
+runtime action occurred. Any quality cost is modeled fixture data, not an
+observed cost.
 
 ## 4. Response delta
 
 ### Definition
 
-A **response delta** is the measured change between comparable observation windows after a declared probe or verified action.
+A **response delta** is the feature-wise change between comparable observation windows associated with a declared probe or verified action. In P0, the values are calculated from synthetic fixture aggregates rather than claimed as physical measurements.
 
 P0 uses one sign convention:
 
@@ -126,15 +154,17 @@ Examples:
 
 - jitter falling from `20 ms` to `8 ms` produces `-12 ms`;
 - FPS rising from `35` to `55` produces `+20 FPS`;
-- packet-loss delta falling from `6` to `1` produces `-5 packets/window`.
+- packet loss falling from `6%` to `1%` produces `-5 percentage points`.
 
 ### Required behavior
 
 - Raw values, units and aggregation functions must be retained.
 - Normalization must happen after raw-delta calculation.
+- Both windows must use the same unit and compatible aggregation function for a feature.
 - Missing values must remain missing; they must not become zero.
 - The vector stores measured direction and magnitude. It does not assume that every positive or negative value is beneficial.
 - A response calculated from incomparable windows is invalid.
+- Non-finite values such as `NaN` and infinity are invalid and must not appear in JSON output.
 
 ## 5. Fingerprint
 
@@ -164,16 +194,17 @@ context
 
 - fingerprint and schema version;
 - bottleneck label;
-- context/probe compatibility key;
+- context and probe compatibility keys;
+- raw response delta with feature units;
 - normalized response vector and feature weights;
 - provenance: `synthetic`, `controlled_real` or `organic_real`;
-- source run identifiers;
+- source case/window identifiers and, when applicable, run identifiers;
 - creation software version;
 - validation status and notes.
 
 ### P0 storage rule
 
-Fingerprints are versioned JSON files. P0 does not require SQLite, a service or lifecycle automation. Synthetic fingerprints must be clearly labeled and cannot be presented as experimental findings.
+Fingerprints are versioned JSON files. P0 does not require SQLite, a service or lifecycle automation. P0 fingerprints use `synthetic` provenance and may be described only as software-test references, not experimental findings or scientifically validated profiles.
 
 ## 6. Match result
 
@@ -183,9 +214,10 @@ A **match result** is the output of comparing one observed response vector with 
 
 It contains:
 
-- accepted bottleneck label or `unknown`;
-- best match strength;
-- margin between the best and second-best candidates;
+- decision: `matched` or `unknown`;
+- predicted bottleneck label, which is null for `unknown`;
+- best match strength, when a compatible candidate can be scored;
+- margin between the best and second-best candidates, when both exist;
 - ranked candidates;
 - shared-feature count and coverage;
 - supporting and conflicting per-feature evidence;
@@ -198,13 +230,16 @@ It contains:
 
 `matchStrength` is an engineering similarity measure. It is not a probability and must not be called calibrated confidence during P0.
 
+Match strength and margin must be null when they cannot be computed; they must
+not be invented as zero.
+
 A match result suggests which stored response pattern is most similar. It does not by itself prove unrestricted causality.
 
 ## 7. Unknown
 
 ### Definition
 
-`unknown` is the required result when evidence is insufficient, incompatible, weak or conflicting.
+`unknown` is the required decision when evidence is insufficient, incompatible, weak or conflicting. It is a valid result, not an execution failure.
 
 P0 reason codes include:
 
@@ -242,7 +277,11 @@ It contains:
 
 ### P0 rule
 
-P0 records the observed paired-run outcome and restoration status. It does not yet use outcomes to update fingerprints automatically or choose the next action.
+Synthetic fixture expectations are regression assertions, not validated
+outcomes. P0 defines the validated-outcome model for the later real experiment,
+but it must not claim an observed recovery, cost or restoration result from
+synthetic data. Outcomes do not automatically update fingerprints or choose the
+next action.
 
 ## 9. Contract invariants
 
@@ -255,16 +294,18 @@ Every implementation must preserve these rules:
 5. Synthetic, controlled-real and organic-real provenance are distinct.
 6. Match strength is not calibrated probability.
 7. Weak or conflicting evidence returns `unknown`.
-8. A controlled change records cost and restoration, not only improvement.
-9. P0 paired runs are not described as live probing.
-10. Feasibility evidence is not diagnosis-accuracy evidence.
+8. An executed controlled change records cost and restoration, not only improvement.
+9. P0 simulated pairs are not described as executed or live probing.
+10. Software-test success is not integration or diagnosis-accuracy evidence.
+11. Nominal context is distinct from temporary effective settings.
+12. Synthetic fixture expectations are not validated experimental outcomes.
 
 ## 10. P0 completion for this contract
 
 This contract item is complete when:
 
 - [x] The eight terms have normative definitions.
-- [x] Paired-run and live-probe language is distinguished.
+- [x] Simulated, paired-run and live-probe language is distinguished.
 - [x] Provenance and truthfulness rules are explicit.
 - [x] `unknown` behavior and reason codes are defined.
 - [x] Match strength is separated from calibrated confidence.

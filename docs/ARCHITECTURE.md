@@ -27,15 +27,26 @@ The future deadline scheduler remains in the capture/GStreamer runtime because p
 
 ## Data flow
 
+P0 exercises the research core with synthetic or curated paired observation
+windows. A probe is represented by metadata plus its degraded and relief
+windows; P0 does not execute that probe against a live engine.
+
 ```text
-Pixelated browser/runtime
-    -> versioned research bundle
-    -> Pixelated Python adapter
-    -> contract records
+fixture reference cases
+    -> degraded + relief observation windows
     -> response vector
     -> file-based fingerprint repository
+fixture query cases
+    -> degraded + relief observation windows
+    -> response vector
     -> matcher
     -> JSON match result
+
+Later integration:
+    Pixelated browser/runtime
+    -> versioned research bundle
+    -> Pixelated Python adapter
+    -> the same contract and matching pipeline
 
 Future slow loop:
     Python diagnosis/policy -> bounded runtime action adapter
@@ -57,7 +68,6 @@ latency-fingerprinting/
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── diagrams/
-│   ├── outreach/
 │   └── p0/
 ├── schemas/
 │   ├── observation-v1.schema.json
@@ -77,9 +87,13 @@ latency-fingerprinting/
 │       ├── __init__.py
 │       └── pixelated_bundle.py
 ├── fixtures/
-│   ├── healthy.json
-│   ├── network_pressure.json
-│   └── host_encoder_pressure.json
+│   ├── reference_cases/
+│   │   ├── network_pressure/
+│   │   └── host_encoder_pressure/
+│   └── query_cases/
+│       ├── similar_network/
+│       ├── similar_encoder/
+│       └── unknown/
 ├── experiments/
 │   └── controlled-run-001/
 └── tests/
@@ -87,6 +101,12 @@ latency-fingerprinting/
 ```
 
 Package markers such as `__init__.py` and `__main__.py` may be added. Virtual environments, caches and large/private raw experiment bundles must be ignored by Git.
+
+Each fixture case contains paired `degraded.json` and `relief.json` observation
+windows plus an expected fingerprint or match result. Reference cases build the
+known fingerprint library; query cases test matching and conservative `unknown`
+handling. Fixtures are stable regression inputs, while `experiments/` stores
+artifacts from complete research trials and, later, real controlled runs.
 
 ## Python choice
 
@@ -115,8 +135,9 @@ The current camera bridge receives FPS, bitrate and encoder profile through `PIX
 
 Therefore:
 
-- P0 uses controlled paired runs;
+- P0 models controlled probes with paired fixture windows;
 - P0 does not claim live in-session probing;
+- real controlled paired runs are deferred to the Pixelated adapter integration;
 - dynamic bounded probing is deferred until the runtime exposes a tested mutation and rollback path.
 
 ## Deferred architecture
