@@ -44,7 +44,8 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 - [x] Normalize with declared feature scales.
 - [x] Load versioned fingerprint JSON.
 - [ ] Implement weighted-distance ranking and coverage.
-- [ ] Implement evidence and all `unknown` reasons.
+- [x] Implement per-feature matching evidence.
+- [ ] Implement all `unknown` reasons.
 
 ## 5. Fixtures and tests
 
