@@ -42,7 +42,7 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 - [x] Calculate raw deltas from aggregate window metrics.
 - [ ] Aggregate raw adapter telemetry into window metrics.
 - [x] Normalize with declared feature scales.
-- [ ] Load versioned fingerprint JSON.
+- [x] Load versioned fingerprint JSON.
 - [ ] Implement weighted-distance ranking and coverage.
 - [ ] Implement evidence and all `unknown` reasons.
 
