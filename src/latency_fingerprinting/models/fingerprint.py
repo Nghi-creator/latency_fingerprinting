@@ -62,6 +62,18 @@ class Fingerprint(ContractModel):
         missing_weights = set(self.normalized_response.features).difference(self.feature_weights)
         if missing_weights:
             raise ValueError(f"missing feature weights: {sorted(missing_weights)}")
+        if self.raw_response_delta.is_valid != self.normalized_response.is_valid:
+            raise ValueError("raw and normalized fingerprint response validity must agree")
+        if set(self.raw_response_delta.features) != set(self.normalized_response.features):
+            raise ValueError("raw and normalized fingerprint feature sets must agree")
+        if set(self.raw_response_delta.missing_features) != set(
+            self.normalized_response.missing_features
+        ):
+            raise ValueError("raw and normalized fingerprint missing-feature sets must agree")
+        if set(self.raw_response_delta.rejected_features) != set(
+            self.normalized_response.rejected_features
+        ):
+            raise ValueError("raw and normalized fingerprint rejected-feature sets must agree")
         if (
             self.provenance is ProvenanceKind.SYNTHETIC
             and self.validation_status is ValidationStatus.VALIDATED

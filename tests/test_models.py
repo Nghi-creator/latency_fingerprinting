@@ -378,6 +378,14 @@ def test_observation_pair_references_must_be_consistent() -> None:
         ObservationRecord.model_validate(payload)
 
 
+def test_observation_raw_and_normalized_feature_sets_must_agree() -> None:
+    observation = make_observation()
+    payload = observation.model_dump()
+    payload["normalized_response"]["features"] = {}
+    with pytest.raises(ValidationError, match="feature sets must agree"):
+        ObservationRecord.model_validate(payload)
+
+
 def test_fingerprint_requires_compatible_context_weights_sources_and_utc() -> None:
     fingerprint = make_fingerprint()
     invalid_changes = [
@@ -399,6 +407,14 @@ def test_fingerprint_requires_compatible_context_weights_sources_and_utc() -> No
         payload.update(changes)
         with pytest.raises(ValidationError):
             Fingerprint.model_validate(payload)
+
+
+def test_fingerprint_raw_and_normalized_availability_must_agree() -> None:
+    fingerprint = make_fingerprint()
+    payload = fingerprint.model_dump()
+    payload["normalized_response"]["missing_features"] = ["client.received_bitrate_kbps"]
+    with pytest.raises(ValidationError, match="missing-feature sets must agree"):
+        Fingerprint.model_validate(payload)
 
 
 def test_feature_evidence_arithmetic_is_auditable() -> None:

@@ -116,10 +116,45 @@ class NormalizedFeature(ContractModel):
     epsilon: PositiveFiniteFloat
     reference_value: FiniteFloat
     was_clipped: bool = False
+    unclipped_value: FiniteFloat | None = None
+
+    @model_validator(mode="after")
+    def validate_clipping_metadata(self) -> NormalizedFeature:
+        if self.was_clipped and self.unclipped_value is None:
+            raise ValueError("a clipped normalized feature requires its unclipped_value")
+        if not self.was_clipped and self.unclipped_value is not None:
+            raise ValueError("an unclipped normalized feature cannot have an unclipped_value")
+        return self
 
 
 class NormalizedResponse(ContractModel):
     features: dict[NonEmptyStr, NormalizedFeature]
+    missing_features: list[NonEmptyStr] = Field(default_factory=list)
+    rejected_features: dict[NonEmptyStr, NonEmptyStr] = Field(default_factory=dict)
+    is_valid: bool = True
+    invalid_reasons: list[NonEmptyStr] = Field(default_factory=list)
+    warnings: list[NonEmptyStr] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_normalized_status(self) -> NormalizedResponse:
+        if not self.is_valid and not self.invalid_reasons:
+            raise ValueError("an invalid normalized response requires at least one reason")
+        if self.is_valid and self.invalid_reasons:
+            raise ValueError("a valid normalized response cannot have invalidity reasons")
+        if not self.is_valid and self.features:
+            raise ValueError("an invalid normalized response cannot contain calculated features")
+        measured = set(self.features)
+        missing = set(self.missing_features)
+        rejected = set(self.rejected_features)
+        overlap = (measured & missing) | (measured & rejected) | (missing & rejected)
+        if overlap:
+            raise ValueError(
+                "normalized features must have exactly one measured, missing or rejected state: "
+                f"{sorted(overlap)}"
+            )
+        if len(missing) != len(self.missing_features):
+            raise ValueError("missing_features cannot contain duplicates")
+        return self
 
 
 class ObservationRecord(ContractModel):
@@ -156,4 +191,16 @@ class ObservationRecord(ContractModel):
             or self.response_delta.relief_window_id != relief.window_id
         ):
             raise ValueError("response delta window identifiers must reference this pair")
+        if self.response_delta.is_valid != self.normalized_response.is_valid:
+            raise ValueError("raw and normalized response validity must agree")
+        if set(self.response_delta.features) != set(self.normalized_response.features):
+            raise ValueError("raw and normalized response feature sets must agree")
+        if set(self.response_delta.missing_features) != set(
+            self.normalized_response.missing_features
+        ):
+            raise ValueError("raw and normalized missing-feature sets must agree")
+        if set(self.response_delta.rejected_features) != set(
+            self.normalized_response.rejected_features
+        ):
+            raise ValueError("raw and normalized rejected-feature sets must agree")
         return self

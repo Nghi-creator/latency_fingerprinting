@@ -191,6 +191,18 @@
           "title": "Referencevalue",
           "type": "number"
         },
+        "unclippedValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unclippedvalue"
+        },
         "value": {
           "title": "Value",
           "type": "number"
@@ -221,6 +233,46 @@
           },
           "title": "Features",
           "type": "object"
+        },
+        "invalidReasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Invalidreasons",
+          "type": "array"
+        },
+        "isValid": {
+          "default": true,
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "missingFeatures": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingfeatures",
+          "type": "array"
+        },
+        "rejectedFeatures": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedfeatures",
+          "type": "object"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
         }
       },
       "required": [
