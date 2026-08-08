@@ -1,0 +1,85 @@
+{
+  "acceptedLabel": "network_pressure",
+  "compatibility": {
+    "compatibilityGroup": "p0-synthetic-v1",
+    "compatibleFingerprintIds": [
+      "fingerprint-healthy-v1",
+      "fingerprint-host_encoder_pressure-v1",
+      "fingerprint-network_pressure-v1"
+    ],
+    "isCompatible": true,
+    "rejectedFingerprints": {}
+  },
+  "conflictingEvidence": [],
+  "contractVersion": "1.0.0",
+  "decision": "matched",
+  "decisionReason": "The best compatible response exceeds all provisional thresholds.",
+  "featureCoverage": 1.0,
+  "matchStrength": 0.9686133405155021,
+  "missingFeatures": [],
+  "rankedCandidates": [
+    {
+      "bottleneckLabel": "network_pressure",
+      "distance": 0.03240370349203928,
+      "fingerprintId": "fingerprint-network_pressure-v1",
+      "matchStrength": 0.9686133405155021
+    },
+    {
+      "bottleneckLabel": "host_encoder_pressure",
+      "distance": 0.4832701108076104,
+      "fingerprintId": "fingerprint-host_encoder_pressure-v1",
+      "matchStrength": 0.6741860384792089
+    },
+    {
+      "bottleneckLabel": "healthy",
+      "distance": 0.4873910134583936,
+      "fingerprintId": "fingerprint-healthy-v1",
+      "matchStrength": 0.6723181671474935
+    }
+  ],
+  "schemaVersion": "match-result-v1",
+  "scoreMargin": 0.2944273020362932,
+  "sharedFeatureCount": 4,
+  "supportingEvidence": [
+    {
+      "candidateValue": 0.1,
+      "feature": "client.received_bitrate_kbps",
+      "observedValue": 0.12,
+      "residual": 0.01999999999999999,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0003999999999999996
+    },
+    {
+      "candidateValue": 0.2,
+      "feature": "client.received_fps",
+      "observedValue": 0.21999999999999992,
+      "residual": 0.019999999999999907,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0003999999999999963
+    },
+    {
+      "candidateValue": -0.6,
+      "feature": "transport.jitter_ms",
+      "observedValue": -0.5700000000000001,
+      "residual": 0.029999999999999916,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.000899999999999995
+    },
+    {
+      "candidateValue": -0.8,
+      "feature": "transport.packets_lost_delta",
+      "observedValue": -0.75,
+      "residual": 0.050000000000000044,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0025000000000000044
+    }
+  ],
+  "thresholds": {
+    "minimumFeatureCoverage": 0.6,
+    "minimumMatchStrength": 0.75,
+    "minimumScoreMargin": 0.1,
+    "minimumSharedFeatureCount": 3
+  },
+  "unknownReason": null,
+  "warnings": []
+}

@@ -92,8 +92,8 @@ latency-fingerprint match tests/data/clear-network-response.json --fingerprints 
 ```
 
 - [ ] Clean install and all checks pass.
-- [ ] Schemas match generated models.
-- [ ] Example output validates against its schema.
+- [x] Schemas match generated models.
+- [x] Example output validates against its schema.
 - [ ] No secret, ROM, private path or personal device identity is committed.
 
 ## 10. Outreach readiness

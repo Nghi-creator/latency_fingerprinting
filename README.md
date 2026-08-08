@@ -22,7 +22,8 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 3. [`docs/p0/DATA_MODEL_AND_MATCHER.md`](docs/p0/DATA_MODEL_AND_MATCHER.md) defines records, normalization and matching.
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
 5. [`docs/p0/IMPLEMENTATION_TRACKER.md`](docs/p0/IMPLEMENTATION_TRACKER.md) is the executable checklist and exit gate.
-6. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
+6. [`docs/p0/P0_BUILD_PLAN.md`](docs/p0/P0_BUILD_PLAN.md) defines the ordered implementation plan and phase gates.
+7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
 
 ## Development setup
 
@@ -35,15 +36,18 @@ python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
 ```
 
-No matcher or CLI behavior has been implemented yet. The package files currently establish only the import and adapter namespaces.
+The synthetic analytical path is implemented and regression-tested. CLI and
+Pixelated bundle ingestion are the next integration stages.
 
 ## Current status
 
 - Existing Pixelated testbed and research-run export: implemented.
 - P0 research contract and architecture: specified.
 - Python 3.13 virtual environment and declared dependencies: installed.
-- Python package structure: scaffolded; analytical modules are not implemented.
-- Synthetic matcher fixtures: not implemented.
+- Python analytical core: validation, raw deltas, normalization, fingerprint
+  loading, evidence and conservative matching implemented.
+- Synthetic matcher fixtures and end-to-end regression pipeline: implemented.
+- CLI and Pixelated bundle adapter: not implemented.
 - Controlled real fingerprinting run: not captured.
 
 Update this section whenever implementation or evidence changes.
