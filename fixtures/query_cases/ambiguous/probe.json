@@ -1,0 +1,24 @@
+{
+  "applicationMethod": "simulated_pair",
+  "degradedWindowId": "query-ambiguous-degraded",
+  "executionStatus": "not_executed",
+  "intensity": 0.5,
+  "knownConfounders": [],
+  "observedSettings": null,
+  "pairedWindowOrder": [
+    "degraded",
+    "relief"
+  ],
+  "probeId": "probe-query-ambiguous",
+  "probeType": "stream_profile_relief",
+  "probeVersion": "1",
+  "qualityCost": {},
+  "reliefWindowId": "query-ambiguous-relief",
+  "requestedSettings": {
+    "encoderComplexity": "reduced"
+  },
+  "restorationStatus": "not_executed",
+  "safetyNotes": [
+    "No runtime action occurred; this pair is synthetic."
+  ]
+}

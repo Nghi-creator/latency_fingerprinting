@@ -1,0 +1,324 @@
+{
+  "context": {
+    "captureImplementation": "synthetic-fixture-generator",
+    "clientClass": "chromium",
+    "compatibilityGroup": "p0-synthetic-v1",
+    "connectionMode": "direct",
+    "contextId": "context-p0-synthetic-v1",
+    "edgeNodeClass": "synthetic-edge",
+    "encoderFamily": "vp8",
+    "encoderProfile": "realtime",
+    "networkScenario": "controlled-synthetic",
+    "nodeId": "anonymous-node-001",
+    "nominalStreamProfile": {
+      "bitrateKbps": 6000,
+      "fps": 60
+    },
+    "operatingSystem": "linux",
+    "runtimeClass": "container",
+    "transportImplementation": "webrtc",
+    "versions": {
+      "fixtureGenerator": "0.1.0"
+    },
+    "workloadId": "synthetic-game"
+  },
+  "contractVersion": "1.0.0",
+  "degradedWindow": {
+    "bounds": {
+      "elapsedEndS": 10.0,
+      "elapsedStartS": 0.0,
+      "endedAt": null,
+      "startedAt": null
+    },
+    "comparisonCaseId": "reference-network_pressure",
+    "confounders": [],
+    "context": {
+      "captureImplementation": "synthetic-fixture-generator",
+      "clientClass": "chromium",
+      "compatibilityGroup": "p0-synthetic-v1",
+      "connectionMode": "direct",
+      "contextId": "context-p0-synthetic-v1",
+      "edgeNodeClass": "synthetic-edge",
+      "encoderFamily": "vp8",
+      "encoderProfile": "realtime",
+      "networkScenario": "controlled-synthetic",
+      "nodeId": "anonymous-node-001",
+      "nominalStreamProfile": {
+        "bitrateKbps": 6000,
+        "fps": 60
+      },
+      "operatingSystem": "linux",
+      "runtimeClass": "container",
+      "transportImplementation": "webrtc",
+      "versions": {
+        "fixtureGenerator": "0.1.0"
+      },
+      "workloadId": "synthetic-game"
+    },
+    "durationS": 10.0,
+    "effectiveSettings": {
+      "bitrateKbps": 6000,
+      "encoderComplexity": "normal",
+      "fps": 60
+    },
+    "metrics": {
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 3000.0,
+        "median": 3000.0,
+        "minimum": 3000.0,
+        "p95": 3000.0,
+        "unit": "kbps",
+        "value": 3000.0
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 40.0,
+        "median": 40.0,
+        "minimum": 40.0,
+        "p95": 40.0,
+        "unit": "fps",
+        "value": 40.0
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 20.0,
+        "median": 20.0,
+        "minimum": 20.0,
+        "p95": 20.0,
+        "unit": "ms",
+        "value": 20.0
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 10.0,
+        "median": 10.0,
+        "minimum": 10.0,
+        "p95": 10.0,
+        "unit": "packets",
+        "value": 10.0
+      }
+    },
+    "missingMetrics": [],
+    "phase": "degraded",
+    "provenance": "synthetic",
+    "rejectedMetrics": {},
+    "runId": "run-reference-network_pressure",
+    "sampleCount": 20,
+    "sourceArtifact": {
+      "artifactId": "fixture-reference-network_pressure-degraded",
+      "checksum": null,
+      "producer": "latency_fingerprinting.synthetic_fixtures",
+      "sourceType": "synthetic_fixture"
+    },
+    "validity": {
+      "isValid": true,
+      "reasons": []
+    },
+    "windowId": "reference-network_pressure-degraded"
+  },
+  "normalizedResponse": {
+    "features": {
+      "client.received_bitrate_kbps": {
+        "epsilon": 1.0,
+        "referenceValue": 3000.0,
+        "unclippedValue": null,
+        "value": 0.1,
+        "wasClipped": false
+      },
+      "client.received_fps": {
+        "epsilon": 1.0,
+        "referenceValue": 40.0,
+        "unclippedValue": null,
+        "value": 0.2,
+        "wasClipped": false
+      },
+      "transport.jitter_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 20.0,
+        "unclippedValue": null,
+        "value": -0.6,
+        "wasClipped": false
+      },
+      "transport.packets_lost_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 10.0,
+        "unclippedValue": null,
+        "value": -0.8,
+        "wasClipped": false
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [],
+    "rejectedFeatures": {},
+    "warnings": []
+  },
+  "probe": {
+    "applicationMethod": "simulated_pair",
+    "degradedWindowId": "reference-network_pressure-degraded",
+    "executionStatus": "not_executed",
+    "intensity": 0.5,
+    "knownConfounders": [],
+    "observedSettings": null,
+    "pairedWindowOrder": [
+      "degraded",
+      "relief"
+    ],
+    "probeId": "probe-reference-network_pressure",
+    "probeType": "stream_profile_relief",
+    "probeVersion": "1",
+    "qualityCost": {},
+    "reliefWindowId": "reference-network_pressure-relief",
+    "requestedSettings": {
+      "encoderComplexity": "reduced"
+    },
+    "restorationStatus": "not_executed",
+    "safetyNotes": [
+      "No runtime action occurred; this pair is synthetic."
+    ]
+  },
+  "provenance": "synthetic",
+  "reliefWindow": {
+    "bounds": {
+      "elapsedEndS": 20.0,
+      "elapsedStartS": 10.0,
+      "endedAt": null,
+      "startedAt": null
+    },
+    "comparisonCaseId": "reference-network_pressure",
+    "confounders": [],
+    "context": {
+      "captureImplementation": "synthetic-fixture-generator",
+      "clientClass": "chromium",
+      "compatibilityGroup": "p0-synthetic-v1",
+      "connectionMode": "direct",
+      "contextId": "context-p0-synthetic-v1",
+      "edgeNodeClass": "synthetic-edge",
+      "encoderFamily": "vp8",
+      "encoderProfile": "realtime",
+      "networkScenario": "controlled-synthetic",
+      "nodeId": "anonymous-node-001",
+      "nominalStreamProfile": {
+        "bitrateKbps": 6000,
+        "fps": 60
+      },
+      "operatingSystem": "linux",
+      "runtimeClass": "container",
+      "transportImplementation": "webrtc",
+      "versions": {
+        "fixtureGenerator": "0.1.0"
+      },
+      "workloadId": "synthetic-game"
+    },
+    "durationS": 10.0,
+    "effectiveSettings": {
+      "bitrateKbps": 6000,
+      "encoderComplexity": "reduced",
+      "fps": 60
+    },
+    "metrics": {
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 3300.0,
+        "median": 3300.0,
+        "minimum": 3300.0,
+        "p95": 3300.0,
+        "unit": "kbps",
+        "value": 3300.0
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 48.0,
+        "median": 48.0,
+        "minimum": 48.0,
+        "p95": 48.0,
+        "unit": "fps",
+        "value": 48.0
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 8.0,
+        "median": 8.0,
+        "minimum": 8.0,
+        "p95": 8.0,
+        "unit": "ms",
+        "value": 8.0
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "count": 20,
+        "maximum": 2.0,
+        "median": 2.0,
+        "minimum": 2.0,
+        "p95": 2.0,
+        "unit": "packets",
+        "value": 2.0
+      }
+    },
+    "missingMetrics": [],
+    "phase": "relief",
+    "provenance": "synthetic",
+    "rejectedMetrics": {},
+    "runId": "run-reference-network_pressure",
+    "sampleCount": 20,
+    "sourceArtifact": {
+      "artifactId": "fixture-reference-network_pressure-relief",
+      "checksum": null,
+      "producer": "latency_fingerprinting.synthetic_fixtures",
+      "sourceType": "synthetic_fixture"
+    },
+    "validity": {
+      "isValid": true,
+      "reasons": []
+    },
+    "windowId": "reference-network_pressure-relief"
+  },
+  "responseDelta": {
+    "degradedWindowId": "reference-network_pressure-degraded",
+    "features": {
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "degradedValue": 3000.0,
+        "rawDelta": 300.0,
+        "reliefValue": 3300.0,
+        "unit": "kbps"
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "degradedValue": 40.0,
+        "rawDelta": 8.0,
+        "reliefValue": 48.0,
+        "unit": "fps"
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "degradedValue": 20.0,
+        "rawDelta": -12.0,
+        "reliefValue": 8.0,
+        "unit": "ms"
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "degradedValue": 10.0,
+        "rawDelta": -8.0,
+        "reliefValue": 2.0,
+        "unit": "packets"
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [],
+    "rejectedFeatures": {},
+    "reliefWindowId": "reference-network_pressure-relief",
+    "warnings": []
+  },
+  "schemaVersion": "observation-v1"
+}

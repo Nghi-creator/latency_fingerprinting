@@ -48,7 +48,7 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
 ## 5. Fixtures and tests
 
-- [ ] Add three clearly synthetic fingerprints.
+- [x] Add three clearly synthetic fingerprints.
 - [ ] Add clear/noisy matching tests.
 - [ ] Add weak/tied/conflicting `unknown` tests.
 - [ ] Add missing-feature and context-mismatch tests.
