@@ -573,10 +573,37 @@
           "title": "Isvalid",
           "type": "boolean"
         },
+        "missingFeatures": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingfeatures",
+          "type": "array"
+        },
+        "rejectedFeatures": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedfeatures",
+          "type": "object"
+        },
         "reliefWindowId": {
           "minLength": 1,
           "title": "Reliefwindowid",
           "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
         }
       },
       "required": [

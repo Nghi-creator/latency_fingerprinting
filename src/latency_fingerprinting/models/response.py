@@ -81,8 +81,11 @@ class ResponseDelta(ContractModel):
     degraded_window_id: NonEmptyStr
     relief_window_id: NonEmptyStr
     features: dict[NonEmptyStr, FeatureDelta]
+    missing_features: list[NonEmptyStr] = Field(default_factory=list)
+    rejected_features: dict[NonEmptyStr, NonEmptyStr] = Field(default_factory=dict)
     is_valid: bool
     invalid_reasons: list[NonEmptyStr] = Field(default_factory=list)
+    warnings: list[NonEmptyStr] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_response_status(self) -> ResponseDelta:
@@ -92,6 +95,19 @@ class ResponseDelta(ContractModel):
             raise ValueError("an invalid response delta requires at least one reason")
         if self.is_valid and self.invalid_reasons:
             raise ValueError("a valid response delta cannot have invalidity reasons")
+        if not self.is_valid and self.features:
+            raise ValueError("an invalid response delta cannot contain calculated features")
+        measured = set(self.features)
+        missing = set(self.missing_features)
+        rejected = set(self.rejected_features)
+        overlap = (measured & missing) | (measured & rejected) | (missing & rejected)
+        if overlap:
+            raise ValueError(
+                "response features must have exactly one measured, missing or rejected state: "
+                f"{sorted(overlap)}"
+            )
+        if len(missing) != len(self.missing_features):
+            raise ValueError("missing_features cannot contain duplicates")
         return self
 
 

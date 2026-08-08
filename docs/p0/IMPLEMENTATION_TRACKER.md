@@ -39,7 +39,8 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 ## 4. Analytical core
 
 - [x] Validate window comparability.
-- [ ] Aggregate metrics and calculate raw deltas.
+- [x] Calculate raw deltas from aggregate window metrics.
+- [ ] Aggregate raw adapter telemetry into window metrics.
 - [ ] Normalize with declared feature scales.
 - [ ] Load versioned fingerprint JSON.
 - [ ] Implement weighted-distance ranking and coverage.
