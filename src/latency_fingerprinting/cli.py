@@ -11,17 +11,21 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
+from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .fingerprints import load_fingerprint_repository
 from .matcher import match_observation
 from .models import (
     FINGERPRINT_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
+    ContextKey,
     Fingerprint,
     MatchResult,
     ObservationRecord,
     ObservationWindow,
     Probe,
+    ProvenanceKind,
+    WindowPhase,
 )
 from .pipeline import build_observation_record, canonical_json
 from .schemas import DEFAULT_SCHEMA_DIRECTORY, SCHEMA_MODELS, export_schemas, schema_drift
@@ -90,6 +94,19 @@ def _build_response(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(observation))
 
 
+def _ingest_pixelated(args: argparse.Namespace) -> None:
+    context = _load_model(args.context, ContextKey)
+    window = ingest_pixelated_bundle(
+        args.bundle,
+        phase=WindowPhase(args.phase),
+        comparison_case_id=args.comparison_case_id,
+        context=context,
+        provenance=ProvenanceKind(args.provenance),
+        confounders=args.confounder,
+    )
+    sys.stdout.write(canonical_json(window))
+
+
 def _match(args: argparse.Namespace) -> None:
     observation = _load_model(args.observation, ObservationRecord)
     repository = load_fingerprint_repository(
@@ -135,6 +152,32 @@ def build_parser() -> argparse.ArgumentParser:
     response.add_argument("--relief", type=Path, required=True)
     response.add_argument("--probe", type=Path, required=True)
     response.set_defaults(handler=_build_response)
+
+    ingest = subparsers.add_parser(
+        "ingest-pixelated",
+        help="translate a Pixelated research bundle into an observation window",
+    )
+    ingest.add_argument("bundle", type=Path)
+    ingest.add_argument("--phase", choices=[phase.value for phase in WindowPhase], required=True)
+    ingest.add_argument("--comparison-case-id", required=True)
+    ingest.add_argument(
+        "--context",
+        type=Path,
+        required=True,
+        help="explicit core ContextKey JSON shared by comparable runs",
+    )
+    ingest.add_argument(
+        "--provenance",
+        choices=[kind.value for kind in ProvenanceKind],
+        default=ProvenanceKind.CONTROLLED_REAL.value,
+    )
+    ingest.add_argument(
+        "--confounder",
+        action="append",
+        default=[],
+        help="record one known confounder; may be repeated",
+    )
+    ingest.set_defaults(handler=_ingest_pixelated)
 
     match = subparsers.add_parser("match", help="match an observation to fingerprints")
     match.add_argument("observation", type=Path)

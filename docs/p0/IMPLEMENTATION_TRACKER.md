@@ -40,7 +40,7 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
 - [x] Validate window comparability.
 - [x] Calculate raw deltas from aggregate window metrics.
-- [ ] Aggregate raw adapter telemetry into window metrics.
+- [x] Aggregate raw adapter telemetry into window metrics.
 - [x] Normalize with declared feature scales.
 - [x] Load versioned fingerprint JSON.
 - [x] Implement weighted-distance ranking and coverage.
@@ -58,7 +58,7 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
 - [x] Implement `validate` and `export-schemas`.
 - [x] Implement `build-response`.
-- [ ] Implement `ingest-pixelated` with the Pixelated adapter.
+- [x] Implement `ingest-pixelated` with the Pixelated adapter.
 - [x] Implement `match`.
 - [x] Use JSON stdout, diagnostic stderr and non-zero failure codes.
 
@@ -66,11 +66,11 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
 Reference: [`PIXELATED_ADAPTER_AND_EXPERIMENT.md`](PIXELATED_ADAPTER_AND_EXPERIMENT.md)
 
-- [ ] Read TAR or extracted bundle.
-- [ ] Validate files, columns and archive paths.
-- [ ] Map telemetry and aggregate phases.
-- [ ] Preserve provenance and missing evidence.
-- [ ] Add sanitized fixtures and tests.
+- [x] Read TAR or extracted bundle.
+- [x] Validate files, columns and archive paths.
+- [x] Map telemetry and aggregate phases.
+- [x] Preserve provenance and missing evidence.
+- [x] Add sanitized fixtures and tests.
 
 ## 8. Controlled real run
 

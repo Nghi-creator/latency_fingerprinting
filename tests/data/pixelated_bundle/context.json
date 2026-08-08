@@ -1,0 +1,24 @@
+{
+  "captureImplementation": "pixelated-browser-webrtc-stats",
+  "clientClass": "chromium",
+  "compatibilityGroup": "pixelated-controlled-p0-v1",
+  "connectionMode": "direct",
+  "contextId": "pixelated-controlled-context-001",
+  "edgeNodeClass": "controlled-edge-node",
+  "encoderFamily": "vp8",
+  "encoderProfile": "realtime",
+  "networkScenario": "controlled-lan",
+  "nodeId": "anonymous-node-001",
+  "nominalStreamProfile": {
+    "bitrateKbps": 1400,
+    "fps": 60,
+    "id": "balanced"
+  },
+  "operatingSystem": "linux",
+  "runtimeClass": "pixelated-container",
+  "transportImplementation": "webrtc",
+  "versions": {
+    "pixelatedBundleSchema": "1"
+  },
+  "workloadId": "sanitized-test-workload"
+}

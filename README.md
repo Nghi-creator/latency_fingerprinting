@@ -36,8 +36,9 @@ python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
 ```
 
-The synthetic analytical path and its offline CLI are implemented and
-regression-tested. Pixelated bundle ingestion is the next integration stage.
+The synthetic analytical path, offline CLI and Pixelated bundle adapter are
+implemented and regression-tested. The controlled real paired run is the next
+integration stage.
 
 ```bash
 latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
@@ -49,6 +50,10 @@ latency-fingerprint build-response \
 latency-fingerprint match \
   fixtures/query_cases/similar_network/observation.json \
   --fingerprints fixtures/reference_cases
+latency-fingerprint ingest-pixelated path/to/bundle.tar \
+  --phase degraded \
+  --comparison-case-id controlled-run-001 \
+  --context path/to/context.json
 ```
 
 ## Current status
@@ -61,7 +66,8 @@ latency-fingerprint match \
 - Synthetic matcher fixtures and end-to-end regression pipeline: implemented.
 - Offline CLI: validation, schema export/checking, response construction and
   matching implemented.
-- Pixelated bundle adapter and `ingest-pixelated` command: not implemented.
+- Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
+  archives and extracted directories with an explicit research context.
 - Controlled real fingerprinting run: not captured.
 
 Update this section whenever implementation or evidence changes.

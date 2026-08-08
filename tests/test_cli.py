@@ -9,13 +9,19 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.cli import main
-from latency_fingerprinting.models import MatchDecision, MatchResult, ObservationRecord
+from latency_fingerprinting.models import (
+    MatchDecision,
+    MatchResult,
+    ObservationRecord,
+    ObservationWindow,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = PROJECT_ROOT / "fixtures"
 QUERY_CASES = FIXTURES / "query_cases"
 REFERENCES = FIXTURES / "reference_cases"
 SCHEMAS = PROJECT_ROOT / "schemas"
+PIXELATED = PROJECT_ROOT / "tests" / "data" / "pixelated_bundle"
 
 
 def invoke(args: list[str], capsys: pytest.CaptureFixture[str]) -> tuple[int, str, str]:
@@ -144,6 +150,53 @@ def test_build_response_reports_missing_input(
     assert exit_code == 1
     assert stdout == ""
     assert "error:" in stderr
+
+
+def test_ingest_pixelated_emits_a_core_window(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    exit_code, stdout, stderr = invoke(
+        [
+            "ingest-pixelated",
+            str(PIXELATED / "valid"),
+            "--phase",
+            "degraded",
+            "--comparison-case-id",
+            "controlled-case-001",
+            "--context",
+            str(PIXELATED / "context.json"),
+        ],
+        capsys,
+    )
+
+    window = ObservationWindow.model_validate_json(stdout)
+    assert exit_code == 0
+    assert window.phase.value == "degraded"
+    assert window.comparison_case_id == "controlled-case-001"
+    assert stderr == ""
+
+
+def test_ingest_pixelated_reports_invalid_bundle(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    exit_code, stdout, stderr = invoke(
+        [
+            "ingest-pixelated",
+            str(tmp_path / "missing-bundle"),
+            "--phase",
+            "relief",
+            "--comparison-case-id",
+            "controlled-case-001",
+            "--context",
+            str(PIXELATED / "context.json"),
+        ],
+        capsys,
+    )
+
+    assert exit_code == 1
+    assert stdout == ""
+    assert "bundle path does not exist" in stderr
 
 
 def test_match_emits_a_schema_valid_result(
