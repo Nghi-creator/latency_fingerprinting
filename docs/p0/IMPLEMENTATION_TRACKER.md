@@ -24,7 +24,7 @@ Reference: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - [x] Add `pyproject.toml` and package markers.
 - [x] Configure Python, dependencies, pytest and Ruff.
 - [x] Add repository and experiment-data ignore rules.
-- [ ] Add the console entry point when `cli.py` is implemented.
+- [x] Add the console entry point when `cli.py` is implemented.
 - [x] Document and verify clean-environment installation.
 
 ## 3. Models and schemas
@@ -56,10 +56,11 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
 ## 6. CLI
 
-- [ ] Implement `validate` and `export-schemas`.
-- [ ] Implement `ingest-pixelated` and `build-response`.
-- [ ] Implement `match`.
-- [ ] Use JSON stdout, diagnostic stderr and non-zero failure codes.
+- [x] Implement `validate` and `export-schemas`.
+- [x] Implement `build-response`.
+- [ ] Implement `ingest-pixelated` with the Pixelated adapter.
+- [x] Implement `match`.
+- [x] Use JSON stdout, diagnostic stderr and non-zero failure codes.
 
 ## 7. Pixelated adapter
 
