@@ -64,6 +64,8 @@ class Fingerprint(ContractModel):
             raise ValueError(f"missing feature weights: {sorted(missing_weights)}")
         if self.raw_response_delta.is_valid != self.normalized_response.is_valid:
             raise ValueError("raw and normalized fingerprint response validity must agree")
+        if not self.raw_response_delta.is_valid:
+            raise ValueError("a stored fingerprint requires a valid response pattern")
         if set(self.raw_response_delta.features) != set(self.normalized_response.features):
             raise ValueError("raw and normalized fingerprint feature sets must agree")
         if set(self.raw_response_delta.missing_features) != set(

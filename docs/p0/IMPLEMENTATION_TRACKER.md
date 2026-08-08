@@ -43,16 +43,16 @@ Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 - [ ] Aggregate raw adapter telemetry into window metrics.
 - [x] Normalize with declared feature scales.
 - [x] Load versioned fingerprint JSON.
-- [ ] Implement weighted-distance ranking and coverage.
+- [x] Implement weighted-distance ranking and coverage.
 - [x] Implement per-feature matching evidence.
-- [ ] Implement all `unknown` reasons.
+- [x] Implement all `unknown` reasons.
 
 ## 5. Fixtures and tests
 
 - [x] Add three clearly synthetic fingerprints.
-- [ ] Add clear/noisy matching tests.
-- [ ] Add weak/tied/conflicting `unknown` tests.
-- [ ] Add missing-feature and context-mismatch tests.
+- [x] Add clear/noisy matching tests.
+- [x] Add weak/tied/conflicting `unknown` tests.
+- [x] Add missing-feature and context-mismatch tests.
 
 ## 6. CLI
 
