@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import Field, model_validator
 
@@ -23,7 +23,7 @@ from .response import NormalizedResponse, ResponseDelta
 class CompatibilityKey(ContractModel):
     compatibility_group: NonEmptyStr
     probe_type: NonEmptyStr
-    contract_version: NonEmptyStr = CONTRACT_VERSION
+    contract_version: Literal["1.0.0"] = CONTRACT_VERSION
 
 
 class Fingerprint(ContractModel):
@@ -37,8 +37,8 @@ class Fingerprint(ContractModel):
     normalized_response: NormalizedResponse
     feature_weights: dict[NonEmptyStr, NonNegativeFiniteFloat]
     provenance: ProvenanceKind
-    source_case_ids: list[NonEmptyStr]
-    source_window_ids: list[NonEmptyStr]
+    source_case_ids: Annotated[list[NonEmptyStr], Field(min_length=1)]
+    source_window_ids: Annotated[list[NonEmptyStr], Field(min_length=1)]
     source_run_ids: list[NonEmptyStr] = Field(default_factory=list)
     created_at: datetime
     software_version: NonEmptyStr
@@ -49,6 +49,16 @@ class Fingerprint(ContractModel):
     def validate_fingerprint(self) -> Fingerprint:
         if self.compatibility.compatibility_group != self.context.compatibility_group:
             raise ValueError("fingerprint compatibility group must equal its context group")
+        if self.compatibility.contract_version != self.contract_version:
+            raise ValueError(
+                "fingerprint compatibility contract version must equal its root version"
+            )
+        if self.created_at.tzinfo is None or self.created_at.utcoffset() is None:
+            raise ValueError("created_at must be a timezone-aware UTC timestamp")
+        if self.created_at.utcoffset().total_seconds() != 0:
+            raise ValueError("created_at must use a UTC offset")
+        if not self.source_case_ids or not self.source_window_ids:
+            raise ValueError("fingerprints require source case and window identifiers")
         missing_weights = set(self.normalized_response.features).difference(self.feature_weights)
         if missing_weights:
             raise ValueError(f"missing feature weights: {sorted(missing_weights)}")

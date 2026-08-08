@@ -101,12 +101,14 @@
         },
         "minimumMatchStrength": {
           "default": 0.75,
+          "maximum": 1,
           "minimum": 0,
           "title": "Minimummatchstrength",
           "type": "number"
         },
         "minimumScoreMargin": {
           "default": 0.1,
+          "maximum": 1,
           "minimum": 0,
           "title": "Minimumscoremargin",
           "type": "number"
@@ -140,6 +142,7 @@
           "type": "string"
         },
         "matchStrength": {
+          "maximum": 1,
           "minimum": 0,
           "title": "Matchstrength",
           "type": "number"
@@ -217,6 +220,7 @@
     "matchStrength": {
       "anyOf": [
         {
+          "maximum": 1,
           "minimum": 0,
           "type": "number"
         },
@@ -251,6 +255,7 @@
     "scoreMargin": {
       "anyOf": [
         {
+          "maximum": 1,
           "minimum": 0,
           "type": "number"
         },

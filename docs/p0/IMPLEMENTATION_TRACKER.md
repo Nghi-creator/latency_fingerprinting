@@ -1,6 +1,8 @@
 # P0 Implementation Tracker
 
-Use this file as the build checklist. Design details live in the linked documents.
+Use this file as the build checklist. The ordered implementation sequence,
+deliverables and phase gates live in [`P0_BUILD_PLAN.md`](P0_BUILD_PLAN.md).
+Design details live in the other linked documents.
 
 ## Exit statement
 
@@ -29,10 +31,10 @@ Reference: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 
 Reference: [`DATA_MODEL_AND_MATCHER.md`](DATA_MODEL_AND_MATCHER.md)
 
-- [ ] Implement context, metric, window and probe models.
-- [ ] Implement response, fingerprint, match and evidence models.
-- [ ] Generate three JSON Schemas.
-- [ ] Add drift, validation and round-trip tests.
+- [x] Implement context, metric, window and probe models.
+- [x] Implement response, fingerprint, match and evidence models.
+- [x] Generate three JSON Schemas.
+- [x] Add drift, validation and round-trip tests.
 
 ## 4. Analytical core
 

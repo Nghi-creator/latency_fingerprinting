@@ -9,8 +9,8 @@
           "type": "string"
         },
         "contractVersion": {
+          "const": "1.0.0",
           "default": "1.0.0",
-          "minLength": 1,
           "title": "Contractversion",
           "type": "string"
         },
@@ -367,6 +367,7 @@
         "minLength": 1,
         "type": "string"
       },
+      "minItems": 1,
       "title": "Sourcecaseids",
       "type": "array"
     },
@@ -383,6 +384,7 @@
         "minLength": 1,
         "type": "string"
       },
+      "minItems": 1,
       "title": "Sourcewindowids",
       "type": "array"
     },

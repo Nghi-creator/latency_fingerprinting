@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import Field, JsonValue, model_validator
 
@@ -35,9 +35,9 @@ class Probe(ContractModel):
     degraded_window_id: NonEmptyStr
     relief_window_id: NonEmptyStr
     execution_status: ProbeExecutionStatus
-    paired_window_order: list[Literal["degraded", "relief"]] = Field(
-        default_factory=lambda: ["degraded", "relief"]
-    )
+    paired_window_order: Annotated[
+        list[Literal["degraded", "relief"]], Field(min_length=2, max_length=2)
+    ] = Field(default_factory=lambda: ["degraded", "relief"])
     restoration_status: RestorationStatus
     safety_notes: list[NonEmptyStr] = Field(default_factory=list)
     known_confounders: list[NonEmptyStr] = Field(default_factory=list)
@@ -47,6 +47,11 @@ class Probe(ContractModel):
     def validate_simulated_probe(self) -> Probe:
         if self.degraded_window_id == self.relief_window_id:
             raise ValueError("a probe requires distinct degraded and relief windows")
+        if len(self.paired_window_order) != 2 or set(self.paired_window_order) != {
+            "degraded",
+            "relief",
+        }:
+            raise ValueError("paired_window_order must contain degraded and relief exactly once")
         if self.application_method is ProbeApplicationMethod.SIMULATED_PAIR:
             if self.execution_status is not ProbeExecutionStatus.NOT_EXECUTED:
                 raise ValueError("simulated_pair probes must not claim execution")
@@ -85,6 +90,8 @@ class ResponseDelta(ContractModel):
             raise ValueError("response delta requires distinct windows")
         if not self.is_valid and not self.invalid_reasons:
             raise ValueError("an invalid response delta requires at least one reason")
+        if self.is_valid and self.invalid_reasons:
+            raise ValueError("a valid response delta cannot have invalidity reasons")
         return self
 
 

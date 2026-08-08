@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import math
+from collections.abc import Mapping
 from enum import StrEnum
 from typing import Annotated
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 CONTRACT_VERSION = "1.0.0"
 OBSERVATION_SCHEMA_VERSION = "observation-v1"
@@ -18,6 +20,7 @@ NonNegativeFiniteFloat = Annotated[float, Field(ge=0, allow_inf_nan=False)]
 PositiveFiniteFloat = Annotated[float, Field(gt=0, allow_inf_nan=False)]
 NonNegativeInt = Annotated[int, Field(ge=0)]
 PositiveInt = Annotated[int, Field(gt=0)]
+UnitInterval = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
 
 
 def _camel_case(name: str) -> str:
@@ -36,6 +39,25 @@ class ContractModel(BaseModel):
         extra="forbid",
         str_strip_whitespace=True,
     )
+
+    @model_validator(mode="after")
+    def reject_nested_non_finite_numbers(self) -> ContractModel:
+        """Reject NaN and infinity, including values nested in JSON settings."""
+
+        def is_non_finite(value: object) -> bool:
+            if isinstance(value, float):
+                return not math.isfinite(value)
+            if isinstance(value, BaseModel):
+                return any(is_non_finite(item) for item in value.__dict__.values())
+            if isinstance(value, Mapping):
+                return any(is_non_finite(item) for item in value.values())
+            if isinstance(value, (list, tuple, set, frozenset)):
+                return any(is_non_finite(item) for item in value)
+            return False
+
+        if any(is_non_finite(value) for value in self.__dict__.values()):
+            raise ValueError("contract records cannot contain NaN or infinity")
+        return self
 
 
 class WindowPhase(StrEnum):

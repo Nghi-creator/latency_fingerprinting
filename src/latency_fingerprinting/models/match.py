@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from typing import Annotated, Literal
+from typing import Literal
 
 from pydantic import Field, model_validator
 
@@ -20,6 +20,7 @@ from .common import (
     PositiveInt,
     ProvenanceKind,
     RestorationStatus,
+    UnitInterval,
     UnknownReason,
 )
 from .context import MetricAggregate
@@ -29,7 +30,7 @@ class RankedCandidate(ContractModel):
     fingerprint_id: NonEmptyStr
     bottleneck_label: NonEmptyStr
     distance: NonNegativeFiniteFloat
-    match_strength: NonNegativeFiniteFloat
+    match_strength: UnitInterval
 
 
 class FeatureEvidence(ContractModel):
@@ -63,10 +64,10 @@ class CompatibilityResult(ContractModel):
 
 
 class MatchThresholds(ContractModel):
-    minimum_match_strength: NonNegativeFiniteFloat = 0.75
-    minimum_score_margin: NonNegativeFiniteFloat = 0.10
+    minimum_match_strength: UnitInterval = 0.75
+    minimum_score_margin: UnitInterval = 0.10
     minimum_shared_feature_count: PositiveInt = 3
-    minimum_feature_coverage: Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)] = 0.60
+    minimum_feature_coverage: UnitInterval = 0.60
 
 
 class MatchResult(ContractModel):
@@ -74,11 +75,11 @@ class MatchResult(ContractModel):
     contract_version: Literal["1.0.0"] = CONTRACT_VERSION
     decision: MatchDecision
     accepted_label: NonEmptyStr | None = None
-    match_strength: NonNegativeFiniteFloat | None = None
-    score_margin: NonNegativeFiniteFloat | None = None
+    match_strength: UnitInterval | None = None
+    score_margin: UnitInterval | None = None
     ranked_candidates: list[RankedCandidate] = Field(default_factory=list)
     shared_feature_count: NonNegativeInt
-    feature_coverage: Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
+    feature_coverage: UnitInterval
     supporting_evidence: list[FeatureEvidence] = Field(default_factory=list)
     conflicting_evidence: list[FeatureEvidence] = Field(default_factory=list)
     missing_features: list[NonEmptyStr] = Field(default_factory=list)
@@ -90,11 +91,48 @@ class MatchResult(ContractModel):
 
     @model_validator(mode="after")
     def validate_decision(self) -> MatchResult:
+        if self.ranked_candidates:
+            best = self.ranked_candidates[0]
+            if self.match_strength is None:
+                raise ValueError("ranked candidates require a best match_strength")
+            if not math.isclose(self.match_strength, best.match_strength, abs_tol=1e-12):
+                raise ValueError("match_strength must equal the top candidate strength")
+        elif self.match_strength is not None:
+            raise ValueError("match_strength requires at least one ranked candidate")
+
+        if len(self.ranked_candidates) >= 2:
+            if self.score_margin is None:
+                raise ValueError("two or more ranked candidates require a score_margin")
+            expected_margin = (
+                self.ranked_candidates[0].match_strength - self.ranked_candidates[1].match_strength
+            )
+            if not math.isclose(self.score_margin, expected_margin, abs_tol=1e-12):
+                raise ValueError("score_margin must equal the top-two strength difference")
+        elif self.score_margin is not None:
+            raise ValueError("score_margin requires at least two ranked candidates")
+
         if self.decision is MatchDecision.MATCHED:
             if self.accepted_label is None or self.match_strength is None:
                 raise ValueError("a matched result requires accepted_label and match_strength")
             if self.unknown_reason is not None:
                 raise ValueError("a matched result cannot have an unknown_reason")
+            if not self.compatibility.is_compatible:
+                raise ValueError("a matched result requires compatible context")
+            if not self.ranked_candidates:
+                raise ValueError("a matched result requires at least one ranked candidate")
+            if self.accepted_label != self.ranked_candidates[0].bottleneck_label:
+                raise ValueError("accepted_label must equal the top candidate label")
+            if self.match_strength < self.thresholds.minimum_match_strength:
+                raise ValueError("a matched result must meet the match-strength threshold")
+            if self.shared_feature_count < self.thresholds.minimum_shared_feature_count:
+                raise ValueError("a matched result must meet the shared-feature threshold")
+            if self.feature_coverage < self.thresholds.minimum_feature_coverage:
+                raise ValueError("a matched result must meet the feature-coverage threshold")
+            if (
+                self.score_margin is not None
+                and self.score_margin < self.thresholds.minimum_score_margin
+            ):
+                raise ValueError("a matched result must meet the score-margin threshold")
         else:
             if self.accepted_label is not None:
                 raise ValueError("an unknown result must not have an accepted_label")

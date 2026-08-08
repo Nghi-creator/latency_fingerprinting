@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from datetime import datetime
 
 from pydantic import Field, JsonValue, model_validator
@@ -13,6 +14,7 @@ from .common import (
     NonNegativeFiniteFloat,
     NonNegativeInt,
     PositiveFiniteFloat,
+    PositiveInt,
     ProvenanceKind,
     WindowPhase,
 )
@@ -79,7 +81,7 @@ class MetricAggregate(ContractModel):
     unit: NonEmptyStr
     aggregation: NonEmptyStr
     value: FiniteFloat
-    count: NonNegativeInt
+    count: PositiveInt
     median: FiniteFloat | None = None
     p95: FiniteFloat | None = None
     minimum: FiniteFloat | None = None
@@ -106,6 +108,8 @@ class ValidityState(ContractModel):
     def validate_reason_consistency(self) -> ValidityState:
         if not self.is_valid and not self.reasons:
             raise ValueError("an invalid window requires at least one reason")
+        if self.is_valid and self.reasons:
+            raise ValueError("a valid window cannot have invalidity reasons")
         return self
 
 
@@ -138,9 +142,18 @@ class ObservationWindow(ContractModel):
 
     @model_validator(mode="after")
     def validate_window_metrics(self) -> ObservationWindow:
-        overlap = set(self.metrics).intersection(self.missing_metrics, self.rejected_metrics)
+        unavailable_metrics = set(self.missing_metrics) | set(self.rejected_metrics)
+        overlap = set(self.metrics).intersection(unavailable_metrics)
         if overlap:
             raise ValueError(f"metrics cannot be measured and missing/rejected: {sorted(overlap)}")
         if self.sample_count == 0 and self.metrics:
             raise ValueError("a window with metrics must have a positive sample_count")
+        if self.bounds.started_at is not None and self.bounds.ended_at is not None:
+            bounded_duration = (self.bounds.ended_at - self.bounds.started_at).total_seconds()
+        else:
+            assert self.bounds.elapsed_start_s is not None
+            assert self.bounds.elapsed_end_s is not None
+            bounded_duration = self.bounds.elapsed_end_s - self.bounds.elapsed_start_s
+        if not math.isclose(self.duration_s, bounded_duration, rel_tol=1e-9, abs_tol=1e-6):
+            raise ValueError("duration_s must equal the duration represented by bounds")
         return self

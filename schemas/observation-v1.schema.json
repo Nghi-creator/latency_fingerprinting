@@ -162,7 +162,7 @@
           "type": "string"
         },
         "count": {
-          "minimum": 0,
+          "exclusiveMinimum": 0,
           "title": "Count",
           "type": "integer"
         },
@@ -450,6 +450,8 @@
             ],
             "type": "string"
           },
+          "maxItems": 2,
+          "minItems": 2,
           "title": "Pairedwindoworder",
           "type": "array"
         },
