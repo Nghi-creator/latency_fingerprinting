@@ -127,15 +127,15 @@ All use one explicitly synthetic compatibility group and provenance `synthetic`.
 
 ## Required tests
 
-- [ ] Schema generation is deterministic.
-- [ ] Valid records round-trip.
-- [ ] Invalid versions, windows, NaN and infinity fail.
-- [ ] Delta sign and normalization are correct.
-- [ ] Clear and noisy fixtures match correctly.
-- [ ] Weak, tied and conflicting evidence returns `unknown`.
-- [ ] Missing features use only the valid intersection.
-- [ ] Coverage and compatibility are enforced.
-- [ ] Weighted residuals reconstruct distance.
-- [ ] CLI output validates against the result schema.
+- [x] Schema generation is deterministic.
+- [x] Valid records round-trip.
+- [x] Invalid versions, windows, NaN and infinity fail.
+- [x] Delta sign and normalization are correct.
+- [x] Clear and noisy fixtures match correctly.
+- [x] Weak, tied and conflicting evidence returns `unknown`.
+- [x] Missing features use only the valid intersection.
+- [x] Coverage and compatibility are enforced.
+- [x] Weighted residuals reconstruct distance.
+- [x] CLI output validates against the result schema.
 
 These tests validate implementation behavior only.

@@ -74,7 +74,7 @@ Reference: [`PIXELATED_ADAPTER_AND_EXPERIMENT.md`](PIXELATED_ADAPTER_AND_EXPERIM
 
 ## 8. Controlled real run
 
-- [ ] Bound the experiment-only pressure workload.
+- [x] Implement a bounded experiment-only pressure workload and capture protocol.
 - [ ] Capture healthy, degraded and paired relief runs.
 - [ ] Restore and verify runtime health.
 - [ ] Create sanitized manifest and checksums.
@@ -89,21 +89,21 @@ pytest
 ruff check .
 ruff format --check .
 latency-fingerprint export-schemas --check
-latency-fingerprint match tests/data/clear-network-response.json --fingerprints fixtures/
+latency-fingerprint match fixtures/query_cases/similar_network/observation.json --fingerprints fixtures/reference_cases
 ```
 
-- [ ] Clean install and all checks pass.
+- [x] Clean install and all software checks pass.
 - [x] Schemas match generated models.
 - [x] Example output validates against its schema.
-- [ ] No secret, ROM, private path or personal device identity is committed.
+- [x] No secret, ROM, private path or personal device identity is committed.
 
 ## 10. Outreach readiness
 
-- [ ] README shows completed, in-progress and planned work.
-- [ ] Example records are inspectable.
-- [ ] Synthetic and real provenance are obvious.
+- [x] README shows completed, in-progress and planned work.
+- [x] Example records are inspectable.
+- [x] Synthetic fixtures and pending controlled-real evidence are clearly distinguished.
 - [ ] Real output is called feasibility evidence.
-- [ ] Live probing, calibrated confidence and comparative benefit are not claimed.
+- [x] Live probing, calibrated confidence and comparative benefit are not claimed.
 
 ## Deferred beyond P0
 

@@ -24,6 +24,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 5. [`docs/p0/IMPLEMENTATION_TRACKER.md`](docs/p0/IMPLEMENTATION_TRACKER.md) is the executable checklist and exit gate.
 6. [`docs/p0/P0_BUILD_PLAN.md`](docs/p0/P0_BUILD_PLAN.md) defines the ordered implementation plan and phase gates.
 7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
+8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software evidence, limitations and the remaining real-run gate.
 
 ## Development setup
 
@@ -58,9 +59,11 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 
 ## Current status
 
+### Implemented and verified
+
 - Existing Pixelated testbed and research-run export: implemented.
 - P0 research contract and architecture: specified.
-- Python 3.13 virtual environment and declared dependencies: installed.
+- Clean Python 3.13 editable installation and declared dependencies: verified.
 - Python analytical core: validation, raw deltas, normalization, fingerprint
   loading, evidence and conservative matching implemented.
 - Synthetic matcher fixtures and end-to-end regression pipeline: implemented.
@@ -68,6 +71,19 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
   matching implemented.
 - Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
   archives and extracted directories with an explicit research context.
+
+### Awaiting controlled evidence
+
 - Controlled real fingerprinting run: not captured.
+- Real restoration evidence, observation and match result: not available.
+
+### Deferred beyond P0
+
+- Live encoder mutation, autonomous recovery, calibrated probabilities,
+  mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
+
+Inspectable software examples are linked from
+[`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
+an engineering similarity measure, not probability or calibrated confidence.
 
 Update this section whenever implementation or evidence changes.

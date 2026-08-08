@@ -34,22 +34,28 @@ The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTAT
 - Browser telemetry for FPS, received bitrate, packet loss, jitter and connection state.
 - Versioned research-run bundles with metadata, telemetry, lifecycle events, summaries and graphs.
 
-### Specified in this repository
+### Implemented and verified in this repository
 
 - Frozen P0 research terminology and invariants.
 - Detached Python/TypeScript architecture boundary.
-- Initial record and JSON Schema design.
-- Weighted-distance matcher and conservative `unknown` behavior.
-- Pixelated bundle-adapter contract.
-- Controlled paired-run experiment procedure.
+- Strict Pydantic records and three generated JSON Schemas.
+- Window comparability, raw delta and normalization pipeline.
+- Versioned fingerprint repository and weighted-distance matcher.
+- Per-feature evidence and conservative `unknown` behavior.
+- Deterministic synthetic fixture corpus and end-to-end regression tests.
+- Offline CLI and safe Pixelated TAR/directory adapter.
+- Bounded-pressure tool and controlled paired-run capture procedure.
+- Clean-environment installation and 207-test software closeout.
 
-### Not implemented yet
+### Awaiting controlled-real evidence
 
-- Python domain models and generated schemas.
-- Window aggregation, response normalization and matching code.
-- Synthetic fingerprints and tests.
-- Pixelated bundle adapter.
-- Controlled real P0 run.
+- Healthy, degraded and relief Pixelated exports.
+- Final anonymized real-run context and manifest checksums.
+- Restoration and post-experiment runtime-health evidence.
+- Controlled-real observation and match result.
+
+### Deferred beyond P0
+
 - Live bounded probes and runtime action execution.
 - Calibrated confidence, mixed bottlenecks and comparative evaluation.
 - Deadline-aware scheduler.
@@ -368,17 +374,17 @@ Do not include credentials, tokens, ROMs, private machine paths or unnecessary d
 
 ## 8. Project-readiness checklist
 
-- [ ] The Python package installs cleanly.
-- [ ] Contract models and generated schemas agree.
-- [ ] Response calculation and normalization are tested.
-- [ ] The matcher ranks candidates and explains residuals.
-- [ ] Weak, tied, incomplete and incompatible inputs return `unknown`.
-- [ ] Three synthetic fixture classes are clearly labeled.
-- [ ] The Pixelated adapter processes a sanitized bundle fixture.
+- [x] The Python package installs cleanly.
+- [x] Contract models and generated schemas agree.
+- [x] Response calculation and normalization are tested.
+- [x] The matcher ranks candidates and explains residuals.
+- [x] Weak, tied, incomplete and incompatible inputs return `unknown`.
+- [x] Three synthetic fixture classes are clearly labeled.
+- [x] The Pixelated adapter processes a sanitized bundle fixture.
 - [ ] One controlled real paired-run record passes through the pipeline.
-- [ ] Real and synthetic evidence are clearly separated.
-- [ ] All completed and planned features are reported accurately.
-- [ ] No result is presented as comparative evidence before a baseline evaluation.
+- [x] Real and synthetic evidence are clearly separated.
+- [x] All completed and planned features are reported accurately.
+- [x] No result is presented as comparative evidence before a baseline evaluation.
 
 ## Final rule
 
