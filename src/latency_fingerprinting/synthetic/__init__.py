@@ -1,12 +1,14 @@
-"""Compatibility façade for the split synthetic fixture generator."""
+"""Deterministic synthetic corpus definitions, builders, and rendering."""
 
-from .synthetic import (
-    DEFAULT_FIXTURE_DIRECTORY,
+from .definitions import (
     FEATURE_BASELINES,
     QUERY_EXPECTATIONS,
     QUERY_VECTORS,
     REFERENCE_VECTORS,
     SYNTHETIC_COMPATIBILITY_GROUP,
+)
+from .rendering import (
+    DEFAULT_FIXTURE_DIRECTORY,
     export_fixture_files,
     fixture_drift,
     rendered_fixture_files,
