@@ -69,7 +69,7 @@ decisionReason
 
 ## Initial metric vocabulary
 
-The Pixelated adapter can currently derive:
+The Pixelated adapter retains the four v1 browser metrics:
 
 - `client.received_fps`;
 - `client.received_bitrate_kbps`;
@@ -77,9 +77,24 @@ The Pixelated adapter can currently derive:
 - `transport.packets_lost_delta`;
 - connection and playback validity indicators.
 
-Runtime CPU/RSS snapshots may be attached separately. Current CPU values are process-lifetime averages and must not be represented as window-level CPU utilization.
+From a Pixelated research bundle v2 it additionally derives nullable,
+window-level aggregates for:
 
-Future capture, encode, sender and client-decode metrics remain missing until instrumentation exists.
+- browser RTT, decode time, jitter-buffer delay and available incoming bitrate;
+- decoded/dropped-frame and freeze counter deltas;
+- Node, game-runtime and camera/GStreamer interval CPU and RSS;
+- encoder input/output/drop counter deltas and queue level;
+- a pipeline-delay proxy only when it is explicitly measured.
+
+The v2 manifest is validated against phase, comparison-case and run identity.
+Unsupported measurements remain missing and cumulative counters that reset
+inside a window are rejected rather than converted into false deltas.
+
+Legacy lifetime-average CPU snapshots remain unsuitable. Only the interval CPU
+samples carried by bundle v2 are represented as window-level utilization.
+
+Direct encode, input-to-frame and exact display timing remain missing until
+instrumentation exists.
 
 ## Response calculation
 
@@ -127,15 +142,15 @@ All use one explicitly synthetic compatibility group and provenance `synthetic`.
 
 ## Required tests
 
-- [ ] Schema generation is deterministic.
-- [ ] Valid records round-trip.
-- [ ] Invalid versions, windows, NaN and infinity fail.
-- [ ] Delta sign and normalization are correct.
-- [ ] Clear and noisy fixtures match correctly.
-- [ ] Weak, tied and conflicting evidence returns `unknown`.
-- [ ] Missing features use only the valid intersection.
-- [ ] Coverage and compatibility are enforced.
-- [ ] Weighted residuals reconstruct distance.
-- [ ] CLI output validates against the result schema.
+- [x] Schema generation is deterministic.
+- [x] Valid records round-trip.
+- [x] Invalid versions, windows, NaN and infinity fail.
+- [x] Delta sign and normalization are correct.
+- [x] Clear and noisy fixtures match correctly.
+- [x] Weak, tied and conflicting evidence returns `unknown`.
+- [x] Missing features use only the valid intersection.
+- [x] Coverage and compatibility are enforced.
+- [x] Weighted residuals reconstruct distance.
+- [x] CLI output validates against the result schema.
 
 These tests validate implementation behavior only.

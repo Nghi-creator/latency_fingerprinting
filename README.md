@@ -22,7 +22,9 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 3. [`docs/p0/DATA_MODEL_AND_MATCHER.md`](docs/p0/DATA_MODEL_AND_MATCHER.md) defines records, normalization and matching.
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
 5. [`docs/p0/IMPLEMENTATION_TRACKER.md`](docs/p0/IMPLEMENTATION_TRACKER.md) is the executable checklist and exit gate.
-6. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
+6. [`docs/p0/P0_BUILD_PLAN.md`](docs/p0/P0_BUILD_PLAN.md) defines the ordered implementation plan and phase gates.
+7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
+8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software evidence, limitations and the remaining real-run gate.
 
 ## Development setup
 
@@ -35,15 +37,53 @@ python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
 ```
 
-No matcher or CLI behavior has been implemented yet. The package files currently establish only the import and adapter namespaces.
+The synthetic analytical path, offline CLI and Pixelated bundle adapter are
+implemented and regression-tested. The controlled real paired run is the next
+integration stage.
+
+```bash
+latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
+latency-fingerprint export-schemas --check
+latency-fingerprint build-response \
+  --degraded fixtures/query_cases/similar_network/degraded.json \
+  --relief fixtures/query_cases/similar_network/relief.json \
+  --probe fixtures/query_cases/similar_network/probe.json
+latency-fingerprint match \
+  fixtures/query_cases/similar_network/observation.json \
+  --fingerprints fixtures/reference_cases
+latency-fingerprint ingest-pixelated path/to/bundle.tar \
+  --phase degraded \
+  --comparison-case-id controlled-run-001 \
+  --context path/to/context.json
+```
 
 ## Current status
 
+### Implemented and verified
+
 - Existing Pixelated testbed and research-run export: implemented.
 - P0 research contract and architecture: specified.
-- Python 3.13 virtual environment and declared dependencies: installed.
-- Python package structure: scaffolded; analytical modules are not implemented.
-- Synthetic matcher fixtures: not implemented.
+- Clean Python 3.13 editable installation and declared dependencies: verified.
+- Python analytical core: validation, raw deltas, normalization, fingerprint
+  loading, evidence and conservative matching implemented.
+- Synthetic matcher fixtures and end-to-end regression pipeline: implemented.
+- Offline CLI: validation, schema export/checking, response construction and
+  matching implemented.
+- Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
+  archives and extracted directories with an explicit research context.
+
+### Awaiting controlled evidence
+
 - Controlled real fingerprinting run: not captured.
+- Real restoration evidence, observation and match result: not available.
+
+### Deferred beyond P0
+
+- Live encoder mutation, autonomous recovery, calibrated probabilities,
+  mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
+
+Inspectable software examples are linked from
+[`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
+an engineering similarity measure, not probability or calibrated confidence.
 
 Update this section whenever implementation or evidence changes.

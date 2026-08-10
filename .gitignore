@@ -20,3 +20,5 @@ experiments/**/*.tar.gz
 !experiments/**/manifest.json
 !experiments/**/observation.json
 !experiments/**/match-result.json
+docs/p0/P0_BUILD_PLAN.md
+docs/p0/P0_SOFTWARE_CLOSEOUT.md

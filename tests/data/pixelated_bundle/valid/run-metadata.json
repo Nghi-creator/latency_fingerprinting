@@ -1,0 +1,27 @@
+{
+  "capturedAt": "2026-07-04T02:03:14.000Z",
+  "client": {
+    "userAgent": ""
+  },
+  "game": {
+    "id": "sanitized-test-workload",
+    "title": null
+  },
+  "networkType": "controlled-lan",
+  "notes": null,
+  "playerMode": "host",
+  "runId": "pixelated-sanitized-run-001",
+  "scenario": "lan",
+  "schemaVersion": 1,
+  "sessionId": "anonymous-session-001",
+  "shareUrl": null,
+  "status": "playing",
+  "streamProfile": {
+    "bitrateKbps": 1400,
+    "fps": 60,
+    "id": "balanced"
+  },
+  "trial": {
+    "coldStart": false
+  }
+}

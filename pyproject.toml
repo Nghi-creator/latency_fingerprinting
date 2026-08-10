@@ -13,6 +13,9 @@ dependencies = [
   "pydantic>=2.10,<3",
 ]
 
+[project.scripts]
+latency-fingerprint = "latency_fingerprinting.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "pytest>=8.3,<9",

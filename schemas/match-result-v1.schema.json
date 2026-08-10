@@ -1,0 +1,313 @@
+{
+  "$defs": {
+    "CompatibilityResult": {
+      "additionalProperties": false,
+      "properties": {
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "compatibleFingerprintIds": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Compatiblefingerprintids",
+          "type": "array"
+        },
+        "isCompatible": {
+          "title": "Iscompatible",
+          "type": "boolean"
+        },
+        "rejectedFingerprints": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedfingerprints",
+          "type": "object"
+        }
+      },
+      "required": [
+        "isCompatible",
+        "compatibilityGroup"
+      ],
+      "title": "CompatibilityResult",
+      "type": "object"
+    },
+    "FeatureEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "candidateValue": {
+          "title": "Candidatevalue",
+          "type": "number"
+        },
+        "feature": {
+          "minLength": 1,
+          "title": "Feature",
+          "type": "string"
+        },
+        "observedValue": {
+          "title": "Observedvalue",
+          "type": "number"
+        },
+        "residual": {
+          "title": "Residual",
+          "type": "number"
+        },
+        "weight": {
+          "minimum": 0,
+          "title": "Weight",
+          "type": "number"
+        },
+        "weightedSquaredResidual": {
+          "minimum": 0,
+          "title": "Weightedsquaredresidual",
+          "type": "number"
+        }
+      },
+      "required": [
+        "feature",
+        "observedValue",
+        "candidateValue",
+        "residual",
+        "weight",
+        "weightedSquaredResidual"
+      ],
+      "title": "FeatureEvidence",
+      "type": "object"
+    },
+    "MatchDecision": {
+      "enum": [
+        "matched",
+        "unknown"
+      ],
+      "title": "MatchDecision",
+      "type": "string"
+    },
+    "MatchThresholds": {
+      "additionalProperties": false,
+      "properties": {
+        "minimumFeatureCoverage": {
+          "default": 0.6,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumfeaturecoverage",
+          "type": "number"
+        },
+        "minimumMatchStrength": {
+          "default": 0.75,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimummatchstrength",
+          "type": "number"
+        },
+        "minimumScoreMargin": {
+          "default": 0.1,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumscoremargin",
+          "type": "number"
+        },
+        "minimumSharedFeatureCount": {
+          "default": 3,
+          "exclusiveMinimum": 0,
+          "title": "Minimumsharedfeaturecount",
+          "type": "integer"
+        }
+      },
+      "title": "MatchThresholds",
+      "type": "object"
+    },
+    "RankedCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "bottleneckLabel": {
+          "minLength": 1,
+          "title": "Bottlenecklabel",
+          "type": "string"
+        },
+        "distance": {
+          "minimum": 0,
+          "title": "Distance",
+          "type": "number"
+        },
+        "fingerprintId": {
+          "minLength": 1,
+          "title": "Fingerprintid",
+          "type": "string"
+        },
+        "matchStrength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Matchstrength",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fingerprintId",
+        "bottleneckLabel",
+        "distance",
+        "matchStrength"
+      ],
+      "title": "RankedCandidate",
+      "type": "object"
+    },
+    "UnknownReason": {
+      "enum": [
+        "incompatible_context",
+        "unsupported_probe",
+        "insufficient_feature_coverage",
+        "degenerate_vector",
+        "weak_match",
+        "ambiguous_margin",
+        "invalid_observation",
+        "conflicting_evidence"
+      ],
+      "title": "UnknownReason",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "acceptedLabel": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Acceptedlabel"
+    },
+    "compatibility": {
+      "$ref": "#/$defs/CompatibilityResult"
+    },
+    "conflictingEvidence": {
+      "items": {
+        "$ref": "#/$defs/FeatureEvidence"
+      },
+      "title": "Conflictingevidence",
+      "type": "array"
+    },
+    "contractVersion": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/MatchDecision"
+    },
+    "decisionReason": {
+      "minLength": 1,
+      "title": "Decisionreason",
+      "type": "string"
+    },
+    "featureCoverage": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Featurecoverage",
+      "type": "number"
+    },
+    "matchStrength": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Matchstrength"
+    },
+    "missingFeatures": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Missingfeatures",
+      "type": "array"
+    },
+    "rankedCandidates": {
+      "items": {
+        "$ref": "#/$defs/RankedCandidate"
+      },
+      "title": "Rankedcandidates",
+      "type": "array"
+    },
+    "schemaVersion": {
+      "const": "match-result-v1",
+      "default": "match-result-v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "scoreMargin": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Scoremargin"
+    },
+    "sharedFeatureCount": {
+      "minimum": 0,
+      "title": "Sharedfeaturecount",
+      "type": "integer"
+    },
+    "supportingEvidence": {
+      "items": {
+        "$ref": "#/$defs/FeatureEvidence"
+      },
+      "title": "Supportingevidence",
+      "type": "array"
+    },
+    "thresholds": {
+      "$ref": "#/$defs/MatchThresholds"
+    },
+    "unknownReason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/UnknownReason"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "warnings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "decision",
+    "sharedFeatureCount",
+    "featureCoverage",
+    "compatibility",
+    "decisionReason"
+  ],
+  "title": "MatchResult",
+  "type": "object"
+}

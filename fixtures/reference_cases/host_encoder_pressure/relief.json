@@ -1,0 +1,98 @@
+{
+  "bounds": {
+    "elapsedEndS": 20.0,
+    "elapsedStartS": 10.0,
+    "endedAt": null,
+    "startedAt": null
+  },
+  "comparisonCaseId": "reference-host_encoder_pressure",
+  "confounders": [],
+  "context": {
+    "captureImplementation": "synthetic-fixture-generator",
+    "clientClass": "chromium",
+    "compatibilityGroup": "p0-synthetic-v1",
+    "connectionMode": "direct",
+    "contextId": "context-p0-synthetic-v1",
+    "edgeNodeClass": "synthetic-edge",
+    "encoderFamily": "vp8",
+    "encoderProfile": "realtime",
+    "networkScenario": "controlled-synthetic",
+    "nodeId": "anonymous-node-001",
+    "nominalStreamProfile": {
+      "bitrateKbps": 6000,
+      "fps": 60
+    },
+    "operatingSystem": "linux",
+    "runtimeClass": "container",
+    "transportImplementation": "webrtc",
+    "versions": {
+      "fixtureGenerator": "0.1.0"
+    },
+    "workloadId": "synthetic-game"
+  },
+  "durationS": 10.0,
+  "effectiveSettings": {
+    "bitrateKbps": 6000,
+    "encoderComplexity": "reduced",
+    "fps": 60
+  },
+  "metrics": {
+    "client.received_bitrate_kbps": {
+      "aggregation": "median",
+      "count": 20,
+      "maximum": 3600.0,
+      "median": 3600.0,
+      "minimum": 3600.0,
+      "p95": 3600.0,
+      "unit": "kbps",
+      "value": 3600.0
+    },
+    "client.received_fps": {
+      "aggregation": "median",
+      "count": 20,
+      "maximum": 64.0,
+      "median": 64.0,
+      "minimum": 64.0,
+      "p95": 64.0,
+      "unit": "fps",
+      "value": 64.0
+    },
+    "transport.jitter_ms": {
+      "aggregation": "median",
+      "count": 20,
+      "maximum": 18.0,
+      "median": 18.0,
+      "minimum": 18.0,
+      "p95": 18.0,
+      "unit": "ms",
+      "value": 18.0
+    },
+    "transport.packets_lost_delta": {
+      "aggregation": "median",
+      "count": 20,
+      "maximum": 10.0,
+      "median": 10.0,
+      "minimum": 10.0,
+      "p95": 10.0,
+      "unit": "packets",
+      "value": 10.0
+    }
+  },
+  "missingMetrics": [],
+  "phase": "relief",
+  "provenance": "synthetic",
+  "rejectedMetrics": {},
+  "runId": "run-reference-host_encoder_pressure",
+  "sampleCount": 20,
+  "sourceArtifact": {
+    "artifactId": "fixture-reference-host_encoder_pressure-relief",
+    "checksum": null,
+    "producer": "latency_fingerprinting.synthetic_fixtures",
+    "sourceType": "synthetic_fixture"
+  },
+  "validity": {
+    "isValid": true,
+    "reasons": []
+  },
+  "windowId": "reference-host_encoder_pressure-relief"
+}

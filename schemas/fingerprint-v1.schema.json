@@ -1,0 +1,491 @@
+{
+  "$defs": {
+    "CompatibilityKey": {
+      "additionalProperties": false,
+      "properties": {
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "contractVersion": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "probeType": {
+          "minLength": 1,
+          "title": "Probetype",
+          "type": "string"
+        }
+      },
+      "required": [
+        "compatibilityGroup",
+        "probeType"
+      ],
+      "title": "CompatibilityKey",
+      "type": "object"
+    },
+    "ContextKey": {
+      "additionalProperties": false,
+      "description": "The explicit boundary within which P0 records may be compared.",
+      "properties": {
+        "captureImplementation": {
+          "minLength": 1,
+          "title": "Captureimplementation",
+          "type": "string"
+        },
+        "clientClass": {
+          "minLength": 1,
+          "title": "Clientclass",
+          "type": "string"
+        },
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "connectionMode": {
+          "minLength": 1,
+          "title": "Connectionmode",
+          "type": "string"
+        },
+        "contextId": {
+          "minLength": 1,
+          "title": "Contextid",
+          "type": "string"
+        },
+        "edgeNodeClass": {
+          "minLength": 1,
+          "title": "Edgenodeclass",
+          "type": "string"
+        },
+        "encoderFamily": {
+          "minLength": 1,
+          "title": "Encoderfamily",
+          "type": "string"
+        },
+        "encoderProfile": {
+          "minLength": 1,
+          "title": "Encoderprofile",
+          "type": "string"
+        },
+        "networkScenario": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Networkscenario"
+        },
+        "nodeId": {
+          "minLength": 1,
+          "title": "Nodeid",
+          "type": "string"
+        },
+        "nominalStreamProfile": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Nominalstreamprofile",
+          "type": "object"
+        },
+        "operatingSystem": {
+          "minLength": 1,
+          "title": "Operatingsystem",
+          "type": "string"
+        },
+        "runtimeClass": {
+          "minLength": 1,
+          "title": "Runtimeclass",
+          "type": "string"
+        },
+        "transportImplementation": {
+          "minLength": 1,
+          "title": "Transportimplementation",
+          "type": "string"
+        },
+        "versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Versions",
+          "type": "object"
+        },
+        "workloadId": {
+          "minLength": 1,
+          "title": "Workloadid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId",
+        "compatibilityGroup",
+        "edgeNodeClass",
+        "nodeId",
+        "operatingSystem",
+        "runtimeClass",
+        "workloadId",
+        "captureImplementation",
+        "encoderFamily",
+        "encoderProfile",
+        "transportImplementation",
+        "connectionMode",
+        "clientClass",
+        "nominalStreamProfile"
+      ],
+      "title": "ContextKey",
+      "type": "object"
+    },
+    "FeatureDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "minLength": 1,
+          "title": "Aggregation",
+          "type": "string"
+        },
+        "degradedValue": {
+          "title": "Degradedvalue",
+          "type": "number"
+        },
+        "rawDelta": {
+          "title": "Rawdelta",
+          "type": "number"
+        },
+        "reliefValue": {
+          "title": "Reliefvalue",
+          "type": "number"
+        },
+        "unit": {
+          "minLength": 1,
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "aggregation",
+        "degradedValue",
+        "reliefValue",
+        "rawDelta"
+      ],
+      "title": "FeatureDelta",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "NormalizedFeature": {
+      "additionalProperties": false,
+      "properties": {
+        "epsilon": {
+          "exclusiveMinimum": 0,
+          "title": "Epsilon",
+          "type": "number"
+        },
+        "referenceValue": {
+          "title": "Referencevalue",
+          "type": "number"
+        },
+        "unclippedValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unclippedvalue"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "wasClipped": {
+          "default": false,
+          "title": "Wasclipped",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value",
+        "epsilon",
+        "referenceValue"
+      ],
+      "title": "NormalizedFeature",
+      "type": "object"
+    },
+    "NormalizedResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "features": {
+          "additionalProperties": {
+            "$ref": "#/$defs/NormalizedFeature"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "invalidReasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Invalidreasons",
+          "type": "array"
+        },
+        "isValid": {
+          "default": true,
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "missingFeatures": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingfeatures",
+          "type": "array"
+        },
+        "rejectedFeatures": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedfeatures",
+          "type": "object"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "features"
+      ],
+      "title": "NormalizedResponse",
+      "type": "object"
+    },
+    "ProvenanceKind": {
+      "enum": [
+        "synthetic",
+        "controlled_real",
+        "organic_real"
+      ],
+      "title": "ProvenanceKind",
+      "type": "string"
+    },
+    "ResponseDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "degradedWindowId": {
+          "minLength": 1,
+          "title": "Degradedwindowid",
+          "type": "string"
+        },
+        "features": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FeatureDelta"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "invalidReasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Invalidreasons",
+          "type": "array"
+        },
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "missingFeatures": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingfeatures",
+          "type": "array"
+        },
+        "rejectedFeatures": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Rejectedfeatures",
+          "type": "object"
+        },
+        "reliefWindowId": {
+          "minLength": 1,
+          "title": "Reliefwindowid",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "degradedWindowId",
+        "reliefWindowId",
+        "features",
+        "isValid"
+      ],
+      "title": "ResponseDelta",
+      "type": "object"
+    },
+    "ValidationStatus": {
+      "enum": [
+        "unvalidated",
+        "software_test_reference",
+        "validated",
+        "rejected"
+      ],
+      "title": "ValidationStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "bottleneckLabel": {
+      "minLength": 1,
+      "title": "Bottlenecklabel",
+      "type": "string"
+    },
+    "compatibility": {
+      "$ref": "#/$defs/CompatibilityKey"
+    },
+    "context": {
+      "$ref": "#/$defs/ContextKey"
+    },
+    "contractVersion": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "createdAt": {
+      "format": "date-time",
+      "title": "Createdat",
+      "type": "string"
+    },
+    "featureWeights": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Featureweights",
+      "type": "object"
+    },
+    "fingerprintId": {
+      "minLength": 1,
+      "title": "Fingerprintid",
+      "type": "string"
+    },
+    "normalizedResponse": {
+      "$ref": "#/$defs/NormalizedResponse"
+    },
+    "notes": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceKind"
+    },
+    "rawResponseDelta": {
+      "$ref": "#/$defs/ResponseDelta"
+    },
+    "schemaVersion": {
+      "const": "fingerprint-v1",
+      "default": "fingerprint-v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "softwareVersion": {
+      "minLength": 1,
+      "title": "Softwareversion",
+      "type": "string"
+    },
+    "sourceCaseIds": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Sourcecaseids",
+      "type": "array"
+    },
+    "sourceRunIds": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Sourcerunids",
+      "type": "array"
+    },
+    "sourceWindowIds": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Sourcewindowids",
+      "type": "array"
+    },
+    "validationStatus": {
+      "$ref": "#/$defs/ValidationStatus"
+    }
+  },
+  "required": [
+    "fingerprintId",
+    "bottleneckLabel",
+    "context",
+    "compatibility",
+    "rawResponseDelta",
+    "normalizedResponse",
+    "featureWeights",
+    "provenance",
+    "sourceCaseIds",
+    "sourceWindowIds",
+    "createdAt",
+    "softwareVersion",
+    "validationStatus"
+  ],
+  "title": "Fingerprint",
+  "type": "object"
+}

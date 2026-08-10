@@ -14,13 +14,33 @@ summary.json
 performance-network.png  # not used by the matcher
 ```
 
+It also accepts the additive v2 contract:
+
+```text
+bundle-manifest.json
+run-metadata.json
+stream-telemetry.csv
+engine-telemetry.csv
+stream-events.csv
+summary.json
+```
+
+The adapter detects v2 from the manifest, validates its phase/comparison/run
+identity and privacy declaration, checks engine/encoder source identity, and
+keeps the original v1 path unchanged.
+
 It must validate files and columns, reject unsafe TAR paths, select explicit phases, aggregate telemetry, map names into core metrics, preserve provenance, report missing evidence and never ingest credentials.
 
 The core matcher must not know Pixelated filenames or CSV columns.
 
 ## Evidence boundary
 
-The current browser bundle provides FPS, received bitrate, packet loss, jitter, connection state, metadata and lifecycle events. It does not provide capture queues, encode time, sender queueing, decoder queues or exact display timing. P0 must not claim those metrics.
+Bundle v1 provides FPS, received bitrate, packet loss, jitter, connection state,
+metadata and lifecycle events. Bundle v2 adds browser decode/jitter-buffer
+signals, interval engine-process resources and encoder-path counters. It still
+does not provide direct encode time, input-to-frame or exact display timing; P0
+must not claim those metrics. `pipelineDelayProxyMs` stays missing until a
+validated proxy exists.
 
 ## Control boundary
 
@@ -75,18 +95,33 @@ Large raw bundles may stay outside Git. Commit sanitized checksums and reproduci
 
 ```bash
 latency-fingerprint validate observation.json
-latency-fingerprint ingest-pixelated path/to/bundle.tar --phase degraded
-latency-fingerprint ingest-pixelated path/to/bundle.tar --phase relief
-latency-fingerprint build-response --degraded degraded.json --relief relief.json
-latency-fingerprint match response.json --fingerprints fixtures/
+latency-fingerprint ingest-pixelated path/to/degraded-bundle.tar \
+  --phase degraded \
+  --comparison-case-id controlled-run-001 \
+  --context context.json > degraded.json
+latency-fingerprint ingest-pixelated path/to/relief-bundle.tar \
+  --phase relief \
+  --comparison-case-id controlled-run-001 \
+  --context context.json > relief.json
+latency-fingerprint build-response \
+  --degraded degraded.json \
+  --relief relief.json \
+  --probe probe.json > observation.json
+latency-fingerprint match observation.json --fingerprints fixtures/
 ```
+
+The explicit context file is required because a browser export cannot
+truthfully supply the edge-node, runtime, encoder and version fields needed by
+the research contract. Paired degraded and relief runs must use the same
+nominal context; their actual stream profiles remain distinct effective
+settings on their generated windows.
 
 Commands emit JSON to stdout, diagnostics to stderr and non-zero exit codes on failure.
 
 ## Completion evidence
 
-- [ ] Sanitized bundle fixture exercises the adapter.
-- [ ] Unsafe TAR and missing-column cases are tested.
+- [x] Sanitized bundle fixture exercises the adapter.
+- [x] Unsafe TAR and missing-column cases are tested.
 - [ ] Healthy, degraded and relief runs are captured.
 - [ ] The manifest records every changed control.
 - [ ] Runtime health is restored.

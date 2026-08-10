@@ -1,0 +1,22 @@
+{
+  "compute": {},
+  "eventCount": 1,
+  "generatedAt": "2026-08-10T02:03:14.000Z",
+  "metrics": {},
+  "packetLoss": {"lossPerMinute": 6, "totalDelta": 1, "totalLatest": 1},
+  "recording": {"durationMs": 10000, "sampleCount": 3},
+  "runId": "pixelated-sanitized-run-v2-001",
+  "schemaVersion": 2,
+  "sessionId": "anonymous-session-v2-001",
+  "stability": {"disconnectCount": 0, "recoveredCount": 0, "stallCount": 0},
+  "timings": {"firstFrameMs": 0, "pythonReadyMs": null, "startGameMs": null},
+  "validity": {
+    "isValid": true,
+    "reasons": [],
+    "sources": {
+      "browserWebrtc": {"availableSampleCount": 3, "sampleCount": 3},
+      "encoderPipeline": {"availableSampleCount": 3, "sampleCount": 3},
+      "engineRuntime": {"availableSampleCount": 3, "sampleCount": 3}
+    }
+  }
+}

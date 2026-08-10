@@ -1,0 +1,30 @@
+{
+  "bundleType": "pixelated_research_run",
+  "comparisonCaseId": "controlled-case-001",
+  "createdAt": "2026-08-10T02:03:14.000Z",
+  "files": [
+    {"mediaType": "application/json", "name": "bundle-manifest.json", "required": true},
+    {"mediaType": "application/json", "name": "run-metadata.json", "required": true},
+    {"mediaType": "text/csv", "name": "stream-telemetry.csv", "required": true},
+    {"mediaType": "text/csv", "name": "stream-events.csv", "required": true},
+    {"mediaType": "application/json", "name": "summary.json", "required": true},
+    {"mediaType": "text/csv", "name": "engine-telemetry.csv", "required": true}
+  ],
+  "measurementSupport": {
+    "browser_webrtc.decodeTimeMeanMs": "supported",
+    "encoder_pipeline.pipelineDelayProxyMs": "unsupported",
+    "engine_runtime.emulatorCpuPercent": "supported"
+  },
+  "phase": "degraded",
+  "privacy": {
+    "omittedFields": ["engineToken", "shareUrl", "notes", "hostname", "username", "absolutePath", "rawPeerId"],
+    "sanitized": true
+  },
+  "runId": "pixelated-sanitized-run-v2-001",
+  "schemaVersion": 2,
+  "telemetrySources": {
+    "browser_webrtc": "supported",
+    "encoder_pipeline": "supported",
+    "engine_runtime": "supported"
+  }
+}

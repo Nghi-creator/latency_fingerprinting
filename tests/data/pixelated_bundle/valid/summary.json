@@ -1,0 +1,15 @@
+{
+  "eventCount": 1,
+  "generatedAt": "2026-07-04T02:03:14.000Z",
+  "metrics": {
+    "bitrateKbps": {"max": 1300, "mean": 1200, "median": 1200, "min": 1100, "p95": 1300},
+    "fps": {"max": 58, "mean": 54, "median": 54, "min": 50, "p95": 58},
+    "jitterMs": {"max": 8, "mean": 6, "median": 6, "min": 4, "p95": 8}
+  },
+  "packetLoss": {"lossPerMinute": 6, "totalDelta": 1, "totalLatest": 1},
+  "recording": {"durationMs": 10000, "sampleCount": 3},
+  "runId": "pixelated-sanitized-run-001",
+  "sessionId": "anonymous-session-001",
+  "stability": {"disconnectCount": 0, "recoveredCount": 0, "stallCount": 0},
+  "timings": {"firstFrameMs": 0, "pythonReadyMs": null, "startGameMs": null}
+}

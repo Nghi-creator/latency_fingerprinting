@@ -1,0 +1,33 @@
+{
+  "acceptedLabel": null,
+  "compatibility": {
+    "compatibilityGroup": "p0-incompatible-synthetic-v1",
+    "compatibleFingerprintIds": [],
+    "isCompatible": false,
+    "rejectedFingerprints": {
+      "fingerprint-healthy-v1": "compatibility group mismatch",
+      "fingerprint-host_encoder_pressure-v1": "compatibility group mismatch",
+      "fingerprint-network_pressure-v1": "compatibility group mismatch"
+    }
+  },
+  "conflictingEvidence": [],
+  "contractVersion": "1.0.0",
+  "decision": "unknown",
+  "decisionReason": "No fingerprint belongs to the query compatibility group.",
+  "featureCoverage": 0.0,
+  "matchStrength": null,
+  "missingFeatures": [],
+  "rankedCandidates": [],
+  "schemaVersion": "match-result-v1",
+  "scoreMargin": null,
+  "sharedFeatureCount": 0,
+  "supportingEvidence": [],
+  "thresholds": {
+    "minimumFeatureCoverage": 0.6,
+    "minimumMatchStrength": 0.75,
+    "minimumScoreMargin": 0.1,
+    "minimumSharedFeatureCount": 3
+  },
+  "unknownReason": "incompatible_context",
+  "warnings": []
+}

@@ -1,0 +1,54 @@
+{
+  "acceptedLabel": null,
+  "compatibility": {
+    "compatibilityGroup": "p0-synthetic-v1",
+    "compatibleFingerprintIds": [
+      "fingerprint-host_encoder_pressure-v1",
+      "fingerprint-network_pressure-v1",
+      "fingerprint-healthy-v1"
+    ],
+    "isCompatible": true,
+    "rejectedFingerprints": {}
+  },
+  "conflictingEvidence": [],
+  "contractVersion": "1.0.0",
+  "decision": "unknown",
+  "decisionReason": "Synthetic expected unknown decision for matcher regression.",
+  "featureCoverage": 1.0,
+  "matchStrength": 0.795297720455502,
+  "missingFeatures": [],
+  "rankedCandidates": [
+    {
+      "bottleneckLabel": "host_encoder_pressure",
+      "distance": 0.257390753524675,
+      "fingerprintId": "fingerprint-host_encoder_pressure-v1",
+      "matchStrength": 0.795297720455502
+    },
+    {
+      "bottleneckLabel": "network_pressure",
+      "distance": 0.257390753524675,
+      "fingerprintId": "fingerprint-network_pressure-v1",
+      "matchStrength": 0.795297720455502
+    },
+    {
+      "bottleneckLabel": "healthy",
+      "distance": 0.3409545424246464,
+      "fingerprintId": "fingerprint-healthy-v1",
+      "matchStrength": 0.7457374343144029
+    }
+  ],
+  "schemaVersion": "match-result-v1",
+  "scoreMargin": 0.0,
+  "sharedFeatureCount": 4,
+  "supportingEvidence": [],
+  "thresholds": {
+    "minimumFeatureCoverage": 0.6,
+    "minimumMatchStrength": 0.75,
+    "minimumScoreMargin": 0.1,
+    "minimumSharedFeatureCount": 3
+  },
+  "unknownReason": "ambiguous_margin",
+  "warnings": [
+    "Expected software-test result; not measured diagnostic evidence."
+  ]
+}

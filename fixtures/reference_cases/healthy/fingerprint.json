@@ -1,0 +1,133 @@
+{
+  "bottleneckLabel": "healthy",
+  "compatibility": {
+    "compatibilityGroup": "p0-synthetic-v1",
+    "contractVersion": "1.0.0",
+    "probeType": "stream_profile_relief"
+  },
+  "context": {
+    "captureImplementation": "synthetic-fixture-generator",
+    "clientClass": "chromium",
+    "compatibilityGroup": "p0-synthetic-v1",
+    "connectionMode": "direct",
+    "contextId": "context-p0-synthetic-v1",
+    "edgeNodeClass": "synthetic-edge",
+    "encoderFamily": "vp8",
+    "encoderProfile": "realtime",
+    "networkScenario": "controlled-synthetic",
+    "nodeId": "anonymous-node-001",
+    "nominalStreamProfile": {
+      "bitrateKbps": 6000,
+      "fps": 60
+    },
+    "operatingSystem": "linux",
+    "runtimeClass": "container",
+    "transportImplementation": "webrtc",
+    "versions": {
+      "fixtureGenerator": "0.1.0"
+    },
+    "workloadId": "synthetic-game"
+  },
+  "contractVersion": "1.0.0",
+  "createdAt": "2026-08-08T00:00:00Z",
+  "featureWeights": {
+    "client.received_bitrate_kbps": 1.0,
+    "client.received_fps": 1.0,
+    "transport.jitter_ms": 1.0,
+    "transport.packets_lost_delta": 1.0
+  },
+  "fingerprintId": "fingerprint-healthy-v1",
+  "normalizedResponse": {
+    "features": {
+      "client.received_bitrate_kbps": {
+        "epsilon": 1.0,
+        "referenceValue": 3000.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "client.received_fps": {
+        "epsilon": 1.0,
+        "referenceValue": 40.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "transport.jitter_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 20.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "transport.packets_lost_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 10.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [],
+    "rejectedFeatures": {},
+    "warnings": []
+  },
+  "notes": [
+    "Synthetic software-test reference; not a scientific finding."
+  ],
+  "provenance": "synthetic",
+  "rawResponseDelta": {
+    "degradedWindowId": "reference-healthy-degraded",
+    "features": {
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "degradedValue": 3000.0,
+        "rawDelta": 0.0,
+        "reliefValue": 3000.0,
+        "unit": "kbps"
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "degradedValue": 40.0,
+        "rawDelta": 0.0,
+        "reliefValue": 40.0,
+        "unit": "fps"
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "degradedValue": 20.0,
+        "rawDelta": 0.0,
+        "reliefValue": 20.0,
+        "unit": "ms"
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "degradedValue": 10.0,
+        "rawDelta": 0.0,
+        "reliefValue": 10.0,
+        "unit": "packets"
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [],
+    "rejectedFeatures": {},
+    "reliefWindowId": "reference-healthy-relief",
+    "warnings": []
+  },
+  "schemaVersion": "fingerprint-v1",
+  "softwareVersion": "0.1.0",
+  "sourceCaseIds": [
+    "reference-healthy"
+  ],
+  "sourceRunIds": [
+    "run-reference-healthy"
+  ],
+  "sourceWindowIds": [
+    "reference-healthy-degraded",
+    "reference-healthy-relief"
+  ],
+  "validationStatus": "software_test_reference"
+}
