@@ -60,13 +60,32 @@ def make_response(
     )
 
 
-def test_p0_configuration_covers_the_initial_metric_vocabulary() -> None:
-    assert set(P0_FEATURE_CONFIG) == {
+def test_p0_configuration_covers_v1_and_v2_adapter_metrics() -> None:
+    assert {
+        "client.available_incoming_bitrate_kbps",
+        "client.decode_time_mean_ms",
+        "client.frames_decoded_delta",
+        "client.frames_dropped_delta",
+        "client.freeze_count_delta",
+        "client.freeze_duration_ms_delta",
+        "client.jitter_buffer_delay_mean_ms",
         "client.received_fps",
         "client.received_bitrate_kbps",
+        "encoder.frames_dropped_delta",
+        "encoder.frames_in_delta",
+        "encoder.frames_out_delta",
+        "encoder.pipeline_delay_proxy_ms",
+        "encoder.queue_level_buffers",
+        "host.camera_cpu_percent",
+        "host.camera_rss_mb",
+        "host.game_cpu_percent",
+        "host.game_rss_mb",
+        "host.node_cpu_percent",
+        "host.node_rss_mb",
         "transport.jitter_ms",
         "transport.packets_lost_delta",
-    }
+        "transport.round_trip_time_ms",
+    } <= set(P0_FEATURE_CONFIG)
 
 
 def test_normalization_uses_degraded_value_as_reference_after_raw_delta() -> None:

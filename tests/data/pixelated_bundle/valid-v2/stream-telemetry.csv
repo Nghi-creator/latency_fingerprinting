@@ -1,0 +1,4 @@
+captured_at,elapsed_ms,session_id,game_id,player_mode,status,fps,bitrate_kbps,packets_lost_total,packets_lost_delta,jitter_ms,ice_connection_state,connection_state,last_engine_error,round_trip_time_ms,frames_decoded,frames_dropped,decode_time_mean_ms,jitter_buffer_delay_mean_ms,freeze_count,freeze_duration_total_ms,key_frames_decoded,available_incoming_bitrate_kbps
+2026-08-10T02:03:04.000Z,0,anonymous-session-v2-001,sanitized-test-workload,host,playing,50,1100,0,0,8,connected,connected,,18,100,1,4,6,0,0,1,1800
+2026-08-10T02:03:09.000Z,5000,anonymous-session-v2-001,sanitized-test-workload,host,playing,54,1200,1,1,6,connected,connected,,16,400,3,3,5,1,100,2,1900
+2026-08-10T02:03:14.000Z,10000,anonymous-session-v2-001,sanitized-test-workload,host,playing,58,1300,1,0,4,completed,connected,,14,700,4,2,4,1,100,3,2000

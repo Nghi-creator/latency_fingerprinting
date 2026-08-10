@@ -176,6 +176,30 @@ def test_ingest_pixelated_emits_a_core_window(
     assert stderr == ""
 
 
+def test_ingest_pixelated_v2_emits_compute_metrics(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    exit_code, stdout, stderr = invoke(
+        [
+            "ingest-pixelated",
+            str(PIXELATED / "valid-v2"),
+            "--phase",
+            "degraded",
+            "--comparison-case-id",
+            "controlled-case-001",
+            "--context",
+            str(PIXELATED / "context-v2.json"),
+        ],
+        capsys,
+    )
+
+    window = ObservationWindow.model_validate_json(stdout)
+    assert exit_code == 0
+    assert "host.game_cpu_percent" in window.metrics
+    assert "encoder.frames_dropped_delta" in window.metrics
+    assert stderr == ""
+
+
 def test_ingest_pixelated_reports_invalid_bundle(
     tmp_path: Path,
     capsys: pytest.CaptureFixture[str],

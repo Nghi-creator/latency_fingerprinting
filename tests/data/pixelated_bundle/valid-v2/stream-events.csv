@@ -1,0 +1,2 @@
+captured_at,elapsed_ms,run_id,session_id,event,details_json
+2026-08-10T02:03:04.000Z,0,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,first_non_black_frame,

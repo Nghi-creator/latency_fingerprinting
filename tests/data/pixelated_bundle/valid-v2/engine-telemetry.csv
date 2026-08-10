@@ -1,0 +1,7 @@
+captured_at,elapsed_ms,schema_version,run_id,session_id,game_id,source,available,error,node_cpu_percent,node_rss_mb,emulator_cpu_percent,emulator_rss_mb,camera_cpu_percent,camera_rss_mb,logical_cpu_count,cpu_capacity_cores,runtime_kind,node_running,emulator_running,camera_running,peer_count,frames_in_total,frames_out_total,frames_dropped_total,queue_level_buffers,pipeline_delay_proxy_ms,target_bitrate_kbps,target_fps,cpu_used,max_quantizer
+2026-08-10T02:03:04.000Z,0,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,engine_runtime,true,,5,120,65,350,30,210,8,4,libretro,true,true,true,1,,,,,,,,,
+2026-08-10T02:03:04.000Z,0,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,encoder_pipeline,true,,,,,,,,,,,,,,,100,98,1,1,,1500,60,6,48
+2026-08-10T02:03:09.000Z,5000,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,engine_runtime,true,,6,121,75,352,35,212,8,4,libretro,true,true,true,1,,,,,,,,,
+2026-08-10T02:03:09.000Z,5000,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,encoder_pipeline,true,,,,,,,,,,,,,,,400,395,3,2,,1500,60,6,48
+2026-08-10T02:03:14.000Z,10000,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,engine_runtime,true,,7,122,85,354,40,214,8,4,libretro,true,true,true,1,,,,,,,,,
+2026-08-10T02:03:14.000Z,10000,1,pixelated-sanitized-run-v2-001,anonymous-session-v2-001,sanitized-test-workload,encoder_pipeline,true,,,,,,,,,,,,,,,700,690,4,3,,1500,60,6,48

@@ -2,21 +2,13 @@
 
 from __future__ import annotations
 
-import csv
-import hashlib
-import io
-import json
 import math
-import statistics
-import tarfile
 from collections.abc import Mapping, Sequence
-from datetime import datetime, timedelta
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from typing import Any
 
 from ..models import (
     ContextKey,
-    MetricAggregate,
     ObservationWindow,
     ProvenanceKind,
     SourceArtifact,
@@ -24,8 +16,69 @@ from ..models import (
     ValidityState,
     WindowPhase,
 )
+from .pixelated_bundle_common import (
+    PixelatedBundleError,
+)
+from .pixelated_bundle_common import (
+    finite_number as _finite_number,
+)
+from .pixelated_bundle_common import (
+    required_string as _required_string,
+)
+from .pixelated_bundle_common import (
+    utc_datetime as _utc_datetime,
+)
+from .pixelated_bundle_io import (
+    bundle_checksum as _bundle_checksum,
+)
+from .pixelated_bundle_io import (
+    csv_rows as _csv_rows,
+)
+from .pixelated_bundle_io import (
+    json_object as _json_object,
+)
+from .pixelated_bundle_io import (
+    read_bundle as _read_bundle_files,
+)
+from .pixelated_bundle_metrics import (
+    BROWSER_METRIC_COLUMNS as METRIC_COLUMNS,
+)
+from .pixelated_bundle_metrics import (
+    STREAM_COUNTER_METRICS,
+)
+from .pixelated_bundle_metrics import (
+    counter_metrics as _counter_metrics,
+)
+from .pixelated_bundle_metrics import (
+    engine_metrics as _engine_metrics,
+)
+from .pixelated_bundle_metrics import (
+    mapped_metrics as _metrics,
+)
+from .pixelated_bundle_v2 import (
+    ENGINE_TELEMETRY_COLUMNS,
+    V2_REQUIRED_FILES,
+)
+from .pixelated_bundle_v2 import (
+    engine_effective_settings as _engine_effective_settings,
+)
+from .pixelated_bundle_v2 import (
+    validate_engine_rows as _validate_engine_rows,
+)
+from .pixelated_bundle_v2 import (
+    validate_manifest as _validate_manifest,
+)
+from .pixelated_bundle_v2 import (
+    validate_metadata_privacy as _validate_v2_metadata_privacy,
+)
+from .pixelated_bundle_v2 import (
+    validate_summary as _validate_v2_summary,
+)
+from .pixelated_bundle_v2 import (
+    validity_reasons as _v2_validity_reasons,
+)
 
-REQUIRED_FILES = frozenset(
+V1_REQUIRED_FILES = frozenset(
     {
         "run-metadata.json",
         "stream-telemetry.csv",
@@ -33,6 +86,9 @@ REQUIRED_FILES = frozenset(
         "summary.json",
     }
 )
+READABLE_FILES = V2_REQUIRED_FILES
+# Kept as the public v1 alias for callers that froze the original contract.
+REQUIRED_FILES = V1_REQUIRED_FILES
 TELEMETRY_COLUMNS = frozenset(
     {
         "captured_at",
@@ -54,217 +110,14 @@ TELEMETRY_COLUMNS = frozenset(
 EVENT_COLUMNS = frozenset(
     {"captured_at", "elapsed_ms", "run_id", "session_id", "event", "details_json"}
 )
-METRIC_COLUMNS: Mapping[str, tuple[str, str]] = {
-    "client.received_fps": ("fps", "fps"),
-    "client.received_bitrate_kbps": ("bitrate_kbps", "kbps"),
-    "transport.jitter_ms": ("jitter_ms", "ms"),
-    "transport.packets_lost_delta": ("packets_lost_delta", "packets"),
-}
-MAX_ARCHIVE_MEMBERS = 64
-MAX_TEXT_FILE_BYTES = 10 * 1024 * 1024
-
-
-class PixelatedBundleError(ValueError):
-    """Raised when a bundle cannot safely produce a contract window."""
-
-
-def _safe_archive_name(name: str) -> str:
-    path = PurePosixPath(name)
-    if not name or path.is_absolute() or ".." in path.parts:
-        raise PixelatedBundleError(f"unsafe TAR member path: {name!r}")
-    return path.as_posix()
-
-
-def _read_tar(path: Path) -> dict[str, bytes]:
-    try:
-        with tarfile.open(path, mode="r:*") as archive:
-            return _read_tar_members(archive)
-    except (OSError, tarfile.TarError) as error:
-        raise PixelatedBundleError(f"cannot read TAR archive: {error}") from error
-
-
-def _read_tar_members(archive: tarfile.TarFile) -> dict[str, bytes]:
-    files: dict[str, bytes] = {}
-    members = archive.getmembers()
-    if len(members) > MAX_ARCHIVE_MEMBERS:
-        raise PixelatedBundleError(
-            f"TAR contains {len(members)} members; maximum is {MAX_ARCHIVE_MEMBERS}"
-        )
-    for member in members:
-        name = _safe_archive_name(member.name)
-        if member.issym() or member.islnk():
-            raise PixelatedBundleError(f"TAR links are not allowed: {name!r}")
-        if member.isdir():
-            continue
-        if not member.isfile():
-            raise PixelatedBundleError(f"unsupported TAR member type: {name!r}")
-        if name not in REQUIRED_FILES:
-            continue
-        if name in files:
-            raise PixelatedBundleError(f"duplicate TAR member: {name!r}")
-        if member.size > MAX_TEXT_FILE_BYTES:
-            raise PixelatedBundleError(f"bundle file is too large: {name!r}")
-        extracted = archive.extractfile(member)
-        if extracted is None:
-            raise PixelatedBundleError(f"cannot read TAR member: {name!r}")
-        files[name] = extracted.read(MAX_TEXT_FILE_BYTES + 1)
-    return files
-
-
-def _read_directory(path: Path) -> dict[str, bytes]:
-    files: dict[str, bytes] = {}
-    for name in REQUIRED_FILES:
-        candidate = path / name
-        if candidate.is_symlink():
-            raise PixelatedBundleError(f"bundle links are not allowed: {name!r}")
-        if not candidate.is_file():
-            continue
-        if candidate.stat().st_size > MAX_TEXT_FILE_BYTES:
-            raise PixelatedBundleError(f"bundle file is too large: {name!r}")
-        files[name] = candidate.read_bytes()
-    return files
 
 
 def _read_bundle(path: Path) -> dict[str, bytes]:
-    if path.is_dir():
-        files = _read_directory(path)
-    elif path.is_file():
-        files = _read_tar(path)
-    else:
-        raise PixelatedBundleError(f"bundle path does not exist: {path}")
-    missing = sorted(REQUIRED_FILES - files.keys())
-    if missing:
-        raise PixelatedBundleError(f"bundle is missing required files: {', '.join(missing)}")
-    return files
-
-
-def _decode(files: Mapping[str, bytes], name: str) -> str:
-    try:
-        return files[name].decode("utf-8-sig")
-    except UnicodeDecodeError as error:
-        raise PixelatedBundleError(f"{name} is not valid UTF-8: {error}") from error
-
-
-def _json_object(files: Mapping[str, bytes], name: str) -> dict[str, Any]:
-    try:
-        payload = json.loads(_decode(files, name))
-    except json.JSONDecodeError as error:
-        raise PixelatedBundleError(f"{name} is not valid JSON: {error}") from error
-    if not isinstance(payload, dict):
-        raise PixelatedBundleError(f"{name} JSON root must be an object")
-    return payload
-
-
-def _csv_rows(
-    files: Mapping[str, bytes],
-    name: str,
-    required_columns: frozenset[str],
-) -> list[dict[str, str]]:
-    reader = csv.DictReader(io.StringIO(_decode(files, name), newline=""), strict=True)
-    headers = reader.fieldnames
-    if headers is None:
-        raise PixelatedBundleError(f"{name} requires a header row")
-    if len(headers) != len(set(headers)):
-        raise PixelatedBundleError(f"{name} contains duplicate columns")
-    missing = sorted(required_columns - set(headers))
-    if missing:
-        raise PixelatedBundleError(f"{name} is missing required columns: {', '.join(missing)}")
-    try:
-        rows = [dict(row) for row in reader]
-    except csv.Error as error:
-        raise PixelatedBundleError(f"{name} is not valid CSV: {error}") from error
-    for index, row in enumerate(rows, start=2):
-        if None in row or any(row.get(header) is None for header in headers):
-            raise PixelatedBundleError(f"{name} row {index} has the wrong number of columns")
-    return rows
-
-
-def _required_string(payload: Mapping[str, Any], key: str, source: str) -> str:
-    value = payload.get(key)
-    if not isinstance(value, str) or not value.strip():
-        raise PixelatedBundleError(f"{source} requires a non-empty string {key!r}")
-    return value.strip()
-
-
-def _finite_number(value: str, *, source: str) -> float:
-    try:
-        number = float(value)
-    except ValueError as error:
-        raise PixelatedBundleError(f"{source} must be numeric, received {value!r}") from error
-    if not math.isfinite(number):
-        raise PixelatedBundleError(f"{source} must be finite")
-    return number
-
-
-def _utc_datetime(value: str, *, source: str) -> datetime:
-    try:
-        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    except ValueError as error:
-        raise PixelatedBundleError(f"{source} must be an ISO 8601 timestamp") from error
-    if parsed.tzinfo is None or parsed.utcoffset() != timedelta(0):
-        raise PixelatedBundleError(f"{source} must use a UTC offset")
-    return parsed
-
-
-def _percentile_95(values: Sequence[float]) -> float:
-    ordered = sorted(values)
-    return ordered[max(0, math.ceil(len(ordered) * 0.95) - 1)]
-
-
-def _aggregate(values: Sequence[float], unit: str) -> MetricAggregate:
-    ordered = sorted(values)
-    median = float(statistics.median(ordered))
-    return MetricAggregate(
-        unit=unit,
-        aggregation="median",
-        value=median,
-        count=len(ordered),
-        median=median,
-        p95=_percentile_95(ordered),
-        minimum=ordered[0],
-        maximum=ordered[-1],
+    return _read_bundle_files(
+        path,
+        readable_files=READABLE_FILES,
+        required_files=V1_REQUIRED_FILES,
     )
-
-
-def _metrics(
-    rows: Sequence[Mapping[str, str]],
-) -> tuple[dict[str, MetricAggregate], list[str], dict[str, str]]:
-    metrics: dict[str, MetricAggregate] = {}
-    missing: list[str] = []
-    rejected: dict[str, str] = {}
-    for metric, (column, unit) in METRIC_COLUMNS.items():
-        values: list[float] = []
-        invalid: list[str] = []
-        for index, row in enumerate(rows, start=2):
-            raw = (row.get(column) or "").strip()
-            if not raw:
-                continue
-            try:
-                value = _finite_number(raw, source=f"stream-telemetry.csv row {index} {column}")
-            except PixelatedBundleError as error:
-                invalid.append(str(error))
-                continue
-            if value < 0:
-                invalid.append(f"stream-telemetry.csv row {index} {column} cannot be negative")
-            else:
-                values.append(value)
-        if invalid:
-            rejected[metric] = "; ".join(invalid)
-        elif values:
-            metrics[metric] = _aggregate(values, unit)
-        else:
-            missing.append(metric)
-    return metrics, sorted(missing), rejected
-
-
-def _bundle_checksum(files: Mapping[str, bytes]) -> str:
-    digest = hashlib.sha256()
-    for name in sorted(REQUIRED_FILES):
-        digest.update(name.encode("utf-8"))
-        digest.update(b"\0")
-        digest.update(files[name])
-        digest.update(b"\0")
-    return digest.hexdigest()
 
 
 def _validate_metadata(metadata: Mapping[str, Any]) -> tuple[str, str, dict[str, Any]]:
@@ -374,12 +227,44 @@ def ingest_pixelated_bundle(
     files = _read_bundle(bundle_path)
     metadata = _json_object(files, "run-metadata.json")
     summary = _json_object(files, "summary.json")
+    manifest = (
+        _json_object(files, "bundle-manifest.json") if "bundle-manifest.json" in files else None
+    )
+    bundle_schema_version = "2" if manifest is not None else "1"
+    declared_bundle_version = context.versions.get("pixelatedBundleSchema")
+    if declared_bundle_version and declared_bundle_version != bundle_schema_version:
+        raise PixelatedBundleError(
+            "context pixelatedBundleSchema disagrees with the ingested bundle"
+        )
     telemetry_rows = _csv_rows(files, "stream-telemetry.csv", TELEMETRY_COLUMNS)
     event_rows = _csv_rows(files, "stream-events.csv", EVENT_COLUMNS)
     if not telemetry_rows:
         raise PixelatedBundleError("stream-telemetry.csv requires at least one data row")
 
     run_id, session_id, effective_settings = _validate_metadata(metadata)
+    engine_rows: list[dict[str, str]] = []
+    if manifest is not None:
+        _validate_v2_metadata_privacy(metadata)
+        _validate_manifest(
+            manifest,
+            files,
+            comparison_case_id=comparison_case_id,
+            phase=phase,
+            run_id=run_id,
+        )
+        engine_rows = _csv_rows(
+            files,
+            "engine-telemetry.csv",
+            ENGINE_TELEMETRY_COLUMNS,
+        )
+        _validate_engine_rows(
+            engine_rows,
+            run_id=run_id,
+            session_id=session_id,
+            allow_empty=metadata.get("scenario") == "browser_only_baseline",
+        )
+        _validate_v2_summary(summary, engine_rows)
+        effective_settings.update(_engine_effective_settings(engine_rows))
     _validate_cross_file_identity(
         summary,
         telemetry_rows,
@@ -413,7 +298,22 @@ def ingest_pixelated_bundle(
         raise PixelatedBundleError("telemetry wall-clock and elapsed durations disagree")
 
     metrics, missing_metrics, rejected_metrics = _metrics(telemetry_rows)
+    counter_metrics, counter_missing, counter_rejected = _counter_metrics(
+        telemetry_rows,
+        STREAM_COUNTER_METRICS,
+        source_name="stream-telemetry.csv",
+    )
+    metrics.update(counter_metrics)
+    missing_metrics.extend(counter_missing)
+    rejected_metrics.update(counter_rejected)
+    if manifest is not None:
+        engine_metrics, engine_missing, engine_rejected = _engine_metrics(engine_rows)
+        metrics.update(engine_metrics)
+        missing_metrics.extend(engine_missing)
+        rejected_metrics.update(engine_rejected)
     reasons = _validity_reasons(telemetry_rows, event_rows)
+    if manifest is not None:
+        reasons.extend(_v2_validity_reasons(metadata, manifest, engine_rows))
     checksum = _bundle_checksum(files)
     return ObservationWindow(
         run_id=run_id,
@@ -429,7 +329,7 @@ def ingest_pixelated_bundle(
         sample_count=len(telemetry_rows),
         effective_settings=effective_settings,
         metrics=metrics,
-        missing_metrics=missing_metrics,
+        missing_metrics=sorted(set(missing_metrics)),
         rejected_metrics=rejected_metrics,
         validity=ValidityState(is_valid=not reasons, reasons=reasons),
         source_artifact=SourceArtifact(
@@ -445,9 +345,12 @@ def ingest_pixelated_bundle(
 
 __all__ = [
     "EVENT_COLUMNS",
+    "ENGINE_TELEMETRY_COLUMNS",
     "METRIC_COLUMNS",
     "REQUIRED_FILES",
     "TELEMETRY_COLUMNS",
+    "V1_REQUIRED_FILES",
+    "V2_REQUIRED_FILES",
     "PixelatedBundleError",
     "ingest_pixelated_bundle",
 ]
