@@ -14,13 +14,33 @@ summary.json
 performance-network.png  # not used by the matcher
 ```
 
+It also accepts the additive v2 contract:
+
+```text
+bundle-manifest.json
+run-metadata.json
+stream-telemetry.csv
+engine-telemetry.csv
+stream-events.csv
+summary.json
+```
+
+The adapter detects v2 from the manifest, validates its phase/comparison/run
+identity and privacy declaration, checks engine/encoder source identity, and
+keeps the original v1 path unchanged.
+
 It must validate files and columns, reject unsafe TAR paths, select explicit phases, aggregate telemetry, map names into core metrics, preserve provenance, report missing evidence and never ingest credentials.
 
 The core matcher must not know Pixelated filenames or CSV columns.
 
 ## Evidence boundary
 
-The current browser bundle provides FPS, received bitrate, packet loss, jitter, connection state, metadata and lifecycle events. It does not provide capture queues, encode time, sender queueing, decoder queues or exact display timing. P0 must not claim those metrics.
+Bundle v1 provides FPS, received bitrate, packet loss, jitter, connection state,
+metadata and lifecycle events. Bundle v2 adds browser decode/jitter-buffer
+signals, interval engine-process resources and encoder-path counters. It still
+does not provide direct encode time, input-to-frame or exact display timing; P0
+must not claim those metrics. `pipelineDelayProxyMs` stays missing until a
+validated proxy exists.
 
 ## Control boundary
 
