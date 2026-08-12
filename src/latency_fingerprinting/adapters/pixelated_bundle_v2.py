@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from collections.abc import Mapping, Sequence
 from typing import Any
 
@@ -155,6 +156,45 @@ def validate_metadata_privacy(metadata: Mapping[str, Any]) -> None:
     for forbidden in forbidden_fields:
         if forbidden in metadata:
             raise PixelatedBundleError(f"v2 run metadata must omit privacy field {forbidden!r}")
+
+
+def _forbidden_event_detail_key(value: Any) -> str | None:
+    if isinstance(value, Mapping):
+        for key, nested in value.items():
+            normalized = "".join(character for character in str(key).lower() if character.isalnum())
+            if normalized in {"peerid", "rawpeerid"}:
+                return str(key)
+            forbidden = _forbidden_event_detail_key(nested)
+            if forbidden is not None:
+                return forbidden
+    elif isinstance(value, list):
+        for nested in value:
+            forbidden = _forbidden_event_detail_key(nested)
+            if forbidden is not None:
+                return forbidden
+    return None
+
+
+def validate_event_privacy(event_rows: Sequence[Mapping[str, str]]) -> None:
+    for index, row in enumerate(event_rows, start=2):
+        raw_details = (row.get("details_json") or "").strip()
+        if not raw_details:
+            continue
+        try:
+            details = json.loads(raw_details)
+        except json.JSONDecodeError as error:
+            raise PixelatedBundleError(
+                f"stream-events.csv row {index} details_json must be valid JSON"
+            ) from error
+        if not isinstance(details, dict):
+            raise PixelatedBundleError(
+                f"stream-events.csv row {index} details_json must be an object"
+            )
+        forbidden = _forbidden_event_detail_key(details)
+        if forbidden is not None:
+            raise PixelatedBundleError(
+                f"stream-events.csv row {index} exposes private peer identity {forbidden!r}"
+            )
 
 
 def _boolean_cell(value: str, *, source: str) -> bool:
