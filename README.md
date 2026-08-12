@@ -1,5 +1,7 @@
 # Latency Fingerprinting
 
+[![CI](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml/badge.svg)](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml)
+
 This repository contains the detached Python research core and the documents used to build its initial P0 vertical slice. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
 
 ## P0 objective

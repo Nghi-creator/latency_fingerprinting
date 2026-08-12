@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package and development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Check formatting
+        run: ruff format --check .
+
+      - name: Run tests
+        run: python -m pytest
+
+      - name: Check generated schemas
+        run: python -m latency_fingerprinting export-schemas --output schemas --check
+
+      - name: Check synthetic fixture drift
+        run: >-
+          python -c "from latency_fingerprinting.synthetic_fixtures import fixture_drift;
+          assert fixture_drift() == {}"
+
+      - name: Validate controlled-real P0 artifacts
+        run: |
+          python -m latency_fingerprinting validate experiments/controlled-run-001/observation.json > /dev/null
+          python -m latency_fingerprinting validate experiments/controlled-run-001/match-result.json > /dev/null
+          python -m latency_fingerprinting validate experiments/controlled-run-001/fingerprint.json > /dev/null
+          python -m latency_fingerprinting validate experiments/controlled-run-002/observation.json > /dev/null
+          python -m latency_fingerprinting validate experiments/controlled-run-002/match-result.json > /dev/null
+
+      - name: Check run 001 seed fingerprint drift
+        run: python experiments/controlled-run-001/record_seed_fingerprint.py --check
+
+      - name: Reproduce run 002 match result
+        run: |
+          python -m latency_fingerprinting match \
+            experiments/controlled-run-002/observation.json \
+            --fingerprints experiments/controlled-run-001 \
+            > /tmp/controlled-run-002-match-result.json
+          cmp \
+            experiments/controlled-run-002/match-result.json \
+            /tmp/controlled-run-002-match-result.json
