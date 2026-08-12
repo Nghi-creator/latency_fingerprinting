@@ -73,6 +73,16 @@ experiments/controlled-run-001/raw/full_data/
 └── relief.tar
 ```
 
+The accepted bundles are ingested into sanitized, model-valid observation
+windows at:
+
+```text
+experiments/controlled-run-001/
+├── healthy/window.json
+├── degraded/window.json
+└── relief/window.json
+```
+
 The repository ignore rules exclude `raw/` and TAR archives. Derived windows,
 the observation, result, sanitized manifest and checksums may be committed only
 after confirming that they contain no personal or secret data.
@@ -137,5 +147,6 @@ python -m latency_fingerprinting validate match-result.json
 - [x] Runtime health verified after restoration and recorded in
       `restoration-evidence.json`.
 - [x] Bundle checksums recorded in sanitized `manifest.json`.
-- [ ] Real windows, observation and match result validate.
+- [x] All three bundles ingested into model-valid observation windows.
+- [ ] Real observation and match result validate.
 - [ ] Result described only as feasibility evidence.
