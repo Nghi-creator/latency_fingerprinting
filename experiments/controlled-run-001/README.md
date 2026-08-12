@@ -124,10 +124,10 @@ python -m latency_fingerprinting validate match-result.json
 
 ## Evidence checklist
 
-- [ ] Fixed factors and procedure recorded before capture.
-- [ ] Healthy bundle captured without experiment pressure.
-- [ ] Degraded bundle captured under bounded pressure with `balanced`.
-- [ ] Relief bundle captured under the same pressure with `performance`.
+- [x] Fixed factors and procedure recorded in `context.json`.
+- [x] Healthy bundle captured without experiment pressure.
+- [x] Degraded bundle captured under bounded pressure with `balanced`.
+- [x] Relief bundle captured under the same pressure with `performance`.
 - [ ] Pressure stopped and stream profile restored to `balanced`.
 - [ ] Runtime health verified after restoration.
 - [x] Bundle checksums recorded in sanitized `manifest.json`.
