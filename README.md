@@ -24,7 +24,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 5. [`docs/p0/IMPLEMENTATION_TRACKER.md`](docs/p0/IMPLEMENTATION_TRACKER.md) is the executable checklist and exit gate.
 6. [`docs/p0/P0_BUILD_PLAN.md`](docs/p0/P0_BUILD_PLAN.md) defines the ordered implementation plan and phase gates.
 7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
-8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software evidence, limitations and the remaining real-run gate.
+8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 
 ## Development setup
 
@@ -38,8 +38,8 @@ python -m pip install -e '.[dev]'
 ```
 
 The synthetic analytical path, offline CLI and Pixelated bundle adapter are
-implemented and regression-tested. The controlled real paired run is the next
-integration stage.
+implemented and regression-tested. Controlled run 001 also traverses the full
+real-data path and preserves the matcher's conservative `unknown` outcome.
 
 ```bash
 latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
@@ -72,10 +72,21 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
   archives and extracted directories with an explicit research context.
 
-### Awaiting controlled evidence
+### Controlled evidence completed
 
-- Controlled real fingerprinting run: not captured.
-- Real restoration evidence, observation and match result: not available.
+- Controlled real fingerprinting bundles and sanitized checksums: captured.
+- Operator-observed restoration evidence: recorded with an explicit limitation
+  that it is not a post-restoration recovery telemetry window.
+- Derived real windows and response observation: validated.
+- Real matcher output: validated `unknown` because no stored synthetic
+  fingerprint shares the real run's compatibility group.
+- Run 001 response: frozen as an unvalidated controlled-real seed fingerprint
+  for a separately captured run 002 repeatability query.
+- Run 002 held-out query: matched the run 001 seed with full feature coverage;
+  recorded only as preliminary within-context repeatability because one seed
+  candidate and the shared composite preset cannot establish discrimination.
+- Evidence claim: end-to-end integration feasibility only; diagnosis accuracy,
+  recovery benefit and generalization remain unproven.
 
 ### Deferred beyond P0
 

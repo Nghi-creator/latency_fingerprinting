@@ -1,0 +1,58 @@
+{
+  "applicationMethod": "paired_run",
+  "degradedWindowId": "edge-run-2026-08-12T17-47-07-044Z-48b417de-degraded",
+  "executionStatus": "executed",
+  "intensity": 0.5,
+  "knownConfounders": [
+    "The CPU-pressure process was operator-started and was not timestamp-synchronized inside the exported telemetry bundle.",
+    "Changing the stream profile restarts the stream; a fixed warm-up was used, but residual restart effects cannot be excluded.",
+    "No separate post-restoration evidence was supplied for run 002."
+  ],
+  "observedSettings": {
+    "bitrateKbps": 700,
+    "encoderCpuUsed": 8.0,
+    "encoderMaxQuantizer": 56.0,
+    "fps": 30,
+    "streamProfileId": "performance",
+    "targetBitrateKbps": 700.0,
+    "targetFps": 30.0
+  },
+  "pairedWindowOrder": [
+    "degraded",
+    "relief"
+  ],
+  "probeId": "controlled-run-002-stream-profile-relief",
+  "probeType": "stream_profile_relief",
+  "probeVersion": "1",
+  "qualityCost": {
+    "configured_target_bitrate_reduction": {
+      "aggregation": "setting_difference",
+      "count": 1,
+      "unit": "kbps",
+      "value": 700.0
+    },
+    "configured_target_fps_reduction": {
+      "aggregation": "setting_difference",
+      "count": 1,
+      "unit": "fps",
+      "value": 30.0
+    }
+  },
+  "reliefWindowId": "edge-run-2026-08-12T17-47-07-044Z-48b417de-relief",
+  "requestedSettings": {
+    "bitrateKbps": 700,
+    "encoderCpuUsed": 8.0,
+    "encoderMaxQuantizer": 56.0,
+    "fps": 30,
+    "streamProfileId": "performance",
+    "targetBitrateKbps": 700.0,
+    "targetFps": 30.0
+  },
+  "restorationStatus": "unknown",
+  "safetyNotes": [
+    "This is a composite preset change; FPS, bitrate, encoder CPU usage, and maximum quantizer changed together.",
+    "No response may be attributed to one changed setting in isolation.",
+    "The bounded CPU-pressure workload was intended to remain active across the degraded and relief captures.",
+    "Restoration remains unknown because no post-cleanup evidence was supplied."
+  ]
+}

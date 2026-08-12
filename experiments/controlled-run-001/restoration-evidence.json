@@ -1,0 +1,33 @@
+{
+  "acceptedBundleRunId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37",
+  "comparisonCaseId": "controlled-run-001",
+  "evidenceBinding": "operator_observed_after_controlled_procedure",
+  "healthEvidence": {
+    "evidenceClass": "operator_observation",
+    "iceConnectionState": "connected",
+    "playbackState": "live",
+    "profileRestored": true,
+    "streamErrorObserved": false
+  },
+  "limitations": [
+    "The operator evidence was recorded separately from the TAR telemetry and is not cryptographically bound to the accepted bundle run.",
+    "No dedicated post-restoration recovery telemetry bundle was captured.",
+    "This evidence supports procedural cleanup and runtime health only; it is not a response window or a recovery-benefit measurement."
+  ],
+  "pressureProcess": {
+    "completionEvent": "pressure_stopped",
+    "durationS": 300,
+    "reportedRestored": true,
+    "script": "bounded_cpu_pressure.py",
+    "workers": 5
+  },
+  "restoredNominalProfile": {
+    "bitrateKbps": 1400,
+    "encoderCpuUsed": 6,
+    "encoderMaxQuantizer": 48,
+    "fps": 60,
+    "streamProfileId": "balanced"
+  },
+  "restorationStatus": "restored",
+  "schemaVersion": 1
+}

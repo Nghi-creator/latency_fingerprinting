@@ -1,0 +1,29 @@
+{
+  "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+  "clientClass": "chrome-151-macos-localhost",
+  "compatibilityGroup": "pixelated-localhost-libretro-vp8-p0",
+  "connectionMode": "localhost-webrtc",
+  "contextId": "controlled-run-002-localhost-libretro-vp8",
+  "edgeNodeClass": "local-containerized-edge-node-10-core-capacity",
+  "encoderFamily": "vp8",
+  "encoderProfile": "balanced-cpu-used-6-max-quantizer-48",
+  "networkScenario": "localhost-loopback",
+  "nodeId": "anonymous-local-edge-node-001",
+  "nominalStreamProfile": {
+    "bitrateKbps": 1400,
+    "encoderCpuUsed": 6,
+    "encoderMaxQuantizer": 48,
+    "fps": 60,
+    "id": "balanced"
+  },
+  "operatingSystem": "linux-container-runtime",
+  "runtimeClass": "docker-libretro",
+  "transportImplementation": "gstreamer-webrtc",
+  "versions": {
+    "browser": "Chrome 151",
+    "engineResearchTelemetrySchema": "1",
+    "pixelatedBundleSchema": "2",
+    "pixelatedSourceRevision": "7047b3feef1912ed82d7c2a70a56f8fb8954e887"
+  },
+  "workloadId": "beatbeast-libretro-workload"
+}

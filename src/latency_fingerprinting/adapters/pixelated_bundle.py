@@ -66,6 +66,9 @@ from .pixelated_bundle_v2 import (
     validate_engine_rows as _validate_engine_rows,
 )
 from .pixelated_bundle_v2 import (
+    validate_event_privacy as _validate_event_privacy,
+)
+from .pixelated_bundle_v2 import (
     validate_manifest as _validate_manifest,
 )
 from .pixelated_bundle_v2 import (
@@ -76,6 +79,15 @@ from .pixelated_bundle_v2 import (
 )
 from .pixelated_bundle_v2 import (
     validity_reasons as _v2_validity_reasons,
+)
+from .pixelated_bundle_validation import (
+    validate_cross_file_identity as _validate_cross_file_identity,
+)
+from .pixelated_bundle_validation import (
+    validate_packet_loss_deltas as _validate_packet_loss_deltas,
+)
+from .pixelated_bundle_validation import (
+    validity_reasons as _validity_reasons,
 )
 
 V1_REQUIRED_FILES = frozenset(
@@ -156,57 +168,6 @@ def _validate_metadata(metadata: Mapping[str, Any]) -> tuple[str, str, dict[str,
     return run_id, session_id, settings
 
 
-def _validate_cross_file_identity(
-    summary: Mapping[str, Any],
-    telemetry_rows: Sequence[Mapping[str, str]],
-    event_rows: Sequence[Mapping[str, str]],
-    *,
-    run_id: str,
-    session_id: str,
-) -> None:
-    if summary.get("runId") != run_id or summary.get("sessionId") != session_id:
-        raise PixelatedBundleError("summary.json run/session identity disagrees with metadata")
-    recording = summary.get("recording")
-    if not isinstance(recording, dict):
-        raise PixelatedBundleError("summary.json requires object 'recording'")
-    if recording.get("sampleCount") != len(telemetry_rows):
-        raise PixelatedBundleError("summary.json sample count disagrees with telemetry")
-    for source, rows, run_column in (
-        ("stream-telemetry.csv", telemetry_rows, None),
-        ("stream-events.csv", event_rows, "run_id"),
-    ):
-        for index, row in enumerate(rows, start=2):
-            if row.get("session_id") != session_id:
-                raise PixelatedBundleError(
-                    f"{source} row {index} session_id disagrees with metadata"
-                )
-            if run_column is not None and row.get(run_column) != run_id:
-                raise PixelatedBundleError(f"{source} row {index} run_id disagrees with metadata")
-
-
-def _validity_reasons(
-    telemetry_rows: Sequence[Mapping[str, str]],
-    event_rows: Sequence[Mapping[str, str]],
-) -> list[str]:
-    reasons: list[str] = []
-    if any(row.get("status") != "playing" for row in telemetry_rows):
-        reasons.append("telemetry window includes inactive playback")
-    if any(row.get("connection_state") != "connected" for row in telemetry_rows):
-        reasons.append("telemetry window includes a non-connected peer state")
-    if any(
-        row.get("ice_connection_state") not in {"connected", "completed"} for row in telemetry_rows
-    ):
-        reasons.append("telemetry window includes an unusable ICE state")
-    if any((row.get("last_engine_error") or "").strip() for row in telemetry_rows):
-        reasons.append("telemetry window includes an engine error")
-    events = {row.get("event") for row in event_rows}
-    if "connection_disconnected" in events:
-        reasons.append("window includes a connection-disconnected event")
-    if "engine_error" in events:
-        reasons.append("window includes an engine-error event")
-    return reasons
-
-
 def ingest_pixelated_bundle(
     bundle_path: Path,
     *,
@@ -252,6 +213,7 @@ def ingest_pixelated_bundle(
             phase=phase,
             run_id=run_id,
         )
+        _validate_event_privacy(event_rows)
         engine_rows = _csv_rows(
             files,
             "engine-telemetry.csv",
@@ -272,6 +234,7 @@ def ingest_pixelated_bundle(
         run_id=run_id,
         session_id=session_id,
     )
+    _validate_packet_loss_deltas(telemetry_rows)
 
     elapsed = [
         _finite_number(row["elapsed_ms"], source=f"stream-telemetry.csv row {index} elapsed_ms")

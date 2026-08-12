@@ -1,6 +1,6 @@
 # Controlled run 001
 
-**Status:** Awaiting real Pixelated capture  
+**Status:** Complete controlled-real P0 feasibility record
 **Evidence class:** Controlled-real feasibility evidence  
 **Comparison case:** `controlled-run-001`
 
@@ -67,32 +67,54 @@ No response may be attributed to only one of those controls.
 ## Private input layout
 
 ```text
-experiments/controlled-run-001/raw/
+experiments/controlled-run-001/raw/full_data/
 ├── healthy.tar
 ├── degraded.tar
 └── relief.tar
+```
+
+The accepted bundles are ingested into sanitized, model-valid observation
+windows at:
+
+```text
+experiments/controlled-run-001/
+├── healthy/window.json
+├── degraded/window.json
+└── relief/window.json
 ```
 
 The repository ignore rules exclude `raw/` and TAR archives. Derived windows,
 the observation, result, sanitized manifest and checksums may be committed only
 after confirming that they contain no personal or secret data.
 
+`restoration-evidence.json` records the operator-observed cleanup and runtime
+health check after the controlled procedure. It deliberately does not claim a
+post-restoration recovery window: the observation was recorded separately from
+the TAR telemetry and is evidence of procedural restoration only.
+
+Record or verify the accepted TAR checksums without exposing their raw path:
+
+```bash
+python record_bundle_checksums.py --write
+python record_bundle_checksums.py --check
+```
+
 ## Processing commands
 
 After capture, create `context.json` and ingest each bundle:
 
 ```bash
-python -m latency_fingerprinting ingest-pixelated raw/healthy.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/healthy.tar \
   --phase baseline \
   --comparison-case-id controlled-run-001 \
   --context context.json > healthy/window.json
 
-python -m latency_fingerprinting ingest-pixelated raw/degraded.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/degraded.tar \
   --phase degraded \
   --comparison-case-id controlled-run-001 \
   --context context.json > degraded/window.json
 
-python -m latency_fingerprinting ingest-pixelated raw/relief.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/relief.tar \
   --phase relief \
   --comparison-case-id controlled-run-001 \
   --context context.json > relief/window.json
@@ -115,14 +137,51 @@ python -m latency_fingerprinting validate observation.json
 python -m latency_fingerprinting validate match-result.json
 ```
 
+## Observed P0 outcome
+
+The real observation completed the same ingestion, response, normalization and
+matching path as the synthetic software examples. The matcher returned a valid
+`unknown` result with `unknownReason: incompatible_context`: none of the three
+stored synthetic fingerprints uses the real run's
+`pixelated-localhost-libretro-vp8-p0` compatibility group.
+
+This is the required conservative outcome. It demonstrates that the controlled
+real record can traverse P0 and that incompatible references are rejected. It
+does not establish a bottleneck label, diagnosis accuracy, recovery benefit or
+generalization.
+
+## Seed fingerprint for an independent repeat
+
+`fingerprint.json` freezes this run's normalized response as an unvalidated
+`controlled_real` seed labeled `host_encoder_pressure`. The label records the
+known bounded pressure injected by the experiment; it was not inferred by the
+matcher. Feature weights are equal provisional defaults and are not calibrated.
+
+Regenerate or verify the deterministic artifact with:
+
+```bash
+python record_seed_fingerprint.py --write
+python record_seed_fingerprint.py --check
+```
+
+Use only a separately captured run, such as `controlled-run-002`, as the query.
+Matching run 001 against a fingerprint derived from run 001 would be circular
+and is not repeatability evidence.
+
 ## Evidence checklist
 
-- [ ] Fixed factors and procedure recorded before capture.
-- [ ] Healthy bundle captured without experiment pressure.
-- [ ] Degraded bundle captured under bounded pressure with `balanced`.
-- [ ] Relief bundle captured under the same pressure with `performance`.
-- [ ] Pressure stopped and stream profile restored to `balanced`.
-- [ ] Runtime health verified after restoration.
-- [ ] Bundle checksums recorded in sanitized `manifest.json`.
-- [ ] Real windows, observation and match result validate.
-- [ ] Result described only as feasibility evidence.
+- [x] Fixed factors and procedure recorded in `context.json`.
+- [x] Healthy bundle captured without experiment pressure.
+- [x] Degraded bundle captured under bounded pressure with `balanced`.
+- [x] Relief bundle captured under the same pressure with `performance`.
+- [x] Pressure stopped and stream profile restored to `balanced`.
+- [x] Runtime health verified after restoration and recorded in
+      `restoration-evidence.json`.
+- [x] Bundle checksums recorded in sanitized `manifest.json`.
+- [x] All three bundles ingested into model-valid observation windows.
+- [x] Executed composite profile change recorded and validated in `probe.json`.
+- [x] Real response built and validated in `observation.json`.
+- [x] Real matcher output validated in `match-result.json`.
+- [x] Result described only as feasibility evidence.
+- [x] Run 001 frozen as an unvalidated controlled-real seed fingerprint for an
+      independent repeat experiment.
