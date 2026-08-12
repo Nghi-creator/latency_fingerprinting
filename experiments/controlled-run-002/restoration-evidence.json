@@ -1,0 +1,23 @@
+{
+  "acceptedBundleRunId": "edge-run-2026-08-12T17-47-07-044Z-48b417de",
+  "comparisonCaseId": "controlled-run-002",
+  "evidenceBinding": "not_supplied",
+  "healthEvidence": {
+    "evidenceClass": "not_recorded",
+    "profileRestored": null,
+    "runtimeHealthVerified": null
+  },
+  "limitations": [
+    "No separate post-restoration operator note, screenshot, or recovery telemetry bundle was supplied for run 002.",
+    "The valid relief bundle shows a live stream during the relief phase, not health after pressure cleanup and nominal-profile restoration.",
+    "Restoration is therefore recorded as unknown and must not be inferred from run 001."
+  ],
+  "pressureProcess": {
+    "durationS": 300,
+    "reportedRestored": null,
+    "script": "bounded_cpu_pressure.py",
+    "workers": 5
+  },
+  "restorationStatus": "unknown",
+  "schemaVersion": 1
+}

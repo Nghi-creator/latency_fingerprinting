@@ -82,6 +82,9 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
   fingerprint shares the real run's compatibility group.
 - Run 001 response: frozen as an unvalidated controlled-real seed fingerprint
   for a separately captured run 002 repeatability query.
+- Run 002 held-out query: matched the run 001 seed with full feature coverage;
+  recorded only as preliminary within-context repeatability because one seed
+  candidate and the shared composite preset cannot establish discrimination.
 - Evidence claim: end-to-end integration feasibility only; diagnosis accuracy,
   recovery benefit and generalization remain unproven.
 

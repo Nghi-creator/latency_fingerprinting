@@ -1,0 +1,215 @@
+{
+  "acceptedLabel": "host_encoder_pressure",
+  "compatibility": {
+    "compatibilityGroup": "pixelated-localhost-libretro-vp8-p0",
+    "compatibleFingerprintIds": [
+      "fingerprint-host_encoder_pressure-controlled-run-001-seed-v1"
+    ],
+    "isCompatible": true,
+    "rejectedFingerprints": {}
+  },
+  "conflictingEvidence": [],
+  "contractVersion": "1.0.0",
+  "decision": "matched",
+  "decisionReason": "The best compatible response exceeds all provisional thresholds.",
+  "featureCoverage": 1.0,
+  "matchStrength": 0.9819067687174997,
+  "missingFeatures": [],
+  "rankedCandidates": [
+    {
+      "bottleneckLabel": "host_encoder_pressure",
+      "distance": 0.018426628534328686,
+      "fingerprintId": "fingerprint-host_encoder_pressure-controlled-run-001-seed-v1",
+      "matchStrength": 0.9819067687174997
+    }
+  ],
+  "schemaVersion": "match-result-v1",
+  "scoreMargin": null,
+  "sharedFeatureCount": 22,
+  "supportingEvidence": [
+    {
+      "candidateValue": -0.44023862256889734,
+      "feature": "client.available_incoming_bitrate_kbps",
+      "observedValue": -0.425741854382437,
+      "residual": 0.01449676818646034,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.00021015628785196863
+    },
+    {
+      "candidateValue": -0.0045625377122625686,
+      "feature": "client.decode_time_mean_ms",
+      "observedValue": 0.03330575277139903,
+      "residual": 0.037868290483661596,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0014340074241549754
+    },
+    {
+      "candidateValue": -0.5,
+      "feature": "client.frames_decoded_delta",
+      "observedValue": -0.5,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "client.frames_dropped_delta",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "client.freeze_count_delta",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "client.freeze_duration_ms_delta",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.07935548337784648,
+      "feature": "client.jitter_buffer_delay_mean_ms",
+      "observedValue": 0.12283307078917342,
+      "residual": 0.04347758741132694,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.001890300607109575
+    },
+    {
+      "candidateValue": -0.5408957726027507,
+      "feature": "client.received_bitrate_kbps",
+      "observedValue": -0.5153143678375421,
+      "residual": 0.025581404765208537,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0006544082697614341
+    },
+    {
+      "candidateValue": -0.5,
+      "feature": "client.received_fps",
+      "observedValue": -0.5,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "encoder.frames_dropped_delta",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": -0.5,
+      "feature": "encoder.frames_in_delta",
+      "observedValue": -0.5,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": -0.5,
+      "feature": "encoder.frames_out_delta",
+      "observedValue": -0.5,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "encoder.queue_level_buffers",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": -0.4802860456126788,
+      "feature": "host.camera_cpu_percent",
+      "observedValue": -0.44722871097897643,
+      "residual": 0.03305733463370236,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0010927873730845778
+    },
+    {
+      "candidateValue": -0.0051813471502591985,
+      "feature": "host.camera_rss_mb",
+      "observedValue": -0.0029373591092286253,
+      "residual": 0.002243988041030573,
+      "weight": 1.0,
+      "weightedSquaredResidual": 5.03548232828823e-06
+    },
+    {
+      "candidateValue": -0.04669260700389092,
+      "feature": "host.game_cpu_percent",
+      "observedValue": -0.0019493177387913815,
+      "residual": 0.04474328926509954,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0020019619342603718
+    },
+    {
+      "candidateValue": -0.00011860520281490131,
+      "feature": "host.game_rss_mb",
+      "observedValue": -0.009049951028403535,
+      "residual": -0.008931345825588634,
+      "weight": 1.0,
+      "weightedSquaredResidual": 7.976893825625952e-05
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "host.node_cpu_percent",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.005522584899439513,
+      "feature": "host.node_rss_mb",
+      "observedValue": 0.015595704789500581,
+      "residual": 0.010073119890061068,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.00010146774431954392
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "transport.jitter_ms",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "transport.packets_lost_delta",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    },
+    {
+      "candidateValue": 0.0,
+      "feature": "transport.round_trip_time_ms",
+      "observedValue": 0.0,
+      "residual": 0.0,
+      "weight": 1.0,
+      "weightedSquaredResidual": 0.0
+    }
+  ],
+  "thresholds": {
+    "minimumFeatureCoverage": 0.6,
+    "minimumMatchStrength": 0.75,
+    "minimumScoreMargin": 0.1,
+    "minimumSharedFeatureCount": 3
+  },
+  "unknownReason": null,
+  "warnings": []
+}
