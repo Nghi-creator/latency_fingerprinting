@@ -72,10 +72,12 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
   archives and extracted directories with an explicit research context.
 
-### Awaiting controlled evidence
+### Controlled evidence in progress
 
-- Controlled real fingerprinting run: not captured.
-- Real restoration evidence, observation and match result: not available.
+- Controlled real fingerprinting bundles and sanitized checksums: captured.
+- Operator-observed restoration evidence: recorded with an explicit limitation
+  that it is not a post-restoration recovery telemetry window.
+- Derived real windows, observation and match result: pending.
 
 ### Deferred beyond P0
 

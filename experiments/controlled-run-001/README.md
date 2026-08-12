@@ -1,6 +1,6 @@
 # Controlled run 001
 
-**Status:** Awaiting real Pixelated capture  
+**Status:** Capture and restoration complete; derived evidence pending
 **Evidence class:** Controlled-real feasibility evidence  
 **Comparison case:** `controlled-run-001`
 
@@ -77,6 +77,11 @@ The repository ignore rules exclude `raw/` and TAR archives. Derived windows,
 the observation, result, sanitized manifest and checksums may be committed only
 after confirming that they contain no personal or secret data.
 
+`restoration-evidence.json` records the operator-observed cleanup and runtime
+health check after the controlled procedure. It deliberately does not claim a
+post-restoration recovery window: the observation was recorded separately from
+the TAR telemetry and is evidence of procedural restoration only.
+
 Record or verify the accepted TAR checksums without exposing their raw path:
 
 ```bash
@@ -128,8 +133,9 @@ python -m latency_fingerprinting validate match-result.json
 - [x] Healthy bundle captured without experiment pressure.
 - [x] Degraded bundle captured under bounded pressure with `balanced`.
 - [x] Relief bundle captured under the same pressure with `performance`.
-- [ ] Pressure stopped and stream profile restored to `balanced`.
-- [ ] Runtime health verified after restoration.
+- [x] Pressure stopped and stream profile restored to `balanced`.
+- [x] Runtime health verified after restoration and recorded in
+      `restoration-evidence.json`.
 - [x] Bundle checksums recorded in sanitized `manifest.json`.
 - [ ] Real windows, observation and match result validate.
 - [ ] Result described only as feasibility evidence.
