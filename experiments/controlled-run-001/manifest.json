@@ -1,0 +1,32 @@
+{
+  "artifacts": [
+    {
+      "bundleSchemaVersion": 2,
+      "bytes": 212992,
+      "capturedAt": "2026-08-11T19:22:58.227Z",
+      "fileName": "healthy.tar",
+      "phase": "healthy",
+      "sha256": "7a2f6b3c0d4b6d528b65a1f967e919c502d34e3430238dd141b705a279e24ede"
+    },
+    {
+      "bundleSchemaVersion": 2,
+      "bytes": 221696,
+      "capturedAt": "2026-08-11T19:26:15.330Z",
+      "fileName": "degraded.tar",
+      "phase": "degraded",
+      "sha256": "6b06315424159a9e2c1020835f39e0050377ce1bbb86408c16cb36091fe33500"
+    },
+    {
+      "bundleSchemaVersion": 2,
+      "bytes": 214016,
+      "capturedAt": "2026-08-11T19:28:09.012Z",
+      "fileName": "relief.tar",
+      "phase": "relief",
+      "sha256": "472ae78cd1af8436b04c3bd3637fc39d842e368e6080814ba1ee82673300756c"
+    }
+  ],
+  "comparisonCaseId": "controlled-run-001",
+  "hashAlgorithm": "sha256",
+  "runId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37",
+  "schemaVersion": 1
+}

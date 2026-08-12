@@ -67,7 +67,7 @@ No response may be attributed to only one of those controls.
 ## Private input layout
 
 ```text
-experiments/controlled-run-001/raw/
+experiments/controlled-run-001/raw/full_data/
 ├── healthy.tar
 ├── degraded.tar
 └── relief.tar
@@ -77,22 +77,29 @@ The repository ignore rules exclude `raw/` and TAR archives. Derived windows,
 the observation, result, sanitized manifest and checksums may be committed only
 after confirming that they contain no personal or secret data.
 
+Record or verify the accepted TAR checksums without exposing their raw path:
+
+```bash
+python record_bundle_checksums.py --write
+python record_bundle_checksums.py --check
+```
+
 ## Processing commands
 
 After capture, create `context.json` and ingest each bundle:
 
 ```bash
-python -m latency_fingerprinting ingest-pixelated raw/healthy.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/healthy.tar \
   --phase baseline \
   --comparison-case-id controlled-run-001 \
   --context context.json > healthy/window.json
 
-python -m latency_fingerprinting ingest-pixelated raw/degraded.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/degraded.tar \
   --phase degraded \
   --comparison-case-id controlled-run-001 \
   --context context.json > degraded/window.json
 
-python -m latency_fingerprinting ingest-pixelated raw/relief.tar \
+python -m latency_fingerprinting ingest-pixelated raw/full_data/relief.tar \
   --phase relief \
   --comparison-case-id controlled-run-001 \
   --context context.json > relief/window.json
@@ -123,6 +130,6 @@ python -m latency_fingerprinting validate match-result.json
 - [ ] Relief bundle captured under the same pressure with `performance`.
 - [ ] Pressure stopped and stream profile restored to `balanced`.
 - [ ] Runtime health verified after restoration.
-- [ ] Bundle checksums recorded in sanitized `manifest.json`.
+- [x] Bundle checksums recorded in sanitized `manifest.json`.
 - [ ] Real windows, observation and match result validate.
 - [ ] Result described only as feasibility evidence.
