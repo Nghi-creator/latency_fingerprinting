@@ -149,5 +149,6 @@ python -m latency_fingerprinting validate match-result.json
 - [x] Bundle checksums recorded in sanitized `manifest.json`.
 - [x] All three bundles ingested into model-valid observation windows.
 - [x] Executed composite profile change recorded and validated in `probe.json`.
-- [ ] Real observation and match result validate.
+- [x] Real response built and validated in `observation.json`.
+- [ ] Real match result validates.
 - [ ] Result described only as feasibility evidence.

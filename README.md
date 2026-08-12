@@ -77,7 +77,8 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Controlled real fingerprinting bundles and sanitized checksums: captured.
 - Operator-observed restoration evidence: recorded with an explicit limitation
   that it is not a post-restoration recovery telemetry window.
-- Derived real windows, observation and match result: pending.
+- Derived real windows and response observation: validated.
+- Real match result: pending.
 
 ### Deferred beyond P0
 

@@ -1,0 +1,1017 @@
+{
+  "context": {
+    "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+    "clientClass": "chrome-151-macos-localhost",
+    "compatibilityGroup": "pixelated-localhost-libretro-vp8-p0",
+    "connectionMode": "localhost-webrtc",
+    "contextId": "controlled-run-001-localhost-libretro-vp8",
+    "edgeNodeClass": "local-containerized-edge-node-10-core-capacity",
+    "encoderFamily": "vp8",
+    "encoderProfile": "balanced-cpu-used-6-max-quantizer-48",
+    "networkScenario": "localhost-loopback",
+    "nodeId": "anonymous-local-edge-node-001",
+    "nominalStreamProfile": {
+      "bitrateKbps": 1400,
+      "encoderCpuUsed": 6,
+      "encoderMaxQuantizer": 48,
+      "fps": 60,
+      "id": "balanced"
+    },
+    "operatingSystem": "linux-container-runtime",
+    "runtimeClass": "docker-libretro",
+    "transportImplementation": "gstreamer-webrtc",
+    "versions": {
+      "browser": "Chrome 151",
+      "engineResearchTelemetrySchema": "1",
+      "pixelatedBundleSchema": "2",
+      "pixelatedSourceRevision": "7047b3feef1912ed82d7c2a70a56f8fb8954e887"
+    },
+    "workloadId": "beatbeast-libretro-workload"
+  },
+  "contractVersion": "1.0.0",
+  "degradedWindow": {
+    "bounds": {
+      "elapsedEndS": null,
+      "elapsedStartS": null,
+      "endedAt": "2026-08-11T19:26:12.012000Z",
+      "startedAt": "2026-08-11T19:25:12.443000Z"
+    },
+    "comparisonCaseId": "controlled-run-001",
+    "confounders": [],
+    "context": {
+      "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+      "clientClass": "chrome-151-macos-localhost",
+      "compatibilityGroup": "pixelated-localhost-libretro-vp8-p0",
+      "connectionMode": "localhost-webrtc",
+      "contextId": "controlled-run-001-localhost-libretro-vp8",
+      "edgeNodeClass": "local-containerized-edge-node-10-core-capacity",
+      "encoderFamily": "vp8",
+      "encoderProfile": "balanced-cpu-used-6-max-quantizer-48",
+      "networkScenario": "localhost-loopback",
+      "nodeId": "anonymous-local-edge-node-001",
+      "nominalStreamProfile": {
+        "bitrateKbps": 1400,
+        "encoderCpuUsed": 6,
+        "encoderMaxQuantizer": 48,
+        "fps": 60,
+        "id": "balanced"
+      },
+      "operatingSystem": "linux-container-runtime",
+      "runtimeClass": "docker-libretro",
+      "transportImplementation": "gstreamer-webrtc",
+      "versions": {
+        "browser": "Chrome 151",
+        "engineResearchTelemetrySchema": "1",
+        "pixelatedBundleSchema": "2",
+        "pixelatedSourceRevision": "7047b3feef1912ed82d7c2a70a56f8fb8954e887"
+      },
+      "workloadId": "beatbeast-libretro-workload"
+    },
+    "durationS": 59.569,
+    "effectiveSettings": {
+      "bitrateKbps": 1400,
+      "cpuCapacityCores": 10.0,
+      "encoderCpuUsed": 6.0,
+      "encoderMaxQuantizer": 48.0,
+      "fps": 60,
+      "logicalCpuCount": 10.0,
+      "runtimeKind": "libretro",
+      "streamProfileId": "balanced",
+      "targetBitrateKbps": 1400.0,
+      "targetFps": 60.0
+    },
+    "metrics": {
+      "client.available_incoming_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 2545.272,
+        "median": 1238.944,
+        "minimum": 166.102,
+        "p95": 2359.546,
+        "unit": "kbps",
+        "value": 1238.944
+      },
+      "client.decode_time_mean_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 0.9763548387096789,
+        "median": 0.655423728813559,
+        "minimum": 0.5821999999999994,
+        "p95": 0.8097714285714311,
+        "unit": "ms",
+        "value": 0.655423728813559
+      },
+      "client.frames_decoded_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 62.0,
+        "median": 60.0,
+        "minimum": 20.0,
+        "p95": 61.0,
+        "unit": "frames",
+        "value": 60.0
+      },
+      "client.frames_dropped_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "frames",
+        "value": 0.0
+      },
+      "client.freeze_count_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 2.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 1.0,
+        "unit": "freezes",
+        "value": 0.0
+      },
+      "client.freeze_duration_ms_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 609.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 201.0,
+        "unit": "ms",
+        "value": 0.0
+      },
+      "client.jitter_buffer_delay_mean_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 11.230799999999991,
+        "median": 8.656616666666633,
+        "minimum": 6.251024390243863,
+        "p95": 10.176590163934435,
+        "unit": "ms",
+        "value": 8.656616666666633
+      },
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 3765.391356052569,
+        "median": 1659.1633405424382,
+        "minimum": 567.1526705262572,
+        "p95": 2472.1259217700526,
+        "unit": "kbps",
+        "value": 1659.1633405424382
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 62.0,
+        "median": 60.0,
+        "minimum": 20.0,
+        "p95": 61.0,
+        "unit": "fps",
+        "value": 60.0
+      },
+      "encoder.frames_dropped_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 39.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 12.0,
+        "unit": "frames",
+        "value": 0.0
+      },
+      "encoder.frames_in_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 115.0,
+        "median": 60.0,
+        "minimum": 0.0,
+        "p95": 60.0,
+        "unit": "frames",
+        "value": 60.0
+      },
+      "encoder.frames_out_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 107.0,
+        "median": 60.0,
+        "minimum": 0.0,
+        "p95": 61.0,
+        "unit": "frames",
+        "value": 60.0
+      },
+      "encoder.queue_level_buffers": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 5.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 1.0,
+        "unit": "buffers",
+        "value": 0.0
+      },
+      "host.camera_cpu_percent": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 470.59,
+        "median": 51.74,
+        "minimum": 40.96,
+        "p95": 168.19,
+        "unit": "percent",
+        "value": 51.74
+      },
+      "host.camera_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 73.38,
+        "median": 73.34,
+        "minimum": 73.14,
+        "p95": 73.38,
+        "unit": "MiB",
+        "value": 73.34
+      },
+      "host.game_cpu_percent": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 45.54,
+        "median": 41.12,
+        "minimum": 0.0,
+        "p95": 45.05,
+        "unit": "percent",
+        "value": 41.12
+      },
+      "host.game_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 252.94,
+        "median": 252.94,
+        "minimum": 252.91,
+        "p95": 252.94,
+        "unit": "MiB",
+        "value": 252.94
+      },
+      "host.node_cpu_percent": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 14.71,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 1.0,
+        "unit": "percent",
+        "value": 0.0
+      },
+      "host.node_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 122.68,
+        "median": 121.32,
+        "minimum": 121.17,
+        "p95": 122.68,
+        "unit": "MiB",
+        "value": 121.32
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 29.0,
+        "median": 4.0,
+        "minimum": 3.0,
+        "p95": 14.0,
+        "unit": "ms",
+        "value": 4.0
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "packets",
+        "value": 0.0
+      },
+      "transport.round_trip_time_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 4.0,
+        "median": 1.0,
+        "minimum": 0.0,
+        "p95": 3.0,
+        "unit": "ms",
+        "value": 1.0
+      }
+    },
+    "missingMetrics": [
+      "encoder.pipeline_delay_proxy_ms"
+    ],
+    "phase": "degraded",
+    "provenance": "controlled_real",
+    "rejectedMetrics": {},
+    "runId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37",
+    "sampleCount": 61,
+    "sourceArtifact": {
+      "artifactId": "pixelated-bundle-a451bae093008104",
+      "checksum": "sha256:a451bae093008104142ba61eb202de9bdced6ce169829a00d1baedc57293c19e",
+      "producer": "Pixelated Studio Edition research exporter",
+      "sourceType": "pixelated_research_bundle"
+    },
+    "validity": {
+      "isValid": true,
+      "reasons": []
+    },
+    "windowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-degraded"
+  },
+  "normalizedResponse": {
+    "features": {
+      "client.available_incoming_bitrate_kbps": {
+        "epsilon": 1.0,
+        "referenceValue": 1238.944,
+        "unclippedValue": null,
+        "value": -0.44023862256889734,
+        "wasClipped": false
+      },
+      "client.decode_time_mean_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 0.655423728813559,
+        "unclippedValue": null,
+        "value": -0.0045625377122625686,
+        "wasClipped": false
+      },
+      "client.frames_decoded_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 60.0,
+        "unclippedValue": null,
+        "value": -0.5,
+        "wasClipped": false
+      },
+      "client.frames_dropped_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "client.freeze_count_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "client.freeze_duration_ms_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "client.jitter_buffer_delay_mean_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 8.656616666666633,
+        "unclippedValue": null,
+        "value": 0.07935548337784648,
+        "wasClipped": false
+      },
+      "client.received_bitrate_kbps": {
+        "epsilon": 1.0,
+        "referenceValue": 1659.1633405424382,
+        "unclippedValue": null,
+        "value": -0.5408957726027507,
+        "wasClipped": false
+      },
+      "client.received_fps": {
+        "epsilon": 1.0,
+        "referenceValue": 60.0,
+        "unclippedValue": null,
+        "value": -0.5,
+        "wasClipped": false
+      },
+      "encoder.frames_dropped_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "encoder.frames_in_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 60.0,
+        "unclippedValue": null,
+        "value": -0.5,
+        "wasClipped": false
+      },
+      "encoder.frames_out_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 60.0,
+        "unclippedValue": null,
+        "value": -0.5,
+        "wasClipped": false
+      },
+      "encoder.queue_level_buffers": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "host.camera_cpu_percent": {
+        "epsilon": 0.1,
+        "referenceValue": 51.74,
+        "unclippedValue": null,
+        "value": -0.4802860456126788,
+        "wasClipped": false
+      },
+      "host.camera_rss_mb": {
+        "epsilon": 1.0,
+        "referenceValue": 73.34,
+        "unclippedValue": null,
+        "value": -0.0051813471502591985,
+        "wasClipped": false
+      },
+      "host.game_cpu_percent": {
+        "epsilon": 0.1,
+        "referenceValue": 41.12,
+        "unclippedValue": null,
+        "value": -0.04669260700389092,
+        "wasClipped": false
+      },
+      "host.game_rss_mb": {
+        "epsilon": 1.0,
+        "referenceValue": 252.94,
+        "unclippedValue": null,
+        "value": -0.00011860520281490131,
+        "wasClipped": false
+      },
+      "host.node_cpu_percent": {
+        "epsilon": 0.1,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "host.node_rss_mb": {
+        "epsilon": 1.0,
+        "referenceValue": 121.32,
+        "unclippedValue": null,
+        "value": 0.005522584899439513,
+        "wasClipped": false
+      },
+      "transport.jitter_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 4.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "transport.packets_lost_delta": {
+        "epsilon": 1.0,
+        "referenceValue": 0.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      },
+      "transport.round_trip_time_ms": {
+        "epsilon": 0.1,
+        "referenceValue": 1.0,
+        "unclippedValue": null,
+        "value": 0.0,
+        "wasClipped": false
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [
+      "encoder.pipeline_delay_proxy_ms"
+    ],
+    "rejectedFeatures": {},
+    "warnings": []
+  },
+  "probe": {
+    "applicationMethod": "paired_run",
+    "degradedWindowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-degraded",
+    "executionStatus": "executed",
+    "intensity": 0.5,
+    "knownConfounders": [
+      "The CPU-pressure process was operator-started and was not timestamp-synchronized inside the exported telemetry bundle.",
+      "Changing the stream profile restarts the stream; a fixed warm-up was used, but residual restart effects cannot be excluded."
+    ],
+    "observedSettings": {
+      "bitrateKbps": 700,
+      "encoderCpuUsed": 8.0,
+      "encoderMaxQuantizer": 56.0,
+      "fps": 30,
+      "streamProfileId": "performance",
+      "targetBitrateKbps": 700.0,
+      "targetFps": 30.0
+    },
+    "pairedWindowOrder": [
+      "degraded",
+      "relief"
+    ],
+    "probeId": "controlled-run-001-stream-profile-relief",
+    "probeType": "stream_profile_relief",
+    "probeVersion": "1",
+    "qualityCost": {
+      "configured_target_bitrate_reduction": {
+        "aggregation": "setting_difference",
+        "count": 1,
+        "maximum": null,
+        "median": null,
+        "minimum": null,
+        "p95": null,
+        "unit": "kbps",
+        "value": 700.0
+      },
+      "configured_target_fps_reduction": {
+        "aggregation": "setting_difference",
+        "count": 1,
+        "maximum": null,
+        "median": null,
+        "minimum": null,
+        "p95": null,
+        "unit": "fps",
+        "value": 30.0
+      }
+    },
+    "reliefWindowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-relief",
+    "requestedSettings": {
+      "bitrateKbps": 700,
+      "encoderCpuUsed": 8.0,
+      "encoderMaxQuantizer": 56.0,
+      "fps": 30,
+      "streamProfileId": "performance",
+      "targetBitrateKbps": 700.0,
+      "targetFps": 30.0
+    },
+    "restorationStatus": "restored",
+    "safetyNotes": [
+      "This is a composite preset change; FPS, bitrate, encoder CPU usage, and maximum quantizer changed together.",
+      "No response may be attributed to one changed setting in isolation.",
+      "The bounded CPU-pressure workload was intended to remain active across the degraded and relief captures.",
+      "Restoration is supported by separately recorded operator evidence, not by a dedicated recovery telemetry window."
+    ]
+  },
+  "provenance": "controlled_real",
+  "reliefWindow": {
+    "bounds": {
+      "elapsedEndS": null,
+      "elapsedStartS": null,
+      "endedAt": "2026-08-11T19:28:05.560000Z",
+      "startedAt": "2026-08-11T19:27:05.696000Z"
+    },
+    "comparisonCaseId": "controlled-run-001",
+    "confounders": [],
+    "context": {
+      "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+      "clientClass": "chrome-151-macos-localhost",
+      "compatibilityGroup": "pixelated-localhost-libretro-vp8-p0",
+      "connectionMode": "localhost-webrtc",
+      "contextId": "controlled-run-001-localhost-libretro-vp8",
+      "edgeNodeClass": "local-containerized-edge-node-10-core-capacity",
+      "encoderFamily": "vp8",
+      "encoderProfile": "balanced-cpu-used-6-max-quantizer-48",
+      "networkScenario": "localhost-loopback",
+      "nodeId": "anonymous-local-edge-node-001",
+      "nominalStreamProfile": {
+        "bitrateKbps": 1400,
+        "encoderCpuUsed": 6,
+        "encoderMaxQuantizer": 48,
+        "fps": 60,
+        "id": "balanced"
+      },
+      "operatingSystem": "linux-container-runtime",
+      "runtimeClass": "docker-libretro",
+      "transportImplementation": "gstreamer-webrtc",
+      "versions": {
+        "browser": "Chrome 151",
+        "engineResearchTelemetrySchema": "1",
+        "pixelatedBundleSchema": "2",
+        "pixelatedSourceRevision": "7047b3feef1912ed82d7c2a70a56f8fb8954e887"
+      },
+      "workloadId": "beatbeast-libretro-workload"
+    },
+    "durationS": 59.864,
+    "effectiveSettings": {
+      "bitrateKbps": 700,
+      "cpuCapacityCores": 10.0,
+      "encoderCpuUsed": 8.0,
+      "encoderMaxQuantizer": 56.0,
+      "fps": 30,
+      "logicalCpuCount": 10.0,
+      "runtimeKind": "libretro",
+      "streamProfileId": "performance",
+      "targetBitrateKbps": 700.0,
+      "targetFps": 30.0
+    },
+    "metrics": {
+      "client.available_incoming_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 1092.077,
+        "median": 693.513,
+        "minimum": 479.983,
+        "p95": 1050.961,
+        "unit": "kbps",
+        "value": 693.513
+      },
+      "client.decode_time_mean_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 0.8291333333333336,
+        "median": 0.6524333333333354,
+        "minimum": 0.5415000000000003,
+        "p95": 0.7181333333333336,
+        "unit": "ms",
+        "value": 0.6524333333333354
+      },
+      "client.frames_decoded_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 31.0,
+        "median": 30.0,
+        "minimum": 25.0,
+        "p95": 30.0,
+        "unit": "frames",
+        "value": 30.0
+      },
+      "client.frames_dropped_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "frames",
+        "value": 0.0
+      },
+      "client.freeze_count_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 1.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "freezes",
+        "value": 0.0
+      },
+      "client.freeze_duration_ms_delta": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 195.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "ms",
+        "value": 0.0
+      },
+      "client.jitter_buffer_delay_mean_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 13.803733333333431,
+        "median": 9.343566666666685,
+        "minimum": 6.352066666666664,
+        "p95": 12.274233333333365,
+        "unit": "ms",
+        "value": 9.343566666666685
+      },
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 1254.3667869110313,
+        "median": 761.7289035855754,
+        "minimum": 686.6640019011777,
+        "p95": 986.6973693360618,
+        "unit": "kbps",
+        "value": 761.7289035855754
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 31.0,
+        "median": 30.0,
+        "minimum": 25.0,
+        "p95": 30.0,
+        "unit": "fps",
+        "value": 30.0
+      },
+      "encoder.frames_dropped_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 5.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 3.0,
+        "unit": "frames",
+        "value": 0.0
+      },
+      "encoder.frames_in_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 31.0,
+        "median": 30.0,
+        "minimum": 25.0,
+        "p95": 30.0,
+        "unit": "frames",
+        "value": 30.0
+      },
+      "encoder.frames_out_delta": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 31.0,
+        "median": 30.0,
+        "minimum": 25.0,
+        "p95": 30.0,
+        "unit": "frames",
+        "value": 30.0
+      },
+      "encoder.queue_level_buffers": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 1.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "buffers",
+        "value": 0.0
+      },
+      "host.camera_cpu_percent": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 90.27,
+        "median": 26.89,
+        "minimum": 19.92,
+        "p95": 86.35,
+        "unit": "percent",
+        "value": 26.89
+      },
+      "host.camera_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 73.04,
+        "median": 72.96,
+        "minimum": 72.83,
+        "p95": 73.04,
+        "unit": "MiB",
+        "value": 72.96
+      },
+      "host.game_cpu_percent": {
+        "aggregation": "median",
+        "count": 59,
+        "maximum": 43.09,
+        "median": 39.2,
+        "minimum": 33.0,
+        "p95": 42.91,
+        "unit": "percent",
+        "value": 39.2
+      },
+      "host.game_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 252.92,
+        "median": 252.91,
+        "minimum": 252.89,
+        "p95": 252.92,
+        "unit": "MiB",
+        "value": 252.91
+      },
+      "host.node_cpu_percent": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 2.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 1.0,
+        "unit": "percent",
+        "value": 0.0
+      },
+      "host.node_rss_mb": {
+        "aggregation": "median",
+        "count": 60,
+        "maximum": 121.99,
+        "median": 121.99,
+        "minimum": 121.99,
+        "p95": 121.99,
+        "unit": "MiB",
+        "value": 121.99
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 16.0,
+        "median": 4.0,
+        "minimum": 2.0,
+        "p95": 12.0,
+        "unit": "ms",
+        "value": 4.0
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "p95": 0.0,
+        "unit": "packets",
+        "value": 0.0
+      },
+      "transport.round_trip_time_ms": {
+        "aggregation": "median",
+        "count": 61,
+        "maximum": 40.0,
+        "median": 1.0,
+        "minimum": 0.0,
+        "p95": 7.0,
+        "unit": "ms",
+        "value": 1.0
+      }
+    },
+    "missingMetrics": [
+      "encoder.pipeline_delay_proxy_ms"
+    ],
+    "phase": "relief",
+    "provenance": "controlled_real",
+    "rejectedMetrics": {},
+    "runId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37",
+    "sampleCount": 61,
+    "sourceArtifact": {
+      "artifactId": "pixelated-bundle-aceedaabed854618",
+      "checksum": "sha256:aceedaabed8546187e4db2321c3b17d0784e3cc44f988e493b851efebd968f73",
+      "producer": "Pixelated Studio Edition research exporter",
+      "sourceType": "pixelated_research_bundle"
+    },
+    "validity": {
+      "isValid": true,
+      "reasons": []
+    },
+    "windowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-relief"
+  },
+  "responseDelta": {
+    "degradedWindowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-degraded",
+    "features": {
+      "client.available_incoming_bitrate_kbps": {
+        "aggregation": "median",
+        "degradedValue": 1238.944,
+        "rawDelta": -545.4309999999999,
+        "reliefValue": 693.513,
+        "unit": "kbps"
+      },
+      "client.decode_time_mean_ms": {
+        "aggregation": "median",
+        "degradedValue": 0.655423728813559,
+        "rawDelta": -0.0029903954802236177,
+        "reliefValue": 0.6524333333333354,
+        "unit": "ms"
+      },
+      "client.frames_decoded_delta": {
+        "aggregation": "median",
+        "degradedValue": 60.0,
+        "rawDelta": -30.0,
+        "reliefValue": 30.0,
+        "unit": "frames"
+      },
+      "client.frames_dropped_delta": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "frames"
+      },
+      "client.freeze_count_delta": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "freezes"
+      },
+      "client.freeze_duration_ms_delta": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "ms"
+      },
+      "client.jitter_buffer_delay_mean_ms": {
+        "aggregation": "median",
+        "degradedValue": 8.656616666666633,
+        "rawDelta": 0.6869500000000528,
+        "reliefValue": 9.343566666666685,
+        "unit": "ms"
+      },
+      "client.received_bitrate_kbps": {
+        "aggregation": "median",
+        "degradedValue": 1659.1633405424382,
+        "rawDelta": -897.4344369568628,
+        "reliefValue": 761.7289035855754,
+        "unit": "kbps"
+      },
+      "client.received_fps": {
+        "aggregation": "median",
+        "degradedValue": 60.0,
+        "rawDelta": -30.0,
+        "reliefValue": 30.0,
+        "unit": "fps"
+      },
+      "encoder.frames_dropped_delta": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "frames"
+      },
+      "encoder.frames_in_delta": {
+        "aggregation": "median",
+        "degradedValue": 60.0,
+        "rawDelta": -30.0,
+        "reliefValue": 30.0,
+        "unit": "frames"
+      },
+      "encoder.frames_out_delta": {
+        "aggregation": "median",
+        "degradedValue": 60.0,
+        "rawDelta": -30.0,
+        "reliefValue": 30.0,
+        "unit": "frames"
+      },
+      "encoder.queue_level_buffers": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "buffers"
+      },
+      "host.camera_cpu_percent": {
+        "aggregation": "median",
+        "degradedValue": 51.74,
+        "rawDelta": -24.85,
+        "reliefValue": 26.89,
+        "unit": "percent"
+      },
+      "host.camera_rss_mb": {
+        "aggregation": "median",
+        "degradedValue": 73.34,
+        "rawDelta": -0.38000000000000966,
+        "reliefValue": 72.96,
+        "unit": "MiB"
+      },
+      "host.game_cpu_percent": {
+        "aggregation": "median",
+        "degradedValue": 41.12,
+        "rawDelta": -1.9199999999999946,
+        "reliefValue": 39.2,
+        "unit": "percent"
+      },
+      "host.game_rss_mb": {
+        "aggregation": "median",
+        "degradedValue": 252.94,
+        "rawDelta": -0.030000000000001137,
+        "reliefValue": 252.91,
+        "unit": "MiB"
+      },
+      "host.node_cpu_percent": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "percent"
+      },
+      "host.node_rss_mb": {
+        "aggregation": "median",
+        "degradedValue": 121.32,
+        "rawDelta": 0.6700000000000017,
+        "reliefValue": 121.99,
+        "unit": "MiB"
+      },
+      "transport.jitter_ms": {
+        "aggregation": "median",
+        "degradedValue": 4.0,
+        "rawDelta": 0.0,
+        "reliefValue": 4.0,
+        "unit": "ms"
+      },
+      "transport.packets_lost_delta": {
+        "aggregation": "median",
+        "degradedValue": 0.0,
+        "rawDelta": 0.0,
+        "reliefValue": 0.0,
+        "unit": "packets"
+      },
+      "transport.round_trip_time_ms": {
+        "aggregation": "median",
+        "degradedValue": 1.0,
+        "rawDelta": 0.0,
+        "reliefValue": 1.0,
+        "unit": "ms"
+      }
+    },
+    "invalidReasons": [],
+    "isValid": true,
+    "missingFeatures": [
+      "encoder.pipeline_delay_proxy_ms"
+    ],
+    "rejectedFeatures": {},
+    "reliefWindowId": "edge-run-2026-08-11T19-00-10-071Z-1e0b0e37-relief",
+    "warnings": []
+  },
+  "schemaVersion": "observation-v1"
+}
