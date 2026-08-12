@@ -85,6 +85,7 @@ experiments/controlled-run-001/
 ├── manifest.json
 ├── restoration-evidence.json
 ├── probe.json
+├── fingerprint.json
 ├── healthy/
 ├── degraded/
 ├── relief/

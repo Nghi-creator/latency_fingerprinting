@@ -150,6 +150,24 @@ real record can traverse P0 and that incompatible references are rejected. It
 does not establish a bottleneck label, diagnosis accuracy, recovery benefit or
 generalization.
 
+## Seed fingerprint for an independent repeat
+
+`fingerprint.json` freezes this run's normalized response as an unvalidated
+`controlled_real` seed labeled `host_encoder_pressure`. The label records the
+known bounded pressure injected by the experiment; it was not inferred by the
+matcher. Feature weights are equal provisional defaults and are not calibrated.
+
+Regenerate or verify the deterministic artifact with:
+
+```bash
+python record_seed_fingerprint.py --write
+python record_seed_fingerprint.py --check
+```
+
+Use only a separately captured run, such as `controlled-run-002`, as the query.
+Matching run 001 against a fingerprint derived from run 001 would be circular
+and is not repeatability evidence.
+
 ## Evidence checklist
 
 - [x] Fixed factors and procedure recorded in `context.json`.
@@ -165,3 +183,5 @@ generalization.
 - [x] Real response built and validated in `observation.json`.
 - [x] Real matcher output validated in `match-result.json`.
 - [x] Result described only as feasibility evidence.
+- [x] Run 001 frozen as an unvalidated controlled-real seed fingerprint for an
+      independent repeat experiment.

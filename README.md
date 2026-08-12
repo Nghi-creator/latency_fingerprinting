@@ -80,6 +80,8 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Derived real windows and response observation: validated.
 - Real matcher output: validated `unknown` because no stored synthetic
   fingerprint shares the real run's compatibility group.
+- Run 001 response: frozen as an unvalidated controlled-real seed fingerprint
+  for a separately captured run 002 repeatability query.
 - Evidence claim: end-to-end integration feasibility only; diagnosis accuracy,
   recovery benefit and generalization remain unproven.
 
