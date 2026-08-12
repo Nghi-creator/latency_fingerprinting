@@ -75,11 +75,11 @@ Reference: [`PIXELATED_ADAPTER_AND_EXPERIMENT.md`](PIXELATED_ADAPTER_AND_EXPERIM
 ## 8. Controlled real run
 
 - [x] Implement a bounded experiment-only pressure workload and capture protocol.
-- [ ] Capture healthy, degraded and paired relief runs.
-- [ ] Restore and verify runtime health.
-- [ ] Create sanitized manifest and checksums.
-- [ ] Pass the real response through the CLI.
-- [ ] Record output without forcing a successful label.
+- [x] Capture healthy, degraded and paired relief runs.
+- [x] Restore and verify runtime health.
+- [x] Create sanitized manifest and checksums.
+- [x] Pass the real response through the CLI.
+- [x] Record the conservative `unknown` output without forcing a label.
 
 ## 9. Verification
 
@@ -101,8 +101,8 @@ latency-fingerprint match fixtures/query_cases/similar_network/observation.json 
 
 - [x] README shows completed, in-progress and planned work.
 - [x] Example records are inspectable.
-- [x] Synthetic fixtures and pending controlled-real evidence are clearly distinguished.
-- [ ] Real output is called feasibility evidence.
+- [x] Synthetic fixtures and completed controlled-real evidence are clearly distinguished.
+- [x] Real output is called feasibility evidence.
 - [x] Live probing, calibrated confidence and comparative benefit are not claimed.
 
 ## Deferred beyond P0

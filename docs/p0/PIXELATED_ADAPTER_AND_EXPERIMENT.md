@@ -81,7 +81,10 @@ If no stable response appears, keep the integration artifact and return `unknown
 ```text
 experiments/controlled-run-001/
 ├── README.md
+├── context.json
 ├── manifest.json
+├── restoration-evidence.json
+├── probe.json
 ├── healthy/
 ├── degraded/
 ├── relief/
@@ -122,7 +125,8 @@ Commands emit JSON to stdout, diagnostics to stderr and non-zero exit codes on f
 
 - [x] Sanitized bundle fixture exercises the adapter.
 - [x] Unsafe TAR and missing-column cases are tested.
-- [ ] Healthy, degraded and relief runs are captured.
+- [x] Healthy, degraded and relief runs are captured and ingested.
+- [x] The controlled-real response and conservative matcher result validate.
 - [ ] The manifest records every changed control.
 - [ ] Runtime health is restored.
 - [ ] One real response passes validation and normalization.

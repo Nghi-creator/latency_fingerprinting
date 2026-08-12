@@ -1,6 +1,6 @@
 # Controlled run 001
 
-**Status:** Capture and restoration complete; derived evidence pending
+**Status:** Complete controlled-real P0 feasibility record
 **Evidence class:** Controlled-real feasibility evidence  
 **Comparison case:** `controlled-run-001`
 
@@ -137,6 +137,19 @@ python -m latency_fingerprinting validate observation.json
 python -m latency_fingerprinting validate match-result.json
 ```
 
+## Observed P0 outcome
+
+The real observation completed the same ingestion, response, normalization and
+matching path as the synthetic software examples. The matcher returned a valid
+`unknown` result with `unknownReason: incompatible_context`: none of the three
+stored synthetic fingerprints uses the real run's
+`pixelated-localhost-libretro-vp8-p0` compatibility group.
+
+This is the required conservative outcome. It demonstrates that the controlled
+real record can traverse P0 and that incompatible references are rejected. It
+does not establish a bottleneck label, diagnosis accuracy, recovery benefit or
+generalization.
+
 ## Evidence checklist
 
 - [x] Fixed factors and procedure recorded in `context.json`.
@@ -150,5 +163,5 @@ python -m latency_fingerprinting validate match-result.json
 - [x] All three bundles ingested into model-valid observation windows.
 - [x] Executed composite profile change recorded and validated in `probe.json`.
 - [x] Real response built and validated in `observation.json`.
-- [ ] Real match result validates.
-- [ ] Result described only as feasibility evidence.
+- [x] Real matcher output validated in `match-result.json`.
+- [x] Result described only as feasibility evidence.
