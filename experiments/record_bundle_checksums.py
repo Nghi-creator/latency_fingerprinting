@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-"""Build or verify the sanitized checksum manifest for controlled run 001."""
+"""Build or verify a controlled run's sanitized checksum manifest."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import re
 import sys
 import tarfile
 from pathlib import Path
 from typing import Any
 
-COMPARISON_CASE_ID = "controlled-run-001"
 PHASES = ("healthy", "degraded", "relief")
-EXPERIMENT_ROOT = Path(__file__).resolve().parent
-RAW_ROOT = EXPERIMENT_ROOT / "raw" / "full_data"
-MANIFEST_PATH = EXPERIMENT_ROOT / "manifest.json"
+EXPERIMENT_NAME = re.compile(r"controlled-run-[0-9]{3,}")
+MAX_EMBEDDED_MANIFEST_BYTES = 1024 * 1024
 
 
 def sha256_file(path: Path) -> str:
@@ -32,6 +31,8 @@ def embedded_manifest(bundle_path: Path) -> dict[str, Any]:
             member = archive.getmember("bundle-manifest.json")
             if not member.isfile():
                 raise ValueError("bundle-manifest.json is not a regular file")
+            if member.size > MAX_EMBEDDED_MANIFEST_BYTES:
+                raise ValueError("bundle-manifest.json exceeds the 1 MiB safety limit")
             source = archive.extractfile(member)
             if source is None:
                 raise ValueError("bundle-manifest.json could not be read")
@@ -43,26 +44,29 @@ def embedded_manifest(bundle_path: Path) -> dict[str, Any]:
     return value
 
 
-def required_manifest_value(
-    manifest: dict[str, Any], key: str, expected: object, bundle_path: Path
-) -> None:
+def require_value(manifest: dict[str, Any], key: str, expected: object, bundle_path: Path) -> None:
     if manifest.get(key) != expected:
         raise ValueError(
             f"{bundle_path.name}: embedded {key} must be {expected!r}, got {manifest.get(key)!r}"
         )
 
 
-def build_manifest() -> dict[str, Any]:
+def build_manifest(experiment_root: Path) -> dict[str, Any]:
+    comparison_case_id = experiment_root.name
+    if EXPERIMENT_NAME.fullmatch(comparison_case_id) is None:
+        raise ValueError("experiment directory must be named controlled-run-NNN")
+
+    raw_root = experiment_root / "raw" / "full_data"
     artifacts: list[dict[str, Any]] = []
     run_id: str | None = None
     for phase in PHASES:
-        bundle_path = RAW_ROOT / f"{phase}.tar"
+        bundle_path = raw_root / f"{phase}.tar"
         if not bundle_path.is_file():
             raise ValueError(f"missing required capture: {bundle_path}")
         embedded = embedded_manifest(bundle_path)
-        required_manifest_value(embedded, "schemaVersion", 2, bundle_path)
-        required_manifest_value(embedded, "comparisonCaseId", COMPARISON_CASE_ID, bundle_path)
-        required_manifest_value(embedded, "phase", phase, bundle_path)
+        require_value(embedded, "schemaVersion", 2, bundle_path)
+        require_value(embedded, "comparisonCaseId", comparison_case_id, bundle_path)
+        require_value(embedded, "phase", phase, bundle_path)
 
         artifact_run_id = embedded.get("runId")
         if not isinstance(artifact_run_id, str) or not artifact_run_id.strip():
@@ -88,7 +92,7 @@ def build_manifest() -> dict[str, Any]:
 
     return {
         "artifacts": artifacts,
-        "comparisonCaseId": COMPARISON_CASE_ID,
+        "comparisonCaseId": comparison_case_id,
         "hashAlgorithm": "sha256",
         "runId": run_id,
         "schemaVersion": 1,
@@ -101,29 +105,32 @@ def render_manifest(manifest: dict[str, Any]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("experiment", type=Path, help="controlled-run-NNN directory")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true", help="verify manifest.json")
     mode.add_argument("--write", action="store_true", help="write manifest.json")
     args = parser.parse_args()
 
+    experiment_root = args.experiment.resolve()
+    manifest_path = experiment_root / "manifest.json"
     try:
-        rendered = render_manifest(build_manifest())
+        rendered = render_manifest(build_manifest(experiment_root))
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 1
 
     if args.check:
-        if not MANIFEST_PATH.is_file():
-            print(f"missing checksum manifest: {MANIFEST_PATH}", file=sys.stderr)
+        if not manifest_path.is_file():
+            print(f"missing checksum manifest: {manifest_path}", file=sys.stderr)
             return 1
-        if MANIFEST_PATH.read_text(encoding="utf-8") != rendered:
+        if manifest_path.read_text(encoding="utf-8") != rendered:
             print("manifest.json is stale or the accepted TARs changed", file=sys.stderr)
             return 1
-        print("controlled-run-001 checksum manifest is current")
+        print(f"{experiment_root.name} checksum manifest is current")
         return 0
     if args.write:
-        MANIFEST_PATH.write_text(rendered, encoding="utf-8")
-        print(f"wrote {MANIFEST_PATH}")
+        manifest_path.write_text(rendered, encoding="utf-8")
+        print(f"wrote {manifest_path}")
         return 0
 
     print(rendered, end="")

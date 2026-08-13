@@ -303,6 +303,21 @@ def test_requested_setting_must_be_applied_and_changed() -> None:
     assert ComparabilityReason.REQUESTED_SETTING_UNCHANGED in result.reason_codes
 
 
+def test_observed_setting_must_match_relief_window() -> None:
+    degraded, relief, probe = make_pair()
+    probe = rebuild(
+        probe,
+        application_method="paired_run",
+        execution_status="executed",
+        observed_settings={"fps": 45},
+        restoration_status="unknown",
+    )
+
+    result = validate_window_comparability(degraded, relief, probe)  # type: ignore[arg-type]
+
+    assert ComparabilityReason.OBSERVED_SETTING_MISMATCH in result.reason_codes
+
+
 def test_unrelated_setting_changes_require_confounder_metadata() -> None:
     degraded, relief, probe = make_pair()
     changed_settings = {"fps": 30, "bitrateKbps": 3000}

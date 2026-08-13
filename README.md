@@ -41,8 +41,9 @@ python -m pip install -e '.[dev]'
 ```
 
 The synthetic analytical path, offline CLI and Pixelated bundle adapter are
-implemented and regression-tested. Controlled run 001 also traverses the full
-real-data path and preserves the matcher's conservative `unknown` outcome.
+implemented and regression-tested. Two controlled-real runs now exercise the
+same end-to-end path: run 001 establishes a seed and run 002 independently
+repeats the experiment as a held-out query.
 
 ```bash
 latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
@@ -75,7 +76,7 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
   archives and extracted directories with an explicit research context.
 
-### Controlled evidence completed
+### P0 result
 
 - Controlled real fingerprinting bundles and sanitized checksums: captured.
 - Operator-observed restoration evidence: recorded with an explicit limitation
@@ -86,10 +87,18 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 - Run 001 response: frozen as an unvalidated controlled-real seed fingerprint
   for a separately captured run 002 repeatability query.
 - Run 002 held-out query: matched the run 001 seed with full feature coverage;
-  recorded only as preliminary within-context repeatability because one seed
-  candidate and the shared composite preset cannot establish discrimination.
+  provisional match strength `0.9819067687174997` over 22 shared features.
+- Interpretation: preliminary within-context repeatability only. One seed
+  candidate and deterministic effects from the shared composite preset cannot
+  establish cause discrimination or diagnosis accuracy.
 - Evidence claim: end-to-end integration feasibility only; diagnosis accuracy,
   recovery benefit and generalization remain unproven.
+
+The complete evidence records are
+[`controlled-run-001`](experiments/controlled-run-001/README.md) and
+[`controlled-run-002`](experiments/controlled-run-002/README.md). Use the
+[`controlled-run processing guide`](experiments/CONTROLLED_RUN_PROCESSING.md)
+for subsequent captures.
 
 ### Deferred beyond P0
 
@@ -99,5 +108,3 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 Inspectable software examples are linked from
 [`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
 an engineering similarity measure, not probability or calibrated confidence.
-
-Update this section whenever implementation or evidence changes.

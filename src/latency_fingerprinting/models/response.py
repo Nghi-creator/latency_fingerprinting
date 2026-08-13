@@ -59,6 +59,11 @@ class Probe(ContractModel):
                 raise ValueError("simulated_pair probes must state restoration was not executed")
             if self.observed_settings is not None:
                 raise ValueError("simulated_pair probes cannot have observed runtime settings")
+        elif (
+            self.execution_status is ProbeExecutionStatus.EXECUTED
+            and self.observed_settings is None
+        ):
+            raise ValueError("executed probes require observed runtime settings")
         return self
 
 

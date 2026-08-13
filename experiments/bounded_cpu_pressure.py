@@ -1,4 +1,5 @@
-"""Bounded experiment-only CPU pressure for controlled run 001."""
+#!/usr/bin/env python3
+"""Run bounded experiment-only CPU pressure with verified cleanup."""
 
 from __future__ import annotations
 
@@ -7,6 +8,7 @@ import hashlib
 import json
 import multiprocessing
 import os
+import sys
 import time
 from collections.abc import Sequence
 
@@ -16,7 +18,7 @@ MAX_WORKERS = 8
 
 
 def _burn_cpu(deadline: float) -> None:
-    payload = b"latency-fingerprinting-controlled-run-001"
+    payload = b"latency-fingerprinting-controlled-experiment"
     while time.monotonic() < deadline:
         payload = hashlib.sha256(payload).digest()
 
@@ -26,9 +28,18 @@ def _default_workers() -> int:
     return min(MAX_WORKERS, max(1, available // 2))
 
 
+def _cleanup_workers(workers: Sequence[multiprocessing.Process]) -> bool:
+    for worker in workers:
+        if worker.is_alive():
+            worker.terminate()
+    for worker in workers:
+        worker.join()
+    return all(not worker.is_alive() for worker in workers)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Run bounded local CPU pressure for controlled experiment 001."
+        description="Run bounded local CPU pressure for a monitored experiment."
     )
     parser.add_argument("--duration-s", type=int, default=180)
     parser.add_argument("--workers", type=int, default=_default_workers())
@@ -56,35 +67,49 @@ def main(argv: Sequence[str] | None = None) -> int:
         multiprocessing.Process(target=_burn_cpu, args=(deadline,), daemon=True)
         for _ in range(args.workers)
     ]
-    print(
-        json.dumps(
-            {
-                "durationS": args.duration_s,
-                "event": "pressure_started",
-                "workers": args.workers,
-            },
-            sort_keys=True,
-        ),
-        flush=True,
-    )
+    started: list[multiprocessing.Process] = []
+    interrupted = False
+    failure: Exception | None = None
     try:
         for worker in workers:
             worker.start()
-        for worker in workers:
+            started.append(worker)
+        print(
+            json.dumps(
+                {
+                    "durationS": args.duration_s,
+                    "event": "pressure_started",
+                    "workers": len(started),
+                },
+                sort_keys=True,
+            ),
+            flush=True,
+        )
+        for worker in started:
             worker.join()
     except KeyboardInterrupt:
-        for worker in workers:
-            if worker.is_alive():
-                worker.terminate()
-        for worker in workers:
-            worker.join()
+        interrupted = True
+    except Exception as error:  # cleanup must run before reporting startup/runtime failure
+        failure = error
     finally:
-        for worker in workers:
-            if worker.is_alive():
-                worker.terminate()
-                worker.join()
-    print(json.dumps({"event": "pressure_stopped", "restored": True}, sort_keys=True))
-    return 0
+        restored = _cleanup_workers(started)
+
+    stopped_event: dict[str, object] = {
+        "event": "pressure_stopped",
+        "restored": restored,
+    }
+    if interrupted:
+        stopped_event["interrupted"] = True
+    if failure is not None:
+        stopped_event["errorType"] = type(failure).__name__
+    print(json.dumps(stopped_event, sort_keys=True), flush=True)
+
+    if failure is not None:
+        print(f"error: CPU pressure failed: {failure}", file=sys.stderr)
+        return 1
+    if interrupted:
+        return 130
+    return 0 if restored else 1
 
 
 if __name__ == "__main__":

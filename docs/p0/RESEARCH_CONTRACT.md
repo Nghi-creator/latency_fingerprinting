@@ -1,6 +1,6 @@
 # P0 Research Contract
 
-**Status:** Frozen for initial implementation  
+**Status:** Frozen, implemented and verified
 **Scope:** Initial latency-fingerprinting vertical slice  
 **Contract version:** `1.0.0`
 
@@ -8,9 +8,10 @@
 
 This document defines what the P0 system means by context, observation, probe, response, fingerprint, match, unknown and validated outcome. Python models, generated JSON Schemas, fixtures, experiments and explanations must use these meanings.
 
-P0 is an offline software vertical slice. It uses synthetic fixture windows to
-exercise the complete analytical path; it does not collect telemetry from or
-change a live Pixelated engine.
+P0 is an offline analytical vertical slice. Synthetic fixtures exercise its
+decision behavior, while controlled-real paired windows from Pixelated exercise
+the adapter and evidence path. The Python core does not collect telemetry from
+or change a live Pixelated engine.
 
 Changes that alter the meaning or required fields of a record require a contract-version change. Editorial clarifications do not.
 
@@ -309,6 +310,6 @@ This contract item is complete when:
 - [x] Provenance and truthfulness rules are explicit.
 - [x] `unknown` behavior and reason codes are defined.
 - [x] Match strength is separated from calibrated confidence.
-- [ ] Python models implement these definitions.
-- [ ] JSON Schemas are generated and checked against the models.
-- [ ] Fixtures and tests demonstrate every invariant that can be enforced in code.
+- [x] Python models implement these definitions.
+- [x] JSON Schemas are generated and checked against the models.
+- [x] Fixtures and tests demonstrate every invariant that can be enforced in code.

@@ -128,8 +128,11 @@ Commands emit JSON to stdout, diagnostics to stderr and non-zero exit codes on f
 - [x] Unsafe TAR and missing-column cases are tested.
 - [x] Healthy, degraded and relief runs are captured and ingested.
 - [x] The controlled-real response and conservative matcher result validate.
-- [ ] The manifest records every changed control.
-- [ ] Runtime health is restored.
-- [ ] One real response passes validation and normalization.
-- [ ] The matcher emits a schema-valid result.
-- [ ] The result remains honest, including `unknown` when applicable.
+- [x] The executed probe records every changed control.
+- [x] Run 001 restoration and runtime-health evidence is recorded; run 002
+  truthfully retains restoration as `unknown` because separate evidence was not
+  captured.
+- [x] Both real responses pass validation and normalization.
+- [x] Both matcher outputs are schema-valid.
+- [x] Results remain honest: run 001 preserves `unknown`, and run 002 is labeled
+  only preliminary within-context repeatability.
