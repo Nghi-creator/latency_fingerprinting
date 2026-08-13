@@ -31,6 +31,7 @@ class ComparabilityReason(StrEnum):
     METRIC_AGGREGATION_MISMATCH = "metric_aggregation_mismatch"
     REQUESTED_SETTING_NOT_APPLIED = "requested_setting_not_applied"
     REQUESTED_SETTING_UNCHANGED = "requested_setting_unchanged"
+    OBSERVED_SETTING_MISMATCH = "observed_setting_mismatch"
     UNDECLARED_SETTING_CHANGE = "undeclared_setting_change"
 
 
@@ -246,6 +247,20 @@ def validate_window_comparability(
                     setting,
                 )
             )
+
+    if probe.observed_settings is not None:
+        for setting, observed_value in sorted(probe.observed_settings.items()):
+            if (
+                setting not in relief.effective_settings
+                or relief.effective_settings[setting] != observed_value
+            ):
+                issues.append(
+                    _issue(
+                        ComparabilityReason.OBSERVED_SETTING_MISMATCH,
+                        f"observed relief setting {setting!r} disagrees with the relief window",
+                        setting,
+                    )
+                )
 
     undeclared_changes = sorted(set(changed_settings) - requested_settings)
     declared_confounders = degraded.confounders + relief.confounders + probe.known_confounders

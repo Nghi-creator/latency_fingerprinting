@@ -76,18 +76,20 @@ relief-phase bundle does not prove later cleanup. The same value must be used in
 
 ## 4. Generate sanitized bundle checksums
 
-Each run currently carries a small run-specific checksum script. Copy the
-latest `record_bundle_checksums.py` into the new run directory and change its
-`COMPARISON_CASE_ID` to `controlled-run-NNN`. Review the diff before running it.
+Use the shared checksum tool. It derives the comparison case from the
+`controlled-run-NNN` directory name and rejects bundles whose embedded case ID
+does not match it.
 
 Generate and verify `manifest.json`:
 
 ```bash
 .venv/bin/python \
-  experiments/controlled-run-NNN/record_bundle_checksums.py --write
+  experiments/record_bundle_checksums.py \
+  experiments/controlled-run-NNN --write
 
 .venv/bin/python \
-  experiments/controlled-run-NNN/record_bundle_checksums.py --check
+  experiments/record_bundle_checksums.py \
+  experiments/controlled-run-NNN --check
 ```
 
 This manifest contains sanitized TAR names, sizes, capture times, schema
@@ -260,7 +262,6 @@ experiments/controlled-run-NNN/
 ├── probe.json
 ├── observation.json
 ├── match-result.json
-├── record_bundle_checksums.py
 ├── healthy/window.json
 ├── degraded/window.json
 ├── relief/window.json
@@ -269,6 +270,10 @@ experiments/controlled-run-NNN/
     ├── degraded.tar
     └── relief.tar
 ```
+
+The reusable `experiments/record_bundle_checksums.py` and
+`experiments/bounded_cpu_pressure.py` tools live one level above the individual
+run directories.
 
 Report a successful repeat match only as preliminary within-context
 repeatability evidence. One or two controlled runs do not establish diagnosis

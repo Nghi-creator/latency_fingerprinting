@@ -6,7 +6,7 @@ Design details live in the other linked documents.
 
 ## Exit statement
 
-> Given a compatible context and comparable degraded/relief windows, the Python prototype calculates a normalized response, compares it with three synthetic fingerprints, explains the ranking, and refuses ambiguous evidence. The same pipeline processes one controlled real Pixelated paired-run record.
+> Given a compatible context and comparable degraded/relief windows, the Python prototype calculates a normalized response, explains the ranking, and refuses ambiguous evidence. Run 001 traverses the controlled-real path and becomes an unvalidated seed; independently captured run 002 provisionally matches it with full feature coverage.
 
 ## 1. Research contract
 
@@ -80,6 +80,8 @@ Reference: [`PIXELATED_ADAPTER_AND_EXPERIMENT.md`](PIXELATED_ADAPTER_AND_EXPERIM
 - [x] Create sanitized manifest and checksums.
 - [x] Pass the real response through the CLI.
 - [x] Record the conservative `unknown` output without forcing a label.
+- [x] Freeze run 001 as an explicitly unvalidated controlled-real seed.
+- [x] Process independent run 002 and preserve its preliminary repeat match.
 
 ## 9. Verification
 

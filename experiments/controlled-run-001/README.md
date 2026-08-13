@@ -40,8 +40,9 @@ is the default when no better duration has been pre-registered.
    60 FPS, 1400 kbps, VP8 `cpu-used=6`, maximum quantizer 48.
 3. With no experiment load running, perform the fixed warm-up, record telemetry
    for the fixed duration, and export the research bundle as the healthy run.
-4. Start `bounded_cpu_pressure.py` in a separate terminal. Record its start
-   output and do not change the worker count during the paired runs.
+4. Start `experiments/bounded_cpu_pressure.py` from the repository root in a
+   separate terminal. Record its start output and do not change the worker
+   count during the paired runs.
 5. Keep the `balanced` profile, repeat the identical warm-up/input procedure,
    record for the same duration, and export the degraded bundle.
 6. While the same pressure process remains active, select the `performance`
@@ -92,11 +93,14 @@ health check after the controlled procedure. It deliberately does not claim a
 post-restoration recovery window: the observation was recorded separately from
 the TAR telemetry and is evidence of procedural restoration only.
 
-Record or verify the accepted TAR checksums without exposing their raw path:
+From the repository root, record or verify the accepted TAR checksums without
+exposing their raw path:
 
 ```bash
-python record_bundle_checksums.py --write
-python record_bundle_checksums.py --check
+python experiments/record_bundle_checksums.py \
+  experiments/controlled-run-001 --write
+python experiments/record_bundle_checksums.py \
+  experiments/controlled-run-001 --check
 ```
 
 ## Processing commands

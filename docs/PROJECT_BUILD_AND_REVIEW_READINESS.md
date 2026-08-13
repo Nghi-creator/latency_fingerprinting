@@ -1,7 +1,7 @@
 # Project Build and Technical-Review Readiness
 
 **Project:** Latency diagnosis and optimization mechanisms for heterogeneous edge cloud-gaming systems  
-**Immediate milestone:** Complete one executable P0 vertical slice of latency fingerprinting  
+**Immediate milestone:** P0 executable vertical slice completed
 **Purpose:** Keep implementation, evidence and technical claims aligned
 
 ## Bottom line
@@ -15,9 +15,9 @@ versioned testbed record
 -> interpretable match or unknown
 ```
 
-The P0 threshold is:
+The completed P0 threshold is:
 
-> The operational testbed and telemetry path exist, the research contract is represented in code, a transparent matcher runs on labeled synthetic fixtures, and one controlled real Pixelated record passes through the same offline pipeline. Performance and generalization claims remain hypotheses.
+> The operational testbed and telemetry path exist, the research contract is represented in code, a transparent matcher runs on labeled synthetic fixtures, one controlled-real Pixelated record becomes an unvalidated seed, and a separately captured repeat traverses the same pipeline as a held-out query. Performance and generalization claims remain hypotheses.
 
 The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTATION_TRACKER.md).
 
@@ -45,14 +45,20 @@ The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTAT
 - Deterministic synthetic fixture corpus and end-to-end regression tests.
 - Offline CLI and safe Pixelated TAR/directory adapter.
 - Bounded-pressure tool and controlled paired-run capture procedure.
-- Clean-environment installation and 207-test software closeout.
+- Clean-environment installation and 229-test software closeout.
 
-### Awaiting controlled-real evidence
+### Controlled-real evidence completed
 
-- Healthy, degraded and relief Pixelated exports.
-- Final anonymized real-run context and manifest checksums.
-- Restoration and post-experiment runtime-health evidence.
-- Controlled-real observation and match result.
+- Run 001 healthy, degraded and relief Pixelated exports, finalized anonymized
+  context, sanitized checksums and restoration evidence.
+- Run 001 controlled-real observation and conservative `unknown` result against
+  incompatible synthetic references.
+- Run 001 response preserved as an unvalidated controlled-real seed.
+- Independently captured run 002 observation and deterministic match against
+  that seed: strength `0.9819067687174997`, 22 shared features and full
+  coverage.
+- Result limited to preliminary within-context repeatability; one compatible
+  candidate and a shared composite preset do not demonstrate discrimination.
 
 ### Deferred beyond P0
 
@@ -100,7 +106,7 @@ The camera profile is currently fixed at launch, so P0 uses controlled paired ru
 
 ### P0 exit statement
 
-> Given a compatible context and comparable degraded/relief windows, the Python prototype calculates a normalized response, compares it with three synthetic fingerprints, explains the ranking, and refuses ambiguous evidence. The same pipeline processes one controlled real Pixelated paired-run record.
+> Given a compatible context and comparable degraded/relief windows, the Python prototype calculates a normalized response, explains its ranking, and refuses ambiguous evidence. It processes controlled-real Pixelated records through the same path: run 001 correctly refuses incompatible synthetic references, and held-out run 002 provisionally matches the run 001 seed with full feature coverage.
 
 ## 3. Work after P0
 
@@ -337,7 +343,9 @@ Stage-level encode/capture queues, rich GPU telemetry, decoder internals and exa
 4. Rank synthetic candidate fingerprints.
 5. Display supporting/conflicting evidence.
 6. Demonstrate `unknown` on ambiguous input.
-7. Process one controlled real Pixelated record through the same path.
+7. Process controlled-real run 001 and preserve its conservative refusal.
+8. Match an independently captured run 002 against the run 001 seed and show
+   the preliminary within-context repeatability result.
 
 A terminal demonstration is sufficient.
 
@@ -381,7 +389,8 @@ Do not include credentials, tokens, ROMs, private machine paths or unnecessary d
 - [x] Weak, tied, incomplete and incompatible inputs return `unknown`.
 - [x] Three synthetic fixture classes are clearly labeled.
 - [x] The Pixelated adapter processes a sanitized bundle fixture.
-- [ ] One controlled real paired-run record passes through the pipeline.
+- [x] Two controlled-real paired-run records pass through the pipeline, with
+  run 002 evaluated independently against the run 001 seed.
 - [x] Real and synthetic evidence are clearly separated.
 - [x] All completed and planned features are reported accurately.
 - [x] No result is presented as comparative evidence before a baseline evaluation.

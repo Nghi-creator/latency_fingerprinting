@@ -35,6 +35,22 @@ def test_simulated_probe_truthfulness_and_ordering(changes: dict[str, object]) -
         Probe.model_validate(payload)
 
 
+def test_executed_probe_requires_observed_settings() -> None:
+    observation = make_observation()
+    payload = observation.probe.model_dump()
+    payload.update(
+        {
+            "application_method": "paired_run",
+            "execution_status": "executed",
+            "observed_settings": None,
+            "restoration_status": "unknown",
+        }
+    )
+
+    with pytest.raises(ValidationError, match="observed runtime settings"):
+        Probe.model_validate(payload)
+
+
 def test_feature_delta_enforces_relief_minus_degraded_sign() -> None:
     with pytest.raises(ValidationError, match="relief_value minus degraded_value"):
         FeatureDelta(
