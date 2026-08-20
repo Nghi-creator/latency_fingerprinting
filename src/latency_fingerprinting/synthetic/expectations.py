@@ -29,7 +29,10 @@ def _candidate_scores(query_vector: Mapping[str, float]) -> list[RankedCandidate
             (query_vector[feature] - candidate_vector[feature]) ** 2
             for feature in sorted(query_vector)
         ]
-        distance = math.sqrt(sum(squared_residuals) / len(squared_residuals))
+        # Keep generated fixtures stable across Python versions. Python 3.12
+        # changed ordinary float summation, whereas ``fsum`` has the accurate
+        # reduction semantics required for persisted regression artifacts.
+        distance = math.sqrt(math.fsum(squared_residuals) / len(squared_residuals))
         candidates.append(
             RankedCandidate(
                 fingerprint_id=f"fingerprint-{label}-v1",

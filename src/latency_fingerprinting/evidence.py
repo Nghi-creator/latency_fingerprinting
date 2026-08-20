@@ -86,8 +86,13 @@ def build_candidate_evidence(
         else:
             conflicting.append(item)
 
-    total_weight = sum(item.weight for item in all_evidence)
-    weighted_squared_residual_sum = sum(item.weighted_squared_residual for item in all_evidence)
+    # ``sum`` changed its float-reduction algorithm in Python 3.12. Use
+    # ``fsum`` so persisted distances do not drift across supported Python
+    # versions by a final representable bit.
+    total_weight = math.fsum(item.weight for item in all_evidence)
+    weighted_squared_residual_sum = math.fsum(
+        item.weighted_squared_residual for item in all_evidence
+    )
     distance = math.sqrt(weighted_squared_residual_sum / total_weight) if total_weight > 0 else None
     feature_coverage = len(shared_features) / len(candidate_features) if candidate_features else 0.0
     return CandidateEvidence(

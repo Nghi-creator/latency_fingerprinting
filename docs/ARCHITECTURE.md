@@ -27,26 +27,21 @@ The future deadline scheduler remains in the capture/GStreamer runtime because p
 
 ## Data flow
 
-P0 exercises the research core with synthetic or curated paired observation
-windows. A probe is represented by metadata plus its degraded and relief
-windows; P0 does not execute that probe against a live engine.
+P0 exercises the research core with synthetic fixtures and controlled-real
+paired observation windows. A probe is represented by metadata plus its
+degraded and relief windows; the Python core analyzes the recorded intervention
+but does not execute it against a live engine.
 
 ```text
-fixture reference cases
-    -> degraded + relief observation windows
-    -> response vector
-    -> file-based fingerprint repository
-fixture query cases
-    -> degraded + relief observation windows
-    -> response vector
-    -> matcher
-    -> JSON match result
-
-Later integration:
-    Pixelated browser/runtime
-    -> versioned research bundle
-    -> Pixelated Python adapter
-    -> the same contract and matching pipeline
+Pixelated browser/runtime or synthetic fixture
+    -> versioned bundle or contract windows
+    -> Pixelated adapter when needed
+    -> degraded + relief observation windows + probe
+    -> raw response delta
+    -> normalized response vector
+    -> compatible file-based fingerprints
+    -> weighted-distance matcher
+    -> matched or unknown JSON result
 
 Future slow loop:
     Python diagnosis/policy -> bounded runtime action adapter
@@ -74,18 +69,32 @@ latency-fingerprinting/
 │   ├── fingerprint-v1.schema.json
 │   └── match-result-v1.schema.json
 ├── src/latency_fingerprinting/
-│   ├── models.py
+│   ├── models/
+│   │   ├── common.py
+│   │   ├── context.py
+│   │   ├── response.py
+│   │   ├── fingerprint.py
+│   │   └── match.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── normalization.py
+│   ├── pipeline.py
 │   ├── fingerprints.py
 │   ├── matcher.py
+│   ├── matching/
+│   │   ├── compatibility.py
+│   │   ├── scoring.py
+│   │   └── decision.py
 │   ├── evidence.py
+│   ├── schemas.py
 │   ├── cli.py
 │   ├── __init__.py
 │   └── adapters/
-│       ├── __init__.py
-│       └── pixelated_bundle.py
+│       ├── pixelated_bundle.py
+│       ├── pixelated_bundle_io.py
+│       ├── pixelated_bundle_metrics.py
+│       ├── pixelated_bundle_validation.py
+│       └── pixelated_bundle_v2.py
 ├── fixtures/
 │   ├── reference_cases/
 │   │   ├── network_pressure/
@@ -95,7 +104,8 @@ latency-fingerprinting/
 │       ├── similar_encoder/
 │       └── unknown/
 ├── experiments/
-│   └── controlled-run-001/
+│   ├── controlled-run-001/
+│   └── controlled-run-002/
 └── tests/
     └── data/
 ```
@@ -118,11 +128,14 @@ Use Python 3.11 or newer for the detached core because:
 - it is common and inspectable in research environments;
 - no working product component needs to be rewritten.
 
-P0 dependencies:
+P0 runtime dependency:
 
 - Pydantic 2;
-- NumPy;
+
+Development tools:
+
 - pytest;
+- pytest-cov;
 - Ruff.
 
 Use standard-library `argparse` for the CLI. Do not add pandas, scikit-learn, FastAPI, SQLite or notebook infrastructure unless a concrete P0 blocker requires one.
@@ -135,9 +148,10 @@ The current camera bridge receives FPS, bitrate and encoder profile through `PIX
 
 Therefore:
 
-- P0 models controlled probes with paired fixture windows;
+- P0 models controlled probes with paired synthetic or controlled-real windows;
 - P0 does not claim live in-session probing;
-- real controlled paired runs are deferred to the Pixelated adapter integration;
+- controlled-real paired runs are ingested through the completed Pixelated
+  adapter;
 - dynamic bounded probing is deferred until the runtime exposes a tested mutation and rollback path.
 
 ## Deferred architecture

@@ -23,6 +23,7 @@ from latency_fingerprinting.models import (
     MatchThresholds,
     ObservationRecord,
     UnknownReason,
+    ValidationStatus,
 )
 from latency_fingerprinting.synthetic_fixtures import (
     DEFAULT_FIXTURE_DIRECTORY,
@@ -273,6 +274,23 @@ def test_repository_rejections_are_visible_in_match_output(tmp_path: Path) -> No
     assert result.decision is MatchDecision.MATCHED
     assert "file:broken.json" in result.compatibility.rejected_fingerprints
     assert any("broken.json" in warning for warning in result.warnings)
+
+
+def test_rejected_validation_status_is_never_scored() -> None:
+    entry = load_repository().entries[0]
+    rejected = rebuild(entry.fingerprint, validation_status=ValidationStatus.REJECTED)
+    repository = FingerprintRepository(
+        entries=(FingerprintEntry(path=entry.path, fingerprint=rejected),)
+    )
+
+    result = match_observation(load_query("similar_network"), repository)
+
+    assert result.unknown_reason is UnknownReason.INCOMPATIBLE_CONTEXT
+    assert result.ranked_candidates == []
+    assert (
+        "validation status is rejected"
+        in result.compatibility.rejected_fingerprints[rejected.fingerprint_id]
+    )
 
 
 def test_matcher_is_deterministic_and_does_not_mutate_inputs() -> None:

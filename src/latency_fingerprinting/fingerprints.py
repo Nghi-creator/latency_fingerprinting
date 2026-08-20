@@ -9,7 +9,12 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from .models import CONTRACT_VERSION, FINGERPRINT_SCHEMA_VERSION, Fingerprint
+from .models import (
+    CONTRACT_VERSION,
+    FINGERPRINT_SCHEMA_VERSION,
+    Fingerprint,
+    ValidationStatus,
+)
 
 
 class FingerprintRejectionReason(StrEnum):
@@ -75,6 +80,7 @@ class FingerprintRepository:
             if entry.fingerprint.compatibility.compatibility_group == compatibility_group
             and entry.fingerprint.compatibility.probe_type == probe_type
             and entry.fingerprint.compatibility.contract_version == contract_version
+            and entry.fingerprint.validation_status is not ValidationStatus.REJECTED
         )
 
     def require_clean(self) -> None:

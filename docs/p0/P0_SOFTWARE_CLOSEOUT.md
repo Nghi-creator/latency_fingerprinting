@@ -1,6 +1,6 @@
 # P0 Software Closeout
 
-**Verified:** 2026-08-13  
+**Verified:** 2026-08-20
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
 
@@ -43,7 +43,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 229 tests passed;
+- 231 tests passed;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
