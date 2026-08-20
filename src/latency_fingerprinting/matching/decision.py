@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections.abc import Sequence
 
 from ..models import (
@@ -49,7 +50,9 @@ def _conflict_ratio(candidate: ScoredCandidate) -> float:
     evidence = candidate.evidence
     if evidence.weighted_squared_residual_sum == 0:
         return 0.0
-    conflict_sum = sum(item.weighted_squared_residual for item in evidence.conflicting_evidence)
+    conflict_sum = math.fsum(
+        item.weighted_squared_residual for item in evidence.conflicting_evidence
+    )
     return conflict_sum / evidence.weighted_squared_residual_sum
 
 
