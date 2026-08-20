@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ..fingerprints import FingerprintRepository
-from ..models import CompatibilityResult, Fingerprint, ObservationRecord
+from ..models import CompatibilityResult, Fingerprint, ObservationRecord, ValidationStatus
 
 
 def _add_rejection(rejected: dict[str, str], identifier: str, reason: str) -> None:
@@ -31,6 +31,8 @@ def filter_compatible_fingerprints(
             reasons.append("compatibility group mismatch")
         if fingerprint.compatibility.probe_type != query.probe.probe_type:
             reasons.append("probe type mismatch")
+        if fingerprint.validation_status is ValidationStatus.REJECTED:
+            reasons.append("fingerprint validation status is rejected")
         if reasons:
             _add_rejection(
                 rejected,

@@ -8,11 +8,13 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.fingerprints import (
+    FingerprintEntry,
     FingerprintRejectionReason,
+    FingerprintRepository,
     FingerprintRepositoryError,
     load_fingerprint_repository,
 )
-from latency_fingerprinting.models import Fingerprint
+from latency_fingerprinting.models import Fingerprint, ValidationStatus
 from latency_fingerprinting.synthetic_fixtures import (
     DEFAULT_FIXTURE_DIRECTORY,
     SYNTHETIC_COMPATIBILITY_GROUP,
@@ -81,6 +83,27 @@ def test_repository_filters_by_all_p0_compatibility_keys() -> None:
             compatibility_group=SYNTHETIC_COMPATIBILITY_GROUP,
             probe_type="stream_profile_relief",
             contract_version="2.0.0",
+        )
+        == ()
+    )
+
+
+def test_repository_never_returns_rejected_fingerprint_as_candidate() -> None:
+    repository = load_fingerprint_repository(REFERENCE_DIRECTORY)
+    rejected = Fingerprint.model_validate(
+        {
+            **repository.entries[0].fingerprint.model_dump(),
+            "validation_status": ValidationStatus.REJECTED,
+        }
+    )
+    rejected_repository = FingerprintRepository(
+        entries=(FingerprintEntry(path=repository.entries[0].path, fingerprint=rejected),)
+    )
+
+    assert (
+        rejected_repository.compatible_candidates(
+            compatibility_group=SYNTHETIC_COMPATIBILITY_GROUP,
+            probe_type="stream_profile_relief",
         )
         == ()
     )

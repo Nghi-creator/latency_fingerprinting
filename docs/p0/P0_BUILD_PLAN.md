@@ -70,7 +70,7 @@ added alongside each component rather than postponed until the end.
 
 ### Deliverables
 
-- `tests/test_models.py`
+- focused model tests under `tests/models/`
 - Existing `tests/test_schemas.py` expanded when needed
 - Current files under `schemas/`
 
@@ -389,7 +389,7 @@ Create `src/latency_fingerprinting/adapters/pixelated_bundle.py` according to
 Implementation note (2026-08-10): bundle v2 support is split across the public
 adapter, shared parsing helpers, metric aggregation and v2 validation modules.
 Sanitized healthy/degraded/relief fixtures exercise directory and TAR ingestion;
-the final P0 Python suite has 229 passing tests and generated schemas are current.
+the final P0 Python suite has 231 passing tests and generated schemas are current.
 This fixture gate does not replace the controlled real evidence required below.
 
 ## Step 12: Run controlled real experiment 001
