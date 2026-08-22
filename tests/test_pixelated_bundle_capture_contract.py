@@ -2,42 +2,15 @@
 
 from __future__ import annotations
 
-import shutil
 from pathlib import Path
 
 import pytest
 
-from latency_fingerprinting.adapters.pixelated_bundle import (
-    PixelatedBundleError,
-    ingest_pixelated_bundle,
-)
-from latency_fingerprinting.models import ContextKey, WindowPhase
+from latency_fingerprinting.adapters.pixelated_bundle import PixelatedBundleError
+from latency_fingerprinting.models import ContextKey
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-FIXTURE_ROOT = PROJECT_ROOT / "tests" / "data" / "pixelated_bundle"
-VALID_V2_BUNDLE = FIXTURE_ROOT / "valid-v2"
-
-
-@pytest.fixture
-def context_v2() -> ContextKey:
-    return ContextKey.model_validate_json(
-        (FIXTURE_ROOT / "context-v2.json").read_text(encoding="utf-8")
-    )
-
-
-def ingest(path: Path, context: ContextKey):
-    return ingest_pixelated_bundle(
-        path,
-        phase=WindowPhase.DEGRADED,
-        comparison_case_id="controlled-case-001",
-        context=context,
-    )
-
-
-def copy_bundle(tmp_path: Path) -> Path:
-    bundle = tmp_path / "bundle-v2"
-    shutil.copytree(VALID_V2_BUNDLE, bundle)
-    return bundle
+from .pixelated_bundle_support import copy_v2_bundle as copy_bundle
+from .pixelated_bundle_support import ingest
 
 
 def test_v2_event_details_reject_private_peer_identity(
