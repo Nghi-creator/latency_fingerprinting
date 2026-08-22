@@ -144,9 +144,10 @@ Create `src/latency_fingerprinting/windows.py`:
 
 ### Work
 
-Create `src/latency_fingerprinting/normalization.py` and an explicit feature
+Create `src/latency_fingerprinting/normalization.py` and a frozen feature
 configuration containing each P0 metric's unit, epsilon and optional clipping
-bounds.
+bounds. The configuration lives in `feature_config.py` so both normalization
+and persisted-contract validation use one source of truth.
 
 Use:
 
@@ -160,6 +161,7 @@ reference value, epsilon and whether clipping occurred.
 ### Deliverables
 
 - `src/latency_fingerprinting/normalization.py`
+- `src/latency_fingerprinting/feature_config.py`
 - `tests/test_normalization.py`
 
 ### Gate
@@ -168,6 +170,8 @@ reference value, epsilon and whether clipping occurred.
 - [x] Missing features remain missing.
 - [x] Clipping, when configured, is visible in the output.
 - [x] Raw values remain available for audit.
+- [x] Loaded observations and fingerprints cannot override canonical epsilon or
+  clipping metadata.
 
 ## Step 5: Create the synthetic fixture corpus
 

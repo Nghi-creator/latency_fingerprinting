@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import math
 from collections.abc import Mapping, Sequence
+from datetime import datetime
 from typing import Any
 
-from .pixelated_bundle_common import PixelatedBundleError, finite_number
+from .pixelated_bundle_common import PixelatedBundleError, finite_number, utc_datetime
 
 FORMAL_CAPTURE_EVENTS = frozenset(
     {
@@ -56,6 +57,9 @@ def validate_cross_file_identity(
 
     final_session_seen = False
     previous_elapsed: float | None = None
+    previous_timestamp: datetime | None = None
+    first_elapsed: float | None = None
+    first_timestamp: datetime | None = None
     for index, row in enumerate(event_rows, start=2):
         if row.get("run_id") != run_id:
             raise PixelatedBundleError(
@@ -69,7 +73,23 @@ def validate_cross_file_identity(
             raise PixelatedBundleError(
                 "stream-events.csv elapsed_ms must be non-negative and monotonic"
             )
+        timestamp = utc_datetime(
+            row.get("captured_at", ""),
+            source=f"stream-events.csv row {index} captured_at",
+        )
+        if previous_timestamp is not None and timestamp < previous_timestamp:
+            raise PixelatedBundleError("stream-events.csv captured_at must be monotonic")
+        if first_elapsed is None or first_timestamp is None:
+            first_elapsed = elapsed
+            first_timestamp = timestamp
+        wall_elapsed_s = (timestamp - first_timestamp).total_seconds()
+        declared_elapsed_s = (elapsed - first_elapsed) / 1000
+        if not math.isclose(wall_elapsed_s, declared_elapsed_s, rel_tol=1e-6, abs_tol=0.001):
+            raise PixelatedBundleError(
+                f"stream-events.csv row {index} wall-clock and elapsed times disagree"
+            )
         previous_elapsed = elapsed
+        previous_timestamp = timestamp
         row_session_id = row.get("session_id")
         if row_session_id == session_id:
             final_session_seen = True

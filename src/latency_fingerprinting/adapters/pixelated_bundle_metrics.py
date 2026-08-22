@@ -112,6 +112,7 @@ def counter_metrics(
     metric_columns: Mapping[str, tuple[str, str]],
     *,
     source_name: str,
+    availability_column: str | None = None,
 ) -> tuple[dict[str, MetricAggregate], list[str], dict[str, str]]:
     metrics: dict[str, MetricAggregate] = {}
     missing: list[str] = []
@@ -121,6 +122,11 @@ def counter_metrics(
         invalid: list[str] = []
         previous: float | None = None
         for index, row in enumerate(rows, start=2):
+            if availability_column is not None and (
+                row.get(availability_column, "").strip().lower() != "true"
+            ):
+                previous = None
+                continue
             raw = (row.get(column) or "").strip()
             if not raw:
                 previous = None
@@ -171,16 +177,12 @@ def engine_metrics(
         metrics.update(measured)
         missing.extend(absent)
         rejected.update(invalid)
-    encoder_rows = [
-        row
-        for row in rows
-        if row.get("source") == "encoder_pipeline"
-        and row.get("available", "").strip().lower() == "true"
-    ]
+    encoder_rows = [row for row in rows if row.get("source") == "encoder_pipeline"]
     measured, absent, invalid = counter_metrics(
         encoder_rows,
         ENCODER_COUNTER_METRICS,
         source_name="engine-telemetry.csv",
+        availability_column="available",
     )
     metrics.update(measured)
     missing.extend(absent)

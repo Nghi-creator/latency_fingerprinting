@@ -23,8 +23,9 @@ Changes that alter the meaning or required fields of a record require a contract
 - Identifiers are opaque strings and must not contain secrets or personal machine data.
 - Timestamps use UTC ISO 8601 when real time exists; synthetic fixtures may use elapsed-time bounds.
 - Numeric metric values declare units, and serialized numbers must be finite.
-- File-based JSON ingestion rejects duplicate object keys and non-standard
-  `NaN`/infinity constants rather than accepting ambiguous records.
+- File-based JSON ingestion rejects duplicate object keys, `NaN`/infinity,
+  numeric overflow and excessive nesting rather than accepting ambiguous or
+  resource-hostile records.
 
 ## 1. Context
 

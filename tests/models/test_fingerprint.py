@@ -54,3 +54,15 @@ def test_fingerprint_rejects_extra_weights_and_inconsistent_normalization() -> N
     payload["normalized_response"]["features"]["transport.jitter_ms"]["value"] = -0.2
     with pytest.raises(ValidationError, match="disagrees with its raw delta"):
         Fingerprint.model_validate(payload)
+
+
+def test_fingerprint_rejects_non_canonical_clipped_values() -> None:
+    fingerprint = make_fingerprint()
+    payload = fingerprint.model_dump()
+    normalized = payload["normalized_response"]["features"]["transport.jitter_ms"]
+    normalized["was_clipped"] = True
+    normalized["unclipped_value"] = normalized["value"]
+    normalized["value"] = -999_999.0
+
+    with pytest.raises(ValidationError, match="incorrect clipping metadata"):
+        Fingerprint.model_validate(payload)

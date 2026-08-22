@@ -7,6 +7,7 @@ from typing import Annotated, Literal
 
 from pydantic import Field, JsonValue, StrictBool, model_validator
 
+from ..feature_config import P0_FEATURE_CONFIG, normalize_feature_value
 from .common import (
     CONTRACT_VERSION,
     OBSERVATION_SCHEMA_VERSION,
@@ -147,6 +148,46 @@ class NormalizedFeature(ContractModel):
         return self
 
 
+def validate_canonical_normalization(
+    feature: str,
+    raw: FeatureDelta,
+    normalized: NormalizedFeature,
+) -> None:
+    """Ensure persisted P0 normalized values use the frozen feature contract."""
+
+    config = P0_FEATURE_CONFIG.get(feature)
+    if config is None:
+        raise ValueError(f"normalized feature {feature!r} is not supported by P0")
+    if raw.unit != config.unit:
+        raise ValueError(
+            f"normalized feature {feature!r} uses unit {raw.unit!r}; P0 expects {config.unit!r}"
+        )
+    if normalized.epsilon != config.epsilon:
+        raise ValueError(f"normalized feature {feature!r} has a non-canonical epsilon")
+    expected_value, expected_clipped, expected_unclipped = normalize_feature_value(
+        raw.raw_delta,
+        raw.degraded_value,
+        config,
+    )
+    if normalized.was_clipped is not expected_clipped:
+        raise ValueError(f"normalized feature {feature!r} has incorrect clipping metadata")
+    if not math.isclose(normalized.value, expected_value, rel_tol=1e-12, abs_tol=1e-12):
+        raise ValueError(
+            f"normalized feature {feature!r} disagrees with its raw delta "
+            "under canonical normalization"
+        )
+    if expected_unclipped is None:
+        if normalized.unclipped_value is not None:
+            raise ValueError(f"normalized feature {feature!r} has unexpected unclipped metadata")
+    elif normalized.unclipped_value is None or not math.isclose(
+        normalized.unclipped_value,
+        expected_unclipped,
+        rel_tol=1e-12,
+        abs_tol=1e-12,
+    ):
+        raise ValueError(f"normalized feature {feature!r} has the wrong unclipped value")
+
+
 class NormalizedResponse(ContractModel):
     features: dict[NonEmptyStr, NormalizedFeature]
     missing_features: list[NonEmptyStr] = Field(default_factory=list)
@@ -254,12 +295,7 @@ class ObservationRecord(ContractModel):
             normalized = self.normalized_response.features[feature]
             if not math.isclose(normalized.reference_value, raw.degraded_value, abs_tol=1e-12):
                 raise ValueError(f"normalized feature {feature!r} has the wrong reference value")
-            expected = raw.raw_delta / max(abs(raw.degraded_value), normalized.epsilon)
-            represented = normalized.unclipped_value if normalized.was_clipped else normalized.value
-            if represented is None:
-                raise ValueError(f"normalized feature {feature!r} is missing its unclipped value")
-            if not math.isclose(represented, expected, rel_tol=1e-12, abs_tol=1e-12):
-                raise ValueError(f"normalized feature {feature!r} disagrees with its raw delta")
+            validate_canonical_normalization(feature, raw, normalized)
         if not set(self.response_delta.warnings).issubset(self.normalized_response.warnings):
             raise ValueError("normalized response must retain raw response warnings")
         if self.response_delta.invalid_reasons != self.normalized_response.invalid_reasons:

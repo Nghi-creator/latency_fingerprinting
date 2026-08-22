@@ -61,6 +61,82 @@ def test_bundle_schema_version_must_match_explicit_context(context: ContextKey) 
         ingest(VALID_V2_BUNDLE, context)
 
 
+@pytest.mark.parametrize("declared_version", [None, "3"])
+def test_bundle_schema_version_must_be_explicit_and_supported(
+    context_v2: ContextKey,
+    declared_version: str | None,
+) -> None:
+    versions = dict(context_v2.versions)
+    if declared_version is None:
+        versions.pop("pixelatedBundleSchema")
+    else:
+        versions["pixelatedBundleSchema"] = declared_version
+    undeclared = context_v2.model_copy(update={"versions": versions})
+
+    with pytest.raises(PixelatedBundleError, match="requires pixelatedBundleSchema"):
+        ingest(VALID_V2_BUNDLE, undeclared)
+
+
+def test_v2_bundle_cannot_be_downgraded_by_removing_manifest(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    (bundle / "bundle-manifest.json").unlink()
+    (bundle / "engine-telemetry.csv").unlink()
+    versions = dict(context_v2.versions)
+    versions.pop("pixelatedBundleSchema")
+    undeclared = context_v2.model_copy(update={"versions": versions})
+
+    with pytest.raises(PixelatedBundleError, match="requires pixelatedBundleSchema"):
+        ingest(bundle, undeclared)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("required", False, "must declare required true"),
+        ("mediaType", "text/plain", "requires media type"),
+    ],
+)
+def test_v2_manifest_required_file_declarations_are_exact(
+    tmp_path: Path,
+    context_v2: ContextKey,
+    field: str,
+    value: object,
+    message: str,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    manifest_path = bundle / "bundle-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    summary_entry = next(entry for entry in manifest["files"] if entry["name"] == "summary.json")
+    summary_entry[field] = value
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match=message):
+        ingest(bundle, context_v2)
+
+
+def test_v2_manifest_rejects_unknown_required_files(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    manifest_path = bundle / "bundle-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["files"].append(
+        {
+            "name": "future-required.bin",
+            "required": True,
+            "mediaType": "application/octet-stream",
+        }
+    )
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="unsupported required file"):
+        ingest(bundle, context_v2)
+
+
 def test_bundle_workload_must_match_explicit_context(context_v2: ContextKey) -> None:
     incompatible = context_v2.model_copy(update={"workload_id": "different-workload"})
     with pytest.raises(PixelatedBundleError, match="workload identity disagrees"):
@@ -82,6 +158,51 @@ def test_each_telemetry_timestamp_must_match_elapsed_time(
     )
 
     with pytest.raises(PixelatedBundleError, match="wall-clock and elapsed times disagree"):
+        ingest(bundle, context_v2)
+
+
+def test_event_timestamps_must_be_valid_and_match_elapsed_time(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    events_path = bundle / "stream-events.csv"
+    events_path.write_text(
+        events_path.read_text(encoding="utf-8").replace(
+            "2026-08-10T02:03:04.000Z",
+            "not-a-timestamp",
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(PixelatedBundleError, match="must be an ISO 8601 timestamp"):
+        ingest(bundle, context_v2)
+
+    bundle = copy_v2_bundle(tmp_path, name="event-clock-mismatch")
+    events_path = bundle / "stream-events.csv"
+    with events_path.open("a", encoding="utf-8") as events_file:
+        events_file.write(
+            "2026-08-10T02:03:15.000Z,0,pixelated-sanitized-run-v2-001,"
+            "anonymous-session-v2-001,research_recording_completed,\n"
+        )
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["eventCount"] = 2
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+    with pytest.raises(PixelatedBundleError, match="wall-clock and elapsed times disagree"):
+        ingest(bundle, context_v2)
+
+
+def test_v2_summary_available_counts_must_match_telemetry(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["validity"]["sources"]["encoderPipeline"]["availableSampleCount"] = 999_999
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="available sample count disagrees"):
         ingest(bundle, context_v2)
 
 

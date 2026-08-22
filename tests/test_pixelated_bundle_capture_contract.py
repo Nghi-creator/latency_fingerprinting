@@ -40,7 +40,7 @@ def test_preliminary_session_events_may_roll_into_final_session(
     lines = events_path.read_text(encoding="utf-8").splitlines()
     lines.insert(
         1,
-        "2026-08-10T02:03:03.000Z,0,pixelated-sanitized-run-v2-001,"
+        "2026-08-10T02:03:04.000Z,0,pixelated-sanitized-run-v2-001,"
         "preliminary-session,backend_session_requested,",
     )
     events_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
