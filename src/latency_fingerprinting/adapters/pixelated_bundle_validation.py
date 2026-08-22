@@ -26,6 +26,8 @@ def validate_cross_file_identity(
     *,
     run_id: str,
     session_id: str,
+    workload_id: str,
+    player_mode: str,
 ) -> None:
     if summary.get("runId") != run_id or summary.get("sessionId") != session_id:
         raise PixelatedBundleError("summary.json run/session identity disagrees with metadata")
@@ -34,19 +36,40 @@ def validate_cross_file_identity(
         raise PixelatedBundleError("summary.json requires object 'recording'")
     if recording.get("sampleCount") != len(telemetry_rows):
         raise PixelatedBundleError("summary.json sample count disagrees with telemetry")
+    final_session_event_count = sum(row.get("session_id") == session_id for row in event_rows)
+    if summary.get("eventCount") != final_session_event_count:
+        raise PixelatedBundleError("summary.json event count disagrees with events")
 
     for index, row in enumerate(telemetry_rows, start=2):
         if row.get("session_id") != session_id:
             raise PixelatedBundleError(
                 f"stream-telemetry.csv row {index} session_id disagrees with metadata"
             )
+        if row.get("game_id") != workload_id:
+            raise PixelatedBundleError(
+                f"stream-telemetry.csv row {index} workload disagrees with metadata"
+            )
+        if row.get("player_mode") != player_mode:
+            raise PixelatedBundleError(
+                f"stream-telemetry.csv row {index} player mode disagrees with metadata"
+            )
 
     final_session_seen = False
+    previous_elapsed: float | None = None
     for index, row in enumerate(event_rows, start=2):
         if row.get("run_id") != run_id:
             raise PixelatedBundleError(
                 f"stream-events.csv row {index} run_id disagrees with metadata"
             )
+        elapsed = finite_number(
+            row.get("elapsed_ms", ""),
+            source=f"stream-events.csv row {index} elapsed_ms",
+        )
+        if elapsed < 0 or (previous_elapsed is not None and elapsed < previous_elapsed):
+            raise PixelatedBundleError(
+                "stream-events.csv elapsed_ms must be non-negative and monotonic"
+            )
+        previous_elapsed = elapsed
         row_session_id = row.get("session_id")
         if row_session_id == session_id:
             final_session_seen = True

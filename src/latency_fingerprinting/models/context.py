@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from datetime import datetime
 
-from pydantic import Field, JsonValue, model_validator
+from pydantic import Field, JsonValue, StrictBool, model_validator
 
 from .common import (
     ContractModel,
@@ -39,6 +39,20 @@ class ContextKey(ContractModel):
     nominal_stream_profile: dict[str, JsonValue]
     network_scenario: str | None = None
     versions: dict[str, str] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_context_maps(self) -> ContextKey:
+        if not self.nominal_stream_profile:
+            raise ValueError("nominal_stream_profile cannot be empty")
+        for field_name, values in (
+            ("nominal_stream_profile", self.nominal_stream_profile),
+            ("versions", self.versions),
+        ):
+            if any(not key.strip() for key in values):
+                raise ValueError(f"{field_name} keys cannot be empty")
+        if any(not value.strip() for value in self.versions.values()):
+            raise ValueError("versions values cannot be empty")
+        return self
 
 
 class TimeBounds(ContractModel):
@@ -97,11 +111,18 @@ class MetricAggregate(ContractModel):
                 raise ValueError(f"{name} must not be below minimum")
             if candidate is not None and self.maximum is not None and candidate > self.maximum:
                 raise ValueError(f"{name} must not exceed maximum")
+        if self.median is not None and self.p95 is not None and self.p95 < self.median:
+            raise ValueError("p95 must not be below median")
+        declared = {"median": self.median, "p95": self.p95}.get(self.aggregation)
+        if declared is not None and not math.isclose(
+            self.value, declared, rel_tol=1e-12, abs_tol=1e-12
+        ):
+            raise ValueError(f"value must equal {self.aggregation} for that aggregation")
         return self
 
 
 class ValidityState(ContractModel):
-    is_valid: bool
+    is_valid: StrictBool
     reasons: list[NonEmptyStr] = Field(default_factory=list)
 
     @model_validator(mode="after")
@@ -118,6 +139,16 @@ class SourceArtifact(ContractModel):
     source_type: NonEmptyStr
     checksum: str | None = None
     producer: str | None = None
+
+    @model_validator(mode="after")
+    def validate_checksum(self) -> SourceArtifact:
+        if self.checksum is not None:
+            algorithm, separator, digest = self.checksum.partition(":")
+            if separator != ":" or algorithm != "sha256" or len(digest) != 64:
+                raise ValueError("checksum must use sha256:<64 lowercase hexadecimal digits>")
+            if any(character not in "0123456789abcdef" for character in digest):
+                raise ValueError("checksum must use sha256:<64 lowercase hexadecimal digits>")
+        return self
 
 
 class ObservationWindow(ContractModel):
@@ -148,11 +179,13 @@ class ObservationWindow(ContractModel):
             raise ValueError(f"metrics cannot be measured and missing/rejected: {sorted(overlap)}")
         if self.sample_count == 0 and self.metrics:
             raise ValueError("a window with metrics must have a positive sample_count")
+        if len(set(self.missing_metrics)) != len(self.missing_metrics):
+            raise ValueError("missing_metrics cannot contain duplicates")
         if self.bounds.started_at is not None and self.bounds.ended_at is not None:
             bounded_duration = (self.bounds.ended_at - self.bounds.started_at).total_seconds()
         else:
-            assert self.bounds.elapsed_start_s is not None
-            assert self.bounds.elapsed_end_s is not None
+            if self.bounds.elapsed_start_s is None or self.bounds.elapsed_end_s is None:
+                raise ValueError("elapsed bounds are required when wall-clock bounds are absent")
             bounded_duration = self.bounds.elapsed_end_s - self.bounds.elapsed_start_s
         if not math.isclose(self.duration_s, bounded_duration, rel_tol=1e-9, abs_tol=1e-6):
             raise ValueError("duration_s must equal the duration represented by bounds")

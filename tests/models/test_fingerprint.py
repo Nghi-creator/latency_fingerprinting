@@ -41,3 +41,16 @@ def test_fingerprint_raw_and_normalized_availability_must_agree() -> None:
     payload["normalized_response"]["missing_features"] = ["client.received_bitrate_kbps"]
     with pytest.raises(ValidationError, match="missing-feature sets must agree"):
         Fingerprint.model_validate(payload)
+
+
+def test_fingerprint_rejects_extra_weights_and_inconsistent_normalization() -> None:
+    fingerprint = make_fingerprint()
+    payload = fingerprint.model_dump()
+    payload["feature_weights"]["undeclared.feature"] = 1.0
+    with pytest.raises(ValidationError, match="without response features"):
+        Fingerprint.model_validate(payload)
+
+    payload = fingerprint.model_dump()
+    payload["normalized_response"]["features"]["transport.jitter_ms"]["value"] = -0.2
+    with pytest.raises(ValidationError, match="disagrees with its raw delta"):
+        Fingerprint.model_validate(payload)

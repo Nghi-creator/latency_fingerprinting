@@ -303,6 +303,16 @@ def test_requested_setting_must_be_applied_and_changed() -> None:
     assert ComparabilityReason.REQUESTED_SETTING_UNCHANGED in result.reason_codes
 
 
+def test_json_boolean_settings_are_not_equal_to_numeric_settings() -> None:
+    degraded, relief, probe = make_pair()
+    relief = rebuild(relief, effective_settings={"fps": 1, "bitrateKbps": 6000})
+    probe = rebuild(probe, requested_settings={"fps": True})
+
+    result = validate_window_comparability(degraded, relief, probe)  # type: ignore[arg-type]
+
+    assert ComparabilityReason.REQUESTED_SETTING_NOT_APPLIED in result.reason_codes
+
+
 def test_observed_setting_must_match_relief_window() -> None:
     degraded, relief, probe = make_pair()
     probe = rebuild(

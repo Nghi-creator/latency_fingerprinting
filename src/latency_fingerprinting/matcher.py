@@ -43,6 +43,16 @@ def match_observation(
             warnings=warnings,
         )
 
+    if not query.response_delta.is_valid or not query.normalized_response.is_valid:
+        return unranked_unknown(
+            reason=UnknownReason.INVALID_OBSERVATION,
+            decision_reason="The query response is invalid and cannot be scored.",
+            compatibility=compatibility,
+            thresholds=thresholds,
+            warnings=warnings + query.normalized_response.invalid_reasons,
+            missing_features=list(query.normalized_response.missing_features),
+        )
+
     if not candidates:
         return unranked_unknown(
             reason=UnknownReason.INCOMPATIBLE_CONTEXT,
@@ -55,16 +65,6 @@ def match_observation(
             warnings=warnings,
         )
 
-    if not query.response_delta.is_valid or not query.normalized_response.is_valid:
-        return unranked_unknown(
-            reason=UnknownReason.INVALID_OBSERVATION,
-            decision_reason="The query response is invalid and cannot be scored.",
-            compatibility=compatibility,
-            thresholds=thresholds,
-            warnings=warnings + query.normalized_response.invalid_reasons,
-            missing_features=list(query.normalized_response.missing_features),
-        )
-
     scoring = score_candidates(
         query.normalized_response,
         candidates,
@@ -73,6 +73,27 @@ def match_observation(
     )
     warnings.extend(scoring.warnings)
     if not scoring.eligible:
+        degenerate = best_availability(
+            tuple(
+                evidence
+                for evidence in scoring.evidence
+                if evidence.total_weight == 0
+                and evidence.observable_feature_count >= thresholds.minimum_shared_feature_count
+                and evidence.observable_feature_coverage >= thresholds.minimum_feature_coverage
+            )
+        )
+        if degenerate is not None:
+            return unranked_unknown(
+                reason=UnknownReason.DEGENERATE_VECTOR,
+                decision_reason="Compatible evidence has no positive total feature weight.",
+                compatibility=compatibility,
+                thresholds=thresholds,
+                warnings=warnings
+                + [f"Candidate {degenerate.fingerprint_id} has no positive shared feature weight."],
+                missing_features=sorted(
+                    set(degenerate.missing_features) | set(degenerate.rejected_features)
+                ),
+            )
         best_available = best_availability(scoring.evidence)
         missing = (
             sorted(set(best_available.missing_features) | set(best_available.rejected_features))
@@ -98,7 +119,8 @@ def match_observation(
 
     if not scoring.scored:
         best_available = best_availability(scoring.eligible)
-        assert best_available is not None
+        if best_available is None:
+            raise RuntimeError("eligible matcher evidence unexpectedly disappeared")
         return unranked_unknown(
             reason=UnknownReason.DEGENERATE_VECTOR,
             decision_reason="Compatible evidence has no positive total feature weight.",

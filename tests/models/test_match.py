@@ -108,3 +108,18 @@ def test_match_scores_are_unit_intervals(field: str) -> None:
     payload[field] = 1.01
     with pytest.raises(ValidationError):
         MatchResult.model_validate(payload)
+
+
+def test_rankings_and_evidence_are_unique() -> None:
+    payload = make_match_result().model_dump()
+    duplicate = dict(payload["ranked_candidates"][0])
+    duplicate["match_strength"] = 0.8
+    payload["ranked_candidates"].append(duplicate)
+    payload["score_margin"] = 0.05
+    with pytest.raises(ValidationError, match="fingerprint IDs must be unique"):
+        MatchResult.model_validate(payload)
+
+    payload = make_match_result().model_dump()
+    payload["conflicting_evidence"] = list(payload["supporting_evidence"])
+    with pytest.raises(ValidationError, match="both supporting and conflicting"):
+        MatchResult.model_validate(payload)

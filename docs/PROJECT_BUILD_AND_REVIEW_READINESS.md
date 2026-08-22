@@ -45,7 +45,7 @@ The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTAT
 - Deterministic synthetic fixture corpus and end-to-end regression tests.
 - Offline CLI and safe Pixelated TAR/directory adapter.
 - Bounded-pressure tool and controlled paired-run capture procedure.
-- Clean-environment installation and 231-test software closeout.
+- Clean-environment installation and 260-test hardened software closeout.
 
 ### Controlled-real evidence completed
 
@@ -65,6 +65,9 @@ The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTAT
 - Live bounded probes and runtime action execution.
 - Calibrated confidence, mixed bottlenecks and comparative evaluation.
 - Deadline-aware scheduler.
+
+The ordered post-P0 build, safety, measurement, control, and evaluation gates
+are maintained in [`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md).
 
 Do not describe planned work as completed.
 

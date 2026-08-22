@@ -12,6 +12,8 @@ import tarfile
 from pathlib import Path
 from typing import Any
 
+from latency_fingerprinting.json_io import strict_json_loads
+
 PHASES = ("healthy", "degraded", "relief")
 EXPERIMENT_NAME = re.compile(r"controlled-run-[0-9]{3,}")
 MAX_EMBEDDED_MANIFEST_BYTES = 1024 * 1024
@@ -28,7 +30,12 @@ def sha256_file(path: Path) -> str:
 def embedded_manifest(bundle_path: Path) -> dict[str, Any]:
     try:
         with tarfile.open(bundle_path, mode="r:*") as archive:
-            member = archive.getmember("bundle-manifest.json")
+            matching_members = [
+                member for member in archive.getmembers() if member.name == "bundle-manifest.json"
+            ]
+            if len(matching_members) != 1:
+                raise ValueError("archive must contain exactly one bundle-manifest.json")
+            member = matching_members[0]
             if not member.isfile():
                 raise ValueError("bundle-manifest.json is not a regular file")
             if member.size > MAX_EMBEDDED_MANIFEST_BYTES:
@@ -36,8 +43,8 @@ def embedded_manifest(bundle_path: Path) -> dict[str, Any]:
             source = archive.extractfile(member)
             if source is None:
                 raise ValueError("bundle-manifest.json could not be read")
-            value = json.loads(source.read().decode("utf-8"))
-    except (KeyError, OSError, tarfile.TarError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            value = strict_json_loads(source.read(MAX_EMBEDDED_MANIFEST_BYTES + 1).decode("utf-8"))
+    except (KeyError, OSError, tarfile.TarError, UnicodeDecodeError, ValueError) as exc:
         raise ValueError(f"{bundle_path.name}: invalid embedded manifest: {exc}") from exc
     if not isinstance(value, dict):
         raise ValueError(f"{bundle_path.name}: embedded manifest must be an object")

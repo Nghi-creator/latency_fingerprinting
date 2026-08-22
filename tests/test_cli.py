@@ -64,6 +64,23 @@ def test_validate_rejects_unknown_schema_version(
     assert "unsupported schemaVersion" in stderr
 
 
+def test_validate_rejects_duplicate_json_keys(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    path = tmp_path / "duplicate.json"
+    path.write_text(
+        '{"schemaVersion":"observation-v1","schemaVersion":"fingerprint-v1"}',
+        encoding="utf-8",
+    )
+
+    exit_code, stdout, stderr = invoke(["validate", str(path)], capsys)
+
+    assert exit_code == 1
+    assert stdout == ""
+    assert "duplicate JSON object key" in stderr
+
+
 def test_export_schemas_writes_then_checks_current_files(
     tmp_path: Path,
     capsys: pytest.CaptureFixture[str],

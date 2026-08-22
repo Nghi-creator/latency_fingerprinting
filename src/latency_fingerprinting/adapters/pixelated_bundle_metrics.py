@@ -158,7 +158,11 @@ def engine_metrics(
     missing: list[str] = []
     rejected: dict[str, str] = {}
     for metric, (source, column, unit) in ENGINE_METRIC_COLUMNS.items():
-        source_rows = [row for row in rows if row.get("source") == source]
+        source_rows = [
+            row
+            for row in rows
+            if row.get("source") == source and row.get("available", "").strip().lower() == "true"
+        ]
         measured, absent, invalid = mapped_metrics(
             source_rows,
             {metric: (column, unit)},
@@ -167,7 +171,12 @@ def engine_metrics(
         metrics.update(measured)
         missing.extend(absent)
         rejected.update(invalid)
-    encoder_rows = [row for row in rows if row.get("source") == "encoder_pipeline"]
+    encoder_rows = [
+        row
+        for row in rows
+        if row.get("source") == "encoder_pipeline"
+        and row.get("available", "").strip().lower() == "true"
+    ]
     measured, absent, invalid = counter_metrics(
         encoder_rows,
         ENCODER_COUNTER_METRICS,

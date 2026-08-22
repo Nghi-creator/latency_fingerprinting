@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from typing import Literal
 
-from pydantic import Field, model_validator
+from pydantic import Field, StrictBool, model_validator
 
 from .common import (
     CONTRACT_VERSION,
@@ -57,10 +57,23 @@ class FeatureEvidence(ContractModel):
 
 
 class CompatibilityResult(ContractModel):
-    is_compatible: bool
+    is_compatible: StrictBool
     compatibility_group: NonEmptyStr
     compatible_fingerprint_ids: list[NonEmptyStr] = Field(default_factory=list)
     rejected_fingerprints: dict[NonEmptyStr, NonEmptyStr] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def validate_identifiers(self) -> CompatibilityResult:
+        if len(set(self.compatible_fingerprint_ids)) != len(self.compatible_fingerprint_ids):
+            raise ValueError("compatible_fingerprint_ids cannot contain duplicates")
+        overlap = set(self.compatible_fingerprint_ids) & set(self.rejected_fingerprints)
+        if overlap:
+            raise ValueError(
+                f"fingerprints cannot be both compatible and rejected: {sorted(overlap)}"
+            )
+        if self.is_compatible != bool(self.compatible_fingerprint_ids):
+            raise ValueError("is_compatible must reflect compatible_fingerprint_ids")
+        return self
 
 
 class MatchThresholds(ContractModel):
@@ -91,6 +104,24 @@ class MatchResult(ContractModel):
 
     @model_validator(mode="after")
     def validate_decision(self) -> MatchResult:
+        candidate_ids = [candidate.fingerprint_id for candidate in self.ranked_candidates]
+        if len(set(candidate_ids)) != len(candidate_ids):
+            raise ValueError("ranked candidate fingerprint IDs must be unique")
+        if any(
+            first.match_strength < second.match_strength
+            for first, second in zip(
+                self.ranked_candidates, self.ranked_candidates[1:], strict=False
+            )
+        ):
+            raise ValueError("ranked candidates must use descending match strength")
+        supporting = [item.feature for item in self.supporting_evidence]
+        conflicting = [item.feature for item in self.conflicting_evidence]
+        if len(set(supporting)) != len(supporting) or len(set(conflicting)) != len(conflicting):
+            raise ValueError("feature evidence cannot contain duplicate features")
+        if set(supporting) & set(conflicting):
+            raise ValueError("features cannot be both supporting and conflicting evidence")
+        if len(set(self.missing_features)) != len(self.missing_features):
+            raise ValueError("missing_features cannot contain duplicates")
         if self.ranked_candidates:
             best = self.ranked_candidates[0]
             if self.match_strength is None:

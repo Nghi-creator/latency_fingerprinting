@@ -14,13 +14,13 @@ OBSERVATION_SCHEMA_VERSION = "observation-v1"
 FINGERPRINT_SCHEMA_VERSION = "fingerprint-v1"
 MATCH_RESULT_SCHEMA_VERSION = "match-result-v1"
 
-NonEmptyStr = Annotated[str, Field(min_length=1)]
-FiniteFloat = Annotated[float, Field(allow_inf_nan=False)]
-NonNegativeFiniteFloat = Annotated[float, Field(ge=0, allow_inf_nan=False)]
-PositiveFiniteFloat = Annotated[float, Field(gt=0, allow_inf_nan=False)]
-NonNegativeInt = Annotated[int, Field(ge=0)]
-PositiveInt = Annotated[int, Field(gt=0)]
-UnitInterval = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
+NonEmptyStr = Annotated[str, Field(min_length=1, strict=True)]
+FiniteFloat = Annotated[float, Field(allow_inf_nan=False, strict=True)]
+NonNegativeFiniteFloat = Annotated[float, Field(ge=0, allow_inf_nan=False, strict=True)]
+PositiveFiniteFloat = Annotated[float, Field(gt=0, allow_inf_nan=False, strict=True)]
+NonNegativeInt = Annotated[int, Field(ge=0, strict=True)]
+PositiveInt = Annotated[int, Field(gt=0, strict=True)]
+UnitInterval = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False, strict=True)]
 
 
 def _camel_case(name: str) -> str:

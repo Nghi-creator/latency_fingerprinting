@@ -8,6 +8,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
+from latency_fingerprinting.json_io import load_model_file
 from latency_fingerprinting.models import (
     CompatibilityKey,
     Fingerprint,
@@ -25,9 +26,7 @@ SOFTWARE_VERSION = "0.1.0"
 
 
 def build_fingerprint() -> Fingerprint:
-    observation = ObservationRecord.model_validate_json(
-        OBSERVATION_PATH.read_text(encoding="utf-8")
-    )
+    observation = load_model_file(OBSERVATION_PATH, ObservationRecord)
     if observation.provenance is not ProvenanceKind.CONTROLLED_REAL:
         raise ValueError("the seed fingerprint requires controlled_real provenance")
 

@@ -1,64 +1,19 @@
-"""Tests for the strict Pixelated research-bundle translation boundary."""
+"""Happy-path tests for the strict Pixelated research-bundle adapter."""
 
 from __future__ import annotations
 
-import io
 import json
-import shutil
-import tarfile
 from pathlib import Path
 
-import pytest
+from latency_fingerprinting.models import ContextKey, ProvenanceKind, WindowPhase
 
-from latency_fingerprinting.adapters.pixelated_bundle import (
-    PixelatedBundleError,
-    ingest_pixelated_bundle,
+from .pixelated_bundle_support import (
+    VALID_BUNDLE,
+    VALID_V2_BUNDLE,
+    copy_v2_bundle,
+    ingest,
+    write_tar,
 )
-from latency_fingerprinting.models import (
-    ContextKey,
-    ProvenanceKind,
-    WindowPhase,
-)
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-FIXTURE_ROOT = PROJECT_ROOT / "tests" / "data" / "pixelated_bundle"
-VALID_BUNDLE = FIXTURE_ROOT / "valid"
-VALID_V2_BUNDLE = FIXTURE_ROOT / "valid-v2"
-
-
-@pytest.fixture
-def context() -> ContextKey:
-    return ContextKey.model_validate_json(
-        (FIXTURE_ROOT / "context.json").read_text(encoding="utf-8")
-    )
-
-
-@pytest.fixture
-def context_v2() -> ContextKey:
-    return ContextKey.model_validate_json(
-        (FIXTURE_ROOT / "context-v2.json").read_text(encoding="utf-8")
-    )
-
-
-def ingest(path: Path, context: ContextKey):
-    return ingest_pixelated_bundle(
-        path,
-        phase=WindowPhase.DEGRADED,
-        comparison_case_id="controlled-case-001",
-        context=context,
-    )
-
-
-def copy_bundle(tmp_path: Path) -> Path:
-    destination = tmp_path / "bundle"
-    shutil.copytree(VALID_BUNDLE, destination)
-    return destination
-
-
-def write_tar(source: Path, destination: Path) -> None:
-    with tarfile.open(destination, "w") as archive:
-        for path in sorted(source.iterdir()):
-            archive.add(path, arcname=path.name)
 
 
 def test_extracted_bundle_maps_only_supported_metrics(context: ContextKey) -> None:
@@ -137,8 +92,7 @@ def test_v2_browser_only_baseline_accepts_header_only_engine_csv(
     tmp_path: Path,
     context_v2: ContextKey,
 ) -> None:
-    bundle = tmp_path / "browser-only-v2"
-    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    bundle = copy_v2_bundle(tmp_path, name="browser-only-v2")
 
     metadata_path = bundle / "run-metadata.json"
     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
@@ -171,215 +125,3 @@ def test_v2_browser_only_baseline_accepts_header_only_engine_csv(
     assert window.validity.is_valid
     assert "host.node_cpu_percent" in window.missing_metrics
     assert "encoder.frames_out_delta" in window.missing_metrics
-
-
-def test_v2_manifest_identity_and_privacy_are_enforced(
-    tmp_path: Path,
-    context_v2: ContextKey,
-) -> None:
-    bundle = tmp_path / "bundle-v2"
-    shutil.copytree(VALID_V2_BUNDLE, bundle)
-    manifest_path = bundle / "bundle-manifest.json"
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["phase"] = "relief"
-    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-    with pytest.raises(PixelatedBundleError, match="phase disagrees"):
-        ingest(bundle, context_v2)
-
-    manifest["phase"] = "degraded"
-    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-    metadata_path = bundle / "run-metadata.json"
-    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-    metadata["shareUrl"] = "https://private.test/join"
-    metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
-    with pytest.raises(PixelatedBundleError, match="must omit privacy field"):
-        ingest(bundle, context_v2)
-
-
-def test_v2_counter_resets_are_rejected_not_fabricated(
-    tmp_path: Path,
-    context_v2: ContextKey,
-) -> None:
-    bundle = tmp_path / "bundle-v2"
-    shutil.copytree(VALID_V2_BUNDLE, bundle)
-    telemetry_path = bundle / "engine-telemetry.csv"
-    telemetry_path.write_text(
-        telemetry_path.read_text(encoding="utf-8").replace(
-            ",400,395,3,2,,1500,60,6,48",
-            ",50,395,3,2,,1500,60,6,48",
-        ),
-        encoding="utf-8",
-    )
-
-    window = ingest(bundle, context_v2)
-
-    assert "encoder.frames_in_delta" in window.rejected_metrics
-    assert "encoder.frames_in_delta" not in window.metrics
-
-
-def test_bundle_schema_version_must_match_explicit_context(
-    context: ContextKey,
-) -> None:
-    with pytest.raises(PixelatedBundleError, match="pixelatedBundleSchema disagrees"):
-        ingest(VALID_V2_BUNDLE, context)
-
-
-@pytest.mark.parametrize(
-    ("manifest_phase", "window_phase"),
-    [
-        ("healthy", WindowPhase.BASELINE),
-        ("degraded", WindowPhase.DEGRADED),
-        ("relief", WindowPhase.RELIEF),
-    ],
-)
-def test_v2_phase_contract_ingests_every_controlled_run_phase(
-    tmp_path: Path,
-    context_v2: ContextKey,
-    manifest_phase: str,
-    window_phase: WindowPhase,
-) -> None:
-    bundle = tmp_path / manifest_phase
-    shutil.copytree(VALID_V2_BUNDLE, bundle)
-    original_run_id = "pixelated-sanitized-run-v2-001"
-    run_id = f"pixelated-sanitized-run-v2-{manifest_phase}"
-    for path in bundle.iterdir():
-        path.write_text(
-            path.read_text(encoding="utf-8").replace(original_run_id, run_id),
-            encoding="utf-8",
-        )
-    manifest_path = bundle / "bundle-manifest.json"
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["phase"] = manifest_phase
-    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-
-    window = ingest_pixelated_bundle(
-        bundle,
-        phase=window_phase,
-        comparison_case_id="controlled-case-001",
-        context=context_v2,
-    )
-
-    assert window.phase is window_phase
-    assert window.run_id == run_id
-    assert window.validity.is_valid
-
-
-def test_missing_required_file_is_rejected(tmp_path: Path, context: ContextKey) -> None:
-    bundle = copy_bundle(tmp_path)
-    (bundle / "summary.json").unlink()
-
-    with pytest.raises(PixelatedBundleError, match="missing required files: summary.json"):
-        ingest(bundle, context)
-
-
-def test_missing_required_telemetry_column_is_rejected(
-    tmp_path: Path,
-    context: ContextKey,
-) -> None:
-    bundle = copy_bundle(tmp_path)
-    telemetry = bundle / "stream-telemetry.csv"
-    telemetry.write_text(
-        telemetry.read_text(encoding="utf-8").replace(",jitter_ms,", ","),
-        encoding="utf-8",
-    )
-
-    with pytest.raises(PixelatedBundleError, match="missing required columns: jitter_ms"):
-        ingest(bundle, context)
-
-
-def test_missing_metric_values_remain_missing(tmp_path: Path, context: ContextKey) -> None:
-    bundle = copy_bundle(tmp_path)
-    telemetry = bundle / "stream-telemetry.csv"
-    text = telemetry.read_text(encoding="utf-8")
-    text = text.replace(",8,connected", ",,connected")
-    text = text.replace(",6,connected", ",,connected")
-    text = text.replace(",4,completed", ",,completed")
-    telemetry.write_text(text, encoding="utf-8")
-
-    window = ingest(bundle, context)
-
-    assert "transport.jitter_ms" in window.missing_metrics
-    assert "transport.jitter_ms" not in window.metrics
-    assert "transport.jitter_ms" not in window.rejected_metrics
-
-
-def test_malformed_metric_values_are_rejected_not_fabricated(
-    tmp_path: Path,
-    context: ContextKey,
-) -> None:
-    bundle = copy_bundle(tmp_path)
-    telemetry = bundle / "stream-telemetry.csv"
-    telemetry.write_text(
-        telemetry.read_text(encoding="utf-8").replace(",54,1200,", ",broken,1200,"),
-        encoding="utf-8",
-    )
-
-    window = ingest(bundle, context)
-
-    assert "client.received_fps" in window.rejected_metrics
-    assert "client.received_fps" not in window.metrics
-
-
-def test_inactive_playback_is_preserved_as_invalid_window(
-    tmp_path: Path,
-    context: ContextKey,
-) -> None:
-    bundle = copy_bundle(tmp_path)
-    telemetry = bundle / "stream-telemetry.csv"
-    telemetry.write_text(
-        telemetry.read_text(encoding="utf-8").replace(",host,playing,54", ",host,error,54"),
-        encoding="utf-8",
-    )
-
-    window = ingest(bundle, context)
-
-    assert not window.validity.is_valid
-    assert "telemetry window includes inactive playback" in window.validity.reasons
-
-
-def test_cross_file_identity_mismatch_is_rejected(
-    tmp_path: Path,
-    context: ContextKey,
-) -> None:
-    bundle = copy_bundle(tmp_path)
-    summary_path = bundle / "summary.json"
-    summary = json.loads(summary_path.read_text(encoding="utf-8"))
-    summary["runId"] = "different-run"
-    summary_path.write_text(json.dumps(summary), encoding="utf-8")
-
-    with pytest.raises(PixelatedBundleError, match="identity disagrees"):
-        ingest(bundle, context)
-
-
-def test_tar_path_traversal_is_rejected(tmp_path: Path, context: ContextKey) -> None:
-    archive_path = tmp_path / "unsafe.tar"
-    with tarfile.open(archive_path, "w") as archive:
-        member = tarfile.TarInfo("../../outside.txt")
-        payload = b"unsafe"
-        member.size = len(payload)
-        archive.addfile(member, io.BytesIO(payload))
-
-    with pytest.raises(PixelatedBundleError, match="unsafe TAR member path"):
-        ingest(archive_path, context)
-
-
-def test_tar_links_are_rejected(tmp_path: Path, context: ContextKey) -> None:
-    archive_path = tmp_path / "link.tar"
-    with tarfile.open(archive_path, "w") as archive:
-        member = tarfile.TarInfo("run-metadata.json")
-        member.type = tarfile.SYMTYPE
-        member.linkname = "elsewhere.json"
-        archive.addfile(member)
-
-    with pytest.raises(PixelatedBundleError, match="TAR links are not allowed"):
-        ingest(archive_path, context)
-
-
-def test_context_and_comparison_case_are_not_silently_invented(context: ContextKey) -> None:
-    with pytest.raises(PixelatedBundleError, match="comparison_case_id cannot be empty"):
-        ingest_pixelated_bundle(
-            VALID_BUNDLE,
-            phase=WindowPhase.DEGRADED,
-            comparison_case_id=" ",
-            context=context,
-        )

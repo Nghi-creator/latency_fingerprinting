@@ -8,6 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from latency_fingerprinting.models import (
+    ContextKey,
     MetricAggregate,
     ObservationWindow,
     TimeBounds,
@@ -15,7 +16,14 @@ from latency_fingerprinting.models import (
     WindowPhase,
 )
 
-from .factories import make_metric, make_window
+from .factories import make_context, make_metric, make_window
+
+
+def test_context_requires_a_nonempty_nominal_profile() -> None:
+    payload = make_context().model_dump()
+    payload["nominal_stream_profile"] = {}
+    with pytest.raises(ValidationError, match="cannot be empty"):
+        ContextKey.model_validate(payload)
 
 
 @pytest.mark.parametrize("non_finite", [float("nan"), float("inf"), float("-inf")])
@@ -65,6 +73,17 @@ def test_metric_summary_must_have_samples_and_consistent_range() -> None:
         MetricAggregate(unit="ms", aggregation="median", value=5, count=1, minimum=10, maximum=1)
     with pytest.raises(ValidationError, match="must not exceed maximum"):
         MetricAggregate(unit="ms", aggregation="median", value=5, count=1, minimum=0, maximum=4)
+    with pytest.raises(ValidationError, match="p95 must not be below median"):
+        MetricAggregate(unit="ms", aggregation="median", value=5, count=1, median=5, p95=4)
+    with pytest.raises(ValidationError, match="value must equal median"):
+        MetricAggregate(unit="ms", aggregation="median", value=5, count=1, median=4)
+
+
+def test_window_rejects_duplicate_missing_metrics() -> None:
+    payload = make_window(WindowPhase.DEGRADED, "window-degraded", 0, 20).model_dump()
+    payload["missing_metrics"] = ["client.decode_ms", "client.decode_ms"]
+    with pytest.raises(ValidationError, match="cannot contain duplicates"):
+        ObservationWindow.model_validate(payload)
 
 
 def test_metric_cannot_be_measured_and_missing_or_rejected() -> None:

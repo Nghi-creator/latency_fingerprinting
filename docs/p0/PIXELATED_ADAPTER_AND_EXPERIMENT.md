@@ -27,7 +27,11 @@ summary.json
 
 The adapter detects v2 from the manifest, validates its phase/comparison/run
 identity and privacy declaration, checks engine/encoder source identity, and
-keeps the original v1 path unchanged.
+keeps the original v1 path unchanged. The hardened boundary also rejects links,
+duplicate TAR members and duplicate JSON keys; caps archive members, bytes and
+CSV rows; checks the explicit workload context; requires strict per-source time
+ordering; cross-checks elapsed and UTC clocks; aligns engine samples with the
+browser window; and retains exporter-declared invalidity.
 
 It must validate files and columns, reject unsafe TAR paths, select explicit phases, aggregate telemetry, map names into core metrics, preserve provenance, report missing evidence and never ingest credentials.
 
@@ -41,6 +45,11 @@ signals, interval engine-process resources and encoder-path counters. It still
 does not provide direct encode time, input-to-frame or exact display timing; P0
 must not claim those metrics. `pipelineDelayProxyMs` stays missing until a
 validated proxy exists.
+
+P0 counter-derived features retain the frozen median interval-delta semantics.
+Before captures with different sampling cadence are compared, the next contract
+must version these as rates and/or total-window deltas as described in
+[`../NEXT_IMPLEMENTATION_PLAN.md`](../NEXT_IMPLEMENTATION_PLAN.md).
 
 ## Control boundary
 

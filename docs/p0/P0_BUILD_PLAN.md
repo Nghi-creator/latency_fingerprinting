@@ -271,7 +271,7 @@ Apply checks in this order:
 
 1. contract, schema, probe and context compatibility;
 2. finite shared-feature intersection;
-3. minimum shared-feature count;
+3. minimum positive-weight shared-feature count;
 4. minimum feature coverage;
 5. non-degenerate vector and usable weights;
 6. weighted-distance ranking;

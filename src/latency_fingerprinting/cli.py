@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .fingerprints import load_fingerprint_repository
+from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
 from .models import (
     FINGERPRINT_SCHEMA_VERSION,
@@ -45,12 +46,12 @@ def _write_json(payload: Any) -> None:
 
 
 def _load_model(path: Path, model: type[ModelT]) -> ModelT:
-    return model.model_validate_json(path.read_text(encoding="utf-8"))
+    return load_model_file(path, model)
 
 
 def _validate(args: argparse.Namespace) -> None:
     path: Path = args.path
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = load_json_file(path)
     if not isinstance(payload, dict):
         raise ValueError("JSON root must be an object")
 
