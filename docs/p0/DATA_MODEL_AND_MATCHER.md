@@ -119,7 +119,8 @@ Matching steps:
 
 1. Reject incompatible contract/schema major versions, probe types or compatibility groups.
 2. Compare only finite shared features.
-3. Enforce minimum shared-feature count and coverage.
+3. Enforce minimum positive-weight shared-feature count and coverage. Zero-weight
+   features remain visible for audit but cannot satisfy an evidence gate.
 4. Apply declared feature weights.
 5. Calculate weighted distance and adjusted match strength.
 6. Rank candidates and calculate the top-two margin.

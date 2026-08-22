@@ -10,6 +10,7 @@ from latency_fingerprinting.models import (
     ObservationRecord,
     Probe,
     ProbeExecutionStatus,
+    ProvenanceKind,
     ResponseDelta,
     RestorationStatus,
 )
@@ -49,6 +50,39 @@ def test_executed_probe_requires_observed_settings() -> None:
 
     with pytest.raises(ValidationError, match="observed runtime settings"):
         Probe.model_validate(payload)
+
+
+def test_probe_requires_a_change_and_consistent_execution_metadata() -> None:
+    observation = make_observation()
+    payload = observation.probe.model_dump()
+    payload["requested_settings"] = {}
+    with pytest.raises(ValidationError, match="at least one requested setting"):
+        Probe.model_validate(payload)
+
+    payload = observation.probe.model_dump()
+    payload["observed_settings"] = {"fps": 30}
+    with pytest.raises(ValidationError, match="observed runtime settings"):
+        Probe.model_validate(payload)
+
+    payload = observation.probe.model_dump()
+    payload["intensity"] = 0
+    with pytest.raises(ValidationError):
+        Probe.model_validate(payload)
+
+
+def test_observation_provenance_and_derived_values_must_be_truthful() -> None:
+    observation = make_observation()
+    payload = observation.model_dump()
+    payload["provenance"] = ProvenanceKind.CONTROLLED_REAL
+    payload["degraded_window"]["provenance"] = ProvenanceKind.CONTROLLED_REAL
+    payload["relief_window"]["provenance"] = ProvenanceKind.CONTROLLED_REAL
+    with pytest.raises(ValidationError, match="real observations cannot use"):
+        ObservationRecord.model_validate(payload)
+
+    payload = observation.model_dump()
+    payload["normalized_response"]["features"]["transport.jitter_ms"]["value"] = -0.1
+    with pytest.raises(ValidationError, match="disagrees with its raw delta"):
+        ObservationRecord.model_validate(payload)
 
 
 def test_feature_delta_enforces_relief_minus_degraded_sign() -> None:

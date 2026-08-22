@@ -5,6 +5,8 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from enum import StrEnum
+from numbers import Real
+from typing import Any
 
 from .models import ObservationWindow, Probe, WindowPhase
 
@@ -70,6 +72,25 @@ def _issue(
 
 def _duration_relative_difference(degraded_duration: float, relief_duration: float) -> float:
     return abs(degraded_duration - relief_duration) / max(degraded_duration, relief_duration)
+
+
+def _json_values_equal(left: Any, right: Any) -> bool:
+    """Compare JSON values without treating booleans as the integers 0 and 1."""
+
+    if isinstance(left, bool) or isinstance(right, bool):
+        return isinstance(left, bool) and isinstance(right, bool) and left == right
+    if isinstance(left, Real) and isinstance(right, Real):
+        return left == right
+    if isinstance(left, dict) and isinstance(right, dict):
+        return set(left) == set(right) and all(
+            _json_values_equal(left[key], right[key]) for key in left
+        )
+    if isinstance(left, list) and isinstance(right, list):
+        return len(left) == len(right) and all(
+            _json_values_equal(left_item, right_item)
+            for left_item, right_item in zip(left, right, strict=True)
+        )
+    return type(left) is type(right) and left == right
 
 
 def validate_window_comparability(
@@ -223,14 +244,17 @@ def validate_window_comparability(
         sorted(
             key
             for key in setting_keys
-            if degraded.effective_settings.get(key) != relief.effective_settings.get(key)
+            if key not in degraded.effective_settings
+            or key not in relief.effective_settings
+            or not _json_values_equal(
+                degraded.effective_settings[key], relief.effective_settings[key]
+            )
         )
     )
     requested_settings = set(probe.requested_settings)
     for setting, requested_value in sorted(probe.requested_settings.items()):
-        if (
-            setting not in relief.effective_settings
-            or relief.effective_settings[setting] != requested_value
+        if setting not in relief.effective_settings or not _json_values_equal(
+            relief.effective_settings[setting], requested_value
         ):
             issues.append(
                 _issue(
@@ -239,7 +263,9 @@ def validate_window_comparability(
                     setting,
                 )
             )
-        elif degraded.effective_settings.get(setting) == relief.effective_settings[setting]:
+        elif setting in degraded.effective_settings and _json_values_equal(
+            degraded.effective_settings[setting], relief.effective_settings[setting]
+        ):
             issues.append(
                 _issue(
                     ComparabilityReason.REQUESTED_SETTING_UNCHANGED,
@@ -250,9 +276,8 @@ def validate_window_comparability(
 
     if probe.observed_settings is not None:
         for setting, observed_value in sorted(probe.observed_settings.items()):
-            if (
-                setting not in relief.effective_settings
-                or relief.effective_settings[setting] != observed_value
+            if setting not in relief.effective_settings or not _json_values_equal(
+                relief.effective_settings[setting], observed_value
             ):
                 issues.append(
                     _issue(

@@ -5,16 +5,19 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
-import json
 import tarfile
 from collections.abc import Mapping, Set
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from ..json_io import strict_json_loads
 from .pixelated_bundle_common import PixelatedBundleError
 
 MAX_ARCHIVE_MEMBERS = 64
 MAX_TEXT_FILE_BYTES = 10 * 1024 * 1024
+MAX_BUNDLE_BYTES = 64 * 1024 * 1024
+MAX_ARCHIVE_DECLARED_BYTES = 128 * 1024 * 1024
+MAX_CSV_ROWS = 250_000
 
 
 def _safe_archive_name(name: str) -> str:
@@ -37,29 +40,39 @@ def _read_tar_members(
     readable_files: Set[str],
 ) -> dict[str, bytes]:
     files: dict[str, bytes] = {}
-    members = archive.getmembers()
-    if len(members) > MAX_ARCHIVE_MEMBERS:
-        raise PixelatedBundleError(
-            f"TAR contains {len(members)} members; maximum is {MAX_ARCHIVE_MEMBERS}"
-        )
-    for member in members:
+    seen_names: set[str] = set()
+    readable_bytes = 0
+    declared_bytes = 0
+    for member_index, member in enumerate(archive, start=1):
+        if member_index > MAX_ARCHIVE_MEMBERS:
+            raise PixelatedBundleError(f"TAR contains more than {MAX_ARCHIVE_MEMBERS} members")
         name = _safe_archive_name(member.name)
+        if name in seen_names:
+            raise PixelatedBundleError(f"duplicate TAR member: {name!r}")
+        seen_names.add(name)
         if member.issym() or member.islnk():
             raise PixelatedBundleError(f"TAR links are not allowed: {name!r}")
         if member.isdir():
             continue
         if not member.isfile():
             raise PixelatedBundleError(f"unsupported TAR member type: {name!r}")
+        declared_bytes += member.size
+        if declared_bytes > MAX_ARCHIVE_DECLARED_BYTES:
+            raise PixelatedBundleError("TAR declared contents exceed the archive size limit")
         if name not in readable_files:
             continue
-        if name in files:
-            raise PixelatedBundleError(f"duplicate TAR member: {name!r}")
         if member.size > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
+        readable_bytes += member.size
+        if readable_bytes > MAX_BUNDLE_BYTES:
+            raise PixelatedBundleError("readable TAR contents exceed the bundle size limit")
         extracted = archive.extractfile(member)
         if extracted is None:
             raise PixelatedBundleError(f"cannot read TAR member: {name!r}")
-        files[name] = extracted.read(MAX_TEXT_FILE_BYTES + 1)
+        payload = extracted.read(MAX_TEXT_FILE_BYTES + 1)
+        if len(payload) > MAX_TEXT_FILE_BYTES:
+            raise PixelatedBundleError(f"bundle file is too large: {name!r}")
+        files[name] = payload
     return files
 
 
@@ -73,7 +86,10 @@ def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
             continue
         if candidate.stat().st_size > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
-        files[name] = candidate.read_bytes()
+        payload = candidate.read_bytes()
+        if len(payload) > MAX_TEXT_FILE_BYTES:
+            raise PixelatedBundleError(f"bundle file is too large: {name!r}")
+        files[name] = payload
     return files
 
 
@@ -83,6 +99,8 @@ def read_bundle(
     readable_files: Set[str],
     required_files: Set[str],
 ) -> dict[str, bytes]:
+    if path.is_symlink():
+        raise PixelatedBundleError(f"bundle links are not allowed: {path}")
     if path.is_dir():
         files = _read_directory(path, readable_files)
     elif path.is_file():
@@ -104,8 +122,8 @@ def _decode(files: Mapping[str, bytes], name: str) -> str:
 
 def json_object(files: Mapping[str, bytes], name: str) -> dict[str, Any]:
     try:
-        payload = json.loads(_decode(files, name))
-    except json.JSONDecodeError as error:
+        payload = strict_json_loads(_decode(files, name))
+    except ValueError as error:
         raise PixelatedBundleError(f"{name} is not valid JSON: {error}") from error
     if not isinstance(payload, dict):
         raise PixelatedBundleError(f"{name} JSON root must be an object")
@@ -127,7 +145,11 @@ def csv_rows(
     if missing:
         raise PixelatedBundleError(f"{name} is missing required columns: {', '.join(missing)}")
     try:
-        rows = [dict(row) for row in reader]
+        rows: list[dict[str, str]] = []
+        for row in reader:
+            if len(rows) >= MAX_CSV_ROWS:
+                raise PixelatedBundleError(f"{name} contains more than {MAX_CSV_ROWS} data rows")
+            rows.append(dict(row))
     except csv.Error as error:
         raise PixelatedBundleError(f"{name} is not valid CSV: {error}") from error
     for index, row in enumerate(rows, start=2):

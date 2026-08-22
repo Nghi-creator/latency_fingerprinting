@@ -1,6 +1,6 @@
 # P0 Software Closeout
 
-**Verified:** 2026-08-20
+**Verified:** 2026-08-22
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
 
@@ -43,12 +43,19 @@ latency-fingerprint match \
 
 Verification result:
 
-- 231 tests passed;
+- 260 tests passed with 86.21% branch-aware coverage;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
 - the generated result validated as `match-result-v1`;
 - Ruff lint and format checks passed.
+
+The post-P0 hardening pass additionally verified duplicate-safe and bounded JSON
+loading, archive/file/row limits, symlink rejection, telemetry workload and
+clock alignment, summary validity/duration retention, cross-record arithmetic
+and provenance invariants, positive probe intensity, and positive-weight
+matcher coverage. CI now runs on every pushed branch, enforces an 85% coverage
+floor, checks dependencies, and includes Ruff security rules.
 
 ## Inspectable examples
 
@@ -110,6 +117,9 @@ composite Performance preset.
 - The controlled response contains 22 cross-layer metrics, but
   `encoder.pipeline_delay_proxy_ms` is unavailable and tail behavior is not a
   separate matcher feature when the declared aggregate is the median.
+- P0 cumulative frame counters are represented as median interval deltas. A v2
+  contract must migrate these to explicitly versioned rates and/or total-window
+  deltas before comparing captures with different sampling cadence.
 - Sender queues, GPU behavior and exact display timing remain incompletely or
   indirectly observed.
 - The stream-profile relief is composite: FPS, bitrate and VP8 encoder settings

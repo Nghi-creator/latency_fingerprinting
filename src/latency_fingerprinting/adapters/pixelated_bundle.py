@@ -66,6 +66,9 @@ from .pixelated_bundle_v2 import (
     validate_engine_rows as _validate_engine_rows,
 )
 from .pixelated_bundle_v2 import (
+    validate_engine_window_alignment as _validate_engine_window_alignment,
+)
+from .pixelated_bundle_v2 import (
     validate_event_privacy as _validate_event_privacy,
 )
 from .pixelated_bundle_v2 import (
@@ -132,11 +135,18 @@ def _read_bundle(path: Path) -> dict[str, bytes]:
     )
 
 
-def _validate_metadata(metadata: Mapping[str, Any]) -> tuple[str, str, dict[str, Any]]:
+def _validate_metadata(
+    metadata: Mapping[str, Any],
+) -> tuple[str, str, str, str, dict[str, Any]]:
     if metadata.get("schemaVersion") != 1:
         raise PixelatedBundleError("run-metadata.json requires schemaVersion 1")
     run_id = _required_string(metadata, "runId", "run-metadata.json")
     session_id = _required_string(metadata, "sessionId", "run-metadata.json")
+    game = metadata.get("game")
+    if not isinstance(game, dict):
+        raise PixelatedBundleError("run-metadata.json requires object 'game'")
+    workload_id = _required_string(game, "id", "run-metadata.json game")
+    player_mode = _required_string(metadata, "playerMode", "run-metadata.json")
     profile = metadata.get("streamProfile")
     if not isinstance(profile, dict):
         raise PixelatedBundleError("run-metadata.json requires object 'streamProfile'")
@@ -165,7 +175,7 @@ def _validate_metadata(metadata: Mapping[str, Any]) -> tuple[str, str, dict[str,
                 "run-metadata.json streamProfile 'id' must be a non-empty string or null"
             )
         settings["streamProfileId"] = profile_id.strip()
-    return run_id, session_id, settings
+    return run_id, session_id, workload_id, player_mode, settings
 
 
 def ingest_pixelated_bundle(
@@ -202,7 +212,11 @@ def ingest_pixelated_bundle(
     if not telemetry_rows:
         raise PixelatedBundleError("stream-telemetry.csv requires at least one data row")
 
-    run_id, session_id, effective_settings = _validate_metadata(metadata)
+    run_id, session_id, workload_id, player_mode, effective_settings = _validate_metadata(metadata)
+    if workload_id != context.workload_id:
+        raise PixelatedBundleError(
+            "run-metadata.json workload identity disagrees with the explicit context"
+        )
     engine_rows: list[dict[str, str]] = []
     if manifest is not None:
         _validate_v2_metadata_privacy(metadata)
@@ -223,9 +237,9 @@ def ingest_pixelated_bundle(
             engine_rows,
             run_id=run_id,
             session_id=session_id,
+            workload_id=workload_id,
             allow_empty=metadata.get("scenario") == "browser_only_baseline",
         )
-        _validate_v2_summary(summary, engine_rows)
         effective_settings.update(_engine_effective_settings(engine_rows))
     _validate_cross_file_identity(
         summary,
@@ -233,6 +247,8 @@ def ingest_pixelated_bundle(
         event_rows,
         run_id=run_id,
         session_id=session_id,
+        workload_id=workload_id,
+        player_mode=player_mode,
     )
     _validate_packet_loss_deltas(telemetry_rows)
 
@@ -242,8 +258,8 @@ def ingest_pixelated_bundle(
     ]
     if any(value < 0 for value in elapsed):
         raise PixelatedBundleError("telemetry elapsed_ms cannot be negative")
-    if elapsed != sorted(elapsed):
-        raise PixelatedBundleError("telemetry elapsed_ms must be monotonically non-decreasing")
+    if any(current <= previous for previous, current in zip(elapsed, elapsed[1:], strict=False)):
+        raise PixelatedBundleError("telemetry elapsed_ms must be strictly increasing")
     timestamps = [
         _utc_datetime(
             row["captured_at"],
@@ -251,14 +267,37 @@ def ingest_pixelated_bundle(
         )
         for index, row in enumerate(telemetry_rows, start=2)
     ]
-    if timestamps != sorted(timestamps):
-        raise PixelatedBundleError("telemetry captured_at must be monotonically non-decreasing")
+    if any(
+        current <= previous for previous, current in zip(timestamps, timestamps[1:], strict=False)
+    ):
+        raise PixelatedBundleError("telemetry captured_at must be strictly increasing")
     duration_s = (timestamps[-1] - timestamps[0]).total_seconds()
     if duration_s <= 0:
         raise PixelatedBundleError("telemetry window duration must be greater than zero")
     elapsed_duration_s = (elapsed[-1] - elapsed[0]) / 1000
     if not math.isclose(duration_s, elapsed_duration_s, rel_tol=1e-6, abs_tol=0.001):
         raise PixelatedBundleError("telemetry wall-clock and elapsed durations disagree")
+    for index, (timestamp, elapsed_ms) in enumerate(zip(timestamps, elapsed, strict=True), start=2):
+        wall_elapsed_s = (timestamp - timestamps[0]).total_seconds()
+        declared_elapsed_s = (elapsed_ms - elapsed[0]) / 1000
+        if not math.isclose(wall_elapsed_s, declared_elapsed_s, rel_tol=1e-6, abs_tol=0.001):
+            raise PixelatedBundleError(
+                f"stream-telemetry.csv row {index} wall-clock and elapsed times disagree"
+            )
+    if manifest is not None:
+        _validate_engine_window_alignment(
+            engine_rows,
+            started_at=timestamps[0],
+            ended_at=timestamps[-1],
+            elapsed_start_ms=elapsed[0],
+            elapsed_end_ms=elapsed[-1],
+        )
+        _validate_v2_summary(
+            summary,
+            engine_rows,
+            telemetry_count=len(telemetry_rows),
+            duration_ms=duration_s * 1000,
+        )
 
     metrics, missing_metrics, rejected_metrics = _metrics(telemetry_rows)
     counter_metrics, counter_missing, counter_rejected = _counter_metrics(
@@ -277,6 +316,8 @@ def ingest_pixelated_bundle(
     reasons = _validity_reasons(telemetry_rows, event_rows)
     if manifest is not None:
         reasons.extend(_v2_validity_reasons(metadata, manifest, engine_rows))
+        if summary["validity"]["isValid"] is False:
+            reasons.extend(f"bundle summary: {reason}" for reason in summary["validity"]["reasons"])
     checksum = _bundle_checksum(files)
     return ObservationWindow(
         run_id=run_id,

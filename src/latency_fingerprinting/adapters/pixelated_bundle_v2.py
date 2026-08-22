@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping, Sequence
+from datetime import datetime, timedelta
 from typing import Any
 
+from ..json_io import strict_json_loads
 from ..models import WindowPhase
 from .pixelated_bundle_common import (
     PixelatedBundleError,
@@ -144,32 +145,34 @@ def _validate_manifest_support(manifest: Mapping[str, Any]) -> None:
 
 
 def validate_metadata_privacy(metadata: Mapping[str, Any]) -> None:
-    forbidden_fields = (
-        "absolutePath",
-        "engineToken",
+    forbidden = _forbidden_private_key(metadata, include_notes=True)
+    if forbidden is not None:
+        raise PixelatedBundleError(f"v2 run metadata must omit privacy field {forbidden!r}")
+
+
+def _forbidden_private_key(value: Any, *, include_notes: bool = False) -> str | None:
+    forbidden_keys = {
+        "absolutepath",
+        "enginetoken",
         "hostname",
-        "notes",
-        "rawPeerId",
-        "shareUrl",
+        "peerid",
+        "rawpeerid",
+        "shareurl",
         "username",
-    )
-    for forbidden in forbidden_fields:
-        if forbidden in metadata:
-            raise PixelatedBundleError(f"v2 run metadata must omit privacy field {forbidden!r}")
-
-
-def _forbidden_event_detail_key(value: Any) -> str | None:
+    }
+    if include_notes:
+        forbidden_keys.add("notes")
     if isinstance(value, Mapping):
         for key, nested in value.items():
             normalized = "".join(character for character in str(key).lower() if character.isalnum())
-            if normalized in {"peerid", "rawpeerid"}:
+            if normalized in forbidden_keys:
                 return str(key)
-            forbidden = _forbidden_event_detail_key(nested)
+            forbidden = _forbidden_private_key(nested, include_notes=include_notes)
             if forbidden is not None:
                 return forbidden
     elif isinstance(value, list):
         for nested in value:
-            forbidden = _forbidden_event_detail_key(nested)
+            forbidden = _forbidden_private_key(nested, include_notes=include_notes)
             if forbidden is not None:
                 return forbidden
     return None
@@ -181,8 +184,8 @@ def validate_event_privacy(event_rows: Sequence[Mapping[str, str]]) -> None:
         if not raw_details:
             continue
         try:
-            details = json.loads(raw_details)
-        except json.JSONDecodeError as error:
+            details = strict_json_loads(raw_details)
+        except ValueError as error:
             raise PixelatedBundleError(
                 f"stream-events.csv row {index} details_json must be valid JSON"
             ) from error
@@ -190,7 +193,7 @@ def validate_event_privacy(event_rows: Sequence[Mapping[str, str]]) -> None:
             raise PixelatedBundleError(
                 f"stream-events.csv row {index} details_json must be an object"
             )
-        forbidden = _forbidden_event_detail_key(details)
+        forbidden = _forbidden_private_key(details)
         if forbidden is not None:
             raise PixelatedBundleError(
                 f"stream-events.csv row {index} exposes private peer identity {forbidden!r}"
@@ -211,6 +214,7 @@ def validate_engine_rows(
     *,
     run_id: str,
     session_id: str,
+    workload_id: str,
     allow_empty: bool = False,
 ) -> None:
     if not rows:
@@ -231,6 +235,10 @@ def validate_engine_rows(
         if row.get("run_id") != run_id or row.get("session_id") != session_id:
             raise PixelatedBundleError(
                 f"engine-telemetry.csv row {index} identity disagrees with metadata"
+            )
+        if row.get("game_id") != workload_id:
+            raise PixelatedBundleError(
+                f"engine-telemetry.csv row {index} workload disagrees with metadata"
             )
         if row.get("schema_version") != "1":
             raise PixelatedBundleError(
@@ -270,12 +278,56 @@ def _validate_source_sequence(source: str, rows: Sequence[Mapping[str, str]]) ->
         )
         for row in rows
     ]
-    if any(value < 0 for value in elapsed) or elapsed != sorted(elapsed):
+    if any(value < 0 for value in elapsed) or any(
+        current <= previous for previous, current in zip(elapsed, elapsed[1:], strict=False)
+    ):
         raise PixelatedBundleError(
-            f"engine-telemetry.csv {source} elapsed_ms must be non-negative and monotonic"
+            f"engine-telemetry.csv {source} elapsed_ms must be non-negative and strictly increasing"
         )
-    if timestamps != sorted(timestamps):
-        raise PixelatedBundleError(f"engine-telemetry.csv {source} captured_at must be monotonic")
+    if any(
+        current <= previous for previous, current in zip(timestamps, timestamps[1:], strict=False)
+    ):
+        raise PixelatedBundleError(
+            f"engine-telemetry.csv {source} captured_at must be strictly increasing"
+        )
+    for timestamp, elapsed_ms in zip(timestamps, elapsed, strict=True):
+        wall_elapsed_s = (timestamp - timestamps[0]).total_seconds()
+        declared_elapsed_s = (elapsed_ms - elapsed[0]) / 1000
+        if abs(wall_elapsed_s - declared_elapsed_s) > 0.001:
+            raise PixelatedBundleError(
+                f"engine-telemetry.csv {source} wall-clock and elapsed times disagree"
+            )
+
+
+def validate_engine_window_alignment(
+    rows: Sequence[Mapping[str, str]],
+    *,
+    started_at: datetime,
+    ended_at: datetime,
+    elapsed_start_ms: float,
+    elapsed_end_ms: float,
+) -> None:
+    """Ensure engine samples belong to the browser observation interval."""
+
+    timestamp_margin = timedelta(seconds=1)
+    elapsed_margin_ms = 1000
+    for index, row in enumerate(rows, start=2):
+        timestamp = utc_datetime(
+            row["captured_at"], source=f"engine-telemetry.csv row {index} captured_at"
+        )
+        elapsed_ms = finite_number(
+            row["elapsed_ms"], source=f"engine-telemetry.csv row {index} elapsed_ms"
+        )
+        if not started_at - timestamp_margin <= timestamp <= ended_at + timestamp_margin:
+            raise PixelatedBundleError(
+                f"engine-telemetry.csv row {index} falls outside the browser capture window"
+            )
+        if not (
+            elapsed_start_ms - elapsed_margin_ms <= elapsed_ms <= elapsed_end_ms + elapsed_margin_ms
+        ):
+            raise PixelatedBundleError(
+                f"engine-telemetry.csv row {index} elapsed time falls outside the browser window"
+            )
 
 
 def engine_effective_settings(rows: Sequence[Mapping[str, str]]) -> dict[str, Any]:
@@ -290,7 +342,11 @@ def engine_effective_settings(rows: Sequence[Mapping[str, str]]) -> dict[str, An
         "targetFps": "target_fps",
     }
     for setting, column in fields.items():
-        values = {(row.get(column) or "").strip() for row in rows}
+        values = {
+            (row.get(column) or "").strip()
+            for row in rows
+            if row.get("available", "").strip().lower() == "true"
+        }
         values.discard("")
         if len(values) > 1:
             raise PixelatedBundleError(
@@ -312,6 +368,9 @@ def engine_effective_settings(rows: Sequence[Mapping[str, str]]) -> dict[str, An
 def validate_summary(
     summary: Mapping[str, Any],
     engine_rows: Sequence[Mapping[str, str]],
+    *,
+    telemetry_count: int,
+    duration_ms: float,
 ) -> None:
     if summary.get("schemaVersion") != 2:
         raise PixelatedBundleError("v2 summary.json requires schemaVersion 2")
@@ -321,7 +380,25 @@ def validate_summary(
     sources = validity.get("sources")
     if not isinstance(sources, dict):
         raise PixelatedBundleError("v2 summary.json requires source counts")
+    reasons = validity.get("reasons")
+    if not isinstance(reasons, list) or any(
+        not isinstance(reason, str) or not reason.strip() for reason in reasons
+    ):
+        raise PixelatedBundleError("v2 summary.json requires string validity reasons")
+    if validity["isValid"] == bool(reasons):
+        raise PixelatedBundleError("v2 summary.json validity and reasons disagree")
+    recording = summary.get("recording")
+    if not isinstance(recording, dict):
+        raise PixelatedBundleError("v2 summary.json requires recording metadata")
+    if recording.get("sampleCount") != telemetry_count:
+        raise PixelatedBundleError("summary.json browser sample count disagrees with telemetry")
+    declared_duration = recording.get("durationMs")
+    if isinstance(declared_duration, bool) or not isinstance(declared_duration, (int, float)):
+        raise PixelatedBundleError("summary.json recording durationMs must be numeric")
+    if abs(float(declared_duration) - duration_ms) > 1:
+        raise PixelatedBundleError("summary.json recording duration disagrees with telemetry")
     expected_counts = {
+        "browserWebrtc": telemetry_count,
         "engineRuntime": sum(row.get("source") == "engine_runtime" for row in engine_rows),
         "encoderPipeline": sum(row.get("source") == "encoder_pipeline" for row in engine_rows),
     }
@@ -365,6 +442,7 @@ __all__ = [
     "V2_REQUIRED_FILES",
     "engine_effective_settings",
     "validate_engine_rows",
+    "validate_engine_window_alignment",
     "validate_manifest",
     "validate_metadata_privacy",
     "validate_summary",

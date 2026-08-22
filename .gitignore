@@ -20,3 +20,6 @@ experiments/**/*.tar.gz
 !experiments/**/manifest.json
 !experiments/**/observation.json
 !experiments/**/match-result.json
+
+LOCAL_SRC_GUIDE.md
+docs/NEXT_IMPLEMENTATION_PLAN.md

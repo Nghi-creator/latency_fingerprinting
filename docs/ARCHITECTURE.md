@@ -87,6 +87,7 @@ latency-fingerprinting/
 │   │   └── decision.py
 │   ├── evidence.py
 │   ├── schemas.py
+│   ├── json_io.py
 │   ├── cli.py
 │   ├── __init__.py
 │   └── adapters/
@@ -139,6 +140,13 @@ Development tools:
 - Ruff.
 
 Use standard-library `argparse` for the CLI. Do not add pandas, scikit-learn, FastAPI, SQLite or notebook infrastructure unless a concrete P0 blocker requires one.
+
+Public JSON file boundaries use `json_io.py` to reject duplicate keys,
+non-standard non-finite constants, invalid UTF-8 and oversized records before
+model validation. The Pixelated boundary additionally caps archive members,
+per-file bytes, total readable bytes and CSV rows; rejects links and duplicate
+TAR members; and cross-checks workload/session identity plus browser/engine
+clock alignment.
 
 Pydantic models are the Python source of truth. Checked-in JSON Schemas are generated from the models, with a regression test preventing drift.
 

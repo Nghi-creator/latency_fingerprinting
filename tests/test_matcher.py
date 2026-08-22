@@ -153,6 +153,31 @@ def test_invalid_observation_returns_unknown_with_retained_reason() -> None:
     assert "invalid_observation: synthetic invalid query" in result.warnings
 
 
+def test_invalid_observation_takes_precedence_over_an_empty_repository() -> None:
+    query = load_query("similar_network")
+    features = sorted(query.response_delta.features)
+    raw = query.response_delta.model_dump()
+    raw.update(
+        features={},
+        missing_features=features,
+        is_valid=False,
+        invalid_reasons=["invalid_observation: invalid query"],
+    )
+    normalized = query.normalized_response.model_dump()
+    normalized.update(
+        features={},
+        missing_features=features,
+        is_valid=False,
+        invalid_reasons=["invalid_observation: invalid query"],
+    )
+    query = rebuild(query, response_delta=raw, normalized_response=normalized)
+
+    result = match_observation(query, FingerprintRepository(entries=()))
+
+    assert result.unknown_reason is UnknownReason.INVALID_OBSERVATION
+    assert not result.compatibility.is_compatible
+
+
 def test_insufficient_shared_features_returns_unknown_without_scores() -> None:
     query = load_query("similar_network")
     query = with_feature_subset(
@@ -209,6 +234,22 @@ def test_all_zero_candidate_weights_return_degenerate_vector() -> None:
     assert result.match_strength is None
     assert result.ranked_candidates == []
     assert any("no positive shared feature weight" in warning for warning in result.warnings)
+
+
+def test_zero_weight_features_cannot_satisfy_the_evidence_gate() -> None:
+    entry = load_repository().entries[1]
+    weighted_feature = next(iter(entry.fingerprint.feature_weights))
+    weights = {feature: 0.0 for feature in entry.fingerprint.feature_weights}
+    weights[weighted_feature] = 1.0
+    fingerprint = rebuild(entry.fingerprint, feature_weights=weights)
+    repository = FingerprintRepository(
+        entries=(FingerprintEntry(path=entry.path, fingerprint=fingerprint),)
+    )
+
+    result = match_observation(load_query("similar_network"), repository)
+
+    assert result.unknown_reason is UnknownReason.INSUFFICIENT_FEATURE_COVERAGE
+    assert result.shared_feature_count == 1
 
 
 def test_weak_ambiguous_and_conflicting_reasons_have_stable_precedence() -> None:

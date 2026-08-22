@@ -28,6 +28,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
 8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 9. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
+10. [`docs/NEXT_IMPLEMENTATION_PLAN.md`](docs/NEXT_IMPLEMENTATION_PLAN.md) is the prioritized post-P0 feature and evaluation roadmap.
 
 ## Development setup
 
@@ -75,6 +76,10 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
   matching implemented.
 - Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
   archives and extracted directories with an explicit research context.
+- Post-P0 hardening pass: strict and bounded JSON/file boundaries, stronger
+  cross-record derivation/provenance invariants, cross-file telemetry identity
+  and clock checks, zero-weight matcher gate correction, and CI coverage/security
+  checks implemented.
 
 ### P0 result
 
@@ -104,6 +109,10 @@ for subsequent captures.
 
 - Live encoder mutation, autonomous recovery, calibrated probabilities,
   mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
+
+The ordered implementation sequence, phase gates, experiment requirements, and
+immediate next sprint are in the
+[`next implementation plan`](docs/NEXT_IMPLEMENTATION_PLAN.md).
 
 Inspectable software examples are linked from
 [`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is

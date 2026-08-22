@@ -467,7 +467,7 @@
           "$ref": "#/$defs/ProbeExecutionStatus"
         },
         "intensity": {
-          "minimum": 0,
+          "exclusiveMinimum": 0,
           "title": "Intensity",
           "type": "number"
         },

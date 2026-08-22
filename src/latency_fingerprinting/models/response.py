@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from typing import Annotated, Literal
 
-from pydantic import Field, JsonValue, model_validator
+from pydantic import Field, JsonValue, StrictBool, model_validator
 
 from .common import (
     CONTRACT_VERSION,
@@ -13,7 +13,6 @@ from .common import (
     ContractModel,
     FiniteFloat,
     NonEmptyStr,
-    NonNegativeFiniteFloat,
     PositiveFiniteFloat,
     ProbeApplicationMethod,
     ProbeExecutionStatus,
@@ -30,7 +29,7 @@ class Probe(ContractModel):
     probe_version: NonEmptyStr
     requested_settings: dict[str, JsonValue]
     observed_settings: dict[str, JsonValue] | None = None
-    intensity: NonNegativeFiniteFloat
+    intensity: PositiveFiniteFloat
     application_method: ProbeApplicationMethod
     degraded_window_id: NonEmptyStr
     relief_window_id: NonEmptyStr
@@ -52,6 +51,12 @@ class Probe(ContractModel):
             "relief",
         }:
             raise ValueError("paired_window_order must contain degraded and relief exactly once")
+        if not self.requested_settings:
+            raise ValueError("a probe requires at least one requested setting")
+        if any(not key.strip() for key in self.requested_settings):
+            raise ValueError("requested setting names cannot be empty")
+        if self.observed_settings is not None and not self.observed_settings:
+            raise ValueError("observed_settings cannot be empty when provided")
         if self.application_method is ProbeApplicationMethod.SIMULATED_PAIR:
             if self.execution_status is not ProbeExecutionStatus.NOT_EXECUTED:
                 raise ValueError("simulated_pair probes must not claim execution")
@@ -64,6 +69,16 @@ class Probe(ContractModel):
             and self.observed_settings is None
         ):
             raise ValueError("executed probes require observed runtime settings")
+        elif (
+            self.execution_status is ProbeExecutionStatus.NOT_EXECUTED
+            and self.observed_settings is not None
+        ):
+            raise ValueError("a probe that was not executed cannot have observed runtime settings")
+        if self.execution_status is ProbeExecutionStatus.EXECUTED and self.restoration_status in {
+            RestorationStatus.NOT_APPLICABLE,
+            RestorationStatus.NOT_EXECUTED,
+        }:
+            raise ValueError("executed probes require an applicable restoration outcome")
         return self
 
 
@@ -88,7 +103,7 @@ class ResponseDelta(ContractModel):
     features: dict[NonEmptyStr, FeatureDelta]
     missing_features: list[NonEmptyStr] = Field(default_factory=list)
     rejected_features: dict[NonEmptyStr, NonEmptyStr] = Field(default_factory=dict)
-    is_valid: bool
+    is_valid: StrictBool
     invalid_reasons: list[NonEmptyStr] = Field(default_factory=list)
     warnings: list[NonEmptyStr] = Field(default_factory=list)
 
@@ -120,7 +135,7 @@ class NormalizedFeature(ContractModel):
     value: FiniteFloat
     epsilon: PositiveFiniteFloat
     reference_value: FiniteFloat
-    was_clipped: bool = False
+    was_clipped: StrictBool = False
     unclipped_value: FiniteFloat | None = None
 
     @model_validator(mode="after")
@@ -136,7 +151,7 @@ class NormalizedResponse(ContractModel):
     features: dict[NonEmptyStr, NormalizedFeature]
     missing_features: list[NonEmptyStr] = Field(default_factory=list)
     rejected_features: dict[NonEmptyStr, NonEmptyStr] = Field(default_factory=dict)
-    is_valid: bool = True
+    is_valid: StrictBool = True
     invalid_reasons: list[NonEmptyStr] = Field(default_factory=list)
     warnings: list[NonEmptyStr] = Field(default_factory=list)
 
@@ -184,6 +199,22 @@ class ObservationRecord(ContractModel):
             raise ValueError("both windows must use the record context")
         if degraded.provenance is not self.provenance or relief.provenance is not self.provenance:
             raise ValueError("window provenance must equal record provenance")
+        if (
+            self.provenance is ProvenanceKind.SYNTHETIC
+            and self.probe.application_method is not ProbeApplicationMethod.SIMULATED_PAIR
+        ):
+            raise ValueError("synthetic observations require a simulated_pair probe")
+        if (
+            self.provenance is not ProvenanceKind.SYNTHETIC
+            and self.probe.application_method is ProbeApplicationMethod.SIMULATED_PAIR
+        ):
+            raise ValueError("real observations cannot use a simulated_pair probe")
+        if (
+            self.provenance is not ProvenanceKind.SYNTHETIC
+            and self.normalized_response.is_valid
+            and self.probe.execution_status is not ProbeExecutionStatus.EXECUTED
+        ):
+            raise ValueError("valid real observations require an executed probe")
         if degraded.comparison_case_id != relief.comparison_case_id:
             raise ValueError("paired windows must share comparison_case_id")
         if (
@@ -208,4 +239,29 @@ class ObservationRecord(ContractModel):
             self.normalized_response.rejected_features
         ):
             raise ValueError("raw and normalized rejected-feature sets must agree")
+        for feature, raw in self.response_delta.features.items():
+            degraded_metric = degraded.metrics.get(feature)
+            relief_metric = relief.metrics.get(feature)
+            if degraded_metric is None or relief_metric is None:
+                raise ValueError(f"response feature {feature!r} requires both window metrics")
+            if (
+                raw.unit != degraded_metric.unit
+                or raw.aggregation != degraded_metric.aggregation
+                or not math.isclose(raw.degraded_value, degraded_metric.value, abs_tol=1e-12)
+                or not math.isclose(raw.relief_value, relief_metric.value, abs_tol=1e-12)
+            ):
+                raise ValueError(f"response feature {feature!r} disagrees with its source windows")
+            normalized = self.normalized_response.features[feature]
+            if not math.isclose(normalized.reference_value, raw.degraded_value, abs_tol=1e-12):
+                raise ValueError(f"normalized feature {feature!r} has the wrong reference value")
+            expected = raw.raw_delta / max(abs(raw.degraded_value), normalized.epsilon)
+            represented = normalized.unclipped_value if normalized.was_clipped else normalized.value
+            if represented is None:
+                raise ValueError(f"normalized feature {feature!r} is missing its unclipped value")
+            if not math.isclose(represented, expected, rel_tol=1e-12, abs_tol=1e-12):
+                raise ValueError(f"normalized feature {feature!r} disagrees with its raw delta")
+        if not set(self.response_delta.warnings).issubset(self.normalized_response.warnings):
+            raise ValueError("normalized response must retain raw response warnings")
+        if self.response_delta.invalid_reasons != self.normalized_response.invalid_reasons:
+            raise ValueError("raw and normalized invalid reasons must agree")
         return self

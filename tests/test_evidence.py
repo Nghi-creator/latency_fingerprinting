@@ -186,6 +186,9 @@ def test_zero_weight_feature_is_audited_but_does_not_affect_distance() -> None:
     assert [item.feature for item in evidence.ignored_evidence] == ["client.received_fps"]
     assert all(item.feature != "client.received_fps" for item in evidence.conflicting_evidence)
     assert evidence.total_weight == 3.0
+    assert evidence.shared_feature_count == 3
+    assert evidence.feature_coverage == 1.0
+    assert evidence.observable_feature_count == 4
     expected_sum = sum(
         item.weighted_squared_residual
         for item in evidence.evidence
@@ -207,6 +210,9 @@ def test_all_zero_weights_produce_degenerate_distance_without_division() -> None
     assert evidence.total_weight == 0
     assert evidence.distance is None
     assert evidence.ignored_evidence == evidence.evidence
+    assert evidence.shared_feature_count == 0
+    assert evidence.feature_coverage == 0
+    assert evidence.observable_feature_coverage == 1
 
 
 def test_invalid_query_is_an_analytical_error_for_evidence_stage() -> None:

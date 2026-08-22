@@ -23,6 +23,8 @@ Changes that alter the meaning or required fields of a record require a contract
 - Identifiers are opaque strings and must not contain secrets or personal machine data.
 - Timestamps use UTC ISO 8601 when real time exists; synthetic fixtures may use elapsed-time bounds.
 - Numeric metric values declare units, and serialized numbers must be finite.
+- File-based JSON ingestion rejects duplicate object keys and non-standard
+  `NaN`/infinity constants rather than accepting ambiguous records.
 
 ## 1. Context
 
@@ -134,6 +136,9 @@ A probe record contains:
 - restoration status;
 - safety notes and known confounders;
 - quality cost when measurable.
+
+Probe intensity must be finite and strictly positive; a zero-change record is
+not intervention evidence.
 
 For `simulated_pair`, execution and restoration status must both state that no
 runtime action occurred. Any quality cost is modeled fixture data, not an

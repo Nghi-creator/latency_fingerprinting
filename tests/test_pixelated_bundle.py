@@ -196,6 +196,21 @@ def test_v2_manifest_identity_and_privacy_are_enforced(
         ingest(bundle, context_v2)
 
 
+def test_v2_nested_metadata_privacy_fields_are_rejected(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    metadata_path = bundle / "run-metadata.json"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata["client"]["connection"] = {"shareUrl": "https://private.test/join"}
+    metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="shareUrl"):
+        ingest(bundle, context_v2)
+
+
 def test_v2_counter_resets_are_rejected_not_fabricated(
     tmp_path: Path,
     context_v2: ContextKey,
@@ -222,6 +237,97 @@ def test_bundle_schema_version_must_match_explicit_context(
 ) -> None:
     with pytest.raises(PixelatedBundleError, match="pixelatedBundleSchema disagrees"):
         ingest(VALID_V2_BUNDLE, context)
+
+
+def test_bundle_workload_must_match_explicit_context(context_v2: ContextKey) -> None:
+    incompatible = context_v2.model_copy(update={"workload_id": "different-workload"})
+    with pytest.raises(PixelatedBundleError, match="workload identity disagrees"):
+        ingest(VALID_V2_BUNDLE, incompatible)
+
+
+def test_bundle_json_rejects_duplicate_keys(tmp_path: Path, context_v2: ContextKey) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    summary_path = bundle / "summary.json"
+    summary_path.write_text(
+        summary_path.read_text(encoding="utf-8").replace(
+            '"runId": "pixelated-sanitized-run-v2-001",',
+            '"runId": "pixelated-sanitized-run-v2-001",\n  "runId": "different-run",',
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PixelatedBundleError, match="duplicate JSON object key"):
+        ingest(bundle, context_v2)
+
+
+def test_each_telemetry_timestamp_must_match_elapsed_time(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    telemetry_path = bundle / "stream-telemetry.csv"
+    telemetry_path.write_text(
+        telemetry_path.read_text(encoding="utf-8").replace(
+            "2026-08-10T02:03:09.000Z,5000,",
+            "2026-08-10T02:03:09.000Z,4000,",
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PixelatedBundleError, match="wall-clock and elapsed times disagree"):
+        ingest(bundle, context_v2)
+
+
+def test_engine_samples_must_align_with_browser_window(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    engine_path = bundle / "engine-telemetry.csv"
+    engine_path.write_text(
+        engine_path.read_text(encoding="utf-8").replace("2026-08-10", "2026-08-11"),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PixelatedBundleError, match="outside the browser capture window"):
+        ingest(bundle, context_v2)
+
+
+def test_v2_summary_invalidity_is_preserved_in_window(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["validity"].update(
+        {"isValid": False, "reasons": ["capture exporter marked the run invalid"]}
+    )
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    window = ingest(bundle, context_v2)
+
+    assert not window.validity.is_valid
+    assert "bundle summary: capture exporter marked the run invalid" in window.validity.reasons
+
+
+def test_v2_summary_duration_must_match_telemetry(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = tmp_path / "bundle-v2"
+    shutil.copytree(VALID_V2_BUNDLE, bundle)
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["recording"]["durationMs"] = 1
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="duration disagrees"):
+        ingest(bundle, context_v2)
 
 
 @pytest.mark.parametrize(
@@ -373,6 +479,27 @@ def test_tar_links_are_rejected(tmp_path: Path, context: ContextKey) -> None:
 
     with pytest.raises(PixelatedBundleError, match="TAR links are not allowed"):
         ingest(archive_path, context)
+
+
+def test_duplicate_tar_members_are_rejected(tmp_path: Path, context: ContextKey) -> None:
+    archive_path = tmp_path / "duplicate.tar"
+    with tarfile.open(archive_path, "w") as archive:
+        for _ in range(2):
+            member = tarfile.TarInfo("run-metadata.json")
+            payload = b"{}"
+            member.size = len(payload)
+            archive.addfile(member, io.BytesIO(payload))
+
+    with pytest.raises(PixelatedBundleError, match="duplicate TAR member"):
+        ingest(archive_path, context)
+
+
+def test_bundle_root_symlinks_are_rejected(tmp_path: Path, context: ContextKey) -> None:
+    link = tmp_path / "bundle-link"
+    link.symlink_to(VALID_BUNDLE, target_is_directory=True)
+
+    with pytest.raises(PixelatedBundleError, match="bundle links are not allowed"):
+        ingest(link, context)
 
 
 def test_context_and_comparison_case_are_not_silently_invented(context: ContextKey) -> None:

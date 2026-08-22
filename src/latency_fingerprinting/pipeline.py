@@ -10,6 +10,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from .fingerprints import FingerprintRepository, load_fingerprint_repository
+from .json_io import load_model_file
 from .matcher import match_observation
 from .models import (
     MatchResult,
@@ -100,9 +101,9 @@ def run_pipeline_from_files(
 ) -> PipelineResult:
     """Load standalone JSON inputs and run the complete offline P0 path."""
 
-    degraded = ObservationWindow.model_validate_json(degraded_path.read_text(encoding="utf-8"))
-    relief = ObservationWindow.model_validate_json(relief_path.read_text(encoding="utf-8"))
-    probe = Probe.model_validate_json(probe_path.read_text(encoding="utf-8"))
+    degraded = load_model_file(degraded_path, ObservationWindow)
+    relief = load_model_file(relief_path, ObservationWindow)
+    probe = load_model_file(probe_path, Probe)
     repository = load_fingerprint_repository(
         fingerprint_directory,
         strict=strict_repository,

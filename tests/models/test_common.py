@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from pydantic import ValidationError
 
-from latency_fingerprinting.models import ContextKey
+from latency_fingerprinting.models import ContextKey, MatchThresholds, ValidityState
 
 from .factories import make_context, make_fingerprint, make_match_result, make_observation
 
@@ -51,3 +51,13 @@ def test_contract_models_reject_unknown_fields() -> None:
     payload["undeclared_field"] = "not allowed"
     with pytest.raises(ValidationError, match="Extra inputs are not permitted"):
         ContextKey.model_validate(payload)
+
+
+def test_numeric_contract_fields_do_not_coerce_strings() -> None:
+    with pytest.raises(ValidationError):
+        MatchThresholds(minimum_match_strength="0.75")  # type: ignore[arg-type]
+
+
+def test_contract_booleans_do_not_coerce_strings() -> None:
+    with pytest.raises(ValidationError):
+        ValidityState(is_valid="false", reasons=["invalid"])  # type: ignore[arg-type]

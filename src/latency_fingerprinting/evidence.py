@@ -27,6 +27,8 @@ class CandidateEvidence:
     rejected_features: tuple[str, ...]
     shared_feature_count: int
     feature_coverage: float
+    observable_feature_count: int
+    observable_feature_coverage: float
     total_weight: float
     weighted_squared_residual_sum: float
     distance: float | None
@@ -94,7 +96,18 @@ def build_candidate_evidence(
         item.weighted_squared_residual for item in all_evidence
     )
     distance = math.sqrt(weighted_squared_residual_sum / total_weight) if total_weight > 0 else None
-    feature_coverage = len(shared_features) / len(candidate_features) if candidate_features else 0.0
+    positive_candidate_features = {
+        feature for feature in candidate_features if candidate.feature_weights[feature] > 0
+    }
+    positive_shared_features = positive_candidate_features & set(shared_features)
+    feature_coverage = (
+        len(positive_shared_features) / len(positive_candidate_features)
+        if positive_candidate_features
+        else 0.0
+    )
+    observable_feature_coverage = (
+        len(shared_features) / len(candidate_features) if candidate_features else 0.0
+    )
     return CandidateEvidence(
         fingerprint_id=candidate.fingerprint_id,
         evidence=tuple(all_evidence),
@@ -103,8 +116,10 @@ def build_candidate_evidence(
         ignored_evidence=tuple(ignored),
         missing_features=missing_features,
         rejected_features=rejected_features,
-        shared_feature_count=len(shared_features),
+        shared_feature_count=len(positive_shared_features),
         feature_coverage=feature_coverage,
+        observable_feature_count=len(shared_features),
+        observable_feature_coverage=observable_feature_coverage,
         total_weight=total_weight,
         weighted_squared_residual_sum=weighted_squared_residual_sum,
         distance=distance,

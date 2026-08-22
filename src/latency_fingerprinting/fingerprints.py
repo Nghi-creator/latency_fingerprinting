@@ -2,19 +2,22 @@
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from enum import StrEnum
+from itertools import islice
 from pathlib import Path
 
 from pydantic import ValidationError
 
+from .json_io import read_bounded_text, strict_json_loads
 from .models import (
     CONTRACT_VERSION,
     FINGERPRINT_SCHEMA_VERSION,
     Fingerprint,
     ValidationStatus,
 )
+
+MAX_FINGERPRINT_FILES = 4096
 
 
 class FingerprintRejectionReason(StrEnum):
@@ -26,6 +29,8 @@ class FingerprintRejectionReason(StrEnum):
     CONTRACT_VERSION_MISMATCH = "contract_version_mismatch"
     VALIDATION_ERROR = "validation_error"
     DUPLICATE_FINGERPRINT_ID = "duplicate_fingerprint_id"
+    FILE_TOO_LARGE = "file_too_large"
+    UNSAFE_LINK = "unsafe_link"
 
 
 @dataclass(frozen=True, slots=True)
@@ -101,31 +106,41 @@ class FingerprintRepositoryError(ValueError):
 
 
 def _discover_files(directory: Path) -> tuple[Path, ...]:
-    named_fingerprints = tuple(
-        sorted(
-            (path for path in directory.rglob("fingerprint.json") if path.is_file()),
-            key=lambda path: path.relative_to(directory).as_posix(),
+    def discover(pattern: str) -> tuple[Path, ...]:
+        matches = list(
+            islice(
+                (path for path in directory.rglob(pattern) if path.is_file()),
+                MAX_FINGERPRINT_FILES + 1,
+            )
         )
-    )
+        if len(matches) > MAX_FINGERPRINT_FILES:
+            raise ValueError(
+                f"fingerprint repository contains more than {MAX_FINGERPRINT_FILES} files"
+            )
+        return tuple(sorted(matches, key=lambda path: path.relative_to(directory).as_posix()))
+
+    named_fingerprints = discover("fingerprint.json")
     if named_fingerprints:
         return named_fingerprints
-    return tuple(
-        sorted(
-            (path for path in directory.rglob("*.json") if path.is_file()),
-            key=lambda path: path.relative_to(directory).as_posix(),
-        )
-    )
+    return discover("*.json")
 
 
 def _load_file(path: Path) -> FingerprintEntry | FingerprintRejection:
-    try:
-        text = path.read_text(encoding="utf-8")
-    except UnicodeDecodeError as error:
+    if path.is_symlink():
         return FingerprintRejection(
             path=path,
-            reason=FingerprintRejectionReason.INVALID_JSON,
-            message=str(error),
+            reason=FingerprintRejectionReason.UNSAFE_LINK,
+            message="fingerprint repository links are not allowed",
         )
+    try:
+        text = read_bounded_text(path)
+    except ValueError as error:
+        reason = (
+            FingerprintRejectionReason.FILE_TOO_LARGE
+            if "too large" in str(error)
+            else FingerprintRejectionReason.INVALID_JSON
+        )
+        return FingerprintRejection(path=path, reason=reason, message=str(error))
     except OSError as error:
         return FingerprintRejection(
             path=path,
@@ -134,8 +149,8 @@ def _load_file(path: Path) -> FingerprintEntry | FingerprintRejection:
         )
 
     try:
-        payload = json.loads(text)
-    except json.JSONDecodeError as error:
+        payload = strict_json_loads(text)
+    except ValueError as error:
         return FingerprintRejection(
             path=path,
             reason=FingerprintRejectionReason.INVALID_JSON,
@@ -196,6 +211,8 @@ def load_fingerprint_repository(
 
     if not directory.exists():
         raise FileNotFoundError(directory)
+    if directory.is_symlink():
+        raise ValueError(f"fingerprint repository links are not allowed: {directory}")
     if not directory.is_dir():
         raise NotADirectoryError(directory)
 

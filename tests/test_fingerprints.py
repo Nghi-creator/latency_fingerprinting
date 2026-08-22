@@ -239,3 +239,33 @@ def test_empty_repository_is_valid_and_paths_are_checked(tmp_path: Path) -> None
     file_path.write_text("{}", encoding="utf-8")
     with pytest.raises(NotADirectoryError):
         load_fingerprint_repository(file_path)
+
+
+def test_repository_rejects_duplicate_json_keys(tmp_path: Path) -> None:
+    rendered = json.dumps(fingerprint_payload("healthy"))
+    path = tmp_path / "fingerprint.json"
+    path.write_text(
+        rendered.replace(
+            '"schemaVersion": "fingerprint-v1"',
+            '"schemaVersion": "fingerprint-v1", "schemaVersion": "fingerprint-v1"',
+        ),
+        encoding="utf-8",
+    )
+
+    repository = load_fingerprint_repository(tmp_path, strict=False)
+
+    assert repository.fingerprints == ()
+    assert repository.rejections[0].reason is FingerprintRejectionReason.INVALID_JSON
+    assert "duplicate JSON object key" in repository.rejections[0].message
+
+
+def test_repository_rejects_fingerprint_symlinks(tmp_path: Path) -> None:
+    source = tmp_path / "source.json"
+    source.write_text(json.dumps(fingerprint_payload("healthy")), encoding="utf-8")
+    link = tmp_path / "fingerprint.json"
+    link.symlink_to(source)
+
+    repository = load_fingerprint_repository(tmp_path, strict=False)
+
+    assert repository.fingerprints == ()
+    assert repository.rejections[0].reason is FingerprintRejectionReason.UNSAFE_LINK
