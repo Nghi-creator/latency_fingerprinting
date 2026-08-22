@@ -43,7 +43,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 260 tests passed with 86.21% branch-aware coverage;
+- 275 tests passed with 86.34% branch-aware coverage;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
@@ -51,11 +51,13 @@ Verification result:
 - Ruff lint and format checks passed.
 
 The post-P0 hardening pass additionally verified duplicate-safe and bounded JSON
-loading, archive/file/row limits, symlink rejection, telemetry workload and
-clock alignment, summary validity/duration retention, cross-record arithmetic
-and provenance invariants, positive probe intensity, and positive-weight
-matcher coverage. CI now runs on every pushed branch, enforces an 85% coverage
-floor, checks dependencies, and includes Ruff security rules.
+loading, numeric-overflow and nesting rejection, archive/file/row limits,
+symlink rejection, explicit Pixelated bundle versions, exact required-manifest
+declarations, telemetry workload and clock alignment, summary validity/duration
+retention, cross-record arithmetic and provenance invariants, positive probe
+intensity, and positive-weight matcher coverage. CI now runs on every pushed
+branch, enforces an 85% coverage floor, checks dependencies, and includes Ruff
+security rules.
 
 ## Inspectable examples
 

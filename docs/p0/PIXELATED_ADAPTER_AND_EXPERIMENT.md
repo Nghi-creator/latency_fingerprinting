@@ -25,11 +25,18 @@ stream-events.csv
 summary.json
 ```
 
-The adapter detects v2 from the manifest, validates its phase/comparison/run
-identity and privacy declaration, checks engine/encoder source identity, and
-keeps the original v1 path unchanged. The hardened boundary also rejects links,
-duplicate TAR members and duplicate JSON keys; caps archive members, bytes and
-CSV rows; checks the explicit workload context; requires strict per-source time
+The context must explicitly declare `pixelatedBundleSchema` as `1` or `2`; the
+adapter rejects disagreement between that declaration and manifest presence, so
+removing a v2 manifest cannot silently downgrade validation. For v2, every core
+manifest file must be declared required with its exact media type. Unknown
+optional exporter artifacts remain allowed, while unknown required artifacts
+require a new supported bundle contract.
+
+The adapter validates v2 phase/comparison/run identity and privacy declarations,
+checks engine/encoder source identity, and keeps the versioned v1 path. The
+hardened boundary also rejects links, duplicate TAR members and duplicate JSON
+keys; caps archive members, bytes, JSON nesting and CSV rows; rejects numeric
+overflow; checks the explicit workload context; requires strict per-source time
 ordering; cross-checks elapsed and UTC clocks; aligns engine samples with the
 browser window; and retains exporter-declared invalidity.
 

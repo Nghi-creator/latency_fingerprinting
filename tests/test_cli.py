@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import MAX_JSON_NESTING_DEPTH
 from latency_fingerprinting.models import (
     MatchDecision,
     MatchResult,
@@ -79,6 +80,21 @@ def test_validate_rejects_duplicate_json_keys(
     assert exit_code == 1
     assert stdout == ""
     assert "duplicate JSON object key" in stderr
+
+
+def test_validate_reports_excessive_json_nesting_without_crashing(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    path = tmp_path / "deep.json"
+    depth = MAX_JSON_NESTING_DEPTH + 1
+    path.write_text("[" * depth + "0" + "]" * depth, encoding="utf-8")
+
+    exit_code, stdout, stderr = invoke(["validate", str(path)], capsys)
+
+    assert exit_code == 1
+    assert stdout == ""
+    assert "JSON nesting exceeds the maximum depth" in stderr
 
 
 def test_export_schemas_writes_then_checks_current_files(

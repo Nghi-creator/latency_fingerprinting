@@ -61,6 +61,82 @@ def test_bundle_schema_version_must_match_explicit_context(context: ContextKey) 
         ingest(VALID_V2_BUNDLE, context)
 
 
+@pytest.mark.parametrize("declared_version", [None, "3"])
+def test_bundle_schema_version_must_be_explicit_and_supported(
+    context_v2: ContextKey,
+    declared_version: str | None,
+) -> None:
+    versions = dict(context_v2.versions)
+    if declared_version is None:
+        versions.pop("pixelatedBundleSchema")
+    else:
+        versions["pixelatedBundleSchema"] = declared_version
+    undeclared = context_v2.model_copy(update={"versions": versions})
+
+    with pytest.raises(PixelatedBundleError, match="requires pixelatedBundleSchema"):
+        ingest(VALID_V2_BUNDLE, undeclared)
+
+
+def test_v2_bundle_cannot_be_downgraded_by_removing_manifest(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    (bundle / "bundle-manifest.json").unlink()
+    (bundle / "engine-telemetry.csv").unlink()
+    versions = dict(context_v2.versions)
+    versions.pop("pixelatedBundleSchema")
+    undeclared = context_v2.model_copy(update={"versions": versions})
+
+    with pytest.raises(PixelatedBundleError, match="requires pixelatedBundleSchema"):
+        ingest(bundle, undeclared)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("required", False, "must declare required true"),
+        ("mediaType", "text/plain", "requires media type"),
+    ],
+)
+def test_v2_manifest_required_file_declarations_are_exact(
+    tmp_path: Path,
+    context_v2: ContextKey,
+    field: str,
+    value: object,
+    message: str,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    manifest_path = bundle / "bundle-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    summary_entry = next(entry for entry in manifest["files"] if entry["name"] == "summary.json")
+    summary_entry[field] = value
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match=message):
+        ingest(bundle, context_v2)
+
+
+def test_v2_manifest_rejects_unknown_required_files(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    manifest_path = bundle / "bundle-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["files"].append(
+        {
+            "name": "future-required.bin",
+            "required": True,
+            "mediaType": "application/octet-stream",
+        }
+    )
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="unsupported required file"):
+        ingest(bundle, context_v2)
+
+
 def test_bundle_workload_must_match_explicit_context(context_v2: ContextKey) -> None:
     incompatible = context_v2.model_copy(update={"workload_id": "different-workload"})
     with pytest.raises(PixelatedBundleError, match="workload identity disagrees"):

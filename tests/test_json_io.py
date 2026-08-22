@@ -6,7 +6,12 @@ from pathlib import Path
 
 import pytest
 
-from latency_fingerprinting.json_io import load_json_file, read_bounded_text, strict_json_loads
+from latency_fingerprinting.json_io import (
+    MAX_JSON_NESTING_DEPTH,
+    load_json_file,
+    read_bounded_text,
+    strict_json_loads,
+)
 
 
 @pytest.mark.parametrize(
@@ -25,6 +30,20 @@ def test_duplicate_json_keys_are_rejected_at_any_depth(payload: str) -> None:
 def test_non_standard_non_finite_json_numbers_are_rejected(constant: str) -> None:
     with pytest.raises(ValueError, match="must be finite"):
         strict_json_loads(f'{{"value":{constant}}}')
+
+
+@pytest.mark.parametrize("number", ["1e400", "-1e400"])
+def test_finite_json_syntax_that_overflows_float_is_rejected(number: str) -> None:
+    with pytest.raises(ValueError, match="must be finite"):
+        strict_json_loads(f'{{"value":{number}}}')
+
+
+def test_excessive_json_nesting_is_rejected_as_a_value_error() -> None:
+    depth = MAX_JSON_NESTING_DEPTH + 1
+    payload = "[" * depth + "0" + "]" * depth
+
+    with pytest.raises(ValueError, match="maximum depth"):
+        strict_json_loads(payload)
 
 
 def test_file_reads_are_bounded_and_accept_utf8_bom(tmp_path: Path) -> None:

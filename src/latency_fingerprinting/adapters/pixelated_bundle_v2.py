@@ -25,6 +25,14 @@ V2_REQUIRED_FILES = frozenset(
         "summary.json",
     }
 )
+V2_REQUIRED_MEDIA_TYPES: Mapping[str, str] = {
+    "bundle-manifest.json": "application/json",
+    "engine-telemetry.csv": "text/csv",
+    "run-metadata.json": "application/json",
+    "stream-events.csv": "text/csv",
+    "stream-telemetry.csv": "text/csv",
+    "summary.json": "application/json",
+}
 ENGINE_TELEMETRY_COLUMNS = frozenset(
     {
         "captured_at",
@@ -88,10 +96,27 @@ def validate_manifest(
     for entry in declared_files:
         if not isinstance(entry, dict):
             raise PixelatedBundleError("bundle manifest file entries must be objects")
-        names.append(required_string(entry, "name", "bundle-manifest.json file entry"))
-        if not isinstance(entry.get("required"), bool):
+        name = required_string(entry, "name", "bundle-manifest.json file entry")
+        names.append(name)
+        required = entry.get("required")
+        if not isinstance(required, bool):
             raise PixelatedBundleError("bundle manifest file entries require boolean 'required'")
-        required_string(entry, "mediaType", "bundle-manifest.json file entry")
+        media_type = required_string(entry, "mediaType", "bundle-manifest.json file entry")
+        expected_media_type = V2_REQUIRED_MEDIA_TYPES.get(name)
+        if expected_media_type is None:
+            if required:
+                raise PixelatedBundleError(
+                    f"bundle manifest declares unsupported required file {name!r}"
+                )
+            continue
+        if required is not True:
+            raise PixelatedBundleError(
+                f"bundle manifest required file {name!r} must declare required true"
+            )
+        if media_type != expected_media_type:
+            raise PixelatedBundleError(
+                f"bundle manifest file {name!r} requires media type {expected_media_type!r}"
+            )
     if len(names) != len(set(names)):
         raise PixelatedBundleError("bundle manifest contains duplicate file entries")
     missing_declarations = sorted(V2_REQUIRED_FILES - set(names))

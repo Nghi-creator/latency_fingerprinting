@@ -203,7 +203,9 @@ def ingest_pixelated_bundle(
     )
     bundle_schema_version = "2" if manifest is not None else "1"
     declared_bundle_version = context.versions.get("pixelatedBundleSchema")
-    if declared_bundle_version and declared_bundle_version != bundle_schema_version:
+    if declared_bundle_version not in {"1", "2"}:
+        raise PixelatedBundleError("context requires pixelatedBundleSchema version '1' or '2'")
+    if declared_bundle_version != bundle_schema_version:
         raise PixelatedBundleError(
             "context pixelatedBundleSchema disagrees with the ingested bundle"
         )
