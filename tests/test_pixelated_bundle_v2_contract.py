@@ -85,6 +85,51 @@ def test_each_telemetry_timestamp_must_match_elapsed_time(
         ingest(bundle, context_v2)
 
 
+def test_event_timestamps_must_be_valid_and_match_elapsed_time(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    events_path = bundle / "stream-events.csv"
+    events_path.write_text(
+        events_path.read_text(encoding="utf-8").replace(
+            "2026-08-10T02:03:04.000Z",
+            "not-a-timestamp",
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(PixelatedBundleError, match="must be an ISO 8601 timestamp"):
+        ingest(bundle, context_v2)
+
+    bundle = copy_v2_bundle(tmp_path, name="event-clock-mismatch")
+    events_path = bundle / "stream-events.csv"
+    with events_path.open("a", encoding="utf-8") as events_file:
+        events_file.write(
+            "2026-08-10T02:03:15.000Z,0,pixelated-sanitized-run-v2-001,"
+            "anonymous-session-v2-001,research_recording_completed,\n"
+        )
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["eventCount"] = 2
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+    with pytest.raises(PixelatedBundleError, match="wall-clock and elapsed times disagree"):
+        ingest(bundle, context_v2)
+
+
+def test_v2_summary_available_counts_must_match_telemetry(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["validity"]["sources"]["encoderPipeline"]["availableSampleCount"] = 999_999
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="available sample count disagrees"):
+        ingest(bundle, context_v2)
+
+
 def test_engine_samples_must_align_with_browser_window(
     tmp_path: Path,
     context_v2: ContextKey,

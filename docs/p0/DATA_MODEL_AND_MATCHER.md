@@ -87,8 +87,11 @@ window-level aggregates for:
 - a pipeline-delay proxy only when it is explicitly measured.
 
 The v2 manifest is validated against phase, comparison-case and run identity.
-Unsupported measurements remain missing and cumulative counters that reset
-inside a window are rejected rather than converted into false deltas.
+Event wall-clock timestamps must be valid UTC values and remain consistent with
+their event elapsed-time sequence. Summary total and available sample counts
+must exactly match the telemetry rows. Unsupported measurements remain missing;
+cumulative counters that reset are rejected, and unavailable samples break
+counter continuity instead of creating a delta across an observation gap.
 
 Legacy lifetime-average CPU snapshots remain unsuitable. Only the interval CPU
 samples carried by bundle v2 are represented as window-level utilization.
@@ -103,7 +106,11 @@ raw delta = relief aggregate - degraded aggregate
 normalized delta = raw delta / max(abs(reference value), feature epsilon)
 ```
 
-Every feature declares its unit and epsilon. Raw values are retained, missing values are not imputed as zero, clipping is recorded, and incomparable windows fail validation.
+Every feature uses the frozen P0 unit, epsilon and clipping configuration.
+Persisted observations and fingerprints are revalidated against that canonical
+configuration before their normalized values may be scored. Raw values are
+retained, missing values are not imputed as zero, clipping is recorded, and
+incomparable windows fail validation.
 
 ## Weighted-distance matcher
 

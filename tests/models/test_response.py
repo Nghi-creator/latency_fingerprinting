@@ -85,6 +85,27 @@ def test_observation_provenance_and_derived_values_must_be_truthful() -> None:
         ObservationRecord.model_validate(payload)
 
 
+def test_observation_enforces_canonical_normalization_metadata() -> None:
+    observation = make_observation()
+    feature_name = "transport.jitter_ms"
+
+    payload = observation.model_dump()
+    normalized = payload["normalized_response"]["features"][feature_name]
+    raw = payload["response_delta"]["features"][feature_name]
+    normalized["epsilon"] = 1_000_000_000.0
+    normalized["value"] = raw["raw_delta"] / normalized["epsilon"]
+    with pytest.raises(ValidationError, match="non-canonical epsilon"):
+        ObservationRecord.model_validate(payload)
+
+    payload = observation.model_dump()
+    normalized = payload["normalized_response"]["features"][feature_name]
+    normalized["was_clipped"] = True
+    normalized["unclipped_value"] = normalized["value"]
+    normalized["value"] = 999_999.0
+    with pytest.raises(ValidationError, match="incorrect clipping metadata"):
+        ObservationRecord.model_validate(payload)
+
+
 def test_feature_delta_enforces_relief_minus_degraded_sign() -> None:
     with pytest.raises(ValidationError, match="relief_value minus degraded_value"):
         FeatureDelta(

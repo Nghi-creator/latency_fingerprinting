@@ -398,15 +398,39 @@ def validate_summary(
     if abs(float(declared_duration) - duration_ms) > 1:
         raise PixelatedBundleError("summary.json recording duration disagrees with telemetry")
     expected_counts = {
-        "browserWebrtc": telemetry_count,
-        "engineRuntime": sum(row.get("source") == "engine_runtime" for row in engine_rows),
-        "encoderPipeline": sum(row.get("source") == "encoder_pipeline" for row in engine_rows),
+        "browserWebrtc": (telemetry_count, telemetry_count),
+        "engineRuntime": (
+            sum(row.get("source") == "engine_runtime" for row in engine_rows),
+            sum(
+                row.get("source") == "engine_runtime"
+                and row.get("available", "").strip().lower() == "true"
+                for row in engine_rows
+            ),
+        ),
+        "encoderPipeline": (
+            sum(row.get("source") == "encoder_pipeline" for row in engine_rows),
+            sum(
+                row.get("source") == "encoder_pipeline"
+                and row.get("available", "").strip().lower() == "true"
+                for row in engine_rows
+            ),
+        ),
     }
-    for source, expected in expected_counts.items():
+    if set(sources) != set(expected_counts):
+        raise PixelatedBundleError("summary.json source count declarations are incomplete")
+    for source, (expected_total, expected_available) in expected_counts.items():
         payload = sources.get(source)
-        if not isinstance(payload, dict) or payload.get("sampleCount") != expected:
+        if not isinstance(payload, dict):
+            raise PixelatedBundleError(f"summary.json {source} source counts must be an object")
+        sample_count = payload.get("sampleCount")
+        available_count = payload.get("availableSampleCount")
+        if type(sample_count) is not int or sample_count != expected_total:
             raise PixelatedBundleError(
                 f"summary.json {source} sample count disagrees with engine telemetry"
+            )
+        if type(available_count) is not int or available_count != expected_available:
+            raise PixelatedBundleError(
+                f"summary.json {source} available sample count disagrees with telemetry"
             )
 
 
@@ -430,10 +454,24 @@ def validity_reasons(
                 f"bundle manifest support for {source} disagrees with telemetry"
             )
     if metadata.get("scenario") != "browser_only_baseline":
+        source_rows = {
+            source: [row for row in engine_rows if row.get("source") == source]
+            for source in ("engine_runtime", "encoder_pipeline")
+        }
         if not available["engine_runtime"]:
             reasons.append("required engine runtime telemetry is unavailable")
+        elif any(
+            row.get("available", "").strip().lower() != "true"
+            for row in source_rows["engine_runtime"]
+        ):
+            reasons.append("engine runtime telemetry has unavailable samples")
         if not available["encoder_pipeline"]:
             reasons.append("required encoder pipeline telemetry is unavailable")
+        elif any(
+            row.get("available", "").strip().lower() != "true"
+            for row in source_rows["encoder_pipeline"]
+        ):
+            reasons.append("encoder pipeline telemetry has unavailable samples")
     return reasons
 
 

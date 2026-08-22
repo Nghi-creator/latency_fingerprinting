@@ -18,7 +18,7 @@ from .common import (
     ValidationStatus,
 )
 from .context import ContextKey
-from .response import NormalizedResponse, ResponseDelta
+from .response import NormalizedResponse, ResponseDelta, validate_canonical_normalization
 
 
 class CompatibilityKey(ContractModel):
@@ -84,12 +84,7 @@ class Fingerprint(ContractModel):
             normalized = self.normalized_response.features[feature]
             if not math.isclose(normalized.reference_value, raw.degraded_value, abs_tol=1e-12):
                 raise ValueError(f"normalized feature {feature!r} has the wrong reference value")
-            expected = raw.raw_delta / max(abs(raw.degraded_value), normalized.epsilon)
-            represented = normalized.unclipped_value if normalized.was_clipped else normalized.value
-            if represented is None:
-                raise ValueError(f"normalized feature {feature!r} is missing its unclipped value")
-            if not math.isclose(represented, expected, rel_tol=1e-12, abs_tol=1e-12):
-                raise ValueError(f"normalized feature {feature!r} disagrees with its raw delta")
+            validate_canonical_normalization(feature, raw, normalized)
         for field_name, identifiers in (
             ("source_case_ids", self.source_case_ids),
             ("source_window_ids", self.source_window_ids),

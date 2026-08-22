@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 
@@ -39,6 +40,47 @@ def test_v2_counter_resets_are_rejected_not_fabricated(
 
     assert "encoder.frames_in_delta" in window.rejected_metrics
     assert "encoder.frames_in_delta" not in window.metrics
+
+
+def test_v2_counter_deltas_do_not_bridge_unavailable_samples(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    telemetry_path = bundle / "engine-telemetry.csv"
+    with telemetry_path.open(newline="", encoding="utf-8") as telemetry_file:
+        rows = list(csv.DictReader(telemetry_file))
+    headers = list(rows[0])
+    encoder_rows = [row for row in rows if row["source"] == "encoder_pipeline"]
+    encoder_rows[1]["available"] = "false"
+    encoder_rows[1]["error"] = "temporary exporter gap"
+    for column in (
+        "frames_in_total",
+        "frames_out_total",
+        "frames_dropped_total",
+        "queue_level_buffers",
+        "target_bitrate_kbps",
+        "target_fps",
+        "cpu_used",
+        "max_quantizer",
+    ):
+        encoder_rows[1][column] = ""
+    with telemetry_path.open("w", newline="", encoding="utf-8") as telemetry_file:
+        writer = csv.DictWriter(telemetry_file, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["validity"]["sources"]["encoderPipeline"]["availableSampleCount"] = 2
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    window = ingest(bundle, context_v2)
+
+    assert "encoder.frames_in_delta" in window.missing_metrics
+    assert "encoder.frames_in_delta" not in window.metrics
+    assert not window.validity.is_valid
+    assert "encoder pipeline telemetry has unavailable samples" in window.validity.reasons
 
 
 def test_missing_metric_values_remain_missing(tmp_path: Path, context: ContextKey) -> None:
