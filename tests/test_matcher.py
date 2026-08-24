@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import math
+from dataclasses import replace
 from pathlib import Path
 from typing import TypeVar
 
 import pytest
 from pydantic import BaseModel
 
+from latency_fingerprinting.evidence import CandidateEvidence
 from latency_fingerprinting.fingerprints import (
     FingerprintEntry,
     FingerprintRejection,
@@ -17,6 +19,7 @@ from latency_fingerprinting.fingerprints import (
     load_fingerprint_repository,
 )
 from latency_fingerprinting.matcher import match_observation
+from latency_fingerprinting.matching.scoring import best_availability
 from latency_fingerprinting.models import (
     MatchDecision,
     MatchResult,
@@ -113,6 +116,30 @@ def test_best_candidate_evidence_reconstructs_ranked_distance() -> None:
     assert result.feature_coverage == 1.0
 
 
+def test_best_availability_ties_use_the_lowest_stable_identifier() -> None:
+    base = CandidateEvidence(
+        fingerprint_id="fingerprint-z",
+        evidence=(),
+        supporting_evidence=(),
+        conflicting_evidence=(),
+        ignored_evidence=(),
+        missing_features=(),
+        rejected_features=(),
+        shared_feature_count=2,
+        feature_coverage=0.5,
+        observable_feature_count=2,
+        observable_feature_coverage=0.5,
+        total_weight=2,
+        weighted_squared_residual_sum=0,
+        distance=0,
+    )
+
+    selected = best_availability((base, replace(base, fingerprint_id="fingerprint-a")))
+
+    assert selected is not None
+    assert selected.fingerprint_id == "fingerprint-a"
+
+
 def test_unsupported_probe_returns_unknown_before_candidate_scoring() -> None:
     query = load_query("similar_network")
     probe = rebuild(query.probe, probe_type="unsupported-probe")
@@ -124,6 +151,16 @@ def test_unsupported_probe_returns_unknown_before_candidate_scoring() -> None:
     assert result.unknown_reason is UnknownReason.UNSUPPORTED_PROBE
     assert result.ranked_candidates == []
     assert not result.compatibility.is_compatible
+
+
+@pytest.mark.parametrize("threshold", [-1.0, math.inf, math.nan])
+def test_support_threshold_is_validated_before_early_matcher_returns(threshold: float) -> None:
+    with pytest.raises(ValueError, match="support_residual_threshold"):
+        match_observation(
+            load_query("similar_network"),
+            FingerprintRepository(entries=()),
+            support_residual_threshold=threshold,
+        )
 
 
 def test_invalid_observation_returns_unknown_with_retained_reason() -> None:
@@ -315,6 +352,27 @@ def test_repository_rejections_are_visible_in_match_output(tmp_path: Path) -> No
     assert result.decision is MatchDecision.MATCHED
     assert "file:broken.json" in result.compatibility.rejected_fingerprints
     assert any("broken.json" in warning for warning in result.warnings)
+
+
+def test_rejected_repository_id_cannot_collide_with_a_valid_candidate(tmp_path: Path) -> None:
+    repository = load_repository()
+    valid_id = repository.entries[0].fingerprint.fingerprint_id
+    rejection = FingerprintRejection(
+        path=tmp_path / "invalid-copy.json",
+        reason=FingerprintRejectionReason.CONTRACT_VERSION_MISMATCH,
+        message="invalid test contract",
+        fingerprint_id=valid_id,
+    )
+    partial_repository = FingerprintRepository(
+        entries=repository.entries,
+        rejections=(rejection,),
+    )
+
+    result = match_observation(load_query("similar_network"), partial_repository)
+
+    assert result.decision is MatchDecision.MATCHED
+    assert valid_id in result.compatibility.compatible_fingerprint_ids
+    assert "file:invalid-copy.json" in result.compatibility.rejected_fingerprints
 
 
 def test_rejected_validation_status_is_never_scored() -> None:

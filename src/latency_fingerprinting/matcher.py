@@ -26,6 +26,8 @@ def match_observation(
     """Match one P0 observation against compatible stored fingerprints."""
 
     thresholds = thresholds or MatchThresholds()
+    if not math.isfinite(support_residual_threshold) or support_residual_threshold < 0:
+        raise ValueError("support_residual_threshold must be finite and non-negative")
     if not math.isfinite(conflict_contribution_ratio) or not 0 <= conflict_contribution_ratio <= 1:
         raise ValueError("conflict_contribution_ratio must be finite and between 0 and 1")
 

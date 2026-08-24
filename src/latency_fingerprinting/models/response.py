@@ -276,10 +276,8 @@ class ObservationRecord(ContractModel):
             self.normalized_response.missing_features
         ):
             raise ValueError("raw and normalized missing-feature sets must agree")
-        if set(self.response_delta.rejected_features) != set(
-            self.normalized_response.rejected_features
-        ):
-            raise ValueError("raw and normalized rejected-feature sets must agree")
+        if self.response_delta.rejected_features != self.normalized_response.rejected_features:
+            raise ValueError("raw and normalized rejected-feature metadata must agree")
         for feature, raw in self.response_delta.features.items():
             degraded_metric = degraded.metrics.get(feature)
             relief_metric = relief.metrics.get(feature)

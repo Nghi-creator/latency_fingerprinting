@@ -16,6 +16,7 @@ from .pixelated_bundle_common import PixelatedBundleError
 MAX_ARCHIVE_MEMBERS = 64
 MAX_TEXT_FILE_BYTES = 10 * 1024 * 1024
 MAX_BUNDLE_BYTES = 64 * 1024 * 1024
+MAX_ARCHIVE_BYTES = 64 * 1024 * 1024
 MAX_ARCHIVE_DECLARED_BYTES = 128 * 1024 * 1024
 MAX_CSV_ROWS = 250_000
 
@@ -28,6 +29,11 @@ def _safe_archive_name(name: str) -> str:
 
 
 def _read_tar(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
+    archive_size = path.stat().st_size
+    if archive_size > MAX_ARCHIVE_BYTES:
+        raise PixelatedBundleError(
+            f"TAR archive is too large: {archive_size} bytes; max {MAX_ARCHIVE_BYTES}"
+        )
     try:
         with tarfile.open(path, mode="r:*") as archive:
             return _read_tar_members(archive, readable_files)
@@ -78,6 +84,7 @@ def _read_tar_members(
 
 def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
     files: dict[str, bytes] = {}
+    readable_bytes = 0
     for name in readable_files:
         candidate = path / name
         if candidate.is_symlink():
@@ -89,6 +96,9 @@ def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
         payload = candidate.read_bytes()
         if len(payload) > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
+        readable_bytes += len(payload)
+        if readable_bytes > MAX_BUNDLE_BYTES:
+            raise PixelatedBundleError("readable directory contents exceed the bundle size limit")
         files[name] = payload
     return files
 

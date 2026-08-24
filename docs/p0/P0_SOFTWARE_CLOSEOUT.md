@@ -1,6 +1,6 @@
 # P0 Software Closeout
 
-**Verified:** 2026-08-22
+**Verified:** 2026-08-24
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
 
@@ -43,7 +43,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 275 tests passed with 86.34% branch-aware coverage;
+- 283 tests passed with branch-aware coverage above the enforced 85% floor;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
@@ -58,6 +58,12 @@ retention, cross-record arithmetic and provenance invariants, positive probe
 intensity, and positive-weight matcher coverage. CI now runs on every pushed
 branch, enforces an 85% coverage floor, checks dependencies, and includes Ruff
 security rules.
+
+The final review also bounds compressed archive inputs before TAR decoding,
+enforces total readable bytes for directory bundles, preserves exact rejected-
+feature reasons across derived records, validates matcher configuration on all
+early-return paths, and prevents rejected repository records from colliding
+with valid fingerprint identifiers.
 
 ## Inspectable examples
 
