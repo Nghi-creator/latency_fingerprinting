@@ -42,6 +42,14 @@ def test_fingerprint_raw_and_normalized_availability_must_agree() -> None:
     with pytest.raises(ValidationError, match="missing-feature sets must agree"):
         Fingerprint.model_validate(payload)
 
+    payload = fingerprint.model_dump()
+    payload["raw_response_delta"]["rejected_features"] = {"unavailable.feature": "raw reason"}
+    payload["normalized_response"]["rejected_features"] = {
+        "unavailable.feature": "different reason"
+    }
+    with pytest.raises(ValidationError, match="rejected-feature metadata must agree"):
+        Fingerprint.model_validate(payload)
+
 
 def test_fingerprint_rejects_extra_weights_and_inconsistent_normalization() -> None:
     fingerprint = make_fingerprint()

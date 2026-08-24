@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 
+from latency_fingerprinting.adapters import pixelated_bundle_io
 from latency_fingerprinting.adapters.pixelated_bundle import PixelatedBundleError
 from latency_fingerprinting.models import ContextKey
 
@@ -100,3 +101,26 @@ def test_bundle_root_symlinks_are_rejected(tmp_path: Path, context: ContextKey) 
 
     with pytest.raises(PixelatedBundleError, match="bundle links are not allowed"):
         ingest(link, context)
+
+
+def test_archive_input_bytes_are_bounded_before_tar_decoding(
+    tmp_path: Path, context: ContextKey
+) -> None:
+    archive_path = tmp_path / "oversized.tar"
+    with archive_path.open("wb") as archive_file:
+        archive_file.truncate(pixelated_bundle_io.MAX_ARCHIVE_BYTES + 1)
+
+    with pytest.raises(PixelatedBundleError, match="TAR archive is too large"):
+        ingest(archive_path, context)
+
+
+def test_directory_readable_bytes_are_bounded(
+    tmp_path: Path,
+    context: ContextKey,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    bundle = copy_bundle(tmp_path)
+    monkeypatch.setattr(pixelated_bundle_io, "MAX_BUNDLE_BYTES", 1)
+
+    with pytest.raises(PixelatedBundleError, match="directory contents exceed"):
+        ingest(bundle, context)

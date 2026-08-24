@@ -42,8 +42,16 @@ def filter_compatible_fingerprints(
         else:
             compatible.append(fingerprint)
 
+    reserved_identifiers = {fingerprint.fingerprint_id for fingerprint in compatible}
     for rejection in repository.rejections:
         identifier = rejection.fingerprint_id or f"file:{rejection.path.name}"
+        if identifier in reserved_identifiers or identifier in rejected:
+            identifier = f"file:{rejection.path.name}"
+        suffix = 2
+        base_identifier = identifier
+        while identifier in reserved_identifiers or identifier in rejected:
+            identifier = f"{base_identifier}#{suffix}"
+            suffix += 1
         reason = f"repository {rejection.reason.value}: {rejection.message}"
         _add_rejection(rejected, identifier, reason)
         warnings.append(f"Rejected fingerprint source {rejection.path}: {reason}")

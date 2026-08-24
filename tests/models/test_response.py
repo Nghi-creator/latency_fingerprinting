@@ -148,3 +148,15 @@ def test_observation_raw_and_normalized_feature_sets_must_agree() -> None:
     payload["normalized_response"]["features"] = {}
     with pytest.raises(ValidationError, match="feature sets must agree"):
         ObservationRecord.model_validate(payload)
+
+
+def test_observation_rejected_feature_reasons_must_agree() -> None:
+    observation = make_observation()
+    payload = observation.model_dump()
+    payload["response_delta"]["rejected_features"] = {"unavailable.feature": "raw reason"}
+    payload["normalized_response"]["rejected_features"] = {
+        "unavailable.feature": "different reason"
+    }
+
+    with pytest.raises(ValidationError, match="rejected-feature metadata must agree"):
+        ObservationRecord.model_validate(payload)

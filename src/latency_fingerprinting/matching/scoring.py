@@ -24,11 +24,11 @@ class ScoringResult:
 
 
 def best_availability(evidence: tuple[CandidateEvidence, ...]) -> CandidateEvidence | None:
-    return max(
+    return min(
         evidence,
         key=lambda item: (
-            item.feature_coverage,
-            item.shared_feature_count,
+            -item.feature_coverage,
+            -item.shared_feature_count,
             item.fingerprint_id,
         ),
         default=None,

@@ -76,10 +76,8 @@ class Fingerprint(ContractModel):
             self.normalized_response.missing_features
         ):
             raise ValueError("raw and normalized fingerprint missing-feature sets must agree")
-        if set(self.raw_response_delta.rejected_features) != set(
-            self.normalized_response.rejected_features
-        ):
-            raise ValueError("raw and normalized fingerprint rejected-feature sets must agree")
+        if self.raw_response_delta.rejected_features != self.normalized_response.rejected_features:
+            raise ValueError("raw and normalized fingerprint rejected-feature metadata must agree")
         for feature, raw in self.raw_response_delta.features.items():
             normalized = self.normalized_response.features[feature]
             if not math.isclose(normalized.reference_value, raw.degraded_value, abs_tol=1e-12):

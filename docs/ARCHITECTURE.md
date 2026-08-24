@@ -86,6 +86,11 @@ latency-fingerprinting/
 │   │   ├── compatibility.py
 │   │   ├── scoring.py
 │   │   └── decision.py
+│   ├── synthetic/
+│   │   ├── builders.py
+│   │   ├── definitions.py
+│   │   ├── expectations.py
+│   │   └── rendering.py
 │   ├── evidence.py
 │   ├── schemas.py
 │   ├── json_io.py
@@ -93,6 +98,7 @@ latency-fingerprinting/
 │   ├── __init__.py
 │   └── adapters/
 │       ├── pixelated_bundle.py
+│       ├── pixelated_bundle_common.py
 │       ├── pixelated_bundle_io.py
 │       ├── pixelated_bundle_metrics.py
 │       ├── pixelated_bundle_validation.py
@@ -104,7 +110,10 @@ latency-fingerprinting/
 │   └── query_cases/
 │       ├── similar_network/
 │       ├── similar_encoder/
-│       └── unknown/
+│       ├── ambiguous/
+│       ├── conflicting/
+│       ├── incompatible_context/
+│       └── weak/
 ├── experiments/
 │   ├── controlled-run-001/
 │   └── controlled-run-002/
@@ -145,8 +154,9 @@ Use standard-library `argparse` for the CLI. Do not add pandas, scikit-learn, Fa
 Public JSON file boundaries use `json_io.py` to reject duplicate keys,
 non-finite constants, finite JSON syntax that overflows the runtime float,
 excessive nesting, invalid UTF-8 and oversized records before model validation.
-The Pixelated boundary additionally caps archive members, per-file bytes, total
-readable bytes and CSV rows; rejects links and duplicate TAR members; and
+The Pixelated boundary additionally caps compressed archive bytes, declared
+archive contents, members, per-file bytes, total readable bytes and CSV rows;
+rejects links and duplicate TAR members; and
 cross-checks workload/session identity plus browser/engine clock alignment.
 
 Pydantic models are the Python source of truth. Checked-in JSON Schemas are generated from the models, with a regression test preventing drift.
