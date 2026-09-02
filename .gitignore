@@ -21,4 +21,4 @@ experiments/**/*.tar.gz
 !experiments/**/observation.json
 !experiments/**/match-result.json
 
-LOCAL_SRC_GUIDE.md
+local/
