@@ -155,3 +155,17 @@ def test_context_and_comparison_case_are_not_silently_invented(context: ContextK
             comparison_case_id=" ",
             context=context,
         )
+
+
+def test_v1_stream_profile_rejects_unrepresentable_json_integer(
+    tmp_path: Path,
+    context: ContextKey,
+) -> None:
+    bundle = copy_bundle(tmp_path)
+    metadata_path = bundle / "run-metadata.json"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata["streamProfile"]["bitrateKbps"] = 10**400
+    metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="must be finite"):
+        ingest(bundle, context)

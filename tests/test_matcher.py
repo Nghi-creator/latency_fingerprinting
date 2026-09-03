@@ -273,6 +273,30 @@ def test_all_zero_candidate_weights_return_degenerate_vector() -> None:
     assert any("no positive shared feature weight" in warning for warning in result.warnings)
 
 
+def test_unrepresentable_candidate_weights_are_skipped_with_a_warning() -> None:
+    repository = load_repository()
+    entries = tuple(
+        FingerprintEntry(
+            path=entry.path,
+            fingerprint=rebuild(
+                entry.fingerprint,
+                feature_weights={feature: 1e308 for feature in entry.fingerprint.feature_weights},
+            ),
+        )
+        for entry in repository.entries
+    )
+
+    result = match_observation(
+        load_query("similar_network"),
+        FingerprintRepository(entries=entries),
+    )
+
+    assert result.decision is MatchDecision.UNKNOWN
+    assert result.unknown_reason is UnknownReason.INSUFFICIENT_FEATURE_COVERAGE
+    assert result.ranked_candidates == []
+    assert any("aggregate scoring range" in warning for warning in result.warnings)
+
+
 def test_zero_weight_features_cannot_satisfy_the_evidence_gate() -> None:
     entry = load_repository().entries[1]
     weighted_feature = next(iter(entry.fingerprint.feature_weights))

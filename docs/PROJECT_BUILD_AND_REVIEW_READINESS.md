@@ -45,7 +45,7 @@ The detailed build gate lives in [`p0/IMPLEMENTATION_TRACKER.md`](p0/IMPLEMENTAT
 - Deterministic synthetic fixture corpus and end-to-end regression tests.
 - Offline CLI and safe Pixelated TAR/directory adapter.
 - Bounded-pressure tool and controlled paired-run capture procedure.
-- Clean-environment installation and 283-test hardened software closeout.
+- Clean-environment installation and 289-test hardened software closeout.
 
 ### Controlled-real evidence completed
 

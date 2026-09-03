@@ -22,8 +22,22 @@ def required_string(payload: Mapping[str, Any], key: str, source: str) -> str:
 def finite_number(value: str, *, source: str) -> float:
     try:
         number = float(value)
-    except ValueError as error:
+    except (OverflowError, ValueError) as error:
         raise PixelatedBundleError(f"{source} must be numeric, received {value!r}") from error
+    if not math.isfinite(number):
+        raise PixelatedBundleError(f"{source} must be finite")
+    return number
+
+
+def finite_json_number(value: Any, *, source: str) -> float:
+    """Validate a decoded JSON number without leaking integer conversion overflow."""
+
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise PixelatedBundleError(f"{source} must be numeric")
+    try:
+        number = float(value)
+    except OverflowError as error:
+        raise PixelatedBundleError(f"{source} must be finite") from error
     if not math.isfinite(number):
         raise PixelatedBundleError(f"{source} must be finite")
     return number
@@ -39,4 +53,10 @@ def utc_datetime(value: str, *, source: str) -> datetime:
     return parsed
 
 
-__all__ = ["PixelatedBundleError", "finite_number", "required_string", "utc_datetime"]
+__all__ = [
+    "PixelatedBundleError",
+    "finite_json_number",
+    "finite_number",
+    "required_string",
+    "utc_datetime",
+]

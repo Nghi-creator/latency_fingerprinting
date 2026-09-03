@@ -72,13 +72,19 @@ def build_candidate_evidence(
         candidate_value = candidate.normalized_response.features[feature].value
         weight = candidate.feature_weights[feature]
         residual = observed_value - candidate_value
+        weighted_squared_residual = weight * residual * residual
+        if not math.isfinite(residual) or not math.isfinite(weighted_squared_residual):
+            raise EvidenceError(
+                f"candidate {candidate.fingerprint_id} feature {feature!r} "
+                "exceeds finite scoring range"
+            )
         item = FeatureEvidence(
             feature=feature,
             observed_value=observed_value,
             candidate_value=candidate_value,
             residual=residual,
             weight=weight,
-            weighted_squared_residual=weight * residual**2,
+            weighted_squared_residual=weighted_squared_residual,
         )
         all_evidence.append(item)
         if weight == 0:
@@ -91,10 +97,19 @@ def build_candidate_evidence(
     # ``sum`` changed its float-reduction algorithm in Python 3.12. Use
     # ``fsum`` so persisted distances do not drift across supported Python
     # versions by a final representable bit.
-    total_weight = math.fsum(item.weight for item in all_evidence)
-    weighted_squared_residual_sum = math.fsum(
-        item.weighted_squared_residual for item in all_evidence
-    )
+    try:
+        total_weight = math.fsum(item.weight for item in all_evidence)
+        weighted_squared_residual_sum = math.fsum(
+            item.weighted_squared_residual for item in all_evidence
+        )
+    except OverflowError as error:
+        raise EvidenceError(
+            f"candidate {candidate.fingerprint_id} exceeds finite aggregate scoring range"
+        ) from error
+    if not math.isfinite(total_weight) or not math.isfinite(weighted_squared_residual_sum):
+        raise EvidenceError(
+            f"candidate {candidate.fingerprint_id} exceeds finite aggregate scoring range"
+        )
     distance = math.sqrt(weighted_squared_residual_sum / total_weight) if total_weight > 0 else None
     positive_candidate_features = {
         feature for feature in candidate_features if candidate.feature_weights[feature] > 0

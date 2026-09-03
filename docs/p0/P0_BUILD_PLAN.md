@@ -390,10 +390,10 @@ Create `src/latency_fingerprinting/adapters/pixelated_bundle.py` according to
 - [x] Unsafe TAR paths, missing files and missing columns are rejected.
 - [x] Unsupported telemetry is represented as missing, not fabricated.
 
-Implementation note (2026-08-10): bundle v2 support is split across the public
+Implementation note (updated 2026-09-04): bundle v2 support is split across the public
 adapter, shared parsing helpers, metric aggregation and v2 validation modules.
 Sanitized healthy/degraded/relief fixtures exercise directory and TAR ingestion;
-the final P0 Python suite has 231 passing tests and generated schemas are current.
+the hardened P0 Python suite has 289 passing tests and generated schemas are current.
 This fixture gate does not replace the controlled real evidence required below.
 
 ## Step 12: Run controlled real experiment 001

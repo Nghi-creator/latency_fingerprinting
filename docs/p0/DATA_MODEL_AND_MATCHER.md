@@ -134,11 +134,20 @@ Matching steps:
 7. Explain per-feature residuals.
 8. Return a label or `unknown` with a reason code.
 
+All scoring inputs and intermediate sums must remain representable as finite
+binary64 values. A candidate whose residual contribution, total weight, or
+weighted residual sum exceeds that range is not partially scored or allowed to
+crash the run: it is rejected as unscorable evidence and the matcher continues
+conservatively with an explicit warning.
+
 Provisional software-test defaults are match strength `0.75`, margin `0.10`, three shared features and `60%` coverage. They are not calibrated research results.
 
 ## Evidence
 
-For every feature, report observed value, candidate value, residual, weight and weighted squared residual. Residuals must reconstruct the distance. Small residuals support the match; large residuals conflict with it.
+For every feature, report observed value, candidate value, residual, weight and
+weighted squared residual. Model validation recomputes both residual equations
+without leaking floating-point overflow. Residuals must reconstruct the
+distance. Small residuals support the match; large residuals conflict with it.
 
 ## Synthetic fixtures
 
