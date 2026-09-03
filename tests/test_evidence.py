@@ -225,6 +225,28 @@ def test_invalid_query_is_an_analytical_error_for_evidence_stage() -> None:
         build_candidate_evidence(query, load_fingerprint("healthy"))
 
 
+def test_unrepresentable_residual_is_a_conservative_evidence_error() -> None:
+    query = load_query("similar_network")
+    features = dict(query.features)
+    original = features["transport.jitter_ms"]
+    features["transport.jitter_ms"] = original.model_copy(update={"value": 1e200})
+    query = rebuild(query, features=features)
+
+    with pytest.raises(EvidenceError, match="exceeds finite scoring range"):
+        build_candidate_evidence(query, load_fingerprint("network_pressure"))
+
+
+def test_unrepresentable_weight_sum_is_a_conservative_evidence_error() -> None:
+    candidate = load_fingerprint("network_pressure")
+    candidate = rebuild(
+        candidate,
+        feature_weights={feature: 1e308 for feature in candidate.feature_weights},
+    )
+
+    with pytest.raises(EvidenceError, match="aggregate scoring range"):
+        build_candidate_evidence(load_query("similar_network"), candidate)
+
+
 def test_evidence_builder_does_not_mutate_query_or_candidate() -> None:
     query = load_query("similar_encoder")
     candidate = load_fingerprint("host_encoder_pressure")

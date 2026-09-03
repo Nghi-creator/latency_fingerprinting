@@ -253,6 +253,20 @@ def test_v2_summary_duration_must_match_telemetry(
         ingest(bundle, context_v2)
 
 
+def test_v2_summary_duration_rejects_unrepresentable_json_integer(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    summary_path = bundle / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["recording"]["durationMs"] = 10**400
+    summary_path.write_text(json.dumps(summary), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="durationMs must be finite"):
+        ingest(bundle, context_v2)
+
+
 @pytest.mark.parametrize(
     ("manifest_phase", "window_phase"),
     [

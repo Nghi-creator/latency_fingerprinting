@@ -10,6 +10,7 @@ from ..json_io import strict_json_loads
 from ..models import WindowPhase
 from .pixelated_bundle_common import (
     PixelatedBundleError,
+    finite_json_number,
     finite_number,
     required_string,
     utc_datetime,
@@ -418,9 +419,13 @@ def validate_summary(
     if recording.get("sampleCount") != telemetry_count:
         raise PixelatedBundleError("summary.json browser sample count disagrees with telemetry")
     declared_duration = recording.get("durationMs")
-    if isinstance(declared_duration, bool) or not isinstance(declared_duration, (int, float)):
-        raise PixelatedBundleError("summary.json recording durationMs must be numeric")
-    if abs(float(declared_duration) - duration_ms) > 1:
+    declared_duration_number = finite_json_number(
+        declared_duration,
+        source="summary.json recording durationMs",
+    )
+    if declared_duration_number < 0:
+        raise PixelatedBundleError("summary.json recording durationMs cannot be negative")
+    if abs(declared_duration_number - duration_ms) > 1:
         raise PixelatedBundleError("summary.json recording duration disagrees with telemetry")
     expected_counts = {
         "browserWebrtc": (telemetry_count, telemetry_count),

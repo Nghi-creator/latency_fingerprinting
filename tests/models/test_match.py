@@ -38,6 +38,18 @@ def test_feature_evidence_arithmetic_is_auditable() -> None:
         )
 
 
+def test_feature_evidence_rejects_unrepresentable_arithmetic_as_validation_error() -> None:
+    with pytest.raises(ValidationError, match="must be finite"):
+        FeatureEvidence(
+            feature="transport.jitter_ms",
+            observed_value=1e200,
+            candidate_value=0,
+            residual=1e200,
+            weight=1,
+            weighted_squared_residual=0,
+        )
+
+
 def test_match_result_rejects_invalid_decision_combinations() -> None:
     matched = make_match_result()
     invalid_matched = matched.model_dump()

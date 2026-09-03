@@ -1,6 +1,7 @@
 # P0 Software Closeout
 
-**Verified:** 2026-08-24
+**Verified:** 2026-09-04
+
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
 
@@ -43,7 +44,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 283 tests passed with branch-aware coverage above the enforced 85% floor;
+- 289 tests passed with 86.60% branch coverage, above the enforced 85% floor;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
@@ -64,6 +65,13 @@ enforces total readable bytes for directory bundles, preserves exact rejected-
 feature reasons across derived records, validates matcher configuration on all
 early-return paths, and prevents rejected repository records from colliding
 with valid fingerprint identifiers.
+
+The 2026-09-04 final scan additionally closes finite-range failure paths:
+decoded JSON integers that cannot be represented as finite floats now produce
+adapter-domain errors, evidence arithmetic cannot leak `OverflowError`, and
+unrepresentable candidate residuals or aggregate weights are conservatively
+reported as unscorable evidence. Schema, synthetic-fixture, seed-fingerprint,
+controlled-artifact, and byte-for-byte run-002 reproduction checks all passed.
 
 ## Inspectable examples
 

@@ -20,6 +20,9 @@ from .pixelated_bundle_common import (
     PixelatedBundleError,
 )
 from .pixelated_bundle_common import (
+    finite_json_number as _finite_json_number,
+)
+from .pixelated_bundle_common import (
     finite_number as _finite_number,
 )
 from .pixelated_bundle_common import (
@@ -159,11 +162,17 @@ def _validate_metadata(
         value = profile[key]
         if value is None:
             continue
-        if isinstance(value, bool) or not isinstance(value, (int, float)):
-            raise PixelatedBundleError(
-                f"run-metadata.json streamProfile {key!r} must be numeric or null"
+        try:
+            number = _finite_json_number(
+                value,
+                source=f"run-metadata.json streamProfile {key!r}",
             )
-        if not math.isfinite(value) or value < 0:
+        except PixelatedBundleError as error:
+            raise PixelatedBundleError(
+                f"run-metadata.json streamProfile {key!r} must be finite, "
+                "non-negative, numeric, or null"
+            ) from error
+        if number < 0:
             raise PixelatedBundleError(
                 f"run-metadata.json streamProfile {key!r} must be finite and non-negative"
             )
