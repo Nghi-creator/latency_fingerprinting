@@ -56,7 +56,7 @@ validated proxy exists.
 P0 counter-derived features retain the frozen median interval-delta semantics.
 Before captures with different sampling cadence are compared, the next contract
 must version these as rates and/or total-window deltas as described in
-[`../NEXT_IMPLEMENTATION_PLAN.md`](../NEXT_IMPLEMENTATION_PLAN.md).
+[`../plans/NEXT_IMPLEMENTATION_PLAN.md`](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 
 ## Control boundary
 
