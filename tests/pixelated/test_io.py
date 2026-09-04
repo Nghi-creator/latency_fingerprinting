@@ -12,7 +12,7 @@ from latency_fingerprinting.adapters import pixelated_bundle_io
 from latency_fingerprinting.adapters.pixelated_bundle import PixelatedBundleError
 from latency_fingerprinting.models import ContextKey
 
-from .pixelated_bundle_support import (
+from .support import (
     VALID_BUNDLE,
     copy_bundle,
     copy_v2_bundle,

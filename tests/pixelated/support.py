@@ -1,4 +1,4 @@
-"""Shared fixtures and file helpers for Pixelated bundle tests."""
+"""Paths and file helpers shared by Pixelated bundle tests."""
 
 from __future__ import annotations
 
@@ -6,29 +6,13 @@ import shutil
 import tarfile
 from pathlib import Path
 
-import pytest
-
 from latency_fingerprinting.adapters.pixelated_bundle import ingest_pixelated_bundle
 from latency_fingerprinting.models import ContextKey, WindowPhase
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 FIXTURE_ROOT = PROJECT_ROOT / "tests" / "data" / "pixelated_bundle"
 VALID_BUNDLE = FIXTURE_ROOT / "valid"
 VALID_V2_BUNDLE = FIXTURE_ROOT / "valid-v2"
-
-
-@pytest.fixture
-def context() -> ContextKey:
-    return ContextKey.model_validate_json(
-        (FIXTURE_ROOT / "context.json").read_text(encoding="utf-8")
-    )
-
-
-@pytest.fixture
-def context_v2() -> ContextKey:
-    return ContextKey.model_validate_json(
-        (FIXTURE_ROOT / "context-v2.json").read_text(encoding="utf-8")
-    )
 
 
 def ingest(path: Path, context: ContextKey):
@@ -65,8 +49,6 @@ __all__ = [
     "FIXTURE_ROOT",
     "VALID_BUNDLE",
     "VALID_V2_BUNDLE",
-    "context",
-    "context_v2",
     "copy_bundle",
     "copy_v2_bundle",
     "ingest",

@@ -13,7 +13,7 @@ from latency_fingerprinting.adapters.pixelated_bundle import (
 )
 from latency_fingerprinting.models import ContextKey, WindowPhase
 
-from .pixelated_bundle_support import (
+from .support import (
     VALID_V2_BUNDLE,
     copy_v2_bundle,
     ingest,

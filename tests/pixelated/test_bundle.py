@@ -7,7 +7,7 @@ from pathlib import Path
 
 from latency_fingerprinting.models import ContextKey, ProvenanceKind, WindowPhase
 
-from .pixelated_bundle_support import (
+from .support import (
     VALID_BUNDLE,
     VALID_V2_BUNDLE,
     copy_v2_bundle,
