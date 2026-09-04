@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 from typing import TypeVar
 
 import pytest
@@ -161,6 +162,26 @@ def test_response_retains_raw_values_and_aggregation() -> None:
     assert feature.degraded_value == 20
     assert feature.relief_value == 8
     assert feature.aggregation == "median"
+
+
+def test_unrepresentable_delta_is_rejected_instead_of_raising() -> None:
+    degraded, relief, probe = make_pair()
+    degraded = rebuild(
+        degraded,
+        metrics={"transport.jitter_ms": metric(-sys.float_info.max, "ms")},
+    )
+    relief = rebuild(
+        relief,
+        metrics={"transport.jitter_ms": metric(sys.float_info.max, "ms")},
+    )
+
+    response = build_response_delta(degraded, relief, probe)
+
+    assert response.is_valid
+    assert response.features == {}
+    assert response.rejected_features == {
+        "transport.jitter_ms": "derived response delta exceeds finite numeric range"
+    }
 
 
 def test_missing_feature_is_preserved_and_never_imputed_as_zero() -> None:

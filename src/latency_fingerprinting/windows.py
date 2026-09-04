@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 from .models import FeatureDelta, ObservationWindow, Probe, ResponseDelta
 from .validation import (
     DEFAULT_DURATION_RELATIVE_TOLERANCE,
@@ -80,12 +82,16 @@ def build_response_delta(
     for feature in comparability.shared_metrics:
         degraded_metric = degraded.metrics[feature]
         relief_metric = relief.metrics[feature]
+        raw_delta = relief_metric.value - degraded_metric.value
+        if not math.isfinite(raw_delta):
+            rejected_features[feature] = "derived response delta exceeds finite numeric range"
+            continue
         features[feature] = FeatureDelta(
             unit=degraded_metric.unit,
             aggregation=degraded_metric.aggregation,
             degraded_value=degraded_metric.value,
             relief_value=relief_metric.value,
-            raw_delta=relief_metric.value - degraded_metric.value,
+            raw_delta=raw_delta,
         )
 
     return ResponseDelta(

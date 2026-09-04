@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+import latency_fingerprinting.fingerprints as fingerprints_module
 from latency_fingerprinting.fingerprints import (
     FingerprintEntry,
     FingerprintRejectionReason,
@@ -239,6 +240,29 @@ def test_empty_repository_is_valid_and_paths_are_checked(tmp_path: Path) -> None
     file_path.write_text("{}", encoding="utf-8")
     with pytest.raises(NotADirectoryError):
         load_fingerprint_repository(file_path)
+
+
+def test_repository_traversal_bounds_all_directory_entries(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(fingerprints_module, "MAX_FINGERPRINT_DIRECTORY_ENTRIES", 2)
+    for index in range(3):
+        (tmp_path / f"unrelated-{index}.txt").write_text("ignored", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="more than 2 directory entries"):
+        load_fingerprint_repository(tmp_path)
+
+
+def test_repository_traversal_has_a_depth_limit(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(fingerprints_module, "MAX_FINGERPRINT_DIRECTORY_DEPTH", 1)
+    (tmp_path / "one" / "two").mkdir(parents=True)
+
+    with pytest.raises(ValueError, match="maximum directory depth of 1"):
+        load_fingerprint_repository(tmp_path)
 
 
 def test_repository_rejects_duplicate_json_keys(tmp_path: Path) -> None:

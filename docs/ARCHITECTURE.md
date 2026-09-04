@@ -161,8 +161,14 @@ The Pixelated boundary additionally caps compressed archive bytes, declared
 archive contents, members, per-file bytes, total readable bytes and CSV rows;
 rejects links and duplicate TAR members; and
 cross-checks workload/session identity plus browser/engine clock alignment.
+Fingerprint discovery also caps matching files, total traversed directory
+entries and nesting depth without following links. Finite source numbers are
+checked again after delta, median and normalization arithmetic so representable
+inputs cannot silently become infinities.
 
-Pydantic models are the Python source of truth. Checked-in JSON Schemas are generated from the models, with a regression test preventing drift.
+Pydantic models are the Python source of truth. Checked-in JSON Schemas are
+generated from the models with sibling temporary files and atomic replacement;
+a regression test prevents drift.
 
 ## Runtime constraint
 

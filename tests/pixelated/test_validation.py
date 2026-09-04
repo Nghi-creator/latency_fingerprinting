@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -12,6 +13,7 @@ from latency_fingerprinting.adapters.pixelated_bundle import (
     PixelatedBundleError,
     ingest_pixelated_bundle,
 )
+from latency_fingerprinting.adapters.pixelated_bundle_metrics import mapped_metrics
 from latency_fingerprinting.models import ContextKey, WindowPhase
 
 from .support import (
@@ -114,6 +116,20 @@ def test_malformed_metric_values_are_rejected_not_fabricated(
 
     assert "client.received_fps" in window.rejected_metrics
     assert "client.received_fps" not in window.metrics
+
+
+def test_even_median_does_not_overflow_for_finite_samples() -> None:
+    rows = [{"metric": str(sys.float_info.max)}, {"metric": str(sys.float_info.max)}]
+
+    metrics, missing, rejected = mapped_metrics(
+        rows,
+        {"review.metric": ("metric", "units")},
+        source_name="review.csv",
+    )
+
+    assert metrics["review.metric"].value == sys.float_info.max
+    assert missing == []
+    assert rejected == {}
 
 
 def test_inactive_playback_is_preserved_as_invalid_window(

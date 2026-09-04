@@ -44,7 +44,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 289 tests passed with 86.60% branch coverage, above the enforced 85% floor;
+- 307 tests passed with 87.01% branch coverage, above the enforced 85% floor;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
@@ -72,6 +72,15 @@ adapter-domain errors, evidence arithmetic cannot leak `OverflowError`, and
 unrepresentable candidate residuals or aggregate weights are conservatively
 reported as unscorable evidence. Schema, synthetic-fixture, seed-fingerprint,
 controlled-artifact, and byte-for-byte run-002 reproduction checks all passed.
+
+The final pre-N1 hardening review makes `P0_FEATURE_CONFIG` immutable, strictly
+validates programmatic normalization configuration, rejects non-finite
+normalization results with domain errors, records unrepresentable response
+deltas as rejected evidence, and calculates even medians without intermediate
+overflow. Fingerprint discovery now bounds total traversed entries and depth in
+addition to matching files. Generated schemas use permission-preserving sibling
+temporary files and atomic replacement. The expanded 307-test suite and all
+artifact drift/reproduction gates passed after these changes.
 
 ## Inspectable examples
 
