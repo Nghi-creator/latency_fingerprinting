@@ -9,8 +9,8 @@ import pytest
 from latency_fingerprinting.adapters.pixelated_bundle import PixelatedBundleError
 from latency_fingerprinting.models import ContextKey
 
-from .pixelated_bundle_support import copy_v2_bundle as copy_bundle
-from .pixelated_bundle_support import ingest
+from .support import copy_v2_bundle as copy_bundle
+from .support import ingest
 
 
 def test_v2_event_details_reject_private_peer_identity(

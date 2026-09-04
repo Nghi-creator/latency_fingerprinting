@@ -7,7 +7,8 @@ from typing import Annotated, Literal
 
 from pydantic import Field, JsonValue, StrictBool, model_validator
 
-from ..feature_config import P0_FEATURE_CONFIG, normalize_feature_value
+from ..measurement.feature_config import normalize_feature_value
+from ..measurement.p0_features import P0_FEATURE_CONFIG
 from .common import (
     CONTRACT_VERSION,
     OBSERVATION_SCHEMA_VERSION,
