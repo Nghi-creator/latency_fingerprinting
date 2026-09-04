@@ -391,8 +391,11 @@ schemas/
 src/latency_fingerprinting/
 ├── models/
 │   └── measurement.py
-├── metric_registry.py
-├── measurement_aggregation.py
+├── measurement/
+│   ├── feature_config.py
+│   ├── p0_features.py
+│   ├── metric_registry.py
+│   └── aggregation.py
 ├── measurement_inspection.py
 └── adapters/
     └── pixelated_measurement_samples.py
@@ -400,8 +403,9 @@ src/latency_fingerprinting/
 tests/
 ├── models/
 │   └── test_measurement.py
-├── test_metric_registry.py
-├── test_measurement_aggregation.py
+├── measurement/
+│   ├── test_metric_registry.py
+│   └── test_aggregation.py
 ├── test_measurement_inspection.py
 └── data/
     └── measurement/
@@ -538,7 +542,7 @@ Expose only intentional public types from `models/__init__.py`.
 
 ## Step 3 — Build the canonical registry
 
-Create `metric_registry.py` containing one immutable canonical registry object
+Create `measurement/metric_registry.py` containing one immutable canonical registry object
 or a deterministic builder from explicit definitions.
 
 Rules:
@@ -628,7 +632,7 @@ matcher features.
 
 ## Step 5 — Implement gauge aggregation
 
-Add pure functions to `measurement_aggregation.py`. They accept a definition,
+Add pure functions to `measurement/aggregation.py`. They accept a definition,
 window bounds, and immutable samples; they perform no file I/O.
 
 For gauges:
