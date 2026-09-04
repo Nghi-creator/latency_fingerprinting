@@ -23,12 +23,10 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 2. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) defines the Python/TypeScript boundary and repository structure.
 3. [`docs/p0/DATA_MODEL_AND_MATCHER.md`](docs/p0/DATA_MODEL_AND_MATCHER.md) defines records, normalization and matching.
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
-5. [`docs/p0/IMPLEMENTATION_TRACKER.md`](docs/p0/IMPLEMENTATION_TRACKER.md) is the executable checklist and exit gate.
-6. [`docs/p0/P0_BUILD_PLAN.md`](docs/p0/P0_BUILD_PLAN.md) defines the ordered implementation plan and phase gates.
-7. [`docs/PROJECT_BUILD_AND_REVIEW_READINESS.md`](docs/PROJECT_BUILD_AND_REVIEW_READINESS.md) consolidates project build gates, technical explanations and review questions.
-8. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
-9. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
-10. [`docs/NEXT_IMPLEMENTATION_PLAN.md`](docs/NEXT_IMPLEMENTATION_PLAN.md) is the prioritized post-P0 feature and evaluation roadmap.
+5. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
+6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
+7. [`docs/plans/NEXT_IMPLEMENTATION_PLAN.md`](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the detailed plan for the active implementation slice.
+8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
 
@@ -111,9 +109,10 @@ for subsequent captures.
 - Live encoder mutation, autonomous recovery, calibrated probabilities,
   mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
 
-The ordered implementation sequence, phase gates, experiment requirements, and
-immediate next sprint are in the
-[`next implementation plan`](docs/NEXT_IMPLEMENTATION_PLAN.md).
+The current implementation sequence and exit gates are in the
+[`next-slice plan`](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
+the finished engine is maintained in the
+[`full implementation plan`](docs/plans/FULL_IMPLEMENTATION_PLAN.md).
 
 Inspectable software examples are linked from
 [`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is

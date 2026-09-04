@@ -1,9 +1,14 @@
-# Latency Fingerprinting: Next Implementation Plan
+# Latency Fingerprinting: Full Implementation Plan
 
-**Status:** Post-P0 implementation roadmap  
-**Updated:** 2026-08-24  
+**Status:** Full post-P0 roadmap through production and final evaluation  
+**Updated:** 2026-09-04  
 **Starting point:** The offline P0 path is complete and hardened. Diagnosis accuracy,
 live probing, recovery benefit, and transfer remain unproven.
+
+This document defines the complete sequence of major slices required to finish
+the engine. It intentionally stays at roadmap level. The implementation-ready
+plan for only the active slice lives in
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md).
 
 ## Outcome to build toward
 
@@ -45,8 +50,11 @@ frame timestamp + deadline budget
 
 ## Phase 1 — Measurement contract v2 and experiment foundation
 
-Immediate next slice. Better matching is premature until the
-features have stable timing and scientifically consistent semantics.
+This phase begins with the registry and aggregation foundation specified in
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). Better matching
+is premature until features have stable timing and scientifically consistent
+semantics. Observation-v2 adoption and new instrumentation follow as later
+slices within this phase.
 
 ### 1.1 Version metric semantics
 
@@ -115,6 +123,13 @@ held-out queries, with no source run reused as its own fingerprint query.
   workload, or measurement-contract changes.
 - Add a small persistent store only when multiple calibration runs require
   lifecycle queries; SQLite is sufficient before any service architecture.
+- Separate the automatically retained observation archive, quarantined
+  fingerprint candidates, and fingerprints eligible for production matching.
+- Accept labels only from declared evidence such as controlled fault injection,
+  externally confirmed root cause, or independently verified outcomes. Never
+  promote the matcher's own prediction as self-confirming ground truth.
+- Require source-run exclusion, independent repetitions, provenance, audit
+  history, and reversible promotion/rejection decisions.
 
 Exit gate: thresholds and weights are derived from calibration data and tested
 on held-out complete runs, with sensitivity analysis.
@@ -218,6 +233,25 @@ cadence, visual quality, codec, or audio regressions.
 - Keep tokens and raw peer identity out of exported research artifacts.
 - Preserve Pixelated pairing, launch, multiplayer, revoke, and failure flows.
 
+### 3.5 Autonomous fingerprint and outcome lifecycle
+
+- Record every valid probe observation automatically without treating every
+  observation as a fingerprint.
+- Create quarantined candidates only when label evidence and lineage satisfy a
+  declared policy.
+- Corroborate candidates across independent runs and reject self-evaluation,
+  duplicate evidence, incompatible contracts, and circular labels.
+- Promote, supersede, expire, or reject candidates through an auditable state
+  machine with deterministic policy versions.
+- Keep production matching on an atomic repository snapshot so an incomplete
+  update cannot alter an in-flight decision.
+- Persist `ValidatedOutcome` records for successful, ineffective, aborted, and
+  rolled-back actions; do not learn only from successes.
+
+Exit gate: an unattended controlled deployment can collect observations and
+manage candidate lifecycle without a terminal while being unable to silently
+self-label or promote circular evidence.
+
 ## Phase 4 — Comparative evaluation
 
 Implement reproducible modes for:
@@ -262,19 +296,72 @@ probe/action safety deterministic, and remove it if it does not improve a
 predeclared held-out metric. LLMs, unrestricted online learning, deep models,
 and reinforcement learning do not belong in the first runtime controller.
 
-## Immediate next sprint
+## Phase 6 — Production hardening and unattended operation
 
-1. Draft the v2 metric registry and counter/rate migration decision.
-2. Add raw-trace retention plus frame/session/clock metadata to the Pixelated
-   export contract.
-3. Instrument capture queue, encode duration, and frame age—the smallest set
-   that exposes avoidable stale work.
-4. Automate one additional real bottleneck class and at least five independent
-   repetitions per existing class as an initial variance study, not a final
-   sample-size claim.
-5. Add a passive healthy-baseline gate and an offline two-class calibration
-   report.
-6. Specify the live probe/action safety state machine before enabling runtime
-   mutation.
+- Package the slow engine as a supervised local process or embedded service
+  with authenticated local IPC, bounded queues, timeouts, health checks, and
+  explicit startup/shutdown recovery.
+- Add durable schema migrations, repository backup/restore, corruption
+  detection, atomic writes, retention limits, and storage-pressure behavior.
+- Define least-privilege runtime permissions. Keep credentials, peer identity,
+  private paths, and raw sensitive telemetry outside exported research data.
+- Add structured logs, metrics, traces, decision replay, and operator-visible
+  explanations for probes, matches, actions, rollbacks, and fingerprint state
+  changes.
+- Test crash recovery at every controller state, lost acknowledgements,
+  duplicate commands, stale responses, adapter restarts, engine restarts,
+  storage failures, and partial upgrades.
+- Bound CPU, memory, disk, network, and telemetry overhead and verify that the
+  engine cannot become a material source of latency.
+- Support safe configuration rollout, version negotiation, compatibility
+  isolation, downgrade behavior, and rollback to the previous known-good
+  engine/repository snapshot.
+- Keep the CLI as a replay, diagnostics, export, and administrative interface;
+  routine deployed operation must not require terminal commands.
 
-Dashboard, hosted service, RL policy, and cross-node model add surface area before measurement semantics and safety are established so won't start there.
+Exit gate: the engine survives restart and partial-failure drills, stays within
+declared resource budgets, and operates end to end without manual terminal
+steps.
+
+## Phase 7 — Final evaluation and project closeout
+
+- Freeze the evaluated software, contracts, registry, controller policy,
+  fingerprint snapshot, scenarios, and experiment manifests.
+- Run all declared baselines and ablations on held-out complete runs.
+- Publish reproducible tables, plots, uncertainty intervals, failure cases,
+  resource overhead, disturbance cost, and validity limitations.
+- Verify every claimed result against immutable evidence and distinguish
+  engineering feasibility, controlled-test findings, and generalization.
+- Produce deployment, operations, rollback, privacy, security, data-retention,
+  API, and architecture documentation.
+- Preserve machine-readable artifacts, checksums, environment versions, and
+  exact reproduction commands.
+
+Exit gate: another engineer can reproduce the supported claims, deploy the
+bounded engine, inspect every decision, and recover it safely within the stated
+scope.
+
+## Definition of finished
+
+The engine is complete only when all of the following are true:
+
+- measurement meanings are versioned and incompatible meanings cannot mix;
+- degradation detection resists transient noise and unnecessary probing;
+- probes and actions are bounded, reversible, and crash-safe;
+- diagnosis distinguishes the evaluated causes and returns `unknown` outside
+  supported evidence;
+- remediation is verified against latency, quality, stability, and resource
+  cost rather than assumed successful;
+- fingerprint candidates cannot self-label, self-test, or bypass promotion
+  policy;
+- slow control and fast deadline handling integrate without placing Python on
+  the frame-critical path;
+- unattended operation has durable state, observability, security, upgrade,
+  and recovery procedures;
+- comparative claims are supported by held-out reproducible evaluation; and
+- all remaining limitations are explicit.
+
+The current implementation-ready work is specified in
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). Dashboard work,
+a hosted service, unrestricted online learning, and ML/RL remain out of scope
+until measurement semantics, safety, and deterministic baselines justify them.

@@ -63,7 +63,8 @@ latency-fingerprinting/
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── diagrams/
-│   └── p0/
+│   ├── p0/
+│   └── plans/
 ├── schemas/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json
