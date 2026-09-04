@@ -76,9 +76,10 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
   archives and extracted directories with an explicit research context.
 - Post-P0 hardening pass: strict and bounded JSON/file boundaries, stronger
   cross-record derivation/provenance invariants, cross-file telemetry identity
-  and clock checks, finite-range-safe adapter and evidence arithmetic,
-  zero-weight matcher gate correction, and CI coverage/security checks
-  implemented.
+  and clock checks, finite-range-safe adapter, delta, normalization and evidence
+  arithmetic, immutable P0 feature semantics, bounded fingerprint traversal,
+  atomic schema exports, zero-weight matcher gate correction, and CI
+  coverage/security checks implemented.
 
 ### P0 result
 

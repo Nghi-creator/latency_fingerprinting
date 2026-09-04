@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import math
-import statistics
 from collections.abc import Mapping, Sequence
 
 from ..models import MetricAggregate
@@ -60,7 +59,13 @@ def _percentile_95(values: Sequence[float]) -> float:
 
 def _aggregate(values: Sequence[float], unit: str) -> MetricAggregate:
     ordered = sorted(values)
-    median = float(statistics.median(ordered))
+    midpoint = len(ordered) // 2
+    if len(ordered) % 2:
+        median = ordered[midpoint]
+    else:
+        lower = ordered[midpoint - 1]
+        upper = ordered[midpoint]
+        median = lower + (upper - lower) / 2 if lower >= 0 or upper <= 0 else lower / 2 + upper / 2
     return MetricAggregate(
         unit=unit,
         aggregation="median",

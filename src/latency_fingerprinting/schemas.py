@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import json
+import os
+import stat
+import tempfile
 from collections.abc import Mapping
 from pathlib import Path
 from typing import TypeAlias
@@ -35,6 +38,28 @@ def rendered_schemas() -> dict[str, str]:
     return {filename: render_schema(model) for filename, model in SCHEMA_MODELS.items()}
 
 
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Durably write text to a sibling temporary file before atomic replacement."""
+
+    descriptor, temporary_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
+    temporary_path = Path(temporary_name)
+    try:
+        destination_mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="") as temporary_file:
+            temporary_file.write(text)
+            temporary_file.flush()
+            os.fsync(temporary_file.fileno())
+        os.chmod(temporary_path, destination_mode)
+        temporary_path.replace(path)
+    except BaseException:
+        temporary_path.unlink(missing_ok=True)
+        raise
+
+
 def export_schemas(output_directory: Path = DEFAULT_SCHEMA_DIRECTORY) -> tuple[Path, ...]:
     """Write all generated schemas and return their paths in stable order."""
 
@@ -42,7 +67,7 @@ def export_schemas(output_directory: Path = DEFAULT_SCHEMA_DIRECTORY) -> tuple[P
     schemas = rendered_schemas()
     paths = tuple(output_directory / filename for filename in sorted(schemas))
     for path in paths:
-        path.write_text(schemas[path.name], encoding="utf-8")
+        _atomic_write_text(path, schemas[path.name])
     return paths
 
 

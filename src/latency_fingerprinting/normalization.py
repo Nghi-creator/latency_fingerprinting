@@ -47,6 +47,10 @@ def normalize_response(
             raise NormalizationError(
                 f"feature {feature!r} has no declared normalization configuration"
             )
+        if not isinstance(config, FeatureNormalizationConfig):
+            raise NormalizationError(
+                f"feature {feature!r} configuration must be a FeatureNormalizationConfig"
+            )
         if raw_feature.unit != config.unit:
             raise NormalizationError(
                 f"feature {feature!r} uses unit {raw_feature.unit!r}; "
@@ -54,11 +58,16 @@ def normalize_response(
             )
 
         reference_value = raw_feature.degraded_value
-        value, was_clipped, unclipped_value = normalize_feature_value(
-            raw_feature.raw_delta,
-            reference_value,
-            config,
-        )
+        try:
+            value, was_clipped, unclipped_value = normalize_feature_value(
+                raw_feature.raw_delta,
+                reference_value,
+                config,
+            )
+        except ValueError as error:
+            raise NormalizationError(
+                f"feature {feature!r} cannot be normalized: {error}"
+            ) from error
         normalized_features[feature] = NormalizedFeature(
             value=value,
             epsilon=config.epsilon,

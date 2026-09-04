@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from enum import StrEnum
-from itertools import islice
 from pathlib import Path
 
 from pydantic import ValidationError
@@ -18,6 +18,8 @@ from .models import (
 )
 
 MAX_FINGERPRINT_FILES = 4096
+MAX_FINGERPRINT_DIRECTORY_ENTRIES = 32_768
+MAX_FINGERPRINT_DIRECTORY_DEPTH = 32
 
 
 class FingerprintRejectionReason(StrEnum):
@@ -106,23 +108,50 @@ class FingerprintRepositoryError(ValueError):
 
 
 def _discover_files(directory: Path) -> tuple[Path, ...]:
-    def discover(pattern: str) -> tuple[Path, ...]:
-        matches = list(
-            islice(
-                (path for path in directory.rglob(pattern) if path.is_file()),
-                MAX_FINGERPRINT_FILES + 1,
-            )
-        )
-        if len(matches) > MAX_FINGERPRINT_FILES:
-            raise ValueError(
-                f"fingerprint repository contains more than {MAX_FINGERPRINT_FILES} files"
-            )
-        return tuple(sorted(matches, key=lambda path: path.relative_to(directory).as_posix()))
+    named_fingerprints: list[Path] = []
+    json_files: list[Path] = []
+    pending: list[tuple[Path, int]] = [(directory, 0)]
+    entries_seen = 0
 
-    named_fingerprints = discover("fingerprint.json")
-    if named_fingerprints:
-        return named_fingerprints
-    return discover("*.json")
+    while pending:
+        current, depth = pending.pop()
+        with os.scandir(current) as iterator:
+            entries = sorted(iterator, key=lambda entry: entry.name)
+        child_directories: list[Path] = []
+        for entry in entries:
+            entries_seen += 1
+            if entries_seen > MAX_FINGERPRINT_DIRECTORY_ENTRIES:
+                raise ValueError(
+                    "fingerprint repository contains more than "
+                    f"{MAX_FINGERPRINT_DIRECTORY_ENTRIES} directory entries"
+                )
+
+            path = Path(entry.path)
+            if entry.is_symlink():
+                if entry.name.endswith(".json"):
+                    json_files.append(path)
+                    if entry.name == "fingerprint.json":
+                        named_fingerprints.append(path)
+                continue
+            if entry.is_dir(follow_symlinks=False):
+                if depth >= MAX_FINGERPRINT_DIRECTORY_DEPTH:
+                    raise ValueError(
+                        "fingerprint repository exceeds the maximum directory depth of "
+                        f"{MAX_FINGERPRINT_DIRECTORY_DEPTH}"
+                    )
+                child_directories.append(path)
+                continue
+            if entry.is_file(follow_symlinks=False) and entry.name.endswith(".json"):
+                json_files.append(path)
+                if entry.name == "fingerprint.json":
+                    named_fingerprints.append(path)
+
+        pending.extend((path, depth + 1) for path in reversed(child_directories))
+
+    matches = named_fingerprints or json_files
+    if len(matches) > MAX_FINGERPRINT_FILES:
+        raise ValueError(f"fingerprint repository contains more than {MAX_FINGERPRINT_FILES} files")
+    return tuple(sorted(matches, key=lambda path: path.relative_to(directory).as_posix()))
 
 
 def _load_file(path: Path) -> FingerprintEntry | FingerprintRejection:

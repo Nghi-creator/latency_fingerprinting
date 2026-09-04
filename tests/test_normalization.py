@@ -7,6 +7,7 @@ import math
 import pytest
 from pydantic import ValidationError
 
+from latency_fingerprinting.measurement.feature_config import normalize_feature_value
 from latency_fingerprinting.models import (
     FeatureDelta,
     NormalizedFeature,
@@ -86,6 +87,13 @@ def test_p0_configuration_covers_v1_and_v2_adapter_metrics() -> None:
         "transport.packets_lost_delta",
         "transport.round_trip_time_ms",
     } <= set(P0_FEATURE_CONFIG)
+
+
+def test_p0_configuration_is_immutable() -> None:
+    with pytest.raises(TypeError):
+        P0_FEATURE_CONFIG["review.mutation"] = next(  # type: ignore[index]
+            iter(P0_FEATURE_CONFIG.values())
+        )
 
 
 def test_normalization_uses_degraded_value_as_reference_after_raw_delta() -> None:
@@ -194,7 +202,11 @@ def test_feature_unit_must_match_normalization_configuration() -> None:
 @pytest.mark.parametrize(
     "config",
     [
+        {"unit": None, "epsilon": 1},
         {"unit": "", "epsilon": 1},
+        {"unit": "ms", "epsilon": True},
+        {"unit": "ms", "epsilon": "1"},
+        {"unit": "ms", "epsilon": 10**400},
         {"unit": "ms", "epsilon": 0},
         {"unit": "ms", "epsilon": -1},
         {"unit": "ms", "epsilon": float("nan")},
@@ -206,6 +218,51 @@ def test_feature_unit_must_match_normalization_configuration() -> None:
 def test_invalid_feature_configuration_is_rejected(config: dict[str, object]) -> None:
     with pytest.raises(ValueError):
         FeatureNormalizationConfig(**config)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize(
+    ("raw_delta", "reference_value"),
+    [
+        (True, 1.0),
+        (1.0, False),
+        (float("nan"), 1.0),
+        (1.0, float("inf")),
+    ],
+)
+def test_scalar_normalization_rejects_invalid_runtime_numbers(
+    raw_delta: object,
+    reference_value: object,
+) -> None:
+    with pytest.raises(ValueError):
+        normalize_feature_value(  # type: ignore[arg-type]
+            raw_delta,
+            reference_value,
+            FeatureNormalizationConfig(unit="ms", epsilon=0.1),
+        )
+
+
+def test_scalar_normalization_rejects_invalid_config_object() -> None:
+    with pytest.raises(ValueError, match="FeatureNormalizationConfig"):
+        normalize_feature_value(1.0, 1.0, object())  # type: ignore[arg-type]
+
+
+def test_response_normalization_rejects_invalid_config_object() -> None:
+    with pytest.raises(NormalizationError, match="FeatureNormalizationConfig"):
+        normalize_response(
+            make_response(features={"transport.jitter_ms": feature(20, 8, unit="ms")}),
+            feature_config={"transport.jitter_ms": object()},  # type: ignore[dict-item]
+        )
+
+
+def test_normalization_overflow_is_a_domain_error() -> None:
+    response = make_response(
+        features={
+            "transport.jitter_ms": feature(0.0, float.fromhex("0x1.fffffffffffffp+1023"), unit="ms")
+        }
+    )
+
+    with pytest.raises(NormalizationError, match="exceeds the finite numeric range"):
+        normalize_response(response)
 
 
 def test_normalized_model_enforces_clipping_and_availability_invariants() -> None:
