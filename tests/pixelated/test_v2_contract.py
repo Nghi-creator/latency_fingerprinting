@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 import json
 from pathlib import Path
 
@@ -218,6 +219,29 @@ def test_engine_samples_must_align_with_browser_window(
     )
 
     with pytest.raises(PixelatedBundleError, match="outside the browser capture window"):
+        ingest(bundle, context_v2)
+
+
+def test_engine_and_encoder_samples_must_share_exact_poll_identities(
+    tmp_path: Path,
+    context_v2: ContextKey,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    engine_path = bundle / "engine-telemetry.csv"
+    with engine_path.open(newline="", encoding="utf-8") as engine_file:
+        rows = list(csv.DictReader(engine_file))
+    headers = list(rows[0])
+    for row in rows:
+        if row["source"] != "encoder_pipeline":
+            continue
+        row["captured_at"] = row["captured_at"].replace(".000Z", ".500Z")
+        row["elapsed_ms"] = str(int(row["elapsed_ms"]) + 500)
+    with engine_path.open("w", newline="", encoding="utf-8") as engine_file:
+        writer = csv.DictWriter(engine_file, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    with pytest.raises(PixelatedBundleError, match="poll identities must match exactly"):
         ingest(bundle, context_v2)
 
 

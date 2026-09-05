@@ -285,6 +285,18 @@ def validate_engine_rows(
             )
     for source, source_rows in by_source.items():
         _validate_source_sequence(source, source_rows)
+    engine_poll_ids = [
+        (row["run_id"], row["session_id"], row["captured_at"], row["elapsed_ms"])
+        for row in by_source["engine_runtime"]
+    ]
+    encoder_poll_ids = [
+        (row["run_id"], row["session_id"], row["captured_at"], row["elapsed_ms"])
+        for row in by_source["encoder_pipeline"]
+    ]
+    if engine_poll_ids != encoder_poll_ids:
+        raise PixelatedBundleError(
+            "engine-telemetry.csv engine and encoder poll identities must match exactly"
+        )
 
 
 def _validate_source_sequence(source: str, rows: Sequence[Mapping[str, str]]) -> None:

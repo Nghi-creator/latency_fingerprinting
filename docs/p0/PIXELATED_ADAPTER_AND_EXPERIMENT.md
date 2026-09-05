@@ -40,6 +40,17 @@ overflow; checks the explicit workload context; requires strict per-source time
 ordering; cross-checks elapsed and UTC clocks; aligns engine samples with the
 browser window; and retains exporter-declared invalidity.
 
+The producer side of this contract uses one capture instant for each engine
+row's UTC and elapsed clocks, declares metric support only from available rows,
+and calculates summary duration as the last browser sample minus the first.
+Available engine rows have no error; unavailable rows carry only the generic
+`telemetry unavailable` reason after raw diagnostics are removed. Any partial
+engine or encoder gap invalidates a compute-required run, and unavailable rows
+are excluded from summary statistics. These rules keep privacy sanitization
+compatible with the adapter's structural checks without fabricating evidence.
+The capture lifecycle requires at least two browser samples for a positive
+observation span and refuses completion after any unavailable compute poll.
+
 It must validate files and columns, reject unsafe TAR paths, select explicit phases, aggregate telemetry, map names into core metrics, preserve provenance, report missing evidence and never ingest credentials.
 
 The core matcher must not know Pixelated filenames or CSV columns.
