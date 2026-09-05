@@ -82,6 +82,16 @@ addition to matching files. Generated schemas use permission-preserving sibling
 temporary files and atomic replacement. The expanded 307-test suite and all
 artifact drift/reproduction gates passed after these changes.
 
+The 2026-09-05 cross-repository contract review also corrected the Pixelated
+producer before N1 work begins. Sanitized unavailable rows now retain a safe
+categorical reason required by the adapter; unavailable rows cannot advertise
+metric support or contribute summary statistics; partial compute gaps invalidate
+the producer summary; summary duration uses the observed first-to-last browser
+sample span; engine wall and elapsed clocks share one capture instant; and
+compute readiness requires a valid engine/encoder pair from the same poll. A
+run cannot complete with fewer than two browser samples or after an unavailable
+compute poll.
+
 ## Inspectable examples
 
 - Clear query input: [`../../fixtures/query_cases/similar_network/observation.json`](../../fixtures/query_cases/similar_network/observation.json)
