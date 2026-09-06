@@ -523,6 +523,7 @@ __all__ = [
     "engine_effective_settings",
     "validate_engine_rows",
     "validate_engine_window_alignment",
+    "validate_event_privacy",
     "validate_manifest",
     "validate_metadata_privacy",
     "validate_summary",

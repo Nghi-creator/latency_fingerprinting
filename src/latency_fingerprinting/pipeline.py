@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from .fingerprints import FingerprintRepository, load_fingerprint_repository
 from .json_io import load_model_file
 from .matcher import match_observation
+from .measurement import P0_FEATURE_CONFIG, FeatureNormalizationConfig
 from .models import (
     MatchResult,
     MatchThresholds,
@@ -19,11 +20,7 @@ from .models import (
     ObservationWindow,
     Probe,
 )
-from .normalization import (
-    P0_FEATURE_CONFIG,
-    FeatureNormalizationConfig,
-    normalize_response,
-)
+from .normalization import normalize_response
 from .windows import build_response_delta
 
 

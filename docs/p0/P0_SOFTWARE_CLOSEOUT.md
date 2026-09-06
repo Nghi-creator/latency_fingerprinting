@@ -44,7 +44,7 @@ latency-fingerprint match \
 
 Verification result:
 
-- 307 tests passed with 87.01% branch coverage, above the enforced 85% floor;
+- 308 tests passed with 87.03% branch coverage, above the enforced 85% floor;
 - all three generated schemas matched their checked-in files;
 - the console entry point executed successfully;
 - the clear-network result was byte-identical to the checked-in example;
@@ -79,7 +79,7 @@ normalization results with domain errors, records unrepresentable response
 deltas as rejected evidence, and calculates even medians without intermediate
 overflow. Fingerprint discovery now bounds total traversed entries and depth in
 addition to matching files. Generated schemas use permission-preserving sibling
-temporary files and atomic replacement. The expanded 307-test suite and all
+temporary files and atomic replacement. The expanded 308-test suite and all
 artifact drift/reproduction gates passed after these changes.
 
 The 2026-09-05 cross-repository contract review also corrected the Pixelated
@@ -91,6 +91,14 @@ sample span; engine wall and elapsed clocks share one capture instant; and
 compute readiness requires a valid engine/encoder pair from the same poll. A
 run cannot complete with fewer than two browser samples or after an unavailable
 compute poll.
+
+The 2026-09-06 maintainability pass made `measurement` the canonical import
+surface for normalization configuration, renamed the frozen vocabulary module
+to the precise `p0_feature_config.py`, and moved normalization tests under
+`tests/measurement/` ahead of the planned registry and aggregation work. The
+adapter modules remain split by I/O, primitive parsing, metrics, cross-file
+validation, and v2 contract ownership; further splitting the v2 contract now
+would add navigation without separating an independent responsibility.
 
 ## Inspectable examples
 
