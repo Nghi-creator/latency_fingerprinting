@@ -80,7 +80,7 @@ latency-fingerprinting/
 │   ├── windows.py
 │   ├── measurement/
 │   │   ├── feature_config.py
-│   │   └── p0_features.py
+│   │   └── p0_feature_config.py
 │   ├── normalization.py
 │   ├── pipeline.py
 │   ├── fingerprints.py
@@ -121,7 +121,10 @@ latency-fingerprinting/
 │   ├── controlled-run-001/
 │   └── controlled-run-002/
 └── tests/
-    └── data/
+    ├── data/
+    ├── measurement/
+    ├── models/
+    └── pixelated/
 ```
 
 Package markers such as `__init__.py` and `__main__.py` may be added. Virtual environments, caches and large/private raw experiment bundles must be ignored by Git.
