@@ -21,6 +21,25 @@ from .support import (
 )
 
 
+@pytest.mark.parametrize("field", ["telemetrySources", "measurementSupport"])
+@pytest.mark.parametrize("value", [[], {}, None, True, 1, "invalid"])
+def test_v2_manifest_support_values_raise_domain_errors(
+    tmp_path: Path,
+    context_v2: ContextKey,
+    field: str,
+    value: object,
+) -> None:
+    bundle = copy_v2_bundle(tmp_path)
+    manifest_path = bundle / "bundle-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    key = next(iter(manifest[field]))
+    manifest[field][key] = value
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    with pytest.raises(PixelatedBundleError, match="support"):
+        ingest(bundle, context_v2)
+
+
 def test_v2_manifest_identity_and_privacy_are_enforced(
     tmp_path: Path,
     context_v2: ContextKey,

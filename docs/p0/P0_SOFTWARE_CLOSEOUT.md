@@ -1,6 +1,6 @@
 # P0 Software Closeout
 
-**Verified:** 2026-09-04
+**Latest local verification:** 2026-09-08
 
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
@@ -42,7 +42,7 @@ latency-fingerprint match \
   --fingerprints fixtures/reference_cases
 ```
 
-Verification result:
+Original clean-environment verification result (before subsequent regression additions):
 
 - 308 tests passed with 87.03% branch coverage, above the enforced 85% floor;
 - all three generated schemas matched their checked-in files;
@@ -51,54 +51,41 @@ Verification result:
 - the generated result validated as `match-result-v1`;
 - Ruff lint and format checks passed.
 
-The post-P0 hardening pass additionally verified duplicate-safe and bounded JSON
-loading, numeric-overflow and nesting rejection, archive/file/row limits,
-symlink rejection, explicit Pixelated bundle versions, exact required-manifest
-declarations, telemetry workload and clock alignment, summary validity/duration
-retention, cross-record arithmetic and provenance invariants, positive probe
-intensity, and positive-weight matcher coverage. CI now runs on every pushed
-branch, enforces an 85% coverage floor, checks dependencies, and includes Ruff
-security rules.
+## Current hardening baseline
 
-The final review also bounds compressed archive inputs before TAR decoding,
-enforces total readable bytes for directory bundles, preserves exact rejected-
-feature reasons across derived records, validates matcher configuration on all
-early-return paths, and prevents rejected repository records from colliding
-with valid fingerprint identifiers.
+- Input boundaries reject duplicate JSON keys, excessive nesting, non-finite
+  numbers, oversized archives/files/rows, and symlinks. Directory bundles and
+  fingerprint discovery also bound total bytes or traversed entries and depth.
+- Bundle validation checks explicit versions, required manifest declarations,
+  privacy, support-state types, workload identity, paired compute polls, and
+  wall/elapsed clock alignment. Invalid support values produce adapter-domain
+  errors, including JSON arrays and objects rather than leaking `TypeError`.
+- Derived records enforce arithmetic, provenance, positive probe intensity,
+  rejection-reason retention, and positive-weight coverage. Unrepresentable
+  deltas or candidate arithmetic are rejected rather than becoming evidence.
+- P0 normalization configuration is immutable and validated through the
+  canonical `measurement` import surface. Matcher configuration is checked even
+  on early returns; rejected repository records cannot shadow valid identifiers.
+- Schema writes use permission-preserving temporary siblings and atomic
+  replacement. CI enforces the coverage floor, dependency checks, and Ruff
+  security rules.
+- The Pixelated producer preserves safe unavailable reasons, excludes unavailable
+  rows from support/statistics, requires complete engine/encoder polls and at
+  least two browser samples, and derives duration from the observed sample span.
+  Summary statistics filter non-finite values and avoid intermediate sum/median
+  overflow when handling finite extreme values.
 
-The 2026-09-04 final scan additionally closes finite-range failure paths:
-decoded JSON integers that cannot be represented as finite floats now produce
-adapter-domain errors, evidence arithmetic cannot leak `OverflowError`, and
-unrepresentable candidate residuals or aggregate weights are conservatively
-reported as unscorable evidence. Schema, synthetic-fixture, seed-fingerprint,
-controlled-artifact, and byte-for-byte run-002 reproduction checks all passed.
+The 2026-09-08 local check passed **320 tests with 87.15% coverage**, Ruff lint
+and formatting, generated-schema and synthetic-fixture drift checks, both
+controlled-run checksum manifests, and the run-001 seed-fingerprint check.
+Pixelated's full workspace tests, lint, and builds also passed. Its desktop
+build emitted a non-blocking outdated Browserslist database warning.
+These checks did not include a new live capture or deployed-service validation.
 
-The final pre-N1 hardening review makes `P0_FEATURE_CONFIG` immutable, strictly
-validates programmatic normalization configuration, rejects non-finite
-normalization results with domain errors, records unrepresentable response
-deltas as rejected evidence, and calculates even medians without intermediate
-overflow. Fingerprint discovery now bounds total traversed entries and depth in
-addition to matching files. Generated schemas use permission-preserving sibling
-temporary files and atomic replacement. The expanded 308-test suite and all
-artifact drift/reproduction gates passed after these changes.
-
-The 2026-09-05 cross-repository contract review also corrected the Pixelated
-producer before N1 work begins. Sanitized unavailable rows now retain a safe
-categorical reason required by the adapter; unavailable rows cannot advertise
-metric support or contribute summary statistics; partial compute gaps invalidate
-the producer summary; summary duration uses the observed first-to-last browser
-sample span; engine wall and elapsed clocks share one capture instant; and
-compute readiness requires a valid engine/encoder pair from the same poll. A
-run cannot complete with fewer than two browser samples or after an unavailable
-compute poll.
-
-The 2026-09-06 maintainability pass made `measurement` the canonical import
-surface for normalization configuration, renamed the frozen vocabulary module
-to the precise `p0_feature_config.py`, and moved normalization tests under
-`tests/measurement/` ahead of the planned registry and aggregation work. The
-adapter modules remain split by I/O, primitive parsing, metrics, cross-file
-validation, and v2 contract ownership; further splitting the v2 contract now
-would add navigation without separating an independent responsibility.
+The existing module boundaries remain intentional: measurement configuration
+and its frozen P0 vocabulary are separate; adapter I/O, primitive parsing,
+metrics, cross-file validation, and v2 contracts have distinct modules. N1
+registry and aggregation work remains planned, not implemented by this review.
 
 ## Inspectable examples
 
