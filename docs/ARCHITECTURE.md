@@ -52,9 +52,23 @@ Future fast loop:
 
 Loose coupling is established through contracts and adapters. P0 does not create another desktop application, daemon or HTTP service.
 
-## Repository structure
+## Target system overview
 
-The editable architecture diagram is stored at [`diagrams/latency-fingerprinting-architecture.svg`](diagrams/latency-fingerprinting-architecture.svg).
+![Target architecture showing the hosted control plane, local diagnosis and control loop, runtime deadline scheduler, and client telemetry](diagrams/latency-fingerprinting-architecture.png)
+
+This diagram shows the intended full system, not the completed P0 feature set.
+P0 implements the offline response-analysis path described above. Live probe
+planning, autonomous actions and outcome verification, mixed-cause inference,
+calibrated confidence, the deadline scheduler and optional ML remain future work.
+The diagram's matcher-before-probe ordering represents hypothesis narrowing or
+reuse of existing compatible evidence; response matching still requires a
+measured response to a compatible probe. P0 match strength is not a calibrated
+probability.
+
+The [full-size diagram](diagrams/latency-fingerprinting-architecture.png) is a PNG
+export. Its editable source is not currently included in this repository.
+
+## Repository structure
 
 ```text
 latency-fingerprinting/
