@@ -160,11 +160,11 @@ def _validate_manifest_support(manifest: Mapping[str, Any]) -> None:
         "encoder_pipeline",
     }:
         raise PixelatedBundleError("bundle manifest telemetry source support is incomplete")
-    if any(value not in support_states for value in sources.values()):
+    if any(not isinstance(value, str) or value not in support_states for value in sources.values()):
         raise PixelatedBundleError("bundle manifest has an invalid telemetry support state")
     measurements = manifest.get("measurementSupport")
     if not isinstance(measurements, dict) or any(
-        not isinstance(key, str) or value not in support_states
+        not isinstance(key, str) or not isinstance(value, str) or value not in support_states
         for key, value in measurements.items()
     ):
         raise PixelatedBundleError("bundle manifest measurement support is invalid")
