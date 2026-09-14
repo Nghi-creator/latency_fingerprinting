@@ -141,7 +141,7 @@ def _read_bundle(path: Path) -> dict[str, bytes]:
 def _validate_metadata(
     metadata: Mapping[str, Any],
 ) -> tuple[str, str, str, str, dict[str, Any]]:
-    if metadata.get("schemaVersion") != 1:
+    if type(metadata.get("schemaVersion")) is not int or metadata["schemaVersion"] != 1:
         raise PixelatedBundleError("run-metadata.json requires schemaVersion 1")
     run_id = _required_string(metadata, "runId", "run-metadata.json")
     session_id = _required_string(metadata, "sessionId", "run-metadata.json")

@@ -83,6 +83,7 @@ def mapped_metrics(
     metric_columns: Mapping[str, tuple[str, str]] = BROWSER_METRIC_COLUMNS,
     *,
     source_name: str = "stream-telemetry.csv",
+    row_numbers: Sequence[int] | None = None,
 ) -> tuple[dict[str, MetricAggregate], list[str], dict[str, str]]:
     metrics: dict[str, MetricAggregate] = {}
     missing: list[str] = []
@@ -90,7 +91,8 @@ def mapped_metrics(
     for metric, (column, unit) in metric_columns.items():
         values: list[float] = []
         invalid: list[str] = []
-        for index, row in enumerate(rows, start=2):
+        indices = row_numbers if row_numbers is not None else range(2, len(rows) + 2)
+        for index, row in zip(indices, rows, strict=True):
             raw = (row.get(column) or "").strip()
             if not raw:
                 continue
@@ -118,6 +120,7 @@ def counter_metrics(
     *,
     source_name: str,
     availability_column: str | None = None,
+    row_numbers: Sequence[int] | None = None,
 ) -> tuple[dict[str, MetricAggregate], list[str], dict[str, str]]:
     metrics: dict[str, MetricAggregate] = {}
     missing: list[str] = []
@@ -126,7 +129,8 @@ def counter_metrics(
         deltas: list[float] = []
         invalid: list[str] = []
         previous: float | None = None
-        for index, row in enumerate(rows, start=2):
+        indices = row_numbers if row_numbers is not None else range(2, len(rows) + 2)
+        for index, row in zip(indices, rows, strict=True):
             if availability_column is not None and (
                 row.get(availability_column, "").strip().lower() != "true"
             ):
@@ -168,26 +172,41 @@ def engine_metrics(
     metrics: dict[str, MetricAggregate] = {}
     missing: list[str] = []
     rejected: dict[str, str] = {}
-    for metric, (source, column, unit) in ENGINE_METRIC_COLUMNS.items():
-        source_rows = [
-            row
-            for row in rows
-            if row.get("source") == source and row.get("available", "").strip().lower() == "true"
-        ]
+    source_rows: dict[str, list[Mapping[str, str]]] = {}
+    source_indices: dict[str, list[int]] = {}
+    for index, row in enumerate(rows, start=2):
+        source = row.get("source", "")
+        source_rows.setdefault(source, []).append(row)
+        source_indices.setdefault(source, []).append(index)
+    for source in ("engine_runtime", "encoder_pipeline"):
+        available_rows: list[Mapping[str, str]] = []
+        available_indices: list[int] = []
+        for index, row in zip(
+            source_indices.get(source, []), source_rows.get(source, []), strict=True
+        ):
+            if row.get("available", "").strip().lower() == "true":
+                available_rows.append(row)
+                available_indices.append(index)
+        columns = {
+            metric: (column, unit)
+            for metric, (metric_source, column, unit) in ENGINE_METRIC_COLUMNS.items()
+            if metric_source == source
+        }
         measured, absent, invalid = mapped_metrics(
-            source_rows,
-            {metric: (column, unit)},
+            available_rows,
+            columns,
             source_name="engine-telemetry.csv",
+            row_numbers=available_indices,
         )
         metrics.update(measured)
         missing.extend(absent)
         rejected.update(invalid)
-    encoder_rows = [row for row in rows if row.get("source") == "encoder_pipeline"]
     measured, absent, invalid = counter_metrics(
-        encoder_rows,
+        source_rows.get("encoder_pipeline", []),
         ENCODER_COUNTER_METRICS,
         source_name="engine-telemetry.csv",
         availability_column="available",
+        row_numbers=source_indices.get("encoder_pipeline", []),
     )
     metrics.update(measured)
     missing.extend(absent)

@@ -160,3 +160,22 @@ def test_observation_rejected_feature_reasons_must_agree() -> None:
 
     with pytest.raises(ValidationError, match="rejected-feature metadata must agree"):
         ObservationRecord.model_validate(payload)
+
+
+@pytest.mark.parametrize("mutation", ["invalid_window", "settings", "units", "aggregation", "case"])
+def test_valid_persisted_response_cannot_bypass_window_comparability(mutation: str) -> None:
+    payload = make_observation().model_dump()
+    relief = payload["relief_window"]
+    if mutation == "invalid_window":
+        relief["validity"] = {"is_valid": False, "reasons": ["disconnected"]}
+    elif mutation == "settings":
+        relief["effective_settings"]["fps"] = 60
+    elif mutation == "units":
+        relief["metrics"]["transport.jitter_ms"]["unit"] = "seconds"
+    elif mutation == "aggregation":
+        relief["metrics"]["transport.jitter_ms"]["aggregation"] = "mean"
+    else:
+        payload["degraded_window"]["comparison_case_id"] = None
+        relief["comparison_case_id"] = None
+    with pytest.raises(ValidationError, match="comparable source windows"):
+        ObservationRecord.model_validate(payload)

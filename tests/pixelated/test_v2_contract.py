@@ -347,3 +347,61 @@ def test_v2_phase_contract_ingests_every_controlled_run_phase(
     assert window.phase is window_phase
     assert window.run_id == run_id
     assert window.validity.is_valid
+
+
+@pytest.mark.parametrize("edge", ["minimum", "maximum"])
+def test_engine_window_alignment_handles_datetime_extremes(edge: str) -> None:
+    from datetime import UTC, datetime, timedelta
+
+    from latency_fingerprinting.adapters.pixelated_bundle_v2 import (
+        validate_engine_window_alignment,
+    )
+
+    start = (
+        datetime.min.replace(tzinfo=UTC)
+        if edge == "minimum"
+        else datetime.max.replace(tzinfo=UTC) - timedelta(seconds=2)
+    )
+    end = start + timedelta(seconds=2)
+    rows = [{"captured_at": start.isoformat(), "elapsed_ms": "0"}]
+    validate_engine_window_alignment(
+        rows, started_at=start, ended_at=end, elapsed_start_ms=0, elapsed_end_ms=2000
+    )
+
+
+def test_support_validation_uses_the_same_boolean_cell_normalization() -> None:
+    from latency_fingerprinting.adapters.pixelated_bundle_v2 import validity_reasons
+
+    rows = [
+        {"source": source, "available": " True "}
+        for source in ("engine_runtime", "encoder_pipeline")
+    ]
+    assert (
+        validity_reasons(
+            {},
+            {"telemetrySources": {row["source"]: "supported" for row in rows}},
+            rows,
+        )
+        == []
+    )
+
+
+@pytest.mark.parametrize("kind", ["manifest", "summary"])
+def test_v2_schema_versions_reject_float_equivalents(kind: str) -> None:
+    from latency_fingerprinting.adapters.pixelated_bundle_v2 import (
+        validate_manifest,
+        validate_summary,
+    )
+    from latency_fingerprinting.models import WindowPhase
+
+    with pytest.raises(PixelatedBundleError, match="schemaVersion 2"):
+        if kind == "manifest":
+            validate_manifest(
+                {"schemaVersion": 2.0},
+                {},
+                comparison_case_id="case",
+                phase=WindowPhase.DEGRADED,
+                run_id="run",
+            )
+        else:
+            validate_summary({"schemaVersion": 2.0}, [], telemetry_count=0, duration_ms=0)

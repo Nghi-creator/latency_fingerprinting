@@ -116,16 +116,18 @@ def _discover_files(directory: Path) -> tuple[Path, ...]:
     while pending:
         current, depth = pending.pop()
         with os.scandir(current) as iterator:
-            entries = sorted(iterator, key=lambda entry: entry.name)
+            entries = []
+            for entry in iterator:
+                entries_seen += 1
+                if entries_seen > MAX_FINGERPRINT_DIRECTORY_ENTRIES:
+                    raise ValueError(
+                        "fingerprint repository contains more than "
+                        f"{MAX_FINGERPRINT_DIRECTORY_ENTRIES} directory entries"
+                    )
+                entries.append(entry)
+            entries.sort(key=lambda entry: entry.name)
         child_directories: list[Path] = []
         for entry in entries:
-            entries_seen += 1
-            if entries_seen > MAX_FINGERPRINT_DIRECTORY_ENTRIES:
-                raise ValueError(
-                    "fingerprint repository contains more than "
-                    f"{MAX_FINGERPRINT_DIRECTORY_ENTRIES} directory entries"
-                )
-
             path = Path(entry.path)
             if entry.is_symlink():
                 if entry.name.endswith(".json"):

@@ -35,10 +35,14 @@ def validate_cross_file_identity(
     recording = summary.get("recording")
     if not isinstance(recording, dict):
         raise PixelatedBundleError("summary.json requires object 'recording'")
-    if recording.get("sampleCount") != len(telemetry_rows):
+    if type(recording.get("sampleCount")) is not int or recording["sampleCount"] != len(
+        telemetry_rows
+    ):
         raise PixelatedBundleError("summary.json sample count disagrees with telemetry")
     final_session_event_count = sum(row.get("session_id") == session_id for row in event_rows)
-    if summary.get("eventCount") != final_session_event_count:
+    if type(summary.get("eventCount")) is not int or (
+        summary["eventCount"] != final_session_event_count
+    ):
         raise PixelatedBundleError("summary.json event count disagrees with events")
 
     for index, row in enumerate(telemetry_rows, start=2):

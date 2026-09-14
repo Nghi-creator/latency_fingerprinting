@@ -79,7 +79,7 @@ def validate_manifest(
     phase: WindowPhase,
     run_id: str,
 ) -> None:
-    if manifest.get("schemaVersion") != 2:
+    if type(manifest.get("schemaVersion")) is not int or manifest["schemaVersion"] != 2:
         raise PixelatedBundleError("bundle-manifest.json requires schemaVersion 2")
     if manifest.get("bundleType") != "pixelated_research_run":
         raise PixelatedBundleError("bundle-manifest.json bundleType is unsupported")
@@ -356,7 +356,7 @@ def validate_engine_window_alignment(
         elapsed_ms = finite_number(
             row["elapsed_ms"], source=f"engine-telemetry.csv row {index} elapsed_ms"
         )
-        if not started_at - timestamp_margin <= timestamp <= ended_at + timestamp_margin:
+        if timestamp - started_at < -timestamp_margin or timestamp - ended_at > timestamp_margin:
             raise PixelatedBundleError(
                 f"engine-telemetry.csv row {index} falls outside the browser capture window"
             )
@@ -410,7 +410,7 @@ def validate_summary(
     telemetry_count: int,
     duration_ms: float,
 ) -> None:
-    if summary.get("schemaVersion") != 2:
+    if type(summary.get("schemaVersion")) is not int or summary["schemaVersion"] != 2:
         raise PixelatedBundleError("v2 summary.json requires schemaVersion 2")
     validity = summary.get("validity")
     if not isinstance(validity, dict) or not isinstance(validity.get("isValid"), bool):
@@ -485,7 +485,7 @@ def validity_reasons(
     sources = manifest["telemetrySources"]
     available = {
         source: any(
-            row.get("source") == source and row.get("available", "").lower() == "true"
+            row.get("source") == source and row.get("available", "").strip().lower() == "true"
             for row in engine_rows
         )
         for source in ("engine_runtime", "encoder_pipeline")

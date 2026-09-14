@@ -87,7 +87,8 @@ def read_bounded_text(
     size = path.stat().st_size
     if size > maximum_bytes:
         raise ValueError(f"JSON file is too large: {path} ({size} bytes; max {maximum_bytes})")
-    payload = path.read_bytes()
+    with path.open("rb") as source:
+        payload = source.read(maximum_bytes + 1)
     if len(payload) > maximum_bytes:
         raise ValueError(
             f"JSON file is too large: {path} ({len(payload)} bytes; max {maximum_bytes})"

@@ -298,4 +298,21 @@ class ObservationRecord(ContractModel):
             raise ValueError("normalized response must retain raw response warnings")
         if self.response_delta.invalid_reasons != self.normalized_response.invalid_reasons:
             raise ValueError("raw and normalized invalid reasons must agree")
+        if self.response_delta.is_valid:
+            # Import lazily: comparability operates on these model types.
+            from ..validation import validate_window_comparability
+
+            comparability = validate_window_comparability(
+                degraded,
+                relief,
+                self.probe,
+                # Unsupported probes remain representable for the matcher's
+                # explicit unsupported_probe outcome.
+                supported_probe_types=frozenset({self.probe.probe_type}),
+            )
+            if not comparability.is_comparable:
+                raise ValueError(
+                    "valid response requires comparable source windows: "
+                    + "; ".join(issue.message for issue in comparability.issues)
+                )
         return self
