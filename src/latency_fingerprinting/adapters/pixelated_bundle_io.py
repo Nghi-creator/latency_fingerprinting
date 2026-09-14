@@ -85,7 +85,7 @@ def _read_tar_members(
 def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
     files: dict[str, bytes] = {}
     readable_bytes = 0
-    for name in readable_files:
+    for name in sorted(readable_files):
         candidate = path / name
         if candidate.is_symlink():
             raise PixelatedBundleError(f"bundle links are not allowed: {name!r}")
@@ -93,7 +93,8 @@ def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
             continue
         if candidate.stat().st_size > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
-        payload = candidate.read_bytes()
+        with candidate.open("rb") as source:
+            payload = source.read(MAX_TEXT_FILE_BYTES + 1)
         if len(payload) > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
         readable_bytes += len(payload)
@@ -146,25 +147,24 @@ def csv_rows(
     required_columns: Set[str],
 ) -> list[dict[str, str]]:
     reader = csv.DictReader(io.StringIO(_decode(files, name), newline=""), strict=True)
-    headers = reader.fieldnames
-    if headers is None:
-        raise PixelatedBundleError(f"{name} requires a header row")
-    if len(headers) != len(set(headers)):
-        raise PixelatedBundleError(f"{name} contains duplicate columns")
-    missing = sorted(required_columns - set(headers))
-    if missing:
-        raise PixelatedBundleError(f"{name} is missing required columns: {', '.join(missing)}")
     try:
+        headers = reader.fieldnames
+        if headers is None:
+            raise PixelatedBundleError(f"{name} requires a header row")
+        if len(headers) != len(set(headers)):
+            raise PixelatedBundleError(f"{name} contains duplicate columns")
+        missing = sorted(required_columns - set(headers))
+        if missing:
+            raise PixelatedBundleError(f"{name} is missing required columns: {', '.join(missing)}")
         rows: list[dict[str, str]] = []
-        for row in reader:
+        for index, row in enumerate(reader, start=2):
             if len(rows) >= MAX_CSV_ROWS:
                 raise PixelatedBundleError(f"{name} contains more than {MAX_CSV_ROWS} data rows")
-            rows.append(dict(row))
+            if None in row or any(row.get(header) is None for header in headers):
+                raise PixelatedBundleError(f"{name} row {index} has the wrong number of columns")
+            rows.append(row)
     except csv.Error as error:
         raise PixelatedBundleError(f"{name} is not valid CSV: {error}") from error
-    for index, row in enumerate(rows, start=2):
-        if None in row or any(row.get(header) is None for header in headers):
-            raise PixelatedBundleError(f"{name} row {index} has the wrong number of columns")
     return rows
 
 

@@ -53,3 +53,23 @@ def test_file_reads_are_bounded_and_accept_utf8_bom(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="too large"):
         read_bounded_text(path, maximum_bytes=1)
+
+
+def test_growing_file_is_read_only_up_to_the_limit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import io
+
+    path = tmp_path / "growing.json"
+    path.write_bytes(b"{}")
+    read_sizes: list[int] = []
+
+    class GrowingFile(io.BytesIO):
+        def read(self, size: int = -1) -> bytes:
+            read_sizes.append(size)
+            return super().read(size)
+
+    monkeypatch.setattr(Path, "open", lambda *_args, **_kwargs: GrowingFile(b" " * 100))
+    with pytest.raises(ValueError, match="too large"):
+        read_bounded_text(path, maximum_bytes=8)
+    assert read_sizes == [9]

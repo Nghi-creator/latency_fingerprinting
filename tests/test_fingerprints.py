@@ -293,3 +293,29 @@ def test_repository_rejects_fingerprint_symlinks(tmp_path: Path) -> None:
 
     assert repository.fingerprints == ()
     assert repository.rejections[0].reason is FingerprintRejectionReason.UNSAFE_LINK
+
+
+def test_directory_limit_stops_enumeration_before_materializing_all_entries(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from contextlib import contextmanager
+    from types import SimpleNamespace
+
+    from latency_fingerprinting import fingerprints
+
+    visited: list[int] = []
+
+    @contextmanager
+    def oversized_directory(_path: Path):
+        def entries():
+            for index in range(100):
+                visited.append(index)
+                yield SimpleNamespace(name=str(index))
+
+        yield entries()
+
+    monkeypatch.setattr(fingerprints, "MAX_FINGERPRINT_DIRECTORY_ENTRIES", 3)
+    monkeypatch.setattr(fingerprints.os, "scandir", oversized_directory)
+    with pytest.raises(ValueError, match="directory entries"):
+        load_fingerprint_repository(tmp_path)
+    assert visited == [0, 1, 2, 3]

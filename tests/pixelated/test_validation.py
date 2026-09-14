@@ -185,3 +185,40 @@ def test_v1_stream_profile_rejects_unrepresentable_json_integer(
 
     with pytest.raises(PixelatedBundleError, match="must be finite"):
         ingest(bundle, context)
+
+
+@pytest.mark.parametrize("field", ["sampleCount", "eventCount"])
+@pytest.mark.parametrize("value", [True, 1.0])
+def test_summary_counts_require_integers(field: str, value: object) -> None:
+    from latency_fingerprinting.adapters.pixelated_bundle_validation import (
+        validate_cross_file_identity,
+    )
+
+    summary = {
+        "runId": "run",
+        "sessionId": "session",
+        "recording": {"sampleCount": 1},
+        "eventCount": 1,
+    }
+    if field == "sampleCount":
+        summary["recording"][field] = value
+    else:
+        summary[field] = value
+    with pytest.raises(PixelatedBundleError, match="count disagrees"):
+        validate_cross_file_identity(
+            summary,
+            [{}],
+            [{"session_id": "session"}],
+            run_id="run",
+            session_id="session",
+            workload_id="game",
+            player_mode="mode",
+        )
+
+
+@pytest.mark.parametrize("value", [True, 1.0])
+def test_metadata_version_requires_an_integer(value: object) -> None:
+    from latency_fingerprinting.adapters.pixelated_bundle import _validate_metadata
+
+    with pytest.raises(PixelatedBundleError, match="schemaVersion 1"):
+        _validate_metadata({"schemaVersion": value})

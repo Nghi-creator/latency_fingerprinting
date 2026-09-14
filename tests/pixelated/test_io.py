@@ -124,3 +124,57 @@ def test_directory_readable_bytes_are_bounded(
 
     with pytest.raises(PixelatedBundleError, match="directory contents exceed"):
         ingest(bundle, context)
+
+
+@pytest.mark.parametrize("payload", [b'"unterminated', b"x" * 131_073])
+def test_malformed_csv_headers_raise_bundle_errors(payload: bytes) -> None:
+    with pytest.raises(PixelatedBundleError, match="not valid CSV"):
+        pixelated_bundle_io.csv_rows({"test.csv": payload}, "test.csv", frozenset())
+
+
+def test_directory_file_growth_cannot_cause_an_unbounded_read(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    (tmp_path / "test.csv").write_bytes(b"x")
+    read_sizes: list[int] = []
+
+    class GrowingFile(io.BytesIO):
+        def read(self, size: int = -1) -> bytes:
+            read_sizes.append(size)
+            return super().read(size)
+
+    monkeypatch.setattr(pixelated_bundle_io, "MAX_TEXT_FILE_BYTES", 8)
+    monkeypatch.setattr(Path, "open", lambda *_args, **_kwargs: GrowingFile(b"x" * 100))
+    with pytest.raises(PixelatedBundleError, match="too large"):
+        pixelated_bundle_io.read_bundle(
+            tmp_path, readable_files={"test.csv"}, required_files={"test.csv"}
+        )
+    assert read_sizes == [9]
+
+
+def test_malformed_csv_header_is_a_clean_cli_failure(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from latency_fingerprinting.cli import main
+
+    from .support import FIXTURE_ROOT
+
+    bundle = copy_bundle(tmp_path)
+    (bundle / "stream-telemetry.csv").write_bytes(b'"unterminated')
+    result = main(
+        [
+            "ingest-pixelated",
+            str(bundle),
+            "--context",
+            str(FIXTURE_ROOT / "context.json"),
+            "--phase",
+            "degraded",
+            "--comparison-case-id",
+            "test",
+        ]
+    )
+    output = capsys.readouterr()
+    assert result == 1
+    assert "not valid CSV" in output.err
+    assert "Traceback" not in output.err
+    assert output.out == ""
