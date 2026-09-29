@@ -74,3 +74,17 @@ def test_fingerprint_rejects_non_canonical_clipped_values() -> None:
 
     with pytest.raises(ValidationError, match="incorrect clipping metadata"):
         Fingerprint.model_validate(payload)
+
+
+@pytest.mark.parametrize("source_windows", [["unrelated"], ["window-degraded"], ["window-relief"]])
+def test_fingerprint_sources_must_include_the_response_pair(source_windows: list[str]) -> None:
+    payload = make_fingerprint().model_dump()
+    payload["source_window_ids"] = source_windows
+    with pytest.raises(ValidationError, match="include both raw response windows"):
+        Fingerprint.model_validate(payload)
+
+
+def test_fingerprint_can_retain_additional_source_windows() -> None:
+    payload = make_fingerprint().model_dump()
+    payload["source_window_ids"].append("additional-window")
+    assert Fingerprint.model_validate(payload).source_window_ids == payload["source_window_ids"]

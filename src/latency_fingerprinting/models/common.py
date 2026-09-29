@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Mapping
 from enum import StrEnum
+from numbers import Real
 from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -28,6 +29,25 @@ def _camel_case(name: str) -> str:
 
     head, *tail = name.split("_")
     return head + "".join(word.capitalize() for word in tail)
+
+
+def json_values_equal(left: object, right: object) -> bool:
+    """Compare JSON values without treating booleans as the integers 0 and 1."""
+
+    if isinstance(left, bool) or isinstance(right, bool):
+        return isinstance(left, bool) and isinstance(right, bool) and left == right
+    if isinstance(left, Real) and isinstance(right, Real):
+        return left == right
+    if isinstance(left, dict) and isinstance(right, dict):
+        return set(left) == set(right) and all(
+            json_values_equal(left[key], right[key]) for key in left
+        )
+    if isinstance(left, list) and isinstance(right, list):
+        return len(left) == len(right) and all(
+            json_values_equal(left_item, right_item)
+            for left_item, right_item in zip(left, right, strict=True)
+        )
+    return type(left) is type(right) and left == right
 
 
 class ContractModel(BaseModel):

@@ -348,3 +348,15 @@ def test_unrelated_setting_changes_require_confounder_metadata() -> None:
     )
     assert result.is_comparable
     assert result.warnings
+
+
+def test_context_comparability_does_not_equate_booleans_and_numbers() -> None:
+    from tests.models.factories import make_observation
+
+    observation = make_observation()
+    degraded = observation.degraded_window.model_copy(deep=True)
+    relief = observation.relief_window.model_copy(deep=True)
+    degraded.context.nominal_stream_profile["nested"] = {"setting": [True]}
+    relief.context.nominal_stream_profile["nested"] = {"setting": [1]}
+    result = validate_window_comparability(degraded, relief, observation.probe)
+    assert ComparabilityReason.CONTEXT_MISMATCH in result.reason_codes
