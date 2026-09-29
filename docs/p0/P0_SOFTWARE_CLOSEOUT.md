@@ -1,9 +1,48 @@
 # P0 Software Closeout
 
-**Latest local verification:** 2026-09-08
+**Latest local verification:** 2026-09-30
 
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
+
+## Final P0 audit — 2026-09-30
+
+The final audit started from a clean checkout at `9efe64e`, with the earlier
+hardening changes merged and 344 tests passing. It found and corrected these
+remaining record-consistency gaps:
+
+- Window metrics cannot be both missing and rejected.
+- Context identity comparisons distinguish JSON booleans from numbers,
+  including nested settings. Numerically equivalent integers and floats still
+  compare equally. Pair validation and root observation validation share this
+  comparison logic.
+- Fingerprint source-window identifiers must include both windows referenced
+  by the raw response; additional source windows remain allowed.
+- Ranked candidates must be listed as compatible, and supporting/conflicting
+  evidence cannot simultaneously be declared missing.
+
+These checks tighten validation without changing persisted P0 schemas,
+normalization, thresholds, or matching arithmetic. The existing module split
+remains suitable for the additive N1 metric-registry slice.
+
+Verification in the existing macOS Python 3.13.13 development environment:
+
+- **363 tests passed**, including 19 new regression cases.
+- **88.14% combined statement/branch coverage**, above the 85% gate.
+- Ruff lint, formatting, `git diff --check`, and `pip check` passed.
+- Schema, synthetic-fixture, and controlled-run 001 seed drift checks passed.
+- All 23 persisted P0 root records under fixtures and experiments validated.
+- Controlled runs 001 and 002 rebuilt their observations from stored windows
+  and probes with exact byte equality; all six phase windows validated.
+- Run 002 reproduced its stored matcher result byte-for-byte. This check now
+  runs in the normal pytest suite, including the Python 3.11 CI job.
+
+Python 3.11 was unavailable locally; remote CI and a new clean installation
+were not run in this audit. The clean-install results below are historical.
+The result supports proceeding to N1 with no outstanding blocker identified
+in the reviewed P0 paths. It is not a guarantee of defect-free software or
+new evidence of diagnosis accuracy. P0 counter cadence dependence and the
+other research limitations remain as documented.
 
 ## Verified vertical slice
 

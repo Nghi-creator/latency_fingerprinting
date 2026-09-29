@@ -60,6 +60,12 @@ class Fingerprint(ContractModel):
             raise ValueError("created_at must use a UTC offset")
         if not self.source_case_ids or not self.source_window_ids:
             raise ValueError("fingerprints require source case and window identifiers")
+        response_windows = {
+            self.raw_response_delta.degraded_window_id,
+            self.raw_response_delta.relief_window_id,
+        }
+        if not response_windows.issubset(self.source_window_ids):
+            raise ValueError("source_window_ids must include both raw response windows")
         missing_weights = set(self.normalized_response.features).difference(self.feature_weights)
         if missing_weights:
             raise ValueError(f"missing feature weights: {sorted(missing_weights)}")

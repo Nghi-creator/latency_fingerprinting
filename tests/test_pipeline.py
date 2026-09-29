@@ -111,3 +111,15 @@ def test_pipeline_json_uses_contract_aliases_and_finite_numbers() -> None:
     assert "matchStrength" in match_payload
     assert "rankedCandidates" in match_payload
     assert "unknownReason" in match_payload
+
+
+def test_controlled_run_002_reproduces_frozen_match_bytes() -> None:
+    from latency_fingerprinting.fingerprints import load_fingerprint_repository
+    from latency_fingerprinting.json_io import load_model_file
+    from latency_fingerprinting.matcher import match_observation
+
+    seed = PROJECT_ROOT / "experiments" / "controlled-run-001"
+    query = PROJECT_ROOT / "experiments" / "controlled-run-002"
+    observation = load_model_file(query / "observation.json", ObservationRecord)
+    result = match_observation(observation, load_fingerprint_repository(seed))
+    assert canonical_json(result).encode("utf-8") == (query / "match-result.json").read_bytes()

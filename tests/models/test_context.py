@@ -105,3 +105,29 @@ def test_metric_cannot_be_measured_and_missing_or_rejected() -> None:
 def test_window_validity_state_and_reasons_must_agree(is_valid: bool, reasons: list[str]) -> None:
     with pytest.raises(ValidationError):
         ValidityState(is_valid=is_valid, reasons=reasons)
+
+
+def test_metric_cannot_be_both_missing_and_rejected() -> None:
+    payload = make_window(WindowPhase.DEGRADED, "window-degraded", 0, 20).model_dump()
+    payload["missing_metrics"] = ["client.decode_ms"]
+    payload["rejected_metrics"] = {"client.decode_ms": "invalid samples"}
+    with pytest.raises(ValidationError, match="both missing and rejected"):
+        ObservationWindow.model_validate(payload)
+
+
+@pytest.mark.parametrize(
+    "left,right", [(True, 1), (False, 0), ([True], [1]), ({"x": False}, {"x": 0})]
+)
+def test_context_identity_distinguishes_json_booleans_from_numbers(
+    left: object, right: object
+) -> None:
+    a = make_context(nominal_stream_profile={"setting": left})
+    b = make_context(nominal_stream_profile={"setting": right})
+    assert not a.has_same_identity(b)
+    assert not b.has_same_identity(a)
+
+
+def test_context_identity_accepts_equivalent_numeric_settings() -> None:
+    a = make_context(nominal_stream_profile={"fps": 60, "nested": [1, {"x": 2}]})
+    b = make_context(nominal_stream_profile={"nested": [1.0, {"x": 2.0}], "fps": 60.0})
+    assert a.has_same_identity(b)

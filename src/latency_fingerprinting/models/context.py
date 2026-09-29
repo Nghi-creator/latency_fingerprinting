@@ -17,6 +17,7 @@ from .common import (
     PositiveInt,
     ProvenanceKind,
     WindowPhase,
+    json_values_equal,
 )
 
 
@@ -39,6 +40,11 @@ class ContextKey(ContractModel):
     nominal_stream_profile: dict[str, JsonValue]
     network_scenario: str | None = None
     versions: dict[str, str] = Field(default_factory=dict)
+
+    def has_same_identity(self, other: ContextKey) -> bool:
+        """Compare context fields without equating JSON booleans and numbers."""
+
+        return json_values_equal(self.model_dump(), other.model_dump())
 
     @model_validator(mode="after")
     def validate_context_maps(self) -> ContextKey:
@@ -177,6 +183,11 @@ class ObservationWindow(ContractModel):
         overlap = set(self.metrics).intersection(unavailable_metrics)
         if overlap:
             raise ValueError(f"metrics cannot be measured and missing/rejected: {sorted(overlap)}")
+        unavailable_overlap = set(self.missing_metrics) & set(self.rejected_metrics)
+        if unavailable_overlap:
+            raise ValueError(
+                f"metrics cannot be both missing and rejected: {sorted(unavailable_overlap)}"
+            )
         if self.sample_count == 0 and self.metrics:
             raise ValueError("a window with metrics must have a positive sample_count")
         if len(set(self.missing_metrics)) != len(self.missing_metrics):

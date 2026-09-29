@@ -5,10 +5,9 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from enum import StrEnum
-from numbers import Real
-from typing import Any
 
 from .models import ObservationWindow, Probe, WindowPhase
+from .models.common import json_values_equal as _json_values_equal
 
 DEFAULT_DURATION_RELATIVE_TOLERANCE = 0.10
 SUPPORTED_P0_PROBE_TYPES = frozenset({"stream_profile_relief"})
@@ -74,25 +73,6 @@ def _duration_relative_difference(degraded_duration: float, relief_duration: flo
     return abs(degraded_duration - relief_duration) / max(degraded_duration, relief_duration)
 
 
-def _json_values_equal(left: Any, right: Any) -> bool:
-    """Compare JSON values without treating booleans as the integers 0 and 1."""
-
-    if isinstance(left, bool) or isinstance(right, bool):
-        return isinstance(left, bool) and isinstance(right, bool) and left == right
-    if isinstance(left, Real) and isinstance(right, Real):
-        return left == right
-    if isinstance(left, dict) and isinstance(right, dict):
-        return set(left) == set(right) and all(
-            _json_values_equal(left[key], right[key]) for key in left
-        )
-    if isinstance(left, list) and isinstance(right, list):
-        return len(left) == len(right) and all(
-            _json_values_equal(left_item, right_item)
-            for left_item, right_item in zip(left, right, strict=True)
-        )
-    return type(left) is type(right) and left == right
-
-
 def validate_window_comparability(
     degraded: ObservationWindow,
     relief: ObservationWindow,
@@ -156,7 +136,7 @@ def validate_window_comparability(
                 "the windows use different compatibility groups",
             )
         )
-    if degraded.context != relief.context:
+    if not degraded.context.has_same_identity(relief.context):
         issues.append(
             _issue(
                 ComparabilityReason.CONTEXT_MISMATCH,

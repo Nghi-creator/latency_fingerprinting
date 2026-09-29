@@ -111,6 +111,7 @@ def test_top_two_candidates_require_an_exact_margin() -> None:
         MatchResult.model_validate(payload)
 
     payload["score_margin"] = 0.15
+    payload["compatibility"]["compatible_fingerprint_ids"].append("fingerprint-encoder-001")
     assert MatchResult.model_validate(payload).score_margin == pytest.approx(0.15)
 
 
@@ -134,4 +135,25 @@ def test_rankings_and_evidence_are_unique() -> None:
     payload = make_match_result().model_dump()
     payload["conflicting_evidence"] = list(payload["supporting_evidence"])
     with pytest.raises(ValidationError, match="both supporting and conflicting"):
+        MatchResult.model_validate(payload)
+
+
+@pytest.mark.parametrize("decision", ["matched", "unknown"])
+def test_ranked_candidates_must_be_declared_compatible(decision: str) -> None:
+    payload = make_match_result().model_dump()
+    payload["compatibility"]["compatible_fingerprint_ids"] = ["unrelated"]
+    if decision == "unknown":
+        payload.update(decision="unknown", accepted_label=None, unknown_reason="weak_match")
+    with pytest.raises(ValidationError, match="belong to compatible_fingerprint_ids"):
+        MatchResult.model_validate(payload)
+
+
+@pytest.mark.parametrize("evidence_type", ["supporting_evidence", "conflicting_evidence"])
+def test_measured_evidence_cannot_be_marked_missing(evidence_type: str) -> None:
+    payload = make_match_result().model_dump()
+    if evidence_type == "conflicting_evidence":
+        payload[evidence_type] = payload["supporting_evidence"]
+        payload["supporting_evidence"] = []
+    payload["missing_features"] = [payload[evidence_type][0]["feature"]]
+    with pytest.raises(ValidationError, match="evidence cannot also be missing"):
         MatchResult.model_validate(payload)
