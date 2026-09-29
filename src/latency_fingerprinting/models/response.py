@@ -236,7 +236,9 @@ class ObservationRecord(ContractModel):
         degraded, relief = self.degraded_window, self.relief_window
         if degraded.phase is not WindowPhase.DEGRADED or relief.phase is not WindowPhase.RELIEF:
             raise ValueError("observation records require degraded and relief windows")
-        if degraded.context != self.context or relief.context != self.context:
+        if not degraded.context.has_same_identity(
+            self.context
+        ) or not relief.context.has_same_identity(self.context):
             raise ValueError("both windows must use the record context")
         if degraded.provenance is not self.provenance or relief.provenance is not self.provenance:
             raise ValueError("window provenance must equal record provenance")

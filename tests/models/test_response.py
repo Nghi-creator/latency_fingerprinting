@@ -179,3 +179,15 @@ def test_valid_persisted_response_cannot_bypass_window_comparability(mutation: s
         relief["comparison_case_id"] = None
     with pytest.raises(ValidationError, match="comparable source windows"):
         ObservationRecord.model_validate(payload)
+
+
+@pytest.mark.parametrize("location", ["context", "degraded_window", "relief_window"])
+def test_observation_rejects_boolean_numeric_context_identity_mismatch(location: str) -> None:
+    payload = make_observation().model_dump()
+    payload["context"]["nominal_stream_profile"]["flag"] = True
+    for window in ("degraded_window", "relief_window"):
+        payload[window]["context"]["nominal_stream_profile"]["flag"] = True
+    context = payload["context"] if location == "context" else payload[location]["context"]
+    context["nominal_stream_profile"]["flag"] = 1
+    with pytest.raises(ValidationError, match="record context"):
+        ObservationRecord.model_validate(payload)

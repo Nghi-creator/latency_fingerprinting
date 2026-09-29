@@ -146,6 +146,11 @@ class MatchResult(ContractModel):
         elif self.score_margin is not None:
             raise ValueError("score_margin requires at least two ranked candidates")
 
+        if not set(candidate_ids).issubset(self.compatibility.compatible_fingerprint_ids):
+            raise ValueError("ranked candidates must belong to compatible_fingerprint_ids")
+        if (set(supporting) | set(conflicting)) & set(self.missing_features):
+            raise ValueError("feature evidence cannot also be missing")
+
         if self.decision is MatchDecision.MATCHED:
             if self.accepted_label is None or self.match_strength is None:
                 raise ValueError("a matched result requires accepted_label and match_strength")
