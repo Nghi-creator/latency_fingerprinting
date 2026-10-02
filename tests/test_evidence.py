@@ -257,3 +257,46 @@ def test_evidence_builder_does_not_mutate_query_or_candidate() -> None:
 
     assert query.model_dump() == query_before
     assert candidate.model_dump() == candidate_before
+
+
+@pytest.mark.parametrize(
+    "observed,weight,message",
+    [(1e200, 1e-300, "finite distance range"), (-0.1, 5e-324, "underflows scoring range")],
+)
+def test_extreme_finite_inputs_cannot_produce_infinite_or_false_zero_distance(
+    observed: float, weight: float, message: str
+) -> None:
+    from tests.models.factories import make_fingerprint
+
+    candidate = rebuild(make_fingerprint(), feature_weights={"transport.jitter_ms": weight})
+    query = NormalizedResponse(
+        features={
+            "transport.jitter_ms": NormalizedFeature(
+                value=observed, epsilon=0.1, reference_value=0
+            ),
+        }
+    )
+    with pytest.raises(EvidenceError, match=message):
+        build_candidate_evidence(query, candidate)
+
+
+def test_tiny_positive_weight_preserves_a_genuine_exact_match() -> None:
+    from tests.models.factories import make_fingerprint
+
+    candidate = rebuild(make_fingerprint(), feature_weights={"transport.jitter_ms": 5e-324})
+    evidence = build_candidate_evidence(candidate.normalized_response, candidate)
+    assert evidence.distance == 0
+    assert evidence.shared_feature_count == 1
+
+
+def test_distance_division_cannot_underflow_to_a_false_exact_match() -> None:
+    candidate = load_fingerprint("network_pressure")
+    names = sorted(candidate.feature_weights)
+    weights = {name: 0.0 for name in names}
+    weights[names[0]] = 1e308
+    weights[names[1]] = 1e-300
+    candidate = rebuild(candidate, feature_weights=weights)
+    query = candidate.normalized_response.model_copy(deep=True)
+    query.features[names[1]].value += 0.5
+    with pytest.raises(EvidenceError, match="underflows distance range"):
+        build_candidate_evidence(query, candidate)

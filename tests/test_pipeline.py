@@ -20,6 +20,8 @@ from latency_fingerprinting.synthetic_fixtures import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_DIRECTORY = DEFAULT_FIXTURE_DIRECTORY / "reference_cases"
+# Full serialized matcher output, including evidence and decision text. The
+# generated query expectations separately specify expected scores and decisions.
 EXAMPLE_RESULT_PATH = PROJECT_ROOT / "tests" / "data" / "clear-network-match-result.json"
 MATCH_SCHEMA_PATH = PROJECT_ROOT / "schemas" / "match-result-v1.schema.json"
 
