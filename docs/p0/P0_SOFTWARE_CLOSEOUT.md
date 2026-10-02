@@ -1,9 +1,39 @@
 # P0 Software Closeout
 
-**Latest local verification:** 2026-09-30
+**Latest local verification:** 2026-10-02
 
 **Software status:** P0 vertical slice verified  
 **Overall P0 status:** Complete as controlled-real integration-feasibility evidence
+
+## Follow-up numerical scan — 2026-10-02
+
+The scan started from clean commit `d2a05d1`; its source tree matched the
+previous audited version. The 363-test baseline passed. Extreme finite inputs
+exposed two remaining floating-point failure modes: weighted-distance division
+could overflow after individual contributions passed their finite checks, and
+multiplication or division could underflow a nonzero residual contribution to
+zero, falsely implying an exact match.
+
+Evidence construction now rejects these unrepresentable calculations with
+`EvidenceError`. The existing matcher skips the affected candidate with a
+warning and returns `unknown` if no usable candidate remains. Genuine zero
+residuals still produce zero distance, including with tiny positive weights.
+Normal scoring formulas, thresholds, schemas, and stored fixtures are unchanged.
+
+Six regression cases cover contribution underflow, distance overflow/underflow,
+a genuine exact match, and full matcher behavior with valid extreme observations.
+Verification on the existing Python 3.13.13 environment:
+
+- **369 tests pass; 88.20% combined statement/branch coverage.**
+- Ruff lint/format, dependency consistency, and diff whitespace checks pass.
+- Schema, synthetic-fixture, and run 001 seed drift checks pass.
+- All 23 persisted P0 root records validate.
+- Run 001/002 observations rebuild byte-for-byte; the run 002 matcher
+  reproduction regression passes.
+
+No further blocker was identified in this scan. Python 3.11 remains a CI check;
+it is unavailable locally, and remote CI was not run here. This is readiness
+for the next slice, not a guarantee that no undiscovered defects remain.
 
 ## Final P0 audit — 2026-09-30
 

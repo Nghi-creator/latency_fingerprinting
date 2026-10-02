@@ -78,6 +78,10 @@ def build_candidate_evidence(
                 f"candidate {candidate.fingerprint_id} feature {feature!r} "
                 "exceeds finite scoring range"
             )
+        if weight > 0 and residual != 0 and weighted_squared_residual == 0:
+            raise EvidenceError(
+                f"candidate {candidate.fingerprint_id} feature {feature!r} underflows scoring range"
+            )
         item = FeatureEvidence(
             feature=feature,
             observed_value=observed_value,
@@ -110,7 +114,16 @@ def build_candidate_evidence(
         raise EvidenceError(
             f"candidate {candidate.fingerprint_id} exceeds finite aggregate scoring range"
         )
-    distance = math.sqrt(weighted_squared_residual_sum / total_weight) if total_weight > 0 else None
+    distance = None
+    if total_weight > 0:
+        mean_squared_residual = weighted_squared_residual_sum / total_weight
+        if not math.isfinite(mean_squared_residual):
+            raise EvidenceError(
+                f"candidate {candidate.fingerprint_id} exceeds finite distance range"
+            )
+        if weighted_squared_residual_sum > 0 and mean_squared_residual == 0:
+            raise EvidenceError(f"candidate {candidate.fingerprint_id} underflows distance range")
+        distance = math.sqrt(mean_squared_residual)
     positive_candidate_features = {
         feature for feature in candidate_features if candidate.feature_weights[feature] > 0
     }

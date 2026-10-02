@@ -439,3 +439,29 @@ def test_empty_repository_returns_incompatible_context_unknown() -> None:
     assert result.unknown_reason is UnknownReason.INCOMPATIBLE_CONTEXT
     assert not result.compatibility.is_compatible
     assert result.match_strength is None
+
+
+@pytest.mark.parametrize("relief_value,weight", [(1e202, 1e-300), (10.0, 5e-324)])
+def test_extreme_scoring_arithmetic_returns_unknown_instead_of_crashing_or_matching(
+    relief_value: float, weight: float
+) -> None:
+    from latency_fingerprinting.pipeline import build_observation_record
+    from tests.models.factories import make_fingerprint, make_metric, make_observation
+
+    observation = make_observation()
+    relief = rebuild(
+        observation.relief_window,
+        metrics={"transport.jitter_ms": make_metric(relief_value)},
+    )
+    query = build_observation_record(observation.degraded_window, relief, observation.probe)
+    fingerprint = rebuild(make_fingerprint(), feature_weights={"transport.jitter_ms": weight})
+    repository = FingerprintRepository(
+        entries=(FingerprintEntry(path=Path("extreme.json"), fingerprint=fingerprint),)
+    )
+    result = match_observation(
+        query, repository, thresholds=MatchThresholds(minimum_shared_feature_count=1)
+    )
+    assert result.decision is MatchDecision.UNKNOWN
+    assert result.ranked_candidates == []
+    assert result.match_strength is None
+    assert any("Could not score" in warning for warning in result.warnings)
