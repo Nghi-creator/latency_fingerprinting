@@ -141,13 +141,15 @@ latency-fingerprinting/
     └── pixelated/
 ```
 
-Package markers such as `__init__.py` and `__main__.py` may be added. Virtual environments, caches and large/private raw experiment bundles must be ignored by Git.
+Package markers (`__init__.py`) and the CLI module entry point (`__main__.py`)
+are implemented. Virtual environments, caches and large/private raw experiment
+bundles are ignored by Git.
 
 Each fixture case contains paired `degraded.json` and `relief.json` observation
 windows plus an expected fingerprint or match result. Reference cases build the
 known fingerprint library; query cases test matching and conservative `unknown`
 handling. Fixtures are stable regression inputs, while `experiments/` stores
-artifacts from complete research trials and, later, real controlled runs.
+artifacts from the completed controlled-real runs and their processing tools.
 
 ## Python choice
 
