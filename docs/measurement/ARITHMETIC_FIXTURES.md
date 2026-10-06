@@ -50,5 +50,6 @@ The [fixture README](../../fixtures/measurement/README.md) gives the intentional
 regeneration command. Generated JSON is sorted, indented UTF-8 with LF line endings
 and a trailing newline, and disallows non-finite JSON values. Exact bytes, including
 formatting, are protected. No P0 schema, fixture, controlled artifact, registry,
-adapter, normalization or matcher code is changed. Step 9 integrates final quality,
-CI and security/resource-bound gates; N1 is not yet closed out.
+adapter, normalization or matcher code is changed. [Step 9](QUALITY_GATES.md)
+implements quality, CI and security/resource-bound gates. Hosted CI execution
+and N1 software closeout remain outstanding.

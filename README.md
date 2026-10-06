@@ -90,8 +90,10 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
 ```
 
 [Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
-in with independent expected summaries and read-only drift checks. Final quality/CI
-integration and closeout remain for N1.
+in with independent expected summaries and read-only drift checks.
+[Quality gates](docs/measurement/QUALITY_GATES.md) cover both CI Python versions,
+branch coverage and pinned registry/report reproduction. Local checks pass; hosted
+CI execution and software closeout remain outstanding.
 
 ### Implemented and verified
 

@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–8 verified
+**Status:** In implementation; Steps 0–9 verified locally; CI gates configured
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 9–10 remain pending.
+Step 10 remains pending. Python 3.11 and hosted CI execution remain for CI.
 
 ## Slice outcome
 
@@ -846,9 +846,9 @@ Security and resource-bound regression coverage must include:
 
 ### Gate
 
-- [ ] Existing 85% branch floor remains enforced.
-- [ ] New public modules have meaningful branch coverage.
-- [ ] All old P0 gates remain unchanged and green.
+- [x] Existing 85% branch floor remains enforced.
+- [x] New public modules have meaningful branch coverage.
+- [x] All old P0 gates remain unchanged and green.
 
 ## Step 10 — Documentation and slice closeout
 

@@ -68,7 +68,8 @@ Implemented: source-declared definitions -> strict registry -> schema/artifact e
              registered gauge/counter aggregation -> immutable series summaries
              P0 comparison -> diagnostic shadow/migration report
 Verified:    independent synthetic arithmetic fixtures and read-only drift checks
-Planned:     final quality/CI integration and N1 closeout
+Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
+Planned:     hosted CI execution and N1 software closeout
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported

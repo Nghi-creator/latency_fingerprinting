@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–8: baseline, registry, extraction, aggregation, inspection and fixtures.
-**Next boundary:** Step 9 quality and CI gates. N1 is not complete.
+**Completed boundary:** Steps 0–9 verified locally; registry, aggregation, inspection, fixtures and CI gates.
+**Next boundary:** Step 10 software closeout. Hosted CI execution remains pending; N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -362,3 +362,49 @@ The focused-fixture boundary is documented in
 [`ARITHMETIC_FIXTURES.md`](ARITHMETIC_FIXTURES.md). Steps 0–8 are verified; Step 9
 quality/CI integration and Step 10 software closeout remain. N1 is not yet complete;
 these synthetic arithmetic cases do not establish diagnostic or experimental validity.
+
+## Step 9 deliverables and verification
+
+[`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) now explicitly enforces
+branch-inclusive coverage with the unchanged 85% floor in both Python 3.13 and
+3.11 jobs. Both jobs run read-only N1 arithmetic fixture drift and pinned
+registry/report reproduction. The minimum-version job also checks schemas,
+canonical registry and installed dependencies. Existing P0 quality-job artifact,
+fixture, seed and exact-match checks remain in place without changing their commands.
+
+[`check_reproduction.py`](../../tests/measurement/check_reproduction.py) adds a
+read-only test-support command that verifies registry artifact/source agreement,
+the fixed registry release hash and the sanitized inspection report hash. The
+inspection tests share its unchanged report pin. Artifact/pin drift or missing
+files produce an error exit code without partial JSON or a traceback. No generator
+is invoked and no fixture or artifact is rewritten.
+
+[`test_quality_gates.py`](../../tests/measurement/test_quality_gates.py) adds
+**27 cases** for public inspection CLI failures and reproduction. Root/nested
+JSON duplicates, excessive nesting, non-finite/overflow values, pathological
+integer literals, invalid UTF-8, context/file/bundle size bounds, CSV field size,
+unterminated quotes, duplicate columns, exact configured sample-limit boundaries
+and unsafe TAR paths all retain deterministic failure without partial output or
+traceback. Invalid numeric metric cells remain structured rejection evidence
+with no fabricated value. Reproduction tests cover successful no-write checks,
+artifact drift, both pin mismatches and missing files.
+
+Final verification on Python 3.13.13: **892 tests passed; 91.53% branch-inclusive
+coverage**. N1 registry, raw extraction and inspection modules retain 100%
+branch-inclusive coverage; aggregation and measurement models report 99% rounded.
+Ruff lint/format, installed dependencies, schema/registry checks, both fixture
+checks and pinned N1 reproduction pass. All five controlled P0 artifacts validate;
+run-001 seed check and exact run-002 byte reproduction pass. CI YAML parsing and
+both jobs' coverage/reproduction commands were checked. Documentation links and
+whitespace checks pass.
+
+No production Python module, P0 artifact, schema, fixture, normalization/matcher
+code, registry release or report bytes changed in Step 9. CI additions and test
+support preserve the old gates and tighten minimum-version verification.
+**Python 3.11 and hosted CI execution remain pending**; the recorded results are
+local Python 3.13 results, not a claim of remote job success.
+
+The commands, security/resource regression inventory and local/hosted boundary
+are documented in [`QUALITY_GATES.md`](QUALITY_GATES.md). Steps 0–9 are locally
+verified and CI gates are configured. Step 10 documentation/software closeout is
+next; N1 is not yet marked complete.

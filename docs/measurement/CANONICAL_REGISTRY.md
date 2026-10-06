@@ -78,6 +78,7 @@ existing bounded bundle reader. Step 5 adds pure
 [`gauge aggregation`](GAUGE_AGGREGATION.md); Step 6 adds
 [`counter derivation`](COUNTER_AGGREGATION.md). Step 7 implements
 [`shadow migration inspection`](MEASUREMENT_INSPECTION.md). Step 8 adds
-[focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Final quality/CI integration
-and N1 closeout remain; observation-v2 adoption is a separate slice. Registry export commands
+[focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Step 9 implements
+[quality/CI gates](QUALITY_GATES.md). Hosted CI execution and N1 closeout remain;
+observation-v2 adoption is a separate slice. Registry export commands
 operate on definitions and artifacts only.

@@ -21,6 +21,8 @@ from latency_fingerprinting.models import (
     WindowPhase,
 )
 
+from .check_reproduction import EXPECTED_REPORT_SHA256
+
 FIXTURES = Path(__file__).resolve().parents[1] / "data/pixelated_bundle"
 
 
@@ -396,7 +398,7 @@ def test_rendered_fixture_hash_is_pinned_in_both_ci_python_versions():
     digest = hashlib.sha256(
         inspection.render_measurement_inspection(inspect()).encode()
     ).hexdigest()
-    assert digest == "295f57a6f0e0ab80f64c7323be3cd5fc4e278aac712825f0173955594513c423"
+    assert digest == EXPECTED_REPORT_SHA256
 
 
 def test_mapping_matches_reviewed_inventory_exactly():
