@@ -83,6 +83,7 @@ __all__ = [
     "MeasurementSample",
     "MetricSeriesStatus",
     "MetricSeriesSummary",
+    "CounterInterval",
 ]
 from .context import (
     ContextKey,
@@ -105,6 +106,7 @@ from .measurement import (
     METRIC_REGISTRY_SCHEMA_VERSION,
     AggregationKind,
     ClockBasis,
+    CounterInterval,
     CounterResetPolicy,
     MeasurementSample,
     MetricDefinition,

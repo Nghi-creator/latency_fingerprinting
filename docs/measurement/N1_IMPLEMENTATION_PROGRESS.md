@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–5: baseline, inventory, models, registry, raw extraction and gauges.
-**Next boundary:** Step 6 cumulative-counter derivation. N1 is not complete.
+**Completed boundary:** Steps 0–6: baseline, inventory, models, registry, extraction, gauges and counters.
+**Next boundary:** Step 7 migration-readiness report. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -218,3 +218,53 @@ The API and coverage/status semantics are documented in
 [`GAUGE_AGGREGATION.md`](GAUGE_AGGREGATION.md). Step 6 counter/rate derivation is
 next; the shadow inspection CLI and observation-v2 matcher adoption remain future
 work. N1 is not yet complete.
+
+## Step 6 deliverables and verification
+
+[`measurement/aggregation.py`](../../src/latency_fingerprinting/measurement/aggregation.py)
+adds pure `aggregate_counter` for registered cumulative-counter definitions and
+immutable timestamped samples. It derives deltas/rates only across adjacent usable
+source rows, sums accepted deltas and durations with `math.fsum`, and publishes
+the registered total or time-weighted rate. Unit conversion preserves frames/s,
+freezes/min, ms/s and packets/s. Rates use accepted duration without extrapolating
+unsupported parts of the declared window.
+
+Missing, unavailable, malformed, negative and out-of-width samples break
+continuity. Registered strict missing policy rejects the series. `reject_segment`
+discards the decreasing transition and establishes a new baseline; `reject_series`
+suppresses all results while retaining later reset/gap evidence. Explicit finite
+integer widths permit declared modular wraparound; no canonical definition enables
+it. Invalid chronology rejects the whole source sequence. Duplicate row identities
+clear ambiguous row-level audit lists and retain reasons/warnings.
+
+Frozen `CounterInterval` records retain source endpoints, timestamps, durations,
+deltas, finite interval rates and wrap flags. `MetricSeriesSummary` adds these
+records, their rate unit, reset rows and gap rows. Validation checks unit/count
+consistency, ordered usable endpoints and reconstruction of interval rates,
+observed duration and the published aggregate. A single counter sample has no
+interval aggregate and remains incomplete. Real constant counters retain zero.
+Arithmetic overflow or unrepresentable positive rates reject publication without
+partial results. Stable ratio arithmetic avoids needless intermediate overflow
+and underflow; validated non-negative counter subtraction is inherently bounded.
+
+[`test_counter_aggregation.py`](../../tests/measurement/test_counter_aggregation.py)
+adds **103 cases** covering all registered unit families, equivalent regular and
+irregular cadence, policies, gaps/resets, declared width, huge/tiny finite values,
+rate/sum arithmetic failures, invalid clocks, source immutability, no I/O,
+serialization, interval/summary contracts and sanitized bundles. Deterministic
+cases prove offset/scaling/splitting invariance, gap interval-count monotonicity
+and accepted duration bounded by the declared window. The combined aggregation
+module and measurement model module each have **99% branch-inclusive coverage**.
+
+Final verification on Python 3.13.13: **786 tests passed; 91.16% branch-inclusive
+coverage**. Ruff lint/format, dependency checks, schema/registry checks, P0
+fixture/seed checks and exact run-002 byte reproduction passed. Local documentation
+links and whitespace checks pass. Python 3.11 execution remains for CI. P0 models,
+registry artifacts, schemas, fixtures, controlled artifacts, configuration,
+adapter implementation and matcher remain unchanged. Counter support is additive
+N1 aggregation and internal summary metadata.
+
+API usage, units, evidence and failure policies are documented in
+[`COUNTER_AGGREGATION.md`](COUNTER_AGGREGATION.md). Steps 0–6 are verified; Step 7
+migration-readiness reporting is next. N1 is not yet complete and proposed v2
+features remain outside the P0 matcher.

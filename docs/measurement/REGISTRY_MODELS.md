@@ -38,7 +38,8 @@ Optional normalization/clipping/direction metadata is not included because N1
 has no consumer for it. Step 4 adds `MeasurementSample` for
 [`raw extraction`](SAMPLE_EXTRACTION.md). Step 5 adds the frozen
 `MetricSeriesSummary` and `MetricSeriesStatus` contracts for
-[`gauge aggregation`](GAUGE_AGGREGATION.md).
+[`gauge aggregation`](GAUGE_AGGREGATION.md). Step 6 adds `CounterInterval` and
+extends summaries with validated [counter evidence](COUNTER_AGGREGATION.md).
 
 All required nullable fields must be supplied explicitly. Cadence and tolerance
 must be positive finite numbers when present. Tolerance requires expected cadence;

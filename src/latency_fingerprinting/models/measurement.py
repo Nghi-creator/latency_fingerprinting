@@ -302,6 +302,41 @@ class MetricSeriesStatus(StrEnum):
     REJECTED = "rejected"
 
 
+def _counter_rate(delta: float, duration_ms: float, scale: float) -> float:
+    """Compute the ratio without avoidable intermediate overflow/underflow."""
+    numerator, numerator_exponent = math.frexp(delta)
+    denominator, denominator_exponent = math.frexp(duration_ms)
+    rate = math.ldexp(numerator / denominator * scale, numerator_exponent - denominator_exponent)
+    if not math.isfinite(rate) or (delta > 0 and rate == 0):
+        raise ValueError("counter rate exceeds the finite representable numeric range")
+    return rate
+
+
+class CounterInterval(ContractModel):
+    """Accepted counter transition; rate units are declared by its summary."""
+
+    model_config = ConfigDict(frozen=True)
+
+    start_source_row: PositiveInt
+    end_source_row: PositiveInt
+    start_elapsed_ms: NonNegativeFiniteFloat
+    end_elapsed_ms: NonNegativeFiniteFloat
+    duration_ms: PositiveFiniteFloat
+    delta: NonNegativeFiniteFloat
+    rate: NonNegativeFiniteFloat
+    wrapped: StrictBool = False
+
+    @model_validator(mode="after")
+    def validate_interval(self) -> CounterInterval:
+        if self.start_source_row == self.end_source_row:
+            raise ValueError("interval endpoints require distinct source rows")
+        if self.end_elapsed_ms <= self.start_elapsed_ms or self.duration_ms != (
+            self.end_elapsed_ms - self.start_elapsed_ms
+        ):
+            raise ValueError("interval duration must match positive elapsed bounds")
+        return self
+
+
 class MetricSeriesSummary(ContractModel):
     """Immutable, finite aggregation result with reconstructable source evidence."""
 
@@ -334,6 +369,10 @@ class MetricSeriesSummary(ContractModel):
     missing_reasons: tuple[NonEmptyStr, ...] = ()
     rejected_reasons: tuple[NonEmptyStr, ...] = ()
     warnings: tuple[NonEmptyStr, ...] = ()
+    counter_intervals: tuple[CounterInterval, ...] = ()
+    interval_rate_unit: MetricUnit | None = None
+    reset_source_rows: tuple[PositiveInt, ...] = ()
+    gap_source_rows: tuple[PositiveInt, ...] = ()
 
     @field_validator("aggregates", mode="after")
     @classmethod
@@ -409,6 +448,96 @@ class MetricSeriesSummary(ContractModel):
             or self.rejected_reasons
         ):
             raise ValueError("complete series requires aggregates and full coverage without gaps")
+        if self.kind is MetricKind.GAUGE and (
+            self.counter_intervals
+            or self.interval_rate_unit is not None
+            or self.reset_source_rows
+            or self.gap_source_rows
+        ):
+            raise ValueError("gauge summaries cannot contain counter evidence")
+        if self.kind is MetricKind.CUMULATIVE_COUNTER:
+            if self.interval_rate_unit not in COUNTER_RATE_UNITS:
+                raise ValueError("counter summaries require an interval rate unit")
+            if len(self.counter_intervals) != self.accepted_interval_count:
+                raise ValueError("counter interval evidence must match its count")
+            rate_units = {
+                MetricUnit.FRAMES: MetricUnit.FRAMES_PER_SECOND,
+                MetricUnit.FREEZES: MetricUnit.FREEZES_PER_MINUTE,
+                MetricUnit.MILLISECONDS: MetricUnit.MILLISECONDS_PER_SECOND,
+                MetricUnit.PACKETS: MetricUnit.PACKETS_PER_SECOND,
+            }
+            if (
+                len(self.available_aggregations) != 1
+                or not set(self.available_aggregations) <= COUNTER_AGGREGATIONS
+                or self.interval_rate_unit
+                != rate_units.get(self.canonical_unit, self.canonical_unit)
+                or self.canonical_unit
+                not in (
+                    COUNTER_TOTAL_UNITS
+                    if self.primary_aggregation is AggregationKind.WINDOW_TOTAL
+                    else COUNTER_RATE_UNITS
+                )
+            ):
+                raise ValueError("counter summary aggregations and units must agree")
+            scale = 60000.0 if self.interval_rate_unit is MetricUnit.FREEZES_PER_MINUTE else 1000.0
+            previous_end = self.window_start_ms
+            for interval in self.counter_intervals:
+                if (
+                    interval.start_elapsed_ms < previous_end
+                    or interval.end_elapsed_ms > self.window_end_ms
+                    or interval.start_source_row not in self.usable_source_rows
+                    or interval.end_source_row not in self.usable_source_rows
+                ):
+                    raise ValueError("counter intervals require ordered in-window usable endpoints")
+                try:
+                    expected_rate = _counter_rate(interval.delta, interval.duration_ms, scale)
+                except OverflowError as error:
+                    raise ValueError("counter interval rate is outside finite range") from error
+                if not math.isclose(interval.rate, expected_rate, rel_tol=1e-12, abs_tol=0):
+                    raise ValueError(
+                        "counter interval rate must reconstruct from delta and duration"
+                    )
+                previous_end = interval.end_elapsed_ms
+            if not math.isclose(
+                math.fsum(item.duration_ms for item in self.counter_intervals)
+                if self.counter_intervals
+                else 0.0,
+                self.observed_duration_ms,
+                rel_tol=1e-12,
+                abs_tol=0,
+            ):
+                raise ValueError("counter intervals must reconstruct observed duration")
+            if self.aggregates:
+                if not self.counter_intervals:
+                    raise ValueError("counter aggregates require accepted interval evidence")
+                try:
+                    total = math.fsum(item.delta for item in self.counter_intervals)
+                    expected = (
+                        total
+                        if self.primary_aggregation is AggregationKind.WINDOW_TOTAL
+                        else _counter_rate(total, self.observed_duration_ms, scale)
+                    )
+                except OverflowError as error:
+                    raise ValueError(
+                        "counter evidence arithmetic is outside finite range"
+                    ) from error
+                if not math.isfinite(expected) or not math.isclose(
+                    self.value,
+                    expected,
+                    rel_tol=1e-12,
+                    abs_tol=0,
+                ):
+                    raise ValueError("counter aggregate must reconstruct from accepted intervals")
+            if (
+                any(row not in self.usable_source_rows for row in self.reset_source_rows)
+                or any(row in self.usable_source_rows for row in self.gap_source_rows)
+                or len(self.gap_source_rows) > self.source_sample_count - self.usable_sample_count
+            ):
+                raise ValueError("counter reset and gap rows must agree with usable evidence")
+        if len(set(self.reset_source_rows)) != len(self.reset_source_rows) or len(
+            set(self.gap_source_rows)
+        ) != len(self.gap_source_rows):
+            raise ValueError("counter reset and gap row identities cannot contain duplicates")
         return self
 
     @property
@@ -421,6 +550,7 @@ __all__ = [
     "AggregationKind",
     "ClockBasis",
     "CounterResetPolicy",
+    "CounterInterval",
     "MetricDefinition",
     "MetricKind",
     "MetricRegistry",

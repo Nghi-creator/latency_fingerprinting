@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–5 verified
+**Status:** In implementation; Steps 0–6 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 6–10 remain pending.
+Steps 7–10 remain pending.
 
 ## Slice outcome
 
@@ -724,9 +724,9 @@ unless justified:
 
 ### Gate
 
-- [ ] Counter output is cadence-aware.
-- [ ] Gaps and resets cannot fabricate deltas.
-- [ ] Rates and totals can be independently reconstructed.
+- [x] Counter output is cadence-aware.
+- [x] Gaps and resets cannot fabricate deltas.
+- [x] Rates and totals can be independently reconstructed.
 
 ## Step 7 — Produce a P0 migration-readiness report
 
@@ -993,9 +993,9 @@ N1 is complete only when every item is true:
 - [x] Registry models reject invalid cross-field combinations.
 - [x] Canonical registry and JSON Schema are checked in and drift-protected.
 - [x] Gauge summaries are deterministic and auditable.
-- [ ] Counter rates are invariant to equivalent sampling cadence.
-- [ ] Counter totals, rates, gaps, and resets remain distinguishable.
-- [ ] Missing/rejected/incomplete states never become zero.
+- [x] Counter rates are invariant to equivalent sampling cadence.
+- [x] Counter totals, rates, gaps, and resets remain distinguishable.
+- [x] Missing/rejected/incomplete states never become zero.
 - [ ] Directory and TAR shadow reports are identical.
 - [ ] Migration classification never claims unavailable reconstruction.
 - [ ] P0 schemas, fixtures, controlled artifacts, and match output are unchanged.

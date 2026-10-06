@@ -18,6 +18,9 @@
 - [`GAUGE_AGGREGATION.md`](../measurement/GAUGE_AGGREGATION.md) describes pure
   registered statistics, coverage, summary states and source evidence.
 
+- [`COUNTER_AGGREGATION.md`](../measurement/COUNTER_AGGREGATION.md) explains
+  cadence-aware rates, interval evidence, gaps, resets and finite arithmetic.
+
 When the active slice closes, archive its verified results in the appropriate
 technical closeout document and replace the next-slice plan. Do not turn the
 full roadmap into a running implementation checklist.
