@@ -5,6 +5,10 @@
 **Software status:** Steps 0–10 implemented and locally verified
 **Hosted verification:** Python 3.11 and GitHub CI results remain pending
 
+Subsequent hardening and current verification are recorded in the
+[post-N1 architecture audit](ARCHITECTURE_AUDIT.md). The results below retain the
+original Step 10 milestone evidence.
+
 N1 delivers a versioned measurement foundation alongside the frozen P0 path.
 It supplies explicit metric meaning, bounded raw extraction, deterministic gauge
 and counter summaries, and a diagnostic migration report. It is software and

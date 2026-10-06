@@ -1,5 +1,10 @@
 # N1 cumulative-counter derivation
 
+Counter summaries validate interval endpoints against the ordered usable source
+rows. A shared row must retain one elapsed timestamp, each interval connects
+adjacent usable rows, and wrapped transitions must appear in the reset audit.
+Indexed row lookups keep this evidence validation linear in the number of rows.
+
 [`aggregate_counter`](../../src/latency_fingerprinting/measurement/aggregation.py)
 is a pure Python API alongside [gauge aggregation](GAUGE_AGGREGATION.md). It
 accepts a registered cumulative-counter definition, an immutable tuple of

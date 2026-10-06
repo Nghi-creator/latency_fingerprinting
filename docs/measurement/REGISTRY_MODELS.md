@@ -17,6 +17,8 @@ Definition names use dotted lowercase identifiers. Sources, units, metric kinds,
 aggregations, clocks, missing-data policies and reset policies are closed enums.
 `event_count` and `derived` are reserved enum values; constructing definitions
 with those kinds is rejected until their derivation contracts are implemented.
+Summary construction rejects those reserved kinds as well, and gauge summary
+units/aggregations must obey the same kind restrictions as definitions.
 
 Gauge definitions admit median, nearest-rank P95, minimum and maximum and omit
 missing samples or reject the series on invalid input. They cannot declare a

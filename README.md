@@ -97,6 +97,11 @@ is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
 Python 3.11 and hosted CI verification remain pending. The next slice is additive
 observation-v2 contract/adoption; v2 features are not production matcher inputs.
 
+The [post-N1 architecture audit](docs/measurement/ARCHITECTURE_AUDIT.md) adds
+summary validation and scaling fixes plus adapter boundary tests: **924 tests
+pass with 91.89% branch-inclusive coverage**. It also records remaining
+verification and N2 contract gaps.
+
 ### Implemented and verified
 
 - Existing Pixelated testbed and research-run export: implemented.

@@ -385,6 +385,13 @@ class MetricSeriesSummary(ContractModel):
 
     @model_validator(mode="after")
     def validate_summary(self) -> MetricSeriesSummary:
+        if self.kind not in {MetricKind.GAUGE, MetricKind.CUMULATIVE_COUNTER}:
+            raise ValueError("event_count and derived summaries are reserved beyond N1")
+        if self.kind is MetricKind.GAUGE and (
+            self.canonical_unit not in GAUGE_UNITS
+            or not set(self.available_aggregations) <= GAUGE_AGGREGATIONS
+        ):
+            raise ValueError("gauge summary units and aggregations must agree")
         if self.window_end_ms <= self.window_start_ms or self.window_duration_ms != (
             self.window_end_ms - self.window_start_ms
         ):
@@ -481,14 +488,31 @@ class MetricSeriesSummary(ContractModel):
                 raise ValueError("counter summary aggregations and units must agree")
             scale = 60000.0 if self.interval_rate_unit is MetricUnit.FREEZES_PER_MINUTE else 1000.0
             previous_end = self.window_start_ms
+            row_positions = {row: index for index, row in enumerate(self.usable_source_rows)}
+            reset_rows = set(self.reset_source_rows)
+            row_times: dict[int, float] = {}
+            previous_end_position = -1
             for interval in self.counter_intervals:
                 if (
                     interval.start_elapsed_ms < previous_end
                     or interval.end_elapsed_ms > self.window_end_ms
-                    or interval.start_source_row not in self.usable_source_rows
-                    or interval.end_source_row not in self.usable_source_rows
+                    or interval.start_source_row not in row_positions
+                    or interval.end_source_row not in row_positions
                 ):
                     raise ValueError("counter intervals require ordered in-window usable endpoints")
+                start_position = row_positions[interval.start_source_row]
+                end_position = row_positions[interval.end_source_row]
+                if start_position < previous_end_position or end_position != start_position + 1:
+                    raise ValueError("counter intervals must follow adjacent usable source rows")
+                for row, elapsed in (
+                    (interval.start_source_row, interval.start_elapsed_ms),
+                    (interval.end_source_row, interval.end_elapsed_ms),
+                ):
+                    if row in row_times and row_times[row] != elapsed:
+                        raise ValueError("a counter source row cannot have multiple timestamps")
+                    row_times[row] = elapsed
+                if interval.wrapped and interval.end_source_row not in reset_rows:
+                    raise ValueError("wrapped transitions require a reset audit row")
                 try:
                     expected_rate = _counter_rate(interval.delta, interval.duration_ms, scale)
                 except OverflowError as error:
@@ -498,6 +522,7 @@ class MetricSeriesSummary(ContractModel):
                         "counter interval rate must reconstruct from delta and duration"
                     )
                 previous_end = interval.end_elapsed_ms
+                previous_end_position = end_position
             if not math.isclose(
                 math.fsum(item.duration_ms for item in self.counter_intervals)
                 if self.counter_intervals
@@ -529,8 +554,8 @@ class MetricSeriesSummary(ContractModel):
                 ):
                     raise ValueError("counter aggregate must reconstruct from accepted intervals")
             if (
-                any(row not in self.usable_source_rows for row in self.reset_source_rows)
-                or any(row in self.usable_source_rows for row in self.gap_source_rows)
+                any(row not in row_positions for row in self.reset_source_rows)
+                or any(row in row_positions for row in self.gap_source_rows)
                 or len(self.gap_source_rows) > self.source_sample_count - self.usable_sample_count
             ):
                 raise ValueError("counter reset and gap rows must agree with usable evidence")
