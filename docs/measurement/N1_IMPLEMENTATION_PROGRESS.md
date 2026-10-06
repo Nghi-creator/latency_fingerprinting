@@ -1,8 +1,9 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–9 verified locally; registry, aggregation, inspection, fixtures and CI gates.
-**Next boundary:** Step 10 software closeout. Hosted CI execution remains pending; N1 is not complete.
+**Completed boundary:** Steps 0–10 implemented and locally verified; N1 software closed out.
+**Next boundary:** N2 additive observation-v2 contract/adoption. Hosted CI verification remains pending.
+**Final record:** [N1_SOFTWARE_CLOSEOUT.md](N1_SOFTWARE_CLOSEOUT.md). Historical entries below preserve each milestone boundary.
 
 ## Protected P0 baseline
 
@@ -408,3 +409,37 @@ The commands, security/resource regression inventory and local/hosted boundary
 are documented in [`QUALITY_GATES.md`](QUALITY_GATES.md). Steps 0–9 are locally
 verified and CI gates are configured. Step 10 documentation/software closeout is
 next; N1 is not yet marked complete.
+
+## Step 10 software closeout — 2026-10-06
+
+[`N1_SOFTWARE_CLOSEOUT.md`](N1_SOFTWARE_CLOSEOUT.md) consolidates the delivered
+registry, extraction, gauge/counter aggregation, migration report, synthetic
+fixtures and CI gates. It records final commands, test count, coverage, artifact
+pins, P0 preservation, clock/producer/migration/scientific limitations and the
+exact next boundary. N1 Steps 0–10 are complete at the locally verified software
+boundary; Python 3.11 and hosted CI verification remain separately pending.
+
+The [N1 plan archive](../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
+preserves the completed checklist with that verification qualification.
+[`NEXT_IMPLEMENTATION_PLAN.md`](../plans/NEXT_IMPLEMENTATION_PLAN.md) now prepares
+N2 additive observation-v2 contract/offline adoption; implementation has not
+started. README, architecture, authoritative inventory, local guides and roadmap
+navigation match the delivered N1 boundary. Historical milestone entries remain
+intact as records of what was pending at each step.
+
+Final verification on Python 3.13.13 again passes **892 tests and 91.53%
+branch-inclusive coverage**. Ruff lint/format, dependencies, all schema/registry
+checks, both fixture drift checks, pinned N1 registry/report reproduction,
+run-001 seed check and exact run-002 match reproduction pass. All five controlled
+P0 artifacts validate. All local Markdown file links across 35 repository documents
+resolve; diff whitespace checks pass.
+
+Comparison against the protected baseline
+`b1cd7aa07eebf39629572c22cdd20428a78de826` confirms unchanged P0 schemas, reference/
+query fixtures, controlled artifacts, root models, adapter/helper implementation,
+feature configuration, pipeline and matcher. Step 10 modifies documentation only.
+No live probe, remediation, runtime instrumentation, matcher-v2 adoption or new
+controlled-real experiment occurred. The software foundation does not establish
+diagnosis accuracy or recovery benefit, and proposed v2 features remain outside
+production matcher inputs. The separate observation-v2 adoption slice is still
+required.

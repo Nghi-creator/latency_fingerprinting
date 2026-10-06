@@ -1,35 +1,25 @@
 # Implementation plans
 
-- [`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md) is the detailed,
-  implementation-ready plan for the active slice only.
-- [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md) is the stable,
-  high-level roadmap from the completed P0 slice through final engine delivery.
-- [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md) freezes the
-  active N1 metric inventory and proposed output names.
-- [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md)
-  records the verified baseline and completed milestones without claiming slice closeout.
-- [`REGISTRY_MODELS.md`](../measurement/REGISTRY_MODELS.md) explains the strict N1
-  contracts and the duplicate-safe registry file boundary.
-- [`CANONICAL_REGISTRY.md`](../measurement/CANONICAL_REGISTRY.md) documents the
-  executable definitions, artifact versions and export/check commands.
-- [`SAMPLE_EXTRACTION.md`](../measurement/SAMPLE_EXTRACTION.md) describes the raw
-  timestamped extraction API, sample states and inherited bundle safety checks.
+- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active N2
+  additive observation-v2 contract/offline adoption plan; implementation has not started.
+- [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md) is the broader roadmap
+  from the frozen P0 path through production and final evaluation.
+- [Archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md) preserves the
+  completed N1 software checklist and pending hosted-verification boundary.
+- [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md) records the delivered
+  artifacts, final checks, limitations and exact next boundary.
+- [N1 progress](../measurement/N1_IMPLEMENTATION_PROGRESS.md) preserves milestone history.
+- [Metric inventory](../measurement/METRIC_SEMANTICS_V2.md) is the authoritative
+  reviewed mapping of P0 features to N1 outputs.
+- [Registry models](../measurement/REGISTRY_MODELS.md) and
+  [canonical registry](../measurement/CANONICAL_REGISTRY.md) explain contracts and exports.
+- [Sample extraction](../measurement/SAMPLE_EXTRACTION.md),
+  [gauges](../measurement/GAUGE_AGGREGATION.md) and
+  [counters](../measurement/COUNTER_AGGREGATION.md) document the shadow measurement APIs.
+- [Inspection](../measurement/MEASUREMENT_INSPECTION.md),
+  [fixtures](../measurement/ARITHMETIC_FIXTURES.md) and
+  [quality gates](../measurement/QUALITY_GATES.md) document diagnostics and verification.
 
-- [`GAUGE_AGGREGATION.md`](../measurement/GAUGE_AGGREGATION.md) describes pure
-  registered statistics, coverage, summary states and source evidence.
-
-- [`COUNTER_AGGREGATION.md`](../measurement/COUNTER_AGGREGATION.md) explains
-  cadence-aware rates, interval evidence, gaps, resets and finite arithmetic.
-
-- [`MEASUREMENT_INSPECTION.md`](../measurement/MEASUREMENT_INSPECTION.md) documents
-  diagnostic migration classifications, report privacy and the inspection CLI.
-
-- [`ARITHMETIC_FIXTURES.md`](../measurement/ARITHMETIC_FIXTURES.md) describes
-  independent synthetic expectations, fixture provenance and no-write drift checks.
-
-- [`QUALITY_GATES.md`](../measurement/QUALITY_GATES.md) records CI reproduction,
-  branch coverage, public CLI resource tests and local/hosted verification boundaries.
-
-When the active slice closes, archive its verified results in the appropriate
-technical closeout document and replace the next-slice plan. Do not turn the
-full roadmap into a running implementation checklist.
+Archive a slice's completed plan and software closeout before replacing the active
+plan. Keep local software verification distinct from hosted CI and scientific
+validation. The full roadmap stays at major-slice level.

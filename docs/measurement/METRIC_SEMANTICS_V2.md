@@ -1,8 +1,9 @@
 # N1 metric semantics and naming inventory
 
-**Status:** Inventory, strict models and canonical registry implemented; aggregation pending.
+**Status:** N1 registry, extraction, aggregation and inspection implemented; locally closed out.
+**Closeout:** [N1_SOFTWARE_CLOSEOUT.md](N1_SOFTWARE_CLOSEOUT.md); hosted CI verification pending.
 **Reviewed:** 2026-10-06
-**Planned registry version:** `latency-metrics-v2.0.0`
+**Canonical registry version:** `latency-metrics-v2.0.0`
 **Definition semantic version:** `1.0.0` for each initial definition.
 
 This is the authoritative naming map for the N1 shadow measurement path.

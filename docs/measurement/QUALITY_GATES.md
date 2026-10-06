@@ -88,5 +88,6 @@ seed, Ruff and installed dependencies all pass.
 
 Python 3.11 and GitHub-hosted CI execution have not been run locally. The workflow
 configuration and local checks are verified; remote job results remain pending.
-Step 10 documentation/software closeout is the remaining N1 boundary. P0 behavior
+[Step 10 software closeout](N1_SOFTWARE_CLOSEOUT.md) is complete. P0 behavior
 and artifacts are unchanged, and proposed v2 features remain outside the matcher.
+The next slice is additive observation-v2 contract/offline adoption.

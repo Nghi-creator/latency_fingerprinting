@@ -79,6 +79,7 @@ existing bounded bundle reader. Step 5 adds pure
 [`counter derivation`](COUNTER_AGGREGATION.md). Step 7 implements
 [`shadow migration inspection`](MEASUREMENT_INSPECTION.md). Step 8 adds
 [focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Step 9 implements
-[quality/CI gates](QUALITY_GATES.md). Hosted CI execution and N1 closeout remain;
-observation-v2 adoption is a separate slice. Registry export commands
+[quality/CI gates](QUALITY_GATES.md). Step 10 completes
+[N1 software closeout](N1_SOFTWARE_CLOSEOUT.md). Hosted CI verification remains
+pending; observation-v2 adoption is the separate next slice. Registry export commands
 operate on definitions and artifacts only.

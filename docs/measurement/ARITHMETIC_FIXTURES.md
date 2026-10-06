@@ -51,5 +51,6 @@ regeneration command. Generated JSON is sorted, indented UTF-8 with LF line endi
 and a trailing newline, and disallows non-finite JSON values. Exact bytes, including
 formatting, are protected. No P0 schema, fixture, controlled artifact, registry,
 adapter, normalization or matcher code is changed. [Step 9](QUALITY_GATES.md)
-implements quality, CI and security/resource-bound gates. Hosted CI execution
-and N1 software closeout remain outstanding.
+implements quality, CI and security/resource-bound gates.
+[N1 software closeout](N1_SOFTWARE_CLOSEOUT.md) is complete; hosted CI verification
+remains pending and observation-v2 adoption is the next slice.

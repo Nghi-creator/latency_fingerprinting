@@ -10,7 +10,7 @@ types and rejection of extra fields. They do not alter the P0 root models.
 
 Registry schema version is `metric-registry-v1`. Registry identifiers follow
 `latency-metrics-vMAJOR.MINOR.PATCH`; definition versions use `MAJOR.MINOR.PATCH`.
-The eventual canonical registry identifier remains `latency-metrics-v2.0.0`.
+The canonical registry identifier is `latency-metrics-v2.0.0`.
 Versions are explicit metadata, not derived from the package version.
 
 Definition names use dotted lowercase identifiers. Sources, units, metric kinds,
@@ -47,7 +47,7 @@ expected cadence can be advisory without a tolerance. Booleans, numeric strings,
 non-finite floats and overflow-range integers cannot become cadence values.
 `createdAt` accepts a datetime or ISO timestamp string, requires a timezone-aware
 zero UTC offset, and rejects epoch-number coercion. Release metadata must be fixed
-by the future canonical builder rather than generated from the current time.
+by the canonical builder rather than generated from the current time.
 
 `clockBasis` is `source_elapsed_ms`. It identifies the elapsed CSV field without
 claiming monotonic provenance. Legacy wall-clock-derived elapsed timestamps and

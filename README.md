@@ -92,8 +92,10 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
 [Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
 in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover both CI Python versions,
-branch coverage and pinned registry/report reproduction. Local checks pass; hosted
-CI execution and software closeout remain outstanding.
+branch coverage and pinned registry/report reproduction. [N1 software closeout](docs/measurement/N1_SOFTWARE_CLOSEOUT.md)
+is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
+Python 3.11 and hosted CI verification remain pending. The next slice is additive
+observation-v2 contract/adoption; v2 features are not production matcher inputs.
 
 ### Implemented and verified
 

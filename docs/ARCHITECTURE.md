@@ -69,7 +69,9 @@ Implemented: source-declared definitions -> strict registry -> schema/artifact e
              P0 comparison -> diagnostic shadow/migration report
 Verified:    independent synthetic arithmetic fixtures and read-only drift checks
 Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
-Planned:     hosted CI execution and N1 software closeout
+Closed out:  N1 software implementation and local verification
+Pending:     Python 3.11 and hosted CI verification
+Next:        additive observation-v2 contract/offline adoption
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported
@@ -77,7 +79,8 @@ elapsed timestamps retain their wall-clock-derived limitation; a registry clock
 label does not assert verified monotonic capture. No observation-v2 root, live
 instrumentation or matcher adoption is included. The implemented boundary and
 next step are documented in the
-[`canonical registry guide`](measurement/CANONICAL_REGISTRY.md).
+[`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
+[`next-slice plan`](plans/NEXT_IMPLEMENTATION_PLAN.md).
 
 ## Target system overview
 
