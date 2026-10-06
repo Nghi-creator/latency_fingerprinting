@@ -2,19 +2,32 @@
 
 from __future__ import annotations
 
+import math
+from collections.abc import Mapping
 from datetime import datetime, timedelta
 from enum import StrEnum
+from types import MappingProxyType
 from typing import Annotated, Literal
 
-from pydantic import BeforeValidator, ConfigDict, Field, StrictBool, model_validator
+from pydantic import (
+    BeforeValidator,
+    ConfigDict,
+    Field,
+    StrictBool,
+    field_serializer,
+    field_validator,
+    model_validator,
+)
 
 from .common import (
     ContractModel,
     FiniteFloat,
     NonEmptyStr,
     NonNegativeFiniteFloat,
+    NonNegativeInt,
     PositiveFiniteFloat,
     PositiveInt,
+    UnitInterval,
 )
 
 METRIC_REGISTRY_SCHEMA_VERSION = "metric-registry-v1"
@@ -282,6 +295,127 @@ class MeasurementSample(ContractModel):
         return self
 
 
+class MetricSeriesStatus(StrEnum):
+    COMPLETE = "complete"
+    INCOMPLETE = "incomplete"
+    MISSING = "missing"
+    REJECTED = "rejected"
+
+
+class MetricSeriesSummary(ContractModel):
+    """Immutable, finite aggregation result with reconstructable source evidence."""
+
+    model_config = ConfigDict(frozen=True, validate_default=True)
+
+    metric_name: MetricName
+    semantic_version: SemanticVersion
+    registry_version: RegistryVersion
+    source: MetricSource
+    raw_fields: RawFields
+    kind: MetricKind
+    canonical_unit: MetricUnit
+    primary_aggregation: AggregationKind
+    available_aggregations: Aggregations
+    clock_basis: ClockBasis
+    window_start_ms: NonNegativeFiniteFloat
+    window_end_ms: NonNegativeFiniteFloat
+    window_duration_ms: PositiveFiniteFloat
+    source_sample_count: NonNegativeInt
+    usable_sample_count: NonNegativeInt
+    usable_source_rows: tuple[PositiveInt, ...]
+    accepted_interval_count: NonNegativeInt
+    observed_duration_ms: NonNegativeFiniteFloat
+    coverage: UnitInterval
+    cadence_minimum_ms: PositiveFiniteFloat | None
+    cadence_median_ms: PositiveFiniteFloat | None
+    cadence_maximum_ms: PositiveFiniteFloat | None
+    status: MetricSeriesStatus
+    aggregates: Mapping[AggregationKind, FiniteFloat] = Field(default_factory=dict)
+    missing_reasons: tuple[NonEmptyStr, ...] = ()
+    rejected_reasons: tuple[NonEmptyStr, ...] = ()
+    warnings: tuple[NonEmptyStr, ...] = ()
+
+    @field_validator("aggregates", mode="after")
+    @classmethod
+    def freeze_aggregates(cls, value: Mapping[AggregationKind, float]) -> Mapping:
+        return MappingProxyType(dict(sorted(value.items())))
+
+    @field_serializer("aggregates")
+    def serialize_aggregates(self, value: Mapping[AggregationKind, float]) -> dict[str, float]:
+        return {key.value: number for key, number in value.items()}
+
+    @model_validator(mode="after")
+    def validate_summary(self) -> MetricSeriesSummary:
+        if self.window_end_ms <= self.window_start_ms or self.window_duration_ms != (
+            self.window_end_ms - self.window_start_ms
+        ):
+            raise ValueError("window duration must match positive elapsed bounds")
+        if self.usable_sample_count > self.source_sample_count:
+            raise ValueError("usable samples cannot exceed source samples")
+        if (
+            len(self.usable_source_rows) != self.usable_sample_count
+            or len(set(self.usable_source_rows)) != self.usable_sample_count
+        ):
+            raise ValueError("usable_source_rows must uniquely identify each usable sample")
+        if self.accepted_interval_count > max(0, self.usable_sample_count - 1):
+            raise ValueError("accepted intervals cannot exceed consecutive usable pairs")
+        if self.observed_duration_ms > self.window_duration_ms or (
+            (self.accepted_interval_count == 0) != (self.observed_duration_ms == 0)
+        ):
+            raise ValueError("observed duration must agree with accepted intervals and bounds")
+        if not math.isclose(
+            self.coverage,
+            self.observed_duration_ms / self.window_duration_ms,
+            rel_tol=1e-12,
+            abs_tol=0,
+        ):
+            raise ValueError("coverage must equal observed duration divided by window duration")
+        cadence = (self.cadence_minimum_ms, self.cadence_median_ms, self.cadence_maximum_ms)
+        if any(value is not None for value in cadence) and (
+            self.source_sample_count < 2
+            or any(value is None for value in cadence)
+            or not (cadence[0] <= cadence[1] <= cadence[2])
+        ):
+            raise ValueError("cadence bounds must form one ordered complete summary")
+        if len(set(self.raw_fields)) != len(self.raw_fields) or len(
+            set(self.available_aggregations)
+        ) != len(self.available_aggregations):
+            raise ValueError("summary definition metadata cannot contain duplicates")
+        if self.primary_aggregation not in self.available_aggregations or not set(
+            self.aggregates
+        ) <= set(self.available_aggregations):
+            raise ValueError("summary aggregates must be registered by the definition")
+        if self.aggregates and (
+            self.usable_sample_count == 0 or self.primary_aggregation not in self.aggregates
+        ):
+            raise ValueError("aggregate results require usable samples and the primary value")
+        if (
+            self.status in {MetricSeriesStatus.MISSING, MetricSeriesStatus.REJECTED}
+            and self.aggregates
+        ):
+            raise ValueError("missing or rejected series cannot contain aggregates")
+        if self.status is MetricSeriesStatus.REJECTED and not self.rejected_reasons:
+            raise ValueError("rejected series requires a rejection reason")
+        if self.status is MetricSeriesStatus.MISSING and (
+            self.usable_sample_count or self.rejected_reasons
+        ):
+            raise ValueError("missing series cannot claim usable or rejected evidence")
+        if self.status is MetricSeriesStatus.INCOMPLETE and not self.usable_sample_count:
+            raise ValueError("incomplete series requires some usable evidence")
+        if self.status is MetricSeriesStatus.COMPLETE and (
+            not self.aggregates
+            or self.coverage != 1
+            or self.missing_reasons
+            or self.rejected_reasons
+        ):
+            raise ValueError("complete series requires aggregates and full coverage without gaps")
+        return self
+
+    @property
+    def value(self) -> float | None:
+        return self.aggregates.get(self.primary_aggregation)
+
+
 __all__ = [
     "METRIC_REGISTRY_SCHEMA_VERSION",
     "AggregationKind",
@@ -293,5 +427,7 @@ __all__ = [
     "MetricSource",
     "MetricUnit",
     "MeasurementSample",
+    "MetricSeriesStatus",
+    "MetricSeriesSummary",
     "MissingDataPolicy",
 ]

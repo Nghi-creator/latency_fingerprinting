@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–4 verified
+**Status:** In implementation; Steps 0–5 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 5–10 remain pending.
+Steps 6–10 remain pending.
 
 ## Slice outcome
 
@@ -669,9 +669,9 @@ For gauges:
 
 ### Gate
 
-- [ ] Gauge summaries reconstruct from the accepted samples.
-- [ ] Missing and rejected input never becomes zero.
-- [ ] Aggregate semantics come exclusively from the registry.
+- [x] Gauge summaries reconstruct from the accepted samples.
+- [x] Missing and rejected input never becomes zero.
+- [x] Aggregate semantics come exclusively from the registry.
 
 ## Step 6 — Implement cumulative-counter derivation
 
@@ -992,7 +992,7 @@ N1 is complete only when every item is true:
 - [x] Ambiguous counter meanings have distinct proposed v2 names.
 - [x] Registry models reject invalid cross-field combinations.
 - [x] Canonical registry and JSON Schema are checked in and drift-protected.
-- [ ] Gauge summaries are deterministic and auditable.
+- [x] Gauge summaries are deterministic and auditable.
 - [ ] Counter rates are invariant to equivalent sampling cadence.
 - [ ] Counter totals, rates, gaps, and resets remain distinguishable.
 - [ ] Missing/rejected/incomplete states never become zero.

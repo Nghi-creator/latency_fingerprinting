@@ -54,8 +54,9 @@ Loose coupling is established through contracts and adapters. P0 does not create
 
 ## N1 shadow measurement foundation
 
-The completed N1 registry and extraction milestones add strict immutable measurement
-definitions, a canonical 31-output registry and raw timestamped samples alongside P0.
+The completed N1 registry, extraction and gauge milestones add strict immutable
+measurement definitions, a canonical 31-output registry, raw timestamped samples
+and auditable gauge summaries alongside P0.
 Definitions specify raw source
 fields, physical units, clocks, aggregation and gap/reset policies. The registry
 and generated schema have deterministic export/check commands and CI drift gates.
@@ -64,7 +65,8 @@ P0 normalization and matching continue to use their frozen configuration.
 ```text
 Implemented: source-declared definitions -> strict registry -> schema/artifact export/check
              bounded bundle reader -> immutable raw timestamped samples
-Planned:     registered aggregation -> diagnostic shadow/migration report
+             registered gauge aggregation -> immutable series summaries
+Planned:     counter derivation -> diagnostic shadow/migration report
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported

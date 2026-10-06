@@ -85,5 +85,5 @@ missing values, stale cells, reset values retained without derivation, one-read
 reuse, clocks/identities, input immutability and inherited security/resource bounds.
 Sample-state tests are in
 [`tests/models/test_measurement_samples.py`](../../tests/models/test_measurement_samples.py).
-Gauge aggregation is Step 5; counter derivation is Step 6; the deterministic
-shadow report/CLI follows in Step 7.
+[`Gauge aggregation`](GAUGE_AGGREGATION.md) is implemented in Step 5; counter
+derivation is next in Step 6; the deterministic shadow report/CLI follows in Step 7.

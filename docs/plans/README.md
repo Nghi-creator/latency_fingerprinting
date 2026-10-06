@@ -15,6 +15,9 @@
 - [`SAMPLE_EXTRACTION.md`](../measurement/SAMPLE_EXTRACTION.md) describes the raw
   timestamped extraction API, sample states and inherited bundle safety checks.
 
+- [`GAUGE_AGGREGATION.md`](../measurement/GAUGE_AGGREGATION.md) describes pure
+  registered statistics, coverage, summary states and source evidence.
+
 When the active slice closes, archive its verified results in the appropriate
 technical closeout document and replace the next-slice plan. Do not turn the
 full roadmap into a running implementation checklist.

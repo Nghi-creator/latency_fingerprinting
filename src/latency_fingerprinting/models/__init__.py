@@ -81,6 +81,8 @@ __all__ = [
     "MetricUnit",
     "MissingDataPolicy",
     "MeasurementSample",
+    "MetricSeriesStatus",
+    "MetricSeriesSummary",
 ]
 from .context import (
     ContextKey,
@@ -108,6 +110,8 @@ from .measurement import (
     MetricDefinition,
     MetricKind,
     MetricRegistry,
+    MetricSeriesStatus,
+    MetricSeriesSummary,
     MetricSource,
     MetricUnit,
     MissingDataPolicy,

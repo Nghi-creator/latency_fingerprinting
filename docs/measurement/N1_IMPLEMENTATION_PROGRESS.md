@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–4: baseline, inventory, models, registry and raw extraction.
-**Next boundary:** Step 5 gauge aggregation. N1 is not complete.
+**Completed boundary:** Steps 0–5: baseline, inventory, models, registry, raw extraction and gauges.
+**Next boundary:** Step 6 cumulative-counter derivation. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -180,3 +180,41 @@ aggregation and the shadow inspection command still remain unimplemented.
 P0 production behavior and artifacts are unchanged. No live probe, remediation or
 runtime instrumentation was executed. Proposed v2 features are not matcher inputs;
 the separate observation-v2 adoption slice remains required.
+
+## Step 5 deliverables and verification
+
+[`measurement/aggregation.py`](../../src/latency_fingerprinting/measurement/aggregation.py)
+adds pure `aggregate_gauge` for validated registered definitions, explicit window
+bounds and immutable samples. It computes only registered minimum, maximum,
+stable odd/even median and integer nearest-rank P95. Signed values follow the
+definition. Missing and rejected values follow the registered omission/rejection
+policy; chronology and overflow failures return structured rejection without
+partial aggregates. Empty or missing series never receive fabricated zero values.
+
+`MetricSeriesSummary` and `MetricSeriesStatus` add frozen, finite result contracts
+with read-only aggregates, definition/version/unit metadata, source/usable counts,
+usable row identities, interval counts, observed duration, coverage, cadence,
+reasons and warnings. Cross-field validation prevents inconsistent summaries.
+Adjacent usable source rows support diagnostic interval coverage; gaps break
+support. Statistics remain sample-based without interpolation or extrapolation.
+Single samples retain numeric statistics with zero coverage and incomplete status.
+Legacy clock-provenance warnings remain explicit.
+
+[`test_aggregation.py`](../../tests/measurement/test_aggregation.py) adds **80 cases**
+covering order statistics, registered subsets, zeros, signed/finite extremes,
+missing policies, gaps, invalid clocks/rows/bounds, arithmetic failure, source
+immutability, detached result mappings, serialization, no I/O and sanitized bundle
+gauges. The aggregation module has **99% branch-inclusive coverage** and the
+measurement models have **100%** in the full suite.
+
+Final verification on Python 3.13.13: **683 tests passed; 90.77% branch-inclusive
+coverage**. Ruff lint/format, dependencies, all schema/registry checks, P0
+fixture/seed checks and exact run-002 byte reproduction passed. Python 3.11 remains
+for CI. Documentation links and whitespace checks pass. No P0 model, adapter,
+schema, fixture, controlled artifact, normalization or matcher implementation
+changed. New summary types are additive model exports.
+
+The API and coverage/status semantics are documented in
+[`GAUGE_AGGREGATION.md`](GAUGE_AGGREGATION.md). Step 6 counter/rate derivation is
+next; the shadow inspection CLI and observation-v2 matcher adoption remain future
+work. N1 is not yet complete.

@@ -74,6 +74,7 @@ to drive the production v1 analytical path.
 
 Step 4 implements
 [`immutable timestamped sample extraction`](SAMPLE_EXTRACTION.md) through the
-existing bounded bundle reader. Gauge and counter aggregation, shadow reports,
+existing bounded bundle reader. Step 5 adds pure
+[`gauge aggregation`](GAUGE_AGGREGATION.md). Counter derivation, shadow reports,
 and observation-v2 adoption remain subsequent work. Registry export commands
 operate on definitions and artifacts only.
