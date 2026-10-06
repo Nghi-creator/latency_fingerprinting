@@ -102,6 +102,11 @@ summary validation and scaling fixes plus adapter boundary tests: **924 tests
 pass with 91.89% branch-inclusive coverage**. It also records remaining
 verification and N2 contract gaps.
 
+N2 has started with baseline verification and the
+[observation-v2 field specification](docs/measurement/OBSERVATION_V2_CONTRACT.md).
+The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) distinguishes
+this completed design step from the runtime models/schemas still to be implemented.
+
 ### Implemented and verified
 
 - Existing Pixelated testbed and research-run export: implemented.

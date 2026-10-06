@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Additive Observation-v2 Adoption
 
 **Slice ID:** N2
-**Status:** Planned; implementation has not started
+**Status:** Started; Step 0 locally verified, Step 1 field contract specified; Step 2 pending
 **Updated:** 2026-10-06
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
@@ -9,8 +9,9 @@
 N1 Steps 0–10 are implemented and locally verified. Its Python 3.11/hosted CI
 results remain pending; review those results before claiming cross-version
 release verification. The [archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
-preserves the completed software checklist. This plan prepares the next slice;
-it does not declare any observation-v2 model or matcher implemented.
+preserves the completed software checklist. N2's baseline and field specification
+are recorded in [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md).
+No observation-v2 runtime model or matcher is implemented yet.
 
 ## Outcome and boundary
 
@@ -28,6 +29,10 @@ remain separate boundaries after records have stable contracts.
 
 ## Step 0 — Preserve the N1 baseline
 
+**Local gate:** Passed at `6b185f5ff8f12a1b50e91e1d99c371d6e9725c9b`;
+924 tests, 91.89% coverage and all frozen reproduction checks pass. Hosted
+Python 3.11/3.13 results remain pending.
+
 - Review hosted CI results when available and resolve any N1 regressions separately.
 - Record the starting commit and reproduce all [N1 quality gates](../measurement/QUALITY_GATES.md).
 - Retain the registry/report hashes and P0 controlled-run byte checks.
@@ -36,6 +41,10 @@ remain separate boundaries after records have stable contracts.
 Gate: no new contract work silently changes N1 definitions or P0 artifacts.
 
 ## Step 1 — Freeze the observation-v2 field contract
+
+**Specification gate:** Complete in
+[OBSERVATION_V2_CONTRACT.md](../measurement/OBSERVATION_V2_CONTRACT.md),
+design version 1.0.0. Runtime enforcement begins in Step 2.
 
 Document the field-level design before implementation, using the
 [N1 inventory](../measurement/METRIC_SEMANTICS_V2.md) and
@@ -118,7 +127,7 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 
 ## Exit checklist
 
-- [ ] V2 roots and field semantics are reviewed and separately versioned.
+- [x] V2 roots and field semantics are specified, locally reviewed and separately versioned.
 - [ ] Registry, capture method and clock provenance are explicit and validated.
 - [ ] Missing/rejected/incomplete/zero states and audit totals remain distinct.
 - [ ] Raw bundles produce deterministic additive v2 records without rewriting v1.
@@ -128,5 +137,6 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 - [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
 - [ ] Documentation and N2 software closeout match delivered behavior.
 
-The next implementation action is Step 0 baseline verification followed by the
-Step 1 field-contract specification. No N2 implementation is included in N1 closeout.
+The next implementation action is Step 2: additive strict v2 models and schemas.
+Step 0 local baseline verification and Step 1 field specification are complete;
+hosted verification remains pending. No N2 implementation is included in N1 closeout.

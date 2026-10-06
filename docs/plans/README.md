@@ -1,7 +1,12 @@
 # Implementation plans
 
 - [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active N2
-  additive observation-v2 contract/offline adoption plan; implementation has not started.
+  additive observation-v2 contract/offline adoption plan; baseline/field specification
+  are complete locally and strict models are next.
+- [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
+  root, registry, support, pair and timing semantics before implementation.
+- [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline
+  verification, completed steps and pending hosted results.
 - [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md) is the broader roadmap
   from the frozen P0 path through production and final evaluation.
 - [Archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md) preserves the
