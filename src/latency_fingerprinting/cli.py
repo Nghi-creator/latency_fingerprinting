@@ -1,4 +1,4 @@
-"""Command-line interface for the offline P0 analytical workflow."""
+"""Command-line interface for the offline analytical and N1 registry workflows."""
 
 from __future__ import annotations
 
@@ -15,13 +15,21 @@ from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
+from .measurement.metric_registry import (
+    DEFAULT_METRIC_REGISTRY_PATH,
+    METRIC_REGISTRY_VERSION,
+    export_metric_registry,
+    metric_registry_drift,
+)
 from .models import (
     FINGERPRINT_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
+    METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
     ContextKey,
     Fingerprint,
     MatchResult,
+    MetricRegistry,
     ObservationRecord,
     ObservationWindow,
     Probe,
@@ -38,6 +46,7 @@ ROOT_MODELS: dict[str, type[BaseModel]] = {
     OBSERVATION_SCHEMA_VERSION: ObservationRecord,
     FINGERPRINT_SCHEMA_VERSION: Fingerprint,
     MATCH_RESULT_SCHEMA_VERSION: MatchResult,
+    METRIC_REGISTRY_SCHEMA_VERSION: MetricRegistry,
 }
 
 
@@ -95,6 +104,25 @@ def _build_response(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(observation))
 
 
+def _export_metric_registry(args: argparse.Namespace) -> None:
+    output: Path = args.output
+    if args.check:
+        if metric_registry_drift(output):
+            raise ValueError(f"metric registry drift detected: {output.name}")
+        _write_json(
+            {
+                "checked": output.name,
+                "registryVersion": METRIC_REGISTRY_VERSION,
+                "status": "current",
+            }
+        )
+        return
+    path = export_metric_registry(output)
+    _write_json(
+        {"exported": path.name, "registryVersion": METRIC_REGISTRY_VERSION, "status": "written"}
+    )
+
+
 def _ingest_pixelated(args: argparse.Namespace) -> None:
     context = _load_model(args.context, ContextKey)
     window = ingest_pixelated_bundle(
@@ -128,11 +156,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Validate and run the offline P0 latency-fingerprinting pipeline.",
+        description="Run the offline P0 pipeline and inspect N1 metric registry artifacts.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    validate = subparsers.add_parser("validate", help="validate a P0 root record")
+    validate = subparsers.add_parser("validate", help="validate a P0 root record or N1 registry")
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)
 
@@ -144,6 +172,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="report drift without writing any files",
     )
     schemas.set_defaults(handler=_export_schemas)
+
+    registry = subparsers.add_parser(
+        "export-metric-registry", help="write or check the canonical N1 metric registry"
+    )
+    registry.add_argument("--output", type=Path, default=DEFAULT_METRIC_REGISTRY_PATH)
+    registry.add_argument("--check", action="store_true", help="report drift without writing files")
+    registry.set_defaults(handler=_export_metric_registry)
 
     response = subparsers.add_parser(
         "build-response",

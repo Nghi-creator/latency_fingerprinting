@@ -1,0 +1,242 @@
+{
+  "$defs": {
+    "AggregationKind": {
+      "enum": [
+        "median",
+        "nearest_rank_p95",
+        "minimum",
+        "maximum",
+        "window_total",
+        "time_weighted_rate"
+      ],
+      "title": "AggregationKind",
+      "type": "string"
+    },
+    "ClockBasis": {
+      "description": "The exported elapsed field; monotonic provenance is not implied.",
+      "enum": [
+        "source_elapsed_ms"
+      ],
+      "title": "ClockBasis",
+      "type": "string"
+    },
+    "CounterResetPolicy": {
+      "enum": [
+        "reject_segment",
+        "reject_series",
+        "allow_declared_wraparound"
+      ],
+      "title": "CounterResetPolicy",
+      "type": "string"
+    },
+    "MetricDefinition": {
+      "additionalProperties": false,
+      "description": "One versioned raw quantity and its permitted output derivations.",
+      "properties": {
+        "availableAggregations": {
+          "items": {
+            "$ref": "#/$defs/AggregationKind"
+          },
+          "minItems": 1,
+          "title": "Availableaggregations",
+          "type": "array"
+        },
+        "cadenceToleranceRatio": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadencetoleranceratio"
+        },
+        "canonicalUnit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "clockBasis": {
+          "$ref": "#/$defs/ClockBasis"
+        },
+        "counterResetPolicy": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CounterResetPolicy"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "counterWidthBits": {
+          "anyOf": [
+            {
+              "maximum": 64,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Counterwidthbits"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "expectedCadenceMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Expectedcadencems"
+        },
+        "kind": {
+          "$ref": "#/$defs/MetricKind"
+        },
+        "missingDataPolicy": {
+          "$ref": "#/$defs/MissingDataPolicy"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+          "title": "Name",
+          "type": "string"
+        },
+        "nonNegative": {
+          "title": "Nonnegative",
+          "type": "boolean"
+        },
+        "primaryAggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "rawFields": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Rawfields",
+          "type": "array"
+        },
+        "semanticVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Semanticversion",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        }
+      },
+      "required": [
+        "name",
+        "semanticVersion",
+        "source",
+        "rawFields",
+        "kind",
+        "canonicalUnit",
+        "primaryAggregation",
+        "availableAggregations",
+        "clockBasis",
+        "expectedCadenceMs",
+        "cadenceToleranceRatio",
+        "missingDataPolicy",
+        "counterResetPolicy",
+        "nonNegative",
+        "description"
+      ],
+      "title": "MetricDefinition",
+      "type": "object"
+    },
+    "MetricKind": {
+      "enum": [
+        "gauge",
+        "cumulative_counter",
+        "event_count",
+        "derived"
+      ],
+      "title": "MetricKind",
+      "type": "string"
+    },
+    "MetricSource": {
+      "enum": [
+        "browser_webrtc",
+        "engine_runtime",
+        "encoder_pipeline"
+      ],
+      "title": "MetricSource",
+      "type": "string"
+    },
+    "MetricUnit": {
+      "enum": [
+        "fps",
+        "frames/s",
+        "frames",
+        "freezes/min",
+        "freezes",
+        "ms/s",
+        "ms",
+        "packets/s",
+        "packets",
+        "kbps",
+        "percent",
+        "MiB",
+        "buffers"
+      ],
+      "title": "MetricUnit",
+      "type": "string"
+    },
+    "MissingDataPolicy": {
+      "enum": [
+        "omit_missing_samples",
+        "break_counter_continuity",
+        "reject_series_on_any_invalid_sample"
+      ],
+      "title": "MissingDataPolicy",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "An immutable registry with canonical ordering and explicit release metadata.",
+  "properties": {
+    "createdAt": {
+      "format": "date-time",
+      "title": "Createdat",
+      "type": "string"
+    },
+    "definitions": {
+      "items": {
+        "$ref": "#/$defs/MetricDefinition"
+      },
+      "minItems": 1,
+      "title": "Definitions",
+      "type": "array"
+    },
+    "registryVersion": {
+      "pattern": "^latency-metrics-v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "title": "Registryversion",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "metric-registry-v1",
+      "default": "metric-registry-v1",
+      "title": "Schemaversion",
+      "type": "string"
+    }
+  },
+  "required": [
+    "registryVersion",
+    "createdAt",
+    "definitions"
+  ],
+  "title": "MetricRegistry",
+  "type": "object"
+}

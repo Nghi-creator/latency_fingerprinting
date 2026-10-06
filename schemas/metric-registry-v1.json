@@ -1,0 +1,734 @@
+{
+  "createdAt": "2026-10-06T00:00:00Z",
+  "definitions": [
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "kbps",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Selected candidate-pair incoming bandwidth estimate in decimal kilobits/s.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "client.available_incoming_bitrate_kbps",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "available_incoming_bitrate_kbps"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Producer interval decode-time delta divided by decoded-frame delta across supported video streams; gauge percentiles describe exported interval means, not individual frames.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "client.decode_time_mean_ms",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "decode_time_mean_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound decoded-frame count: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.frames_decoded_rate_fps",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "frames_decoded"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound decoded-frame count: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.frames_decoded_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "frames_decoded"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound dropped-frame count: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.frames_dropped_rate_fps",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "frames_dropped"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound dropped-frame count: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.frames_dropped_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "frames_dropped"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "freezes/min",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound freeze event count; rate uses minutes: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.freeze_count_rate_per_min",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "freeze_count"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "freezes",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound freeze event count; rate uses minutes: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.freeze_count_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "freeze_count"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound accumulated freeze duration; rate is ms/s, not a percentage: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.freeze_duration_rate_ms_per_s",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "freeze_duration_total_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Supported video-inbound accumulated freeze duration; rate is ms/s, not a percentage: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "client.freeze_duration_window_total_ms",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "freeze_duration_total_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Producer interval buffer-delay delta divided by emitted-count delta across supported video streams; gauge percentiles describe exported interval means.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "client.jitter_buffer_delay_mean_ms",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "jitter_buffer_delay_mean_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "kbps",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Sum of supported inbound byte-counter rates already derived by the producer, in decimal kilobits/s; not recomputed from CSV capture cadence.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "client.received_bitrate_kbps",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "bitrate_kbps"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "fps",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Maximum reported video-inbound framesPerSecond across supported streams.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "client.received_fps",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "fps"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder drop count summed across active peers; membership declines are treated as resets: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_dropped_rate_fps",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "frames_dropped_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder drop count summed across active peers; membership declines are treated as resets: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_dropped_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "frames_dropped_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder input count summed across active peers; membership declines are treated as resets: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_in_rate_fps",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "frames_in_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder input count summed across active peers; membership declines are treated as resets: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_in_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "frames_in_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder output count summed across active peers; membership declines are treated as resets: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_out_rate_fps",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "frames_out_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "frames",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Encoder output count summed across active peers; membership declines are treated as resets: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "encoder.frames_out_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "frames_out_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Exported pipeline delay proxy, not direct encoder processing duration. The current camera producer emits null; missing values remain missing.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "encoder.pipeline_delay_proxy_ms",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "pipeline_delay_proxy_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "buffers",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Maximum pre/post encoder queue occupancy across active peers. Producer zero fallbacks for absent queues or failed reads cannot be distinguished in legacy CSV.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "encoder.queue_level_buffers",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "queue_level_buffers"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "encoder_pipeline"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "percent",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Camera bridge process CPU time per elapsed interval; 100 percent is one core, without host-capacity normalization or a 100-percent cap.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.camera_cpu_percent",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "camera_cpu_percent"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "MiB",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Camera bridge resident memory in binary mebibytes; legacy raw mb suffix is misleading.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.camera_rss_mib",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "camera_rss_mb"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "percent",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Emulator process CPU time per elapsed interval; 100 percent is one core, without host-capacity normalization or a 100-percent cap.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.game_cpu_percent",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "emulator_cpu_percent"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "MiB",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Emulator resident memory in binary mebibytes; legacy raw mb suffix is misleading.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.game_rss_mib",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "emulator_rss_mb"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "percent",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Node runtime process CPU time per elapsed interval; 100 percent is one core, without host-capacity normalization or a 100-percent cap.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.node_cpu_percent",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "node_cpu_percent"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "MiB",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Node runtime resident memory in binary mebibytes; legacy raw mb suffix is misleading.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "host.node_rss_mib",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "node_rss_mb"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "engine_runtime"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Maximum supported inbound RTP jitter across audio and video streams, in milliseconds.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "transport.jitter_ms",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "jitter_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "time_weighted_rate"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "packets/s",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Producer rounded non-negative packet-loss count summed across inbound streams; missing per-report counters may contribute upstream zeros. Derive from cumulative totals, excluding the synthetic first-row interval delta: time-weighted rate over accepted elapsed intervals; analytical shadow output. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "transport.packets_lost_rate_per_s",
+      "nonNegative": true,
+      "primaryAggregation": "time_weighted_rate",
+      "rawFields": [
+        "packets_lost_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "window_total"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "packets",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": "reject_segment",
+      "counterWidthBits": null,
+      "description": "Producer rounded non-negative packet-loss count summed across inbound streams; missing per-report counters may contribute upstream zeros. Derive from cumulative totals, excluding the synthetic first-row interval delta: sum of accepted interval deltas; audit-only, with no extrapolation. Exported elapsed clock provenance is required.",
+      "expectedCadenceMs": null,
+      "kind": "cumulative_counter",
+      "missingDataPolicy": "break_counter_continuity",
+      "name": "transport.packets_lost_window_total",
+      "nonNegative": true,
+      "primaryAggregation": "window_total",
+      "rawFields": [
+        "packets_lost_total"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    },
+    {
+      "availableAggregations": [
+        "maximum",
+        "median",
+        "minimum",
+        "nearest_rank_p95"
+      ],
+      "cadenceToleranceRatio": null,
+      "canonicalUnit": "ms",
+      "clockBasis": "source_elapsed_ms",
+      "counterResetPolicy": null,
+      "counterWidthBits": null,
+      "description": "Selected candidate-pair current round-trip time in milliseconds.",
+      "expectedCadenceMs": null,
+      "kind": "gauge",
+      "missingDataPolicy": "omit_missing_samples",
+      "name": "transport.round_trip_time_ms",
+      "nonNegative": true,
+      "primaryAggregation": "median",
+      "rawFields": [
+        "round_trip_time_ms"
+      ],
+      "semanticVersion": "1.0.0",
+      "source": "browser_webrtc"
+    }
+  ],
+  "registryVersion": "latency-metrics-v2.0.0",
+  "schemaVersion": "metric-registry-v1"
+}

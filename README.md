@@ -62,6 +62,21 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 
 ## Current status
 
+N1's metric inventory, strict registry models and canonical 31-output registry
+are implemented. This additive foundation remains offline/shadow work; P0 still
+uses its frozen feature configuration. Registry commands are available:
+
+```bash
+latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json
+latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json --check
+latency-fingerprint validate schemas/metric-registry-v1.json
+```
+
+`export-schemas` also includes the additive metric-registry schema. Registry
+definitions and inspection commands are described in the
+[`canonical registry guide`](docs/measurement/CANONICAL_REGISTRY.md). Sample
+extraction, aggregation and bundle shadow reports remain the next N1 work.
+
 ### Implemented and verified
 
 - Existing Pixelated testbed and research-run export: implemented.

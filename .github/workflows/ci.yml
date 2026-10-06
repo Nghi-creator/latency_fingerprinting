@@ -50,6 +50,9 @@ jobs:
       - name: Check generated schemas
         run: python -m latency_fingerprinting export-schemas --output schemas --check
 
+      - name: Check canonical metric registry
+        run: python -m latency_fingerprinting export-metric-registry --output schemas/metric-registry-v1.json --check
+
       - name: Check synthetic fixture drift
         run: >-
           python -c "from latency_fingerprinting.synthetic_fixtures import fixture_drift;

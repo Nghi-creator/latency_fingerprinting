@@ -76,4 +76,5 @@ duplicate-safe untrusted file reader.
 [`test_measurement.py`](../../tests/models/test_measurement.py) covers these
 invariants, JSON aliases/schema shape, deterministic ordering, immutability,
 finite/overflow input and root/nested duplicate-key rejection. Checked-in schema
-artifacts and export/drift commands will be added with the Step 3 canonical registry.
+artifacts and export/drift commands are implemented with the Step 3
+[`canonical registry`](CANONICAL_REGISTRY.md).

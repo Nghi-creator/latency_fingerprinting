@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–2: baseline, inventory and strict registry models.
-**Next boundary:** Step 3 canonical registry, schema/export and drift checks. N1 is not complete.
+**Completed boundary:** Steps 0–3: baseline, inventory, strict models and canonical registry.
+**Next boundary:** Step 4 timestamped sample extraction. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -43,8 +43,8 @@ totals, no interval-rate P95, advisory cadence, and deferred v2 normalization.
 [`test_metric_inventory.py`](../../tests/measurement/test_metric_inventory.py)
 guards adapter/config completeness, unique output declarations, gauge units and
 raw fields, cumulative counter inputs, distinct rate/total names, fixture header
-compatibility and exclusion of configured settings. No runtime registry is added
-in this milestone; its models and canonical builder remain Steps 2 and 3.
+compatibility and exclusion of configured settings. Step 1 added no runtime
+registry; the subsequent model and canonical registry work is recorded below.
 
 The producer audit exposed wall-clock-derived exported elapsed timestamps,
 upstream zero fallbacks, and a null pipeline-delay proxy in the current camera
@@ -97,6 +97,43 @@ registry schema and export/check support. Python 3.11 CI has not been run locall
 The only production files changed in Step 2 are the new N1 model module and public
 model exports. P0 root models, schemas, synthetic fixtures, controlled artifacts
 and matcher implementation were not modified.
+
+## Step 3 deliverables and verification
+
+[`measurement/metric_registry.py`](../../src/latency_fingerprinting/measurement/metric_registry.py)
+declares all 31 outputs independently of P0 configuration, with fixed registry
+version `latency-metrics-v2.0.0`, per-definition version `1.0.0`, and fixed release
+timestamp `2026-10-06T00:00:00Z`. It provides immutable canonical definitions,
+registered-name lookup, deterministic rendering, atomic export and bounded
+exact-byte drift checks. Old P0 delta names cannot resolve to new rate definitions.
+
+Added artifacts:
+[`metric-registry-v1.json`](../../schemas/metric-registry-v1.json) and
+[`metric-registry-v1.schema.json`](../../schemas/metric-registry-v1.schema.json).
+`export-schemas` includes the registry schema additively; `export-metric-registry`
+writes/checks the registry, and `validate` accepts registry roots through the
+existing bounded duplicate-safe reader. Export uses the existing atomic schema
+writer; check mode creates no directories and performs no writes. Both Python CI
+test suites check frozen bytes, with an explicit registry check in the quality job.
+
+[`test_metric_registry.py`](../../tests/measurement/test_metric_registry.py) adds
+19 cases covering reviewed definitions/policies, fixture source fields, fixed
+release version/time and hash, exact artifacts, Pydantic and JSON Schema validation,
+atomic export/failure cleanup, CLI errors, duplicate keys and no-write drift checks.
+`jsonschema` was added to development dependencies only; no runtime dependency
+was added. The registry module has **100% branch-inclusive coverage**.
+
+Final verification on Python 3.13.13: **520 tests passed; 89.06% branch-inclusive
+coverage**. Ruff lint/format, dependency checks, all four schema checks, registry
+artifact check, P0 fixture/seed drift and exact run-002 reproduction passed.
+Python 3.11 execution remains for CI; it was not run locally. All measurement
+documentation links resolve and the diff passes whitespace checks.
+
+The three frozen P0 schemas, synthetic fixtures, controlled artifacts, adapter,
+normalization configuration and matcher implementation remain unchanged. New CLI
+and schema support is additive. Gauge/counter aggregation and shadow bundle reports
+remain unimplemented. Usage, release pin and next boundary are in
+[`CANONICAL_REGISTRY.md`](CANONICAL_REGISTRY.md).
 
 P0 production behavior and artifacts are unchanged. No live probe, remediation or
 runtime instrumentation was executed. Proposed v2 features are not matcher inputs;

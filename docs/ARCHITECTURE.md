@@ -52,6 +52,27 @@ Future fast loop:
 
 Loose coupling is established through contracts and adapters. P0 does not create another desktop application, daemon or HTTP service.
 
+## N1 shadow measurement foundation
+
+The completed N1 registry milestone adds strict immutable measurement definitions
+and a canonical 31-output registry alongside P0. Definitions specify raw source
+fields, physical units, clocks, aggregation and gap/reset policies. The registry
+and generated schema have deterministic export/check commands and CI drift gates.
+P0 normalization and matching continue to use their frozen configuration.
+
+```text
+Implemented: source-declared definitions -> strict registry -> schema/artifact export/check
+Planned:     bounded bundle reader -> raw timestamped samples -> registered aggregation
+             -> diagnostic shadow/migration report
+```
+
+Registry metadata uses fixed release versions and creation time. Legacy exported
+elapsed timestamps retain their wall-clock-derived limitation; a registry clock
+label does not assert verified monotonic capture. No observation-v2 root, live
+instrumentation or matcher adoption is included. The implemented boundary and
+next step are documented in the
+[`canonical registry guide`](measurement/CANONICAL_REGISTRY.md).
+
 ## Target system overview
 
 ![Target architecture showing the hosted control plane, local diagnosis and control loop, runtime deadline scheduler, and client telemetry](diagrams/latency-fingerprinting-architecture.png)
@@ -78,22 +99,27 @@ latency-fingerprinting/
 │   ├── ARCHITECTURE.md
 │   ├── diagrams/
 │   ├── p0/
+│   ├── measurement/
 │   └── plans/
 ├── schemas/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json
-│   └── match-result-v1.schema.json
+│   ├── match-result-v1.schema.json
+│   ├── metric-registry-v1.schema.json
+│   └── metric-registry-v1.json
 ├── src/latency_fingerprinting/
 │   ├── models/
 │   │   ├── common.py
 │   │   ├── context.py
 │   │   ├── response.py
 │   │   ├── fingerprint.py
+│   │   ├── measurement.py
 │   │   └── match.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
 │   │   ├── feature_config.py
+│   │   ├── metric_registry.py
 │   │   └── p0_feature_config.py
 │   ├── normalization.py
 │   ├── pipeline.py
@@ -170,6 +196,7 @@ Development tools:
 - pytest;
 - pytest-cov;
 - Ruff.
+- jsonschema (N1 registry artifact validation in tests only).
 
 Use standard-library `argparse` for the CLI. Do not add pandas, scikit-learn, FastAPI, SQLite or notebook infrastructure unless a concrete P0 blocker requires one.
 
