@@ -35,8 +35,9 @@ for producer FPS gauges. Kind describes raw input; unit describes derived output
 can be declared only with a width; no arithmetic or inferred wraparound happens
 in these models. N1's canonical inventory uses `reject_segment` without widths.
 Optional normalization/clipping/direction metadata is not included because N1
-has no consumer for it. Sample extraction and series summary contracts belong
-to the later extraction/aggregation implementation steps.
+has no consumer for it. Step 4 adds `MeasurementSample` for
+[`raw extraction`](SAMPLE_EXTRACTION.md); series summary contracts remain part
+of the later aggregation implementation steps.
 
 All required nullable fields must be supplied explicitly. Cadence and tolerance
 must be positive finite numbers when present. Tolerance requires expected cadence;

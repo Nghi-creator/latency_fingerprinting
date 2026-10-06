@@ -54,16 +54,17 @@ Loose coupling is established through contracts and adapters. P0 does not create
 
 ## N1 shadow measurement foundation
 
-The completed N1 registry milestone adds strict immutable measurement definitions
-and a canonical 31-output registry alongside P0. Definitions specify raw source
+The completed N1 registry and extraction milestones add strict immutable measurement
+definitions, a canonical 31-output registry and raw timestamped samples alongside P0.
+Definitions specify raw source
 fields, physical units, clocks, aggregation and gap/reset policies. The registry
 and generated schema have deterministic export/check commands and CI drift gates.
 P0 normalization and matching continue to use their frozen configuration.
 
 ```text
 Implemented: source-declared definitions -> strict registry -> schema/artifact export/check
-Planned:     bounded bundle reader -> raw timestamped samples -> registered aggregation
-             -> diagnostic shadow/migration report
+             bounded bundle reader -> immutable raw timestamped samples
+Planned:     registered aggregation -> diagnostic shadow/migration report
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported
@@ -144,6 +145,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_common.py
 │       ├── pixelated_bundle_io.py
 │       ├── pixelated_bundle_metrics.py
+│       ├── pixelated_measurement_samples.py
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/

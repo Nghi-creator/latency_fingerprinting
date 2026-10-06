@@ -62,8 +62,9 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 
 ## Current status
 
-N1's metric inventory, strict registry models and canonical 31-output registry
-are implemented. This additive foundation remains offline/shadow work; P0 still
+N1's metric inventory, strict registry models, canonical 31-output registry and
+timestamped sample extraction are implemented. This additive foundation remains
+offline/shadow work; P0 still
 uses its frozen feature configuration. Registry commands are available:
 
 ```bash
@@ -74,8 +75,9 @@ latency-fingerprint validate schemas/metric-registry-v1.json
 
 `export-schemas` also includes the additive metric-registry schema. Registry
 definitions and inspection commands are described in the
-[`canonical registry guide`](docs/measurement/CANONICAL_REGISTRY.md). Sample
-extraction, aggregation and bundle shadow reports remain the next N1 work.
+[`canonical registry guide`](docs/measurement/CANONICAL_REGISTRY.md). The
+[`sample extraction guide`](docs/measurement/SAMPLE_EXTRACTION.md) describes the
+Python extraction API. Aggregation and bundle shadow reports remain the next N1 work.
 
 ### Implemented and verified
 

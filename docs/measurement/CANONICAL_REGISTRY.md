@@ -72,6 +72,8 @@ and semantics review surface; source declarations are the executable registry.
 Settings such as target FPS remain context. Existing `P0_FEATURE_CONFIG` continues
 to drive the production v1 analytical path.
 
-The next step extracts immutable timestamped samples through the existing bounded
-bundle reader. Gauge and counter aggregation, shadow reports, and observation-v2
-adoption are not implemented by the registry export commands.
+Step 4 implements
+[`immutable timestamped sample extraction`](SAMPLE_EXTRACTION.md) through the
+existing bounded bundle reader. Gauge and counter aggregation, shadow reports,
+and observation-v2 adoption remain subsequent work. Registry export commands
+operate on definitions and artifacts only.

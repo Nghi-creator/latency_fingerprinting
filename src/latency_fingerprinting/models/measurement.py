@@ -8,7 +8,14 @@ from typing import Annotated, Literal
 
 from pydantic import BeforeValidator, ConfigDict, Field, StrictBool, model_validator
 
-from .common import ContractModel, NonEmptyStr, PositiveFiniteFloat
+from .common import (
+    ContractModel,
+    FiniteFloat,
+    NonEmptyStr,
+    NonNegativeFiniteFloat,
+    PositiveFiniteFloat,
+    PositiveInt,
+)
 
 METRIC_REGISTRY_SCHEMA_VERSION = "metric-registry-v1"
 
@@ -245,6 +252,36 @@ class MetricRegistry(ContractModel):
         return self
 
 
+class MeasurementSample(ContractModel):
+    """One immutable source row; unusable evidence never invents a numeric value."""
+
+    model_config = ConfigDict(frozen=True)
+
+    elapsed_ms: NonNegativeFiniteFloat
+    captured_at: Annotated[datetime, BeforeValidator(_timestamp)]
+    value: FiniteFloat | None
+    available: StrictBool
+    source_row: PositiveInt
+    rejection_reason: NonEmptyStr | None = None
+    missing_reason: NonEmptyStr | None = None
+
+    @model_validator(mode="after")
+    def validate_sample_state(self) -> MeasurementSample:
+        if self.captured_at.utcoffset() != timedelta(0):
+            raise ValueError("captured_at must be a timezone-aware UTC timestamp")
+        reasons = int(self.rejection_reason is not None) + int(self.missing_reason is not None)
+        if self.value is not None:
+            if not self.available or reasons:
+                raise ValueError("usable numeric samples must be available and have no reasons")
+        elif reasons != 1:
+            raise ValueError(
+                "samples without values require exactly one missing or rejection reason"
+            )
+        if not self.available and self.rejection_reason is not None:
+            raise ValueError("unavailable source rows are missing, not rejected numeric evidence")
+        return self
+
+
 __all__ = [
     "METRIC_REGISTRY_SCHEMA_VERSION",
     "AggregationKind",
@@ -255,5 +292,6 @@ __all__ = [
     "MetricRegistry",
     "MetricSource",
     "MetricUnit",
+    "MeasurementSample",
     "MissingDataPolicy",
 ]

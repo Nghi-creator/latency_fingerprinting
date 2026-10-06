@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–3 verified
+**Status:** In implementation; Steps 0–4 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 4–10 remain pending.
+Steps 5–10 remain pending.
 
 ## Slice outcome
 
@@ -632,9 +632,9 @@ matcher features.
 
 ### Gate
 
-- [ ] Raw extraction is deterministic and contains no aggregation policy.
-- [ ] Every rejected source value has a source and reason.
-- [ ] Existing bundle security bounds remain in force.
+- [x] Raw extraction is deterministic and contains no aggregation policy.
+- [x] Every rejected source value has a source and reason.
+- [x] Existing bundle security bounds remain in force.
 
 ## Step 5 — Implement gauge aggregation
 

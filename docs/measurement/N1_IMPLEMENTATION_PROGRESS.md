@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–3: baseline, inventory, strict models and canonical registry.
-**Next boundary:** Step 4 timestamped sample extraction. N1 is not complete.
+**Completed boundary:** Steps 0–4: baseline, inventory, models, registry and raw extraction.
+**Next boundary:** Step 5 gauge aggregation. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -134,6 +134,48 @@ normalization configuration and matcher implementation remain unchanged. New CLI
 and schema support is additive. Gauge/counter aggregation and shadow bundle reports
 remain unimplemented. Usage, release pin and next boundary are in
 [`CANONICAL_REGISTRY.md`](CANONICAL_REGISTRY.md).
+
+## Step 4 deliverables and verification
+
+[`adapters/pixelated_measurement_samples.py`](../../src/latency_fingerprinting/adapters/pixelated_measurement_samples.py)
+adds a separate N1 raw extraction API using the existing bounded bundle, JSON,
+CSV and envelope validation helpers. It parses each source once, preserves global
+CSV row ordinals and UTC/elapsed timestamps, and shares immutable raw sample tuples
+between counter rate/total definitions. `MeasurementSample` adds captured UTC time
+and distinct missing/rejection reasons to the planned internal sample shape.
+
+Browser missing fields, inactive source rows and unavailable engine rows stay
+explicit. Manifest-declared unsupported measurements stay missing even with stale
+cells; available engine rows missing required numeric cells become rejected
+evidence. Malformed/non-finite/overflow-range/negative cells carry source, row and
+reason without echoing malformed content. Invalid clocks or identity/envelope
+contracts fail closed before returning samples; timestamp errors retain original
+rows. Clock provenance explicitly remains wall-clock-derived, not verified monotonic.
+
+The API computes no rates, deltas, totals, percentiles or normalization. Counter
+resets are retained as raw values. Packet loss reads the registered cumulative
+field rather than invoking P0's interval-delta consistency policy. P0 ingestion
+and its existing validation/aggregation behavior remain unchanged.
+
+Added 83 cases across
+[`sample model tests`](../../tests/models/test_measurement_samples.py) and
+[`extraction tests`](../../tests/pixelated/test_measurement_samples.py). They cover
+all source categories, optional sources, original rows, gaps, rejected cells,
+stale values, raw resets, immutable/shared samples, one bundle read, directory/TAR
+equality, file immutability, clocks/identities and inherited JSON/file/CSV/archive
+bounds. The extractor has **100% branch-inclusive coverage** in the full suite.
+
+Final verification on Python 3.13.13: **603 tests passed; 90.16% branch-inclusive
+coverage**. Ruff lint/format, dependency checks, all schema/registry drift checks,
+P0 fixture/seed drift and exact run-002 reproduction passed. Python 3.11 execution
+remains for CI. All local measurement/plan documentation links resolve and the
+diff passes whitespace checks. No existing P0 model, adapter implementation,
+schema, fixture, controlled artifact or matcher implementation was modified.
+Only additive N1 types and extraction exports were added to the model/adapter APIs.
+
+The API and sample/clock failure distinctions are documented in
+[`SAMPLE_EXTRACTION.md`](SAMPLE_EXTRACTION.md). Gauge aggregation is next; counter
+aggregation and the shadow inspection command still remain unimplemented.
 
 P0 production behavior and artifacts are unchanged. No live probe, remediation or
 runtime instrumentation was executed. Proposed v2 features are not matcher inputs;

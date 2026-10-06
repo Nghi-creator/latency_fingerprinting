@@ -80,6 +80,7 @@ __all__ = [
     "MetricSource",
     "MetricUnit",
     "MissingDataPolicy",
+    "MeasurementSample",
 ]
 from .context import (
     ContextKey,
@@ -103,6 +104,7 @@ from .measurement import (
     AggregationKind,
     ClockBasis,
     CounterResetPolicy,
+    MeasurementSample,
     MetricDefinition,
     MetricKind,
     MetricRegistry,

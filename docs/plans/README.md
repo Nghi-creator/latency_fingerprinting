@@ -12,6 +12,8 @@
   contracts and the duplicate-safe registry file boundary.
 - [`CANONICAL_REGISTRY.md`](../measurement/CANONICAL_REGISTRY.md) documents the
   executable definitions, artifact versions and export/check commands.
+- [`SAMPLE_EXTRACTION.md`](../measurement/SAMPLE_EXTRACTION.md) describes the raw
+  timestamped extraction API, sample states and inherited bundle safety checks.
 
 When the active slice closes, archive its verified results in the appropriate
 technical closeout document and replace the next-slice plan. Do not turn the
