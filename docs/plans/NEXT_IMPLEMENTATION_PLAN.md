@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0 and 1 verified
+**Status:** In implementation; Steps 0–2 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 2–10 remain pending.
+Steps 3–10 remain pending.
 
 ## Slice outcome
 
@@ -542,9 +542,9 @@ Expose only intentional public types from `models/__init__.py`.
 
 ### Gate
 
-- [ ] Invalid registry states cannot be represented.
-- [ ] Model JSON aliases match the documented contract.
-- [ ] Direct validation errors do not leak arithmetic exceptions.
+- [x] Invalid registry states cannot be represented.
+- [x] Model JSON aliases match the documented contract.
+- [x] Direct validation errors do not leak arithmetic exceptions.
 
 ## Step 3 — Build the canonical registry
 
@@ -990,7 +990,7 @@ N1 is complete only when every item is true:
 
 - [x] Every current P0 metric maps to one documented semantic decision.
 - [x] Ambiguous counter meanings have distinct proposed v2 names.
-- [ ] Registry models reject invalid cross-field combinations.
+- [x] Registry models reject invalid cross-field combinations.
 - [ ] Canonical registry and JSON Schema are checked in and drift-protected.
 - [ ] Gauge summaries are deterministic and auditable.
 - [ ] Counter rates are invariant to equivalent sampling cadence.

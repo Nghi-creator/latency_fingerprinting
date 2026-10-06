@@ -8,6 +8,8 @@
   active N1 metric inventory and proposed output names.
 - [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md)
   records the verified baseline and completed milestones without claiming slice closeout.
+- [`REGISTRY_MODELS.md`](../measurement/REGISTRY_MODELS.md) explains the strict N1
+  contracts and the duplicate-safe registry file boundary.
 
 When the active slice closes, archive its verified results in the appropriate
 technical closeout document and replace the next-slice plan. Do not turn the

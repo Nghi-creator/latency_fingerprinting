@@ -1,6 +1,6 @@
 # N1 metric semantics and naming inventory
 
-**Status:** Step 1 inventory frozen; registry implementation is pending.
+**Status:** Step 1 inventory frozen; Step 2 models implemented; canonical registry pending.
 **Reviewed:** 2026-10-06
 **Planned registry version:** `latency-metrics-v2.0.0`
 **Definition semantic version:** `1.0.0` for each initial definition.
@@ -211,8 +211,9 @@ that every older captured bundle used that exact producer revision.
 checks adapter/config completeness, unique output declarations, raw-field coverage,
 units, counter source selection, and context exclusion. It reads these tables directly
 so documentation drift fails without adding a second runtime registry prematurely.
-Step 2 will turn this inventory into strict registry models; Step 3 will compare the
-canonical registry's names and definitions to these declarations.
+Step 2 implements the strict registry models documented in
+[`REGISTRY_MODELS.md`](REGISTRY_MODELS.md); Step 3 will compare the canonical
+registry's names and definitions to these declarations.
 
 Baseline and milestone verification are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](N1_IMPLEMENTATION_PROGRESS.md).

@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Step 0 baseline protection and Step 1 semantic inventory.
-**Next boundary:** Step 2 strict registry models. N1 is not complete.
+**Completed boundary:** Steps 0–2: baseline, inventory and strict registry models.
+**Next boundary:** Step 3 canonical registry, schema/export and drift checks. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -52,7 +52,7 @@ producer. The inventory preserves these limitations. Increasing exported elapsed
 time supports numerical shadow inspection but is not verified monotonic-clock
 evidence; future capture instrumentation remains outside N1.
 
-## Verification after the milestone
+## Step 1 verification
 
 The full suite passed with **374 tests and 88.20% coverage including branches**.
 Ruff lint and formatting passed. The three P0 schema checks, synthetic fixture
@@ -60,11 +60,44 @@ drift check, run-001 seed check and exact run-002 byte reproduction all passed
 again. All local Markdown links in the new measurement documents resolve.
 Verification ran locally on Python 3.13.13; Python 3.11 CI has not been run here.
 
-Changes are limited to this progress record, the semantic inventory, five inventory
+Step 1 changes were limited to this progress record, the semantic inventory, five inventory
 tests and plan status/navigation. No files under `src/`, `schemas/`, `fixtures/` or
 `experiments/` were modified. The P0 immutability gate stays open in the plan because
 it must continue to hold throughout later N1 implementation steps.
 
-P0 production code and artifacts are unchanged. No live probe, remediation or
+## Step 2 deliverables and verification
+
+[`models/measurement.py`](../../src/latency_fingerprinting/models/measurement.py)
+adds strict frozen `MetricDefinition` and `MetricRegistry` contracts with intentional
+public exports. It validates required nullable fields, closed enums, source/unit
+types, gauge/counter semantics, primary/available aggregation consistency, cadence,
+reset/width policies, unique names and UTC release timestamps. Input lists become
+immutable tuples in canonical order; epoch timestamp coercion is rejected.
+
+One counter definition has one output unit, so total/rate definitions remain
+distinct. Reserved event/derived kinds cannot instantiate unsupported definitions.
+Declared wraparound requires an explicit 1–64 bit width; canonical N1 definitions
+will continue to use segment rejection without widths. Optional normalization and
+clipping metadata is deferred until it has a consumer. Internal sample/summary
+contracts remain part of the later extraction/aggregation steps.
+
+[`test_measurement.py`](../../tests/models/test_measurement.py) adds 127 cases,
+including malformed and overflow-range inputs, duplicate root/nested JSON keys via
+the existing bounded reader, immutable nested sequences, deterministic round trips
+and generated JSON Schema shape. The new module has **100% branch-inclusive
+coverage** in the full suite. Details and file-ingestion usage are in
+[`REGISTRY_MODELS.md`](REGISTRY_MODELS.md).
+
+Final verification on Python 3.13.13: **501 tests passed; 88.85% branch-inclusive
+coverage**. Ruff lint/format, dependency validation, P0 schema/fixture drift,
+run-001 seed drift and exact run-002 byte reproduction passed. The existing
+export-schemas command still checks the three P0 roots only; Step 3 adds the
+registry schema and export/check support. Python 3.11 CI has not been run locally.
+
+The only production files changed in Step 2 are the new N1 model module and public
+model exports. P0 root models, schemas, synthetic fixtures, controlled artifacts
+and matcher implementation were not modified.
+
+P0 production behavior and artifacts are unchanged. No live probe, remediation or
 runtime instrumentation was executed. Proposed v2 features are not matcher inputs;
 the separate observation-v2 adoption slice remains required.
