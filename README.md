@@ -63,7 +63,8 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 ## Current status
 
 N1's metric inventory, strict registry models, canonical 31-output registry and
-timestamped sample extraction and pure gauge/counter aggregation are implemented. This additive foundation remains
+timestamped sample extraction, pure gauge/counter aggregation and migration
+inspection reports are implemented. This additive foundation remains
 offline/shadow work; P0 still
 uses its frozen feature configuration. Registry commands are available:
 
@@ -80,7 +81,15 @@ definitions and inspection commands are described in the
 Python extraction API. The [`gauge guide`](docs/measurement/GAUGE_AGGREGATION.md)
 describes registered statistics, coverage and summary states. The
 [`counter guide`](docs/measurement/COUNTER_AGGREGATION.md) describes totals, weighted
-rates, gaps and resets. Bundle shadow/migration reports remain the next N1 work.
+rates, gaps and resets. The [`inspection guide`](docs/measurement/MEASUREMENT_INSPECTION.md)
+describes the offline migration-readiness report:
+
+```bash
+latency-fingerprint inspect-measurements path/to/bundle.tar \
+  --context path/to/context.json --phase degraded --comparison-case-id example-001
+```
+
+Focused fixtures, final verification and closeout remain for N1.
 
 ### Implemented and verified
 

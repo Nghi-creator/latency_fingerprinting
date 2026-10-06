@@ -76,6 +76,7 @@ Step 4 implements
 [`immutable timestamped sample extraction`](SAMPLE_EXTRACTION.md) through the
 existing bounded bundle reader. Step 5 adds pure
 [`gauge aggregation`](GAUGE_AGGREGATION.md); Step 6 adds
-[`counter derivation`](COUNTER_AGGREGATION.md). Shadow reports,
-and observation-v2 adoption remain subsequent work. Registry export commands
+[`counter derivation`](COUNTER_AGGREGATION.md). Step 7 implements
+[`shadow migration inspection`](MEASUREMENT_INSPECTION.md). Focused fixtures and
+N1 closeout remain; observation-v2 adoption is a separate slice. Registry export commands
 operate on definitions and artifacts only.

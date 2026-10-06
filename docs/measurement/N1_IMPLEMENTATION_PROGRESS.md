@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–6: baseline, inventory, models, registry, extraction, gauges and counters.
-**Next boundary:** Step 7 migration-readiness report. N1 is not complete.
+**Completed boundary:** Steps 0–7: baseline, registry, extraction, aggregation and migration inspection.
+**Next boundary:** Step 8 focused fixtures. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -268,3 +268,52 @@ API usage, units, evidence and failure policies are documented in
 [`COUNTER_AGGREGATION.md`](COUNTER_AGGREGATION.md). Steps 0–6 are verified; Step 7
 migration-readiness reporting is next. N1 is not yet complete and proposed v2
 features remain outside the P0 matcher.
+
+## Step 7 deliverables and verification
+
+[`measurement_inspection.py`](../../src/latency_fingerprinting/measurement_inspection.py)
+adds deterministic diagnostic comparison of all 23 P0 features with all 31
+registered N1 outputs. It reuses the unchanged P0 ingestion and N1 extraction/
+aggregation paths, requiring checksum agreement for successful comparisons.
+Each output retains its definition, value, complete summary, migration class,
+separate frozen-aggregate classification and explanatory notes.
+
+Available compatible gauges are identity-safe, including the binary RSS name
+correction. Counter outputs are recomputable only from usable raw intervals;
+no P0 median delta is declared sufficient for rates or totals. Missing interval
+baselines, absent/inactive/unsupported sources, and rejected series remain
+explicit. Frozen-window inspection permits compatible gauge scalars while leaving
+all summaries null and never reconstructing counter values or coverage.
+
+The additive `inspect-measurements` CLI emits `measurement-inspection-v1` JSON
+with an explicit shadow/non-matcher notice. It is intentionally excluded from
+production root validation/schema export. It preserves P0 ingestion/validity
+status, keeps N1 results on P0-only rejection, and never rewrites observations.
+Reports omit source identities, context, private producer values, absolute paths,
+effective settings and raw rejection text. Clock-provenance limitations remain
+visible. N1 source-contract failures fail closed with no partial JSON.
+
+[`test_inspection.py`](../../tests/measurement/test_inspection.py) adds **47 cases**
+covering inventory-exact mapping, classes, unsupported/header-only sources,
+privacy, checksum disagreement, invalid P0 validity, frozen-only/domain rejection,
+CLI/API equality, immutable source files and directory/TAR/repeated-process byte
+equality. An existing sanitized capture is adapted in a test from five-second
+increments of 300 frames to one-second increments of 60: both N1 rates are
+60 frames/s while P0 median deltas and observed totals correctly differ.
+
+The report SHA-256 is pinned to
+`295f57a6f0e0ab80f64c7323be3cd5fc4e278aac712825f0173955594513c423`.
+That same expectation runs in both existing Python CI suites. The inspection
+module has **100% branch-inclusive coverage** in the full local suite.
+
+Final verification on Python 3.13.13: **833 tests passed; 91.45% branch-inclusive
+coverage**. Ruff lint/format, dependency validation, schema/registry checks,
+P0 fixture/seed checks and exact run-002 byte reproduction passed. Documentation
+links and whitespace checks pass. Python 3.11 execution remains for CI. P0
+adapters, models, configuration, matcher, schemas, fixtures, controlled artifacts
+and the canonical registry are unchanged; CLI support is additive.
+
+The report fields, classifications, privacy and usage are documented in
+[`MEASUREMENT_INSPECTION.md`](MEASUREMENT_INSPECTION.md). Steps 0–7 are verified;
+Step 8 focused fixtures is next. N1 closeout and observation-v2 adoption remain
+outstanding.

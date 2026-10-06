@@ -5,7 +5,8 @@ is a pure Python API for registered gauge definitions and immutable timestamped
 samples. It performs no file I/O and computes only the definition's registered
 median, nearest-rank P95, minimum and maximum. The primary aggregate is exposed
 as `summary.value`. [Counter derivation](COUNTER_AGGREGATION.md) is implemented
-in Step 6; the bundle inspection CLI follows in Step 7.
+in Step 6; the [bundle inspection CLI](MEASUREMENT_INSPECTION.md) is implemented
+in Step 7.
 
 ## Usage
 

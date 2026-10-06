@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–6 verified
+**Status:** In implementation; Steps 0–7 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 7–10 remain pending.
+Steps 8–10 remain pending.
 
 ## Slice outcome
 
@@ -781,9 +781,9 @@ not `observation-v2` and not matcher input.
 
 ### Gate
 
-- [ ] Existing raw fixtures demonstrate cadence-independent counter rates.
-- [ ] No frozen aggregate is falsely declared migratable.
-- [ ] The report can drive the following observation-v2 design slice.
+- [x] Existing raw fixtures demonstrate cadence-independent counter rates.
+- [x] No frozen aggregate is falsely declared migratable.
+- [x] The report can drive the following observation-v2 design slice.
 
 ## Step 8 — Add focused fixtures
 
@@ -996,8 +996,8 @@ N1 is complete only when every item is true:
 - [x] Counter rates are invariant to equivalent sampling cadence.
 - [x] Counter totals, rates, gaps, and resets remain distinguishable.
 - [x] Missing/rejected/incomplete states never become zero.
-- [ ] Directory and TAR shadow reports are identical.
-- [ ] Migration classification never claims unavailable reconstruction.
+- [x] Directory and TAR shadow reports are identical.
+- [x] Migration classification never claims unavailable reconstruction.
 - [ ] P0 schemas, fixtures, controlled artifacts, and match output are unchanged.
 - [ ] Full tests, branch coverage, Ruff, dependency, schema, fixture, privacy,
       and byte-reproduction gates pass.

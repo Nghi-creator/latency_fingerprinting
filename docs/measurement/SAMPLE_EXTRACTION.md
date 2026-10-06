@@ -87,4 +87,4 @@ Sample-state tests are in
 [`tests/models/test_measurement_samples.py`](../../tests/models/test_measurement_samples.py).
 [`Gauge aggregation`](GAUGE_AGGREGATION.md) is implemented in Step 5; counter
 derivation is implemented in [Step 6](COUNTER_AGGREGATION.md); the deterministic
-shadow report/CLI follows in Step 7.
+[shadow report/CLI](MEASUREMENT_INSPECTION.md) is implemented in Step 7.

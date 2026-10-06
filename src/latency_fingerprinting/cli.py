@@ -21,6 +21,7 @@ from .measurement.metric_registry import (
     export_metric_registry,
     metric_registry_drift,
 )
+from .measurement_inspection import inspect_measurements, render_measurement_inspection
 from .models import (
     FINGERPRINT_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
@@ -151,12 +152,22 @@ def _match(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(result))
 
 
+def _inspect_measurements(args: argparse.Namespace) -> None:
+    report = inspect_measurements(
+        args.bundle,
+        context=_load_model(args.context, ContextKey),
+        phase=WindowPhase(args.phase),
+        comparison_case_id=args.comparison_case_id,
+    )
+    sys.stdout.write(render_measurement_inspection(report))
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Build the public command parser without performing any I/O."""
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Run the offline P0 pipeline and inspect N1 metric registry artifacts.",
+        description="Run the offline P0 pipeline and inspect N1 registry and measurement reports.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -179,6 +190,17 @@ def build_parser() -> argparse.ArgumentParser:
     registry.add_argument("--output", type=Path, default=DEFAULT_METRIC_REGISTRY_PATH)
     registry.add_argument("--check", action="store_true", help="report drift without writing files")
     registry.set_defaults(handler=_export_metric_registry)
+
+    inspection = subparsers.add_parser(
+        "inspect-measurements", help="compare P0 and N1 measurements in an offline shadow report"
+    )
+    inspection.add_argument("bundle", type=Path)
+    inspection.add_argument("--context", type=Path, required=True)
+    inspection.add_argument(
+        "--phase", choices=[phase.value for phase in WindowPhase], required=True
+    )
+    inspection.add_argument("--comparison-case-id", required=True)
+    inspection.set_defaults(handler=_inspect_measurements)
 
     response = subparsers.add_parser(
         "build-response",
