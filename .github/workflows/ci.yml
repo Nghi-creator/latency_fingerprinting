@@ -42,7 +42,7 @@ jobs:
         run: ruff format --check .
 
       - name: Run tests
-        run: python -m pytest --cov=latency_fingerprinting --cov-fail-under=85
+        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
 
       - name: Check installed dependencies
         run: python -m pip check
@@ -50,10 +50,21 @@ jobs:
       - name: Check generated schemas
         run: python -m latency_fingerprinting export-schemas --output schemas --check
 
+      - name: Check canonical metric registry
+        run: python -m latency_fingerprinting export-metric-registry --output schemas/metric-registry-v1.json --check
+
       - name: Check synthetic fixture drift
         run: >-
           python -c "from latency_fingerprinting.synthetic_fixtures import fixture_drift;
           assert fixture_drift() == {}"
+
+      - name: Check N1 arithmetic fixture drift
+        run: >-
+          python -c "from tests.measurement.fixture_cases import fixture_drift;
+          assert fixture_drift() == {}"
+
+      - name: Reproduce pinned N1 registry and shadow report
+        run: python -m tests.measurement.check_reproduction
 
       - name: Validate controlled-real P0 artifacts
         run: |
@@ -97,4 +108,20 @@ jobs:
           python -m pip install -e '.[dev]'
 
       - name: Run minimum-version test suite
-        run: python -m pytest
+        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
+
+      - name: Check generated schemas and canonical registry
+        run: |
+          python -m latency_fingerprinting export-schemas --output schemas --check
+          python -m latency_fingerprinting export-metric-registry --output schemas/metric-registry-v1.json --check
+
+      - name: Check N1 arithmetic fixture drift
+        run: >-
+          python -c "from tests.measurement.fixture_cases import fixture_drift;
+          assert fixture_drift() == {}"
+
+      - name: Reproduce pinned N1 registry and shadow report
+        run: python -m tests.measurement.check_reproduction
+
+      - name: Check installed dependencies
+        run: python -m pip check

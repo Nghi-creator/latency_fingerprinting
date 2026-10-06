@@ -1,0 +1,118 @@
+{
+  "caseId": "counter-overflow",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 0,
+      "aggregates": {},
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [],
+      "coverage": 0,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 0,
+      "rejectedReasonPrefixes": [
+        "browser_webrtc row 4: counter decreased; reset transition rejected",
+        "counter aggregate arithmetic rejected:"
+      ],
+      "resetSourceRows": [
+        4
+      ],
+      "sourceSampleCount": 4,
+      "status": "rejected",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "value": null,
+      "warnings": []
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 0,
+      "aggregates": {},
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [],
+      "coverage": 0,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 0,
+      "rejectedReasonPrefixes": [
+        "browser_webrtc row 4: counter decreased; reset transition rejected",
+        "counter aggregate arithmetic rejected:"
+      ],
+      "resetSourceRows": [
+        4
+      ],
+      "sourceSampleCount": 4,
+      "status": "rejected",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "value": null,
+      "warnings": []
+    }
+  },
+  "explanation": "Each 1e308 delta/rate is finite, but two deltas total 2e308 exceeds float maximum. Reject all partial results; retain the reset row and rejection evidence.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 1e+308
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 4,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:03+00:00",
+      "elapsedMs": 3000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 5,
+      "value": 1e+308
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 3000,
+    "startMs": 0
+  }
+}

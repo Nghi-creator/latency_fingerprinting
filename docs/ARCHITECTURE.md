@@ -52,6 +52,57 @@ Future fast loop:
 
 Loose coupling is established through contracts and adapters. P0 does not create another desktop application, daemon or HTTP service.
 
+## N1 shadow measurement foundation
+
+The completed N1 registry, extraction, aggregation and inspection milestones add
+strict immutable measurement definitions, a canonical 31-output registry, raw
+timestamped samples and auditable gauge/counter summaries alongside P0.
+Definitions specify raw source fields, physical units, clocks, aggregation and
+gap/reset policies. The registry
+and generated schema have deterministic export/check commands and CI drift gates.
+P0 normalization and matching continue to use their frozen configuration.
+
+```text
+Implemented: source-declared definitions -> strict registry -> schema/artifact export/check
+             bounded bundle reader -> immutable raw timestamped samples
+             registered gauge/counter aggregation -> immutable series summaries
+             P0 comparison -> diagnostic shadow/migration report
+Verified:    independent synthetic arithmetic fixtures and read-only drift checks
+Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
+Closed out:  N1 software implementation and local verification
+Pending:     Python 3.11 and hosted CI verification
+Next:        additive observation-v2 contract/offline adoption
+```
+
+Registry metadata uses fixed release versions and creation time. Legacy exported
+elapsed timestamps retain their wall-clock-derived limitation; a registry clock
+label does not assert verified monotonic capture. No observation-v2 root, live
+instrumentation or matcher adoption is included. The implemented boundary and
+next step are documented in the
+[`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
+[`next-slice plan`](plans/NEXT_IMPLEMENTATION_PLAN.md).
+
+The implemented module dependencies are shown below. The inspection layer joins
+the two paths for comparison; it does not feed N1 summaries into the P0 matcher.
+
+```mermaid
+flowchart TD
+    Bundle[Recorded Pixelated bundle] --> Reader[Bounded bundle I/O and envelope validation]
+    Reader --> P0[P0 adapter and observation-v1 windows]
+    Reader --> Raw[N1 immutable raw samples]
+    Registry[Canonical metric registry] --> Raw
+    Registry --> Aggregate[Pure gauge and counter aggregation]
+    Raw --> Aggregate
+    Aggregate --> Summary[Validated measurement summaries]
+    P0 --> Pipeline[P0 comparability, delta and normalization]
+    Pipeline --> Matcher[P0 evidence and conservative matcher]
+    P0 --> Inspect[Shadow inspection report]
+    Summary --> Inspect
+```
+
+See the [post-N1 architecture audit](measurement/ARCHITECTURE_AUDIT.md) for
+validation fixes, file-size review and remaining verification gaps.
+
 ## Target system overview
 
 ![Target architecture showing the hosted control plane, local diagnosis and control loop, runtime deadline scheduler, and client telemetry](diagrams/latency-fingerprinting-architecture.png)
@@ -78,24 +129,31 @@ latency-fingerprinting/
 │   ├── ARCHITECTURE.md
 │   ├── diagrams/
 │   ├── p0/
+│   ├── measurement/
 │   └── plans/
 ├── schemas/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json
-│   └── match-result-v1.schema.json
+│   ├── match-result-v1.schema.json
+│   ├── metric-registry-v1.schema.json
+│   └── metric-registry-v1.json
 ├── src/latency_fingerprinting/
 │   ├── models/
 │   │   ├── common.py
 │   │   ├── context.py
 │   │   ├── response.py
 │   │   ├── fingerprint.py
+│   │   ├── measurement.py
 │   │   └── match.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
+│   │   ├── aggregation.py
 │   │   ├── feature_config.py
+│   │   ├── metric_registry.py
 │   │   └── p0_feature_config.py
 │   ├── normalization.py
+│   ├── measurement_inspection.py
 │   ├── pipeline.py
 │   ├── fingerprints.py
 │   ├── matcher.py
@@ -108,6 +166,7 @@ latency-fingerprinting/
 │   │   ├── definitions.py
 │   │   ├── expectations.py
 │   │   └── rendering.py
+│   ├── synthetic_fixtures.py
 │   ├── evidence.py
 │   ├── schemas.py
 │   ├── json_io.py
@@ -118,19 +177,22 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_common.py
 │       ├── pixelated_bundle_io.py
 │       ├── pixelated_bundle_metrics.py
+│       ├── pixelated_measurement_samples.py
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
 │   ├── reference_cases/
+│   │   ├── healthy/
 │   │   ├── network_pressure/
 │   │   └── host_encoder_pressure/
-│   └── query_cases/
-│       ├── similar_network/
-│       ├── similar_encoder/
-│       ├── ambiguous/
-│       ├── conflicting/
-│       ├── incompatible_context/
-│       └── weak/
+│   ├── query_cases/
+│   │   ├── similar_network/
+│   │   ├── similar_encoder/
+│   │   ├── ambiguous/
+│   │   ├── conflicting/
+│   │   ├── incompatible_context/
+│   │   └── weak/
+│   └── measurement/
 ├── experiments/
 │   ├── controlled-run-001/
 │   └── controlled-run-002/
@@ -145,11 +207,14 @@ Package markers (`__init__.py`) and the CLI module entry point (`__main__.py`)
 are implemented. Virtual environments, caches and large/private raw experiment
 bundles are ignored by Git.
 
-Each fixture case contains paired `degraded.json` and `relief.json` observation
+Each P0 reference/query fixture case contains paired `degraded.json` and `relief.json` observation
 windows plus an expected fingerprint or match result. Reference cases build the
 known fingerprint library; query cases test matching and conservative `unknown`
 handling. Fixtures are stable regression inputs, while `experiments/` stores
 artifacts from the completed controlled-real runs and their processing tools.
+The separate `fixtures/measurement/` cases contain synthetic raw series,
+definitions and independently authored expected N1 summaries; they are not
+paired matcher observations.
 
 ## Python choice
 
@@ -169,9 +234,12 @@ Development tools:
 
 - pytest;
 - pytest-cov;
-- Ruff.
+- Ruff;
+- jsonschema (N1 registry artifact validation in tests only).
 
-Use standard-library `argparse` for the CLI. Do not add pandas, scikit-learn, FastAPI, SQLite or notebook infrastructure unless a concrete P0 blocker requires one.
+Use standard-library `argparse` for the CLI. Add dependencies only when a concrete
+need in the implemented slice justifies them; the current offline paths do not
+require pandas, scikit-learn, FastAPI, SQLite or notebook infrastructure.
 
 Public JSON file boundaries use `json_io.py` to reject duplicate keys,
 non-finite constants, finite JSON syntax that overflows the runtime float,

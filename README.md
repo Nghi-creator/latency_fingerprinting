@@ -62,6 +62,46 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
 
 ## Current status
 
+N1's metric inventory, strict registry models, canonical 31-output registry and
+timestamped sample extraction, pure gauge/counter aggregation and migration
+inspection reports are implemented. This additive foundation remains
+offline/shadow work; P0 still
+uses its frozen feature configuration. Registry commands are available:
+
+```bash
+latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json
+latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json --check
+latency-fingerprint validate schemas/metric-registry-v1.json
+```
+
+`export-schemas` also includes the additive metric-registry schema. Registry
+definitions and inspection commands are described in the
+[`canonical registry guide`](docs/measurement/CANONICAL_REGISTRY.md). The
+[`sample extraction guide`](docs/measurement/SAMPLE_EXTRACTION.md) describes the
+Python extraction API. The [`gauge guide`](docs/measurement/GAUGE_AGGREGATION.md)
+describes registered statistics, coverage and summary states. The
+[`counter guide`](docs/measurement/COUNTER_AGGREGATION.md) describes totals, weighted
+rates, gaps and resets. The [`inspection guide`](docs/measurement/MEASUREMENT_INSPECTION.md)
+describes the offline migration-readiness report:
+
+```bash
+latency-fingerprint inspect-measurements path/to/bundle.tar \
+  --context path/to/context.json --phase degraded --comparison-case-id example-001
+```
+
+[Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
+in with independent expected summaries and read-only drift checks.
+[Quality gates](docs/measurement/QUALITY_GATES.md) cover both CI Python versions,
+branch coverage and pinned registry/report reproduction. [N1 software closeout](docs/measurement/N1_SOFTWARE_CLOSEOUT.md)
+is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
+Python 3.11 and hosted CI verification remain pending. The next slice is additive
+observation-v2 contract/adoption; v2 features are not production matcher inputs.
+
+The [post-N1 architecture audit](docs/measurement/ARCHITECTURE_AUDIT.md) adds
+summary validation and scaling fixes plus adapter boundary tests: **924 tests
+pass with 91.89% branch-inclusive coverage**. It also records remaining
+verification and N2 contract gaps.
+
 ### Implemented and verified
 
 - Existing Pixelated testbed and research-run export: implemented.

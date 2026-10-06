@@ -1,4 +1,4 @@
-"""Public P0 contract model API.
+"""Public P0 and N1 contract model API.
 
 Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
@@ -70,6 +70,20 @@ __all__ = [
     "MatchThresholds",
     "MatchResult",
     "ValidatedOutcome",
+    "METRIC_REGISTRY_SCHEMA_VERSION",
+    "AggregationKind",
+    "ClockBasis",
+    "CounterResetPolicy",
+    "MetricDefinition",
+    "MetricKind",
+    "MetricRegistry",
+    "MetricSource",
+    "MetricUnit",
+    "MissingDataPolicy",
+    "MeasurementSample",
+    "MetricSeriesStatus",
+    "MetricSeriesSummary",
+    "CounterInterval",
 ]
 from .context import (
     ContextKey,
@@ -87,6 +101,22 @@ from .match import (
     MatchThresholds,
     RankedCandidate,
     ValidatedOutcome,
+)
+from .measurement import (
+    METRIC_REGISTRY_SCHEMA_VERSION,
+    AggregationKind,
+    ClockBasis,
+    CounterInterval,
+    CounterResetPolicy,
+    MeasurementSample,
+    MetricDefinition,
+    MetricKind,
+    MetricRegistry,
+    MetricSeriesStatus,
+    MetricSeriesSummary,
+    MetricSource,
+    MetricUnit,
+    MissingDataPolicy,
 )
 from .response import (
     FeatureDelta,
