@@ -1,0 +1,175 @@
+{
+  "caseId": "counter-malformed",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "time_weighted_rate": 60
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 4000,
+          "endSourceRow": 6,
+          "rate": 60,
+          "startElapsedMs": 3000,
+          "startSourceRow": 5,
+          "wrapped": false
+        }
+      ],
+      "coverage": 0.5,
+      "gapSourceRows": [
+        4
+      ],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [
+        "synthetic malformed numeric cell"
+      ],
+      "resetSourceRows": [],
+      "sourceSampleCount": 5,
+      "status": "incomplete",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "value": 60,
+      "warnings": [
+        "Counter interval coverage is incomplete; totals and rates are not extrapolated."
+      ]
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "window_total": 120
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 4000,
+          "endSourceRow": 6,
+          "rate": 60,
+          "startElapsedMs": 3000,
+          "startSourceRow": 5,
+          "wrapped": false
+        }
+      ],
+      "coverage": 0.5,
+      "gapSourceRows": [
+        4
+      ],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [
+        "synthetic malformed numeric cell"
+      ],
+      "resetSourceRows": [],
+      "sourceSampleCount": 5,
+      "status": "incomplete",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "value": 120,
+      "warnings": [
+        "Counter interval coverage is incomplete; totals and rates are not extrapolated."
+      ]
+    }
+  },
+  "explanation": "Two separate deltas of 60 support 2s of a 4s window: total 120, rate 60, coverage .5. The 60-to-1000 jump is never counted.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 60
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": "synthetic malformed numeric cell",
+      "sourceRow": 4,
+      "value": null
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:03+00:00",
+      "elapsedMs": 3000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 5,
+      "value": 1000
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:04+00:00",
+      "elapsedMs": 4000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 6,
+      "value": 1060
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 4000,
+    "startMs": 0
+  }
+}

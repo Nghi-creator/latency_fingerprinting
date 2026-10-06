@@ -1,0 +1,79 @@
+{
+  "caseId": "counter-single",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 0,
+      "aggregates": {},
+      "cadenceMaximumMs": null,
+      "cadenceMedianMs": null,
+      "cadenceMinimumMs": null,
+      "counterIntervals": [],
+      "coverage": 0,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 0,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 1,
+      "status": "incomplete",
+      "usableSampleCount": 1,
+      "usableSourceRows": [
+        2
+      ],
+      "value": null,
+      "warnings": [
+        "No adjacent usable counter pair; interval aggregates are unavailable."
+      ]
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 0,
+      "aggregates": {},
+      "cadenceMaximumMs": null,
+      "cadenceMedianMs": null,
+      "cadenceMinimumMs": null,
+      "counterIntervals": [],
+      "coverage": 0,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 0,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 1,
+      "status": "incomplete",
+      "usableSampleCount": 1,
+      "usableSourceRows": [
+        2
+      ],
+      "value": null,
+      "warnings": [
+        "No adjacent usable counter pair; interval aggregates are unavailable."
+      ]
+    }
+  },
+  "explanation": "One usable baseline supports no interval. Rate and total are absent, not zero; coverage is zero and status incomplete.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 60
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 1000,
+    "startMs": 0
+  }
+}

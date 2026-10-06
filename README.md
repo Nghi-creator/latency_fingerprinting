@@ -89,7 +89,9 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
   --context path/to/context.json --phase degraded --comparison-case-id example-001
 ```
 
-Focused fixtures, final verification and closeout remain for N1.
+[Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
+in with independent expected summaries and read-only drift checks. Final quality/CI
+integration and closeout remain for N1.
 
 ### Implemented and verified
 

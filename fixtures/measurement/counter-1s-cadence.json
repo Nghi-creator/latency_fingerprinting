@@ -1,0 +1,391 @@
+{
+  "caseId": "counter-1s-cadence",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 10,
+      "aggregates": {
+        "time_weighted_rate": 60
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 2000,
+          "endSourceRow": 4,
+          "rate": 60,
+          "startElapsedMs": 1000,
+          "startSourceRow": 3,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 3000,
+          "endSourceRow": 5,
+          "rate": 60,
+          "startElapsedMs": 2000,
+          "startSourceRow": 4,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 4000,
+          "endSourceRow": 6,
+          "rate": 60,
+          "startElapsedMs": 3000,
+          "startSourceRow": 5,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 5000,
+          "endSourceRow": 7,
+          "rate": 60,
+          "startElapsedMs": 4000,
+          "startSourceRow": 6,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 6000,
+          "endSourceRow": 8,
+          "rate": 60,
+          "startElapsedMs": 5000,
+          "startSourceRow": 7,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 7000,
+          "endSourceRow": 9,
+          "rate": 60,
+          "startElapsedMs": 6000,
+          "startSourceRow": 8,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 8000,
+          "endSourceRow": 10,
+          "rate": 60,
+          "startElapsedMs": 7000,
+          "startSourceRow": 9,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 9000,
+          "endSourceRow": 11,
+          "rate": 60,
+          "startElapsedMs": 8000,
+          "startSourceRow": 10,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 10000,
+          "endSourceRow": 12,
+          "rate": 60,
+          "startElapsedMs": 9000,
+          "startSourceRow": 11,
+          "wrapped": false
+        }
+      ],
+      "coverage": 1,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 10000,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 11,
+      "status": "complete",
+      "usableSampleCount": 11,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "value": 60,
+      "warnings": []
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 10,
+      "aggregates": {
+        "window_total": 600
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 2000,
+          "endSourceRow": 4,
+          "rate": 60,
+          "startElapsedMs": 1000,
+          "startSourceRow": 3,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 3000,
+          "endSourceRow": 5,
+          "rate": 60,
+          "startElapsedMs": 2000,
+          "startSourceRow": 4,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 4000,
+          "endSourceRow": 6,
+          "rate": 60,
+          "startElapsedMs": 3000,
+          "startSourceRow": 5,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 5000,
+          "endSourceRow": 7,
+          "rate": 60,
+          "startElapsedMs": 4000,
+          "startSourceRow": 6,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 6000,
+          "endSourceRow": 8,
+          "rate": 60,
+          "startElapsedMs": 5000,
+          "startSourceRow": 7,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 7000,
+          "endSourceRow": 9,
+          "rate": 60,
+          "startElapsedMs": 6000,
+          "startSourceRow": 8,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 8000,
+          "endSourceRow": 10,
+          "rate": 60,
+          "startElapsedMs": 7000,
+          "startSourceRow": 9,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 9000,
+          "endSourceRow": 11,
+          "rate": 60,
+          "startElapsedMs": 8000,
+          "startSourceRow": 10,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 10000,
+          "endSourceRow": 12,
+          "rate": 60,
+          "startElapsedMs": 9000,
+          "startSourceRow": 11,
+          "wrapped": false
+        }
+      ],
+      "coverage": 1,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 10000,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 11,
+      "status": "complete",
+      "usableSampleCount": 11,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "value": 600,
+      "warnings": []
+    }
+  },
+  "explanation": "Ten accepted one-second deltas of 60: total 600; 600/10s = 60 frames/s. Same window and activity as the five-second case.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 60
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 4,
+      "value": 120
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:03+00:00",
+      "elapsedMs": 3000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 5,
+      "value": 180
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:04+00:00",
+      "elapsedMs": 4000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 6,
+      "value": 240
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:05+00:00",
+      "elapsedMs": 5000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 7,
+      "value": 300
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:06+00:00",
+      "elapsedMs": 6000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 8,
+      "value": 360
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:07+00:00",
+      "elapsedMs": 7000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 9,
+      "value": 420
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:08+00:00",
+      "elapsedMs": 8000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 10,
+      "value": 480
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:09+00:00",
+      "elapsedMs": 9000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 11,
+      "value": 540
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:10+00:00",
+      "elapsedMs": 10000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 12,
+      "value": 600
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 10000,
+    "startMs": 0
+  }
+}

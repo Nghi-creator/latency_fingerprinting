@@ -1,8 +1,8 @@
 # N1 implementation progress
 
 **Updated:** 2026-10-06
-**Completed boundary:** Steps 0–7: baseline, registry, extraction, aggregation and migration inspection.
-**Next boundary:** Step 8 focused fixtures. N1 is not complete.
+**Completed boundary:** Steps 0–8: baseline, registry, extraction, aggregation, inspection and fixtures.
+**Next boundary:** Step 9 quality and CI gates. N1 is not complete.
 
 ## Protected P0 baseline
 
@@ -317,3 +317,48 @@ The report fields, classifications, privacy and usage are documented in
 [`MEASUREMENT_INSPECTION.md`](MEASUREMENT_INSPECTION.md). Steps 0–7 are verified;
 Step 8 focused fixtures is next. N1 closeout and observation-v2 adoption remain
 outstanding.
+
+## Step 8 deliverables and verification
+
+[`fixtures/measurement`](../../fixtures/measurement/README.md) adds **13 small
+synthetic arithmetic fixtures**. They cover the nine required cases: regular and
+missing gauges; one-second, equivalent five-second and irregular counters; gaps,
+resets, overflow and an empty optional source. Additional cases cover rejected
+gauge cells, unavailable/malformed counter rows and a single counter baseline.
+Every JSON case declares synthetic provenance, `controlledReal=false`, fixed
+registry version, explicit sample/window inputs, a numerical explanation and
+expected numerical/audit summary projections.
+
+The one-second and five-second cases cover the same ten seconds and the same
+cumulative activity: both produce 600 frames and 60 frames/s. Irregular cadence
+produces the hand-calculated 40 frames/s rather than 62.5. Missing/rejected cells
+and counter gaps retain reasons and exact accepted pairs. Reset coverage is 2/3;
+overflow produces no partial aggregate. Single/empty sources never fabricate zero.
+
+[`fixture_cases.py`](../../tests/measurement/fixture_cases.py) is test support for
+independently authored expectations, deterministic rendering and read-only
+exact-byte drift checks. It imports no aggregation implementation and supplies
+expected arithmetic explicitly. No ambient timestamps, randomness or runtime
+data enter generation. Rejection count/prefix checks retain exact meaning while
+avoiding platform-specific suffixes from arithmetic exceptions. The README includes
+an intentional regeneration command; CI tests never rewrite fixtures.
+
+[`test_fixture_cases.py`](../../tests/measurement/test_fixture_cases.py) adds
+**32 cases** checking every fixture's provenance and expected numerical/audit
+summary against validated aggregation. Tests check registry/units/bounds, immutable
+sample input, equal-window cadence invariance, deterministic generation independent
+of aggregation, no-write drift checks, missing/changed/unexpected JSON files and
+format/CRLF byte drift. These checks run in the existing Python CI suites.
+
+Final verification on Python 3.13.13: **865 tests passed; 91.45% branch-inclusive
+coverage**. Ruff lint/format, dependency checks, all schema/registry checks, both
+P0 and N1 fixture drift checks, run-001 seed check and exact run-002 byte
+reproduction passed. Documentation links and whitespace checks pass. Python 3.11
+execution remains for CI. No production Python file, existing P0 fixture, schema,
+registry artifact, controlled-run artifact or CI workflow was modified in Step 8.
+The new fixture README also satisfies the existing repository-wide provenance gate.
+
+The focused-fixture boundary is documented in
+[`ARITHMETIC_FIXTURES.md`](ARITHMETIC_FIXTURES.md). Steps 0–8 are verified; Step 9
+quality/CI integration and Step 10 software closeout remain. N1 is not yet complete;
+these synthetic arithmetic cases do not establish diagnostic or experimental validity.

@@ -1,0 +1,166 @@
+{
+  "caseId": "counter-reset",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "time_weighted_rate": 60
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 3000,
+          "endSourceRow": 5,
+          "rate": 60,
+          "startElapsedMs": 2000,
+          "startSourceRow": 4,
+          "wrapped": false
+        }
+      ],
+      "coverage": 0.6666666666666666,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [
+        "browser_webrtc row 4: counter decreased; reset transition rejected"
+      ],
+      "resetSourceRows": [
+        4
+      ],
+      "sourceSampleCount": 4,
+      "status": "incomplete",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "value": 60,
+      "warnings": [
+        "Counter interval coverage is incomplete; totals and rates are not extrapolated."
+      ]
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "window_total": 120
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 60,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 60,
+          "durationMs": 1000,
+          "endElapsedMs": 3000,
+          "endSourceRow": 5,
+          "rate": 60,
+          "startElapsedMs": 2000,
+          "startSourceRow": 4,
+          "wrapped": false
+        }
+      ],
+      "coverage": 0.6666666666666666,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [
+        "browser_webrtc row 4: counter decreased; reset transition rejected"
+      ],
+      "resetSourceRows": [
+        4
+      ],
+      "sourceSampleCount": 4,
+      "status": "incomplete",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "value": 120,
+      "warnings": [
+        "Counter interval coverage is incomplete; totals and rates are not extrapolated."
+      ]
+    }
+  },
+  "explanation": "Registered reject_segment excludes 60-to-5. Accepted 0-to-60 and 5-to-65 give total 120 over 2s, rate 60, coverage 2/3; current row becomes a baseline.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 60
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 4,
+      "value": 5
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:03+00:00",
+      "elapsedMs": 3000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 5,
+      "value": 65
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 3000,
+    "startMs": 0
+  }
+}

@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Metric Semantics Foundation
 
 **Slice ID:** N1
-**Status:** In implementation; Steps 0–7 verified
+**Status:** In implementation; Steps 0–8 verified
 **Updated:** 2026-10-06
 **Parent roadmap:** [`FULL_IMPLEMENTATION_PLAN.md`](FULL_IMPLEMENTATION_PLAN.md)
 **Starting point:** P0 is complete, hardened, and frozen as
@@ -11,7 +11,7 @@ Verified milestone results are recorded in
 [`N1_IMPLEMENTATION_PROGRESS.md`](../measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../measurement/METRIC_SEMANTICS_V2.md).
-Steps 8–10 remain pending.
+Steps 9–10 remain pending.
 
 ## Slice outcome
 
@@ -811,9 +811,9 @@ Do not call a synthetic arithmetic fixture controlled-real evidence.
 
 ### Gate
 
-- [ ] Fixture provenance is explicit.
-- [ ] Expected values are hand-auditable.
-- [ ] Fixture drift is checked without rewriting in CI.
+- [x] Fixture provenance is explicit.
+- [x] Expected values are hand-auditable.
+- [x] Fixture drift is checked without rewriting in CI.
 
 ## Step 9 — Integrate quality and CI gates
 

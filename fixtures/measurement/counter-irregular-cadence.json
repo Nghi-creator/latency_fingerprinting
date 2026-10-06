@@ -1,0 +1,143 @@
+{
+  "caseId": "counter-irregular-cadence",
+  "expectedSummaries": {
+    "client.frames_decoded_rate_fps": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "time_weighted_rate": 40
+      },
+      "cadenceMaximumMs": 4000,
+      "cadenceMedianMs": 2500,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 100,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 100,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 100,
+          "durationMs": 4000,
+          "endElapsedMs": 5000,
+          "endSourceRow": 4,
+          "rate": 25,
+          "startElapsedMs": 1000,
+          "startSourceRow": 3,
+          "wrapped": false
+        }
+      ],
+      "coverage": 1,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 5000,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 3,
+      "status": "complete",
+      "usableSampleCount": 3,
+      "usableSourceRows": [
+        2,
+        3,
+        4
+      ],
+      "value": 40,
+      "warnings": []
+    },
+    "client.frames_decoded_window_total": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "window_total": 200
+      },
+      "cadenceMaximumMs": 4000,
+      "cadenceMedianMs": 2500,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [
+        {
+          "delta": 100,
+          "durationMs": 1000,
+          "endElapsedMs": 1000,
+          "endSourceRow": 3,
+          "rate": 100,
+          "startElapsedMs": 0,
+          "startSourceRow": 2,
+          "wrapped": false
+        },
+        {
+          "delta": 100,
+          "durationMs": 4000,
+          "endElapsedMs": 5000,
+          "endSourceRow": 4,
+          "rate": 25,
+          "startElapsedMs": 1000,
+          "startSourceRow": 3,
+          "wrapped": false
+        }
+      ],
+      "coverage": 1,
+      "gapSourceRows": [],
+      "intervalRateUnit": "frames/s",
+      "missingReasons": [],
+      "observedDurationMs": 5000,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 3,
+      "status": "complete",
+      "usableSampleCount": 3,
+      "usableSourceRows": [
+        2,
+        3,
+        4
+      ],
+      "value": 200,
+      "warnings": []
+    }
+  },
+  "explanation": "Deltas 100 and 100 over 1s and 4s give interval rates 100 and 25. Total 200/5s = 40 frames/s; unweighted 62.5 is wrong.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 0
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 100
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:05+00:00",
+      "elapsedMs": 5000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 4,
+      "value": 200
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 5000,
+    "startMs": 0
+  }
+}

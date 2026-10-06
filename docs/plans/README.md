@@ -24,6 +24,9 @@
 - [`MEASUREMENT_INSPECTION.md`](../measurement/MEASUREMENT_INSPECTION.md) documents
   diagnostic migration classifications, report privacy and the inspection CLI.
 
+- [`ARITHMETIC_FIXTURES.md`](../measurement/ARITHMETIC_FIXTURES.md) describes
+  independent synthetic expectations, fixture provenance and no-write drift checks.
+
 When the active slice closes, archive its verified results in the appropriate
 technical closeout document and replace the next-slice plan. Do not turn the
 full roadmap into a running implementation checklist.

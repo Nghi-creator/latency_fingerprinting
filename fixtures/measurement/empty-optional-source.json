@@ -1,0 +1,42 @@
+{
+  "caseId": "empty-optional-source",
+  "expectedSummaries": {
+    "encoder.queue_level_buffers": {
+      "acceptedIntervalCount": 0,
+      "aggregates": {},
+      "cadenceMaximumMs": null,
+      "cadenceMedianMs": null,
+      "cadenceMinimumMs": null,
+      "counterIntervals": [],
+      "coverage": 0,
+      "gapSourceRows": [],
+      "intervalRateUnit": null,
+      "missingReasons": [
+        "source has no supplied rows"
+      ],
+      "observedDurationMs": 0,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 0,
+      "status": "missing",
+      "usableSampleCount": 0,
+      "usableSourceRows": [],
+      "value": null,
+      "warnings": []
+    }
+  },
+  "explanation": "An absent optional encoder source has no samples or numeric summary. Its absence reason stays explicit; nothing becomes zero.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": "source has no supplied rows",
+  "window": {
+    "endMs": 10000,
+    "startMs": 0
+  }
+}

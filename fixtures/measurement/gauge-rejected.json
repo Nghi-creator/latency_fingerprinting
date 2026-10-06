@@ -1,0 +1,100 @@
+{
+  "caseId": "gauge-rejected",
+  "expectedSummaries": {
+    "transport.jitter_ms": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "maximum": 50,
+        "median": 30,
+        "minimum": 10,
+        "nearest_rank_p95": 50
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [],
+      "coverage": 0.5,
+      "gapSourceRows": [],
+      "intervalRateUnit": null,
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [
+        "synthetic malformed numeric cell"
+      ],
+      "resetSourceRows": [],
+      "sourceSampleCount": 5,
+      "status": "incomplete",
+      "usableSampleCount": 4,
+      "usableSourceRows": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "value": 30,
+      "warnings": [
+        "Gauge interval coverage is incomplete; values are not extrapolated."
+      ]
+    }
+  },
+  "explanation": "Usable 10,20,40,50: median (20+40)/2=30, P95 50. Only pairs 2->3 and 5->6 support 2s of a 4s window; no gap bridge.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 10
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 20
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": "synthetic malformed numeric cell",
+      "sourceRow": 4,
+      "value": null
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:03+00:00",
+      "elapsedMs": 3000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 5,
+      "value": 40
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:04+00:00",
+      "elapsedMs": 4000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 6,
+      "value": 50
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 4000,
+    "startMs": 0
+  }
+}

@@ -107,5 +107,5 @@ pinned in [`test_inspection.py`](../../tests/measurement/test_inspection.py) and
 runs in both existing Python 3.11 and 3.13 CI suites. Local verification uses
 Python 3.13; cross-version execution is left to CI.
 
-Step 8 adds focused inspectable fixture series. The observation-v2 adoption slice
+[Step 8](ARITHMETIC_FIXTURES.md) implements focused inspectable fixture series. The observation-v2 adoption slice
 still requires a separate contract and matcher design decision.

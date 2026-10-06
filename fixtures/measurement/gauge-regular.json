@@ -1,0 +1,77 @@
+{
+  "caseId": "gauge-regular",
+  "expectedSummaries": {
+    "transport.jitter_ms": {
+      "acceptedIntervalCount": 2,
+      "aggregates": {
+        "maximum": 30,
+        "median": 20,
+        "minimum": 10,
+        "nearest_rank_p95": 30
+      },
+      "cadenceMaximumMs": 1000,
+      "cadenceMedianMs": 1000,
+      "cadenceMinimumMs": 1000,
+      "counterIntervals": [],
+      "coverage": 1,
+      "gapSourceRows": [],
+      "intervalRateUnit": null,
+      "missingReasons": [],
+      "observedDurationMs": 2000,
+      "rejectedReasonPrefixes": [],
+      "resetSourceRows": [],
+      "sourceSampleCount": 3,
+      "status": "complete",
+      "usableSampleCount": 3,
+      "usableSourceRows": [
+        2,
+        3,
+        4
+      ],
+      "value": 20,
+      "warnings": []
+    }
+  },
+  "explanation": "Sorted 10,20,30: median 20; nearest rank ceil(.95*3)=3 gives P95 30. Two supported one-second pairs cover 2s.",
+  "provenance": {
+    "controlledReal": false,
+    "kind": "synthetic",
+    "purpose": "offline arithmetic regression; not experimental evidence"
+  },
+  "registryVersion": "latency-metrics-v2.0.0",
+  "samples": [
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:00+00:00",
+      "elapsedMs": 0,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 2,
+      "value": 10
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:01+00:00",
+      "elapsedMs": 1000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 3,
+      "value": 20
+    },
+    {
+      "available": true,
+      "capturedAt": "2026-10-06T00:00:02+00:00",
+      "elapsedMs": 2000,
+      "missingReason": null,
+      "rejectionReason": null,
+      "sourceRow": 4,
+      "value": 30
+    }
+  ],
+  "schemaVersion": "measurement-arithmetic-fixture-v1",
+  "sourceMissingReason": null,
+  "window": {
+    "endMs": 2000,
+    "startMs": 0
+  }
+}

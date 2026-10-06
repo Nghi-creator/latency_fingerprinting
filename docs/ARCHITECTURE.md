@@ -67,7 +67,8 @@ Implemented: source-declared definitions -> strict registry -> schema/artifact e
              bounded bundle reader -> immutable raw timestamped samples
              registered gauge/counter aggregation -> immutable series summaries
              P0 comparison -> diagnostic shadow/migration report
-Planned:     focused fixtures, final verification and N1 closeout
+Verified:    independent synthetic arithmetic fixtures and read-only drift checks
+Planned:     final quality/CI integration and N1 closeout
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported
