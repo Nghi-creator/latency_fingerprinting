@@ -47,5 +47,31 @@ whitespace checks pass.
 
 ## Next action
 
-Implement Step 2's additive strict models/schema roots from the field contract.
+Step 2 is implemented below; the next action is Step 3 offline bundle adoption.
 Keep cross-version hosted verification pending until actual CI evidence is available.
+
+## Step 2 — Additive strict models and schemas
+
+**Starting commit:** `e98f228d14343ffc7e3f5c5903c7f821f5056f81`
+
+Implemented [strict v2 models](OBSERVATION_V2_MODELS.md) in separate common/support,
+window and pair modules. Two new schema roots and additive `validate` dispatch
+enforce trusted registry binding, exact output inventory/meaning, immutable nested
+context/settings, typed support, clock bounds, counter rate/total evidence,
+recorded-intervention compatibility, safe diagnostics and unavailable-only timing.
+The field specification's design revision 1.0.1 makes the implemented cross-field
+clarifications explicit without altering registry meaning or P0/N1 contracts.
+
+The 168 new synthetic contract cases include root/file/CLI round trips, schema
+conformance, duplicate keys, missing/null/zero distinctions, strict finite numbers,
+privacy, counter reconstruction, incompatible pairs and P0 command isolation.
+Final local result: **1,092 tests pass; 92.60% branch-inclusive coverage** on
+Python 3.13.13 at the unchanged 85% floor. Ruff lint/format, all six schema checks,
+canonical registry, both fixture sets, registry/report pins, five controlled P0
+artifacts, run-001 seed and exact run-002 match reproduction pass. Installed
+dependencies, local Markdown links and diff whitespace checks pass.
+
+Protected P0/N1 artifacts and numerical source are unchanged against the starting
+commit. Schema generation wrote only the two new schema files. No raw-bundle v2
+importer, normalized response, matcher adoption or new experiment is included.
+Python 3.11/hosted CI verification remains pending.

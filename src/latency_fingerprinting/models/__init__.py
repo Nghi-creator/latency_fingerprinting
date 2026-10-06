@@ -1,4 +1,4 @@
-"""Public P0 and N1 contract model API.
+"""Public P0, N1 and additive N2 contract model API.
 
 Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
@@ -118,6 +118,8 @@ from .measurement import (
     MetricUnit,
     MissingDataPolicy,
 )
+from .observation_pair_v2 import InterventionV2, ObservationRecordV2
+from .observation_v2 import MetricMeasurement, ObservationWindowV2
 from .response import (
     FeatureDelta,
     NormalizedFeature,
@@ -126,3 +128,38 @@ from .response import (
     Probe,
     ResponseDelta,
 )
+from .v2_common import (
+    OBSERVATION_V2_SCHEMA_VERSION,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION,
+    V2_CONTRACT_VERSION,
+    CaptureMethodReference,
+    RegistryReference,
+    SourceArtifactV2,
+    V2ContextSnapshot,
+)
+from .v2_support import (
+    MetricSupport,
+    SourceSupport,
+    StageTiming,
+    WindowClock,
+    WindowValidityV2,
+)
+
+__all__ += [
+    "V2_CONTRACT_VERSION",
+    "OBSERVATION_V2_SCHEMA_VERSION",
+    "OBSERVATION_WINDOW_V2_SCHEMA_VERSION",
+    "ObservationWindowV2",
+    "ObservationRecordV2",
+    "InterventionV2",
+    "MetricMeasurement",
+    "V2ContextSnapshot",
+    "RegistryReference",
+    "CaptureMethodReference",
+    "SourceArtifactV2",
+    "SourceSupport",
+    "MetricSupport",
+    "StageTiming",
+    "WindowClock",
+    "WindowValidityV2",
+]

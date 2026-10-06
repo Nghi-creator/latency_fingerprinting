@@ -1,4 +1,4 @@
-"""Command-line interface for the offline analytical and N1 registry workflows."""
+"""Offline P0 analysis, N1 diagnostics and additive N2 contract validation."""
 
 from __future__ import annotations
 
@@ -27,12 +27,16 @@ from .models import (
     MATCH_RESULT_SCHEMA_VERSION,
     METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
+    OBSERVATION_V2_SCHEMA_VERSION,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION,
     ContextKey,
     Fingerprint,
     MatchResult,
     MetricRegistry,
     ObservationRecord,
+    ObservationRecordV2,
     ObservationWindow,
+    ObservationWindowV2,
     Probe,
     ProvenanceKind,
     WindowPhase,
@@ -48,6 +52,8 @@ ROOT_MODELS: dict[str, type[BaseModel]] = {
     FINGERPRINT_SCHEMA_VERSION: Fingerprint,
     MATCH_RESULT_SCHEMA_VERSION: MatchResult,
     METRIC_REGISTRY_SCHEMA_VERSION: MetricRegistry,
+    OBSERVATION_V2_SCHEMA_VERSION: ObservationRecordV2,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION: ObservationWindowV2,
 }
 
 

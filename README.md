@@ -104,8 +104,10 @@ verification and N2 contract gaps.
 
 N2 has started with baseline verification and the
 [observation-v2 field specification](docs/measurement/OBSERVATION_V2_CONTRACT.md).
-The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) distinguishes
-this completed design step from the runtime models/schemas still to be implemented.
+Its [strict models and additive schemas](docs/measurement/OBSERVATION_V2_MODELS.md)
+are implemented, with **1,092 tests passing and 92.60% branch-inclusive coverage**.
+The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) separates
+completed contract validation from the raw-bundle adoption path coming next.
 
 ### Implemented and verified
 

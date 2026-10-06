@@ -1,8 +1,8 @@
 # N2 observation-v2 field contract
 
-**Design version:** 1.0.0
+**Design version:** 1.0.1
 **Frozen for Step 2:** 2026-10-06
-**Status:** Specification only; models, schemas and adoption commands are not implemented
+**Status:** Strict models and additive schemas implemented in Step 2; adoption is Step 3
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and
@@ -66,6 +66,8 @@ for absent sources. Unknown names, omitted outputs and duplicate JSON keys fail.
 For non-negative definitions every published aggregate must be non-negative;
 gauge min/median/P95/max values must be ordered where present. Retain N1 internal
 count, coverage, interval, rate and aggregate reconstruction checks.
+Canonical `reject_segment` transitions cannot appear as accepted reset/wrap
+intervals. Rate/total pairs must also agree on status and missing/rejected evidence.
 
 ## Standalone window
 
@@ -266,6 +268,8 @@ a documented estimation method with the same stage meaning, never an unlabeled p
 Value-bearing records require an explicitly allowlisted method/version and its
 documented local clock domain/source; no such methods are approved in initial N2.
 Consequently only unavailable records or an empty tuple can be adopted now.
+An unavailable timing reason of unsupported_source/source_unavailable must agree
+with the typed support state of its declared source.
 Future measured/estimated methods require producer evidence, reviewed meaning,
 validation fixtures and a contract-method allowlist extension before population.
 
@@ -304,3 +308,8 @@ Existing P0/N1 schema, fixture, registry/report and exact match gates remain req
 
 Specification changes during Step 2 must be explicit revisions to this document;
 do not resolve field ambiguity by silently changing a frozen v1/N1 meaning.
+
+Design 1.0.1 records Step 2's explicit cross-validation clarifications for canonical
+reset rejection, rate/total status/reasons and unavailable timing/source agreement.
+It adds no fields or registry meanings. Runtime behavior and construction are in
+the [model guide](OBSERVATION_V2_MODELS.md).

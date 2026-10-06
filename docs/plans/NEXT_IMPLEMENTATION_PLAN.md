@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Additive Observation-v2 Adoption
 
 **Slice ID:** N2
-**Status:** Started; Step 0 locally verified, Step 1 field contract specified; Step 2 pending
+**Status:** Steps 0–2 locally complete; Step 3 offline adoption next
 **Updated:** 2026-10-06
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
@@ -11,7 +11,8 @@ results remain pending; review those results before claiming cross-version
 release verification. The [archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed software checklist. N2's baseline and field specification
 are recorded in [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md).
-No observation-v2 runtime model or matcher is implemented yet.
+Strict observation-v2 models/schemas are implemented; raw-bundle adoption and
+v2 matching are not implemented yet.
 
 ## Outcome and boundary
 
@@ -44,7 +45,8 @@ Gate: no new contract work silently changes N1 definitions or P0 artifacts.
 
 **Specification gate:** Complete in
 [OBSERVATION_V2_CONTRACT.md](../measurement/OBSERVATION_V2_CONTRACT.md),
-design version 1.0.0. Runtime enforcement begins in Step 2.
+design version 1.0.0, clarified as 1.0.1 during Step 2. Runtime enforcement is
+documented in the [model guide](../measurement/OBSERVATION_V2_MODELS.md).
 
 Document the field-level design before implementation, using the
 [N1 inventory](../measurement/METRIC_SEMANTICS_V2.md) and
@@ -69,6 +71,10 @@ Gate: the schema proposal distinguishes every N1 state, unit and provenance limi
 and identifies which timing fields are measured, estimated or unavailable.
 
 ## Step 2 — Implement additive strict models and schemas
+
+**Local gate:** Complete. Two additive schema roots, immutable strict models and
+CLI root validation pass 168 new contract cases. Full suite: 1,092 tests and
+92.60% branch-inclusive coverage; frozen reproduction checks pass.
 
 Add new v2 modules and exports without editing the frozen v1 root contracts.
 Validate finite values, bounds, registry hashes/version agreement, summary metadata,
@@ -128,8 +134,8 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 ## Exit checklist
 
 - [x] V2 roots and field semantics are specified, locally reviewed and separately versioned.
-- [ ] Registry, capture method and clock provenance are explicit and validated.
-- [ ] Missing/rejected/incomplete/zero states and audit totals remain distinct.
+- [x] Registry, capture method and clock provenance are explicit and validated.
+- [x] Missing/rejected/incomplete/zero states and audit totals remain distinct.
 - [ ] Raw bundles produce deterministic additive v2 records without rewriting v1.
 - [ ] Frozen P0 counter aggregates are never silently upgraded.
 - [ ] Timing/support representation makes no unsupported per-frame or one-way claim.
@@ -137,6 +143,6 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 - [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
 - [ ] Documentation and N2 software closeout match delivered behavior.
 
-The next implementation action is Step 2: additive strict v2 models and schemas.
-Step 0 local baseline verification and Step 1 field specification are complete;
-hosted verification remains pending. No N2 implementation is included in N1 closeout.
+The next implementation action is Step 3: deterministic offline raw-bundle adoption.
+Steps 0–2 are locally complete; hosted verification remains pending. No N2
+implementation is included in the historical N1 closeout.
