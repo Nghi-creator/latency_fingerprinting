@@ -1,4 +1,4 @@
-"""Command-line interface for the offline analytical and N1 registry workflows."""
+"""Offline P0 analysis, N1 diagnostics and additive N2 contract validation."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from typing import Any, TypeVar
 from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
+from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
@@ -27,12 +28,16 @@ from .models import (
     MATCH_RESULT_SCHEMA_VERSION,
     METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
+    OBSERVATION_V2_SCHEMA_VERSION,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION,
     ContextKey,
     Fingerprint,
     MatchResult,
     MetricRegistry,
     ObservationRecord,
+    ObservationRecordV2,
     ObservationWindow,
+    ObservationWindowV2,
     Probe,
     ProvenanceKind,
     WindowPhase,
@@ -48,6 +53,8 @@ ROOT_MODELS: dict[str, type[BaseModel]] = {
     FINGERPRINT_SCHEMA_VERSION: Fingerprint,
     MATCH_RESULT_SCHEMA_VERSION: MatchResult,
     METRIC_REGISTRY_SCHEMA_VERSION: MetricRegistry,
+    OBSERVATION_V2_SCHEMA_VERSION: ObservationRecordV2,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION: ObservationWindowV2,
 }
 
 
@@ -152,6 +159,18 @@ def _match(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(result))
 
 
+def _ingest_pixelated_v2(args: argparse.Namespace) -> None:
+    window = ingest_pixelated_v2(
+        args.bundle,
+        context=_load_model(args.context, ContextKey),
+        phase=WindowPhase(args.phase),
+        comparison_case_id=args.comparison_case_id,
+        provenance=ProvenanceKind(args.provenance),
+        confounder_codes=args.confounder_code,
+    )
+    sys.stdout.write(canonical_json(window))
+
+
 def _inspect_measurements(args: argparse.Namespace) -> None:
     report = inspect_measurements(
         args.bundle,
@@ -167,11 +186,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Run the offline P0 pipeline and inspect N1 registry and measurement reports.",
+        description="Offline P0 analysis, N1 diagnostics and additive N2 adoption.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    validate = subparsers.add_parser("validate", help="validate a P0 root record or N1 registry")
+    validate = subparsers.add_parser("validate", help="validate a P0/N2 root record or N1 registry")
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)
 
@@ -236,6 +255,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="record one known confounder; may be repeated",
     )
     ingest.set_defaults(handler=_ingest_pixelated)
+
+    adopt = subparsers.add_parser(
+        "ingest-pixelated-v2", help="adopt raw evidence as an additive v2 window"
+    )
+    adopt.add_argument("bundle", type=Path)
+    adopt.add_argument("--context", type=Path, required=True)
+    adopt.add_argument("--phase", choices=[phase.value for phase in WindowPhase], required=True)
+    adopt.add_argument("--comparison-case-id", required=True)
+    adopt.add_argument(
+        "--provenance", choices=["controlled_real", "organic_real"], default="controlled_real"
+    )
+    adopt.add_argument(
+        "--confounder-code",
+        action="append",
+        default=[],
+        choices=["composite_profile_change", "other_setting_change", "operator_declared"],
+    )
+    adopt.set_defaults(handler=_ingest_pixelated_v2)
 
     match = subparsers.add_parser("match", help="match an observation to fingerprints")
     match.add_argument("observation", type=Path)

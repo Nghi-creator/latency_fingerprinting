@@ -1,4 +1,4 @@
-"""Deterministic JSON Schema generation for P0 roots and the N1 registry."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2 roots."""
 
 from __future__ import annotations
 
@@ -12,7 +12,14 @@ from typing import TypeAlias
 
 from pydantic import BaseModel
 
-from .models import Fingerprint, MatchResult, MetricRegistry, ObservationRecord
+from .models import (
+    Fingerprint,
+    MatchResult,
+    MetricRegistry,
+    ObservationRecord,
+    ObservationRecordV2,
+    ObservationWindowV2,
+)
 
 SchemaModel: TypeAlias = type[BaseModel]
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -23,6 +30,8 @@ SCHEMA_MODELS: Mapping[str, SchemaModel] = {
     "fingerprint-v1.schema.json": Fingerprint,
     "match-result-v1.schema.json": MatchResult,
     "metric-registry-v1.schema.json": MetricRegistry,
+    "observation-window-v2.schema.json": ObservationWindowV2,
+    "observation-v2.schema.json": ObservationRecordV2,
 }
 
 

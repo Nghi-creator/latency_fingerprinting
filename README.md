@@ -94,13 +94,33 @@ in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover both CI Python versions,
 branch coverage and pinned registry/report reproduction. [N1 software closeout](docs/measurement/N1_SOFTWARE_CLOSEOUT.md)
 is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
-Python 3.11 and hosted CI verification remain pending. The next slice is additive
-observation-v2 contract/adoption; v2 features are not production matcher inputs.
+Python 3.11 and hosted CI verification remain pending. N2 observation-v2 adoption
+is now delivered separately below; v2 features are not production matcher inputs.
 
 The [post-N1 architecture audit](docs/measurement/ARCHITECTURE_AUDIT.md) adds
 summary validation and scaling fixes plus adapter boundary tests: **924 tests
 pass with 91.89% branch-inclusive coverage**. It also records remaining
 verification and N2 contract gaps.
+
+N2 delivers the
+[observation-v2 field specification](docs/measurement/OBSERVATION_V2_CONTRACT.md).
+Its [strict models and additive schemas](docs/measurement/OBSERVATION_V2_MODELS.md)
+are implemented, with **1,092 tests passing and 92.60% branch-inclusive coverage**.
+The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) preserves
+verification at each milestone. The
+[offline raw-bundle adoption command](docs/measurement/OBSERVATION_V2_ADOPTION.md)
+now includes explicit unavailable capture/encode/decode/render timing records:
+**1,166 tests pass, 93.05% branch-inclusive coverage**.
+[Deterministic v2 fixtures and reproduction gates](docs/measurement/OBSERVATION_V2_FIXTURES.md)
+are delivered in both configured Python CI jobs. [N2 software closeout](docs/measurement/N2_SOFTWARE_CLOSEOUT.md)
+is complete locally; P0/N1 pins remain unchanged. Actual Python 3.11/hosted results
+remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDIT.md)
+repairs reused-summary validation, synthetic artifact identity and documentation
+test scope. The active [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
+now covers feature-policy design, v2 responses/normalization, fingerprints and
+offline matching. N3 is planned; its runtime implementation has not started. The
+[archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
+the completed checklist and pending hosted verification.
 
 ### Implemented and verified
 

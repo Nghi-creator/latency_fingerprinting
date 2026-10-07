@@ -6,6 +6,7 @@ from .pixelated_measurement_samples import (
     PixelatedMeasurementSamples,
     load_pixelated_measurement_samples,
 )
+from .pixelated_observation_v2 import ingest_pixelated_v2
 
 __all__ = [
     "PixelatedBundleError",
@@ -13,4 +14,5 @@ __all__ = [
     "MetricSampleSeries",
     "PixelatedMeasurementSamples",
     "load_pixelated_measurement_samples",
+    "ingest_pixelated_v2",
 ]

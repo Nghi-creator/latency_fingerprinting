@@ -71,16 +71,16 @@ Verified:    independent synthetic arithmetic fixtures and read-only drift check
 Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
 Closed out:  N1 software implementation and local verification
 Pending:     Python 3.11 and hosted CI verification
-Next:        additive observation-v2 contract/offline adoption
+Successor:   N2 additive observation-v2 contract/offline adoption (delivered below)
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported
 elapsed timestamps retain their wall-clock-derived limitation; a registry clock
-label does not assert verified monotonic capture. No observation-v2 root, live
-instrumentation or matcher adoption is included. The implemented boundary and
-next step are documented in the
+label does not assert verified monotonic capture. N1 includes no observation-v2
+root, live instrumentation or matcher adoption. The implemented N1 boundary and
+historical successor are documented in the
 [`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
-[`next-slice plan`](plans/NEXT_IMPLEMENTATION_PLAN.md).
+[archived N2 plan](plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 
 The implemented module dependencies are shown below. The inspection layer joins
 the two paths for comparison; it does not feed N1 summaries into the P0 matcher.
@@ -102,6 +102,32 @@ flowchart TD
 
 See the [post-N1 architecture audit](measurement/ARCHITECTURE_AUDIT.md) for
 validation fixes, file-size review and remaining verification gaps.
+
+## N2 additive contracts
+
+N2 Steps 0–5 add strict `observation-window-v2` and `observation-v2` roots,
+trusted registry binding, typed support, immutable context/settings, local clock
+provenance, paired intervention compatibility and unavailable-only stage timing.
+`validate` and schema exports support these roots. Their models are separate from
+frozen v1 contracts; P0 response construction and matching reject v2 inputs.
+`ingest-pixelated-v2` adopts raw evidence using N1 extraction/aggregation and
+opt-in metadata from one validated read. The pure
+[stage timing helper](../src/latency_fingerprinting/measurement/stage_timing.py)
+populates four unavailable records from typed source support; existing means and
+proxies remain separate metrics. Three deterministic software fixtures and pinned
+read-only reproduction are configured in both Python CI jobs. Local software
+[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution and
+v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries. See the
+[field contract](measurement/OBSERVATION_V2_CONTRACT.md),
+[model guide](measurement/OBSERVATION_V2_MODELS.md) and
+[adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
+[N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
+[post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
+hardening, fixture provenance corrections and current whole-tree verification.
+The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+feature-policy, response, normalization, fingerprint and matching modules with
+explicit compatibility and conservative evidence rules. These analytical modules
+and commands are planned, not implemented; P0 remains the current matching path.
 
 ## Target system overview
 
@@ -135,6 +161,8 @@ latency-fingerprinting/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json
 │   ├── match-result-v1.schema.json
+│   ├── observation-window-v2.schema.json
+│   ├── observation-v2.schema.json
 │   ├── metric-registry-v1.schema.json
 │   └── metric-registry-v1.json
 ├── src/latency_fingerprinting/
@@ -144,6 +172,10 @@ latency-fingerprinting/
 │   │   ├── response.py
 │   │   ├── fingerprint.py
 │   │   ├── measurement.py
+│   │   ├── v2_common.py
+│   │   ├── v2_support.py
+│   │   ├── observation_v2.py
+│   │   ├── observation_pair_v2.py
 │   │   └── match.py
 │   ├── validation.py
 │   ├── windows.py
@@ -151,6 +183,7 @@ latency-fingerprinting/
 │   │   ├── aggregation.py
 │   │   ├── feature_config.py
 │   │   ├── metric_registry.py
+│   │   ├── stage_timing.py
 │   │   └── p0_feature_config.py
 │   ├── normalization.py
 │   ├── measurement_inspection.py
@@ -178,9 +211,12 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_io.py
 │       ├── pixelated_bundle_metrics.py
 │       ├── pixelated_measurement_samples.py
+│       ├── pixelated_adoption_metadata.py
+│       ├── pixelated_observation_v2.py
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── observation-v2/
 │   ├── reference_cases/
 │   │   ├── healthy/
 │   │   ├── network_pressure/
@@ -200,6 +236,7 @@ latency-fingerprinting/
     ├── data/
     ├── measurement/
     ├── models/
+    ├── observation_v2/
     └── pixelated/
 ```
 

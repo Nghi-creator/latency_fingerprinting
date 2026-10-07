@@ -2,11 +2,13 @@
 
 [`adapters/pixelated_measurement_samples.py`](../../src/latency_fingerprinting/adapters/pixelated_measurement_samples.py)
 provides `load_pixelated_measurement_samples(bundle_path, *, phase,
-comparison_case_id, context)`. It reads one directory/TAR bundle and returns
+comparison_case_id, context, include_adoption_metadata=False)`. It reads one directory/TAR bundle and returns
 `PixelatedMeasurementSamples` containing one `MetricSampleSeries` for every
 canonical output. The API is exported from the adapters package. This extraction
 boundary computes no metric rate, total, delta, percentile, normalization or
-matcher feature. No new inspection CLI is added in Step 4.
+matcher feature. The optional N2 flag retains a typed immutable metadata snapshot
+from the same validated read; default callers receive `adoption=None` and unchanged
+sample/report behavior. See [N2 adoption](OBSERVATION_V2_ADOPTION.md).
 
 ## Safe input and clock validation
 
@@ -65,7 +67,8 @@ audit provenance and distinguish unusable states.
 V1 absent engine sources and the allowed header-only optional engine source in
 v2 return empty tuples with explicit series missing reasons. Other missing/rejected
 values keep elapsed/UTC time and row identity, exposing continuity breaks for the
-later counter engine. Extraction does not bridge gaps or choose reset behavior.
+[counter engine](COUNTER_AGGREGATION.md). Extraction does not bridge gaps or
+choose reset behavior.
 
 Clock provenance is `wall_clock_derived_elapsed`, with an explicit warning that
 monotonic capture is unverified. Increasing exported elapsed values do not prove

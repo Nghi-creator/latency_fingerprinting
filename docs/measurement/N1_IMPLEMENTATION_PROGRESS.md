@@ -421,9 +421,10 @@ boundary; Python 3.11 and hosted CI verification remain separately pending.
 
 The [N1 plan archive](../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed checklist with that verification qualification.
-[`NEXT_IMPLEMENTATION_PLAN.md`](../plans/NEXT_IMPLEMENTATION_PLAN.md) now prepares
-N2 additive observation-v2 contract/offline adoption; implementation has not
-started. README, architecture, authoritative inventory, local guides and roadmap
+At this milestone, the plan prepared N2 additive observation-v2 contract/offline
+adoption and implementation had not started. That sequence is now preserved in
+the [N2 plan archive](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md); the
+[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has since advanced to N3. README, architecture, authoritative inventory, local guides and roadmap
 navigation match the delivered N1 boundary. Historical milestone entries remain
 intact as records of what was pending at each step.
 

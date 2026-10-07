@@ -1,132 +1,186 @@
-# Next Slice Implementation Plan: Additive Observation-v2 Adoption
+# Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
-**Slice ID:** N2
+**Slice ID:** N3
 **Status:** Planned; implementation has not started
-**Updated:** 2026-10-06
+**Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
-**Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
+**Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
+**Archived predecessor plan:** [N2 observation-v2 adoption](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
 
-N1 Steps 0–10 are implemented and locally verified. Its Python 3.11/hosted CI
-results remain pending; review those results before claiming cross-version
-release verification. The [archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
-preserves the completed software checklist. This plan prepares the next slice;
-it does not declare any observation-v2 model or matcher implemented.
+N1 measurement semantics and N2 observation-v2 adoption are implemented and
+locally verified. The [post-N2 audit](../measurement/N2_ARCHITECTURE_AUDIT.md)
+records the current baseline: 1,166 passing tests and 93.05% branch-inclusive
+coverage. Actual Python 3.11/hosted verification remains pending. This document
+plans the next software slice; v2 analytical models, normalization, fingerprints,
+matching and commands are not yet implemented.
 
 ## Outcome and boundary
 
-Adopt the frozen N1 measurement registry in an additive observation-v2 contract
-and offline bundle-to-record path. Retain metric meaning, units, versions, source
-support, interval evidence, coverage and clock provenance in validated records.
-Define the smallest useful optional stage-local timing/support representation
-before adding new capture measurements. Missing timing must remain explicit.
+Connect validated `ObservationRecordV2` pairs to an explicitly versioned feature
+policy, auditable response calculation and separate offline fingerprint/matching
+path. Carry registry, feature-policy, context and intervention identities through
+the calculation so incompatible evidence cannot be compared silently.
 
-P0 models, schemas, feature configuration, controlled artifacts and match outputs
-remain frozen. N2 will not relabel P0 counter medians, change existing matcher
-inputs, invent normalization, execute live probes/remediation or introduce new
-runtime instrumentation. Fingerprint/matcher-v2 adoption and scientific validation
-remain separate boundaries after records have stable contracts.
+Preserve P0 models, commands, numerical behavior, schemas and controlled results.
+Preserve N1 registry release meaning and N2 observation roots/adoption bytes.
+N2 observations remain immutable inputs; analytical results belong in separate
+contracts rather than adding response fields to the frozen observation schema.
 
-## Step 0 — Preserve the N1 baseline
+N3 adds no live probe/remediation, direct timing instrumentation, training service
+or new experiment. Stage timings remain unavailable and audit totals remain audit
+evidence. Synthetic matches verify software, not diagnosis accuracy, calibrated
+confidence or real relief efficacy.
 
-- Review hosted CI results when available and resolve any N1 regressions separately.
-- Record the starting commit and reproduce all [N1 quality gates](../measurement/QUALITY_GATES.md).
-- Retain the registry/report hashes and P0 controlled-run byte checks.
-- Preserve the distinction between local software verification and remote CI results.
+## Step 0 — Preserve and reproduce the N2 baseline
 
-Gate: no new contract work silently changes N1 definitions or P0 artifacts.
+Record the starting commit and checkout state. Reproduce the
+[quality gates](../measurement/QUALITY_GATES.md): six current schemas, three fixture
+families, N1 registry/report pins, N2 snapshot pins and exact P0 controlled match
+bytes. Retain the unchanged 85% branch-inclusive coverage floor. Track actual
+hosted/minimum-version execution separately; unresolved CI failures must not be
+presented as a successful release gate.
 
-## Step 1 — Freeze the observation-v2 field contract
+Gate: record a reproducible local baseline and pending verification without
+rewriting frozen artifacts to make checks pass.
 
-Document the field-level design before implementation, using the
-[N1 inventory](../measurement/METRIC_SEMANTICS_V2.md) and
-[summary guides](../measurement/COUNTER_AGGREGATION.md) as the semantic source.
-The design must specify:
+## Step 1 — Freeze the analytical and matching field contract
 
-- explicit new schema versions for v2 window and observation roots;
-- registry version and content hash, definition semantic versions and source identity;
-- required clock basis/provenance, elapsed bounds, capture-method version and support state;
-- per-metric summaries with available values, missing/rejected/incomplete states,
-  accepted duration/coverage, interval evidence and safe reasons;
-- analytical rate outputs versus audit-only totals, without treating absence as zero;
-- degraded/relief pair identity and compatibility rules separate from frozen v1 rules;
-- whether records embed definitions or reference a separately verified registry snapshot;
-- an explicit optional stage-local timing/support shape and privacy policy.
+Author the field-level N3 design before runtime implementation. Use the
+[metric inventory](../measurement/METRIC_SEMANTICS_V2.md),
+[registry](../measurement/CANONICAL_REGISTRY.md) and
+[N2 contract](../measurement/OBSERVATION_V2_CONTRACT.md) as the source of meaning.
+Specify:
 
-Specify how incompatible registry meanings fail validation. Do not silently
-compare v1 median deltas with v2 rates, nor assign v2 normalization parameters
-without a separately reviewed feature/adoption contract.
+- An explicit feature inventory binding each selected metric to registry
+  version/hash, definition version, unit and primary aggregation.
+- A separately versioned feature-policy identity/content hash, including response
+  direction, normalization formula/reference, numerical floors, clipping, weights
+  and feature/window eligibility rules.
+- Treatment of support, missing/rejected/incomplete summaries, minimum coverage,
+  usable evidence, zero values and confounders. Retain explicit exclusions or
+  invalidity; never replace absent evidence with zeros.
+- A standalone analytical response contract, plus proposed `fingerprint-v2` and
+  `match-result-v2` roots. Freeze exact names, independent versions, embedded versus
+  referenced evidence and cross-validation rules in this step.
+- Fingerprint provenance, source pair references, declared labels/validation status,
+  context/probe compatibility and eligibility for analytical comparison.
+- Shared-feature/positive-weight requirements, distance, residual evidence,
+  deterministic ranking/ties, rejection reasons and conservative `unknown`
+  outcomes. Distinguish invalid configuration from insufficient evidence.
+- Explicit v1/v2 rejection: no silent renaming, normalization or comparison of v1
+  fingerprints/P0 counter aggregates as v2 evidence.
 
-Gate: the schema proposal distinguishes every N1 state, unit and provenance limit
-and identifies which timing fields are measured, estimated or unavailable.
+Floors, clipping, coverage limits, weights and decision thresholds must belong to
+an explicit named/versioned policy with stated provenance. Do not inherit P0
+constants by feature-name coincidence or describe chosen software parameters as
+experimentally calibrated. Enumerate the proposed policy and independently
+auditable examples; settle these choices before Step 2 consumes them.
 
-## Step 2 — Implement additive strict models and schemas
+Gate: every published number and decision has a specified, testable meaning.
+Exclude audit totals, unsupported proxies and unavailable stages from features.
 
-Add new v2 modules and exports without editing the frozen v1 root contracts.
-Validate finite values, bounds, registry hashes/version agreement, summary metadata,
-source support, metric uniqueness, counter reconstruction and pair compatibility.
-Generate new schema files additively and include no-write drift checks.
+## Step 2 — Implement strict policy and analytical response models
 
-Tests must cover null/missing/zero distinctions, wrong units/versions, altered
-registry hashes, duplicate metric names and JSON keys, impossible duration/coverage,
-incompatible pairs, non-finite/overflow values, immutable metadata and round trips.
+Add separate immutable analytical modules and additive schemas from Step 1.
+Validate policy version/hash agreement, registered bindings, units, finite numbers,
+unique features, eligibility/exclusion consistency and reconstructable response/
+normalization metadata. Revalidate supplied model instances and detach mutable
+caller containers at validated boundaries.
 
-Gate: malformed v2 records fail closed and all v1 schemas/artifacts remain identical.
+Keep policy loading local, bounded and duplicate-safe. Missing/unknown/altered
+policies fail explicitly; records cannot resolve supplied URLs or alter registry
+meaning. Add root validation without modifying existing v1/N2 roots.
 
-## Step 3 — Build the offline raw-bundle adoption path
+Gate: malformed records fail closed, valid zero remains numeric, and all existing
+schema bytes and reproduction pins remain unchanged.
 
-Reuse [N1 extraction](../measurement/SAMPLE_EXTRACTION.md) and pure aggregation.
-Build new v2 records only from validated raw evidence with an explicit context,
-phase and comparison case. Pin registry content and retain clock limitations.
-Make directory/TAR output deterministic and avoid ambient timestamps/identifiers.
+## Step 3 — Derive auditable responses from validated v2 pairs
 
-Expose a separate offline command after the root contract is reviewed. Existing
-`ingest-pixelated`, response building and matching keep their current v1 behavior.
-A frozen P0 aggregate alone cannot populate new counter rates/totals or coverage.
-The [migration report](../measurement/MEASUREMENT_INSPECTION.md) remains diagnostic;
-it is not a substitute input contract for adoption.
+Implement pure response/normalization functions taking `ObservationRecordV2` and
+an explicit policy. Retain degraded/relief primary values, raw response, normalized
+result, units, policy identity, support/coverage and exclusions required by Step 1.
 
-Gate: raw evidence reconstructs each published value; unavailable or rejected
-measurements cannot fabricate v2 values, and no v1 record is overwritten.
+Respect window elapsed/interval semantics. Never subtract cross-domain timestamps
+or turn totals into rates without raw intervals. Reuse scalar math only when its
+meaning matches the reviewed contract. Reject unrepresentable arithmetic; preserve
+zero/missing distinctions, input immutability and audit-only metric roles.
 
-## Step 4 — Add the minimum timing/support representation
+Gate: independent positive/negative/zero, low-denominator, clipping and partial/
+missing-support cases reconstruct responses. Equivalent counter activity at
+different valid cadence retains the same eligible rate.
 
-Start with declared clock provenance, observed interval duration and source
-support already present in N1. Define optional stage-local timing fields with
-explicit source, method, unit and clock domain. Populate them only when the
-producer supplies evidence matching the reviewed meaning.
+## Step 4 — Add v2 fingerprints and bounded repository loading
 
-Existing decode/buffer interval means and pipeline-delay proxies cannot become
-direct per-frame stage latency. Unsupported capture/encode/render timings stay
-unavailable, and no synchronized one-way latency claim is made. If a new timing
-meaning requires a metric definition, review and version that registry extension;
-do not alter the frozen `latency-metrics-v2.0.0` release in place.
+Implement the separately versioned fingerprint root and dedicated bounded loader.
+Bind policy/registry meaning, context and probe semantics to retained response and
+provenance. Validate that published features derive from declared evidence; retain
+explicit validation/exclusion metadata.
 
-Gate: every timing field has auditable measured/estimated/unavailable provenance.
-New capture instrumentation is a later slice rather than an implicit N2 dependency.
+Require declared labels and source evidence; never infer a real bottleneck label
+from similarity or mark synthetic fingerprints experimentally validated. Define
+read-only deterministic creation without ambient IDs or unrequested file writes.
+Reject duplicate IDs, malformed records and mixed roots under the reviewed policy.
 
-## Step 5 — Verify, document and close the offline contract slice
+Gate: altered vectors, incompatible meanings and false provenance claims fail;
+invalid files cannot silently become candidates.
 
-Keep both Python versions, the 85% branch floor, bounded-resource/CLI regression
-coverage and existing P0/N1 reproduction gates. Add focused v2 fixtures with
-explicit provenance, deterministic expected records and exact-byte drift checks.
-Verify privacy and unchanged input files, directory/TAR equality, raw-to-summary
-reconstruction, incompatible registry rejection and unchanged P0 match results.
+## Step 5 — Implement separate deterministic v2 matching and evidence
 
-Update the architecture, per-module guides, command documentation and a dedicated
-N2 software closeout. Record local versus hosted verification, remaining timing
-limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
+Add v2 compatibility, scoring and decision modules around the explicit policy.
+Filter by context, registry, policy and intervention meanings before comparing
+eligible shared features. Publish residuals, weights, exclusions and rejection
+reasons with reconstructable distances and reproducible ranking.
+
+Require positive usable weight and minimum evidence. Handle empty repositories,
+no compatible candidates, weak coverage, ambiguity, poor matches and contradictory
+evidence with specified `unknown` outcomes. Report similarity/decision evidence
+without implying calibrated causal confidence. Preserve the P0 matcher/defaults.
+
+Gate: independently calculated cases prove distance/evidence consistency, stable
+tie ordering and conservative decisions under incomplete/contradictory inputs.
+
+## Step 6 — Expose additive offline commands
+
+After contracts/functions pass, expose separate v2 response, fingerprint creation
+and matching commands. Freeze exact names/arguments in the command guide; require
+explicit local policies where needed. Retain existing `build-response`, `match`
+and ingestion behavior.
+
+Emit complete canonical JSON after validation. Preserve bounded file/repository
+traversal, privacy-limited reasons, deterministic errors and read-only inputs.
+Cover incompatible roots/policies, duplicate keys, byte/depth/file-count limits
+and no partial output on public command failures.
+
+Gate: CLI output equals pure API output; no implicit conversion/fallback admits
+wrong-version evidence.
+
+## Step 7 — Fixtures, verification, documentation and software closeout
+
+Add explicitly synthetic analytical/fingerprint/match fixtures with independently
+authored numerical expectations and exact-byte/SHA-256 drift checks. Cover both
+eligible and conservative-unknown paths. Preserve all P0/N1/N2 inputs/pins;
+new analytical snapshots have separate pins.
+
+Run both configured Python suites, coverage/resource/privacy checks, schema/policy/
+fixture drift and existing reproduction gates. Distinguish local execution from
+actual hosted results. Update README, architecture, module/command guides and a
+dedicated N3 closeout. Check the whole final tree, including fixture documentation
+created during closeout.
+
+Archive this plan when replacing it with a successor. Retain pending verification
+explicitly and keep scientific evaluation/new instrumentation separate.
 
 ## Exit checklist
 
-- [ ] V2 roots and field semantics are reviewed and separately versioned.
-- [ ] Registry, capture method and clock provenance are explicit and validated.
-- [ ] Missing/rejected/incomplete/zero states and audit totals remain distinct.
-- [ ] Raw bundles produce deterministic additive v2 records without rewriting v1.
-- [ ] Frozen P0 counter aggregates are never silently upgraded.
-- [ ] Timing/support representation makes no unsupported per-frame or one-way claim.
-- [ ] Both Python CI suites and resource, privacy and reproduction gates pass.
-- [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
-- [ ] Documentation and N2 software closeout match delivered behavior.
+- [ ] Baseline and frozen P0/N1/N2 reproduction checks are retained.
+- [ ] Feature inventory, policy parameters and compatibility meanings are specified.
+- [ ] Strict policy/response/fingerprint/match contracts and schemas are delivered.
+- [ ] Responses retain auditable values, support, coverage and exclusions.
+- [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
+- [ ] Separate commands preserve v1 behavior and bounded/read-only inputs.
+- [ ] Independent synthetic expectations and new pins reproduce exactly.
+- [ ] Whole-tree tests, docs and software closeout match delivered behavior.
+- [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 0 baseline verification followed by the
-Step 1 field-contract specification. No N2 implementation is included in N1 closeout.
+The first implementation action is Step 0 baseline reproduction, followed by the
+Step 1 analytical field/policy specification. N3 runtime implementation has not started.
