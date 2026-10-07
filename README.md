@@ -109,8 +109,9 @@ are implemented, with **1,092 tests passing and 92.60% branch-inclusive coverage
 The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) separates
 completed contract validation from subsequent N2 work. The
 [offline raw-bundle adoption command](docs/measurement/OBSERVATION_V2_ADOPTION.md)
-is now implemented: **1,127 tests pass, 92.91% branch-inclusive coverage**.
-Minimum timing/support population is next; P0/N1 pins remain unchanged.
+now includes explicit unavailable capture/encode/decode/render timing records:
+**1,140 tests pass, 92.93% branch-inclusive coverage**. V2 fixtures, reproduction
+gates and software closeout are next; P0/N1 pins remain unchanged.
 
 ### Implemented and verified
 

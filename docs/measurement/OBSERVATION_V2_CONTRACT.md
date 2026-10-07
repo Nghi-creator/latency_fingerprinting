@@ -1,8 +1,8 @@
 # N2 observation-v2 field contract
 
-**Design version:** 1.0.1
+**Design version:** 1.0.2
 **Frozen for Step 2:** 2026-10-06
-**Status:** Models/schemas and offline raw-bundle adoption implemented through Step 3
+**Status:** Models/schemas, offline raw-bundle adoption and unavailable stage timing implemented through Step 4
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and
@@ -268,6 +268,13 @@ a documented estimation method with the same stage meaning, never an unlabeled p
 Value-bearing records require an explicitly allowlisted method/version and its
 documented local clock domain/source; no such methods are approved in initial N2.
 Consequently only unavailable records or an empty tuple can be adopted now.
+Pixelated adoption populates all four stages in capture/encode/decode/render order:
+capture associates with engine runtime, encode with encoder pipeline, decode/render
+with browser WebRTC. Supported sources yield `not_instrumented`; unsupported sources
+yield `unsupported_source`; unavailable sources yield `source_unavailable`.
+These associations are potential evidence origins, not measured methods or clock
+claims. All evidence fields remain null and sample counts zero. Other model callers
+may still omit stage timings or supply a partial unavailable tuple.
 An unavailable timing reason of unsupported_source/source_unavailable must agree
 with the typed support state of its declared source.
 Future measured/estimated methods require producer evidence, reviewed meaning,
@@ -313,3 +320,7 @@ Design 1.0.1 records Step 2's explicit cross-validation clarifications for canon
 reset rejection, rate/total status/reasons and unavailable timing/source agreement.
 It adds no fields or registry meanings. Runtime behavior and construction are in
 the [model guide](OBSERVATION_V2_MODELS.md).
+
+Design 1.0.2 records Step 4's Pixelated stage/source associations and explicit
+unavailable population policy. Root contract versions, schemas and registry
+meaning are unchanged.

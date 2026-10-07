@@ -105,13 +105,16 @@ validation fixes, file-size review and remaining verification gaps.
 
 ## N2 additive contracts
 
-N2 Steps 0–3 add strict `observation-window-v2` and `observation-v2` roots,
+N2 Steps 0–4 add strict `observation-window-v2` and `observation-v2` roots,
 trusted registry binding, typed support, immutable context/settings, local clock
 provenance, paired intervention compatibility and unavailable-only stage timing.
 `validate` and schema exports support these roots. Their models are separate from
 frozen v1 contracts; P0 response construction and matching reject v2 inputs.
 `ingest-pixelated-v2` adopts raw evidence using N1 extraction/aggregation and
-opt-in metadata from one validated read. Step 4 timing population is next. See the
+opt-in metadata from one validated read. The pure
+[stage timing helper](../src/latency_fingerprinting/measurement/stage_timing.py)
+populates four unavailable records from typed source support; existing means and
+proxies remain separate metrics. Step 5 fixtures/reproduction/closeout is next. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus

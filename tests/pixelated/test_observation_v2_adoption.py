@@ -47,13 +47,24 @@ def test_adoption_is_deterministic_read_only_and_packaging_independent(
     assert first.window_id == f"pixelated-v2-{first.source_artifact.content_hash[7:]}-degraded"
     assert first.clock.domain_id == f"pixelated-{first.source_artifact.content_hash[7:]}"
     assert first.capture_method.producer_version is None
-    assert first.stage_timings == ()
+    assert len(first.stage_timings) == 4
+    assert all(
+        timing.state == "unavailable" and timing.value is None for timing in first.stage_timings
+    )
     assert first.clock.provenance == "wall_clock_derived_elapsed"
     assert len(first.measurements) == 31
     if version == 1:
+        assert tuple(t.reason_code for t in first.stage_timings) == (
+            "source_unavailable",
+            "source_unavailable",
+            "not_instrumented",
+            "not_instrumented",
+        )
         assert first.measurements["encoder.frames_out_rate_fps"].summary.value is None
         assert first.sources["engine_runtime"].state == "unavailable"
     else:
+        assert all(t.reason_code == "not_instrumented" for t in first.stage_timings)
+        assert first.measurements["client.decode_time_mean_ms"].summary.value > 0
         assert first.measurements["client.frames_decoded_rate_fps"].summary.value == 60
         assert first.measurements["client.frames_decoded_window_total"].summary.value == 600
         assert first.measurements["encoder.pipeline_delay_proxy_ms"].support.state == "unsupported"
@@ -113,6 +124,13 @@ def test_declarations_override_stale_browser_values(tmp_path, context_v2, state,
     assert not rate.summary.counter_intervals
     assert rate.summary.source_sample_count == 3 and rate.summary.usable_sample_count == 0
     assert model.validity.is_valid == (scope == "metric")
+    # A metric declaration cannot change the source's direct-stage capability.
+    expected_reason = (
+        ("unsupported_source" if state == "unsupported" else "source_unavailable")
+        if scope == "source"
+        else "not_instrumented"
+    )
+    assert tuple(t.reason_code for t in model.stage_timings[2:]) == (expected_reason,) * 2
 
 
 @pytest.mark.parametrize("cell", ["", "bad-secret", "-1", "NaN", "1e10000"])
@@ -190,6 +208,12 @@ def test_engine_gap_and_optional_header_only_sources(tmp_path, context_v2):
     model = adopt(bundle, context_v2)
     assert model.validity.is_valid
     assert model.measurements["encoder.frames_out_rate_fps"].support.state == "unsupported"
+    assert tuple(t.reason_code for t in model.stage_timings) == (
+        "source_unavailable",
+        "unsupported_source",
+        "not_instrumented",
+        "not_instrumented",
+    )
 
 
 @pytest.mark.parametrize("producer", [None, "producer-1.0"])

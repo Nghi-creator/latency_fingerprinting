@@ -47,7 +47,8 @@ whitespace checks pass.
 
 ## Next action
 
-Steps 2–3 are implemented below; the next action is Step 4 timing/support population.
+Steps 2–4 are implemented below; the next action is Step 5 fixtures, reproduction
+gates and N2 software closeout.
 Keep cross-version hosted verification pending until actual CI evidence is available.
 
 ## Step 2 — Additive strict models and schemas
@@ -102,3 +103,30 @@ behavior and pinned shadow output are preserved. Stage timings remain empty;
 Step 4 will populate explicit unavailable evidence. No new experiment, runtime
 instrumentation, normalization or matcher adoption is included. Hosted Python
 3.11/3.13 verification remains pending.
+
+## Step 4 — Explicit unavailable stage timing
+
+**Completed locally:** 2026-10-07
+**Starting commit:** `837573005014ae1ae5cc03d949a3f64d25925894`
+
+The pure stage timing helper populates four unavailable records in Pixelated
+adoption. Typed source support determines not_instrumented, unsupported_source or
+source_unavailable reasons; no mean/proxy, metric declaration or window clock is
+promoted into stage duration evidence. Values/methods/clock domains/statistics
+remain null, samples zero. Design revision 1.0.2 records the adoption policy;
+models and generated schemas remain unchanged.
+
+Thirteen new helper cases cover every source/state association, missing support
+records and immutable outputs. Existing adoption cases now assert absent engine,
+unsupported encoder, source versus metric declarations, positive decode gauges
+and deterministic directory/TAR output alongside explicit timing records.
+Local Python 3.13.13 result: **1,140 tests pass; 92.93% branch-inclusive coverage**.
+Ruff, dependency consistency, six schemas, canonical registry, both fixture sets,
+N1 registry/report pins, five controlled artifacts, run-001 seed and exact run-002
+match bytes pass. Local Markdown links and whitespace checks pass.
+
+P0/N1 numerical source, models, schemas, fixtures and controlled artifacts are
+unchanged. No new runtime instrumentation, value-bearing timing method, experiment,
+normalization or matcher adoption is included. Python 3.11/hosted CI evidence
+remains pending. Step 5 will add deterministic v2 fixtures/reproduction gates and
+record the software closeout with this verification boundary explicit.

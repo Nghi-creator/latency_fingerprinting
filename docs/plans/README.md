@@ -2,8 +2,8 @@
 
 - [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active N2
   additive observation-v2 contract/offline adoption plan; baseline/field specification
-  and strict models/schemas plus offline adoption are complete locally; minimum
-  timing/support population is next.
+  and strict models/schemas, offline adoption and unavailable stage timing are
+  complete locally; v2 fixtures, reproduction gates and closeout are next.
 - [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
   root, registry, support, pair and timing semantics before implementation.
 - [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline

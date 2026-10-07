@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Additive Observation-v2 Adoption
 
 **Slice ID:** N2
-**Status:** Steps 0–3 locally complete; Step 4 timing/support population next
+**Status:** Steps 0–4 locally complete; Step 5 verification/closeout next
 **Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
@@ -45,7 +45,7 @@ Gate: no new contract work silently changes N1 definitions or P0 artifacts.
 
 **Specification gate:** Complete in
 [OBSERVATION_V2_CONTRACT.md](../measurement/OBSERVATION_V2_CONTRACT.md),
-design version 1.0.0, clarified as 1.0.1 during Step 2. Runtime enforcement is
+design version 1.0.0, clarified as 1.0.1 during Step 2 and 1.0.2 during Step 4. Runtime enforcement is
 documented in the [model guide](../measurement/OBSERVATION_V2_MODELS.md).
 
 Document the field-level design before implementation, using the
@@ -109,6 +109,11 @@ measurements cannot fabricate v2 values, and no v1 record is overwritten.
 
 ## Step 4 — Add the minimum timing/support representation
 
+**Local gate:** Complete. Pixelated adoption emits four explicit unavailable stage
+records with typed source-aware reasons. Thirteen new helper cases and expanded
+adoption assertions pass; full suite: 1,140 tests, 92.93% branch-inclusive coverage.
+See the [adoption guide](../measurement/OBSERVATION_V2_ADOPTION.md).
+
 Start with declared clock provenance, observed interval duration and source
 support already present in N1. Define optional stage-local timing fields with
 explicit source, method, unit and clock domain. Populate them only when the
@@ -142,11 +147,11 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 - [x] Missing/rejected/incomplete/zero states and audit totals remain distinct.
 - [x] Raw bundles produce deterministic additive v2 records without rewriting v1.
 - [x] Frozen P0 counter aggregates are never silently upgraded.
-- [ ] Timing/support representation makes no unsupported per-frame or one-way claim.
+- [x] Timing/support representation makes no unsupported per-frame or one-way claim.
 - [ ] Both Python CI suites and resource, privacy and reproduction gates pass.
 - [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
 - [ ] Documentation and N2 software closeout match delivered behavior.
 
-The next implementation action is Step 4: populate explicit unavailable stage timing/support.
-Steps 0–3 are locally complete; hosted verification remains pending. No N2
+The next implementation action is Step 5: deterministic v2 fixtures, reproduction gates
+and N2 software closeout. Steps 0–4 are locally complete; hosted verification remains pending. No N2
 implementation is included in the historical N1 closeout.

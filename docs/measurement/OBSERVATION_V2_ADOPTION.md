@@ -68,10 +68,28 @@ V1 absent engine sources remain optional. Invalid windows can be retained for
 audit; their pair construction remains prohibited. Numeric metric rejection alone
 does not invent a whole-window invalidity rule beyond the reviewed contract.
 
-Stage timings remain empty in Step 3. Step 4 will populate the minimum explicitly
-unavailable representation; no direct capture/encode/decode/render evidence or
-measured/estimated method is approved. P0 median deltas and legacy proxies are
-never used to reconstruct new timing/rate evidence.
+## Explicit unavailable stage timings
+
+The [pure timing helper](../../src/latency_fingerprinting/measurement/stage_timing.py)
+now emits capture, encode, decode and render records in that order. Capture is
+associated with engine runtime, encode with encoder pipeline, and decode/render
+with browser WebRTC. These associations identify potential evidence sources;
+they do not establish instrumentation or clock synchronization.
+
+| Typed source state | Timing state | Reason |
+| --- | --- | --- |
+| supported | unavailable | not_instrumented |
+| unsupported | unavailable | unsupported_source |
+| unavailable | unavailable | source_unavailable |
+
+Each record has unit `ms`, zero samples and null value, statistic, method ID/version
+and clock domain. Source capability, stale numeric values, metric declarations and
+window clock metadata cannot supply direct stage durations. Existing decode/buffer
+interval means remain gauges; pipeline-delay proxies and P0 median deltas are never
+relabeled as direct timing evidence. No measured/estimated method is approved.
+
+The root model still permits empty or partial unavailable tuples for other callers;
+the four-record population guarantee belongs to this Pixelated adopter.
 
 ## Verification and next gate
 
@@ -86,3 +104,10 @@ Python 3.13.13. Existing P0 match bytes, N1 registry/report pins, all schema/fix
 checks and controlled artifacts pass. No bound, frozen artifact or arithmetic
 policy is changed. Python 3.11/hosted verification remains pending. Adopted-record
 fixtures and broader N2 reproduction gates will be completed in Step 5.
+
+Local Step 4 result: **1,140 tests pass; 92.93% branch-inclusive coverage**.
+[13 timing helper cases](../../tests/measurement/test_stage_timing.py) cover all
+source/support combinations, missing support records and immutability. Expanded
+adoption assertions cover positive decode means, metric versus source declarations,
+v1 absent engines and browser-only unsupported encoders. All local preservation
+gates pass; Python 3.11/hosted verification remains pending.

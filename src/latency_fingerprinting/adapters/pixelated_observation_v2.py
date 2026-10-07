@@ -5,6 +5,7 @@ from pathlib import Path
 
 from ..measurement.aggregation import aggregate_counter, aggregate_gauge
 from ..measurement.metric_registry import CANONICAL_METRIC_REGISTRY
+from ..measurement.stage_timing import unavailable_stage_timings
 from ..models import (
     CaptureMethodReference,
     ContextKey,
@@ -141,6 +142,7 @@ def ingest_pixelated_v2(
             is_valid=not metadata.invalid_reason_codes, reason_codes=metadata.invalid_reason_codes
         ),
         confounder_codes=tuple(confounder_codes),
+        stage_timings=unavailable_stage_timings(metadata.sources),
     )
 
 
