@@ -15,9 +15,53 @@ from latency_fingerprinting.models import (
     ObservationWindowV2,
     StageTiming,
 )
+from latency_fingerprinting.models.measurement import AggregationKind
 from latency_fingerprinting.models.v2_support import SourceSupport, resolve_metric_support
 
 from .v2_cases import timing_payload, window_payload
+
+
+@pytest.mark.parametrize("value", [False, "0"])
+def test_reused_n1_summary_cannot_bypass_strict_aggregate_types(value):
+    model = ObservationWindowV2.model_validate(window_payload())
+    summary = model.measurements["transport.jitter_ms"].summary
+    aggregates = dict(summary.aggregates)
+    aggregates[AggregationKind.MINIMUM] = value
+    payload = window_payload()
+    payload["measurements"]["transport.jitter_ms"]["summary"] = summary.model_copy(
+        update={"aggregates": aggregates}
+    )
+    with pytest.raises(ValidationError):
+        ObservationWindowV2.model_validate(payload)
+
+
+def test_reused_summary_is_snapshotted_and_refrozen():
+    model = ObservationWindowV2.model_validate(window_payload())
+    summary = model.measurements["transport.jitter_ms"].summary
+    mutable = dict(summary.aggregates)
+    copied = summary.model_copy(update={"aggregates": mutable})
+    payload = window_payload()
+    payload["measurements"]["transport.jitter_ms"]["summary"] = copied
+    result = ObservationWindowV2.model_validate(payload)
+    retained = result.measurements["transport.jitter_ms"].summary
+    mutable[AggregationKind.MINIMUM] = 10
+    assert retained.aggregates[AggregationKind.MINIMUM] == 0
+    with pytest.raises(TypeError):
+        retained.aggregates[AggregationKind.MINIMUM] = 10
+
+
+def test_reused_counter_interval_is_revalidated_with_summary():
+    model = ObservationWindowV2.model_validate(window_payload())
+    name = "client.frames_decoded_rate_fps"
+    summary = model.measurements[name].summary
+    intervals = list(summary.counter_intervals)
+    intervals[0] = intervals[0].model_copy(update={"wrapped": 0})
+    payload = window_payload()
+    payload["measurements"][name]["summary"] = summary.model_copy(
+        update={"counter_intervals": tuple(intervals)}
+    )
+    with pytest.raises(ValidationError):
+        ObservationWindowV2.model_validate(payload)
 
 
 @pytest.mark.parametrize("real", [False, True])

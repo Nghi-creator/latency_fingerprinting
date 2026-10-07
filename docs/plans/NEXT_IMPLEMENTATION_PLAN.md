@@ -163,3 +163,7 @@ is actual Python 3.11/hosted CI evidence. The next implementation boundary is a
 separately reviewed v2 feature/normalization and fingerprint/matcher contract.
 Archive this completed plan when a new slice plan replaces it. No N2 implementation
 is included in the historical N1 closeout.
+
+Subsequent [post-N2 health audit](../measurement/N2_ARCHITECTURE_AUDIT.md):
+1,166 tests pass, 93.05% branch-inclusive coverage; summary instance validation,
+synthetic artifact identity and fixture documentation-test scope are repaired.

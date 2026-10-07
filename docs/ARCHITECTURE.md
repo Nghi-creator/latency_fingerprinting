@@ -121,7 +121,9 @@ v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
-[N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md).
+[N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
+[post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
+hardening, fixture provenance corrections and current whole-tree verification.
 
 ## Target system overview
 

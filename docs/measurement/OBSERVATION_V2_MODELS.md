@@ -36,7 +36,11 @@ objects/arrays and respects `by_alias`. Use the existing `canonical_json` render
 for deterministic sorted camelCase JSON with a trailing newline. Pydantic JSON
 round trips are tested but do not replace duplicate-safe untrusted file loading.
 Unvalidated `model_construct`, `model_copy(update=...)` and low-level mutation
-remain trusted escape hatches, not ingestion boundaries.
+remain trusted escape hatches, not ingestion boundaries. When an existing N1
+summary instance enters a validated N2 measurement, it is converted back to data
+and fully revalidated, including nested intervals and map freezing. This prevents
+unchecked updates or caller-owned mutable aggregates surviving the N2 boundary.
+See the [post-N2 audit](N2_ARCHITECTURE_AUDIT.md).
 
 ## Meaning and evidence validation
 

@@ -110,11 +110,13 @@ The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) preserves
 verification at each milestone. The
 [offline raw-bundle adoption command](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 now includes explicit unavailable capture/encode/decode/render timing records:
-**1,162 tests pass, 93.04% branch-inclusive coverage**.
+**1,166 tests pass, 93.05% branch-inclusive coverage**.
 [Deterministic v2 fixtures and reproduction gates](docs/measurement/OBSERVATION_V2_FIXTURES.md)
 are delivered in both configured Python CI jobs. [N2 software closeout](docs/measurement/N2_SOFTWARE_CLOSEOUT.md)
 is complete locally; P0/N1 pins remain unchanged. Actual Python 3.11/hosted results
-remain pending. The next boundary is a reviewed v2 feature/normalization and
+remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDIT.md)
+repairs reused-summary validation, synthetic artifact identity and documentation
+test scope. The next boundary is a reviewed v2 feature/normalization and
 fingerprint/matcher contract.
 
 ### Implemented and verified

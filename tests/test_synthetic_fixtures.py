@@ -137,7 +137,10 @@ def test_incompatible_query_uses_an_explicitly_different_group() -> None:
 
 
 def test_fixture_documentation_preserves_synthetic_truthfulness() -> None:
-    for path in DEFAULT_FIXTURE_DIRECTORY.rglob("README.md"):
+    for relative in rendered_fixture_files():
+        if relative.name != "README.md":
+            continue
+        path = DEFAULT_FIXTURE_DIRECTORY / relative
         text = path.read_text(encoding="utf-8").lower()
         assert "synthetic" in text
         assert "not engine measurements" in text

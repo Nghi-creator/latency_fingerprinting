@@ -81,5 +81,7 @@ existing bounded bundle reader. Step 5 adds pure
 [focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Step 9 implements
 [quality/CI gates](QUALITY_GATES.md). Step 10 completes
 [N1 software closeout](N1_SOFTWARE_CLOSEOUT.md). Hosted CI verification remains
-pending; observation-v2 adoption is the separate next slice. Registry export commands
+pending. [N2 observation-v2 adoption](OBSERVATION_V2_ADOPTION.md) is now
+[closed out locally](N2_SOFTWARE_CLOSEOUT.md); v2 normalization and matching remain
+separate future contracts. Registry export commands
 operate on definitions and artifacts only.

@@ -159,3 +159,25 @@ all completed software steps and the remaining Python 3.11/hosted execution gap.
 The next boundary is a separately reviewed feature/normalization and
 fingerprint/matcher-v2 contract. No experiment, direct timing instrumentation or
 scientific diagnosis claim is added.
+
+## Post-N2 health audit
+
+**Completed locally:** 2026-10-07
+**Starting commit:** `1554a7cd7f7af2e5b9d68d71934929bfb9f902a0`
+
+The [health audit](N2_ARCHITECTURE_AUDIT.md) repairs reused N1 summary validation
+at the N2 boundary, detaching mutable maps and revalidating nested strict values.
+Four new regression cases pass. Synthetic pair source hashes now identify
+canonical artificial input bytes; its snapshot pin is deliberately revised,
+with numerical/settings/intervention fields unchanged. Reproduction avoids a
+second reconstruction. P0 README truthfulness checks now cover their owned corpus,
+with N2 documentation asserted separately. The original Step 5 test run preceded
+creation of the new fixture README; the complete final tree is now verified.
+
+Current result: **1,166 tests pass; 93.05% branch-inclusive coverage** on Python
+3.13.13. All local schema, registry, fixture/pin, dependency, Ruff, controlled-artifact,
+seed, exact match, Markdown-link and whitespace gates pass. Frozen P0/N1 source and
+artifacts and adopted N2 snapshot pins remain unchanged. No restructuring is needed;
+no additional concrete N2 blocker was found. Actual hosted/minimum-version execution,
+full-limit scaling, direct timing instrumentation and v2 analytical/matcher semantics
+remain explicitly outside local closeout.

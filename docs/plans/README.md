@@ -9,6 +9,8 @@
   behavior, final evidence, remaining verification and the next contract boundary.
 - [N2 fixtures and gates](../measurement/OBSERVATION_V2_FIXTURES.md) documents exact-byte
   snapshots and read-only CI reproduction.
+- [Post-N2 health audit](../measurement/N2_ARCHITECTURE_AUDIT.md) records contract
+  hardening, fixture/test maintenance and current full-tree verification.
 - [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline
   verification, completed steps and pending hosted results.
 - [N2 model guide](../measurement/OBSERVATION_V2_MODELS.md) documents strict root

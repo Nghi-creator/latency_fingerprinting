@@ -2066,7 +2066,7 @@
     "schemaVersion": "observation-window-v2",
     "sourceArtifact": {
       "bundleSchemaVersion": null,
-      "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "contentHash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
       "sourceType": "synthetic_series"
     },
     "sources": {
@@ -4188,7 +4188,7 @@
     "schemaVersion": "observation-window-v2",
     "sourceArtifact": {
       "bundleSchemaVersion": null,
-      "contentHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "contentHash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
       "sourceType": "synthetic_series"
     },
     "sources": {

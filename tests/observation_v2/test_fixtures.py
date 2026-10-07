@@ -1,5 +1,6 @@
 """N2 snapshot reproduction, independent arithmetic and public root validation."""
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -56,6 +57,9 @@ def test_adopted_counter_evidence_matches_hand_calculated_expectation():
 
 
 def test_absent_source_and_synthetic_pair_do_not_claim_experimental_evidence():
+    notice = (DEFAULT_FIXTURE_DIRECTORY / "README.md").read_text().lower()
+    assert "software" in notice and "not experiment or diagnosis evidence" in notice
+    assert "controlled_real" in notice and "simulated, unexecuted" in notice
     browser = load_json_file(DEFAULT_FIXTURE_DIRECTORY / "adopted-browser-v1.json")
     assert browser["sources"]["engine_runtime"]["state"] == "unavailable"
     summary = browser["measurements"]["encoder.frames_out_window_total"]["summary"]
@@ -70,6 +74,11 @@ def test_absent_source_and_synthetic_pair_do_not_claim_experimental_evidence():
         assert pair[field]["provenance"] == "synthetic"
         assert pair[field]["clock"]["provenance"] == "synthetic_elapsed"
         assert pair[field]["stageTimings"] == []
+        # Independently stated input bytes, not a digest derived from the record.
+        expected = hashlib.sha256(
+            b'{"elapsedMs":[0.0,1000.0,2000.0],"values":[0,60,120]}'
+        ).hexdigest()
+        assert pair[field]["sourceArtifact"]["contentHash"] == "sha256:" + expected
     assert "response" not in pair and "normalizedResponse" not in pair
 
 

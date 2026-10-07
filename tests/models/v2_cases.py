@@ -1,5 +1,6 @@
 """Small synthetic inputs for N2 contract tests; not production adopted records."""
 
+import hashlib
 import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -8,6 +9,16 @@ from latency_fingerprinting.measurement.aggregation import aggregate_counter, ag
 from latency_fingerprinting.measurement.metric_registry import CANONICAL_METRIC_REGISTRY
 from latency_fingerprinting.models import MeasurementSample, MetricKind, MetricSource
 from latency_fingerprinting.models.v2_common import REGISTRY_CONTENT_HASH
+
+
+def synthetic_source_bytes(*, duration=2000, values=(0, 60, 120)):
+    """Canonical artificial series input identified by synthetic artifact hashes."""
+    return json.dumps(
+        {"elapsedMs": [i * duration / 2 for i in range(len(values))], "values": values},
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
 
 
 def window_payload(*, phase="degraded", real=False, duration=2000, values=(0, 60, 120)):
@@ -82,7 +93,14 @@ def window_payload(*, phase="degraded", real=False, duration=2000, values=(0, 60
         },
         "source_artifact": {
             "source_type": "pixelated_bundle" if real else "synthetic_series",
-            "content_hash": "sha256:" + "0" * 64,
+            "content_hash": "sha256:"
+            + (
+                "0" * 64
+                if real
+                else hashlib.sha256(
+                    synthetic_source_bytes(duration=duration, values=values)
+                ).hexdigest()
+            ),
             "bundle_schema_version": "2" if real else None,
         },
         "sources": {

@@ -53,4 +53,5 @@ formatting, are protected. No P0 schema, fixture, controlled artifact, registry,
 adapter, normalization or matcher code is changed. [Step 9](QUALITY_GATES.md)
 implements quality, CI and security/resource-bound gates.
 [N1 software closeout](N1_SOFTWARE_CLOSEOUT.md) is complete; hosted CI verification
-remains pending and observation-v2 adoption is the next slice.
+remains pending. [N2 observation-v2 adoption](OBSERVATION_V2_ADOPTION.md) and its
+[separate fixture gates](OBSERVATION_V2_FIXTURES.md) are now delivered locally.

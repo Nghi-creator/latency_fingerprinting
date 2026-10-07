@@ -101,3 +101,7 @@ exercise context bytes/depth, total bundle bytes, TAR size/member count/traversa
 CSV headers/row limits, deterministic errors and acceptance at the exact row limit.
 All legacy preservation gates and new fixture pins pass locally; configured
 Python 3.11/3.13 CI execution evidence remains pending.
+
+The [post-N2 health audit](N2_ARCHITECTURE_AUDIT.md) verifies the complete tree with
+**1,166 passing tests and 93.05% branch-inclusive coverage**, including four new
+instance-boundary regressions and corrected fixture documentation-test scope.

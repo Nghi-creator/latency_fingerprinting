@@ -45,6 +45,15 @@ class MetricMeasurement(V2Model):
     support: MetricSupport
     summary: MetricSeriesSummary
 
+    @field_validator("summary", mode="before")
+    @classmethod
+    def snapshot_summary(cls, value):
+        # N1 instances do not revalidate fields on reuse. Copy them back to data
+        # so unchecked model_copy updates cannot bypass types or map freezing.
+        if isinstance(value, MetricSeriesSummary):
+            return value.model_dump(warnings=False)
+        return value
+
     @model_validator(mode="after")
     def validate_evidence(self):
         summary = self.summary

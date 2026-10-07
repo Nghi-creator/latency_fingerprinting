@@ -5,6 +5,11 @@
 **Software status:** Steps 0–5 implemented and locally verified
 **Hosted verification:** Actual Python 3.11 and hosted Python 3.13 execution remains pending
 
+The [post-N2 health audit](N2_ARCHITECTURE_AUDIT.md) records subsequent hardening
+and current verification. Results below retain the original Step 5 milestone
+evidence; its initial test run preceded addition of the fixture README. The audit
+repairs that documentation-test scope and verifies the complete final tree.
+
 N2 preserves the frozen N1 registry in strict additive window/pair records and a
 bounded offline raw-bundle importer. Records retain typed support, clock limits,
 counter interval evidence, registry binding and explicit unavailable stage timings.
