@@ -115,7 +115,9 @@ def test_export_schemas_writes_then_checks_current_files(
     assert check_code == 0
     assert json.loads(check_stdout)["status"] == "current"
     assert check_stderr == ""
-    assert {path.name for path in output.iterdir()} == {path.name for path in SCHEMAS.iterdir()}
+    assert {path.name for path in output.iterdir()} == {
+        path.name for path in SCHEMAS.glob("*.schema.json")
+    }
 
 
 def test_export_schema_check_reports_drift_without_rewriting(

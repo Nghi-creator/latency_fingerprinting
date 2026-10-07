@@ -1,4 +1,4 @@
-"""Command-line interface for the offline P0 analytical workflow."""
+"""Offline P0 analysis, N1 diagnostics and additive N2 contract validation."""
 
 from __future__ import annotations
 
@@ -12,18 +12,32 @@ from typing import Any, TypeVar
 from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
+from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
+from .measurement.metric_registry import (
+    DEFAULT_METRIC_REGISTRY_PATH,
+    METRIC_REGISTRY_VERSION,
+    export_metric_registry,
+    metric_registry_drift,
+)
+from .measurement_inspection import inspect_measurements, render_measurement_inspection
 from .models import (
     FINGERPRINT_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
+    METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
+    OBSERVATION_V2_SCHEMA_VERSION,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION,
     ContextKey,
     Fingerprint,
     MatchResult,
+    MetricRegistry,
     ObservationRecord,
+    ObservationRecordV2,
     ObservationWindow,
+    ObservationWindowV2,
     Probe,
     ProvenanceKind,
     WindowPhase,
@@ -38,6 +52,9 @@ ROOT_MODELS: dict[str, type[BaseModel]] = {
     OBSERVATION_SCHEMA_VERSION: ObservationRecord,
     FINGERPRINT_SCHEMA_VERSION: Fingerprint,
     MATCH_RESULT_SCHEMA_VERSION: MatchResult,
+    METRIC_REGISTRY_SCHEMA_VERSION: MetricRegistry,
+    OBSERVATION_V2_SCHEMA_VERSION: ObservationRecordV2,
+    OBSERVATION_WINDOW_V2_SCHEMA_VERSION: ObservationWindowV2,
 }
 
 
@@ -95,6 +112,25 @@ def _build_response(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(observation))
 
 
+def _export_metric_registry(args: argparse.Namespace) -> None:
+    output: Path = args.output
+    if args.check:
+        if metric_registry_drift(output):
+            raise ValueError(f"metric registry drift detected: {output.name}")
+        _write_json(
+            {
+                "checked": output.name,
+                "registryVersion": METRIC_REGISTRY_VERSION,
+                "status": "current",
+            }
+        )
+        return
+    path = export_metric_registry(output)
+    _write_json(
+        {"exported": path.name, "registryVersion": METRIC_REGISTRY_VERSION, "status": "written"}
+    )
+
+
 def _ingest_pixelated(args: argparse.Namespace) -> None:
     context = _load_model(args.context, ContextKey)
     window = ingest_pixelated_bundle(
@@ -123,16 +159,38 @@ def _match(args: argparse.Namespace) -> None:
     sys.stdout.write(canonical_json(result))
 
 
+def _ingest_pixelated_v2(args: argparse.Namespace) -> None:
+    window = ingest_pixelated_v2(
+        args.bundle,
+        context=_load_model(args.context, ContextKey),
+        phase=WindowPhase(args.phase),
+        comparison_case_id=args.comparison_case_id,
+        provenance=ProvenanceKind(args.provenance),
+        confounder_codes=args.confounder_code,
+    )
+    sys.stdout.write(canonical_json(window))
+
+
+def _inspect_measurements(args: argparse.Namespace) -> None:
+    report = inspect_measurements(
+        args.bundle,
+        context=_load_model(args.context, ContextKey),
+        phase=WindowPhase(args.phase),
+        comparison_case_id=args.comparison_case_id,
+    )
+    sys.stdout.write(render_measurement_inspection(report))
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Build the public command parser without performing any I/O."""
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Validate and run the offline P0 latency-fingerprinting pipeline.",
+        description="Offline P0 analysis, N1 diagnostics and additive N2 adoption.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    validate = subparsers.add_parser("validate", help="validate a P0 root record")
+    validate = subparsers.add_parser("validate", help="validate a P0/N2 root record or N1 registry")
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)
 
@@ -144,6 +202,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="report drift without writing any files",
     )
     schemas.set_defaults(handler=_export_schemas)
+
+    registry = subparsers.add_parser(
+        "export-metric-registry", help="write or check the canonical N1 metric registry"
+    )
+    registry.add_argument("--output", type=Path, default=DEFAULT_METRIC_REGISTRY_PATH)
+    registry.add_argument("--check", action="store_true", help="report drift without writing files")
+    registry.set_defaults(handler=_export_metric_registry)
+
+    inspection = subparsers.add_parser(
+        "inspect-measurements", help="compare P0 and N1 measurements in an offline shadow report"
+    )
+    inspection.add_argument("bundle", type=Path)
+    inspection.add_argument("--context", type=Path, required=True)
+    inspection.add_argument(
+        "--phase", choices=[phase.value for phase in WindowPhase], required=True
+    )
+    inspection.add_argument("--comparison-case-id", required=True)
+    inspection.set_defaults(handler=_inspect_measurements)
 
     response = subparsers.add_parser(
         "build-response",
@@ -179,6 +255,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="record one known confounder; may be repeated",
     )
     ingest.set_defaults(handler=_ingest_pixelated)
+
+    adopt = subparsers.add_parser(
+        "ingest-pixelated-v2", help="adopt raw evidence as an additive v2 window"
+    )
+    adopt.add_argument("bundle", type=Path)
+    adopt.add_argument("--context", type=Path, required=True)
+    adopt.add_argument("--phase", choices=[phase.value for phase in WindowPhase], required=True)
+    adopt.add_argument("--comparison-case-id", required=True)
+    adopt.add_argument(
+        "--provenance", choices=["controlled_real", "organic_real"], default="controlled_real"
+    )
+    adopt.add_argument(
+        "--confounder-code",
+        action="append",
+        default=[],
+        choices=["composite_profile_change", "other_setting_change", "operator_declared"],
+    )
+    adopt.set_defaults(handler=_ingest_pixelated_v2)
 
     match = subparsers.add_parser("match", help="match an observation to fingerprints")
     match.add_argument("observation", type=Path)

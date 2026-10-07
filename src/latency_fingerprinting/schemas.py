@@ -1,4 +1,4 @@
-"""Deterministic JSON Schema generation for the P0 contract roots."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2 roots."""
 
 from __future__ import annotations
 
@@ -12,7 +12,14 @@ from typing import TypeAlias
 
 from pydantic import BaseModel
 
-from .models import Fingerprint, MatchResult, ObservationRecord
+from .models import (
+    Fingerprint,
+    MatchResult,
+    MetricRegistry,
+    ObservationRecord,
+    ObservationRecordV2,
+    ObservationWindowV2,
+)
 
 SchemaModel: TypeAlias = type[BaseModel]
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -22,6 +29,9 @@ SCHEMA_MODELS: Mapping[str, SchemaModel] = {
     "observation-v1.schema.json": ObservationRecord,
     "fingerprint-v1.schema.json": Fingerprint,
     "match-result-v1.schema.json": MatchResult,
+    "metric-registry-v1.schema.json": MetricRegistry,
+    "observation-window-v2.schema.json": ObservationWindowV2,
+    "observation-v2.schema.json": ObservationRecordV2,
 }
 
 
@@ -33,7 +43,7 @@ def render_schema(model: SchemaModel) -> str:
 
 
 def rendered_schemas() -> dict[str, str]:
-    """Return every P0 root schema keyed by its checked-in filename."""
+    """Return every public schema keyed by its checked-in filename."""
 
     return {filename: render_schema(model) for filename, model in SCHEMA_MODELS.items()}
 

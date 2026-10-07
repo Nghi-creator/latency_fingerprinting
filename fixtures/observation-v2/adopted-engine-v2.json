@@ -1,0 +1,2218 @@
+{
+  "captureMethod": {
+    "methodId": "pixelated_bundle_offline",
+    "methodVersion": "1.0.0",
+    "producerVersion": null
+  },
+  "clock": {
+    "basis": "source_elapsed_ms",
+    "domainId": "pixelated-6e34e659879506f6f6b30e87dd8862648cc62c49edc71ff173c88e29c81edaa1",
+    "durationMs": 10000.0,
+    "elapsedEndMs": 10000.0,
+    "elapsedStartMs": 0.0,
+    "endedAt": "2026-08-10T02:03:14Z",
+    "provenance": "wall_clock_derived_elapsed",
+    "startedAt": "2026-08-10T02:03:04Z"
+  },
+  "comparisonCaseId": "controlled-case-001",
+  "confounderCodes": [],
+  "context": {
+    "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+    "clientClass": "sanitized-browser-class",
+    "compatibilityGroup": "pixelated-controlled-p0-v2",
+    "connectionMode": "localhost-webrtc",
+    "contextId": "pixelated-controlled-context-v2-001",
+    "edgeNodeClass": "sanitized-local-engine",
+    "encoderFamily": "vp8",
+    "encoderProfile": "balanced",
+    "networkScenario": "controlled-lan",
+    "nodeId": "anonymous-node-v2-001",
+    "nominalStreamProfile": {
+      "bitrateKbps": 1500,
+      "fps": 60,
+      "id": "balanced"
+    },
+    "operatingSystem": "sanitized-container-linux",
+    "runtimeClass": "pixelated-container",
+    "transportImplementation": "gstreamer-webrtc",
+    "versions": {
+      "pixelatedBundleSchema": "2"
+    },
+    "workloadId": "sanitized-test-workload"
+  },
+  "contractVersion": "2.0.0",
+  "effectiveSettings": {
+    "bitrateKbps": 1500,
+    "cpuCapacityCores": 4.0,
+    "encoderCpuUsed": 6.0,
+    "encoderMaxQuantizer": 48.0,
+    "fps": 60,
+    "logicalCpuCount": 8.0,
+    "runtimeKind": "libretro",
+    "streamProfileId": "balanced",
+    "targetBitrateKbps": 1500.0,
+    "targetFps": 60.0
+  },
+  "measurements": {
+    "client.available_incoming_bitrate_kbps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 2000.0,
+          "median": 1900.0,
+          "minimum": 1800.0,
+          "nearest_rank_p95": 2000.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "kbps",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "client.available_incoming_bitrate_kbps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "available_incoming_bitrate_kbps"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.decode_time_mean_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 4.0,
+          "median": 3.0,
+          "minimum": 2.0,
+          "nearest_rank_p95": 4.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "client.decode_time_mean_ms",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "decode_time_mean_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "measurement_declaration",
+        "declaredState": "supported",
+        "state": "supported"
+      }
+    },
+    "client.frames_decoded_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 60.0
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 60.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 60.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.frames_decoded_rate_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "frames_decoded"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_decoded_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 600.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 60.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 60.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.frames_decoded_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "frames_decoded"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_dropped_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.3
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 2.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 0.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.2,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.frames_dropped_rate_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "frames_dropped"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_dropped_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 3.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 2.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 0.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.2,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.frames_dropped_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "frames_dropped"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_count_rate_per_min": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 6.0
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "freezes/min",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 12.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "freezes/min",
+        "kind": "cumulative_counter",
+        "metricName": "client.freeze_count_rate_per_min",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "freeze_count"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_count_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 1.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "freezes",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 12.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "freezes/min",
+        "kind": "cumulative_counter",
+        "metricName": "client.freeze_count_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "freeze_count"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_duration_rate_ms_per_s": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 10.0
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 100.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 20.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "ms/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.freeze_duration_rate_ms_per_s",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "freeze_duration_total_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_duration_window_total_ms": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 100.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 100.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 20.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "ms/s",
+        "kind": "cumulative_counter",
+        "metricName": "client.freeze_duration_window_total_ms",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "freeze_duration_total_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.jitter_buffer_delay_mean_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 6.0,
+          "median": 5.0,
+          "minimum": 4.0,
+          "nearest_rank_p95": 6.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "client.jitter_buffer_delay_mean_ms",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "jitter_buffer_delay_mean_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.received_bitrate_kbps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 1300.0,
+          "median": 1200.0,
+          "minimum": 1100.0,
+          "nearest_rank_p95": 1300.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "kbps",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "client.received_bitrate_kbps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "bitrate_kbps"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "client.received_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 58.0,
+          "median": 54.0,
+          "minimum": 50.0,
+          "nearest_rank_p95": 58.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "fps",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "client.received_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "fps"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_dropped_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.3
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 2.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 0.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 0.2,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_dropped_rate_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "frames_dropped_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_dropped_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 3.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 2.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 0.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 0.2,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_dropped_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "frames_dropped_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_in_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 60.0
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 60.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 60.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_in_rate_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "frames_in_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_in_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 600.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 60.0,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 300.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 60.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_in_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "frames_in_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_out_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 59.2
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 297.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 59.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 295.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 59.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_out_rate_fps",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "frames_out_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_out_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 592.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "frames",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 297.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 5,
+            "rate": 59.4,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          },
+          {
+            "delta": 295.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 7,
+            "rate": 59.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 5,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "frames/s",
+        "kind": "cumulative_counter",
+        "metricName": "encoder.frames_out_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "frames_out_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "encoder.pipeline_delay_proxy_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 0,
+        "aggregates": {},
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 0.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "encoder.pipeline_delay_proxy_ms",
+        "missingReasons": [
+          "Missing source evidence."
+        ],
+        "observedDurationMs": 0.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "pipeline_delay_proxy_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "missing",
+        "usableSampleCount": 0,
+        "usableSourceRows": [],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "measurement_declaration",
+        "declaredState": "unsupported",
+        "state": "unsupported"
+      }
+    },
+    "encoder.queue_level_buffers": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 3.0,
+          "median": 2.0,
+          "minimum": 1.0,
+          "nearest_rank_p95": 3.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "buffers",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "encoder.queue_level_buffers",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "queue_level_buffers"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "encoder_pipeline",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          3,
+          5,
+          7
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "host.camera_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 40.0,
+          "median": 35.0,
+          "minimum": 30.0,
+          "nearest_rank_p95": 40.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "percent",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.camera_cpu_percent",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "camera_cpu_percent"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "host.camera_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 214.0,
+          "median": 212.0,
+          "minimum": 210.0,
+          "nearest_rank_p95": 214.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "MiB",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.camera_rss_mib",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "camera_rss_mb"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "host.game_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 85.0,
+          "median": 75.0,
+          "minimum": 65.0,
+          "nearest_rank_p95": 85.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "percent",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.game_cpu_percent",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "emulator_cpu_percent"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "measurement_declaration",
+        "declaredState": "supported",
+        "state": "supported"
+      }
+    },
+    "host.game_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 354.0,
+          "median": 352.0,
+          "minimum": 350.0,
+          "nearest_rank_p95": 354.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "MiB",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.game_rss_mib",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "emulator_rss_mb"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "host.node_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 7.0,
+          "median": 6.0,
+          "minimum": 5.0,
+          "nearest_rank_p95": 7.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "percent",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.node_cpu_percent",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "node_cpu_percent"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "host.node_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 122.0,
+          "median": 121.0,
+          "minimum": 120.0,
+          "nearest_rank_p95": 122.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "MiB",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "host.node_rss_mib",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "node_rss_mb"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "engine_runtime",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          4,
+          6
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "transport.jitter_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 8.0,
+          "median": 6.0,
+          "minimum": 4.0,
+          "nearest_rank_p95": 8.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "transport.jitter_ms",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "jitter_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "transport.packets_lost_rate_per_s": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.1
+        },
+        "availableAggregations": [
+          "time_weighted_rate"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "packets/s",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 0.2,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "packets/s",
+        "kind": "cumulative_counter",
+        "metricName": "transport.packets_lost_rate_per_s",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "time_weighted_rate",
+        "rawFields": [
+          "packets_lost_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "transport.packets_lost_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "window_total": 1.0
+        },
+        "availableAggregations": [
+          "window_total"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "packets",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [
+          {
+            "delta": 1.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 5000.0,
+            "endSourceRow": 3,
+            "rate": 0.2,
+            "startElapsedMs": 0.0,
+            "startSourceRow": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "durationMs": 5000.0,
+            "endElapsedMs": 10000.0,
+            "endSourceRow": 4,
+            "rate": 0.0,
+            "startElapsedMs": 5000.0,
+            "startSourceRow": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": "packets/s",
+        "kind": "cumulative_counter",
+        "metricName": "transport.packets_lost_window_total",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "window_total",
+        "rawFields": [
+          "packets_lost_total"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    },
+    "transport.round_trip_time_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "acceptedIntervalCount": 2,
+        "aggregates": {
+          "maximum": 18.0,
+          "median": 16.0,
+          "minimum": 14.0,
+          "nearest_rank_p95": 18.0
+        },
+        "availableAggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadenceMaximumMs": 5000.0,
+        "cadenceMedianMs": 5000.0,
+        "cadenceMinimumMs": 5000.0,
+        "canonicalUnit": "ms",
+        "clockBasis": "source_elapsed_ms",
+        "counterIntervals": [],
+        "coverage": 1.0,
+        "gapSourceRows": [],
+        "intervalRateUnit": null,
+        "kind": "gauge",
+        "metricName": "transport.round_trip_time_ms",
+        "missingReasons": [],
+        "observedDurationMs": 10000.0,
+        "primaryAggregation": "median",
+        "rawFields": [
+          "round_trip_time_ms"
+        ],
+        "registryVersion": "latency-metrics-v2.0.0",
+        "rejectedReasons": [],
+        "resetSourceRows": [],
+        "semanticVersion": "1.0.0",
+        "source": "browser_webrtc",
+        "sourceSampleCount": 3,
+        "status": "complete",
+        "usableSampleCount": 3,
+        "usableSourceRows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [
+          "Measurement provenance requires review."
+        ],
+        "windowDurationMs": 10000.0,
+        "windowEndMs": 10000.0,
+        "windowStartMs": 0.0
+      },
+      "support": {
+        "basis": "source_support",
+        "declaredState": null,
+        "state": "supported"
+      }
+    }
+  },
+  "phase": "degraded",
+  "provenance": "controlled_real",
+  "registry": {
+    "contentHash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+    "registryVersion": "latency-metrics-v2.0.0"
+  },
+  "runId": "pixelated-sanitized-run-v2-001",
+  "schemaVersion": "observation-window-v2",
+  "sourceArtifact": {
+    "bundleSchemaVersion": "2",
+    "contentHash": "sha256:6e34e659879506f6f6b30e87dd8862648cc62c49edc71ff173c88e29c81edaa1",
+    "sourceType": "pixelated_bundle"
+  },
+  "sources": {
+    "browser_webrtc": {
+      "availableRowCount": 3,
+      "basis": "source_declaration",
+      "declaredState": "supported",
+      "rowCount": 3,
+      "sourceFile": "stream-telemetry.csv",
+      "state": "supported"
+    },
+    "encoder_pipeline": {
+      "availableRowCount": 3,
+      "basis": "source_declaration",
+      "declaredState": "supported",
+      "rowCount": 3,
+      "sourceFile": "engine-telemetry.csv",
+      "state": "supported"
+    },
+    "engine_runtime": {
+      "availableRowCount": 3,
+      "basis": "source_declaration",
+      "declaredState": "supported",
+      "rowCount": 3,
+      "sourceFile": "engine-telemetry.csv",
+      "state": "supported"
+    }
+  },
+  "stageTimings": [
+    {
+      "clockDomainId": null,
+      "methodId": null,
+      "methodVersion": null,
+      "reasonCode": "not_instrumented",
+      "sampleCount": 0,
+      "source": "engine_runtime",
+      "stage": "capture",
+      "state": "unavailable",
+      "statistic": null,
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "clockDomainId": null,
+      "methodId": null,
+      "methodVersion": null,
+      "reasonCode": "not_instrumented",
+      "sampleCount": 0,
+      "source": "encoder_pipeline",
+      "stage": "encode",
+      "state": "unavailable",
+      "statistic": null,
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "clockDomainId": null,
+      "methodId": null,
+      "methodVersion": null,
+      "reasonCode": "not_instrumented",
+      "sampleCount": 0,
+      "source": "browser_webrtc",
+      "stage": "decode",
+      "state": "unavailable",
+      "statistic": null,
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "clockDomainId": null,
+      "methodId": null,
+      "methodVersion": null,
+      "reasonCode": "not_instrumented",
+      "sampleCount": 0,
+      "source": "browser_webrtc",
+      "stage": "render",
+      "state": "unavailable",
+      "statistic": null,
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "validity": {
+    "isValid": true,
+    "reasonCodes": []
+  },
+  "windowId": "pixelated-v2-6e34e659879506f6f6b30e87dd8862648cc62c49edc71ff173c88e29c81edaa1-degraded"
+}
