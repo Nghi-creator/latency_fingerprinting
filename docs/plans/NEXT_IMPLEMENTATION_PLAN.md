@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: Additive Observation-v2 Adoption
 
 **Slice ID:** N2
-**Status:** Steps 0–4 locally complete; Step 5 verification/closeout next
+**Status:** Steps 0–5 locally complete; software closed out; hosted verification pending
 **Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
@@ -130,6 +130,12 @@ New capture instrumentation is a later slice rather than an implicit N2 dependen
 
 ## Step 5 — Verify, document and close the offline contract slice
 
+**Local gate:** Complete. Three deterministic v2 fixtures, exact-byte/SHA-256
+reproduction and both Python CI commands are delivered. Twenty-two new fixture/CLI
+cases pass; full suite: 1,162 tests, 93.04% branch-inclusive coverage. See the
+[N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md). Python 3.11/hosted
+execution remains pending; configured CI is not execution evidence.
+
 Keep both Python versions, the 85% branch floor, bounded-resource/CLI regression
 coverage and existing P0/N1 reproduction gates. Add focused v2 fixtures with
 explicit provenance, deterministic expected records and exact-byte drift checks.
@@ -149,9 +155,11 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 - [x] Frozen P0 counter aggregates are never silently upgraded.
 - [x] Timing/support representation makes no unsupported per-frame or one-way claim.
 - [ ] Both Python CI suites and resource, privacy and reproduction gates pass.
-- [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
-- [ ] Documentation and N2 software closeout match delivered behavior.
+- [x] P0 artifacts, N1 release pins and existing match results are unchanged.
+- [x] Documentation and N2 software closeout match delivered behavior.
 
-The next implementation action is Step 5: deterministic v2 fixtures, reproduction gates
-and N2 software closeout. Steps 0–4 are locally complete; hosted verification remains pending. No N2
-implementation is included in the historical N1 closeout.
+N2 software implementation is locally complete. The remaining verification item
+is actual Python 3.11/hosted CI evidence. The next implementation boundary is a
+separately reviewed v2 feature/normalization and fingerprint/matcher contract.
+Archive this completed plan when a new slice plan replaces it. No N2 implementation
+is included in the historical N1 closeout.

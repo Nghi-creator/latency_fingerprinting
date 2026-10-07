@@ -1,10 +1,12 @@
-# N1 quality and CI gates
+# N1/N2 quality and CI gates
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
 coverage at the unchanged 85% floor, N1 fixture drift and pinned registry/report
-reproduction. Python 3.11 also checks schemas, canonical registry and installed
-dependencies. The quality job retains Ruff, P0 fixture drift, controlled-artifact
+reproduction. N2 adds [three pinned observation fixtures](OBSERVATION_V2_FIXTURES.md)
+and read-only reproduction in both jobs. Python 3.11 also checks schemas,
+canonical registry and installed dependencies. The quality job retains Ruff,
+P0 fixture drift, controlled-artifact
 validation, seed drift and exact run-002 match reproduction.
 
 ## Read-only reproduction
@@ -18,6 +20,7 @@ error exit code with no partial JSON or traceback on drift or missing files.
 
 ```bash
 .venv/bin/python -m tests.measurement.check_reproduction
+.venv/bin/python -m tests.observation_v2.check_reproduction
 ```
 
 Expected pins:
@@ -71,6 +74,7 @@ and no production exception handling or parsing implementation changed in Step 9
 .venv/bin/python -m latency_fingerprinting export-metric-registry \
   --output schemas/metric-registry-v1.json --check
 .venv/bin/python -m tests.measurement.check_reproduction
+.venv/bin/python -m tests.observation_v2.check_reproduction
 .venv/bin/python -c \
   'from latency_fingerprinting.synthetic_fixtures import fixture_drift; assert fixture_drift() == {}'
 .venv/bin/python -c \
@@ -90,4 +94,10 @@ Python 3.11 and GitHub-hosted CI execution have not been run locally. The workfl
 configuration and local checks are verified; remote job results remain pending.
 [Step 10 software closeout](N1_SOFTWARE_CLOSEOUT.md) is complete. P0 behavior
 and artifacts are unchanged, and proposed v2 features remain outside the matcher.
-The next slice is additive observation-v2 contract/offline adoption.
+N2 observation-v2 contracts/offline adoption are now [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
+Final N2 result: **1,162 tests pass; 93.04% branch-inclusive coverage**. Its
+[public CLI boundary cases](../../tests/observation_v2/test_cli_boundaries.py)
+exercise context bytes/depth, total bundle bytes, TAR size/member count/traversal,
+CSV headers/row limits, deterministic errors and acceptance at the exact row limit.
+All legacy preservation gates and new fixture pins pass locally; configured
+Python 3.11/3.13 CI execution evidence remains pending.

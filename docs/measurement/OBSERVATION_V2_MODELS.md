@@ -91,5 +91,7 @@ The [window tests](../../tests/models/test_observation_v2.py) and
 meaning, support, arithmetic evidence, privacy, strict values, immutability,
 round trips, schema conformance, root validation, duplicate keys and P0 isolation.
 Their [synthetic input builder](../../tests/models/v2_cases.py) is test support,
-not a production importer or a scientific measurement. Deterministic adopted-record
-fixtures and raw-bundle reproduction are later N2 gates.
+not a production importer or a scientific measurement.
+[Deterministic adopted-record fixtures and raw-bundle reproduction](OBSERVATION_V2_FIXTURES.md)
+now lock both root contracts with exact-byte and SHA-256 checks. See the
+[N2 software closeout](N2_SOFTWARE_CLOSEOUT.md) for final local verification.

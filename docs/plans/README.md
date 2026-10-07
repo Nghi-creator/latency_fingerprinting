@@ -1,11 +1,14 @@
 # Implementation plans
 
-- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active N2
-  additive observation-v2 contract/offline adoption plan; baseline/field specification
-  and strict models/schemas, offline adoption and unavailable stage timing are
-  complete locally; v2 fixtures, reproduction gates and closeout are next.
+- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) records the completed N2
+  additive observation-v2 contract/offline adoption plan. All software steps and
+  local gates are complete; actual Python 3.11/hosted execution remains pending.
 - [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
   root, registry, support, pair and timing semantics before implementation.
+- [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md) records delivered
+  behavior, final evidence, remaining verification and the next contract boundary.
+- [N2 fixtures and gates](../measurement/OBSERVATION_V2_FIXTURES.md) documents exact-byte
+  snapshots and read-only CI reproduction.
 - [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline
   verification, completed steps and pending hosted results.
 - [N2 model guide](../measurement/OBSERVATION_V2_MODELS.md) documents strict root

@@ -71,7 +71,7 @@ Verified:    independent synthetic arithmetic fixtures and read-only drift check
 Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
 Closed out:  N1 software implementation and local verification
 Pending:     Python 3.11 and hosted CI verification
-Next:        additive observation-v2 contract/offline adoption
+Successor:   N2 additive observation-v2 contract/offline adoption (delivered below)
 ```
 
 Registry metadata uses fixed release versions and creation time. Legacy exported
@@ -105,7 +105,7 @@ validation fixes, file-size review and remaining verification gaps.
 
 ## N2 additive contracts
 
-N2 Steps 0–4 add strict `observation-window-v2` and `observation-v2` roots,
+N2 Steps 0–5 add strict `observation-window-v2` and `observation-v2` roots,
 trusted registry binding, typed support, immutable context/settings, local clock
 provenance, paired intervention compatibility and unavailable-only stage timing.
 `validate` and schema exports support these roots. Their models are separate from
@@ -114,7 +114,10 @@ frozen v1 contracts; P0 response construction and matching reject v2 inputs.
 opt-in metadata from one validated read. The pure
 [stage timing helper](../src/latency_fingerprinting/measurement/stage_timing.py)
 populates four unavailable records from typed source support; existing means and
-proxies remain separate metrics. Step 5 fixtures/reproduction/closeout is next. See the
+proxies remain separate metrics. Three deterministic software fixtures and pinned
+read-only reproduction are configured in both Python CI jobs. Local software
+[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution and
+v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
@@ -174,6 +177,7 @@ latency-fingerprinting/
 │   │   ├── aggregation.py
 │   │   ├── feature_config.py
 │   │   ├── metric_registry.py
+│   │   ├── stage_timing.py
 │   │   └── p0_feature_config.py
 │   ├── normalization.py
 │   ├── measurement_inspection.py
@@ -206,6 +210,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── observation-v2/
 │   ├── reference_cases/
 │   │   ├── healthy/
 │   │   ├── network_pressure/
@@ -225,6 +230,7 @@ latency-fingerprinting/
     ├── data/
     ├── measurement/
     ├── models/
+    ├── observation_v2/
     └── pixelated/
 ```
 

@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.2
 **Frozen for Step 2:** 2026-10-06
-**Status:** Models/schemas, offline raw-bundle adoption and unavailable stage timing implemented through Step 4
+**Status:** Steps 0–5 implemented and closed out locally; Python 3.11/hosted verification pending
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and

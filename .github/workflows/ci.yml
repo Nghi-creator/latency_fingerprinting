@@ -66,6 +66,9 @@ jobs:
       - name: Reproduce pinned N1 registry and shadow report
         run: python -m tests.measurement.check_reproduction
 
+      - name: Reproduce pinned N2 observation fixtures
+        run: python -m tests.observation_v2.check_reproduction
+
       - name: Validate controlled-real P0 artifacts
         run: |
           python -m latency_fingerprinting validate experiments/controlled-run-001/observation.json > /dev/null
@@ -122,6 +125,9 @@ jobs:
 
       - name: Reproduce pinned N1 registry and shadow report
         run: python -m tests.measurement.check_reproduction
+
+      - name: Reproduce pinned N2 observation fixtures
+        run: python -m tests.observation_v2.check_reproduction
 
       - name: Check installed dependencies
         run: python -m pip check

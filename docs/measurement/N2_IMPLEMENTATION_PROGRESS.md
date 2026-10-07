@@ -47,8 +47,9 @@ whitespace checks pass.
 
 ## Next action
 
-Steps 2–4 are implemented below; the next action is Step 5 fixtures, reproduction
-gates and N2 software closeout.
+All N2 software steps are implemented below and [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
+The next implementation boundary is a reviewed v2 feature/normalization and
+fingerprint/matcher contract.
 Keep cross-version hosted verification pending until actual CI evidence is available.
 
 ## Step 2 — Additive strict models and schemas
@@ -130,3 +131,31 @@ unchanged. No new runtime instrumentation, value-bearing timing method, experime
 normalization or matcher adoption is included. Python 3.11/hosted CI evidence
 remains pending. Step 5 will add deterministic v2 fixtures/reproduction gates and
 record the software closeout with this verification boundary explicit.
+
+## Step 5 — Fixtures, reproduction and software closeout
+
+**Completed locally:** 2026-10-07
+**Starting commit:** `2dcc96fccb5eafcc7dc39cdeecd0c92612979bce`
+
+Added three [deterministic software fixtures](OBSERVATION_V2_FIXTURES.md): v1
+browser-only adoption, v2 engine-enabled adoption and a synthetic simulated pair.
+Read-only gates compare reconstructed bytes and fixed SHA-256 pins, rejecting
+missing/changed/unexpected files and pin drift. Both Python CI jobs run the new
+N2 reproduction command alongside existing N1/P0 gates. Twenty-two new cases
+cover both schema roots, exact CLI bytes, independent counter arithmetic, absent
+source/timing evidence, incompatible registries, no-write checks and public N2
+resource/CSV/TAR failures with no partial JSON or traceback.
+
+Final local Python 3.13.13 result: **1,162 tests pass; 93.04% branch-inclusive
+coverage** at the unchanged 85% floor. Ruff, installed dependencies, six schemas,
+canonical registry, all three fixture sets, N1/N2 pins, five controlled P0
+artifacts, seed and exact run-002 match bytes pass. Workflow commands were checked
+for both jobs. Markdown links and diff whitespace checks pass.
+
+Step 5 changes test support, new fixtures, CI and documentation only. Production
+source, models, schemas, existing fixtures and controlled artifacts are unchanged
+against the starting commit. [N2 software closeout](N2_SOFTWARE_CLOSEOUT.md) records
+all completed software steps and the remaining Python 3.11/hosted execution gap.
+The next boundary is a separately reviewed feature/normalization and
+fingerprint/matcher-v2 contract. No experiment, direct timing instrumentation or
+scientific diagnosis claim is added.

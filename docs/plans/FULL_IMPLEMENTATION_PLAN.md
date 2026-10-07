@@ -52,10 +52,12 @@ frame timestamp + deadline budget
 
 N1's registry and aggregation foundation is implemented and locally verified;
 see the [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI
-verification remains pending. The next slice, N2 additive observation-v2 contract
-and offline adoption, is specified in
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). New instrumentation
-and fingerprint/matcher-v2 adoption remain later boundaries. Better matching is
+verification remains pending. N2 additive observation-v2 contracts and offline
+adoption are now [implemented and closed out locally](../measurement/N2_SOFTWARE_CLOSEOUT.md),
+with deterministic fixtures and reproduction gates in both configured Python jobs.
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md) retains the completed
+N2 checklist until a successor slice is planned. New instrumentation and a reviewed
+v2 feature/normalization/fingerprint/matcher contract remain later boundaries. Better matching is
 premature until records have stable timing and scientifically consistent semantics.
 
 ### 1.1 Version metric semantics
