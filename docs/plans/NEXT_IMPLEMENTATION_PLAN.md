@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Steps 0–1 complete locally; Step 2 strict analytical models next
+**Status:** Steps 0–2 complete locally; Step 3 response derivation next
 **Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
@@ -13,7 +13,8 @@ records the current baseline: 1,166 passing tests and 93.05% branch-inclusive
 coverage. Actual Python 3.11/hosted verification remains pending. This document
 now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
 and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
-runtime models, normalization, fingerprints, matching and commands are not yet implemented.
+policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
+Pure response derivation, fingerprints, matching and build commands remain pending.
 
 ## Outcome and boundary
 
@@ -93,6 +94,11 @@ Gate: every published number and decision has a specified, testable meaning.
 Exclude audit totals, unsupported proxies and unavailable stages from features.
 
 ## Step 2 — Implement strict policy and analytical response models
+
+**Local gate:** Complete: 94 new analytical tests; 1,260 total tests pass with
+93.15% branch-inclusive coverage. Eight schemas reproduce; all six existing schema
+bytes and P0/N1/N2 reproduction pins remain unchanged. See the
+[model guide](../analysis/N3_ANALYTICAL_MODELS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
 
 Add separate immutable analytical modules and additive schemas from Step 1.
 Validate policy version/hash agreement, registered bindings, units, finite numbers,
@@ -189,7 +195,8 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 
 - [x] Baseline and frozen P0/N1/N2 reproduction checks are retained locally.
 - [x] Feature inventory, policy parameters and compatibility meanings are specified.
-- [ ] Strict policy/response/fingerprint/match contracts and schemas are delivered.
+- [x] Strict policy/response contracts and schemas are delivered.
+- [ ] Strict fingerprint/match contracts and schemas are delivered.
 - [ ] Responses retain auditable values, support, coverage and exclusions.
 - [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
 - [ ] Separate commands preserve v1 behavior and bounded/read-only inputs.
@@ -197,6 +204,6 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [ ] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 2: strict policy and analytical response
-models/schemas from the frozen Step 1 contract. N3 runtime implementation has not
-started; hosted/minimum-version execution remains separately pending.
+The next implementation action is Step 3: pure response/normalization functions
+from validated v2 pairs and explicit policy. Hosted/minimum-version execution
+remains separately pending.

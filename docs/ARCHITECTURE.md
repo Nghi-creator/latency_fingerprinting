@@ -126,11 +126,12 @@ v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries
 hardening, fixture provenance corrections and current whole-tree verification.
 The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
-explicit compatibility and conservative evidence rules. These analytical modules
-and commands are specified in the [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md)
-and [policy artifact](analysis/N3_FEATURE_POLICY_SPEC.json), but not implemented.
-Steps 0–1 are complete locally; strict policy/response models are next. P0 remains
-the current matching path.
+explicit compatibility and conservative evidence rules. Steps 0–2 are complete
+locally: [strict policy/response models](analysis/N3_ANALYTICAL_MODELS.md) validate
+exact approved policy content and reconstruct embedded response evidence. Pure
+response derivation, fingerprints, matching and build commands remain pending
+under the [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 remains the current
+matching path.
 
 ## Target system overview
 
@@ -167,6 +168,8 @@ latency-fingerprinting/
 │   ├── match-result-v1.schema.json
 │   ├── observation-window-v2.schema.json
 │   ├── observation-v2.schema.json
+│   ├── feature-policy-v1.schema.json
+│   ├── analytical-response-v2.schema.json
 │   ├── metric-registry-v1.schema.json
 │   └── metric-registry-v1.json
 ├── src/latency_fingerprinting/
@@ -180,7 +183,11 @@ latency-fingerprinting/
 │   │   ├── v2_support.py
 │   │   ├── observation_v2.py
 │   │   ├── observation_pair_v2.py
+│   │   ├── feature_policy.py
+│   │   ├── analytical_response_v2.py
 │   │   └── match.py
+│   ├── analytical/
+│   │   └── policy_release.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
@@ -237,6 +244,7 @@ latency-fingerprinting/
 │   ├── controlled-run-001/
 │   └── controlled-run-002/
 └── tests/
+    ├── analytical/
     ├── data/
     ├── measurement/
     ├── models/

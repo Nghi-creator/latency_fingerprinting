@@ -1,4 +1,4 @@
-# N1/N2 quality and CI gates
+# N1/N2 and incremental N3 quality gates
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
@@ -8,6 +8,12 @@ and read-only reproduction in both jobs. Python 3.11 also checks schemas,
 canonical registry and installed dependencies. The quality job retains Ruff,
 P0 fixture drift, controlled-artifact
 validation, seed drift and exact run-002 match reproduction.
+
+N3 Step 2 adds [strict policy/response validation](../analysis/N3_ANALYTICAL_MODELS.md)
+and two additive schemas, bringing the schema drift gate to eight roots. Its 94
+analytical tests run in the existing full-suite jobs. Local results are 1,260 tests
+and 93.15% branch-inclusive coverage; actual hosted/minimum-version execution
+remains pending. Separate N3 fixture pins/reproduction are planned for Step 7.
 
 ## Read-only reproduction
 

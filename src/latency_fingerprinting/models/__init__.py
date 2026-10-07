@@ -85,6 +85,12 @@ __all__ = [
     "MetricSeriesSummary",
     "CounterInterval",
 ]
+from .analytical_response_v2 import (
+    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION,
+    AnalyticalResponseV2,
+    FeatureResponseV2,
+    WindowFeatureEvidenceV2,
+)
 from .context import (
     ContextKey,
     MetricAggregate,
@@ -92,6 +98,12 @@ from .context import (
     SourceArtifact,
     TimeBounds,
     ValidityState,
+)
+from .feature_policy import (
+    FEATURE_POLICY_SCHEMA_VERSION,
+    AnalyticalDecisionPolicyV1,
+    FeaturePolicyParameterV1,
+    FeaturePolicyV1,
 )
 from .fingerprint import CompatibilityKey, Fingerprint
 from .match import (
@@ -146,6 +158,14 @@ from .v2_support import (
 )
 
 __all__ += [
+    "FEATURE_POLICY_SCHEMA_VERSION",
+    "ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION",
+    "FeaturePolicyV1",
+    "FeaturePolicyParameterV1",
+    "AnalyticalDecisionPolicyV1",
+    "AnalyticalResponseV2",
+    "FeatureResponseV2",
+    "WindowFeatureEvidenceV2",
     "V2_CONTRACT_VERSION",
     "OBSERVATION_V2_SCHEMA_VERSION",
     "OBSERVATION_WINDOW_V2_SCHEMA_VERSION",

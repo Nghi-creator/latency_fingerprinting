@@ -60,7 +60,8 @@ completed checklist and pending hosted-verification item. The active
 [N3 plan](NEXT_IMPLEMENTATION_PLAN.md) specifies v2 feature-policy, response,
 normalization, fingerprint and offline matcher work. Baseline reproduction and the
 [N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
-are complete locally; runtime implementation has not started.
+are complete locally. Strict policy/response models and schemas are implemented;
+pure response derivation is next, with fingerprint/matching work still pending.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.

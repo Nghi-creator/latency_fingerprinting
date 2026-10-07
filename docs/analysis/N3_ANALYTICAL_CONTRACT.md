@@ -2,23 +2,27 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; runtime enforcement is not implemented
+**Status:** Step 1 specification complete; Step 2 policy/response models implemented locally
 **Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
 This contract connects [N2 observation pairs](../measurement/OBSERVATION_V2_CONTRACT.md)
 to separate analytical records. It preserves N1 registry meaning, N2 observation
-schemas and the P0 matching path. The JSON policy is a specification artifact;
-current `validate`, schema export and matching do not yet accept these new roots.
+schemas and the P0 matching path. The JSON policy remains a normative specification
+artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
+accept policy and analytical response roots. Fingerprint/match roots, pure response
+derivation and the proposed build/match commands remain pending.
 
 ## Versioned roots and trust boundary
 
-| Model | schemaVersion | contractVersion | Schema to add |
+| Model | schemaVersion | contractVersion | Schema |
 | --- | --- | --- | --- |
 | FeaturePolicyV1 | feature-policy-v1 | 1.0.0 | feature-policy-v1.schema.json |
 | AnalyticalResponseV2 | analytical-response-v2 | 2.0.0 | analytical-response-v2.schema.json |
 | FingerprintV2 | fingerprint-v2 | 2.0.0 | fingerprint-v2.schema.json |
 | MatchResultV2 | match-result-v2 | 2.0.0 | match-result-v2.schema.json |
+
+The first two roots are implemented; fingerprint and match roots are planned.
 
 All fields below are required unless explicitly marked default. Nullable fields
 must be present as null. Models forbid extra fields, duplicate identities, boolean
@@ -46,8 +50,8 @@ parameter explicitly; no ambient/P0 defaults are inherited. Its content hash is:
 Compute `contentHash` by removing that root field, rendering the remaining policy
 with the canonical JSON rules above (`allow_nan=False`), and hashing those UTF-8
 bytes. Hash presence, identity, known version and exact approved content must all
-agree. Step 2 will implement a trusted renderer/release check; it must reproduce
-this specification rather than silently choose new parameter defaults.
+agree. Step 2 implements an in-package trusted renderer/release check that
+reproduces this specification and rejects altered content even with a recomputed hash.
 
 | Policy field/group | Frozen meaning |
 | --- | --- |
@@ -357,5 +361,5 @@ and `match-v2 --response --policy --fingerprints`, with all path arguments expli
 The supplied policy must equal the embedded policy. Commands are read-only and emit
 canonical JSON only on success. Existing v1 commands stay unchanged. Step 7 adds
 separate synthetic fixtures/pins, both CI jobs, privacy/resource regressions and
-software closeout. No new runtime code, schemas or commands are delivered by this
-specification step.
+software closeout. Step 1 delivered specification only; Step 2 now delivers
+[policy/response validation and two additive schemas](N3_ANALYTICAL_MODELS.md).

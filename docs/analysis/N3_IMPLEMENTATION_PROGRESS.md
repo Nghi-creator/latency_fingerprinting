@@ -4,6 +4,9 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
+**Current next action:** Step 3 — pure response/normalization functions. Steps 0–2
+are complete locally; hosted/minimum-version verification remains pending.
+
 ## Step 0 — Preserve the N2 baseline
 
 The starting checkout was clean. Reproduced existing local gates on macOS/Python
@@ -60,3 +63,26 @@ No analytical runtime models, new schema exports, normalization function,
 fingerprint/matcher implementation or commands are delivered by Step 1. The next
 action is Step 2: strict policy and analytical response models/schemas. Pending
 hosted verification and scientific/instrumentation boundaries remain explicit.
+
+
+## Step 2 — Strict policy and analytical response models
+
+**Implemented locally:** 2026-10-07
+**Starting commit:** `bc0bc779364edca31e67fe85c0d0e229521286a2` (clean checkout)
+
+[Immutable policy/response models](N3_ANALYTICAL_MODELS.md) now enforce approved
+release content, canonical identity, registry bindings and evidence reconstruction.
+They reject forged arithmetic, exclusions, validity, strict types and copied model
+instances; detach caller containers; preserve numeric zero and null calculations.
+Confounded pairs retain audit evidence while excluding every feature.
+
+The trusted in-package policy exactly reproduces the unchanged specification and
+its existing hash. Generic root validation and schema export accept the two new
+roots. No response builder, fingerprint, matcher or build command is delivered yet.
+
+Local Python 3.13.13 results: **94 new analytical tests; 1,260 total tests pass;
+93.15% branch-inclusive coverage**, above the unchanged 85% floor. Ruff lint/format,
+dependency consistency, all eight schemas, canonical registry, three fixture
+families, five controlled P0 artifacts, run-001 seed and exact run-002 match bytes
+pass. All six existing schema bytes, numerical source, fixtures and P0/N1/N2 pins
+remain unchanged. Python 3.11/hosted execution remains pending.
