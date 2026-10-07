@@ -137,7 +137,8 @@ N2 must preserve P0 schemas and matcher results. It does not automatically adopt
 v2 rates into the production matcher, invent normalization, mutate live encoders,
 run remediation or claim improved diagnosis. Fingerprint/matcher-v2 adoption and
 new runtime capture remain separately reviewed boundaries. The implementation
-sequence is in the [next-slice plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+sequence is preserved in the [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
+The [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now describes N3.
 The [archived N1 plan](../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed checklist; the [full roadmap](../plans/FULL_IMPLEMENTATION_PLAN.md)
 remains the broader sequence.

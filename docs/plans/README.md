@@ -1,8 +1,12 @@
 # Implementation plans
 
-- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) records the completed N2
-  additive observation-v2 contract/offline adoption plan. All software steps and
-  local gates are complete; actual Python 3.11/hosted execution remains pending.
+- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active **N3**
+  plan for v2 analytical features, normalization, fingerprints and offline matching.
+  N3 is planned; implementation starts with baseline verification and field/policy
+  design. Runtime implementation has not started.
+- [Archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves completed
+  observation-v2 contracts/adoption and local verification. Actual Python 3.11/hosted
+  execution remains pending.
 - [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
   root, registry, support, pair and timing semantics before implementation.
 - [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md) records delivered
@@ -35,6 +39,6 @@
   [fixtures](../measurement/ARITHMETIC_FIXTURES.md) and
   [quality gates](../measurement/QUALITY_GATES.md) document diagnostics and verification.
 
-Archive a slice's completed plan and software closeout before replacing the active
-plan. Keep local software verification distinct from hosted CI and scientific
+Preserve each completed plan in the archive and retain its software closeout
+before replacing the active plan. Keep local software verification distinct from hosted CI and scientific
 validation. The full roadmap stays at major-slice level.

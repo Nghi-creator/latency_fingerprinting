@@ -48,8 +48,10 @@ whitespace checks pass.
 ## Next action
 
 All N2 software steps are implemented below and [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
-The next implementation boundary is a reviewed v2 feature/normalization and
-fingerprint/matcher contract.
+The active [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now specifies the
+v2 feature-policy/normalization and fingerprint/matcher slice; runtime
+implementation has not started. The completed
+[N2 plan is archived](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 Keep cross-version hosted verification pending until actual CI evidence is available.
 
 ## Step 2 — Additive strict models and schemas
@@ -181,3 +183,11 @@ artifacts and adopted N2 snapshot pins remain unchanged. No restructuring is nee
 no additional concrete N2 blocker was found. Actual hosted/minimum-version execution,
 full-limit scaling, direct timing instrumentation and v2 analytical/matcher semantics
 remain explicitly outside local closeout.
+
+## Plan transition to N3
+
+**Updated:** 2026-10-07. Archived the completed N2 plan, preserving its historical
+gates and pending hosted verification. The active next-implementation document
+now contains the N3 feature-policy, response/normalization and offline fingerprint/
+matcher sequence. Current navigation and historical N2-specific links are aligned;
+this documentation transition does not implement N3 runtime code.

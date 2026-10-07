@@ -72,7 +72,8 @@ Run the [full local gate commands](QUALITY_GATES.md), including:
 Both configured Python CI jobs include N2 reproduction. Neither Python 3.11 nor
 the GitHub CLI is installed here, and hosted results were not retrieved. Workflow
 inspection and local execution do not establish hosted/minimum-version success.
-The completed plan retains that verification item unchecked.
+The [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
+retains that verification item unchecked.
 
 ## Remaining boundaries and next work
 
@@ -86,8 +87,9 @@ clocks retain wall-clock-derived elapsed provenance; there is no synchronized
 one-way or per-frame timing claim. New instrumentation requires reviewed meanings,
 methods, clock evidence and fixtures before value-bearing timing is permitted.
 
-The next implementation boundary is a separately reviewed **v2 feature,
-normalization and fingerprint/matcher contract**. It must select analytical
+The successor slice is **N3: v2 feature-policy, normalization and offline
+fingerprint/matching**, specified in the [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+Its runtime implementation has not started. The analytical contract must select
 features, establish compatible units/registry versions, define missing-data and
 coverage eligibility, specify response/normalization behavior, and keep audit
 totals distinct. It must also define separately versioned fingerprint/match roots

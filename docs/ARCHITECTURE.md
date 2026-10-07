@@ -78,9 +78,9 @@ Registry metadata uses fixed release versions and creation time. Legacy exported
 elapsed timestamps retain their wall-clock-derived limitation; a registry clock
 label does not assert verified monotonic capture. N1 includes no observation-v2
 root, live instrumentation or matcher adoption. The implemented N1 boundary and
-next step are documented in the
+historical successor are documented in the
 [`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
-[`next-slice plan`](plans/NEXT_IMPLEMENTATION_PLAN.md).
+[archived N2 plan](plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 
 The implemented module dependencies are shown below. The inspection layer joins
 the two paths for comparison; it does not feed N1 summaries into the P0 matcher.
@@ -124,6 +124,10 @@ v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries
 [N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
 [post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
 hardening, fixture provenance corrections and current whole-tree verification.
+The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+feature-policy, response, normalization, fingerprint and matching modules with
+explicit compatibility and conservative evidence rules. These analytical modules
+and commands are planned, not implemented; P0 remains the current matching path.
 
 ## Target system overview
 

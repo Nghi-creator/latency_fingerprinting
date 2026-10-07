@@ -65,9 +65,11 @@ must not claim those metrics. `pipelineDelayProxyMs` stays missing until a
 validated proxy exists.
 
 P0 counter-derived features retain the frozen median interval-delta semantics.
-Before captures with different sampling cadence are compared, the next contract
-must version these as rates and/or total-window deltas as described in
-[`../plans/NEXT_IMPLEMENTATION_PLAN.md`](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+The [N1 metric inventory](../measurement/METRIC_SEMANTICS_V2.md) separately versions
+rates and audit totals, and [N2 adoption](../measurement/OBSERVATION_V2_ADOPTION.md)
+derives them from raw interval evidence. The active
+[N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) defines their analytical eligibility
+and matching path; P0 aggregates retain their existing meaning.
 
 ## Control boundary
 

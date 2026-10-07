@@ -1,5 +1,11 @@
 # Post-N1 architecture audit
 
+This report preserves the original post-N1 findings and verification. Subsequent
+[N2 closeout](N2_SOFTWARE_CLOSEOUT.md) and [health audit](N2_ARCHITECTURE_AUDIT.md)
+deliver the registry binding and typed support that were pending here. The
+[active N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers analytical adoption
+and offline fingerprint/matching; its runtime implementation has not started.
+
 **Reviewed:** 2026-10-06, after N1 software closeout
 **Local environment:** macOS, Python 3.13.13
 
@@ -75,7 +81,7 @@ latency guarantee for a 31-output inspection report.
    establish registry membership or authenticate their producer evidence.
 4. The shadow report currently classifies unsupported sources using extraction's
    reason strings. N2 should carry typed support states independently of rendered
-   prose, as required by the [next-slice plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+   prose, as required by the [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 5. Bundle byte/row limits are tested, but full-limit report memory and throughput
    are not characterized. Measure those before adopting large captures as a
    supported workload; this audit only removes the verified quadratic lookup.

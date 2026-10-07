@@ -1,7 +1,7 @@
 # Latency Fingerprinting: Full Implementation Plan
 
 **Status:** Full post-P0 roadmap through production and final evaluation  
-**Updated:** 2026-10-06
+**Updated:** 2026-10-07
 **Starting point:** The offline P0 path is complete and hardened. Diagnosis accuracy,
 live probing, recovery benefit, and transfer remain unproven.
 
@@ -55,10 +55,13 @@ see the [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted C
 verification remains pending. N2 additive observation-v2 contracts and offline
 adoption are now [implemented and closed out locally](../measurement/N2_SOFTWARE_CLOSEOUT.md),
 with deterministic fixtures and reproduction gates in both configured Python jobs.
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md) retains the completed
-N2 checklist until a successor slice is planned. New instrumentation and a reviewed
-v2 feature/normalization/fingerprint/matcher contract remain later boundaries. Better matching is
-premature until records have stable timing and scientifically consistent semantics.
+The [archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) retains its
+completed checklist and pending hosted-verification item. The active
+[N3 plan](NEXT_IMPLEMENTATION_PLAN.md) specifies v2 feature-policy, response,
+normalization, fingerprint and offline matcher work; implementation has not started.
+It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
+changes. New instrumentation and scientific diagnosis validation remain separate
+roadmap boundaries.
 
 ### 1.1 Version metric semantics
 

@@ -116,8 +116,11 @@ are delivered in both configured Python CI jobs. [N2 software closeout](docs/mea
 is complete locally; P0/N1 pins remain unchanged. Actual Python 3.11/hosted results
 remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDIT.md)
 repairs reused-summary validation, synthetic artifact identity and documentation
-test scope. The next boundary is a reviewed v2 feature/normalization and
-fingerprint/matcher contract.
+test scope. The active [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
+now covers feature-policy design, v2 responses/normalization, fingerprints and
+offline matching. N3 is planned; its runtime implementation has not started. The
+[archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
+the completed checklist and pending hosted verification.
 
 ### Implemented and verified
 
