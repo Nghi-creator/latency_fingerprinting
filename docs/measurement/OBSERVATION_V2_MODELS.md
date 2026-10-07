@@ -13,7 +13,8 @@ focused modules, exported additively from the public `models` package:
 `ObservationWindowV2` uses `observation-window-v2`; `ObservationRecordV2` uses
 `observation-v2`. Both require explicit `contractVersion: "2.0.0"`. P0 version
 constants and roots are unchanged. No response delta, normalization or matcher
-adoption is added. The v2 bundle importer/command is Step 3 and is not implemented.
+adoption is added to these models. The separate [v2 importer/command](OBSERVATION_V2_ADOPTION.md)
+is implemented in Step 3.
 
 ## Validated construction and file boundaries
 

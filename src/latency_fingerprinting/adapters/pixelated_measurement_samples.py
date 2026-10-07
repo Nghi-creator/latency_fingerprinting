@@ -11,6 +11,7 @@ from types import MappingProxyType
 
 from ..measurement.metric_registry import CANONICAL_METRIC_REGISTRY
 from ..models import ContextKey, MeasurementSample, MetricDefinition, MetricSource, WindowPhase
+from .pixelated_adoption_metadata import PixelatedAdoptionMetadata, adoption_metadata
 from .pixelated_bundle import (
     EVENT_COLUMNS,
     READABLE_FILES,
@@ -60,6 +61,7 @@ class PixelatedMeasurementSamples:
     warnings: tuple[str, ...] = (
         "Exported elapsed timestamps are wall-clock-derived; monotonic capture is unverified.",
     )
+    adoption: PixelatedAdoptionMetadata | None = None
 
 
 def _source_file(source: MetricSource) -> str:
@@ -163,6 +165,7 @@ def load_pixelated_measurement_samples(
     phase: WindowPhase,
     comparison_case_id: str,
     context: ContextKey,
+    include_adoption_metadata: bool = False,
 ) -> PixelatedMeasurementSamples:
     """Validate the existing bundle envelope and extract canonical raw evidence once.
 
@@ -192,7 +195,7 @@ def load_pixelated_measurement_samples(
     events = csv_rows(files, "stream-events.csv", EVENT_COLUMNS)
     if not browser_rows:
         raise PixelatedBundleError("stream-telemetry.csv requires at least one data row")
-    run_id, session_id, workload_id, player_mode, _ = _validate_metadata(metadata)
+    run_id, session_id, workload_id, player_mode, settings = _validate_metadata(metadata)
     if workload_id != context.workload_id:
         raise PixelatedBundleError(
             "run-metadata.json workload identity disagrees with the explicit context"
@@ -249,7 +252,7 @@ def load_pixelated_measurement_samples(
             workload_id=workload_id,
             allow_empty=metadata.get("scenario") == "browser_only_baseline",
         )
-        engine_effective_settings(engine_rows)
+        settings.update(engine_effective_settings(engine_rows))
         validate_engine_window_alignment(
             engine_rows,
             started_at=started_at,
@@ -290,6 +293,18 @@ def load_pixelated_measurement_samples(
         elapsed_start_ms=elapsed_start,
         elapsed_end_ms=elapsed_end,
         series=MappingProxyType(series),
+        adoption=adoption_metadata(
+            run_id=run_id,
+            version=version,
+            metadata=metadata,
+            summary=summary,
+            manifest=manifest,
+            settings=settings,
+            source_rows=source_rows,
+            events=events,
+        )
+        if include_adoption_metadata
+        else None,
     )
 
 

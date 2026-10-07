@@ -107,7 +107,10 @@ N2 has started with baseline verification and the
 Its [strict models and additive schemas](docs/measurement/OBSERVATION_V2_MODELS.md)
 are implemented, with **1,092 tests passing and 92.60% branch-inclusive coverage**.
 The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) separates
-completed contract validation from the raw-bundle adoption path coming next.
+completed contract validation from subsequent N2 work. The
+[offline raw-bundle adoption command](docs/measurement/OBSERVATION_V2_ADOPTION.md)
+is now implemented: **1,127 tests pass, 92.91% branch-inclusive coverage**.
+Minimum timing/support population is next; P0/N1 pins remain unchanged.
 
 ### Implemented and verified
 

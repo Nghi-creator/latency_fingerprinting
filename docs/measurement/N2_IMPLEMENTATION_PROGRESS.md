@@ -47,7 +47,7 @@ whitespace checks pass.
 
 ## Next action
 
-Step 2 is implemented below; the next action is Step 3 offline bundle adoption.
+Steps 2–3 are implemented below; the next action is Step 4 timing/support population.
 Keep cross-version hosted verification pending until actual CI evidence is available.
 
 ## Step 2 — Additive strict models and schemas
@@ -75,3 +75,30 @@ Protected P0/N1 artifacts and numerical source are unchanged against the startin
 commit. Schema generation wrote only the two new schema files. No raw-bundle v2
 importer, normalized response, matcher adoption or new experiment is included.
 Python 3.11/hosted CI verification remains pending.
+
+## Step 3 — Offline raw-bundle adoption
+
+**Completed locally:** 2026-10-07
+**Starting commit:** `e312c6a83400baf61d541c36f7df1abb74060e5d`
+
+Added the separate [v2 importer/command](OBSERVATION_V2_ADOPTION.md). It uses one
+validated raw read plus opt-in immutable metadata, masks unsupported/unavailable
+evidence, aggregates from raw rows, preserves typed support, snapshots context,
+derives deterministic checksum IDs and emits privacy-limited validated v2 windows.
+No P0 aggregation/conversion or matching is invoked. Existing N1 raw callers keep
+their default samples/report behavior; the additive metadata path is opt-in.
+
+The 35 new adoption cases include repeated/directory/TAR byte equality, unchanged
+inputs, one read, declaration precedence, zero/reset/gap arithmetic, absent sources,
+caller isolation, fixed diagnostics and repeatable public CLI boundary failures.
+Local Python 3.13.13 result: **1,127 tests pass; 92.91% branch-inclusive coverage**.
+Ruff, dependency consistency, six schemas, canonical registry, both fixture sets,
+N1 release/report pins, five controlled P0 artifacts, run-001 seed and exact
+run-002 match bytes pass. Markdown links and whitespace checks pass.
+
+P0 adapter/model/arithmetic source, all frozen schemas, fixtures and controlled
+artifacts are unchanged. N1 extraction gained opt-in metadata only; its numerical
+behavior and pinned shadow output are preserved. Stage timings remain empty;
+Step 4 will populate explicit unavailable evidence. No new experiment, runtime
+instrumentation, normalization or matcher adoption is included. Hosted Python
+3.11/3.13 verification remains pending.

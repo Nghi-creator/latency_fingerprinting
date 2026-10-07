@@ -105,14 +105,16 @@ validation fixes, file-size review and remaining verification gaps.
 
 ## N2 additive contracts
 
-N2 Steps 0–2 add strict `observation-window-v2` and `observation-v2` roots,
+N2 Steps 0–3 add strict `observation-window-v2` and `observation-v2` roots,
 trusted registry binding, typed support, immutable context/settings, local clock
 provenance, paired intervention compatibility and unavailable-only stage timing.
 `validate` and schema exports support these roots. Their models are separate from
 frozen v1 contracts; P0 response construction and matching reject v2 inputs.
-Offline raw-bundle adoption is Step 3 and is not implemented yet. See the
+`ingest-pixelated-v2` adopts raw evidence using N1 extraction/aggregation and
+opt-in metadata from one validated read. Step 4 timing population is next. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
+[adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
 [N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md).
 
 ## Target system overview
@@ -196,6 +198,8 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_io.py
 │       ├── pixelated_bundle_metrics.py
 │       ├── pixelated_measurement_samples.py
+│       ├── pixelated_adoption_metadata.py
+│       ├── pixelated_observation_v2.py
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/

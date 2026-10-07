@@ -1,8 +1,8 @@
 # Next Slice Implementation Plan: Additive Observation-v2 Adoption
 
 **Slice ID:** N2
-**Status:** Steps 0–2 locally complete; Step 3 offline adoption next
-**Updated:** 2026-10-06
+**Status:** Steps 0–3 locally complete; Step 4 timing/support population next
+**Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md)
 
@@ -11,8 +11,8 @@ results remain pending; review those results before claiming cross-version
 release verification. The [archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed software checklist. N2's baseline and field specification
 are recorded in [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md).
-Strict observation-v2 models/schemas are implemented; raw-bundle adoption and
-v2 matching are not implemented yet.
+Strict observation-v2 models/schemas and raw-bundle adoption are implemented;
+v2 matching is not implemented.
 
 ## Outcome and boundary
 
@@ -89,6 +89,10 @@ Gate: malformed v2 records fail closed and all v1 schemas/artifacts remain ident
 
 ## Step 3 — Build the offline raw-bundle adoption path
 
+**Local gate:** Complete in the [adoption guide](../measurement/OBSERVATION_V2_ADOPTION.md).
+The separate importer/command passes 35 new cases and all frozen reproduction
+checks. Full suite: 1,127 tests, 92.91% branch-inclusive coverage.
+
 Reuse [N1 extraction](../measurement/SAMPLE_EXTRACTION.md) and pure aggregation.
 Build new v2 records only from validated raw evidence with an explicit context,
 phase and comparison case. Pin registry content and retain clock limitations.
@@ -136,13 +140,13 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 - [x] V2 roots and field semantics are specified, locally reviewed and separately versioned.
 - [x] Registry, capture method and clock provenance are explicit and validated.
 - [x] Missing/rejected/incomplete/zero states and audit totals remain distinct.
-- [ ] Raw bundles produce deterministic additive v2 records without rewriting v1.
-- [ ] Frozen P0 counter aggregates are never silently upgraded.
+- [x] Raw bundles produce deterministic additive v2 records without rewriting v1.
+- [x] Frozen P0 counter aggregates are never silently upgraded.
 - [ ] Timing/support representation makes no unsupported per-frame or one-way claim.
 - [ ] Both Python CI suites and resource, privacy and reproduction gates pass.
 - [ ] P0 artifacts, N1 release pins and existing match results are unchanged.
 - [ ] Documentation and N2 software closeout match delivered behavior.
 
-The next implementation action is Step 3: deterministic offline raw-bundle adoption.
-Steps 0–2 are locally complete; hosted verification remains pending. No N2
+The next implementation action is Step 4: populate explicit unavailable stage timing/support.
+Steps 0–3 are locally complete; hosted verification remains pending. No N2
 implementation is included in the historical N1 closeout.

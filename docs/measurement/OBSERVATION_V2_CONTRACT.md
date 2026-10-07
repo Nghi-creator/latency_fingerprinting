@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.1
 **Frozen for Step 2:** 2026-10-06
-**Status:** Strict models and additive schemas implemented in Step 2; adoption is Step 3
+**Status:** Models/schemas and offline raw-bundle adoption implemented through Step 3
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and
