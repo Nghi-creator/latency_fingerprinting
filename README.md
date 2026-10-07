@@ -118,7 +118,10 @@ remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDI
 repairs reused-summary validation, synthetic artifact identity and documentation
 test scope. The active [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
 now covers feature-policy design, v2 responses/normalization, fingerprints and
-offline matching. N3 is planned; its runtime implementation has not started. The
+offline matching. N3 Steps 0–1 are complete locally: the
+[field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md) and explicit provisional
+[policy specification](docs/analysis/N3_FEATURE_POLICY_SPEC.json) are frozen.
+Strict analytical models/schemas are next; runtime implementation has not started. The
 [archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
 the completed checklist and pending hosted verification.
 

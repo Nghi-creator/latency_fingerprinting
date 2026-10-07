@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Planned; implementation has not started
+**Status:** Steps 0–1 complete locally; Step 2 strict analytical models next
 **Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
@@ -11,8 +11,9 @@ N1 measurement semantics and N2 observation-v2 adoption are implemented and
 locally verified. The [post-N2 audit](../measurement/N2_ARCHITECTURE_AUDIT.md)
 records the current baseline: 1,166 passing tests and 93.05% branch-inclusive
 coverage. Actual Python 3.11/hosted verification remains pending. This document
-plans the next software slice; v2 analytical models, normalization, fingerprints,
-matching and commands are not yet implemented.
+now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
+and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
+runtime models, normalization, fingerprints, matching and commands are not yet implemented.
 
 ## Outcome and boundary
 
@@ -33,6 +34,11 @@ confidence or real relief efficacy.
 
 ## Step 0 — Preserve and reproduce the N2 baseline
 
+**Local gate:** Complete at `06e697105e918c0c2f3ae2d25bf75c833f7982ad`;
+1,166 tests pass, 93.05% branch-inclusive coverage. All frozen reproduction gates
+pass. Actual hosted/minimum-version execution remains pending; see
+[N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+
 Record the starting commit and checkout state. Reproduce the
 [quality gates](../measurement/QUALITY_GATES.md): six current schemas, three fixture
 families, N1 registry/report pins, N2 snapshot pins and exact P0 controlled match
@@ -44,6 +50,13 @@ Gate: record a reproducible local baseline and pending verification without
 rewriting frozen artifacts to make checks pass.
 
 ## Step 1 — Freeze the analytical and matching field contract
+
+**Specification gate:** Complete in [N3_ANALYTICAL_CONTRACT.md](../analysis/N3_ANALYTICAL_CONTRACT.md),
+design 1.0.0, with exact initial [policy JSON](../analysis/N3_FEATURE_POLICY_SPEC.json).
+The policy selects 22 registered primary outputs, preserves exclusions, defines
+signed responses and conservative evidence thresholds, and fixes root/version,
+compatibility, fingerprint, matching and command semantics before implementation.
+Parameters are explicitly software-provisional. Runtime enforcement is Step 2 onward.
 
 Author the field-level N3 design before runtime implementation. Use the
 [metric inventory](../measurement/METRIC_SEMANTICS_V2.md),
@@ -105,9 +118,10 @@ or turn totals into rates without raw intervals. Reuse scalar math only when its
 meaning matches the reviewed contract. Reject unrepresentable arithmetic; preserve
 zero/missing distinctions, input immutability and audit-only metric roles.
 
-Gate: independent positive/negative/zero, low-denominator, clipping and partial/
-missing-support cases reconstruct responses. Equivalent counter activity at
-different valid cadence retains the same eligible rate.
+Gate: independent positive/negative/zero, low-denominator and partial/missing-support
+cases reconstruct responses. Altered clipping parameters fail the initial approved
+policy gate. Equivalent counter activity at different valid cadence retains the
+same eligible rate.
 
 ## Step 4 — Add v2 fingerprints and bounded repository loading
 
@@ -141,8 +155,9 @@ tie ordering and conservative decisions under incomplete/contradictory inputs.
 
 ## Step 6 — Expose additive offline commands
 
-After contracts/functions pass, expose separate v2 response, fingerprint creation
-and matching commands. Freeze exact names/arguments in the command guide; require
+After contracts/functions pass, expose the specified `build-response-v2`,
+`build-fingerprint-v2` and `match-v2` commands. Preserve the field contract
+arguments in the command guide; require
 explicit local policies where needed. Retain existing `build-response`, `match`
 and ingestion behavior.
 
@@ -172,8 +187,8 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 
 ## Exit checklist
 
-- [ ] Baseline and frozen P0/N1/N2 reproduction checks are retained.
-- [ ] Feature inventory, policy parameters and compatibility meanings are specified.
+- [x] Baseline and frozen P0/N1/N2 reproduction checks are retained locally.
+- [x] Feature inventory, policy parameters and compatibility meanings are specified.
 - [ ] Strict policy/response/fingerprint/match contracts and schemas are delivered.
 - [ ] Responses retain auditable values, support, coverage and exclusions.
 - [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
@@ -182,5 +197,6 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [ ] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The first implementation action is Step 0 baseline reproduction, followed by the
-Step 1 analytical field/policy specification. N3 runtime implementation has not started.
+The next implementation action is Step 2: strict policy and analytical response
+models/schemas from the frozen Step 1 contract. N3 runtime implementation has not
+started; hosted/minimum-version execution remains separately pending.

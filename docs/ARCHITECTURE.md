@@ -127,7 +127,10 @@ hardening, fixture provenance corrections and current whole-tree verification.
 The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
 explicit compatibility and conservative evidence rules. These analytical modules
-and commands are planned, not implemented; P0 remains the current matching path.
+and commands are specified in the [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md)
+and [policy artifact](analysis/N3_FEATURE_POLICY_SPEC.json), but not implemented.
+Steps 0–1 are complete locally; strict policy/response models are next. P0 remains
+the current matching path.
 
 ## Target system overview
 
@@ -153,6 +156,7 @@ latency-fingerprinting/
 ├── pyproject.toml
 ├── docs/
 │   ├── ARCHITECTURE.md
+│   ├── analysis/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/

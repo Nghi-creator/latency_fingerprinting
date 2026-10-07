@@ -2,8 +2,13 @@
 
 - [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active **N3**
   plan for v2 analytical features, normalization, fingerprints and offline matching.
-  N3 is planned; implementation starts with baseline verification and field/policy
-  design. Runtime implementation has not started.
+  Steps 0–1 are complete locally; strict policy/response models are next.
+  Runtime implementation has not started.
+- [N3 analytical field contract](../analysis/N3_ANALYTICAL_CONTRACT.md) and
+  [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json) freeze the feature
+  inventory, provisional parameters, record roots and conservative decision rules.
+- [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records baseline
+  reproduction and completed specification separately from runtime implementation.
 - [Archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves completed
   observation-v2 contracts/adoption and local verification. Actual Python 3.11/hosted
   execution remains pending.

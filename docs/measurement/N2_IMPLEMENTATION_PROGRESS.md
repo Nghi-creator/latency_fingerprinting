@@ -49,8 +49,9 @@ whitespace checks pass.
 
 All N2 software steps are implemented below and [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
 The active [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now specifies the
-v2 feature-policy/normalization and fingerprint/matcher slice; runtime
-implementation has not started. The completed
+v2 feature-policy/normalization and fingerprint/matcher slice.
+[N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records completed baseline
+verification and field/policy design; runtime implementation has not started. The completed
 [N2 plan is archived](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 Keep cross-version hosted verification pending until actual CI evidence is available.
 

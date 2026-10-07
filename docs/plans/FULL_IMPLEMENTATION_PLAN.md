@@ -58,7 +58,9 @@ with deterministic fixtures and reproduction gates in both configured Python job
 The [archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) retains its
 completed checklist and pending hosted-verification item. The active
 [N3 plan](NEXT_IMPLEMENTATION_PLAN.md) specifies v2 feature-policy, response,
-normalization, fingerprint and offline matcher work; implementation has not started.
+normalization, fingerprint and offline matcher work. Baseline reproduction and the
+[N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
+are complete locally; runtime implementation has not started.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.
