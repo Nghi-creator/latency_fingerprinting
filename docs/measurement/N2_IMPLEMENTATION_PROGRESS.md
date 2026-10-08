@@ -53,7 +53,8 @@ v2 feature-policy/normalization and fingerprint/matcher slice.
 [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records completed baseline
 verification, field/policy design, strict policy/response models and pure response
 derivation, v2 fingerprints/repositories and conservative matching. Additive
-v2 commands are implemented; separate analytical fixture pins/closeout are next. The completed
+v2 commands and [N3 fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are
+complete locally. Successor scope remains to be selected. The completed
 [N2 plan is archived](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 Keep cross-version hosted verification pending until actual CI evidence is available.
 

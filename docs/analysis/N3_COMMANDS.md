@@ -81,4 +81,5 @@ explicit statuses/arguments, wrong roots, malformed/altered policies, determinis
 privacy-limited failures, unsafe inputs/repositories, input growth, exact output
 bounds, read-only inputs and v1 rejection. [Progress](N3_IMPLEMENTATION_PROGRESS.md)
 records current local verification. Actual Python 3.11/hosted execution remains
-pending. Step 7 will add separate analytical snapshots/pins and software closeout.
+pending. [Step 7 snapshots/pins](N3_ANALYTICAL_FIXTURES.md) and
+[software closeout](N3_SOFTWARE_CLOSEOUT.md) are complete locally.

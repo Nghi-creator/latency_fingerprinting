@@ -1,4 +1,4 @@
-# N1/N2 and incremental N3 quality gates
+# N1/N2/N3 quality and CI gates
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
@@ -17,8 +17,10 @@ analytical tests run in the existing full-suite jobs. Step 3 adds 30
 bringing exports to nine roots. Step 5 adds 76 [matching/model tests](../analysis/N3_MATCHING.md)
 and one match schema, bringing exports to ten roots.
 Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
-passes 1,480 tests with 93.56% branch-inclusive coverage; actual hosted/minimum-version execution
-remains pending. Separate N3 fixture pins/reproduction are planned for Step 7.
+passes 1,520 tests with 93.58% branch-inclusive coverage after 40 final
+fixture/closeout cases. [Step 7 fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
+and reproduction are delivered in both jobs. Actual hosted/minimum-version
+execution remains pending; see [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md).
 
 ## Read-only reproduction
 
@@ -32,6 +34,7 @@ error exit code with no partial JSON or traceback on drift or missing files.
 ```bash
 .venv/bin/python -m tests.measurement.check_reproduction
 .venv/bin/python -m tests.observation_v2.check_reproduction
+.venv/bin/python -m tests.analytical.check_reproduction
 ```
 
 Expected pins:
@@ -86,6 +89,7 @@ and no production exception handling or parsing implementation changed in Step 9
   --output schemas/metric-registry-v1.json --check
 .venv/bin/python -m tests.measurement.check_reproduction
 .venv/bin/python -m tests.observation_v2.check_reproduction
+.venv/bin/python -m tests.analytical.check_reproduction
 .venv/bin/python -c \
   'from latency_fingerprinting.synthetic_fixtures import fixture_drift; assert fixture_drift() == {}'
 .venv/bin/python -c \

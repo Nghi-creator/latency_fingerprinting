@@ -1,7 +1,7 @@
-# Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
+# N3 Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Steps 0–6 complete locally; Step 7 fixtures and software closeout next
+**Status:** Completed local software closeout; Steps 0–7 verified; hosted verification pending
 **Updated:** 2026-10-08
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
@@ -17,8 +17,10 @@ policy/response models and schemas are implemented; see the [model guide](../ana
 [Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
 [V2 fingerprints and bounded repository loading](../analysis/N3_FINGERPRINTS.md)
 and [v2 matching](../analysis/N3_MATCHING.md) are implemented, along with the
-[additive commands](../analysis/N3_COMMANDS.md). Separate analytical fixture pins
-and software closeout remain pending.
+[additive commands](../analysis/N3_COMMANDS.md). [Synthetic fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
+and [software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository hardening
+and final whole-tree verification.
 
 ## Outcome and boundary
 
@@ -208,6 +210,13 @@ wrong-version evidence.
 
 ## Step 7 — Fixtures, verification, documentation and software closeout
 
+**Local gate:** Complete: 19 synthetic snapshots, independent numerical
+expectations and pinned reproduction in both configured Python jobs. The final
+repository ancestor-replacement regression is included. 1,520 tests pass with
+93.58% branch-inclusive coverage. See the [closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md),
+[fixtures](../analysis/N3_ANALYTICAL_FIXTURES.md) and [audit](../analysis/N3_ARCHITECTURE_AUDIT.md).
+Actual hosted/minimum-version execution remains pending.
+
 Add explicitly synthetic analytical/fingerprint/match fixtures with independently
 authored numerical expectations and exact-byte/SHA-256 drift checks. Cover both
 eligible and conservative-unknown paths. Preserve all P0/N1/N2 inputs/pins;
@@ -232,10 +241,11 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [x] Responses retain auditable values, support, coverage and exclusions.
 - [x] Matching is deterministic and conservative with insufficient/ambiguous evidence.
 - [x] Separate commands preserve v1 behavior and bounded/read-only inputs.
-- [ ] Independent synthetic expectations and new pins reproduce exactly.
-- [ ] Whole-tree tests, docs and software closeout match delivered behavior.
+- [x] Independent synthetic expectations and new pins reproduce exactly.
+- [x] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 7: separate synthetic analytical fixtures,
-reproduction pins, final verification/documentation and software closeout.
-Hosted/minimum-version execution remains separately pending.
+N3 software is complete locally. Retain this completed plan until a successor
+scope is selected from the broader roadmap, then archive it before replacement.
+Hosted/minimum-version execution remains separately pending; remaining Phase 1
+instrumentation/experiment work and scientific evaluation are outside this closeout.

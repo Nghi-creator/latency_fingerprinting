@@ -94,7 +94,8 @@ complete, and [strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.m
 and [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are
 implemented, along with [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md).
 [V2 matching](../analysis/N3_MATCHING.md) and [additive commands](../analysis/N3_COMMANDS.md)
-are implemented; separate analytical fixtures and closeout are next.
+and [N3 synthetic fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are
+complete locally. Successor scope remains to be selected.
 The analytical contract selects
 features, establishes compatible units/registry versions, defines missing-data and
 coverage eligibility, specifies response/normalization behavior, and keeps audit

@@ -63,4 +63,4 @@ unchanged. Actual Python 3.11/hosted verification remains pending.
 [Step 4 fingerprints and bounded repository loading](N3_FINGERPRINTS.md) are now
 implemented, along with [Step 5 v2 matching](N3_MATCHING.md) and
 [Step 6 commands](N3_COMMANDS.md), including `build-response-v2`. Separate
-analytical fixture pins and software closeout are next.
+analytical fixture pins and [software closeout](N3_SOFTWARE_CLOSEOUT.md) are complete locally.

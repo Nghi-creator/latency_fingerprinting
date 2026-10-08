@@ -92,7 +92,8 @@ The additive [match-result-v2 schema](../../schemas/match-result-v2.schema.json)
 brings schema exports to ten roots; generic `validate` accepts the result. The
 existing `match` command remains v1. [Step 6](N3_COMMANDS.md) now delivers
 `build-response-v2`, `build-fingerprint-v2` and `match-v2` commands. Separate
-synthetic snapshots and pins belong to Step 7.
+synthetic snapshots and pins are delivered in [Step 7](N3_ANALYTICAL_FIXTURES.md);
+[software closeout](N3_SOFTWARE_CLOSEOUT.md) is complete locally.
 
 76 new matching/model tests cover independent numerical expectations, unknown
 priorities, compatibility, strict JSON equality, coverage, threshold boundaries,

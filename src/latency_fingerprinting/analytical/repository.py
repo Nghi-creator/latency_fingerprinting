@@ -43,6 +43,20 @@ def _read_fingerprint(directory_fd: int, name: str) -> FingerprintV2:
         raise FingerprintRepositoryErrorV2("invalid_fingerprint") from error
 
 
+def _open_directory(path: Path, flags: int) -> int:
+    """Pin each ancestor before descending; path checks alone are raceable."""
+    descriptor = os.open(path.anchor, flags)
+    try:
+        for component in path.parts[1:]:
+            child = os.open(component, flags, dir_fd=descriptor)
+            os.close(descriptor)
+            descriptor = child
+    except BaseException:
+        os.close(descriptor)
+        raise
+    return descriptor
+
+
 def load_fingerprint_repository_v2(directory: Path) -> FingerprintRepositoryV2:
     """Validate every JSON file, returning all records in stable ID order.
 
@@ -89,7 +103,7 @@ def load_fingerprint_repository_v2(directory: Path) -> FingerprintRepositoryV2:
         for component in (directory, *directory.parents):
             if component.is_symlink():
                 raise FingerprintRepositoryErrorV2("unsafe_link")
-        directory_fd = os.open(directory, directory_flags)
+        directory_fd = _open_directory(directory, directory_flags)
         try:
             walk(directory_fd, 0)
         finally:

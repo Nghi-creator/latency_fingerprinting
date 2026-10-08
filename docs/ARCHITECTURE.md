@@ -124,9 +124,9 @@ v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries
 [N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
 [post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
 hardening, fixture provenance corrections and current whole-tree verification.
-The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+The completed [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
-explicit compatibility and conservative evidence rules. Steps 0–6 are complete
+explicit compatibility and conservative evidence rules. Steps 0–7 are complete
 locally: [strict policy/response models](analysis/N3_ANALYTICAL_MODELS.md) validate
 exact approved policy content and reconstruct embedded response evidence.
 [Pure derivation](analysis/N3_RESPONSE_DERIVATION.md) revalidates explicit inputs
@@ -135,9 +135,11 @@ reconstruct declared references and enforce bounded fail-closed loading.
 [V2 matching](analysis/N3_MATCHING.md) retains reconstructable compatibility, scoring
 and conservative decision evidence. [Additive commands](analysis/N3_COMMANDS.md)
 enforce explicit policies, bounded no-follow input reads and complete output before
-stdout. Separate analytical fixture pins and software closeout remain pending
-under the [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 remains the current
-matching path.
+stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
+[software closeout](analysis/N3_SOFTWARE_CLOSEOUT.md) and the
+[final audit](analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
+[N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
+matching paths; hosted/minimum-version execution remains pending.
 
 ## Target system overview
 
@@ -245,6 +247,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── analytical-v2/
 │   ├── observation-v2/
 │   ├── reference_cases/
 │   │   ├── healthy/

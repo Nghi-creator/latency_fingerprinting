@@ -56,15 +56,18 @@ verification remains pending. N2 additive observation-v2 contracts and offline
 adoption are now [implemented and closed out locally](../measurement/N2_SOFTWARE_CLOSEOUT.md),
 with deterministic fixtures and reproduction gates in both configured Python jobs.
 The [archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) retains its
-completed checklist and pending hosted-verification item. The active
+completed checklist and pending hosted-verification item. The completed
 [N3 plan](NEXT_IMPLEMENTATION_PLAN.md) specifies v2 feature-policy, response,
 normalization, fingerprint and offline matcher work. Baseline reproduction and the
 [N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
 are complete locally. Strict policy/response models and schemas are implemented;
 pure response derivation, v2 fingerprints and bounded repository loading are
 implemented, along with v2 compatibility, scoring and conservative matching.
-Additive v2 commands are implemented; separate analytical fixture pins and
-software closeout remain pending.
+Additive commands, independent synthetic fixtures/pins and
+[N3 software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository hardening
+and verification. Hosted/minimum-version execution remains pending. N3 does not
+complete the Phase 1 observability and experiment-foundation work below.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.

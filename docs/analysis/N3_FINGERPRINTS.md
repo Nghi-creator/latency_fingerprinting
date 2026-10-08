@@ -82,4 +82,4 @@ repository behavior. [Progress](N3_IMPLEMENTATION_PROGRESS.md) records current l
 results and unchanged reproduction pins. Actual Python 3.11/hosted verification
 remains pending. [Step 5 compatibility/scoring/matching](N3_MATCHING.md) is now
 implemented, along with [additive v2 commands](N3_COMMANDS.md). Separate
-analytical fixtures and software closeout are next.
+analytical fixtures and [software closeout](N3_SOFTWARE_CLOSEOUT.md) are complete locally.

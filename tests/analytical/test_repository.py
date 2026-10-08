@@ -200,3 +200,26 @@ def test_file_growth_after_stat_still_hits_read_bound(tmp_path, monkeypatch):
     monkeypatch.setattr(os, "fstat", stale_fstat)
     with pytest.raises(FingerprintRepositoryErrorV2, match="file_too_large"):
         load_fingerprint_repository_v2(tmp_path)
+
+
+def test_root_ancestor_replaced_after_precheck_is_not_followed(tmp_path, monkeypatch):
+    parent = tmp_path / "parent"
+    root = parent / "repository"
+    root.mkdir(parents=True)
+    write_fingerprint(root / "a.json")
+    outside = tmp_path / "outside"
+    (outside / "repository").mkdir(parents=True)
+    real_open = os.open
+    replaced = False
+
+    def racing_open(name, flags, **kwargs):
+        nonlocal replaced
+        if not replaced:
+            replaced = True
+            parent.rename(tmp_path / "original")
+            parent.symlink_to(outside, target_is_directory=True)
+        return real_open(name, flags, **kwargs)
+
+    monkeypatch.setattr(os, "open", racing_open)
+    with pytest.raises(FingerprintRepositoryErrorV2, match="repository_read_error"):
+        load_fingerprint_repository_v2(root)

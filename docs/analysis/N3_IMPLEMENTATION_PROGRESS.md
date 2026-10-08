@@ -4,8 +4,10 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
-**Current next action:** Step 7 — separate analytical fixtures, verification and software closeout. Steps 0–6
-are complete locally; hosted/minimum-version verification remains pending.
+**Completed locally:** Steps 0–7; see [software closeout](N3_SOFTWARE_CLOSEOUT.md)
+and [final audit](N3_ARCHITECTURE_AUDIT.md). Hosted/minimum-version verification
+remains pending. Select successor scope from the broader roadmap before replacing
+the completed plan.
 
 ## Step 0 — Preserve the N2 baseline
 
@@ -197,3 +199,32 @@ P0 artifacts, run-001 seed and exact run-002 match bytes pass. Existing schemas,
 policy specification, P0/N1/N2 and analytical APIs/fixtures/pins remain unchanged.
 Step 7 analytical snapshots/pins and software closeout remain; actual Python
 3.11/hosted execution remains pending.
+
+
+## Step 7 — Synthetic fixtures, final gates and software closeout
+
+**Implemented locally:** 2026-10-08
+**Starting commit:** `b5224cb17409ff28640960b060134471a6fd3cfe` (clean checkout)
+
+[19 synthetic snapshots](N3_ANALYTICAL_FIXTURES.md) retain approved policy, an
+observation, three responses, six declared references and all eight match outcomes.
+Independent primary/rate, response, residual, distance, strength, margin and conflict
+expectations complement exact-byte/SHA-256 pins. Read-only reproduction is wired
+into both configured Python jobs. Public commands and full repository verification
+reproduce every match case without refreshing artifacts.
+
+The [final audit](N3_ARCHITECTURE_AUDIT.md) closes a repository root ancestor race:
+no-follow descriptor traversal replaces the raceable full-path open, and a
+replacement regression fails closed. No further package restructuring is justified.
+README, architecture, contracts/guides, plan navigation, quality gates, fixture
+README and [software closeout](N3_SOFTWARE_CLOSEOUT.md) reflect delivered behavior.
+
+Local Python 3.13.13 results: **40 new closeout cases; 1,520 total tests pass;
+93.58% branch-inclusive coverage** at the unchanged 85% floor. Ruff lint/format,
+dependencies, ten schemas, canonical registry, four fixture families, three
+reproduction modules, five controlled P0 artifacts, run-001 seed and exact run-002
+match bytes pass. Whole-tree Markdown/diff checks include the final fixture docs.
+Existing schemas, policy and P0/N1/N2 source/fixtures/pins remain unchanged. N3 is
+closed locally; actual Python 3.11/hosted execution remains pending. Stage
+instrumentation, experiment foundation and scientific validation remain separate
+roadmap work. Review successor scope against those remaining boundaries.

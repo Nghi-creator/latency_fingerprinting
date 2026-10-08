@@ -1,8 +1,12 @@
 # Implementation plans
 
-- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active **N3**
+- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) retains the completed **N3**
   plan for v2 analytical features, normalization, fingerprints and offline matching.
-  Steps 0–6 are complete locally; separate analytical fixtures and closeout are next.
+  Steps 0–7 are complete locally; actual hosted/minimum-version verification
+  remains pending. Select a successor scope before replacing and archiving this plan.
+  [N3 software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md),
+  [fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md) and
+  [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) record whole-tree verification.
   [Strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md) and
   [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) and
   [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md) and
