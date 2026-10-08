@@ -3,7 +3,7 @@
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
 **Status:** Step 1 specification complete; Steps 0–7 implemented and closed out locally; hosted/minimum-version verification pending
-**Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
+**Source:** [N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
 This contract connects [N2 observation pairs](../measurement/OBSERVATION_V2_CONTRACT.md)
@@ -14,7 +14,7 @@ accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DER
 builds responses from explicit validated inputs. [Step 4 fingerprints/repositories](N3_FINGERPRINTS.md)
 and [Step 5 matching](N3_MATCHING.md) are implemented, along with the
 [Step 6 commands](N3_COMMANDS.md). [Step 7 fixtures/pins](N3_ANALYTICAL_FIXTURES.md)
-and [software closeout](N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+and [software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
 
 ## Versioned roots and trust boundary
 

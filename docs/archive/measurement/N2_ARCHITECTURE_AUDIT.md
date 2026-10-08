@@ -1,5 +1,8 @@
 # Post-N2 architecture and health audit
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 This report preserves the original post-N2 findings, counts and then-pending
 analytical work. [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) now delivers
 those v2 analytical/fingerprint/matching contracts. The subsequent
@@ -32,7 +35,7 @@ The summary bug was reproduced before the fix: a boolean minimum was accepted,
 and mutation of the supplied aggregate dictionary changed the retained record.
 Four new cases reject boolean/string aggregates, detach/refreeze reused summaries
 and reject an unchecked integer in a nested strict-boolean counter interval.
-Tests are in [window validation](../../tests/models/test_observation_v2.py).
+Tests are in [window validation](../../../tests/models/test_observation_v2.py).
 
 The full-suite failure in the README test also exposed an original closeout
 verification omission: the Step 5 run preceded creation of the new README. The
@@ -75,7 +78,7 @@ intervention data are unchanged. Its reviewed new snapshot pin is:
 
 `d6b96c18e0104fcd62ea2525b5637c6aadf7a033ac30d3b4e918be3ff8088954`
 
-The [fixture guide](OBSERVATION_V2_FIXTURES.md) records all current pins and their
+The [fixture guide](../../measurement/OBSERVATION_V2_FIXTURES.md) records all current pins and their
 software provenance limits. Schema/contract/registry versions and valid production
 adoption bytes are unchanged by the instance-validation repair.
 

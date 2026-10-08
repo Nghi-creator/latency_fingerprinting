@@ -1,5 +1,8 @@
 # N1 software closeout
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Slice:** N1 — Metric Semantics Foundation
 **Closed locally:** 2026-10-06
 **Software status:** Steps 0–10 implemented and locally verified
@@ -21,15 +24,15 @@ slice is still required.
 
 | Deliverable | Verified behavior |
 | --- | --- |
-| [Semantic inventory](METRIC_SEMANTICS_V2.md) | All 23 P0 features map once to 31 reviewed outputs: 15 gauges, eight rates and eight audit totals |
-| [Registry models](REGISTRY_MODELS.md) | Strict finite, immutable definitions with units, versions, clocks, missing/reset policies and cross-field validation |
-| [Canonical registry](CANONICAL_REGISTRY.md) | Fixed `latency-metrics-v2.0.0` release, definition version `1.0.0`, deterministic artifact/schema export and drift checks |
-| [Sample extraction](SAMPLE_EXTRACTION.md) | Existing bounded directory/TAR envelopes; immutable timestamped source rows; shared counter rate/total samples; explicit missing/rejection evidence |
-| [Gauge aggregation](GAUGE_AGGREGATION.md) | Registered min/median/nearest-rank P95/max; stable finite arithmetic; sample-based statistics and separate interval coverage |
-| [Counter derivation](COUNTER_AGGREGATION.md) | Accepted contiguous deltas, rates, totals, observed duration, units, gap/reset evidence and no extrapolation |
-| [Migration inspection](MEASUREMENT_INSPECTION.md) | P0 comparison, raw/frozen reconstruction classes, privacy-preserving deterministic shadow JSON, optional-source states |
-| [Arithmetic fixtures](ARITHMETIC_FIXTURES.md) | 13 explicitly synthetic cases with independent expected summaries and no-write exact-byte drift checks |
-| [Quality gates](QUALITY_GATES.md) | Both Python CI jobs enforce 85% branch-inclusive coverage and pinned registry/report reproduction; public CLI resource/failure regression tests |
+| [Semantic inventory](../../measurement/METRIC_SEMANTICS_V2.md) | All 23 P0 features map once to 31 reviewed outputs: 15 gauges, eight rates and eight audit totals |
+| [Registry models](../../measurement/REGISTRY_MODELS.md) | Strict finite, immutable definitions with units, versions, clocks, missing/reset policies and cross-field validation |
+| [Canonical registry](../../measurement/CANONICAL_REGISTRY.md) | Fixed `latency-metrics-v2.0.0` release, definition version `1.0.0`, deterministic artifact/schema export and drift checks |
+| [Sample extraction](../../measurement/SAMPLE_EXTRACTION.md) | Existing bounded directory/TAR envelopes; immutable timestamped source rows; shared counter rate/total samples; explicit missing/rejection evidence |
+| [Gauge aggregation](../../measurement/GAUGE_AGGREGATION.md) | Registered min/median/nearest-rank P95/max; stable finite arithmetic; sample-based statistics and separate interval coverage |
+| [Counter derivation](../../measurement/COUNTER_AGGREGATION.md) | Accepted contiguous deltas, rates, totals, observed duration, units, gap/reset evidence and no extrapolation |
+| [Migration inspection](../../measurement/MEASUREMENT_INSPECTION.md) | P0 comparison, raw/frozen reconstruction classes, privacy-preserving deterministic shadow JSON, optional-source states |
+| [Arithmetic fixtures](../../measurement/ARITHMETIC_FIXTURES.md) | 13 explicitly synthetic cases with independent expected summaries and no-write exact-byte drift checks |
+| [Quality gates](../../measurement/QUALITY_GATES.md) | Both Python CI jobs enforce 85% branch-inclusive coverage and pinned registry/report reproduction; public CLI resource/failure regression tests |
 
 Public additive commands are `export-metric-registry` and `inspect-measurements`.
 `export-schemas` includes the N1 registry schema, and `validate` accepts the registry
@@ -50,7 +53,7 @@ checks pass.
 
 | Frozen artifact | SHA-256 |
 | --- | --- |
-| [Registry JSON](../../schemas/metric-registry-v1.json) | `50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884` |
+| [Registry JSON](../../../schemas/metric-registry-v1.json) | `50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884` |
 | Sanitized inspection report | `295f57a6f0e0ab80f64c7323be3cd5fc4e278aac712825f0173955594513c423` |
 
 The report pin is reproduced read-only from the existing sanitized v2 fixture;
@@ -137,8 +140,8 @@ N2 must preserve P0 schemas and matcher results. It does not automatically adopt
 v2 rates into the production matcher, invent normalization, mutate live encoders,
 run remediation or claim improved diagnosis. Fingerprint/matcher-v2 adoption and
 new runtime capture remain separately reviewed boundaries. The implementation
-sequence is preserved in the [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
-The [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now describes N3.
-The [archived N1 plan](../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
-preserves the completed checklist; the [full roadmap](../plans/FULL_IMPLEMENTATION_PLAN.md)
+sequence is preserved in the [archived N2 plan](../../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
+The subsequent [archived N3 plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) records delivered analytical work.
+The [archived N1 plan](../../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
+preserves the completed checklist; the [full roadmap](../../plans/FULL_IMPLEMENTATION_PLAN.md)
 remains the broader sequence.

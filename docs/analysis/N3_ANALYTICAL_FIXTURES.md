@@ -41,5 +41,5 @@ tree as a reference repository correctly fails on mixed roots.
 
 40 new closeout cases cover all snapshots, public/repository-backed reproduction,
 read-only drift/failure behavior, synthetic hygiene, CI gate presence and the final
-repository ancestor replacement regression. See [closeout](N3_SOFTWARE_CLOSEOUT.md)
-and [architecture audit](N3_ARCHITECTURE_AUDIT.md) for final verification and scope.
+repository ancestor replacement regression. See [closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
+and [architecture audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) for final verification and scope.

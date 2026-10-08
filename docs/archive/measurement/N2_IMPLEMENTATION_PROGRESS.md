@@ -1,5 +1,8 @@
 # N2 implementation progress
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Slice:** Additive observation-v2 contracts and offline adoption
 **Started locally:** 2026-10-06
 **Starting commit:** `6b185f5ff8f12a1b50e91e1d99c371d6e9725c9b`
@@ -22,11 +25,11 @@ Frozen SHA-256 pins remain:
 Neither Python 3.11 nor the GitHub CLI is installed in this environment. Hosted CI
 results were not retrieved in this session; cross-version/hosted verification
 remains pending, separately from the passing local baseline. Reproduction commands
-remain in [QUALITY_GATES.md](QUALITY_GATES.md).
+remain in [QUALITY_GATES.md](../../measurement/QUALITY_GATES.md).
 
 ## Step 1 — Freeze the observation-v2 field contract
 
-The [field contract](OBSERVATION_V2_CONTRACT.md), design version 1.0.0, specifies:
+The [field contract](../../measurement/OBSERVATION_V2_CONTRACT.md), design version 1.0.0, specifies:
 
 - Independent `observation-window-v2` and `observation-v2` roots with contract 2.0.0.
 - Trusted registry version/content-hash references and exact per-definition binding.
@@ -48,21 +51,22 @@ whitespace checks pass.
 ## Next action
 
 All N2 software steps are implemented below and [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
-The active [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now specifies the
+The archived [N3 plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) now specifies the
 v2 feature-policy/normalization and fingerprint/matcher slice.
 [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records completed baseline
 verification, field/policy design, strict policy/response models and pure response
 derivation, v2 fingerprints/repositories and conservative matching. Additive
 v2 commands and [N3 fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are
-complete locally. Successor scope remains to be selected. The completed
-[N2 plan is archived](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
+complete locally. The active N4 scope is stage-level observability; see the archive
+notice above. The N3 transition below remains historical. The completed
+[N2 plan is archived](../../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 Keep cross-version hosted verification pending until actual CI evidence is available.
 
 ## Step 2 — Additive strict models and schemas
 
 **Starting commit:** `e98f228d14343ffc7e3f5c5903c7f821f5056f81`
 
-Implemented [strict v2 models](OBSERVATION_V2_MODELS.md) in separate common/support,
+Implemented [strict v2 models](../../measurement/OBSERVATION_V2_MODELS.md) in separate common/support,
 window and pair modules. Two new schema roots and additive `validate` dispatch
 enforce trusted registry binding, exact output inventory/meaning, immutable nested
 context/settings, typed support, clock bounds, counter rate/total evidence,
@@ -89,7 +93,7 @@ Python 3.11/hosted CI verification remains pending.
 **Completed locally:** 2026-10-07
 **Starting commit:** `e312c6a83400baf61d541c36f7df1abb74060e5d`
 
-Added the separate [v2 importer/command](OBSERVATION_V2_ADOPTION.md). It uses one
+Added the separate [v2 importer/command](../../measurement/OBSERVATION_V2_ADOPTION.md). It uses one
 validated raw read plus opt-in immutable metadata, masks unsupported/unavailable
 evidence, aggregates from raw rows, preserves typed support, snapshots context,
 derives deterministic checksum IDs and emits privacy-limited validated v2 windows.
@@ -143,7 +147,7 @@ record the software closeout with this verification boundary explicit.
 **Completed locally:** 2026-10-07
 **Starting commit:** `2dcc96fccb5eafcc7dc39cdeecd0c92612979bce`
 
-Added three [deterministic software fixtures](OBSERVATION_V2_FIXTURES.md): v1
+Added three [deterministic software fixtures](../../measurement/OBSERVATION_V2_FIXTURES.md): v1
 browser-only adoption, v2 engine-enabled adoption and a synthetic simulated pair.
 Read-only gates compare reconstructed bytes and fixed SHA-256 pins, rejecting
 missing/changed/unexpected files and pin drift. Both Python CI jobs run the new

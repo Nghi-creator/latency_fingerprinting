@@ -80,8 +80,8 @@ existing bounded bundle reader. Step 5 adds pure
 [`shadow migration inspection`](MEASUREMENT_INSPECTION.md). Step 8 adds
 [focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Step 9 implements
 [quality/CI gates](QUALITY_GATES.md). Step 10 completes
-[N1 software closeout](N1_SOFTWARE_CLOSEOUT.md). Hosted CI verification remains
+[N1 software closeout](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI verification remains
 pending. [N2 observation-v2 adoption](OBSERVATION_V2_ADOPTION.md) is now
-[closed out locally](N2_SOFTWARE_CLOSEOUT.md); v2 normalization and matching remain
+[closed out locally](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md); v2 normalization and matching remain
 separate future contracts. Registry export commands
 operate on definitions and artifacts only.

@@ -79,7 +79,7 @@ elapsed timestamps retain their wall-clock-derived limitation; a registry clock
 label does not assert verified monotonic capture. N1 includes no observation-v2
 root, live instrumentation or matcher adoption. The implemented N1 boundary and
 historical successor are documented in the
-[`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
+[`N1 software closeout`](archive/measurement/N1_SOFTWARE_CLOSEOUT.md) and
 [archived N2 plan](plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 
 The implemented module dependencies are shown below. The inspection layer joins
@@ -100,7 +100,7 @@ flowchart TD
     Summary --> Inspect
 ```
 
-See the [post-N1 architecture audit](measurement/ARCHITECTURE_AUDIT.md) for
+See the [post-N1 architecture audit](archive/measurement/ARCHITECTURE_AUDIT.md) for
 validation fixes, file-size review and remaining verification gaps.
 
 ## N2 additive contracts
@@ -116,15 +116,15 @@ opt-in metadata from one validated read. The pure
 populates four unavailable records from typed source support; existing means and
 proxies remain separate metrics. Three deterministic software fixtures and pinned
 read-only reproduction are configured in both Python CI jobs. Local software
-[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
+[closeout](archive/measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
 pending. N3 delivers the separate v2 analytical path described below. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
-[N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
-[post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
+[N2 progress](archive/measurement/N2_IMPLEMENTATION_PROGRESS.md). The
+[post-N2 health audit](archive/measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
 hardening, fixture provenance corrections and historical post-N2 verification.
-The completed [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+The completed [N3 plan](plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
 explicit compatibility and conservative evidence rules. Steps 0–7 are complete
 locally: [strict policy/response models](analysis/N3_ANALYTICAL_MODELS.md) validate
@@ -136,16 +136,32 @@ reconstruct declared references and enforce bounded fail-closed loading.
 and conservative decision evidence. [Additive commands](analysis/N3_COMMANDS.md)
 enforce explicit policies, bounded no-follow input reads and complete output before
 stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
-[software closeout](analysis/N3_SOFTWARE_CLOSEOUT.md) and the
-[final audit](analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
+[software closeout](archive/analysis/N3_SOFTWARE_CLOSEOUT.md) and the
+[final audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
 [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
 matching paths; hosted/minimum-version execution remains pending.
 
-The [follow-up health audit](analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
+The [follow-up health audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
 score underflow and shared directory/TAR adoption. Bundle reads now pin ancestors,
 root and members through no-follow descriptors, enforce regular/nonblocking file
 reads and bound TAR input bytes before decoding. Valid artifacts, schemas and
 fixture pins reproduce unchanged; these repairs do not change policy meanings.
+
+## Active N4 boundary
+
+The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) is ready to start and has not been
+implemented. It covers stage-local timing/clock/identity/capability contracts,
+bounded opt-in Pixelated instrumentation, versioned trace export and additive
+Python validation/inspection. Timing hooks stay in the producer; Python remains
+off the per-frame path. Existing N2 stage timing stays unavailable and the N3
+policy/matcher is unchanged. Real capture and instrumentation overhead acceptance
+are explicit gates; inaccessible stages remain unavailable.
+
+The following scenario harness is still Phase 1.3 work. Completed plans are in
+[plans/archive](plans/archive/README.md); completed closeouts, progress and health
+audits are in the [milestone archive](archive/README.md). Current contracts and API
+guides remain in their topic directories; the [documentation index](README.md)
+distinguishes them from historical evidence.
 
 ## Target system overview
 
@@ -170,12 +186,21 @@ latency-fingerprinting/
 ├── README.md
 ├── pyproject.toml
 ├── docs/
+│   ├── README.md
 │   ├── ARCHITECTURE.md
 │   ├── analysis/
+│   ├── archive/
+│   │   ├── README.md
+│   │   ├── p0/
+│   │   ├── measurement/
+│   │   └── analysis/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/
 │   └── plans/
+│       ├── NEXT_IMPLEMENTATION_PLAN.md
+│       ├── FULL_IMPLEMENTATION_PLAN.md
+│       └── archive/
 ├── schemas/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json

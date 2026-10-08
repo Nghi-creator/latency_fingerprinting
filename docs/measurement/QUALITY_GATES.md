@@ -19,12 +19,12 @@ and one match schema, bringing exports to ten roots.
 Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
 passes 1,539 tests with 93.58% branch-inclusive coverage after 40 original
 fixture/closeout cases and 19 subsequent health-check regressions.
-The [post-N3 audit](../analysis/N3_ARCHITECTURE_AUDIT.md) covers scoring underflow,
+The [post-N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) covers scoring underflow,
 stored-result/CLI failures, descriptor-pinned bundle reads, replacement links/FIFOs,
 TAR growth and unchanged legacy missing-path errors.
 [Step 7 fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
 and reproduction are delivered in both jobs. Actual hosted/minimum-version
-execution remains pending; see [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md).
+execution remains pending; see [N3 closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md).
 
 ## Read-only reproduction
 
@@ -101,26 +101,20 @@ and no production exception handling or parsing implementation changed in Step 9
 .venv/bin/python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
-Final Step 9 local result: **892 tests passed; 91.53% branch-inclusive coverage**
-on Python 3.13.13. N1 registry, raw extraction and inspection modules have 100%
-branch-inclusive coverage; aggregation and measurement models have 99% (rounded
-by the coverage report). The CI YAML parses and both jobs include the intended
-coverage/reproduction commands. Five controlled P0 artifacts validate, and run
-002 reproduces exact frozen match bytes. Registry/report pins, schemas, fixtures,
-seed, Ruff and installed dependencies all pass.
+## Baseline and next slice
 
-Python 3.11 and GitHub-hosted CI execution have not been run locally. The workflow
-configuration and local checks are verified; remote job results remain pending.
-[Step 10 software closeout](N1_SOFTWARE_CLOSEOUT.md) is complete. P0 behavior
-and artifacts are unchanged, and proposed v2 features remain outside the matcher.
-N2 observation-v2 contracts/offline adoption are now [closed out locally](N2_SOFTWARE_CLOSEOUT.md).
-Final N2 result: **1,162 tests pass; 93.04% branch-inclusive coverage**. Its
-[public CLI boundary cases](../../tests/observation_v2/test_cli_boundaries.py)
-exercise context bytes/depth, total bundle bytes, TAR size/member count/traversal,
-CSV headers/row limits, deterministic errors and acceptance at the exact row limit.
-All legacy preservation gates and new fixture pins pass locally; configured
-Python 3.11/3.13 CI execution evidence remains pending.
+The latest completed post-N3 health check records **1,539 passing tests and 93.58%
+branch-inclusive coverage** on Python 3.13.13. All ten schemas, four fixture
+families, registry/policy releases, controlled P0 artifacts and pinned reproduction
+checks pass locally. Historical milestone counts and audit findings remain in the
+[archive](../archive/README.md), including the
+[final N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md).
 
-The [post-N2 health audit](N2_ARCHITECTURE_AUDIT.md) verifies the complete tree with
-**1,166 passing tests and 93.05% branch-inclusive coverage**, including four new
-instance-boundary regressions and corrected fixture documentation-test scope.
+The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) starts by reproducing
+this baseline and the applicable Pixelated producer gates, then specifies additive
+trace contracts before instrumentation. N4 models, hooks, commands and fixtures
+are not implemented. Existing N2 timing and N3 policy/match outputs remain frozen.
+
+Actual Python 3.11/hosted execution remains pending. N4 separately requires real
+stage-local capture and measured instrumentation overhead; those results cannot
+be inferred from synthetic fixtures or this completed software baseline.

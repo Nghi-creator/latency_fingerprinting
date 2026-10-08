@@ -67,7 +67,7 @@ when the reviewed contract/adoption behavior warrants it.
 Both Python 3.11 and 3.13 jobs run the reproduction command. Local final evidence
 is **1,166 passing tests and 93.05% branch-inclusive coverage** on Python 3.13.13;
 actual hosted/minimum-version execution remains pending. See the
-[software closeout](N2_SOFTWARE_CLOSEOUT.md) and
-[post-N2 audit](N2_ARCHITECTURE_AUDIT.md). The audit deliberately revised the
+[software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) and
+[post-N2 audit](../archive/measurement/N2_ARCHITECTURE_AUDIT.md). The audit deliberately revised the
 synthetic-pair pin after replacing its placeholder source hashes; adopted-record
 pins remain unchanged.

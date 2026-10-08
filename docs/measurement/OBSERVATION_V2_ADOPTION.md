@@ -34,7 +34,7 @@ cannot change the adopted record.
 Shared bundle reads now pin ancestors, root and members through no-follow file
 descriptors, reject nonregular files without blocking, and bound TAR bytes before
 decoding even if the file grows. See [safe extraction](SAMPLE_EXTRACTION.md) and
-the [post-N3 health audit](../analysis/N3_ARCHITECTURE_AUDIT.md). Valid adopted bytes
+the [post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md). Valid adopted bytes
 and source hashes remain unchanged.
 
 Producer version is taken only from an explicitly supplied, non-empty string
@@ -121,5 +121,5 @@ gates pass; Python 3.11/hosted verification remains pending.
 
 Step 5 final result: **1,162 tests pass; 93.04% branch-inclusive coverage**.
 Both configured Python CI jobs reproduce the adopted snapshots with fixed pins.
-[N2 software closeout](N2_SOFTWARE_CLOSEOUT.md) records remaining hosted verification
+[N2 software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) records remaining hosted verification
 and the separate feature/normalization/fingerprint/matcher-v2 boundary.

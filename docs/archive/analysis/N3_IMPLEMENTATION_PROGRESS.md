@@ -1,13 +1,16 @@
 # N3 implementation progress
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Slice:** V2 analytical features and offline fingerprint/matching
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
 **Completed locally:** Steps 0–7; see [software closeout](N3_SOFTWARE_CLOSEOUT.md)
 and [final audit](N3_ARCHITECTURE_AUDIT.md). Hosted/minimum-version verification
-remains pending. Select successor scope from the broader roadmap before replacing
-the completed plan.
+remains pending. The completed plan is archived; N4 stage-level observability is
+now active, with no N4 implementation claimed.
 
 ## Step 0 — Preserve the N2 baseline
 
@@ -36,14 +39,14 @@ baseline is verified separately from release/remote verification.
 **Specified locally:** 2026-10-07
 **Design version:** 1.0.0
 
-The [field contract](N3_ANALYTICAL_CONTRACT.md) fixes four additive roots:
+The [field contract](../../analysis/N3_ANALYTICAL_CONTRACT.md) fixes four additive roots:
 feature-policy-v1, analytical-response-v2, fingerprint-v2 and match-result-v2.
 It specifies embedded observation/policy evidence, immutable strict boundaries,
 deterministic IDs, registry/feature binding, per-window exclusions, signed relative
 responses, fingerprint reconstruction, structural context/probe compatibility,
 weighted RMS comparison and ordered conservative unknown decisions.
 
-The [normative policy specification](N3_FEATURE_POLICY_SPEC.json) selects exactly
+The [normative policy specification](../../analysis/N3_FEATURE_POLICY_SPEC.json) selects exactly
 22 registered primary analytical outputs, excluding eight audit totals and the
 unsupported pipeline proxy. Its explicit floors, weights, full-coverage requirements
 and decision thresholds are software-provisional, not experimental calibration.
@@ -72,7 +75,7 @@ hosted verification and scientific/instrumentation boundaries remain explicit.
 **Implemented locally:** 2026-10-07
 **Starting commit:** `bc0bc779364edca31e67fe85c0d0e229521286a2` (clean checkout)
 
-[Immutable policy/response models](N3_ANALYTICAL_MODELS.md) now enforce approved
+[Immutable policy/response models](../../analysis/N3_ANALYTICAL_MODELS.md) now enforce approved
 release content, canonical identity, registry bindings and evidence reconstruction.
 They reject forged arithmetic, exclusions, validity, strict types and copied model
 instances; detach caller containers; preserve numeric zero and null calculations.
@@ -95,7 +98,7 @@ remain unchanged. Python 3.11/hosted execution remains pending.
 **Implemented locally:** 2026-10-08
 **Starting commit:** `bca40248edaed0f984124ff8722ca95f1dd0bb46` (clean checkout)
 
-[Pure derivation](N3_RESPONSE_DERIVATION.md) revalidates the explicit observation
+[Pure derivation](../../analysis/N3_RESPONSE_DERIVATION.md) revalidates the explicit observation
 and approved policy, derives signed responses from primary summaries and returns
 an immutable, root-validated record. It retains null exclusions and confounder
 invalidity; uses no ambient identifiers, cross-domain timestamp subtraction or
@@ -117,7 +120,7 @@ P0/N1/N2 pins remain unchanged. Actual Python 3.11/hosted execution remains pend
 **Implemented locally:** 2026-10-08
 **Starting commit:** `a73ba71e1940e84f976a636a20c6d6a3a7ef29b9` (clean checkout)
 
-[Fingerprint creation/models and the separate repository loader](N3_FINGERPRINTS.md)
+[Fingerprint creation/models and the separate repository loader](../../analysis/N3_FINGERPRINTS.md)
 retain valid response evidence, exact eligible vectors, caller-declared sanitized
 labels, consistent provenance and deterministic identities. Default software checking
 requires 17/22 features; explicit unreviewed/rejected status permits lesser valid
@@ -145,7 +148,7 @@ and build commands remain pending, as does actual Python 3.11/hosted execution.
 **Implemented locally:** 2026-10-08
 **Starting commit:** `c5855adf3618ca0057f01ad50d5aab31639b4084` (clean checkout)
 
-[The separate v2 matcher and result model](N3_MATCHING.md) revalidate all inputs,
+[The separate v2 matcher and result model](../../analysis/N3_MATCHING.md) revalidate all inputs,
 retain ordered structural compatibility/shared-feature rejections and derive finite
 weighted RMS residual evidence using the approved policy. All scored comparisons
 remain auditable; top-five ranking uses distance then ID, with margin from all
@@ -176,7 +179,7 @@ Actual Python 3.11/hosted execution remains pending.
 **Implemented locally:** 2026-10-08
 **Starting commit:** `df5762d49f25c3d86afdc74ff3603a941f16064e` (clean checkout)
 
-[The v2 commands](N3_COMMANDS.md) deliver build-response-v2, build-fingerprint-v2
+[The v2 commands](../../analysis/N3_COMMANDS.md) deliver build-response-v2, build-fingerprint-v2
 and match-v2 with explicit local policies and exact canonical pure-API output.
 Command implementation remains in a separate cli_v2 module; existing handlers and
 numerical paths are preserved. Direct inputs use bounded no-follow descriptor
@@ -206,7 +209,7 @@ Step 7 analytical snapshots/pins and software closeout remain; actual Python
 **Implemented locally:** 2026-10-08
 **Starting commit:** `b5224cb17409ff28640960b060134471a6fd3cfe` (clean checkout)
 
-[19 synthetic snapshots](N3_ANALYTICAL_FIXTURES.md) retain approved policy, an
+[19 synthetic snapshots](../../analysis/N3_ANALYTICAL_FIXTURES.md) retain approved policy, an
 observation, three responses, six declared references and all eight match outcomes.
 Independent primary/rate, response, residual, distance, strength, margin and conflict
 expectations complement exact-byte/SHA-256 pins. Read-only reproduction is wired

@@ -1,5 +1,8 @@
 # N1 implementation progress
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Updated:** 2026-10-06
 **Completed boundary:** Steps 0–10 implemented and locally verified; N1 software closed out.
 **Next boundary:** N2 additive observation-v2 contract/adoption. Hosted CI verification remains pending.
@@ -35,13 +38,13 @@ and comparing the bytes directly with the frozen
 
 ## Step 1 deliverables
 
-[`METRIC_SEMANTICS_V2.md`](METRIC_SEMANTICS_V2.md) maps every one of the 23 P0
+[`METRIC_SEMANTICS_V2.md`](../../measurement/METRIC_SEMANTICS_V2.md) maps every one of the 23 P0
 features exactly once and declares 31 proposed outputs: 15 gauge summaries,
 eight counter rates and eight counter totals. Decisions include explicit binary
 RSS naming, freeze frequency per minute, freeze duration in ms/s, audit-only
 totals, no interval-rate P95, advisory cadence, and deferred v2 normalization.
 
-[`test_metric_inventory.py`](../../tests/measurement/test_metric_inventory.py)
+[`test_metric_inventory.py`](../../../tests/measurement/test_metric_inventory.py)
 guards adapter/config completeness, unique output declarations, gauge units and
 raw fields, cumulative counter inputs, distinct rate/total names, fixture header
 compatibility and exclusion of configured settings. Step 1 added no runtime
@@ -68,7 +71,7 @@ it must continue to hold throughout later N1 implementation steps.
 
 ## Step 2 deliverables and verification
 
-[`models/measurement.py`](../../src/latency_fingerprinting/models/measurement.py)
+[`models/measurement.py`](../../../src/latency_fingerprinting/models/measurement.py)
 adds strict frozen `MetricDefinition` and `MetricRegistry` contracts with intentional
 public exports. It validates required nullable fields, closed enums, source/unit
 types, gauge/counter semantics, primary/available aggregation consistency, cadence,
@@ -82,12 +85,12 @@ will continue to use segment rejection without widths. Optional normalization an
 clipping metadata is deferred until it has a consumer. Internal sample/summary
 contracts remain part of the later extraction/aggregation steps.
 
-[`test_measurement.py`](../../tests/models/test_measurement.py) adds 127 cases,
+[`test_measurement.py`](../../../tests/models/test_measurement.py) adds 127 cases,
 including malformed and overflow-range inputs, duplicate root/nested JSON keys via
 the existing bounded reader, immutable nested sequences, deterministic round trips
 and generated JSON Schema shape. The new module has **100% branch-inclusive
 coverage** in the full suite. Details and file-ingestion usage are in
-[`REGISTRY_MODELS.md`](REGISTRY_MODELS.md).
+[`REGISTRY_MODELS.md`](../../measurement/REGISTRY_MODELS.md).
 
 Final verification on Python 3.13.13: **501 tests passed; 88.85% branch-inclusive
 coverage**. Ruff lint/format, dependency validation, P0 schema/fixture drift,
@@ -101,7 +104,7 @@ and matcher implementation were not modified.
 
 ## Step 3 deliverables and verification
 
-[`measurement/metric_registry.py`](../../src/latency_fingerprinting/measurement/metric_registry.py)
+[`measurement/metric_registry.py`](../../../src/latency_fingerprinting/measurement/metric_registry.py)
 declares all 31 outputs independently of P0 configuration, with fixed registry
 version `latency-metrics-v2.0.0`, per-definition version `1.0.0`, and fixed release
 timestamp `2026-10-06T00:00:00Z`. It provides immutable canonical definitions,
@@ -109,15 +112,15 @@ registered-name lookup, deterministic rendering, atomic export and bounded
 exact-byte drift checks. Old P0 delta names cannot resolve to new rate definitions.
 
 Added artifacts:
-[`metric-registry-v1.json`](../../schemas/metric-registry-v1.json) and
-[`metric-registry-v1.schema.json`](../../schemas/metric-registry-v1.schema.json).
+[`metric-registry-v1.json`](../../../schemas/metric-registry-v1.json) and
+[`metric-registry-v1.schema.json`](../../../schemas/metric-registry-v1.schema.json).
 `export-schemas` includes the registry schema additively; `export-metric-registry`
 writes/checks the registry, and `validate` accepts registry roots through the
 existing bounded duplicate-safe reader. Export uses the existing atomic schema
 writer; check mode creates no directories and performs no writes. Both Python CI
 test suites check frozen bytes, with an explicit registry check in the quality job.
 
-[`test_metric_registry.py`](../../tests/measurement/test_metric_registry.py) adds
+[`test_metric_registry.py`](../../../tests/measurement/test_metric_registry.py) adds
 19 cases covering reviewed definitions/policies, fixture source fields, fixed
 release version/time and hash, exact artifacts, Pydantic and JSON Schema validation,
 atomic export/failure cleanup, CLI errors, duplicate keys and no-write drift checks.
@@ -134,11 +137,11 @@ The three frozen P0 schemas, synthetic fixtures, controlled artifacts, adapter,
 normalization configuration and matcher implementation remain unchanged. New CLI
 and schema support is additive. Gauge/counter aggregation and shadow bundle reports
 remain unimplemented. Usage, release pin and next boundary are in
-[`CANONICAL_REGISTRY.md`](CANONICAL_REGISTRY.md).
+[`CANONICAL_REGISTRY.md`](../../measurement/CANONICAL_REGISTRY.md).
 
 ## Step 4 deliverables and verification
 
-[`adapters/pixelated_measurement_samples.py`](../../src/latency_fingerprinting/adapters/pixelated_measurement_samples.py)
+[`adapters/pixelated_measurement_samples.py`](../../../src/latency_fingerprinting/adapters/pixelated_measurement_samples.py)
 adds a separate N1 raw extraction API using the existing bounded bundle, JSON,
 CSV and envelope validation helpers. It parses each source once, preserves global
 CSV row ordinals and UTC/elapsed timestamps, and shares immutable raw sample tuples
@@ -159,8 +162,8 @@ field rather than invoking P0's interval-delta consistency policy. P0 ingestion
 and its existing validation/aggregation behavior remain unchanged.
 
 Added 83 cases across
-[`sample model tests`](../../tests/models/test_measurement_samples.py) and
-[`extraction tests`](../../tests/pixelated/test_measurement_samples.py). They cover
+[`sample model tests`](../../../tests/models/test_measurement_samples.py) and
+[`extraction tests`](../../../tests/pixelated/test_measurement_samples.py). They cover
 all source categories, optional sources, original rows, gaps, rejected cells,
 stale values, raw resets, immutable/shared samples, one bundle read, directory/TAR
 equality, file immutability, clocks/identities and inherited JSON/file/CSV/archive
@@ -175,7 +178,7 @@ schema, fixture, controlled artifact or matcher implementation was modified.
 Only additive N1 types and extraction exports were added to the model/adapter APIs.
 
 The API and sample/clock failure distinctions are documented in
-[`SAMPLE_EXTRACTION.md`](SAMPLE_EXTRACTION.md). Gauge aggregation is next; counter
+[`SAMPLE_EXTRACTION.md`](../../measurement/SAMPLE_EXTRACTION.md). Gauge aggregation is next; counter
 aggregation and the shadow inspection command still remain unimplemented.
 
 P0 production behavior and artifacts are unchanged. No live probe, remediation or
@@ -184,7 +187,7 @@ the separate observation-v2 adoption slice remains required.
 
 ## Step 5 deliverables and verification
 
-[`measurement/aggregation.py`](../../src/latency_fingerprinting/measurement/aggregation.py)
+[`measurement/aggregation.py`](../../../src/latency_fingerprinting/measurement/aggregation.py)
 adds pure `aggregate_gauge` for validated registered definitions, explicit window
 bounds and immutable samples. It computes only registered minimum, maximum,
 stable odd/even median and integer nearest-rank P95. Signed values follow the
@@ -201,7 +204,7 @@ support. Statistics remain sample-based without interpolation or extrapolation.
 Single samples retain numeric statistics with zero coverage and incomplete status.
 Legacy clock-provenance warnings remain explicit.
 
-[`test_aggregation.py`](../../tests/measurement/test_aggregation.py) adds **80 cases**
+[`test_aggregation.py`](../../../tests/measurement/test_aggregation.py) adds **80 cases**
 covering order statistics, registered subsets, zeros, signed/finite extremes,
 missing policies, gaps, invalid clocks/rows/bounds, arithmetic failure, source
 immutability, detached result mappings, serialization, no I/O and sanitized bundle
@@ -216,13 +219,13 @@ schema, fixture, controlled artifact, normalization or matcher implementation
 changed. New summary types are additive model exports.
 
 The API and coverage/status semantics are documented in
-[`GAUGE_AGGREGATION.md`](GAUGE_AGGREGATION.md). Step 6 counter/rate derivation is
+[`GAUGE_AGGREGATION.md`](../../measurement/GAUGE_AGGREGATION.md). Step 6 counter/rate derivation is
 next; the shadow inspection CLI and observation-v2 matcher adoption remain future
 work. N1 is not yet complete.
 
 ## Step 6 deliverables and verification
 
-[`measurement/aggregation.py`](../../src/latency_fingerprinting/measurement/aggregation.py)
+[`measurement/aggregation.py`](../../../src/latency_fingerprinting/measurement/aggregation.py)
 adds pure `aggregate_counter` for registered cumulative-counter definitions and
 immutable timestamped samples. It derives deltas/rates only across adjacent usable
 source rows, sums accepted deltas and durations with `math.fsum`, and publishes
@@ -248,7 +251,7 @@ Arithmetic overflow or unrepresentable positive rates reject publication without
 partial results. Stable ratio arithmetic avoids needless intermediate overflow
 and underflow; validated non-negative counter subtraction is inherently bounded.
 
-[`test_counter_aggregation.py`](../../tests/measurement/test_counter_aggregation.py)
+[`test_counter_aggregation.py`](../../../tests/measurement/test_counter_aggregation.py)
 adds **103 cases** covering all registered unit families, equivalent regular and
 irregular cadence, policies, gaps/resets, declared width, huge/tiny finite values,
 rate/sum arithmetic failures, invalid clocks, source immutability, no I/O,
@@ -266,13 +269,13 @@ adapter implementation and matcher remain unchanged. Counter support is additive
 N1 aggregation and internal summary metadata.
 
 API usage, units, evidence and failure policies are documented in
-[`COUNTER_AGGREGATION.md`](COUNTER_AGGREGATION.md). Steps 0–6 are verified; Step 7
+[`COUNTER_AGGREGATION.md`](../../measurement/COUNTER_AGGREGATION.md). Steps 0–6 are verified; Step 7
 migration-readiness reporting is next. N1 is not yet complete and proposed v2
 features remain outside the P0 matcher.
 
 ## Step 7 deliverables and verification
 
-[`measurement_inspection.py`](../../src/latency_fingerprinting/measurement_inspection.py)
+[`measurement_inspection.py`](../../../src/latency_fingerprinting/measurement_inspection.py)
 adds deterministic diagnostic comparison of all 23 P0 features with all 31
 registered N1 outputs. It reuses the unchanged P0 ingestion and N1 extraction/
 aggregation paths, requiring checksum agreement for successful comparisons.
@@ -294,7 +297,7 @@ Reports omit source identities, context, private producer values, absolute paths
 effective settings and raw rejection text. Clock-provenance limitations remain
 visible. N1 source-contract failures fail closed with no partial JSON.
 
-[`test_inspection.py`](../../tests/measurement/test_inspection.py) adds **47 cases**
+[`test_inspection.py`](../../../tests/measurement/test_inspection.py) adds **47 cases**
 covering inventory-exact mapping, classes, unsupported/header-only sources,
 privacy, checksum disagreement, invalid P0 validity, frozen-only/domain rejection,
 CLI/API equality, immutable source files and directory/TAR/repeated-process byte
@@ -315,13 +318,13 @@ adapters, models, configuration, matcher, schemas, fixtures, controlled artifact
 and the canonical registry are unchanged; CLI support is additive.
 
 The report fields, classifications, privacy and usage are documented in
-[`MEASUREMENT_INSPECTION.md`](MEASUREMENT_INSPECTION.md). Steps 0–7 are verified;
+[`MEASUREMENT_INSPECTION.md`](../../measurement/MEASUREMENT_INSPECTION.md). Steps 0–7 are verified;
 Step 8 focused fixtures is next. N1 closeout and observation-v2 adoption remain
 outstanding.
 
 ## Step 8 deliverables and verification
 
-[`fixtures/measurement`](../../fixtures/measurement/README.md) adds **13 small
+[`fixtures/measurement`](../../../fixtures/measurement/README.md) adds **13 small
 synthetic arithmetic fixtures**. They cover the nine required cases: regular and
 missing gauges; one-second, equivalent five-second and irregular counters; gaps,
 resets, overflow and an empty optional source. Additional cases cover rejected
@@ -336,7 +339,7 @@ produces the hand-calculated 40 frames/s rather than 62.5. Missing/rejected cell
 and counter gaps retain reasons and exact accepted pairs. Reset coverage is 2/3;
 overflow produces no partial aggregate. Single/empty sources never fabricate zero.
 
-[`fixture_cases.py`](../../tests/measurement/fixture_cases.py) is test support for
+[`fixture_cases.py`](../../../tests/measurement/fixture_cases.py) is test support for
 independently authored expectations, deterministic rendering and read-only
 exact-byte drift checks. It imports no aggregation implementation and supplies
 expected arithmetic explicitly. No ambient timestamps, randomness or runtime
@@ -344,7 +347,7 @@ data enter generation. Rejection count/prefix checks retain exact meaning while
 avoiding platform-specific suffixes from arithmetic exceptions. The README includes
 an intentional regeneration command; CI tests never rewrite fixtures.
 
-[`test_fixture_cases.py`](../../tests/measurement/test_fixture_cases.py) adds
+[`test_fixture_cases.py`](../../../tests/measurement/test_fixture_cases.py) adds
 **32 cases** checking every fixture's provenance and expected numerical/audit
 summary against validated aggregation. Tests check registry/units/bounds, immutable
 sample input, equal-window cadence invariance, deterministic generation independent
@@ -360,27 +363,27 @@ registry artifact, controlled-run artifact or CI workflow was modified in Step 8
 The new fixture README also satisfies the existing repository-wide provenance gate.
 
 The focused-fixture boundary is documented in
-[`ARITHMETIC_FIXTURES.md`](ARITHMETIC_FIXTURES.md). Steps 0–8 are verified; Step 9
+[`ARITHMETIC_FIXTURES.md`](../../measurement/ARITHMETIC_FIXTURES.md). Steps 0–8 are verified; Step 9
 quality/CI integration and Step 10 software closeout remain. N1 is not yet complete;
 these synthetic arithmetic cases do not establish diagnostic or experimental validity.
 
 ## Step 9 deliverables and verification
 
-[`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) now explicitly enforces
+[`.github/workflows/ci.yml`](../../../.github/workflows/ci.yml) now explicitly enforces
 branch-inclusive coverage with the unchanged 85% floor in both Python 3.13 and
 3.11 jobs. Both jobs run read-only N1 arithmetic fixture drift and pinned
 registry/report reproduction. The minimum-version job also checks schemas,
 canonical registry and installed dependencies. Existing P0 quality-job artifact,
 fixture, seed and exact-match checks remain in place without changing their commands.
 
-[`check_reproduction.py`](../../tests/measurement/check_reproduction.py) adds a
+[`check_reproduction.py`](../../../tests/measurement/check_reproduction.py) adds a
 read-only test-support command that verifies registry artifact/source agreement,
 the fixed registry release hash and the sanitized inspection report hash. The
 inspection tests share its unchanged report pin. Artifact/pin drift or missing
 files produce an error exit code without partial JSON or a traceback. No generator
 is invoked and no fixture or artifact is rewritten.
 
-[`test_quality_gates.py`](../../tests/measurement/test_quality_gates.py) adds
+[`test_quality_gates.py`](../../../tests/measurement/test_quality_gates.py) adds
 **27 cases** for public inspection CLI failures and reproduction. Root/nested
 JSON duplicates, excessive nesting, non-finite/overflow values, pathological
 integer literals, invalid UTF-8, context/file/bundle size bounds, CSV field size,
@@ -406,7 +409,7 @@ support preserve the old gates and tighten minimum-version verification.
 local Python 3.13 results, not a claim of remote job success.
 
 The commands, security/resource regression inventory and local/hosted boundary
-are documented in [`QUALITY_GATES.md`](QUALITY_GATES.md). Steps 0–9 are locally
+are documented in [`QUALITY_GATES.md`](../../measurement/QUALITY_GATES.md). Steps 0–9 are locally
 verified and CI gates are configured. Step 10 documentation/software closeout is
 next; N1 is not yet marked complete.
 
@@ -419,12 +422,12 @@ pins, P0 preservation, clock/producer/migration/scientific limitations and the
 exact next boundary. N1 Steps 0–10 are complete at the locally verified software
 boundary; Python 3.11 and hosted CI verification remain separately pending.
 
-The [N1 plan archive](../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
+The [N1 plan archive](../../plans/archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed checklist with that verification qualification.
 At this milestone, the plan prepared N2 additive observation-v2 contract/offline
 adoption and implementation had not started. That sequence is now preserved in
-the [N2 plan archive](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md); the
-[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has since advanced to N3. README, architecture, authoritative inventory, local guides and roadmap
+the [N2 plan archive](../../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md); the
+[archived N3 plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) records the subsequent analytical slice. README, architecture, authoritative inventory, local guides and roadmap
 navigation match the delivered N1 boundary. Historical milestone entries remain
 intact as records of what was pending at each step.
 

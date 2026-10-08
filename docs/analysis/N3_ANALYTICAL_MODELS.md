@@ -81,4 +81,4 @@ zero-floor arithmetic, confounders, immutable inputs, reused model instances and
 public JSON reader failures. At Step 2, the full suite passed 1,260 tests with 93.15%
 branch-inclusive coverage on Python 3.13.13. Existing schema bytes and P0/N1/N2
 pins reproduce unchanged. Actual Python 3.11/hosted execution remains pending;
-[progress](N3_IMPLEMENTATION_PROGRESS.md) records the separate verification status.
+[progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records the separate verification status.
