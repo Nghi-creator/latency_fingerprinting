@@ -62,7 +62,8 @@ normalization, fingerprint and offline matcher work. Baseline reproduction and t
 [N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
 are complete locally. Strict policy/response models and schemas are implemented;
 pure response derivation, v2 fingerprints and bounded repository loading are
-implemented. V2 matching and build commands remain pending.
+implemented, along with v2 compatibility, scoring and conservative matching.
+Additive commands and separate analytical fixture pins remain pending.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.

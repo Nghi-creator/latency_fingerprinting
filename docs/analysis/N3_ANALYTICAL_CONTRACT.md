@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Steps 2–4 policy/response derivation and fingerprints/repositories implemented locally
+**Status:** Step 1 specification complete; Steps 2–5 analytical models, derivation, fingerprints/repositories and matching implemented locally
 **Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
@@ -12,7 +12,8 @@ schemas and the P0 matching path. The JSON policy remains a normative specificat
 artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
 accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DERIVATION.md)
 builds responses from explicit validated inputs. [Step 4 fingerprints/repositories](N3_FINGERPRINTS.md)
-are implemented. The match root and proposed build/match commands remain pending.
+and [Step 5 matching](N3_MATCHING.md) are implemented. Proposed build/match
+commands and separate analytical fixture pins remain pending.
 
 ## Versioned roots and trust boundary
 
@@ -23,7 +24,7 @@ are implemented. The match root and proposed build/match commands remain pending
 | FingerprintV2 | fingerprint-v2 | 2.0.0 | fingerprint-v2.schema.json |
 | MatchResultV2 | match-result-v2 | 2.0.0 | match-result-v2.schema.json |
 
-The first three roots are implemented; the match root is planned.
+All four roots are implemented and accepted by generic root validation.
 
 All fields below are required unless explicitly marked default. Nullable fields
 must be present as null. Models forbid extra fields, duplicate identities, boolean

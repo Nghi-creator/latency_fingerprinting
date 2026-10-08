@@ -115,6 +115,14 @@ from .match import (
     RankedCandidate,
     ValidatedOutcome,
 )
+from .match_v2 import (
+    MATCH_RESULT_V2_SCHEMA_VERSION,
+    AnalyticalFeatureEvidenceV2,
+    CandidateComparisonV2,
+    MatchResultV2,
+    RankedCandidateV2,
+    RepositoryReferenceV2,
+)
 from .measurement import (
     METRIC_REGISTRY_SCHEMA_VERSION,
     AggregationKind,
@@ -161,6 +169,12 @@ from .v2_support import (
 __all__ += [
     "FINGERPRINT_V2_SCHEMA_VERSION",
     "FingerprintV2",
+    "MATCH_RESULT_V2_SCHEMA_VERSION",
+    "MatchResultV2",
+    "CandidateComparisonV2",
+    "AnalyticalFeatureEvidenceV2",
+    "RankedCandidateV2",
+    "RepositoryReferenceV2",
     "FEATURE_POLICY_SCHEMA_VERSION",
     "ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION",
     "FeaturePolicyV1",

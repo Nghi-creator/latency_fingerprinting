@@ -4,7 +4,7 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
-**Current next action:** Step 5 — compatibility, scoring and conservative v2 matching. Steps 0–4
+**Current next action:** Step 6 — additive v2 commands. Steps 0–5
 are complete locally; hosted/minimum-version verification remains pending.
 
 ## Step 0 — Preserve the N2 baseline
@@ -136,3 +136,34 @@ five controlled P0 artifacts, run-001 seed and exact run-002 match bytes pass.
 All eight existing schema bytes, the normative policy, P0/N1/N2 source/fixtures and
 pins remain unchanged. Generic root validation accepts fingerprint-v2. V2 matching
 and build commands remain pending, as does actual Python 3.11/hosted execution.
+
+
+## Step 5 — V2 compatibility, scoring and conservative matching
+
+**Implemented locally:** 2026-10-08
+**Starting commit:** `c5855adf3618ca0057f01ad50d5aab31639b4084` (clean checkout)
+
+[The separate v2 matcher and result model](N3_MATCHING.md) revalidate all inputs,
+retain ordered structural compatibility/shared-feature rejections and derive finite
+weighted RMS residual evidence using the approved policy. All scored comparisons
+remain auditable; top-five ranking uses distance then ID, with margin from all
+scored candidates. Exact ordered unknown decisions preserve invalid, empty,
+incompatible, insufficient, weak, ambiguous and conflicting outcomes. No additional
+boundary epsilon or P0 defaults enter decisions.
+
+MatchResultV2 reconstructs retained calculations/ranking/decisions, enforces strict
+immutable maps and bounded inventory/output, and is accepted by generic validation.
+Repository-backed verification additionally checks full fingerprint hashes, vectors,
+labels and compatibility rejections. Retained hashes alone do not authenticate
+external evidence. Fresh interpreter tests guard the corrected import-order cycle.
+
+Local Python 3.13.13 results: **76 new matching/model tests; 1,428 total tests pass;
+93.51% branch-inclusive coverage**, above the unchanged 85% floor. Independent
+numerics, unknown priorities, threshold equality, strict JSON compatibility,
+17/22 coverage, ties/truncation, overflow, tampering, immutable inputs, repository
+verification, resource limits and fresh imports pass. Ruff lint/format, dependencies,
+ten schemas, canonical registry, three fixture families, five controlled P0 artifacts,
+run-001 seed and exact run-002 match bytes pass. All nine existing schema bytes,
+frozen policy and P0/N1/N2 source/fixtures/pins remain unchanged. Additive v2 commands
+are next; separate analytical snapshot pins and software closeout remain Step 7.
+Actual Python 3.11/hosted execution remains pending.

@@ -31,7 +31,7 @@ at least four eligible features and coverage >=0.75 of the 22 policy features,
 which means at least **17**. It errors when evidence is insufficient. Explicit
 `validation_status="unreviewed"` or `"rejected"` can retain a lesser valid vector
 for audit. Invalid/confounded responses cannot be stored under any status.
-Only software-checked records are eligible for later candidate compatibility.
+Only software-checked records are eligible for [v2 candidate compatibility](N3_MATCHING.md).
 This status means contract consistency, not experimentally validated causality.
 
 ## Separate bounded repository
@@ -47,7 +47,7 @@ fingerprints = repository.fingerprints
 The directory loader visits sorted entries recursively and validates every `.json`
 file as `FingerprintV2`, including files named differently from `fingerprint.json`.
 Non-JSON files are ignored but count toward the entry limit. It retains all valid
-audit statuses; candidate filtering belongs to Step 5. Results are immutable tuples
+audit statuses; [Step 5 matching](N3_MATCHING.md) filters candidates. Results are immutable tuples
 in fingerprint ID order. An empty valid directory returns an empty repository.
 
 | Limit | Bound |
@@ -80,4 +80,5 @@ audit statuses, false provenance, forged vectors/IDs, sanitized labels, immutabl
 inputs, resource boundaries, unsafe links, file replacement/growth and fail-closed
 repository behavior. [Progress](N3_IMPLEMENTATION_PROGRESS.md) records current local
 results and unchanged reproduction pins. Actual Python 3.11/hosted verification
-remains pending. Next is Step 5: compatibility, scoring and conservative v2 matching.
+remains pending. [Step 5 compatibility/scoring/matching](N3_MATCHING.md) is now
+implemented; additive v2 commands are next.

@@ -61,6 +61,7 @@ revalidation and unchanged inputs. At Step 3, the full local suite passed 1,290 
 unchanged. Actual Python 3.11/hosted verification remains pending.
 
 [Step 4 fingerprints and bounded repository loading](N3_FINGERPRINTS.md) are now
-implemented. Next is Step 5 v2 matching. The proposed
+implemented, along with [Step 5 v2 matching](N3_MATCHING.md). Next is Step 6
+additive commands. The proposed
 `build-response-v2` command belongs to Step 6; current CLI root validation can
 validate a serialized derived response.

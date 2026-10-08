@@ -6,7 +6,8 @@ deliver the registry binding and typed support that were pending here. The
 [active N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers analytical adoption
 and offline fingerprint/matching. Strict policy/response models are delivered;
 pure response derivation, v2 fingerprints and bounded repositories are implemented;
-v2 matching remains pending.
+v2 compatibility, scoring and conservative matching are implemented. Additive
+v2 commands remain pending.
 
 **Reviewed:** 2026-10-06, after N1 software closeout
 **Local environment:** macOS, Python 3.13.13

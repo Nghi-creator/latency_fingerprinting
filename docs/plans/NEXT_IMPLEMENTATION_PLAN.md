@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Steps 0–4 complete locally; Step 5 v2 matching next
+**Status:** Steps 0–5 complete locally; Step 6 additive commands next
 **Updated:** 2026-10-08
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
@@ -16,7 +16,8 @@ and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytic
 policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
 [Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
 [V2 fingerprints and bounded repository loading](../analysis/N3_FINGERPRINTS.md)
-are implemented. Matching and build commands remain pending.
+and [v2 matching](../analysis/N3_MATCHING.md) are implemented. Additive build/match
+commands and separate analytical fixture pins remain pending.
 
 ## Outcome and boundary
 
@@ -161,6 +162,13 @@ invalid files cannot silently become candidates.
 
 ## Step 5 — Implement separate deterministic v2 matching and evidence
 
+**Local gate:** Complete: 76 new matching/model tests; 1,428 total tests pass
+with 93.51% branch-inclusive coverage. Ten schemas reproduce;
+all nine existing schema bytes and P0/N1/N2 pins remain unchanged. Numerical
+reconstruction, compatibility, unknown priorities, threshold boundaries, ties,
+repository verification and finite/resource limits pass. See the
+[matching guide](../analysis/N3_MATCHING.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+
 Add v2 compatibility, scoring and decision modules around the explicit policy.
 Filter by context, registry, policy and intervention meanings before comparing
 eligible shared features. Publish residuals, weights, exclusions and rejection
@@ -212,13 +220,13 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [x] Feature inventory, policy parameters and compatibility meanings are specified.
 - [x] Strict policy/response contracts and schemas are delivered.
 - [x] Strict fingerprint contract/schema and bounded repository are delivered.
-- [ ] Strict match contract/schema is delivered.
+- [x] Strict match contract/schema is delivered.
 - [x] Responses retain auditable values, support, coverage and exclusions.
-- [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
+- [x] Matching is deterministic and conservative with insufficient/ambiguous evidence.
 - [ ] Separate commands preserve v1 behavior and bounded/read-only inputs.
 - [ ] Independent synthetic expectations and new pins reproduce exactly.
 - [ ] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 5: v2 compatibility, scoring and
-conservative matching evidence. Hosted/minimum-version execution remains separately pending.
+The next implementation action is Step 6: additive v2 build/creation/matching
+commands. Hosted/minimum-version execution remains separately pending.

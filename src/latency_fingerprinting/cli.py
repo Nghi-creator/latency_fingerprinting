@@ -29,6 +29,7 @@ from .models import (
     FINGERPRINT_SCHEMA_VERSION,
     FINGERPRINT_V2_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
+    MATCH_RESULT_V2_SCHEMA_VERSION,
     METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
     OBSERVATION_V2_SCHEMA_VERSION,
@@ -39,6 +40,7 @@ from .models import (
     Fingerprint,
     FingerprintV2,
     MatchResult,
+    MatchResultV2,
     MetricRegistry,
     ObservationRecord,
     ObservationRecordV2,
@@ -55,6 +57,7 @@ CommandHandler = Callable[[argparse.Namespace], None]
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    MATCH_RESULT_V2_SCHEMA_VERSION: MatchResultV2,
     FINGERPRINT_V2_SCHEMA_VERSION: FingerprintV2,
     FEATURE_POLICY_SCHEMA_VERSION: FeaturePolicyV1,
     ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION: AnalyticalResponseV2,
