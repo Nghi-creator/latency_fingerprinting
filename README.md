@@ -95,7 +95,7 @@ in with independent expected summaries and read-only drift checks.
 branch coverage and pinned registry/report reproduction. [N1 software closeout](docs/measurement/N1_SOFTWARE_CLOSEOUT.md)
 is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
 Python 3.11 and hosted CI verification remain pending. N2 observation-v2 adoption
-is now delivered separately below; v2 features are not production matcher inputs.
+is now delivered separately below; v2 features stay separate from P0 matcher inputs.
 
 The [post-N1 architecture audit](docs/measurement/ARCHITECTURE_AUDIT.md) adds
 summary validation and scaling fixes plus adapter boundary tests: **924 tests
@@ -116,9 +116,23 @@ are delivered in both configured Python CI jobs. [N2 software closeout](docs/mea
 is complete locally; P0/N1 pins remain unchanged. Actual Python 3.11/hosted results
 remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDIT.md)
 repairs reused-summary validation, synthetic artifact identity and documentation
-test scope. The active [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
+test scope. The completed [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
 now covers feature-policy design, v2 responses/normalization, fingerprints and
-offline matching. N3 is planned; its runtime implementation has not started. The
+offline matching. N3 Steps 0–7 are complete locally: the
+[field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md) and explicit provisional
+[policy specification](docs/analysis/N3_FEATURE_POLICY_SPEC.json) are frozen.
+[Strict policy/response models and schemas](docs/analysis/N3_ANALYTICAL_MODELS.md)
+and [pure response derivation](docs/analysis/N3_RESPONSE_DERIVATION.md) are
+implemented, along with [v2 fingerprints and bounded repository loading](docs/analysis/N3_FINGERPRINTS.md).
+The local suite passes 1,539 tests with 93.58% branch-inclusive coverage after the
+[follow-up health audit](docs/analysis/N3_ARCHITECTURE_AUDIT.md), which repairs
+scoring underflow and shared bundle-reader path races with 19 new regressions.
+[V2 compatibility, scoring and conservative matching](docs/analysis/N3_MATCHING.md)
+and [additive v2 commands](docs/analysis/N3_COMMANDS.md) are implemented.
+[Separate analytical fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md),
+[software closeout](docs/analysis/N3_SOFTWARE_CLOSEOUT.md) and the
+[final architecture audit](docs/analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally.
+Successor scope remains to be selected from the broader roadmap. The
 [archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
 the completed checklist and pending hosted verification.
 

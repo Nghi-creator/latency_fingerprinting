@@ -1,0 +1,320 @@
+{
+  "$defs": {
+    "AggregationKind": {
+      "enum": [
+        "median",
+        "nearest_rank_p95",
+        "minimum",
+        "maximum",
+        "window_total",
+        "time_weighted_rate"
+      ],
+      "title": "AggregationKind",
+      "type": "string"
+    },
+    "AnalyticalDecisionPolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "conflictingResidualThreshold": {
+          "exclusiveMinimum": 0,
+          "title": "Conflictingresidualthreshold",
+          "type": "number"
+        },
+        "maximumConflictContribution": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Maximumconflictcontribution",
+          "type": "number"
+        },
+        "minimumFeatureCoverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumfeaturecoverage",
+          "type": "number"
+        },
+        "minimumMatchStrength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimummatchstrength",
+          "type": "number"
+        },
+        "minimumScoreMargin": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumscoremargin",
+          "type": "number"
+        },
+        "minimumSharedFeatures": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumsharedfeatures",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "minimumSharedFeatures",
+        "minimumFeatureCoverage",
+        "minimumMatchStrength",
+        "minimumScoreMargin",
+        "conflictingResidualThreshold",
+        "maximumConflictContribution"
+      ],
+      "title": "AnalyticalDecisionPolicyV1",
+      "type": "object"
+    },
+    "FeaturePolicyParameterV1": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "allowedStatuses": {
+          "items": {
+            "const": "complete",
+            "type": "string"
+          },
+          "title": "Allowedstatuses",
+          "type": "array"
+        },
+        "clipMaximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clipmaximum"
+        },
+        "clipMinimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clipminimum"
+        },
+        "epsilon": {
+          "exclusiveMinimum": 0,
+          "title": "Epsilon",
+          "type": "number"
+        },
+        "minimumAcceptedIntervals": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumacceptedintervals",
+          "type": "integer"
+        },
+        "minimumCoverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumcoverage",
+          "type": "number"
+        },
+        "minimumUsableSamples": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumusablesamples",
+          "type": "integer"
+        },
+        "semanticVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Semanticversion",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "unit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "semanticVersion",
+        "source",
+        "unit",
+        "aggregation",
+        "epsilon",
+        "weight",
+        "clipMinimum",
+        "clipMaximum",
+        "minimumCoverage",
+        "minimumUsableSamples",
+        "minimumAcceptedIntervals",
+        "allowedStatuses"
+      ],
+      "title": "FeaturePolicyParameterV1",
+      "type": "object"
+    },
+    "MetricSource": {
+      "enum": [
+        "browser_webrtc",
+        "engine_runtime",
+        "encoder_pipeline"
+      ],
+      "title": "MetricSource",
+      "type": "string"
+    },
+    "MetricUnit": {
+      "enum": [
+        "fps",
+        "frames/s",
+        "frames",
+        "freezes/min",
+        "freezes",
+        "ms/s",
+        "ms",
+        "packets/s",
+        "packets",
+        "kbps",
+        "percent",
+        "MiB",
+        "buffers"
+      ],
+      "title": "MetricUnit",
+      "type": "string"
+    },
+    "RegistryReference": {
+      "additionalProperties": false,
+      "properties": {
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "registryVersion": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registryversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registryVersion",
+        "contentHash"
+      ],
+      "title": "RegistryReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "compatibilityMethod": {
+      "const": "structural_context_probe_v1",
+      "title": "Compatibilitymethod",
+      "type": "string"
+    },
+    "confounderHandling": {
+      "const": "reject_pair",
+      "title": "Confounderhandling",
+      "type": "string"
+    },
+    "contentHash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Contenthash",
+      "type": "string"
+    },
+    "contractVersion": {
+      "const": "1.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/AnalyticalDecisionPolicyV1"
+    },
+    "deltaDirection": {
+      "const": "relief_minus_degraded",
+      "title": "Deltadirection",
+      "type": "string"
+    },
+    "distanceMethod": {
+      "const": "weighted_rms_v1",
+      "title": "Distancemethod",
+      "type": "string"
+    },
+    "features": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+          "$ref": "#/$defs/FeaturePolicyParameterV1"
+        }
+      },
+      "title": "Features",
+      "type": "object"
+    },
+    "maximumRankedCandidates": {
+      "exclusiveMinimum": 0,
+      "title": "Maximumrankedcandidates",
+      "type": "integer"
+    },
+    "normalizationReference": {
+      "const": "absolute_degraded_with_epsilon_floor",
+      "title": "Normalizationreference",
+      "type": "string"
+    },
+    "parameterProvenance": {
+      "const": "software_provisional",
+      "title": "Parameterprovenance",
+      "type": "string"
+    },
+    "policyId": {
+      "const": "n3-offline-conservative",
+      "title": "Policyid",
+      "type": "string"
+    },
+    "policyVersion": {
+      "const": "1.0.0",
+      "title": "Policyversion",
+      "type": "string"
+    },
+    "registry": {
+      "$ref": "#/$defs/RegistryReference"
+    },
+    "repositoryFailurePolicy": {
+      "const": "error",
+      "title": "Repositoryfailurepolicy",
+      "type": "string"
+    },
+    "responseMethod": {
+      "const": "signed_relative_primary_v1",
+      "title": "Responsemethod",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "feature-policy-v1",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "strengthMethod": {
+      "const": "inverse_one_plus_distance_v1",
+      "title": "Strengthmethod",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "contractVersion",
+    "policyId",
+    "policyVersion",
+    "contentHash",
+    "parameterProvenance",
+    "registry",
+    "responseMethod",
+    "deltaDirection",
+    "normalizationReference",
+    "confounderHandling",
+    "compatibilityMethod",
+    "distanceMethod",
+    "strengthMethod",
+    "repositoryFailurePolicy",
+    "maximumRankedCandidates",
+    "decision",
+    "features"
+  ],
+  "title": "FeaturePolicyV1",
+  "type": "object"
+}

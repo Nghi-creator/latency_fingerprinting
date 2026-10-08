@@ -1,4 +1,4 @@
-"""Public P0, N1 and additive N2 contract model API.
+"""Public P0, N1 and additive N2/N3 contract model API.
 
 Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
@@ -85,6 +85,12 @@ __all__ = [
     "MetricSeriesSummary",
     "CounterInterval",
 ]
+from .analytical_response_v2 import (
+    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION,
+    AnalyticalResponseV2,
+    FeatureResponseV2,
+    WindowFeatureEvidenceV2,
+)
 from .context import (
     ContextKey,
     MetricAggregate,
@@ -93,7 +99,14 @@ from .context import (
     TimeBounds,
     ValidityState,
 )
+from .feature_policy import (
+    FEATURE_POLICY_SCHEMA_VERSION,
+    AnalyticalDecisionPolicyV1,
+    FeaturePolicyParameterV1,
+    FeaturePolicyV1,
+)
 from .fingerprint import CompatibilityKey, Fingerprint
+from .fingerprint_v2 import FINGERPRINT_V2_SCHEMA_VERSION, FingerprintV2
 from .match import (
     CompatibilityResult,
     FeatureEvidence,
@@ -101,6 +114,14 @@ from .match import (
     MatchThresholds,
     RankedCandidate,
     ValidatedOutcome,
+)
+from .match_v2 import (
+    MATCH_RESULT_V2_SCHEMA_VERSION,
+    AnalyticalFeatureEvidenceV2,
+    CandidateComparisonV2,
+    MatchResultV2,
+    RankedCandidateV2,
+    RepositoryReferenceV2,
 )
 from .measurement import (
     METRIC_REGISTRY_SCHEMA_VERSION,
@@ -146,6 +167,22 @@ from .v2_support import (
 )
 
 __all__ += [
+    "FINGERPRINT_V2_SCHEMA_VERSION",
+    "FingerprintV2",
+    "MATCH_RESULT_V2_SCHEMA_VERSION",
+    "MatchResultV2",
+    "CandidateComparisonV2",
+    "AnalyticalFeatureEvidenceV2",
+    "RankedCandidateV2",
+    "RepositoryReferenceV2",
+    "FEATURE_POLICY_SCHEMA_VERSION",
+    "ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION",
+    "FeaturePolicyV1",
+    "FeaturePolicyParameterV1",
+    "AnalyticalDecisionPolicyV1",
+    "AnalyticalResponseV2",
+    "FeatureResponseV2",
+    "WindowFeatureEvidenceV2",
     "V2_CONTRACT_VERSION",
     "OBSERVATION_V2_SCHEMA_VERSION",
     "OBSERVATION_WINDOW_V2_SCHEMA_VERSION",

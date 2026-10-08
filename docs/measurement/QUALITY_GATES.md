@@ -1,4 +1,4 @@
-# N1/N2 quality and CI gates
+# N1/N2/N3 quality and CI gates
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
@@ -8,6 +8,23 @@ and read-only reproduction in both jobs. Python 3.11 also checks schemas,
 canonical registry and installed dependencies. The quality job retains Ruff,
 P0 fixture drift, controlled-artifact
 validation, seed drift and exact run-002 match reproduction.
+
+N3 Step 2 adds [strict policy/response validation](../analysis/N3_ANALYTICAL_MODELS.md)
+and two additive schemas, bringing the schema drift gate to eight roots. Its 94
+analytical tests run in the existing full-suite jobs. Step 3 adds 30
+[derivation tests](../analysis/N3_RESPONSE_DERIVATION.md). Step 4 adds 62
+[fingerprint/repository tests](../analysis/N3_FINGERPRINTS.md) and one schema,
+bringing exports to nine roots. Step 5 adds 76 [matching/model tests](../analysis/N3_MATCHING.md)
+and one match schema, bringing exports to ten roots.
+Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
+passes 1,539 tests with 93.58% branch-inclusive coverage after 40 original
+fixture/closeout cases and 19 subsequent health-check regressions.
+The [post-N3 audit](../analysis/N3_ARCHITECTURE_AUDIT.md) covers scoring underflow,
+stored-result/CLI failures, descriptor-pinned bundle reads, replacement links/FIFOs,
+TAR growth and unchanged legacy missing-path errors.
+[Step 7 fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
+and reproduction are delivered in both jobs. Actual hosted/minimum-version
+execution remains pending; see [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md).
 
 ## Read-only reproduction
 
@@ -21,6 +38,7 @@ error exit code with no partial JSON or traceback on drift or missing files.
 ```bash
 .venv/bin/python -m tests.measurement.check_reproduction
 .venv/bin/python -m tests.observation_v2.check_reproduction
+.venv/bin/python -m tests.analytical.check_reproduction
 ```
 
 Expected pins:
@@ -75,6 +93,7 @@ and no production exception handling or parsing implementation changed in Step 9
   --output schemas/metric-registry-v1.json --check
 .venv/bin/python -m tests.measurement.check_reproduction
 .venv/bin/python -m tests.observation_v2.check_reproduction
+.venv/bin/python -m tests.analytical.check_reproduction
 .venv/bin/python -c \
   'from latency_fingerprinting.synthetic_fixtures import fixture_drift; assert fixture_drift() == {}'
 .venv/bin/python -c \

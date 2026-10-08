@@ -116,18 +116,36 @@ opt-in metadata from one validated read. The pure
 populates four unavailable records from typed source support; existing means and
 proxies remain separate metrics. Three deterministic software fixtures and pinned
 read-only reproduction are configured in both Python CI jobs. Local software
-[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution and
-v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries. See the
+[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
+pending. N3 delivers the separate v2 analytical path described below. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
 [N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
 [post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
-hardening, fixture provenance corrections and current whole-tree verification.
-The active [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+hardening, fixture provenance corrections and historical post-N2 verification.
+The completed [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
-explicit compatibility and conservative evidence rules. These analytical modules
-and commands are planned, not implemented; P0 remains the current matching path.
+explicit compatibility and conservative evidence rules. Steps 0–7 are complete
+locally: [strict policy/response models](analysis/N3_ANALYTICAL_MODELS.md) validate
+exact approved policy content and reconstruct embedded response evidence.
+[Pure derivation](analysis/N3_RESPONSE_DERIVATION.md) revalidates explicit inputs
+and returns deterministic records. [V2 fingerprints/repositories](analysis/N3_FINGERPRINTS.md)
+reconstruct declared references and enforce bounded fail-closed loading.
+[V2 matching](analysis/N3_MATCHING.md) retains reconstructable compatibility, scoring
+and conservative decision evidence. [Additive commands](analysis/N3_COMMANDS.md)
+enforce explicit policies, bounded no-follow input reads and complete output before
+stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
+[software closeout](analysis/N3_SOFTWARE_CLOSEOUT.md) and the
+[final audit](analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
+[N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
+matching paths; hosted/minimum-version execution remains pending.
+
+The [follow-up health audit](analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
+score underflow and shared directory/TAR adoption. Bundle reads now pin ancestors,
+root and members through no-follow descriptors, enforce regular/nonblocking file
+reads and bound TAR input bytes before decoding. Valid artifacts, schemas and
+fixture pins reproduce unchanged; these repairs do not change policy meanings.
 
 ## Target system overview
 
@@ -153,6 +171,7 @@ latency-fingerprinting/
 ├── pyproject.toml
 ├── docs/
 │   ├── ARCHITECTURE.md
+│   ├── analysis/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/
@@ -163,6 +182,10 @@ latency-fingerprinting/
 │   ├── match-result-v1.schema.json
 │   ├── observation-window-v2.schema.json
 │   ├── observation-v2.schema.json
+│   ├── feature-policy-v1.schema.json
+│   ├── analytical-response-v2.schema.json
+│   ├── fingerprint-v2.schema.json
+│   ├── match-result-v2.schema.json
 │   ├── metric-registry-v1.schema.json
 │   └── metric-registry-v1.json
 ├── src/latency_fingerprinting/
@@ -176,7 +199,20 @@ latency-fingerprinting/
 │   │   ├── v2_support.py
 │   │   ├── observation_v2.py
 │   │   ├── observation_pair_v2.py
+│   │   ├── feature_policy.py
+│   │   ├── analytical_response_v2.py
+│   │   ├── fingerprint_v2.py
+│   │   ├── match_v2.py
 │   │   └── match.py
+│   ├── analytical/
+│   │   ├── policy_release.py
+│   │   ├── responses.py
+│   │   ├── fingerprints.py
+│   │   ├── repository.py
+│   │   ├── compatibility.py
+│   │   ├── scoring.py
+│   │   ├── decisions.py
+│   │   └── matching.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
@@ -204,6 +240,7 @@ latency-fingerprinting/
 │   ├── schemas.py
 │   ├── json_io.py
 │   ├── cli.py
+│   ├── cli_v2.py
 │   ├── __init__.py
 │   └── adapters/
 │       ├── pixelated_bundle.py
@@ -216,6 +253,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── analytical-v2/
 │   ├── observation-v2/
 │   ├── reference_cases/
 │   │   ├── healthy/
@@ -233,6 +271,7 @@ latency-fingerprinting/
 │   ├── controlled-run-001/
 │   └── controlled-run-002/
 └── tests/
+    ├── analytical/
     ├── data/
     ├── measurement/
     ├── models/

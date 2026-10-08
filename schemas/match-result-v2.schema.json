@@ -1,0 +1,2190 @@
+{
+  "$defs": {
+    "AggregationKind": {
+      "enum": [
+        "median",
+        "nearest_rank_p95",
+        "minimum",
+        "maximum",
+        "window_total",
+        "time_weighted_rate"
+      ],
+      "title": "AggregationKind",
+      "type": "string"
+    },
+    "AnalyticalDecisionPolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "conflictingResidualThreshold": {
+          "exclusiveMinimum": 0,
+          "title": "Conflictingresidualthreshold",
+          "type": "number"
+        },
+        "maximumConflictContribution": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Maximumconflictcontribution",
+          "type": "number"
+        },
+        "minimumFeatureCoverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumfeaturecoverage",
+          "type": "number"
+        },
+        "minimumMatchStrength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimummatchstrength",
+          "type": "number"
+        },
+        "minimumScoreMargin": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumscoremargin",
+          "type": "number"
+        },
+        "minimumSharedFeatures": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumsharedfeatures",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "minimumSharedFeatures",
+        "minimumFeatureCoverage",
+        "minimumMatchStrength",
+        "minimumScoreMargin",
+        "conflictingResidualThreshold",
+        "maximumConflictContribution"
+      ],
+      "title": "AnalyticalDecisionPolicyV1",
+      "type": "object"
+    },
+    "AnalyticalFeatureEvidenceV2": {
+      "additionalProperties": false,
+      "properties": {
+        "classification": {
+          "enum": [
+            "supporting",
+            "conflicting"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "queryValue": {
+          "title": "Queryvalue",
+          "type": "number"
+        },
+        "referenceValue": {
+          "title": "Referencevalue",
+          "type": "number"
+        },
+        "residual": {
+          "title": "Residual",
+          "type": "number"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "title": "Weight",
+          "type": "number"
+        },
+        "weightedSquaredResidual": {
+          "minimum": 0,
+          "title": "Weightedsquaredresidual",
+          "type": "number"
+        }
+      },
+      "required": [
+        "queryValue",
+        "referenceValue",
+        "residual",
+        "weight",
+        "weightedSquaredResidual",
+        "classification"
+      ],
+      "title": "AnalyticalFeatureEvidenceV2",
+      "type": "object"
+    },
+    "AnalyticalResponseV2": {
+      "additionalProperties": false,
+      "properties": {
+        "contractVersion": {
+          "const": "2.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "features": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+              "$ref": "#/$defs/FeatureResponseV2"
+            }
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "invalidReasonCodes": {
+          "items": {
+            "enum": [
+              "confounded_pair",
+              "no_eligible_features"
+            ],
+            "type": "string"
+          },
+          "title": "Invalidreasoncodes",
+          "type": "array"
+        },
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "observation": {
+          "$ref": "#/$defs/ObservationRecordV2"
+        },
+        "policy": {
+          "$ref": "#/$defs/FeaturePolicyV1"
+        },
+        "responseId": {
+          "minLength": 1,
+          "title": "Responseid",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "analytical-response-v2",
+          "title": "Schemaversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "contractVersion",
+        "responseId",
+        "observation",
+        "policy",
+        "features",
+        "isValid",
+        "invalidReasonCodes"
+      ],
+      "title": "AnalyticalResponseV2",
+      "type": "object"
+    },
+    "CandidateComparisonV2": {
+      "additionalProperties": false,
+      "properties": {
+        "bottleneckLabel": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$",
+          "title": "Bottlenecklabel",
+          "type": "string"
+        },
+        "conflictContribution": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Conflictcontribution",
+          "type": "number"
+        },
+        "distance": {
+          "minimum": 0,
+          "title": "Distance",
+          "type": "number"
+        },
+        "evidence": {
+          "maxProperties": 22,
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+              "$ref": "#/$defs/AnalyticalFeatureEvidenceV2"
+            }
+          },
+          "title": "Evidence",
+          "type": "object"
+        },
+        "excludedFeatures": {
+          "maxProperties": 22,
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+              "items": {
+                "enum": [
+                  "query_excluded",
+                  "reference_excluded"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "title": "Excludedfeatures",
+          "type": "object"
+        },
+        "featureCoverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Featurecoverage",
+          "type": "number"
+        },
+        "fingerprintContentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Fingerprintcontenthash",
+          "type": "string"
+        },
+        "fingerprintId": {
+          "minLength": 1,
+          "title": "Fingerprintid",
+          "type": "string"
+        },
+        "matchStrength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Matchstrength",
+          "type": "number"
+        },
+        "referenceVector": {
+          "maxProperties": 22,
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+              "type": "number"
+            }
+          },
+          "title": "Referencevector",
+          "type": "object"
+        },
+        "sharedFeatures": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+            "type": "string"
+          },
+          "maxItems": 22,
+          "title": "Sharedfeatures",
+          "type": "array"
+        },
+        "sharedWeight": {
+          "exclusiveMinimum": 0,
+          "title": "Sharedweight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fingerprintId",
+        "fingerprintContentHash",
+        "bottleneckLabel",
+        "referenceVector",
+        "sharedFeatures",
+        "excludedFeatures",
+        "sharedWeight",
+        "featureCoverage",
+        "distance",
+        "matchStrength",
+        "conflictContribution",
+        "evidence"
+      ],
+      "title": "CandidateComparisonV2",
+      "type": "object"
+    },
+    "CaptureMethodReference": {
+      "additionalProperties": false,
+      "properties": {
+        "methodId": {
+          "enum": [
+            "pixelated_bundle_offline",
+            "synthetic_series"
+          ],
+          "title": "Methodid",
+          "type": "string"
+        },
+        "methodVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Methodversion",
+          "type": "string"
+        },
+        "producerVersion": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Producerversion"
+        }
+      },
+      "required": [
+        "methodId",
+        "methodVersion",
+        "producerVersion"
+      ],
+      "title": "CaptureMethodReference",
+      "type": "object"
+    },
+    "ClockBasis": {
+      "description": "The exported elapsed field; monotonic provenance is not implied.",
+      "enum": [
+        "source_elapsed_ms"
+      ],
+      "title": "ClockBasis",
+      "type": "string"
+    },
+    "CounterInterval": {
+      "additionalProperties": false,
+      "description": "Accepted counter transition; rate units are declared by its summary.",
+      "properties": {
+        "delta": {
+          "minimum": 0,
+          "title": "Delta",
+          "type": "number"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "number"
+        },
+        "endElapsedMs": {
+          "minimum": 0,
+          "title": "Endelapsedms",
+          "type": "number"
+        },
+        "endSourceRow": {
+          "exclusiveMinimum": 0,
+          "title": "Endsourcerow",
+          "type": "integer"
+        },
+        "rate": {
+          "minimum": 0,
+          "title": "Rate",
+          "type": "number"
+        },
+        "startElapsedMs": {
+          "minimum": 0,
+          "title": "Startelapsedms",
+          "type": "number"
+        },
+        "startSourceRow": {
+          "exclusiveMinimum": 0,
+          "title": "Startsourcerow",
+          "type": "integer"
+        },
+        "wrapped": {
+          "default": false,
+          "title": "Wrapped",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "startSourceRow",
+        "endSourceRow",
+        "startElapsedMs",
+        "endElapsedMs",
+        "durationMs",
+        "delta",
+        "rate"
+      ],
+      "title": "CounterInterval",
+      "type": "object"
+    },
+    "FeaturePolicyParameterV1": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "allowedStatuses": {
+          "items": {
+            "const": "complete",
+            "type": "string"
+          },
+          "title": "Allowedstatuses",
+          "type": "array"
+        },
+        "clipMaximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clipmaximum"
+        },
+        "clipMinimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clipminimum"
+        },
+        "epsilon": {
+          "exclusiveMinimum": 0,
+          "title": "Epsilon",
+          "type": "number"
+        },
+        "minimumAcceptedIntervals": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumacceptedintervals",
+          "type": "integer"
+        },
+        "minimumCoverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Minimumcoverage",
+          "type": "number"
+        },
+        "minimumUsableSamples": {
+          "exclusiveMinimum": 0,
+          "title": "Minimumusablesamples",
+          "type": "integer"
+        },
+        "semanticVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Semanticversion",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "unit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "semanticVersion",
+        "source",
+        "unit",
+        "aggregation",
+        "epsilon",
+        "weight",
+        "clipMinimum",
+        "clipMaximum",
+        "minimumCoverage",
+        "minimumUsableSamples",
+        "minimumAcceptedIntervals",
+        "allowedStatuses"
+      ],
+      "title": "FeaturePolicyParameterV1",
+      "type": "object"
+    },
+    "FeaturePolicyV1": {
+      "additionalProperties": false,
+      "properties": {
+        "compatibilityMethod": {
+          "const": "structural_context_probe_v1",
+          "title": "Compatibilitymethod",
+          "type": "string"
+        },
+        "confounderHandling": {
+          "const": "reject_pair",
+          "title": "Confounderhandling",
+          "type": "string"
+        },
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "contractVersion": {
+          "const": "1.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/AnalyticalDecisionPolicyV1"
+        },
+        "deltaDirection": {
+          "const": "relief_minus_degraded",
+          "title": "Deltadirection",
+          "type": "string"
+        },
+        "distanceMethod": {
+          "const": "weighted_rms_v1",
+          "title": "Distancemethod",
+          "type": "string"
+        },
+        "features": {
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$": {
+              "$ref": "#/$defs/FeaturePolicyParameterV1"
+            }
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "maximumRankedCandidates": {
+          "exclusiveMinimum": 0,
+          "title": "Maximumrankedcandidates",
+          "type": "integer"
+        },
+        "normalizationReference": {
+          "const": "absolute_degraded_with_epsilon_floor",
+          "title": "Normalizationreference",
+          "type": "string"
+        },
+        "parameterProvenance": {
+          "const": "software_provisional",
+          "title": "Parameterprovenance",
+          "type": "string"
+        },
+        "policyId": {
+          "const": "n3-offline-conservative",
+          "title": "Policyid",
+          "type": "string"
+        },
+        "policyVersion": {
+          "const": "1.0.0",
+          "title": "Policyversion",
+          "type": "string"
+        },
+        "registry": {
+          "$ref": "#/$defs/RegistryReference"
+        },
+        "repositoryFailurePolicy": {
+          "const": "error",
+          "title": "Repositoryfailurepolicy",
+          "type": "string"
+        },
+        "responseMethod": {
+          "const": "signed_relative_primary_v1",
+          "title": "Responsemethod",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "feature-policy-v1",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "strengthMethod": {
+          "const": "inverse_one_plus_distance_v1",
+          "title": "Strengthmethod",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "contractVersion",
+        "policyId",
+        "policyVersion",
+        "contentHash",
+        "parameterProvenance",
+        "registry",
+        "responseMethod",
+        "deltaDirection",
+        "normalizationReference",
+        "confounderHandling",
+        "compatibilityMethod",
+        "distanceMethod",
+        "strengthMethod",
+        "repositoryFailurePolicy",
+        "maximumRankedCandidates",
+        "decision",
+        "features"
+      ],
+      "title": "FeaturePolicyV1",
+      "type": "object"
+    },
+    "FeatureResponseV2": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "degraded": {
+          "$ref": "#/$defs/WindowFeatureEvidenceV2"
+        },
+        "denominator": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Denominator"
+        },
+        "exclusionCodes": {
+          "items": {
+            "enum": [
+              "confounded_pair",
+              "degraded_unsupported",
+              "degraded_unavailable",
+              "degraded_missing",
+              "degraded_rejected",
+              "degraded_incomplete",
+              "degraded_coverage",
+              "degraded_samples",
+              "degraded_intervals",
+              "degraded_no_value",
+              "relief_unsupported",
+              "relief_unavailable",
+              "relief_missing",
+              "relief_rejected",
+              "relief_incomplete",
+              "relief_coverage",
+              "relief_samples",
+              "relief_intervals",
+              "relief_no_value"
+            ],
+            "type": "string"
+          },
+          "title": "Exclusioncodes",
+          "type": "array"
+        },
+        "normalizedValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Normalizedvalue"
+        },
+        "rawDelta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Rawdelta"
+        },
+        "referenceValue": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Referencevalue"
+        },
+        "relief": {
+          "$ref": "#/$defs/WindowFeatureEvidenceV2"
+        },
+        "state": {
+          "enum": [
+            "eligible",
+            "excluded"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "unclippedValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Unclippedvalue"
+        },
+        "unit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "wasClipped": {
+          "title": "Wasclipped",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "unit",
+        "aggregation",
+        "state",
+        "degraded",
+        "relief",
+        "exclusionCodes",
+        "rawDelta",
+        "referenceValue",
+        "denominator",
+        "normalizedValue",
+        "wasClipped",
+        "unclippedValue"
+      ],
+      "title": "FeatureResponseV2",
+      "type": "object"
+    },
+    "InterventionV2": {
+      "additionalProperties": false,
+      "properties": {
+        "applicationMethod": {
+          "enum": [
+            "paired_run",
+            "simulated_pair"
+          ],
+          "title": "Applicationmethod",
+          "type": "string"
+        },
+        "confounderCodes": {
+          "default": [],
+          "items": {
+            "enum": [
+              "composite_profile_change",
+              "other_setting_change",
+              "operator_declared"
+            ],
+            "type": "string"
+          },
+          "title": "Confoundercodes",
+          "type": "array"
+        },
+        "degradedWindowId": {
+          "minLength": 1,
+          "title": "Degradedwindowid",
+          "type": "string"
+        },
+        "executionStatus": {
+          "enum": [
+            "not_executed",
+            "executed",
+            "failed"
+          ],
+          "title": "Executionstatus",
+          "type": "string"
+        },
+        "intensity": {
+          "exclusiveMinimum": 0,
+          "title": "Intensity",
+          "type": "number"
+        },
+        "observedSettings": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "propertyNames": {
+                "minLength": 1
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Observedsettings"
+        },
+        "pairedWindowOrder": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "const": "degraded",
+              "type": "string"
+            },
+            {
+              "const": "relief",
+              "type": "string"
+            }
+          ],
+          "title": "Pairedwindoworder",
+          "type": "array"
+        },
+        "probeId": {
+          "minLength": 1,
+          "title": "Probeid",
+          "type": "string"
+        },
+        "probeType": {
+          "const": "stream_profile_relief",
+          "title": "Probetype",
+          "type": "string"
+        },
+        "probeVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Probeversion",
+          "type": "string"
+        },
+        "reliefWindowId": {
+          "minLength": 1,
+          "title": "Reliefwindowid",
+          "type": "string"
+        },
+        "requestedSettings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Requestedsettings",
+          "type": "object"
+        },
+        "restorationStatus": {
+          "$ref": "#/$defs/RestorationStatus"
+        }
+      },
+      "required": [
+        "probeId",
+        "probeType",
+        "probeVersion",
+        "requestedSettings",
+        "observedSettings",
+        "intensity",
+        "applicationMethod",
+        "executionStatus",
+        "restorationStatus",
+        "degradedWindowId",
+        "reliefWindowId",
+        "pairedWindowOrder"
+      ],
+      "title": "InterventionV2",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MetricKind": {
+      "enum": [
+        "gauge",
+        "cumulative_counter",
+        "event_count",
+        "derived"
+      ],
+      "title": "MetricKind",
+      "type": "string"
+    },
+    "MetricMeasurement": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "analytical_candidate",
+            "audit_only"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/$defs/MetricSeriesSummary"
+        },
+        "support": {
+          "$ref": "#/$defs/MetricSupport"
+        }
+      },
+      "required": [
+        "role",
+        "support",
+        "summary"
+      ],
+      "title": "MetricMeasurement",
+      "type": "object"
+    },
+    "MetricSeriesStatus": {
+      "enum": [
+        "complete",
+        "incomplete",
+        "missing",
+        "rejected"
+      ],
+      "title": "MetricSeriesStatus",
+      "type": "string"
+    },
+    "MetricSeriesSummary": {
+      "additionalProperties": false,
+      "description": "Immutable, finite aggregation result with reconstructable source evidence.",
+      "properties": {
+        "acceptedIntervalCount": {
+          "minimum": 0,
+          "title": "Acceptedintervalcount",
+          "type": "integer"
+        },
+        "aggregates": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/AggregationKind"
+          },
+          "title": "Aggregates",
+          "type": "object"
+        },
+        "availableAggregations": {
+          "items": {
+            "$ref": "#/$defs/AggregationKind"
+          },
+          "minItems": 1,
+          "title": "Availableaggregations",
+          "type": "array"
+        },
+        "cadenceMaximumMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadencemaximumms"
+        },
+        "cadenceMedianMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadencemedianms"
+        },
+        "cadenceMinimumMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadenceminimumms"
+        },
+        "canonicalUnit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "clockBasis": {
+          "$ref": "#/$defs/ClockBasis"
+        },
+        "counterIntervals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CounterInterval"
+          },
+          "title": "Counterintervals",
+          "type": "array"
+        },
+        "coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Coverage",
+          "type": "number"
+        },
+        "gapSourceRows": {
+          "default": [],
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Gapsourcerows",
+          "type": "array"
+        },
+        "intervalRateUnit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MetricUnit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "kind": {
+          "$ref": "#/$defs/MetricKind"
+        },
+        "metricName": {
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+          "title": "Metricname",
+          "type": "string"
+        },
+        "missingReasons": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingreasons",
+          "type": "array"
+        },
+        "observedDurationMs": {
+          "minimum": 0,
+          "title": "Observeddurationms",
+          "type": "number"
+        },
+        "primaryAggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "rawFields": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Rawfields",
+          "type": "array"
+        },
+        "registryVersion": {
+          "pattern": "^latency-metrics-v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Registryversion",
+          "type": "string"
+        },
+        "rejectedReasons": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Rejectedreasons",
+          "type": "array"
+        },
+        "resetSourceRows": {
+          "default": [],
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Resetsourcerows",
+          "type": "array"
+        },
+        "semanticVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Semanticversion",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "sourceSampleCount": {
+          "minimum": 0,
+          "title": "Sourcesamplecount",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/MetricSeriesStatus"
+        },
+        "usableSampleCount": {
+          "minimum": 0,
+          "title": "Usablesamplecount",
+          "type": "integer"
+        },
+        "usableSourceRows": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Usablesourcerows",
+          "type": "array"
+        },
+        "warnings": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "windowDurationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Windowdurationms",
+          "type": "number"
+        },
+        "windowEndMs": {
+          "minimum": 0,
+          "title": "Windowendms",
+          "type": "number"
+        },
+        "windowStartMs": {
+          "minimum": 0,
+          "title": "Windowstartms",
+          "type": "number"
+        }
+      },
+      "required": [
+        "metricName",
+        "semanticVersion",
+        "registryVersion",
+        "source",
+        "rawFields",
+        "kind",
+        "canonicalUnit",
+        "primaryAggregation",
+        "availableAggregations",
+        "clockBasis",
+        "windowStartMs",
+        "windowEndMs",
+        "windowDurationMs",
+        "sourceSampleCount",
+        "usableSampleCount",
+        "usableSourceRows",
+        "acceptedIntervalCount",
+        "observedDurationMs",
+        "coverage",
+        "cadenceMinimumMs",
+        "cadenceMedianMs",
+        "cadenceMaximumMs",
+        "status"
+      ],
+      "title": "MetricSeriesSummary",
+      "type": "object"
+    },
+    "MetricSource": {
+      "enum": [
+        "browser_webrtc",
+        "engine_runtime",
+        "encoder_pipeline"
+      ],
+      "title": "MetricSource",
+      "type": "string"
+    },
+    "MetricSupport": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "enum": [
+            "measurement_declaration",
+            "source_support",
+            "source_rows"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "declaredState": {
+          "anyOf": [
+            {
+              "enum": [
+                "supported",
+                "unsupported",
+                "unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Declaredstate"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "declaredState",
+        "basis"
+      ],
+      "title": "MetricSupport",
+      "type": "object"
+    },
+    "MetricUnit": {
+      "enum": [
+        "fps",
+        "frames/s",
+        "frames",
+        "freezes/min",
+        "freezes",
+        "ms/s",
+        "ms",
+        "packets/s",
+        "packets",
+        "kbps",
+        "percent",
+        "MiB",
+        "buffers"
+      ],
+      "title": "MetricUnit",
+      "type": "string"
+    },
+    "ObservationRecordV2": {
+      "additionalProperties": false,
+      "properties": {
+        "comparisonCaseId": {
+          "minLength": 1,
+          "title": "Comparisoncaseid",
+          "type": "string"
+        },
+        "contractVersion": {
+          "const": "2.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "degradedWindow": {
+          "$ref": "#/$defs/ObservationWindowV2"
+        },
+        "intervention": {
+          "$ref": "#/$defs/InterventionV2"
+        },
+        "observationId": {
+          "minLength": 1,
+          "title": "Observationid",
+          "type": "string"
+        },
+        "reliefWindow": {
+          "$ref": "#/$defs/ObservationWindowV2"
+        },
+        "schemaVersion": {
+          "const": "observation-v2",
+          "title": "Schemaversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "contractVersion",
+        "observationId",
+        "comparisonCaseId",
+        "degradedWindow",
+        "reliefWindow",
+        "intervention"
+      ],
+      "title": "ObservationRecordV2",
+      "type": "object"
+    },
+    "ObservationWindowV2": {
+      "additionalProperties": false,
+      "properties": {
+        "captureMethod": {
+          "$ref": "#/$defs/CaptureMethodReference"
+        },
+        "clock": {
+          "$ref": "#/$defs/WindowClock"
+        },
+        "comparisonCaseId": {
+          "minLength": 1,
+          "title": "Comparisoncaseid",
+          "type": "string"
+        },
+        "confounderCodes": {
+          "default": [],
+          "items": {
+            "enum": [
+              "composite_profile_change",
+              "other_setting_change",
+              "operator_declared"
+            ],
+            "type": "string"
+          },
+          "title": "Confoundercodes",
+          "type": "array"
+        },
+        "context": {
+          "$ref": "#/$defs/V2ContextSnapshot"
+        },
+        "contractVersion": {
+          "const": "2.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "effectiveSettings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Effectivesettings",
+          "type": "object"
+        },
+        "measurements": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetricMeasurement"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Measurements",
+          "type": "object"
+        },
+        "phase": {
+          "$ref": "#/$defs/WindowPhase"
+        },
+        "provenance": {
+          "$ref": "#/$defs/ProvenanceKind"
+        },
+        "registry": {
+          "$ref": "#/$defs/RegistryReference"
+        },
+        "runId": {
+          "minLength": 1,
+          "title": "Runid",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "observation-window-v2",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "sourceArtifact": {
+          "$ref": "#/$defs/SourceArtifactV2"
+        },
+        "sources": {
+          "additionalProperties": {
+            "$ref": "#/$defs/SourceSupport"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/MetricSource"
+          },
+          "title": "Sources",
+          "type": "object"
+        },
+        "stageTimings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StageTiming"
+          },
+          "title": "Stagetimings",
+          "type": "array"
+        },
+        "validity": {
+          "$ref": "#/$defs/WindowValidityV2"
+        },
+        "windowId": {
+          "minLength": 1,
+          "title": "Windowid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "contractVersion",
+        "runId",
+        "windowId",
+        "comparisonCaseId",
+        "context",
+        "phase",
+        "provenance",
+        "registry",
+        "captureMethod",
+        "clock",
+        "sourceArtifact",
+        "sources",
+        "effectiveSettings",
+        "measurements",
+        "validity"
+      ],
+      "title": "ObservationWindowV2",
+      "type": "object"
+    },
+    "ProvenanceKind": {
+      "enum": [
+        "synthetic",
+        "controlled_real",
+        "organic_real"
+      ],
+      "title": "ProvenanceKind",
+      "type": "string"
+    },
+    "RankedCandidateV2": {
+      "additionalProperties": false,
+      "properties": {
+        "bottleneckLabel": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$",
+          "title": "Bottlenecklabel",
+          "type": "string"
+        },
+        "distance": {
+          "minimum": 0,
+          "title": "Distance",
+          "type": "number"
+        },
+        "fingerprintId": {
+          "minLength": 1,
+          "title": "Fingerprintid",
+          "type": "string"
+        },
+        "matchStrength": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Matchstrength",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fingerprintId",
+        "bottleneckLabel",
+        "distance",
+        "matchStrength"
+      ],
+      "title": "RankedCandidateV2",
+      "type": "object"
+    },
+    "RegistryReference": {
+      "additionalProperties": false,
+      "properties": {
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "registryVersion": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registryversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registryVersion",
+        "contentHash"
+      ],
+      "title": "RegistryReference",
+      "type": "object"
+    },
+    "RepositoryReferenceV2": {
+      "additionalProperties": false,
+      "properties": {
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "fingerprintId": {
+          "minLength": 1,
+          "title": "Fingerprintid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fingerprintId",
+        "contentHash"
+      ],
+      "title": "RepositoryReferenceV2",
+      "type": "object"
+    },
+    "RestorationStatus": {
+      "enum": [
+        "not_applicable",
+        "not_executed",
+        "restored",
+        "not_restored",
+        "unknown"
+      ],
+      "title": "RestorationStatus",
+      "type": "string"
+    },
+    "SourceArtifactV2": {
+      "additionalProperties": false,
+      "properties": {
+        "bundleSchemaVersion": {
+          "anyOf": [
+            {
+              "enum": [
+                "1",
+                "2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bundleschemaversion"
+        },
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "sourceType": {
+          "enum": [
+            "pixelated_bundle",
+            "synthetic_series"
+          ],
+          "title": "Sourcetype",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceType",
+        "contentHash",
+        "bundleSchemaVersion"
+      ],
+      "title": "SourceArtifactV2",
+      "type": "object"
+    },
+    "SourceSupport": {
+      "additionalProperties": false,
+      "properties": {
+        "availableRowCount": {
+          "minimum": 0,
+          "title": "Availablerowcount",
+          "type": "integer"
+        },
+        "basis": {
+          "enum": [
+            "source_declaration",
+            "source_rows",
+            "source_absent"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "declaredState": {
+          "anyOf": [
+            {
+              "enum": [
+                "supported",
+                "unsupported",
+                "unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Declaredstate"
+        },
+        "rowCount": {
+          "minimum": 0,
+          "title": "Rowcount",
+          "type": "integer"
+        },
+        "sourceFile": {
+          "anyOf": [
+            {
+              "enum": [
+                "stream-telemetry.csv",
+                "engine-telemetry.csv"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sourcefile"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "declaredState",
+        "basis",
+        "sourceFile",
+        "rowCount",
+        "availableRowCount"
+      ],
+      "title": "SourceSupport",
+      "type": "object"
+    },
+    "StageTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "clockDomainId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clockdomainid"
+        },
+        "methodId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Methodid"
+        },
+        "methodVersion": {
+          "anyOf": [
+            {
+              "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Methodversion"
+        },
+        "reasonCode": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_instrumented",
+                "unsupported_source",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reasoncode"
+        },
+        "sampleCount": {
+          "minimum": 0,
+          "title": "Samplecount",
+          "type": "integer"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "stage": {
+          "enum": [
+            "capture",
+            "encode",
+            "decode",
+            "render"
+          ],
+          "title": "Stage",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "measured",
+            "estimated",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "statistic": {
+          "anyOf": [
+            {
+              "const": "sample_mean",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Statistic"
+        },
+        "unit": {
+          "const": "ms",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "stage",
+        "state",
+        "source",
+        "methodId",
+        "methodVersion",
+        "clockDomainId",
+        "unit",
+        "statistic",
+        "value",
+        "sampleCount",
+        "reasonCode"
+      ],
+      "title": "StageTiming",
+      "type": "object"
+    },
+    "V2ContextSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "captureImplementation": {
+          "minLength": 1,
+          "title": "Captureimplementation",
+          "type": "string"
+        },
+        "clientClass": {
+          "minLength": 1,
+          "title": "Clientclass",
+          "type": "string"
+        },
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "connectionMode": {
+          "minLength": 1,
+          "title": "Connectionmode",
+          "type": "string"
+        },
+        "contextId": {
+          "minLength": 1,
+          "title": "Contextid",
+          "type": "string"
+        },
+        "edgeNodeClass": {
+          "minLength": 1,
+          "title": "Edgenodeclass",
+          "type": "string"
+        },
+        "encoderFamily": {
+          "minLength": 1,
+          "title": "Encoderfamily",
+          "type": "string"
+        },
+        "encoderProfile": {
+          "minLength": 1,
+          "title": "Encoderprofile",
+          "type": "string"
+        },
+        "networkScenario": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Networkscenario"
+        },
+        "nodeId": {
+          "minLength": 1,
+          "title": "Nodeid",
+          "type": "string"
+        },
+        "nominalStreamProfile": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Nominalstreamprofile",
+          "type": "object"
+        },
+        "operatingSystem": {
+          "minLength": 1,
+          "title": "Operatingsystem",
+          "type": "string"
+        },
+        "runtimeClass": {
+          "minLength": 1,
+          "title": "Runtimeclass",
+          "type": "string"
+        },
+        "transportImplementation": {
+          "minLength": 1,
+          "title": "Transportimplementation",
+          "type": "string"
+        },
+        "versions": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Versions",
+          "type": "object"
+        },
+        "workloadId": {
+          "minLength": 1,
+          "title": "Workloadid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId",
+        "compatibilityGroup",
+        "edgeNodeClass",
+        "nodeId",
+        "operatingSystem",
+        "runtimeClass",
+        "workloadId",
+        "captureImplementation",
+        "encoderFamily",
+        "encoderProfile",
+        "transportImplementation",
+        "connectionMode",
+        "clientClass",
+        "nominalStreamProfile",
+        "networkScenario",
+        "versions"
+      ],
+      "title": "V2ContextSnapshot",
+      "type": "object"
+    },
+    "WindowClock": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/ClockBasis"
+        },
+        "domainId": {
+          "minLength": 1,
+          "title": "Domainid",
+          "type": "string"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "number"
+        },
+        "elapsedEndMs": {
+          "minimum": 0,
+          "title": "Elapsedendms",
+          "type": "number"
+        },
+        "elapsedStartMs": {
+          "minimum": 0,
+          "title": "Elapsedstartms",
+          "type": "number"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Endedat"
+        },
+        "provenance": {
+          "enum": [
+            "wall_clock_derived_elapsed",
+            "synthetic_elapsed"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Startedat"
+        }
+      },
+      "required": [
+        "basis",
+        "provenance",
+        "domainId",
+        "elapsedStartMs",
+        "elapsedEndMs",
+        "durationMs",
+        "startedAt",
+        "endedAt"
+      ],
+      "title": "WindowClock",
+      "type": "object"
+    },
+    "WindowFeatureEvidenceV2": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptedIntervalCount": {
+          "minimum": 0,
+          "title": "Acceptedintervalcount",
+          "type": "integer"
+        },
+        "coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Coverage",
+          "type": "number"
+        },
+        "observedDurationMs": {
+          "minimum": 0,
+          "title": "Observeddurationms",
+          "type": "number"
+        },
+        "primaryValue": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Primaryvalue"
+        },
+        "sourceSampleCount": {
+          "minimum": 0,
+          "title": "Sourcesamplecount",
+          "type": "integer"
+        },
+        "summaryStatus": {
+          "$ref": "#/$defs/MetricSeriesStatus"
+        },
+        "supportState": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unavailable"
+          ],
+          "title": "Supportstate",
+          "type": "string"
+        },
+        "usableSampleCount": {
+          "minimum": 0,
+          "title": "Usablesamplecount",
+          "type": "integer"
+        },
+        "windowId": {
+          "minLength": 1,
+          "title": "Windowid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "windowId",
+        "supportState",
+        "summaryStatus",
+        "primaryValue",
+        "sourceSampleCount",
+        "usableSampleCount",
+        "acceptedIntervalCount",
+        "observedDurationMs",
+        "coverage"
+      ],
+      "title": "WindowFeatureEvidenceV2",
+      "type": "object"
+    },
+    "WindowPhase": {
+      "enum": [
+        "baseline",
+        "degraded",
+        "relief",
+        "recovery"
+      ],
+      "title": "WindowPhase",
+      "type": "string"
+    },
+    "WindowValidityV2": {
+      "additionalProperties": false,
+      "properties": {
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "reasonCodes": {
+          "items": {
+            "enum": [
+              "producer_invalid",
+              "required_source_unavailable",
+              "source_samples_unavailable"
+            ],
+            "type": "string"
+          },
+          "title": "Reasoncodes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "isValid",
+        "reasonCodes"
+      ],
+      "title": "WindowValidityV2",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "acceptedLabel": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Acceptedlabel"
+    },
+    "candidateRejections": {
+      "additionalProperties": {
+        "items": {
+          "enum": [
+            "query_invalid",
+            "validation_status",
+            "registry_mismatch",
+            "policy_mismatch",
+            "provenance_mismatch",
+            "capture_method_mismatch",
+            "clock_meaning_mismatch",
+            "context_mismatch",
+            "probe_mismatch",
+            "settings_mismatch",
+            "shared_feature_count",
+            "feature_coverage"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "maxProperties": 128,
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Candidaterejections",
+      "type": "object"
+    },
+    "comparisons": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CandidateComparisonV2"
+      },
+      "maxProperties": 128,
+      "propertyNames": {
+        "minLength": 1
+      },
+      "title": "Comparisons",
+      "type": "object"
+    },
+    "contractVersion": {
+      "const": "2.0.0",
+      "title": "Contractversion",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "matched",
+        "unknown"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "matchId": {
+      "minLength": 1,
+      "title": "Matchid",
+      "type": "string"
+    },
+    "matchStrength": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Matchstrength"
+    },
+    "noticeCode": {
+      "const": "software_similarity_not_causal_confidence",
+      "title": "Noticecode",
+      "type": "string"
+    },
+    "queryResponse": {
+      "$ref": "#/$defs/AnalyticalResponseV2"
+    },
+    "rankedCandidates": {
+      "items": {
+        "$ref": "#/$defs/RankedCandidateV2"
+      },
+      "maxItems": 5,
+      "title": "Rankedcandidates",
+      "type": "array"
+    },
+    "repositoryReferences": {
+      "items": {
+        "$ref": "#/$defs/RepositoryReferenceV2"
+      },
+      "maxItems": 128,
+      "title": "Repositoryreferences",
+      "type": "array"
+    },
+    "schemaVersion": {
+      "const": "match-result-v2",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "scoreMargin": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Scoremargin"
+    },
+    "unknownReason": {
+      "anyOf": [
+        {
+          "enum": [
+            "invalid_response",
+            "no_fingerprints",
+            "no_compatible_fingerprints",
+            "insufficient_features",
+            "weak_match",
+            "ambiguous_margin",
+            "conflicting_evidence"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Unknownreason"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "contractVersion",
+    "matchId",
+    "queryResponse",
+    "repositoryReferences",
+    "candidateRejections",
+    "comparisons",
+    "rankedCandidates",
+    "decision",
+    "acceptedLabel",
+    "unknownReason",
+    "matchStrength",
+    "scoreMargin",
+    "noticeCode"
+  ],
+  "title": "MatchResultV2",
+  "type": "object"
+}
