@@ -40,6 +40,18 @@ def fingerprint(*, label="declared", status="software_checked", **kwargs):
     )
 
 
+def jitter_response(delta):
+    """Keep all other features equal while retaining a small, nonzero delta."""
+
+    def change(pair):
+        for phase, values in (("degraded", (0, 0, 0)), ("relief", (0, delta, 2 * delta))):
+            pair[phase + "_window"]["measurements"]["transport.jitter_ms"] = window_payload(
+                phase=phase, values=values
+            )["measurements"]["transport.jitter_ms"]
+
+    return response(changes=change)
+
+
 def match(query=None, records=()):
     query = response() if query is None else query
     return match_response_v2(query, query.policy, FingerprintRepositoryV2(tuple(records)))

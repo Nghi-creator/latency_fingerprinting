@@ -64,8 +64,10 @@ candidates still compete. Decisions use this exact priority:
 8. matched, accepting the best caller-declared label.
 
 Unknown results have no accepted label. Threshold comparisons use reconstructed
-floating-point values without an epsilon adjustment. Arithmetic overflow fails
-explicitly. No current time, random IDs or file writes enter matching.
+floating-point values without an epsilon adjustment. Arithmetic overflow and
+underflow of a nonzero residual square or positive weighted mean fail explicitly.
+Small representable residuals retain their nonzero distance and evidence. No
+current time, random IDs or file writes enter matching.
 
 ## Result validation and repository verification
 
@@ -101,3 +103,8 @@ conflicts, ties/truncation, finite arithmetic, forged results, immutable inputs,
 repository-backed verification, resource limits and fresh interpreter imports.
 [Progress](N3_IMPLEMENTATION_PROGRESS.md) records local results and separately
 pending Python 3.11/hosted verification.
+
+The [post-closeout health audit](N3_ARCHITECTURE_AUDIT.md) adds seven numerical
+regressions covering both underflow stages, stored-result reconstruction, public
+CLI failures and small representable scores. The 76 cases above are the original
+Step 5 delivery count.

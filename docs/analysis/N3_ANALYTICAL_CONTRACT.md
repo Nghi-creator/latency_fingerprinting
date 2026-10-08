@@ -270,7 +270,10 @@ matchStrength = 1 / (1 + distance)
 featureCoverage = sharedFeatureCount / 22
 ```
 
-All arithmetic must be finite; zero/empty usable weight cannot be scored. A feature
+All arithmetic must be finite and representable; zero/empty usable weight cannot
+be scored. A nonzero residual whose weighted square rounds to zero, or a positive
+residual sum whose weighted mean rounds to zero, raises an arithmetic range error.
+It cannot produce a fabricated zero distance. A feature
 is conflicting iff abs(residual)>0.5; equality is supporting. Conflict contribution
 is conflicting weighted residual sum / residualSum, or zero if residualSum is zero.
 It is a residual diagnostic, not a causal contradiction detector.

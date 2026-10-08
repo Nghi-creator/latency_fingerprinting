@@ -17,6 +17,7 @@ from latency_fingerprinting.models import AnalyticalResponseV2, FeaturePolicyV1,
 from latency_fingerprinting.pipeline import canonical_json
 
 from .cases import fingerprint_payload, policy_payload, response_payload
+from .matching_cases import jitter_response
 
 COMMANDS = ["build-response-v2", "build-fingerprint-v2", "match-v2"]
 
@@ -183,6 +184,16 @@ def test_repository_errors_fail_privately_without_partial_output(kind, inputs, c
         from latency_fingerprinting.analytical import repository as module
 
         monkeypatch.setattr(module, "MAX_FINGERPRINT_FILES_V2", 0)
+    assert main(args("match-v2", inputs)) == 1
+    captured = capsys.readouterr()
+    assert captured.out == "" and captured.err == "error: match-v2: invalid_input_or_result\n"
+
+
+@pytest.mark.parametrize("delta", [1e-200, 2e-162])
+def test_scoring_underflow_fails_privately_without_partial_output(delta, inputs, capsys):
+    inputs["response"].write_text(canonical_json(jitter_response(delta)))
+    record = create_fingerprint_v2(jitter_response(0), bottleneck_label="declared")
+    (inputs["fingerprints"] / "reference.json").write_text(canonical_json(record))
     assert main(args("match-v2", inputs)) == 1
     captured = capsys.readouterr()
     assert captured.out == "" and captured.err == "error: match-v2: invalid_input_or_result\n"

@@ -45,7 +45,11 @@ def comparison_payload(query, fingerprint_id, content_hash, label, reference_vec
         reference = reference_vector[name]
         residual = feature.normalized_value - reference
         squared = parameter.weight * residual * residual
-        if not math.isfinite(residual) or not math.isfinite(squared):
+        if (
+            not math.isfinite(residual)
+            or not math.isfinite(squared)
+            or (residual != 0 and squared == 0)
+        ):
             raise ValueError("analytical comparison exceeds the finite numeric range")
         evidence[name] = {
             "queryValue": feature.normalized_value,
@@ -69,7 +73,10 @@ def comparison_payload(query, fingerprint_id, content_hash, label, reference_vec
         raise ValueError("analytical comparison exceeds the finite numeric range") from error
     if not math.isfinite(shared_weight) or shared_weight <= 0 or not math.isfinite(residual_sum):
         raise ValueError("analytical comparison requires finite positive usable weight")
-    distance = math.sqrt(residual_sum / shared_weight)
+    mean_square = residual_sum / shared_weight
+    if residual_sum != 0 and mean_square == 0:
+        raise ValueError("analytical comparison exceeds the finite numeric range")
+    distance = math.sqrt(mean_square)
     return {
         "fingerprintId": fingerprint_id,
         "fingerprintContentHash": content_hash,

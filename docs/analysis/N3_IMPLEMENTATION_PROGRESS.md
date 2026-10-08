@@ -228,3 +228,20 @@ Existing schemas, policy and P0/N1/N2 source/fixtures/pins remain unchanged. N3 
 closed locally; actual Python 3.11/hosted execution remains pending. Stage
 instrumentation, experiment foundation and scientific validation remain separate
 roadmap work. Review successor scope against those remaining boundaries.
+
+## Follow-up health check — 2026-10-08
+
+The [post-closeout audit](N3_ARCHITECTURE_AUDIT.md) starts from clean commit
+`cd84bbd8c0ee6d09cffbd8d28d0b64041167bc65`. It rejects scoring underflow instead
+of fabricating zero distance and hardens the shared P0/N1/N2 directory/TAR reader
+with pinned no-follow descriptors, nonblocking regular-file checks and bounded
+archive reads. Existing missing-bundle errors remain preserved. A stale package
+description, model-guide wording, architecture/plan navigation and current test
+counts are corrected; original milestone counts remain historical.
+
+Nineteen added regressions bring the final local result to **1,539 passing tests
+and 93.58% branch-inclusive coverage**. All ten schemas, approved policy content,
+fixture pins and controlled P0 bytes are unchanged. Ruff, dependencies, fixture
+drift/reproduction, local links and diff checks pass. No additional restructuring
+is justified by these repairs. Actual Python 3.11/hosted execution, full-limit
+scaling and scientific evaluation remain separate open work.

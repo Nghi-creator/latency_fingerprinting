@@ -17,8 +17,12 @@ analytical tests run in the existing full-suite jobs. Step 3 adds 30
 bringing exports to nine roots. Step 5 adds 76 [matching/model tests](../analysis/N3_MATCHING.md)
 and one match schema, bringing exports to ten roots.
 Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
-passes 1,520 tests with 93.58% branch-inclusive coverage after 40 final
-fixture/closeout cases. [Step 7 fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
+passes 1,539 tests with 93.58% branch-inclusive coverage after 40 original
+fixture/closeout cases and 19 subsequent health-check regressions.
+The [post-N3 audit](../analysis/N3_ARCHITECTURE_AUDIT.md) covers scoring underflow,
+stored-result/CLI failures, descriptor-pinned bundle reads, replacement links/FIFOs,
+TAR growth and unchanged legacy missing-path errors.
+[Step 7 fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
 and reproduction are delivered in both jobs. Actual hosted/minimum-version
 execution remains pending; see [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md).
 

@@ -1,4 +1,4 @@
-"""Measurement semantics shared by normalization and future registries."""
+"""Canonical metric semantics, aggregation and explicit stage-timing support."""
 
 from .feature_config import FeatureNormalizationConfig, normalize_feature_value
 from .p0_feature_config import P0_FEATURE_CONFIG

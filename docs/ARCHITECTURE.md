@@ -116,14 +116,14 @@ opt-in metadata from one validated read. The pure
 populates four unavailable records from typed source support; existing means and
 proxies remain separate metrics. Three deterministic software fixtures and pinned
 read-only reproduction are configured in both Python CI jobs. Local software
-[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution and
-v2 feature/normalization/fingerprint/matcher adoption remain separate boundaries. See the
+[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
+pending. N3 delivers the separate v2 analytical path described below. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
 [N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
 [post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
-hardening, fixture provenance corrections and current whole-tree verification.
+hardening, fixture provenance corrections and historical post-N2 verification.
 The completed [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
 explicit compatibility and conservative evidence rules. Steps 0–7 are complete
@@ -140,6 +140,12 @@ stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
 [final audit](analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
 [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
 matching paths; hosted/minimum-version execution remains pending.
+
+The [follow-up health audit](analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
+score underflow and shared directory/TAR adoption. Bundle reads now pin ancestors,
+root and members through no-follow descriptors, enforce regular/nonblocking file
+reads and bound TAR input bytes before decoding. Valid artifacts, schemas and
+fixture pins reproduce unchanged; these repairs do not change policy meanings.
 
 ## Target system overview
 

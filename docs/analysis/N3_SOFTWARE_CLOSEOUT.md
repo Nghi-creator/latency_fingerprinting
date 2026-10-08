@@ -30,6 +30,10 @@ modules pass. Five controlled P0 artifacts validate; run-001 seed and exact run-
 match bytes reproduce. Whole-tree Markdown links and diff checks pass after adding
 fixture READMEs and closeout documentation.
 
+These counts preserve the original Step 7 milestone. The
+[follow-up health audit](N3_ARCHITECTURE_AUDIT.md) records subsequent arithmetic
+and shared-reader repairs, added regression cases and current verification.
+
 The original N3 baseline is `06e697105e918c0c2f3ae2d25bf75c833f7982ad`.
 Step 7 starts at `b5224cb17409ff28640960b060134471a6fd3cfe`. It adds snapshots,
 test support, CI gates and docs, and hardens only v2 repository root opening.

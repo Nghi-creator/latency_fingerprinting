@@ -16,18 +16,18 @@
   [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json) freeze the feature
   inventory, provisional parameters, record roots and conservative decision rules.
 - [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records baseline
-  reproduction, specification and delivered policy/response validation.
+  reproduction, all seven implementation steps and subsequent health checks.
 - [Archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves completed
   observation-v2 contracts/adoption and local verification. Actual Python 3.11/hosted
   execution remains pending.
 - [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
-  root, registry, support, pair and timing semantics before implementation.
+  root, registry, support, pair and timing semantics used by delivered N2 adoption.
 - [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md) records delivered
   behavior, final evidence, remaining verification and the next contract boundary.
 - [N2 fixtures and gates](../measurement/OBSERVATION_V2_FIXTURES.md) documents exact-byte
   snapshots and read-only CI reproduction.
 - [Post-N2 health audit](../measurement/N2_ARCHITECTURE_AUDIT.md) records contract
-  hardening, fixture/test maintenance and current full-tree verification.
+  hardening, fixture/test maintenance and historical post-N2 verification.
 - [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline
   verification, completed steps and pending hosted results.
 - [N2 model guide](../measurement/OBSERVATION_V2_MODELS.md) documents strict root

@@ -9,7 +9,7 @@
 
 N1 measurement semantics and N2 observation-v2 adoption are implemented and
 locally verified. The [post-N2 audit](../measurement/N2_ARCHITECTURE_AUDIT.md)
-records the current baseline: 1,166 passing tests and 93.05% branch-inclusive
+records the original N3 baseline: 1,166 passing tests and 93.05% branch-inclusive
 coverage. Actual Python 3.11/hosted verification remains pending. This document
 now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
 and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
@@ -230,6 +230,10 @@ created during closeout.
 
 Archive this plan when replacing it with a successor. Retain pending verification
 explicitly and keep scientific evaluation/new instrumentation separate.
+
+The [follow-up health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records post-closeout
+score-underflow and shared bundle-reader repairs and current verification. Step 7
+counts above remain the original milestone evidence; the plan remains complete.
 
 ## Exit checklist
 

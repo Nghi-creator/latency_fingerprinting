@@ -19,6 +19,14 @@ manifest/privacy, cross-file identity, engine-source, settings, window-alignment
 summary-count and declared-source-support validators. No second archive reader
 is introduced; P0 ingestion/aggregation is not invoked.
 
+The shared reader pins every ancestor and the bundle root through no-follow
+descriptors. Directory members are opened relative to that root with nonblocking
+no-follow flags and must be regular files. TAR inputs are likewise pinned regular
+files; compressed input bytes are bounded before decoding, including file growth
+after the size check. Ancestor links and replacement links/FIFOs fail closed.
+The [post-N3 health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records these repairs
+and preservation checks across P0/N1/N2.
+
 Context must explicitly declare bundle schema version and workload identity.
 Mixed session/source identities reject input. Every source is separately checked
 for non-negative and strictly increasing `elapsed_ms`, increasing UTC

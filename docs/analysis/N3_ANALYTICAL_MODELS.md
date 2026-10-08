@@ -46,13 +46,14 @@ explicit nulls. The initial policy permits no clipping. Calculations use the
 contract's 1e-12 relative/absolute comparison tolerance. Any window/intervention
 confounder excludes all features and makes the response invalid. Without a
 confounder, an entirely excluded inventory has `no_eligible_features`; a valid
-response alone does not establish enough evidence for future matching.
+response alone does not establish enough evidence for matching.
 
 Step 2 validates supplied response records. [Step 3](N3_RESPONSE_DERIVATION.md)
 now provides a public pure derivation function, and [Step 4](N3_FINGERPRINTS.md)
 delivers fingerprints/repositories. [Step 5](N3_MATCHING.md) implements the separate
 v2 matcher, and [Step 6](N3_COMMANDS.md) delivers additive build/match commands. Existing v1
-commands reject these new roots.
+`build-response` and `match` commands reject these analytical roots; generic
+`validate` accepts them.
 
 ## Validation and schema export
 
@@ -68,8 +69,9 @@ canonical record. For example, the normative policy can be checked read-only:
 The additive schemas are
 [feature-policy-v1](../../schemas/feature-policy-v1.schema.json) and
 [analytical-response-v2](../../schemas/analytical-response-v2.schema.json), bringing
-exports to eight roots. JSON Schema describes field structure; runtime validation
-also enforces trusted release content and cross-record reconstruction.
+exports to eight roots at Step 2. Delivered fingerprint/match schemas now bring
+the complete export to ten roots. JSON Schema describes field structure; runtime
+validation also enforces trusted release content and cross-record reconstruction.
 
 ## Local verification
 

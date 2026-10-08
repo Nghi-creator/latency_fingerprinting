@@ -65,8 +65,9 @@ pure response derivation, v2 fingerprints and bounded repository loading are
 implemented, along with v2 compatibility, scoring and conservative matching.
 Additive commands, independent synthetic fixtures/pins and
 [N3 software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
-The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository hardening
-and verification. Hosted/minimum-version execution remains pending. N3 does not
+The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository, shared
+bundle-reader and arithmetic hardening with whole-tree verification.
+Hosted/minimum-version execution remains pending. N3 does not
 complete the Phase 1 observability and experiment-foundation work below.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate

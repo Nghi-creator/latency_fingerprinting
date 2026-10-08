@@ -31,6 +31,12 @@ another archive read or raw payload dictionaries. Settings contain only validate
 flat stream/engine scalars. Context is copied before I/O; later caller mutation
 cannot change the adopted record.
 
+Shared bundle reads now pin ancestors, root and members through no-follow file
+descriptors, reject nonregular files without blocking, and bound TAR bytes before
+decoding even if the file grows. See [safe extraction](SAMPLE_EXTRACTION.md) and
+the [post-N3 health audit](../analysis/N3_ARCHITECTURE_AUDIT.md). Valid adopted bytes
+and source hashes remain unchanged.
+
 Producer version is taken only from an explicitly supplied, non-empty string
 `bundle-manifest.json.producerVersion`, otherwise null. This optional declaration
 is not inferred from a current checkout/date and is not an instrumentation audit.

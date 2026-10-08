@@ -6,7 +6,9 @@ import math
 import pytest
 from jsonschema import Draft202012Validator
 
+from latency_fingerprinting.analytical.fingerprints import create_fingerprint_v2
 from latency_fingerprinting.analytical.matching import verify_match_repository_v2
+from latency_fingerprinting.analytical.policy_release import payload_hash
 from latency_fingerprinting.analytical.repository import FingerprintRepositoryV2
 from latency_fingerprinting.cli import main
 from latency_fingerprinting.models import MatchResultV2
@@ -14,7 +16,7 @@ from latency_fingerprinting.pipeline import canonical_json
 from tests.models.v2_cases import window_payload
 
 from .cases import canonical, policy_payload
-from .matching_cases import fingerprint, match, response
+from .matching_cases import fingerprint, jitter_response, match, response
 
 
 def test_independent_complete_score_evidence_identity_schema_and_cli(tmp_path, capsys):
@@ -186,6 +188,47 @@ def test_unrepresentable_scoring_is_error_not_unknown(target):
         query, record = response(normalized=4e153), fingerprint()
     with pytest.raises(ValueError, match="finite numeric"):
         match(query, [record])
+
+
+@pytest.mark.parametrize("delta", [1e-200, 2e-162])
+def test_squared_residual_or_mean_square_underflow_cannot_fabricate_zero_distance(delta):
+    query = jitter_response(delta)
+    record = create_fingerprint_v2(jitter_response(0), bottleneck_label="declared")
+    assert query.features["transport.jitter_ms"].normalized_value == delta
+    with pytest.raises(ValueError, match="finite numeric"):
+        match(query, [record])
+
+
+def test_small_representable_residual_retains_nonzero_distance_and_evidence():
+    query = jitter_response(1e-150)
+    record = create_fingerprint_v2(jitter_response(0), bottleneck_label="declared")
+    result = match(query, [record])
+    comparison = result.comparisons[record.fingerprint_id]
+    assert comparison.distance == pytest.approx(1e-150 / math.sqrt(22), rel=1e-12, abs=0)
+    assert comparison.evidence["transport.jitter_ms"].weighted_squared_residual == 1e-300
+    assert MatchResultV2.model_validate_json(canonical_json(result)) == result
+
+
+@pytest.mark.parametrize("delta", [1e-200, 2e-162])
+def test_stored_result_validation_rejects_underflow_even_with_rehashed_identity(delta):
+    record = create_fingerprint_v2(jitter_response(0), bottleneck_label="declared")
+    payload = match(jitter_response(0), [record]).model_dump(mode="json", by_alias=True)
+    query = jitter_response(delta)
+    payload["queryResponse"] = query.model_dump(mode="json", by_alias=True)
+    payload["matchId"] = (
+        "match-v2-"
+        + payload_hash(
+            {
+                "queryResponseId": query.response_id,
+                "policyHash": query.policy.content_hash,
+                "repositoryReferences": payload["repositoryReferences"],
+            }
+        )[7:]
+    )
+    evidence = payload["comparisons"][record.fingerprint_id]["evidence"]["transport.jitter_ms"]
+    evidence.update(queryValue=delta, residual=delta, weightedSquaredResidual=delta * delta)
+    with pytest.raises(ValueError, match="finite numeric"):
+        MatchResultV2.model_validate(payload)
 
 
 def test_floating_margin_boundaries_use_no_epsilon_fudge():
