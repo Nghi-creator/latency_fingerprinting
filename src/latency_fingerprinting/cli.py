@@ -1,4 +1,4 @@
-"""Offline P0 analysis, N1 diagnostics and additive N2 contract validation."""
+"""Offline P0 analysis, N1 diagnostics and additive N2/N3 analysis."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
@@ -24,15 +25,23 @@ from .measurement.metric_registry import (
 )
 from .measurement_inspection import inspect_measurements, render_measurement_inspection
 from .models import (
+    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION,
+    FEATURE_POLICY_SCHEMA_VERSION,
     FINGERPRINT_SCHEMA_VERSION,
+    FINGERPRINT_V2_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
+    MATCH_RESULT_V2_SCHEMA_VERSION,
     METRIC_REGISTRY_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
     OBSERVATION_V2_SCHEMA_VERSION,
     OBSERVATION_WINDOW_V2_SCHEMA_VERSION,
+    AnalyticalResponseV2,
     ContextKey,
+    FeaturePolicyV1,
     Fingerprint,
+    FingerprintV2,
     MatchResult,
+    MatchResultV2,
     MetricRegistry,
     ObservationRecord,
     ObservationRecordV2,
@@ -49,6 +58,10 @@ CommandHandler = Callable[[argparse.Namespace], None]
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    MATCH_RESULT_V2_SCHEMA_VERSION: MatchResultV2,
+    FINGERPRINT_V2_SCHEMA_VERSION: FingerprintV2,
+    FEATURE_POLICY_SCHEMA_VERSION: FeaturePolicyV1,
+    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION: AnalyticalResponseV2,
     OBSERVATION_SCHEMA_VERSION: ObservationRecord,
     FINGERPRINT_SCHEMA_VERSION: Fingerprint,
     MATCH_RESULT_SCHEMA_VERSION: MatchResult,
@@ -186,11 +199,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Offline P0 analysis, N1 diagnostics and additive N2 adoption.",
+        description="Offline P0 analysis, N1 diagnostics, N2 adoption and N3 analytics.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    validate = subparsers.add_parser("validate", help="validate a P0/N2 root record or N1 registry")
+    validate = subparsers.add_parser(
+        "validate", help="validate a P0/N2/N3 root record or N1 registry"
+    )
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)
 
@@ -284,6 +299,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     match.set_defaults(handler=_match)
 
+    register_v2_commands(subparsers)
     return parser
 
 

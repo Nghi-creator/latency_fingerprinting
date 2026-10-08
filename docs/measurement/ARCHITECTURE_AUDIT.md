@@ -4,7 +4,11 @@ This report preserves the original post-N1 findings and verification. Subsequent
 [N2 closeout](N2_SOFTWARE_CLOSEOUT.md) and [health audit](N2_ARCHITECTURE_AUDIT.md)
 deliver the registry binding and typed support that were pending here. The
 [active N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers analytical adoption
-and offline fingerprint/matching; its runtime implementation has not started.
+and offline fingerprint/matching. Strict policy/response models are delivered;
+pure response derivation, v2 fingerprints and bounded repositories are implemented;
+v2 compatibility, scoring and conservative matching are implemented. Additive
+v2 commands and [N3 synthetic fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md)
+are complete locally; actual hosted/minimum-version execution remains pending.
 
 **Reviewed:** 2026-10-06, after N1 software closeout
 **Local environment:** macOS, Python 3.13.13

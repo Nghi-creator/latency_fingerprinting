@@ -5,6 +5,8 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import os
+import stat
 import tarfile
 from collections.abc import Mapping, Set
 from pathlib import Path, PurePosixPath
@@ -28,14 +30,36 @@ def _safe_archive_name(name: str) -> str:
     return path.as_posix()
 
 
-def _read_tar(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
-    archive_size = path.stat().st_size
+def _open_bundle(path: Path) -> int:
+    """Pin ancestors and open the leaf without following links or blocking on FIFOs."""
+    path = path.absolute()
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    parent_fd = os.open(path.anchor, flags)
+    try:
+        for component in path.parts[1:-1]:
+            child_fd = os.open(component, flags, dir_fd=parent_fd)
+            os.close(parent_fd)
+            parent_fd = child_fd
+        return os.open(
+            path.name or path.anchor,
+            os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+            dir_fd=parent_fd,
+        )
+    finally:
+        os.close(parent_fd)
+
+
+def _read_tar(source, readable_files: Set[str]) -> dict[str, bytes]:
+    archive_size = os.fstat(source.fileno()).st_size
     if archive_size > MAX_ARCHIVE_BYTES:
         raise PixelatedBundleError(
             f"TAR archive is too large: {archive_size} bytes; max {MAX_ARCHIVE_BYTES}"
         )
     try:
-        with tarfile.open(path, mode="r:*") as archive:
+        payload = source.read(MAX_ARCHIVE_BYTES + 1)
+        if len(payload) > MAX_ARCHIVE_BYTES:
+            raise PixelatedBundleError("TAR archive is too large after reading")
+        with tarfile.open(fileobj=io.BytesIO(payload), mode="r:*") as archive:
             return _read_tar_members(archive, readable_files)
     except (OSError, tarfile.TarError) as error:
         raise PixelatedBundleError(f"cannot read TAR archive: {error}") from error
@@ -82,18 +106,28 @@ def _read_tar_members(
     return files
 
 
-def _read_directory(path: Path, readable_files: Set[str]) -> dict[str, bytes]:
+def _read_directory(directory_fd: int, readable_files: Set[str]) -> dict[str, bytes]:
     files: dict[str, bytes] = {}
     readable_bytes = 0
     for name in sorted(readable_files):
-        candidate = path / name
-        if candidate.is_symlink():
-            raise PixelatedBundleError(f"bundle links are not allowed: {name!r}")
-        if not candidate.is_file():
+        if PurePosixPath(name).name != name or name in {"", ".", ".."}:
+            raise PixelatedBundleError(f"unsafe bundle file name: {name!r}")
+        try:
+            file_fd = os.open(
+                name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory_fd
+            )
+        except FileNotFoundError:
             continue
-        if candidate.stat().st_size > MAX_TEXT_FILE_BYTES:
-            raise PixelatedBundleError(f"bundle file is too large: {name!r}")
-        with candidate.open("rb") as source:
+        except OSError as error:
+            raise PixelatedBundleError(
+                f"bundle links are not allowed or file unreadable: {name!r}"
+            ) from error
+        with os.fdopen(file_fd, "rb") as source:
+            metadata = os.fstat(source.fileno())
+            if not stat.S_ISREG(metadata.st_mode):
+                raise PixelatedBundleError(f"bundle file must be regular: {name!r}")
+            if metadata.st_size > MAX_TEXT_FILE_BYTES:
+                raise PixelatedBundleError(f"bundle file is too large: {name!r}")
             payload = source.read(MAX_TEXT_FILE_BYTES + 1)
         if len(payload) > MAX_TEXT_FILE_BYTES:
             raise PixelatedBundleError(f"bundle file is too large: {name!r}")
@@ -110,14 +144,23 @@ def read_bundle(
     readable_files: Set[str],
     required_files: Set[str],
 ) -> dict[str, bytes]:
-    if path.is_symlink():
-        raise PixelatedBundleError(f"bundle links are not allowed: {path}")
-    if path.is_dir():
-        files = _read_directory(path, readable_files)
-    elif path.is_file():
-        files = _read_tar(path, readable_files)
-    else:
-        raise PixelatedBundleError(f"bundle path does not exist: {path}")
+    try:
+        descriptor = _open_bundle(Path(path))
+        try:
+            mode = os.fstat(descriptor).st_mode
+            if stat.S_ISDIR(mode):
+                files = _read_directory(descriptor, readable_files)
+            elif stat.S_ISREG(mode):
+                with os.fdopen(descriptor, "rb", closefd=False) as source:
+                    files = _read_tar(source, readable_files)
+            else:
+                raise PixelatedBundleError("bundle must be a directory or regular TAR file")
+        finally:
+            os.close(descriptor)
+    except FileNotFoundError as error:
+        raise PixelatedBundleError(f"bundle path does not exist: {path}") from error
+    except OSError as error:
+        raise PixelatedBundleError("bundle links are not allowed or path unreadable") from error
     missing = sorted(required_files - files.keys())
     if missing:
         raise PixelatedBundleError(f"bundle is missing required files: {', '.join(missing)}")

@@ -1,5 +1,12 @@
 # Post-N2 architecture and health audit
 
+This report preserves the original post-N2 findings, counts and then-pending
+analytical work. [N3 closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) now delivers
+those v2 analytical/fingerprint/matching contracts. The subsequent
+[post-N3 health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records current whole-tree
+verification and shared bundle-reader hardening; stage instrumentation and
+scientific evaluation remain pending.
+
 **Reviewed locally:** 2026-10-07
 **Starting commit:** `1554a7cd7f7af2e5b9d68d71934929bfb9f902a0`
 **Scope:** Completed N2 code, models, raw adoption, fixtures, CI and current guides

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import io
+import os
 import tarfile
 from pathlib import Path
 
@@ -17,6 +18,7 @@ from .support import (
     copy_bundle,
     copy_v2_bundle,
     ingest,
+    write_tar,
 )
 
 
@@ -139,17 +141,124 @@ def test_directory_file_growth_cannot_cause_an_unbounded_read(
     read_sizes: list[int] = []
 
     class GrowingFile(io.BytesIO):
+        def __init__(self, descriptor):
+            super().__init__(b"x" * 100)
+            self.descriptor = descriptor
+
+        def fileno(self):
+            return self.descriptor
+
+        def close(self):
+            if not self.closed:
+                os.close(self.descriptor)
+            super().close()
+
         def read(self, size: int = -1) -> bytes:
             read_sizes.append(size)
             return super().read(size)
 
     monkeypatch.setattr(pixelated_bundle_io, "MAX_TEXT_FILE_BYTES", 8)
-    monkeypatch.setattr(Path, "open", lambda *_args, **_kwargs: GrowingFile(b"x" * 100))
+    monkeypatch.setattr(os, "fdopen", lambda descriptor, *_args, **_kwargs: GrowingFile(descriptor))
     with pytest.raises(PixelatedBundleError, match="too large"):
         pixelated_bundle_io.read_bundle(
             tmp_path, readable_files={"test.csv"}, required_files={"test.csv"}
         )
     assert read_sizes == [9]
+
+
+@pytest.mark.parametrize("kind", ["directory", "tar"])
+def test_bundle_ancestor_symlinks_are_rejected(tmp_path, context, kind):
+    bundle = copy_bundle(tmp_path)
+    if kind == "tar":
+        archive = tmp_path / "bundle.tar"
+        write_tar(bundle, archive)
+        bundle = archive
+    link = tmp_path / "parent-link"
+    link.symlink_to(tmp_path, target_is_directory=True)
+    with pytest.raises(PixelatedBundleError, match="links are not allowed"):
+        ingest(link / bundle.name, context)
+
+
+@pytest.mark.parametrize("kind", ["directory", "tar", "file", "fifo"])
+def test_bundle_replacement_during_open_never_follows_links_or_blocks(
+    tmp_path, context, monkeypatch, kind
+):
+    bundle = copy_bundle(tmp_path)
+    if kind == "tar":
+        archive = tmp_path / "bundle.tar"
+        write_tar(bundle, archive)
+        bundle = archive
+    target = bundle / "summary.json" if kind in {"file", "fifo"} else bundle
+    saved = target.with_name(target.name + ".original")
+    real_open = os.open
+    replaced = False
+
+    def replace_before_open(path, flags, *args, **kwargs):
+        nonlocal replaced
+        if path == target.name and not replaced:
+            replaced = True
+            target.rename(saved)
+            if kind == "fifo":
+                os.mkfifo(target)
+            else:
+                target.symlink_to(saved, target_is_directory=kind == "directory")
+        return real_open(path, flags, *args, **kwargs)
+
+    monkeypatch.setattr(os, "open", replace_before_open)
+    with pytest.raises(PixelatedBundleError, match="links are not allowed|must be regular"):
+        ingest(bundle, context)
+    assert replaced
+
+
+def test_tar_growth_is_bounded_after_open(tmp_path, monkeypatch):
+    archive = tmp_path / "bundle.tar"
+    archive.write_bytes(b"x")
+    real_fstat = os.fstat
+    regular_stats = 0
+    monkeypatch.setattr(pixelated_bundle_io, "MAX_ARCHIVE_BYTES", 8)
+
+    def grow_after_stat(descriptor):
+        nonlocal regular_stats
+        metadata = real_fstat(descriptor)
+        if metadata.st_size == 1:
+            regular_stats += 1
+            if regular_stats == 2:
+                archive.write_bytes(b"x" * 100)
+        return metadata
+
+    monkeypatch.setattr(os, "fstat", grow_after_stat)
+    with pytest.raises(PixelatedBundleError, match="too large after reading"):
+        pixelated_bundle_io.read_bundle(archive, readable_files=set(), required_files=set())
+
+
+def test_opened_bundle_directory_stays_pinned_after_path_replacement(
+    tmp_path, context, monkeypatch
+):
+    bundle = copy_bundle(tmp_path)
+    expected = ingest(bundle, context)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "summary.json").write_text('{"unexpected":true}')
+    real_open = os.open
+    replaced = False
+
+    def replace_after_root_open(path, flags, *args, **kwargs):
+        nonlocal replaced
+        if path.endswith(".json") and not replaced:
+            replaced = True
+            bundle.rename(tmp_path / "original")
+            bundle.symlink_to(outside, target_is_directory=True)
+        return real_open(path, flags, *args, **kwargs)
+
+    monkeypatch.setattr(os, "open", replace_after_root_open)
+    assert ingest(bundle, context) == expected
+    assert replaced
+
+
+@pytest.mark.parametrize("name", ["../outside.json", "/outside.json", ".", ""])
+def test_directory_reader_rejects_non_leaf_requested_names(tmp_path, name):
+    with pytest.raises(PixelatedBundleError, match="unsafe bundle file name"):
+        pixelated_bundle_io.read_bundle(tmp_path, readable_files={name}, required_files=set())
 
 
 def test_malformed_csv_header_is_a_clean_cli_failure(

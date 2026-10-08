@@ -89,11 +89,18 @@ methods, clock evidence and fixtures before value-bearing timing is permitted.
 
 The successor slice is **N3: v2 feature-policy, normalization and offline
 fingerprint/matching**, specified in the [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
-Its runtime implementation has not started. The analytical contract must select
-features, establish compatible units/registry versions, define missing-data and
-coverage eligibility, specify response/normalization behavior, and keep audit
-totals distinct. It must also define separately versioned fingerprint/match roots
-and an explicit migration/rejection policy for v1 versus v2. N2 supplies records;
+Its [Step 1 analytical specification](../analysis/N3_ANALYTICAL_CONTRACT.md) is now
+complete, and [strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md)
+and [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are
+implemented, along with [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md).
+[V2 matching](../analysis/N3_MATCHING.md) and [additive commands](../analysis/N3_COMMANDS.md)
+and [N3 synthetic fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are
+complete locally. Successor scope remains to be selected.
+The analytical contract selects
+features, establishes compatible units/registry versions, defines missing-data and
+coverage eligibility, specifies response/normalization behavior, and keeps audit
+totals distinct. Separately versioned fingerprint/match roots and explicit v1/v2
+rejection rules are implemented alongside fingerprints and matching. N2 supplies records;
 it does not choose calibration parameters or change production matching.
 
 No live probe, remediation, runtime instrumentation or new experiment was run.

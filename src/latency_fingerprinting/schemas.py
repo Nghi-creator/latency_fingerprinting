@@ -1,4 +1,4 @@
-"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2 roots."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2/N3 roots."""
 
 from __future__ import annotations
 
@@ -13,8 +13,12 @@ from typing import TypeAlias
 from pydantic import BaseModel
 
 from .models import (
+    AnalyticalResponseV2,
+    FeaturePolicyV1,
     Fingerprint,
+    FingerprintV2,
     MatchResult,
+    MatchResultV2,
     MetricRegistry,
     ObservationRecord,
     ObservationRecordV2,
@@ -32,6 +36,10 @@ SCHEMA_MODELS: Mapping[str, SchemaModel] = {
     "metric-registry-v1.schema.json": MetricRegistry,
     "observation-window-v2.schema.json": ObservationWindowV2,
     "observation-v2.schema.json": ObservationRecordV2,
+    "match-result-v2.schema.json": MatchResultV2,
+    "fingerprint-v2.schema.json": FingerprintV2,
+    "feature-policy-v1.schema.json": FeaturePolicyV1,
+    "analytical-response-v2.schema.json": AnalyticalResponseV2,
 }
 
 
