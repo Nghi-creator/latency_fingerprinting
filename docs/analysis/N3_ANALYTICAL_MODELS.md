@@ -2,7 +2,7 @@
 
 **Delivered:** Step 2, 2026-10-07
 **Contract:** [Analytical field contract](N3_ANALYTICAL_CONTRACT.md)
-**Next:** Step 3 pure response/normalization functions
+**Successor:** [Step 3 pure response derivation](N3_RESPONSE_DERIVATION.md), implemented 2026-10-08
 
 `FeaturePolicyV1` and `AnalyticalResponseV2` are exported from
 `latency_fingerprinting.models`. They use required camelCase JSON fields, strict
@@ -48,9 +48,10 @@ confounder excludes all features and makes the response invalid. Without a
 confounder, an entirely excluded inventory has `no_eligible_features`; a valid
 response alone does not establish enough evidence for future matching.
 
-This step validates supplied response records. It does not yet provide a public
-response derivation function, fingerprint model/repository, v2 matcher or the
-proposed build/match commands. Existing v1 commands reject these new roots.
+Step 2 validates supplied response records. [Step 3](N3_RESPONSE_DERIVATION.md)
+now provides a public pure derivation function. Fingerprint models/repositories,
+the v2 matcher and proposed build/match commands remain pending. Existing v1
+commands reject these new roots.
 
 ## Validation and schema export
 

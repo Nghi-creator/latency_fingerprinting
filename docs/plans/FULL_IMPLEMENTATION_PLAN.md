@@ -61,7 +61,7 @@ completed checklist and pending hosted-verification item. The active
 normalization, fingerprint and offline matcher work. Baseline reproduction and the
 [N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
 are complete locally. Strict policy/response models and schemas are implemented;
-pure response derivation is next, with fingerprint/matching work still pending.
+pure response derivation is implemented, with fingerprint/matching work still pending.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.

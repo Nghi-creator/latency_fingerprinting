@@ -1,1 +1,1 @@
-"""Separate v2 analytical policy and record support; no matcher implementation."""
+"""Separate v2 policy, auditable response derivation and analytical record support."""

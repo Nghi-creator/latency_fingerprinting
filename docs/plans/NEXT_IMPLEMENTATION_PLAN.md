@@ -1,8 +1,8 @@
 # Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Steps 0–2 complete locally; Step 3 response derivation next
-**Updated:** 2026-10-07
+**Status:** Steps 0–3 complete locally; Step 4 fingerprints and repository next
+**Updated:** 2026-10-08
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
 **Archived predecessor plan:** [N2 observation-v2 adoption](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
@@ -14,7 +14,8 @@ coverage. Actual Python 3.11/hosted verification remains pending. This document
 now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
 and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
 policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
-Pure response derivation, fingerprints, matching and build commands remain pending.
+[Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
+Fingerprints, matching and build commands remain pending.
 
 ## Outcome and boundary
 
@@ -115,6 +116,12 @@ schema bytes and reproduction pins remain unchanged.
 
 ## Step 3 — Derive auditable responses from validated v2 pairs
 
+**Local gate:** Complete: 30 new derivation tests; 1,290 total tests pass with
+93.15% branch-inclusive coverage. Explicit policy and observation inputs are
+revalidated; numerical expectations, cadence invariance, exclusions and immutable
+inputs pass. All existing schemas and reproduction pins remain unchanged.
+See the [derivation guide](../analysis/N3_RESPONSE_DERIVATION.md).
+
 Implement pure response/normalization functions taking `ObservationRecordV2` and
 an explicit policy. Retain degraded/relief primary values, raw response, normalized
 result, units, policy identity, support/coverage and exclusions required by Step 1.
@@ -197,13 +204,12 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [x] Feature inventory, policy parameters and compatibility meanings are specified.
 - [x] Strict policy/response contracts and schemas are delivered.
 - [ ] Strict fingerprint/match contracts and schemas are delivered.
-- [ ] Responses retain auditable values, support, coverage and exclusions.
+- [x] Responses retain auditable values, support, coverage and exclusions.
 - [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
 - [ ] Separate commands preserve v1 behavior and bounded/read-only inputs.
 - [ ] Independent synthetic expectations and new pins reproduce exactly.
 - [ ] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 3: pure response/normalization functions
-from validated v2 pairs and explicit policy. Hosted/minimum-version execution
-remains separately pending.
+The next implementation action is Step 4: strict v2 fingerprints and bounded
+repository loading. Hosted/minimum-version execution remains separately pending.

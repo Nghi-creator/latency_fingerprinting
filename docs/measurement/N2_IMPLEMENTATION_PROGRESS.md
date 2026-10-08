@@ -51,8 +51,8 @@ All N2 software steps are implemented below and [closed out locally](N2_SOFTWARE
 The active [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now specifies the
 v2 feature-policy/normalization and fingerprint/matcher slice.
 [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records completed baseline
-verification, field/policy design and strict policy/response models. Pure response
-derivation is next. The completed
+verification, field/policy design, strict policy/response models and pure response
+derivation. V2 fingerprints and repository loading are next. The completed
 [N2 plan is archived](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 Keep cross-version hosted verification pending until actual CI evidence is available.
 

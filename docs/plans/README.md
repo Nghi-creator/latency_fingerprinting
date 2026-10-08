@@ -2,8 +2,9 @@
 
 - [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) is the active **N3**
   plan for v2 analytical features, normalization, fingerprints and offline matching.
-  Steps 0–2 are complete locally; pure response derivation is next.
-  [Strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md) are implemented.
+  Steps 0–3 are complete locally; v2 fingerprints and repository loading are next.
+  [Strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md) and
+  [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are implemented.
 - [N3 analytical field contract](../analysis/N3_ANALYTICAL_CONTRACT.md) and
   [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json) freeze the feature
   inventory, provisional parameters, record roots and conservative decision rules.

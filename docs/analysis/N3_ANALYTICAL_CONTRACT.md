@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Step 2 policy/response models implemented locally
+**Status:** Step 1 specification complete; Steps 2–3 policy/response models and derivation implemented locally
 **Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
@@ -10,8 +10,9 @@ This contract connects [N2 observation pairs](../measurement/OBSERVATION_V2_CONT
 to separate analytical records. It preserves N1 registry meaning, N2 observation
 schemas and the P0 matching path. The JSON policy remains a normative specification
 artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
-accept policy and analytical response roots. Fingerprint/match roots, pure response
-derivation and the proposed build/match commands remain pending.
+accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DERIVATION.md)
+builds responses from explicit validated inputs. Fingerprint/match roots and the
+proposed build/match commands remain pending.
 
 ## Versioned roots and trust boundary
 

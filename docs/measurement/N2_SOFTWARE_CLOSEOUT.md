@@ -91,7 +91,8 @@ The successor slice is **N3: v2 feature-policy, normalization and offline
 fingerprint/matching**, specified in the [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 Its [Step 1 analytical specification](../analysis/N3_ANALYTICAL_CONTRACT.md) is now
 complete, and [strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md)
-are implemented. Pure response derivation is next. The analytical contract selects
+and [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are
+implemented. V2 fingerprints and repository loading are next. The analytical contract selects
 features, establishes compatible units/registry versions, defines missing-data and
 coverage eligibility, specifies response/normalization behavior, and keeps audit
 totals distinct. Separately versioned fingerprint/match roots and explicit v1/v2

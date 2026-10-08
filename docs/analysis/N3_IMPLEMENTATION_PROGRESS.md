@@ -4,7 +4,7 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
-**Current next action:** Step 3 — pure response/normalization functions. Steps 0–2
+**Current next action:** Step 4 — strict v2 fingerprints and bounded repository loading. Steps 0–3
 are complete locally; hosted/minimum-version verification remains pending.
 
 ## Step 0 — Preserve the N2 baseline
@@ -86,3 +86,25 @@ dependency consistency, all eight schemas, canonical registry, three fixture
 families, five controlled P0 artifacts, run-001 seed and exact run-002 match bytes
 pass. All six existing schema bytes, numerical source, fixtures and P0/N1/N2 pins
 remain unchanged. Python 3.11/hosted execution remains pending.
+
+
+## Step 3 — Pure auditable response derivation
+
+**Implemented locally:** 2026-10-08
+**Starting commit:** `bca40248edaed0f984124ff8722ca95f1dd0bb46` (clean checkout)
+
+[Pure derivation](N3_RESPONSE_DERIVATION.md) revalidates the explicit observation
+and approved policy, derives signed responses from primary summaries and returns
+an immutable, root-validated record. It retains null exclusions and confounder
+invalidity; uses no ambient identifiers, cross-domain timestamp subtraction or
+file writes. Fingerprints, repositories, matching and build commands remain pending.
+
+Local Python 3.13.13 results: **30 new derivation tests; 1,290 total tests pass;
+93.15% branch-inclusive coverage** at the unchanged 85% floor. Independent cases
+cover positive/negative/zero/floor arithmetic, equivalent counter rates at different
+cadences, mixed/missing/rejected/incomplete/unsupported evidence, confounders,
+large finite values, copied model tampering and deterministic immutable inputs.
+Ruff lint/format, dependency consistency, eight schemas, canonical registry,
+three fixture families, controlled artifacts, run-001 seed and exact run-002 match
+bytes pass. All existing schemas, policy specification, numerical source and
+P0/N1/N2 pins remain unchanged. Actual Python 3.11/hosted execution remains pending.
