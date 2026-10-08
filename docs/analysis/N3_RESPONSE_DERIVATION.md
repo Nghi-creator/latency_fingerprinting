@@ -56,10 +56,11 @@ sufficient evidence for a later match.
 
 30 new tests compare full records against independently authored expectations and
 check cadence, numerical boundaries, partial evidence, confounders, copied-model
-revalidation and unchanged inputs. The full local suite passes 1,290 tests with
+revalidation and unchanged inputs. At Step 3, the full local suite passed 1,290 tests with
 93.15% branch-inclusive coverage; existing schemas and reproduction pins are
 unchanged. Actual Python 3.11/hosted verification remains pending.
 
-Next is Step 4: strict v2 fingerprints and bounded repository loading. The proposed
+[Step 4 fingerprints and bounded repository loading](N3_FINGERPRINTS.md) are now
+implemented. Next is Step 5 v2 matching. The proposed
 `build-response-v2` command belongs to Step 6; current CLI root validation can
 validate a serialized derived response.

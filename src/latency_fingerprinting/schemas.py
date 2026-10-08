@@ -16,6 +16,7 @@ from .models import (
     AnalyticalResponseV2,
     FeaturePolicyV1,
     Fingerprint,
+    FingerprintV2,
     MatchResult,
     MetricRegistry,
     ObservationRecord,
@@ -34,6 +35,7 @@ SCHEMA_MODELS: Mapping[str, SchemaModel] = {
     "metric-registry-v1.schema.json": MetricRegistry,
     "observation-window-v2.schema.json": ObservationWindowV2,
     "observation-v2.schema.json": ObservationRecordV2,
+    "fingerprint-v2.schema.json": FingerprintV2,
     "feature-policy-v1.schema.json": FeaturePolicyV1,
     "analytical-response-v2.schema.json": AnalyticalResponseV2,
 }

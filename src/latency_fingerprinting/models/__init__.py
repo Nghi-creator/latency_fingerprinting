@@ -1,4 +1,4 @@
-"""Public P0, N1 and additive N2 contract model API.
+"""Public P0, N1 and additive N2/N3 contract model API.
 
 Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
@@ -106,6 +106,7 @@ from .feature_policy import (
     FeaturePolicyV1,
 )
 from .fingerprint import CompatibilityKey, Fingerprint
+from .fingerprint_v2 import FINGERPRINT_V2_SCHEMA_VERSION, FingerprintV2
 from .match import (
     CompatibilityResult,
     FeatureEvidence,
@@ -158,6 +159,8 @@ from .v2_support import (
 )
 
 __all__ += [
+    "FINGERPRINT_V2_SCHEMA_VERSION",
+    "FingerprintV2",
     "FEATURE_POLICY_SCHEMA_VERSION",
     "ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION",
     "FeaturePolicyV1",

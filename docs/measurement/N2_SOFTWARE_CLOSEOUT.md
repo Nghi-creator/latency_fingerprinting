@@ -92,11 +92,12 @@ fingerprint/matching**, specified in the [active plan](../plans/NEXT_IMPLEMENTAT
 Its [Step 1 analytical specification](../analysis/N3_ANALYTICAL_CONTRACT.md) is now
 complete, and [strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md)
 and [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are
-implemented. V2 fingerprints and repository loading are next. The analytical contract selects
+implemented, along with [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md).
+V2 matching is next. The analytical contract selects
 features, establishes compatible units/registry versions, defines missing-data and
 coverage eligibility, specifies response/normalization behavior, and keeps audit
 totals distinct. Separately versioned fingerprint/match roots and explicit v1/v2
-rejection rules are specified; their implementation remains pending. N2 supplies records;
+rejection rules are specified. Fingerprints are implemented; matching remains pending. N2 supplies records;
 it does not choose calibration parameters or change production matching.
 
 No live probe, remediation, runtime instrumentation or new experiment was run.

@@ -1,7 +1,7 @@
 # Next Slice Implementation Plan: V2 Analytical Features and Offline Matching
 
 **Slice ID:** N3
-**Status:** Steps 0–3 complete locally; Step 4 fingerprints and repository next
+**Status:** Steps 0–4 complete locally; Step 5 v2 matching next
 **Updated:** 2026-10-08
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
 **Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
@@ -15,7 +15,8 @@ now freezes the analytical design in the [N3 field contract](../analysis/N3_ANAL
 and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
 policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
 [Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
-Fingerprints, matching and build commands remain pending.
+[V2 fingerprints and bounded repository loading](../analysis/N3_FINGERPRINTS.md)
+are implemented. Matching and build commands remain pending.
 
 ## Outcome and boundary
 
@@ -138,6 +139,13 @@ same eligible rate.
 
 ## Step 4 — Add v2 fingerprints and bounded repository loading
 
+**Local gate:** Complete: 62 new fingerprint/repository tests; 1,352 total tests
+pass with 93.35% branch-inclusive coverage. Nine schemas
+reproduce; all eight existing schema bytes and P0/N1/N2 pins remain unchanged.
+Independent reconstruction, 16/17 eligibility, declared provenance, immutable
+creation and fail-closed resource/link handling pass. See the
+[fingerprint guide](../analysis/N3_FINGERPRINTS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+
 Implement the separately versioned fingerprint root and dedicated bounded loader.
 Bind policy/registry meaning, context and probe semantics to retained response and
 provenance. Validate that published features derive from declared evidence; retain
@@ -203,7 +211,8 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [x] Baseline and frozen P0/N1/N2 reproduction checks are retained locally.
 - [x] Feature inventory, policy parameters and compatibility meanings are specified.
 - [x] Strict policy/response contracts and schemas are delivered.
-- [ ] Strict fingerprint/match contracts and schemas are delivered.
+- [x] Strict fingerprint contract/schema and bounded repository are delivered.
+- [ ] Strict match contract/schema is delivered.
 - [x] Responses retain auditable values, support, coverage and exclusions.
 - [ ] Matching is deterministic and conservative with insufficient/ambiguous evidence.
 - [ ] Separate commands preserve v1 behavior and bounded/read-only inputs.
@@ -211,5 +220,5 @@ explicitly and keep scientific evaluation/new instrumentation separate.
 - [ ] Whole-tree tests, docs and software closeout match delivered behavior.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
-The next implementation action is Step 4: strict v2 fingerprints and bounded
-repository loading. Hosted/minimum-version execution remains separately pending.
+The next implementation action is Step 5: v2 compatibility, scoring and
+conservative matching evidence. Hosted/minimum-version execution remains separately pending.

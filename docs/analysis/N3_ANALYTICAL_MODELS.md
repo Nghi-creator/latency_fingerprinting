@@ -49,8 +49,9 @@ confounder, an entirely excluded inventory has `no_eligible_features`; a valid
 response alone does not establish enough evidence for future matching.
 
 Step 2 validates supplied response records. [Step 3](N3_RESPONSE_DERIVATION.md)
-now provides a public pure derivation function. Fingerprint models/repositories,
-the v2 matcher and proposed build/match commands remain pending. Existing v1
+now provides a public pure derivation function, and [Step 4](N3_FINGERPRINTS.md)
+delivers fingerprints/repositories. The v2 matcher and proposed build/match
+commands remain pending. Existing v1
 commands reject these new roots.
 
 ## Validation and schema export
@@ -75,7 +76,7 @@ also enforces trusted release content and cross-record reconstruction.
 94 analytical tests cover policy tampering with recomputed hashes, reconstructed
 responses, unsupported/unavailable/missing/rejected/incomplete evidence, signed and
 zero-floor arithmetic, confounders, immutable inputs, reused model instances and
-public JSON reader failures. The full suite passes 1,260 tests with 93.15%
+public JSON reader failures. At Step 2, the full suite passed 1,260 tests with 93.15%
 branch-inclusive coverage on Python 3.13.13. Existing schema bytes and P0/N1/N2
 pins reproduce unchanged. Actual Python 3.11/hosted execution remains pending;
 [progress](N3_IMPLEMENTATION_PROGRESS.md) records the separate verification status.

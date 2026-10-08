@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Steps 2–3 policy/response models and derivation implemented locally
+**Status:** Step 1 specification complete; Steps 2–4 policy/response derivation and fingerprints/repositories implemented locally
 **Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
@@ -11,8 +11,8 @@ to separate analytical records. It preserves N1 registry meaning, N2 observation
 schemas and the P0 matching path. The JSON policy remains a normative specification
 artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
 accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DERIVATION.md)
-builds responses from explicit validated inputs. Fingerprint/match roots and the
-proposed build/match commands remain pending.
+builds responses from explicit validated inputs. [Step 4 fingerprints/repositories](N3_FINGERPRINTS.md)
+are implemented. The match root and proposed build/match commands remain pending.
 
 ## Versioned roots and trust boundary
 
@@ -23,7 +23,7 @@ proposed build/match commands remain pending.
 | FingerprintV2 | fingerprint-v2 | 2.0.0 | fingerprint-v2.schema.json |
 | MatchResultV2 | match-result-v2 | 2.0.0 | match-result-v2.schema.json |
 
-The first two roots are implemented; fingerprint and match roots are planned.
+The first three roots are implemented; the match root is planned.
 
 All fields below are required unless explicitly marked default. Nullable fields
 must be present as null. Models forbid extra fields, duplicate identities, boolean
@@ -201,6 +201,9 @@ fail model consistency rules; the contract cannot independently verify capture t
 | validationStatus | unreviewed, software_checked or rejected |
 | response | Full validated AnalyticalResponseV2 with isValid=true |
 | featureVector | Exactly eligible feature names mapped to normalized finite values |
+
+Sanitized labels are ASCII identifiers matching `[A-Za-z0-9][A-Za-z0-9_-]*`;
+paths, URLs, whitespace and private free-form notes are rejected.
 
 `fingerprintId` is `fingerprint-v2-<sha256 hex>` of canonical JSON
 `{"response": <full response>, "bottleneckLabel": <label>,

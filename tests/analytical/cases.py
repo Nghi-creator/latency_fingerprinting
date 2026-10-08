@@ -112,3 +112,30 @@ def response_payload(
         "isValid": not reasons,
         "invalidReasonCodes": reasons,
     }
+
+
+def fingerprint_payload(*, label="network_pressure", status="software_checked", response=None):
+    response = response_payload() if response is None else response
+    digest = hashlib.sha256(
+        canonical(
+            {
+                "response": response,
+                "bottleneckLabel": label,
+                "validationStatus": status,
+            }
+        )
+    ).hexdigest()
+    return {
+        "schemaVersion": "fingerprint-v2",
+        "contractVersion": "2.0.0",
+        "fingerprintId": "fingerprint-v2-" + digest,
+        "bottleneckLabel": label,
+        "validationStatus": status,
+        "provenance": response["observation"]["degradedWindow"]["provenance"],
+        "response": response,
+        "featureVector": {
+            name: item["normalizedValue"]
+            for name, item in response["features"].items()
+            if item["state"] == "eligible"
+        },
+    }

@@ -4,7 +4,7 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
-**Current next action:** Step 4 — strict v2 fingerprints and bounded repository loading. Steps 0–3
+**Current next action:** Step 5 — compatibility, scoring and conservative v2 matching. Steps 0–4
 are complete locally; hosted/minimum-version verification remains pending.
 
 ## Step 0 — Preserve the N2 baseline
@@ -108,3 +108,31 @@ Ruff lint/format, dependency consistency, eight schemas, canonical registry,
 three fixture families, controlled artifacts, run-001 seed and exact run-002 match
 bytes pass. All existing schemas, policy specification, numerical source and
 P0/N1/N2 pins remain unchanged. Actual Python 3.11/hosted execution remains pending.
+
+
+## Step 4 — V2 fingerprints and bounded repositories
+
+**Implemented locally:** 2026-10-08
+**Starting commit:** `a73ba71e1940e84f976a636a20c6d6a3a7ef29b9` (clean checkout)
+
+[Fingerprint creation/models and the separate repository loader](N3_FINGERPRINTS.md)
+retain valid response evidence, exact eligible vectors, caller-declared sanitized
+labels, consistent provenance and deterministic identities. Default software checking
+requires 17/22 features; explicit unreviewed/rejected status permits lesser valid
+audit evidence. No status authenticates experimental truth or promotes synthetic
+provenance. Invalid/confounded responses fail creation.
+
+Repository traversal validates every JSON file, sorts by ID and fails wholly on
+duplicate IDs, malformed/mixed roots, unsafe links or resource violations. Bounds
+are 128 files, 4,096 entries, depth 16, 10 MiB/file and JSON depth 128. Descriptor
+traversal/no-follow opens and regular-file checks guard link replacement and FIFO
+reads; pre/post-read bounds reject file growth. Empty repositories and retained
+audit statuses are valid. Compatibility/candidate decisions belong to Step 5.
+
+Local Python 3.13.13 results: **62 new fingerprint/repository tests; 1,352 total tests
+pass; 93.35% branch-inclusive coverage** at the unchanged 85% floor. Ruff lint/format,
+installed dependencies, nine schemas, canonical registry, three fixture families,
+five controlled P0 artifacts, run-001 seed and exact run-002 match bytes pass.
+All eight existing schema bytes, the normative policy, P0/N1/N2 source/fixtures and
+pins remain unchanged. Generic root validation accepts fingerprint-v2. V2 matching
+and build commands remain pending, as does actual Python 3.11/hosted execution.

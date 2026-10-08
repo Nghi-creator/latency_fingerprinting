@@ -118,13 +118,14 @@ remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDI
 repairs reused-summary validation, synthetic artifact identity and documentation
 test scope. The active [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
 now covers feature-policy design, v2 responses/normalization, fingerprints and
-offline matching. N3 Steps 0–3 are complete locally: the
+offline matching. N3 Steps 0–4 are complete locally: the
 [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md) and explicit provisional
 [policy specification](docs/analysis/N3_FEATURE_POLICY_SPEC.json) are frozen.
 [Strict policy/response models and schemas](docs/analysis/N3_ANALYTICAL_MODELS.md)
 and [pure response derivation](docs/analysis/N3_RESPONSE_DERIVATION.md) are
-implemented: 1,290 tests pass with 93.15% branch-inclusive coverage. V2 fingerprints
-and repository loading are next; matching and build commands remain pending. The
+implemented, along with [v2 fingerprints and bounded repository loading](docs/analysis/N3_FINGERPRINTS.md).
+The local suite passes 1,352 tests with 93.35% branch-inclusive coverage.
+V2 matching is next; build commands remain pending. The
 [archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
 the completed checklist and pending hosted verification.
 

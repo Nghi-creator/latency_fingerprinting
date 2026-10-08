@@ -12,8 +12,10 @@ validation, seed drift and exact run-002 match reproduction.
 N3 Step 2 adds [strict policy/response validation](../analysis/N3_ANALYTICAL_MODELS.md)
 and two additive schemas, bringing the schema drift gate to eight roots. Its 94
 analytical tests run in the existing full-suite jobs. Step 3 adds 30
-[derivation tests](../analysis/N3_RESPONSE_DERIVATION.md). Current local results
-are 1,290 tests and 93.15% branch-inclusive coverage; actual hosted/minimum-version execution
+[derivation tests](../analysis/N3_RESPONSE_DERIVATION.md). Step 4 adds 62
+[fingerprint/repository tests](../analysis/N3_FINGERPRINTS.md) and one schema,
+bringing exports to nine roots. Current local results are 1,352 tests and 93.35%
+branch-inclusive coverage; actual hosted/minimum-version execution
 remains pending. Separate N3 fixture pins/reproduction are planned for Step 7.
 
 ## Read-only reproduction
