@@ -51,7 +51,7 @@ response alone does not establish enough evidence for future matching.
 Step 2 validates supplied response records. [Step 3](N3_RESPONSE_DERIVATION.md)
 now provides a public pure derivation function, and [Step 4](N3_FINGERPRINTS.md)
 delivers fingerprints/repositories. [Step 5](N3_MATCHING.md) implements the separate
-v2 matcher; proposed build/match commands remain pending. Existing v1
+v2 matcher, and [Step 6](N3_COMMANDS.md) delivers additive build/match commands. Existing v1
 commands reject these new roots.
 
 ## Validation and schema export

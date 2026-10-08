@@ -1,4 +1,4 @@
-"""Offline P0 analysis, N1 diagnostics and additive N2/N3 contract validation."""
+"""Offline P0 analysis, N1 diagnostics and additive N2/N3 analysis."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_json_file, load_model_file
 from .matcher import match_observation
@@ -198,7 +199,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Offline P0 analysis, N1 diagnostics and additive N2 adoption.",
+        description="Offline P0 analysis, N1 diagnostics, N2 adoption and N3 analytics.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -298,6 +299,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     match.set_defaults(handler=_match)
 
+    register_v2_commands(subparsers)
     return parser
 
 

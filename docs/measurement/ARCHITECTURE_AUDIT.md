@@ -7,7 +7,7 @@ deliver the registry binding and typed support that were pending here. The
 and offline fingerprint/matching. Strict policy/response models are delivered;
 pure response derivation, v2 fingerprints and bounded repositories are implemented;
 v2 compatibility, scoring and conservative matching are implemented. Additive
-v2 commands remain pending.
+v2 commands are implemented; separate analytical fixtures and closeout remain pending.
 
 **Reviewed:** 2026-10-06, after N1 software closeout
 **Local environment:** macOS, Python 3.13.13

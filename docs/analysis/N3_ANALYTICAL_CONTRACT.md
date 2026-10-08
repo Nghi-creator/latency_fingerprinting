@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Steps 2–5 analytical models, derivation, fingerprints/repositories and matching implemented locally
+**Status:** Step 1 specification complete; Steps 2–6 analytical models/APIs and additive commands implemented locally
 **Source:** [N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
@@ -12,8 +12,9 @@ schemas and the P0 matching path. The JSON policy remains a normative specificat
 artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
 accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DERIVATION.md)
 builds responses from explicit validated inputs. [Step 4 fingerprints/repositories](N3_FINGERPRINTS.md)
-and [Step 5 matching](N3_MATCHING.md) are implemented. Proposed build/match
-commands and separate analytical fixture pins remain pending.
+and [Step 5 matching](N3_MATCHING.md) are implemented, along with the
+[Step 6 commands](N3_COMMANDS.md). Separate analytical fixture pins and software
+closeout remain pending.
 
 ## Versioned roots and trust boundary
 

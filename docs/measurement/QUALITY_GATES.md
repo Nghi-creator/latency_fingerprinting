@@ -15,8 +15,9 @@ analytical tests run in the existing full-suite jobs. Step 3 adds 30
 [derivation tests](../analysis/N3_RESPONSE_DERIVATION.md). Step 4 adds 62
 [fingerprint/repository tests](../analysis/N3_FINGERPRINTS.md) and one schema,
 bringing exports to nine roots. Step 5 adds 76 [matching/model tests](../analysis/N3_MATCHING.md)
-and one match schema, bringing exports to ten roots. Current local results are
-1,428 tests and 93.51% branch-inclusive coverage; actual hosted/minimum-version execution
+and one match schema, bringing exports to ten roots.
+Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
+passes 1,480 tests with 93.56% branch-inclusive coverage; actual hosted/minimum-version execution
 remains pending. Separate N3 fixture pins/reproduction are planned for Step 7.
 
 ## Read-only reproduction

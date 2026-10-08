@@ -72,8 +72,8 @@ paths and malformed contents. The P0 loader and its limits remain unchanged.
 The additive [fingerprint-v2 schema](../../schemas/fingerprint-v2.schema.json)
 brings schema exports to nine roots. Generic `validate` accepts this root; runtime
 validation also enforces reconstruction and evidence thresholds beyond JSON Schema.
-Existing v1 matching rejects v2 fingerprints. The proposed `build-fingerprint-v2`
-and `match-v2` commands belong to Step 6 and remain unimplemented.
+Existing v1 matching rejects v2 fingerprints. The `build-fingerprint-v2`
+and `match-v2` commands are now implemented in [Step 6](N3_COMMANDS.md).
 
 62 new tests cover independent full-record expectations, the 16/17 threshold,
 audit statuses, false provenance, forged vectors/IDs, sanitized labels, immutable
@@ -81,4 +81,5 @@ inputs, resource boundaries, unsafe links, file replacement/growth and fail-clos
 repository behavior. [Progress](N3_IMPLEMENTATION_PROGRESS.md) records current local
 results and unchanged reproduction pins. Actual Python 3.11/hosted verification
 remains pending. [Step 5 compatibility/scoring/matching](N3_MATCHING.md) is now
-implemented; additive v2 commands are next.
+implemented, along with [additive v2 commands](N3_COMMANDS.md). Separate
+analytical fixtures and software closeout are next.

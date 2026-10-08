@@ -4,7 +4,7 @@
 **Started locally:** 2026-10-07
 **Starting commit:** `06e697105e918c0c2f3ae2d25bf75c833f7982ad`
 
-**Current next action:** Step 6 — additive v2 commands. Steps 0–5
+**Current next action:** Step 7 — separate analytical fixtures, verification and software closeout. Steps 0–6
 are complete locally; hosted/minimum-version verification remains pending.
 
 ## Step 0 — Preserve the N2 baseline
@@ -167,3 +167,33 @@ run-001 seed and exact run-002 match bytes pass. All nine existing schema bytes,
 frozen policy and P0/N1/N2 source/fixtures/pins remain unchanged. Additive v2 commands
 are next; separate analytical snapshot pins and software closeout remain Step 7.
 Actual Python 3.11/hosted execution remains pending.
+
+
+## Step 6 — Additive bounded public commands
+
+**Implemented locally:** 2026-10-08
+**Starting commit:** `df5762d49f25c3d86afdc74ff3603a941f16064e` (clean checkout)
+
+[The v2 commands](N3_COMMANDS.md) deliver build-response-v2, build-fingerprint-v2
+and match-v2 with explicit local policies and exact canonical pure-API output.
+Command implementation remains in a separate cli_v2 module; existing handlers and
+numerical paths are preserved. Direct inputs use bounded no-follow descriptor
+traversal, regular-file checks and duplicate-safe JSON validation. Fingerprint
+creation/matching require policy equality with the embedded response. Default
+software checking, explicit audit status and conservative unknowns retain API rules.
+
+Commands render and bound the entire UTF-8 output to 10 MiB before stdout receives
+any bytes. Failures return 1 with deterministic privacy-limited errors and empty
+stdout; argparse usage failures retain exit 2. There is no v1 conversion, remote
+policy resolution, rejected-file skip option or input/directory mutation.
+
+Local Python 3.13.13 results: **52 new public command tests; 1,480 total tests pass;
+93.56% branch-inclusive coverage**, above the unchanged 85% floor. Tests cover
+CLI/API byte parity, end-to-end module execution, statuses/unknowns, malformed and
+altered policies, mixed roots, safe errors, repository failures, unsafe links/FIFOs,
+input growth, exact output limits, readonly inputs and v1 rejection. Ruff lint/format,
+dependencies, ten schemas, canonical registry, three fixture families, five controlled
+P0 artifacts, run-001 seed and exact run-002 match bytes pass. Existing schemas,
+policy specification, P0/N1/N2 and analytical APIs/fixtures/pins remain unchanged.
+Step 7 analytical snapshots/pins and software closeout remain; actual Python
+3.11/hosted execution remains pending.
