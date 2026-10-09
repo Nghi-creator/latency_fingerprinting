@@ -2,7 +2,7 @@
 
 **Delivered:** Step 2, 2026-10-09. [Host hooks](N4_HOST_INSTRUMENTATION.md) subsequently
 delivered in Step 3 and browser collection in Step 4. [Trace adoption](N4_TRACE_ADOPTION.md)
-is delivered in Step 5; offline reconstruction remains Step 6.
+is delivered in Step 5; [offline reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
 **Meaning:** [Normative contract](N4_TRACE_CONTRACT.md).
 
 `StageTraceRecord` and `StageTraceSummary` are available from
@@ -38,7 +38,7 @@ event references/order/unique endpoints, declared/total capacities, missing or
 ambiguous correlation and exact conservation of ledger/event loss. Disabled
 streams contain no evidence. Browser callbacks cannot claim host clocks/budgets.
 Timestamp ties/interleaving and negative endpoint differences remain valid trace
-input; Step 6 will classify negative pairs as exclusions rather than repair them.
+input; Step 6 classifies negative pairs as exclusions rather than repairing them.
 
 Summary validation independently reconstructs sample values and min/mean/max
 from integer deltas, checks sample order and coverage/exclusions, requires all
@@ -46,7 +46,7 @@ four methods, applies producer/capability unavailability, and checks deadline
 sample identity, slack, boundary-equality hits and hit fraction. Supported host
 methods must agree on shared correlation exclusions. It normalizes floating
 negative zero. A hash field alone does not authenticate a supplied summary;
-Step 6 must derive/recompute it with its validated input record.
+[Step 6 reconstruction](N4_TIMING_RECONSTRUCTION.md) recomputes it with its validated input record.
 
 ## Delivered commands and schemas
 
@@ -65,7 +65,7 @@ shape, closed enums, required fields and local bounds. Runtime validators enforc
 cross-field identity, counts, alias suffix bounds and arithmetic that schemas
 cannot fully express. Generic validate uses its existing file-reading boundary;
 [trace-specific no-follow bundle ingestion](N4_TRACE_ADOPTION.md) and ingest-trace
-are delivered in Step 5. inspect-trace remains pending.
+are delivered in Step 5. inspect-trace is delivered in [Step 6](N4_TIMING_RECONSTRUCTION.md).
 
 The [independent regression suite](../../tests/observability/test_contracts.py)
 covers the [Step 1 examples](N4_TRACE_EXAMPLES.md), false clocks/identities,

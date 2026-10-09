@@ -282,8 +282,8 @@ hash/length mismatch or unsupported version before returning any output.
 Summary is generated offline, not an accepted third input bundle member.
 
 [Step 5 delivers](N4_TRACE_ADOPTION.md) `ingest-trace --bundle PATH --output PATH` (validated canonical
-record) and Step 6 `inspect-trace --trace PATH --output PATH` (canonical summary).
-ingest-trace is implemented; inspect-trace remains pending. Both are offline, use duplicate-safe/no-follow
+record) and [Step 6 delivers](N4_TIMING_RECONSTRUCTION.md) `inspect-trace --trace PATH --output PATH` (canonical summary).
+Both commands are implemented, are offline and use duplicate-safe/no-follow
 regular-file reads and atomic output after complete validation. Existing CLI and
 legacy ingestion do not discover or reinterpret these artifacts. Generic schema
 export/validation now includes the two roots delivered in Step 2.

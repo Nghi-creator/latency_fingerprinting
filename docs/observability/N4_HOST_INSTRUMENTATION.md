@@ -91,7 +91,7 @@ SIGKILL/process failure cannot promise a finalized or saved trace.
 it performs correlation filtering/copying outside callbacks and outside the
 recording mutex. A real producer commit is required. Synthetic tests explicitly
 set synthetic provenance. [Step 5 export](N4_TRACE_ADOPTION.md) uses this API after shutdown; the Step 6
-trace-to-summary algorithm remains pending. Existing v2 exports, cumulative
+[trace-to-summary algorithm](N4_TIMING_RECONSTRUCTION.md) is now delivered. Existing v2 exports, cumulative
 queue/counter telemetry, unavailable N2 timing and N3 matching remain unchanged.
 
 ## Step 3 verification (historical)
@@ -108,4 +108,4 @@ A local host GLib loop handles self-SIGTERM and exits/finalizes successfully;
 no X11/VP8 pipeline is involved. Docker/Linux capture is still unavailable here.
 No real timing, browser hook, clock synchronization, overhead comparison or
 hosted/container execution is claimed by these tests. Step 4 subsequently delivers
-[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; reconstruction remains Step 6.
+[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; [reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.

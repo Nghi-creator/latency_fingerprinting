@@ -97,5 +97,5 @@ canonical output equality. Existing schemas, registry and N1–N3 pins are uncha
 No live producer, browser picker interaction, real timing, synchronization,
 container/hosted execution or measured overhead was performed.
 
-Next is Step 6 offline reconstruction and `inspect-trace`. Pinned integrated
+[Step 6 offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md) are now delivered. Pinned integrated
 reproduction and real capture/overhead acceptance remain Step 7. N4 is incomplete.

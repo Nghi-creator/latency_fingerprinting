@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Steps 0–5 complete locally; Step 6 timing reconstruction is next
+**Status:** Steps 0–6 complete locally; Step 7 integrated reproduction/acceptance is next
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -343,5 +343,73 @@ Linux/X11/VP8 capture, synchronization, measured overhead, container or hosted/
 minimum-version execution occurred. Docker remains unavailable. Resource limits
 are software caps, not measured full-limit scaling.
 
-**Next:** Step 6 pure same-domain trace-to-summary reconstruction and inspect-trace.
+**Step 5 handoff (historical):** Step 6 pure same-domain trace-to-summary reconstruction and inspect-trace.
 Step 7 pinned integrated reproduction and real capture/overhead gates remain open.
+
+## Step 6 — Pure timing reconstruction and offline inspection
+
+Completed software locally, 2026-10-09, from core commit
+`82fc5b662586bd825cce7858c1e3886e8de0a2de` and unchanged producer commit
+`e8f54c77ef3d8f192544e70466e06a826cae18d7`. Both trees started clean.
+[Reconstruction/inspection guide](N4_TIMING_RECONSTRUCTION.md) records the API,
+command, pairing, exclusion precedence, coverage and remaining runtime gates.
+
+Core changes add a focused pure reconstruction module, bounded no-follow trace
+reader, public reconstruct_trace API and inspect-trace command. All four methods
+retain their frozen versions and meanings. Each stream gets its own endpoint index;
+frames, lifetimes, clocks and unsampled/lost observations never get merged. Input
+models/copies are revalidated before indexing. Unsupported capability/producer,
+missing/ambiguous correlation, missing endpoint and negative delta exclusions
+conserve exactly one classification per retained frame. Zero remains a measured
+sample, while unavailable statistics remain null.
+
+Integer endpoint subtraction and exact integer sums precede one millisecond
+floating division; the returned strict summary independently recomputes statistics,
+coverage and budget arithmetic. Declared deadlines reuse only usable age pairs,
+with equality hits and valid negative slack. No declared budget means unavailable.
+Source clock/capability/sampling/loss and producer/provenance declarations are
+preserved. Summary identity hashes canonical validated trace bytes, never a
+supplied summary hash. API output is immutable and deterministic; input is unchanged.
+
+inspect-trace accepts bounded duplicate-safe trace JSON through pinned no-follow
+regular reads and writes canonical summary JSON atomically through the Step 5
+output helper. Input text whitespace does not alter canonical trace identity.
+Invalid inputs, unsafe outputs or invalid results produce a fixed public error,
+no source/path/input echo and no partial output. A supplied summary cannot be
+used as inspection input. Reconstruction is separate from N2/N3 adoption/matching.
+
+Local verification:
+
+- **1729 full core tests pass / 93.69% branch-inclusive coverage**, unchanged 85%
+  floor, Python 3.13.13, 106.24 s. **46 new independent cases** cover the complete
+  hand-authored Step 1 example, all positive/zero/negative methods, exclusion and
+  reason precedence, API absence, sampling/loss, out-of-order arrival, reset
+  isolation, optional/equal/negative-slack budgets and immutable/copy/hash behavior.
+- A 2000-frame safe-limit case checks an integer sum beyond 2^53−1 against an
+  independently computed rational expectation. Fresh public imports check the
+  serialization dependency boundary. CLI cases cover bounded/deep/duplicate JSON,
+  links/special files, fixed private errors and preserved output.
+- Focused N4/schema/CLI invocation passes **213 tests**. Twelve schema exports,
+  metric registry and N1/N2/N3 pinned reproduction pass unchanged. Ruff lint/format,
+  installed dependency checks, documentation links and both whitespace checks pass.
+- Actual Step 5 producer-generated synthetic records pass inspect-trace and strict
+  summary validation. Host queue/encode/age means reproduce 0.0001/0.0001/0.0004 ms;
+  browser callback mean reproduces 1.5 ms. Foreign-producer methods are unavailable.
+  This is arithmetic/export interoperability, not timing from a running pipeline.
+- Producer runtime/source/tests/dependencies remain unchanged in this step; only
+  its three N4 guides are updated to reference delivered inspection. Its latest
+  recorded gates remain Step 5's **232 web passes**, **133 engine passes plus one
+  existing external-artifact skip**, **41 nested host Python passes** and successful
+  lint/production web build. Those suites were not rerun for documentation-only
+  producer changes.
+
+No fixtures/pins, policy/schema bytes, thresholds, CI/dependency settings or legacy
+outputs change. No live browser/picker interaction, Linux/X11/VP8 capture, clock
+synchronization, measured overhead, hosted/minimum-version execution or full-limit
+throughput measurement occurred. Docker remains unavailable. The maximum-ledger
+arithmetic case is a resource/logic test, not a throughput acceptance measurement.
+
+**Next:** Step 7 separately pinned integrated reproduction, minimum real producer
+acceptance, measured overhead and a closeout separating software/runtime/hosted
+results. N4 is still incomplete; a missing runtime must remain an explicit pending
+gate rather than being replaced with synthetic timing claims.

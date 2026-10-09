@@ -75,7 +75,7 @@ failures stop tracing without escaping into playback. `finish()` cancels all act
 bindings; `snapshot(commit, provenance)` then returns a detached, sanitized v1
 record. It requires a lowercase forty-hex producer commit and explicit provenance.
 Snapshots do no synchronous work inside callbacks. [Persistence/adoption](N4_TRACE_ADOPTION.md) is delivered in Step 5; timing
-reconstruction remains Step 6.
+[reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
 
 Step 4 checks: 38 independent browser collector/configuration/lifecycle cases;
 220 total web tests; web lint and production TypeScript/Vite build pass. All 23
