@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Steps 0–1 complete locally; Step 2 strict models/schemas is next
+**Status:** Steps 0–2 complete locally; Step 3 bounded host hooks is next
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -145,6 +145,44 @@ The nine changed/new files are Markdown; the producer tree remains clean. The
 Step 0 full-suite result remains 1539 tests / 93.58% coverage; the unchanged suite
 was not rerun for this specification-only step.
 
-**Next:** Step 2 implements strict, immutable, revalidated trace/summary models
+**Step 1 handoff (historical):** Step 2 implements strict, immutable, revalidated trace/summary models
 and two additive schemas with independent rejection/consistency regressions.
 Hooks, CLI commands, producer artifacts and timing reconstruction remain pending.
+
+## Step 2 — Strict additive models/schemas
+
+Completed locally, 2026-10-09. [Trace models/validation](N4_TRACE_MODELS.md) are
+delivered in a focused observability package and exported through the existing
+model API. Generic validate recognizes snake_case trace roots; existing roots
+keep their aliases and outputs. Schema exports add record-v1 and summary-v1,
+bringing the total to twelve with the original ten bytes unchanged.
+
+Validation covers closed methods/versions, clock/producer agreement, source-local
+aliases/lifetimes, complete capabilities, sampled frame prefixes, event ordering/
+references/endpoints, exact loss conservation and total/declared capacity. It
+rejects false correlation, copied invalid nested instances, private/unknown fields,
+nonfinite/unsafe numbers, booleans as numeric values and unordered/iterator inputs.
+Bounded duplicate-safe text decoding enforces 10 MiB/depth 32 before model loading.
+Summary validation recomputes integer-delta statistics, coverage, exclusion
+counts and declared-budget slack/hits; negative pair evidence remains input for
+Step 6 classification. Supplied summary hashes alone do not prove trace provenance.
+
+Local results:
+
+- **1,625 tests pass / 93.59% branch-inclusive coverage**, unchanged 85% floor.
+  This includes **86 new independent N4 regressions**; focused N4/schema/CLI
+  invocation passes 109 tests. Full run: 102.61 s, Python 3.13.13.
+- Ruff lint/format, installed dependencies, twelve schema exports and canonical
+  registry pass. Original ten checked-in schema files equal their starting bytes.
+- N1/N2/N3 pinned reproduction passes without refresh; frozen policy/fixtures and
+  controlled artifacts remain unchanged. Producer working tree remains clean.
+- Documentation/status links and whitespace checks pass. No CI thresholds or
+  workflow changes: the existing full-suite/schema jobs include these additions.
+
+No producer hooks, new trace bundle reader, ingest-trace/inspect-trace command or
+trace-to-summary derivation is implemented in this step. No real capture,
+synchronization, overhead or hosted/minimum-version execution was performed.
+Step 0 runtime limitations and Step 1 real/overhead acceptance criteria remain open.
+
+**Next:** Step 3 adds opt-in, bounded capture-output/queue/VP8 encoder hooks in
+Pixelated Studio Edition, with correlation, teardown and exact loss tests.

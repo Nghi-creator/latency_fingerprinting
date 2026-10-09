@@ -23,6 +23,8 @@ from .models import (
     ObservationRecord,
     ObservationRecordV2,
     ObservationWindowV2,
+    StageTraceRecord,
+    StageTraceSummary,
 )
 
 SchemaModel: TypeAlias = type[BaseModel]
@@ -30,6 +32,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "stage-trace-record-v1.schema.json": StageTraceRecord,
+    "stage-trace-summary-v1.schema.json": StageTraceSummary,
     "observation-v1.schema.json": ObservationRecord,
     "fingerprint-v1.schema.json": Fingerprint,
     "match-result-v1.schema.json": MatchResult,

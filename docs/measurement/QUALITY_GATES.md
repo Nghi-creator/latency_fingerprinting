@@ -1,4 +1,4 @@
-# N1/N2/N3 quality and CI gates
+# N1–N4 quality and CI gates
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
@@ -16,8 +16,8 @@ analytical tests run in the existing full-suite jobs. Step 3 adds 30
 [fingerprint/repository tests](../analysis/N3_FINGERPRINTS.md) and one schema,
 bringing exports to nine roots. Step 5 adds 76 [matching/model tests](../analysis/N3_MATCHING.md)
 and one match schema, bringing exports to ten roots.
-Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The local suite
-passes 1,539 tests with 93.58% branch-inclusive coverage after 40 original
+Step 6 adds 52 [public command tests](../analysis/N3_COMMANDS.md). The post-N3 suite
+passed 1,539 tests with 93.58% branch-inclusive coverage after 40 original
 fixture/closeout cases and 19 subsequent health-check regressions.
 The [post-N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) covers scoring underflow,
 stored-result/CLI failures, descriptor-pinned bundle reads, replacement links/FIFOs,
@@ -115,8 +115,11 @@ this baseline and the applicable Pixelated producer gates in
 [Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
 [additive trace contract](../observability/N4_TRACE_CONTRACT.md) and
 [real-capture/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md).
-Next is strict model/schema implementation before instrumentation. N4 models, hooks, commands and fixtures
-are not implemented. Existing N2 timing and N3 policy/match outputs remain frozen.
+N4 Step 2 delivers [strict models and generic validation](../observability/N4_TRACE_MODELS.md),
+two additive schemas (twelve total) and 86 independent regressions in the existing
+full-suite jobs. Latest local execution passes **1,625 tests with 93.59%
+branch-inclusive coverage**, retaining the 85% floor. Host hooks, trace adoption/inspection commands and pinned trace
+fixtures remain pending. Existing N2 timing and N3 policy/match outputs remain frozen.
 
 Actual Python 3.11/hosted execution remains pending. N4 separately requires real
 stage-local capture and measured instrumentation overhead; those results cannot

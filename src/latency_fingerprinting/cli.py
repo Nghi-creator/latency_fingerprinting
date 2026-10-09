@@ -15,7 +15,7 @@ from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
-from .json_io import load_json_file, load_model_file
+from .json_io import load_model_file, read_bounded_text, strict_json_loads
 from .matcher import match_observation
 from .measurement.metric_registry import (
     DEFAULT_METRIC_REGISTRY_PATH,
@@ -51,13 +51,17 @@ from .models import (
     ProvenanceKind,
     WindowPhase,
 )
+from .observability import StageTraceRecord, StageTraceSummary
 from .pipeline import build_observation_record, canonical_json
 from .schemas import DEFAULT_SCHEMA_DIRECTORY, SCHEMA_MODELS, export_schemas, schema_drift
 
 CommandHandler = Callable[[argparse.Namespace], None]
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
+
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "stage-trace-record-v1": StageTraceRecord,
+    "stage-trace-summary-v1": StageTraceSummary,
     MATCH_RESULT_V2_SCHEMA_VERSION: MatchResultV2,
     FINGERPRINT_V2_SCHEMA_VERSION: FingerprintV2,
     FEATURE_POLICY_SCHEMA_VERSION: FeaturePolicyV1,
@@ -81,11 +85,17 @@ def _load_model(path: Path, model: type[ModelT]) -> ModelT:
 
 def _validate(args: argparse.Namespace) -> None:
     path: Path = args.path
-    payload = load_json_file(path)
+    input_text = read_bounded_text(path)
+    payload = strict_json_loads(input_text)
     if not isinstance(payload, dict):
         raise ValueError("JSON root must be an object")
 
     schema_version = payload.get("schemaVersion")
+    if schema_version is None and payload.get("schema_version") in (
+        "stage-trace-record-v1",
+        "stage-trace-summary-v1",
+    ):
+        schema_version = payload["schema_version"]
     if not isinstance(schema_version, str):
         raise ValueError("JSON root requires a string schemaVersion")
     model = ROOT_MODELS.get(schema_version)
@@ -95,7 +105,12 @@ def _validate(args: argparse.Namespace) -> None:
             f"unsupported schemaVersion {schema_version!r}; expected one of: {supported}"
         )
 
-    sys.stdout.write(canonical_json(model.model_validate(payload)))
+    validated = (
+        model.model_validate_json(input_text)
+        if model in (StageTraceRecord, StageTraceSummary)
+        else model.model_validate(payload)
+    )
+    sys.stdout.write(canonical_json(validated))
 
 
 def _export_schemas(args: argparse.Namespace) -> None:

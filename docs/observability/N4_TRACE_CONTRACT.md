@@ -1,6 +1,7 @@
 # N4 trace contract, version 1
 
-**Status:** Step 1 specification frozen, 2026-10-09; not implemented or runtime validated.
+**Status:** Step 1 specification frozen, 2026-10-09; Step 2 models/schemas implemented.
+**Implementation:** [Models/validation](N4_TRACE_MODELS.md); no runtime validation yet.
 **Plan:** [N4](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Producer inventory and acceptance:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
 **Independent arithmetic cases:** [Examples](N4_TRACE_EXAMPLES.md).
@@ -284,4 +285,4 @@ record) and Step 6 `inspect-trace --trace PATH --output PATH` (canonical summary
 These commands do not exist yet. Both are offline, use duplicate-safe/no-follow
 regular-file reads and atomic output after complete validation. Existing CLI and
 legacy ingestion do not discover or reinterpret these artifacts. Generic schema
-export/validation adds the two new roots only in Step 2.
+export/validation now includes the two roots delivered in Step 2.

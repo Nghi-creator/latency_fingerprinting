@@ -1,0 +1,660 @@
+{
+  "$defs": {
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary": {
+          "enum": [
+            "render_ready",
+            "capture_begin",
+            "capture_output",
+            "pre_encode_queue_enter",
+            "pre_encode_queue_exit",
+            "encode_input",
+            "encode_output",
+            "wire_send",
+            "receive",
+            "decode_ready",
+            "presentation_proxy"
+          ],
+          "title": "Boundary",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_instrumented",
+                "unsupported_source",
+                "api_unavailable",
+                "disabled",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "boundary",
+        "state",
+        "reason"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "Clock": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "const": "stream_start",
+          "title": "Origin",
+          "type": "string"
+        },
+        "resolution_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resolution Ns"
+        },
+        "source": {
+          "enum": [
+            "python_monotonic_ns",
+            "browser_performance"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "synchronization": {
+          "const": "none",
+          "title": "Synchronization",
+          "type": "string"
+        },
+        "unit": {
+          "const": "ns",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "unit",
+        "origin",
+        "resolution_ns",
+        "synchronization"
+      ],
+      "title": "Clock",
+      "type": "object"
+    },
+    "DeadlineResult": {
+      "additionalProperties": false,
+      "properties": {
+        "budget_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Budget Ns"
+        },
+        "hit_fraction": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hit Fraction"
+        },
+        "hit_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Hit Frames",
+          "type": "integer"
+        },
+        "method_id": {
+          "const": "capture-output-budget",
+          "title": "Method Id",
+          "type": "string"
+        },
+        "method_version": {
+          "const": 1,
+          "title": "Method Version",
+          "type": "integer"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "budget_not_declared",
+                "no_usable_pairs"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "samples": {
+          "items": {
+            "$ref": "#/$defs/DeadlineSample"
+          },
+          "maxItems": 2000,
+          "title": "Samples",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "measured",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "usable_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Usable Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "state",
+        "reason",
+        "method_id",
+        "method_version",
+        "budget_ns",
+        "samples",
+        "usable_frames",
+        "hit_frames",
+        "hit_fraction"
+      ],
+      "title": "DeadlineResult",
+      "type": "object"
+    },
+    "DeadlineSample": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "pattern": "^frame-[1-9][0-9]{0,9}$",
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "hit": {
+          "title": "Hit",
+          "type": "boolean"
+        },
+        "slack_ms": {
+          "title": "Slack Ms",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame_id",
+        "slack_ms",
+        "hit"
+      ],
+      "title": "DeadlineSample",
+      "type": "object"
+    },
+    "DurationSample": {
+      "additionalProperties": false,
+      "properties": {
+        "delta_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Delta Ns",
+          "type": "integer"
+        },
+        "frame_id": {
+          "pattern": "^frame-[1-9][0-9]{0,9}$",
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "value_ms": {
+          "minimum": 0,
+          "title": "Value Ms",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame_id",
+        "delta_ns",
+        "value_ms"
+      ],
+      "title": "DurationSample",
+      "type": "object"
+    },
+    "Exclusions": {
+      "additionalProperties": false,
+      "properties": {
+        "correlation_ambiguous": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Correlation Ambiguous",
+          "type": "integer"
+        },
+        "correlation_missing": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Correlation Missing",
+          "type": "integer"
+        },
+        "missing_endpoint": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Missing Endpoint",
+          "type": "integer"
+        },
+        "negative_duration": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Negative Duration",
+          "type": "integer"
+        },
+        "unsupported": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Unsupported",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "unsupported",
+        "correlation_missing",
+        "correlation_ambiguous",
+        "missing_endpoint",
+        "negative_duration"
+      ],
+      "title": "Exclusions",
+      "type": "object"
+    },
+    "Loss": {
+      "additionalProperties": false,
+      "properties": {
+        "attempted_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Attempted Events",
+          "type": "integer"
+        },
+        "browser_missed_presentations": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser Missed Presentations",
+          "type": "integer"
+        },
+        "event_capacity_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Capacity Dropped",
+          "type": "integer"
+        },
+        "event_contention_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Contention Dropped",
+          "type": "integer"
+        },
+        "event_correlation_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Correlation Dropped",
+          "type": "integer"
+        },
+        "event_invalid_timestamp_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Invalid Timestamp Dropped",
+          "type": "integer"
+        },
+        "event_shutdown_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Shutdown Dropped",
+          "type": "integer"
+        },
+        "frame_capacity_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frame Capacity Dropped",
+          "type": "integer"
+        },
+        "offered_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Offered Frames",
+          "type": "integer"
+        },
+        "retained_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Retained Events",
+          "type": "integer"
+        },
+        "sampled_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Sampled Frames",
+          "type": "integer"
+        },
+        "unsampled_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Unsampled Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "offered_frames",
+        "sampled_frames",
+        "unsampled_frames",
+        "frame_capacity_dropped",
+        "attempted_events",
+        "retained_events",
+        "event_capacity_dropped",
+        "event_invalid_timestamp_dropped",
+        "event_contention_dropped",
+        "event_shutdown_dropped",
+        "event_correlation_dropped",
+        "browser_missed_presentations"
+      ],
+      "title": "Loss",
+      "type": "object"
+    },
+    "Sampling": {
+      "additionalProperties": false,
+      "properties": {
+        "every_nth_frame": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Every Nth Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "every_nth_frame"
+      ],
+      "title": "Sampling",
+      "type": "object"
+    },
+    "SummaryStream": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "$ref": "#/$defs/Capability"
+          },
+          "maxItems": 11,
+          "minItems": 11,
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "clock": {
+          "$ref": "#/$defs/Clock"
+        },
+        "clock_id": {
+          "pattern": "^clock-[1-9][0-9]{0,9}$",
+          "title": "Clock Id",
+          "type": "string"
+        },
+        "deadline_result": {
+          "$ref": "#/$defs/DeadlineResult"
+        },
+        "epoch_id": {
+          "pattern": "^epoch-[1-9][0-9]{0,9}$",
+          "title": "Epoch Id",
+          "type": "string"
+        },
+        "loss": {
+          "$ref": "#/$defs/Loss"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/TimingResult"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "title": "Results",
+          "type": "array"
+        },
+        "sampling": {
+          "$ref": "#/$defs/Sampling"
+        },
+        "stream_id": {
+          "pattern": "^stream-[1-9][0-9]{0,9}$",
+          "title": "Stream Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stream_id",
+        "epoch_id",
+        "clock_id",
+        "clock",
+        "capabilities",
+        "sampling",
+        "loss",
+        "results",
+        "deadline_result"
+      ],
+      "title": "SummaryStream",
+      "type": "object"
+    },
+    "TimingResult": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_frames": {
+          "maximum": 2000,
+          "minimum": 0,
+          "title": "Eligible Frames",
+          "type": "integer"
+        },
+        "excluded_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Excluded Frames",
+          "type": "integer"
+        },
+        "exclusions": {
+          "$ref": "#/$defs/Exclusions"
+        },
+        "max_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max Ms"
+        },
+        "mean_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean Ms"
+        },
+        "method_id": {
+          "enum": [
+            "pre-encode-queue-sojourn",
+            "encode-boundary-elapsed",
+            "capture-output-age-at-encode-output",
+            "presentation-callback-lag"
+          ],
+          "title": "Method Id",
+          "type": "string"
+        },
+        "method_version": {
+          "const": 1,
+          "title": "Method Version",
+          "type": "integer"
+        },
+        "min_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min Ms"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "unsupported_source",
+                "capability_unavailable",
+                "no_frames",
+                "no_usable_pairs"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "samples": {
+          "items": {
+            "$ref": "#/$defs/DurationSample"
+          },
+          "maxItems": 2000,
+          "title": "Samples",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "measured",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "usable_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Usable Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "method_id",
+        "method_version",
+        "state",
+        "reason",
+        "eligible_frames",
+        "usable_frames",
+        "excluded_frames",
+        "exclusions",
+        "samples",
+        "min_ms",
+        "mean_ms",
+        "max_ms"
+      ],
+      "title": "TimingResult",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "method_release": {
+      "const": "n4-stage-local-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "producer": {
+      "enum": [
+        "pixelated_engine",
+        "pixelated_browser"
+      ],
+      "title": "Producer",
+      "type": "string"
+    },
+    "producer_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Producer Version",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "producer_capture",
+        "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "stage-trace-summary-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "streams": {
+      "items": {
+        "$ref": "#/$defs/SummaryStream"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Streams",
+      "type": "array"
+    },
+    "trace_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Trace Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "trace_sha256",
+    "provenance",
+    "producer",
+    "producer_version",
+    "streams"
+  ],
+  "title": "StageTraceSummary",
+  "type": "object"
+}

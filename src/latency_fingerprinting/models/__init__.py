@@ -4,6 +4,7 @@ Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
 """
 
+from ..observability import StageTraceRecord, StageTraceSummary
 from .common import (
     CONTRACT_VERSION,
     FINGERPRINT_SCHEMA_VERSION,
@@ -200,3 +201,6 @@ __all__ += [
     "WindowClock",
     "WindowValidityV2",
 ]
+
+
+__all__ += ["StageTraceRecord", "StageTraceSummary"]
