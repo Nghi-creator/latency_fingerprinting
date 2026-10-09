@@ -1,7 +1,7 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Steps 0–2 complete locally; Steps 3–7 remain unimplemented
+**Status:** Steps 0–3 complete locally; Steps 4–7 remain unimplemented
 **Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
@@ -110,7 +110,7 @@ the inspected producer cannot supply.
 **Software gate:** Complete locally, 2026-10-09. [Immutable trace/summary models](../observability/N4_TRACE_MODELS.md),
 two additive schemas and generic validation are delivered, with independent
 identity/clock/loss/arithmetic/resource/copy regressions. Original ten schema bytes
-and N1–N3 reproduction pins are preserved. Runtime hooks and reconstruction remain pending.
+and N1–N3 reproduction pins are preserved. Step 3 subsequently adds host hooks; browser collection and reconstruction remain pending.
 
 Add focused observability models/modules and schemas using Step 1 definitions.
 Validate finite strict numbers, method versions, ordered unique identities,
@@ -125,6 +125,11 @@ Gate: accepted evidence has a reconstructable meaning; existing ten schemas,
 approved releases and reproduction pins remain byte-identical.
 
 ## Step 3 — Add bounded host capture and encoder instrumentation
+
+**Software gate:** Complete locally, 2026-10-09. [Producer host hooks](../observability/N4_HOST_INSTRUMENTATION.md)
+are opt-in and bounded across peers/lifetimes, with source/queue/VP8 pad routing,
+clock/segment isolation, correlation/loss and teardown checks. Real timing and
+measured overhead remain Step 7 gates; this completion is software only.
 
 Implement opt-in hooks at the approved engine boundaries. Use producer-local
 monotonic timestamps and explicitly scoped IDs; retain restart/reset boundaries.
@@ -208,7 +213,7 @@ scenario/held-out experiment work stays separate.
 - [x] Both repository baselines and existing reproduction gates are recorded.
 - [x] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
 - [x] Strict additive models/schemas preserve all existing contract bytes.
-- [ ] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
+- [x] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
 - [ ] Browser/transport evidence exposes actual capabilities and correlation limits.
 - [ ] Versioned producer export and Python adoption agree without changing old outputs.
 - [ ] Offline timing reconstruction retains clocks, methods, pairing and exclusions.
@@ -217,7 +222,7 @@ scenario/held-out experiment work stays separate.
 - [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next implementation action:** Step 3 bounded host capture/queue/encoder hooks
-in Pixelated Studio Edition. Steps 0–2 are complete locally; runtime instrumentation
-has not started. Phase 1 also needs the subsequent
+**Next implementation action:** Step 4 browser presentation/callback evidence
+and explicit transport/decoder capability limits. Steps 0–3 are complete locally;
+real capture and measured overhead remain pending. Phase 1 also needs the subsequent
 scenario harness; the roadmap's seven phases are not a fixed N1–N7 slice count.

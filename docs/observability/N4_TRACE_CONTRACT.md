@@ -1,7 +1,8 @@
 # N4 trace contract, version 1
 
-**Status:** Step 1 specification frozen, 2026-10-09; Step 2 models/schemas implemented.
-**Implementation:** [Models/validation](N4_TRACE_MODELS.md); no runtime validation yet.
+**Status:** Step 1 specification frozen, 2026-10-09; Steps 2–3 models/schemas and host hooks implemented.
+**Implementation:** [Models/validation](N4_TRACE_MODELS.md), [host hooks](N4_HOST_INSTRUMENTATION.md);
+real capture/overhead validation remains pending.
 **Plan:** [N4](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Producer inventory and acceptance:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
 **Independent arithmetic cases:** [Examples](N4_TRACE_EXAMPLES.md).

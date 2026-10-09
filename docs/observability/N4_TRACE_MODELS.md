@@ -1,7 +1,8 @@
 # N4 trace models and schema validation
 
-**Delivered:** Step 2, 2026-10-09. Producer instrumentation, trace bundle adoption
-and offline reconstruction remain subsequent steps.
+**Delivered:** Step 2, 2026-10-09. [Host hooks](N4_HOST_INSTRUMENTATION.md) subsequently
+delivered in Step 3; browser collection, bundle adoption and offline reconstruction
+remain subsequent steps.
 **Meaning:** [Normative contract](N4_TRACE_CONTRACT.md).
 
 `StageTraceRecord` and `StageTraceSummary` are available from

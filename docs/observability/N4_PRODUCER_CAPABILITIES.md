@@ -3,7 +3,9 @@
 **Inspected:** 2026-10-09. Engine/browser producer commit
 `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`.
 **Definition:** [Trace contract](N4_TRACE_CONTRACT.md).
-**Delivery status:** Inventory and proposed hook locations only; no N4 hook exists yet.
+**Delivery status:** Step 3 [host hooks](N4_HOST_INSTRUMENTATION.md) implemented locally.
+The inventory below records inspected starting behavior; browser hooks, real capture
+and overhead verification remain pending.
 
 Paths in this document are relative to the sibling `Pixelated-Studio-Edition`
 repository. They identify integration locations, not dependencies the Python core
@@ -14,9 +16,9 @@ loads at runtime. No applicable AGENTS.md was found in either repository/ancesto
 | Boundary / evidence | Existing implementation | Approved N4 v1 scope / remaining gap |
 | --- | --- | --- |
 | Game render-ready | No hook inspected | Unavailable; do not infer from capture |
-| Capture begin / output | `engine/runtime/camera.py`: `ximagesrc` per peer, X11 display `:99` | Add stable source element name and src-pad probe for output only; capture duration unavailable |
-| Pre-encode queue | Same file: `pre_encoder_queue`, one-buffer downstream-leaky queue; existing sink probe counts frames | Add timestamped sink/src probes; instantaneous occupancy and overrun signals are not sojourn or verified frame-drop counts |
-| Encode input/output | Same file: VP8 `video_encoder`; existing src probe counts output buffers | Add sink/src timestamps, conditional unique PTS correlation; includes scheduling/buffering, no CPU-time claim |
+| Capture begin / output | `engine/runtime/camera.py`: `ximagesrc` per peer, X11 display `:99` | Step 3: stable source name and src-pad probe delivered for output only; capture duration unavailable |
+| Pre-encode queue | Same file: `pre_encoder_queue`, one-buffer downstream-leaky queue; existing sink probe counts frames | Step 3: timestamped sink/src probes delivered; instantaneous occupancy and overrun signals are not sojourn or verified frame-drop counts |
+| Encode input/output | Same file: VP8 `video_encoder`; existing src probe counts output buffers | Step 3: sink/src timestamps and conditional unique PTS correlation delivered; includes scheduling/buffering, no CPU-time claim |
 | Post-encode queue | `rtpvp8pay` then `post_encoder_queue` | Packet buffers may split one frame; excluded from frame duration methods |
 | Sender enqueue / wire send | `webrtcbin` pipeline branch | No approved wire-send hook; enqueue is not send |
 | Snapshot / engine resource interval | `camera_state.py` atomic JSON; `src/telemetry/researchTelemetrySnapshot.ts` monotonic interval sampler | Keep existing telemetry; neither is a per-frame timing trace |

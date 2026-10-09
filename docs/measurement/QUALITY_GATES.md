@@ -118,8 +118,10 @@ this baseline and the applicable Pixelated producer gates in
 N4 Step 2 delivers [strict models and generic validation](../observability/N4_TRACE_MODELS.md),
 two additive schemas (twelve total) and 86 independent regressions in the existing
 full-suite jobs. Latest local execution passes **1,625 tests with 93.59%
-branch-inclusive coverage**, retaining the 85% floor. Host hooks, trace adoption/inspection commands and pinned trace
-fixtures remain pending. Existing N2 timing and N3 policy/match outputs remain frozen.
+branch-inclusive coverage**, retaining the 85% floor. N4 Step 3 delivers [host hooks](../observability/N4_HOST_INSTRUMENTATION.md):
+producer engine build/tests/lint and 31 nested Python collector/pad/teardown
+regressions pass locally. Browser collection, trace adoption/inspection commands
+and pinned trace fixtures remain pending. Existing N2 timing and N3 policy/match outputs remain frozen.
 
 Actual Python 3.11/hosted execution remains pending. N4 separately requires real
 stage-local capture and measured instrumentation overhead; those results cannot

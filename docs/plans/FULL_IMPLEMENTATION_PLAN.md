@@ -76,9 +76,10 @@ roadmap boundaries.
 The active [N4 plan](NEXT_IMPLEMENTATION_PLAN.md) addresses Phase 1.2 stage-level
 observability: timing/clock/capability contracts, bounded producer instrumentation,
 versioned trace export, offline adoption and real stage-local/overhead acceptance.
-Steps 0–2 are [complete locally](../observability/N4_IMPLEMENTATION_PROGRESS.md):
+Steps 0–3 are [complete locally](../observability/N4_IMPLEMENTATION_PROGRESS.md):
 baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
-[strict models/schemas](../observability/N4_TRACE_MODELS.md). Steps 3–7 remain unimplemented. Preserve frozen N2 unavailable timing and
+[strict models/schemas](../observability/N4_TRACE_MODELS.md) and
+[bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md). Steps 4–7 remain unimplemented. Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
 work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).
