@@ -1,13 +1,13 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Step 0 baseline complete locally; Steps 1–7 remain unimplemented
+**Status:** Steps 0–1 complete locally; Steps 2–7 remain unimplemented
 **Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
 **Archived predecessor plan:** [N3 analytical features and matching](archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Baseline evidence:** [Post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md)
-**Current progress:** [N4 baseline and producer verification](../observability/N4_IMPLEMENTATION_PROGRESS.md)
+**Current progress:** [N4 implementation progress](../observability/N4_IMPLEMENTATION_PROGRESS.md)
 
 N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
 1,539 passing tests and 93.58% branch-inclusive coverage at the unchanged 85%
@@ -32,7 +32,7 @@ Preserve P0/N1/N2/N3 schemas, fixture bytes, registry/policy releases, matcher
 thresholds and existing command outputs. In particular, do not relax N2
 `StageTiming` validation to admit new measured values under its old contract.
 Use additive trace/summary roots and explicitly versioned producer artifacts;
-exact names and versions are settled in Step 1. N4 timing is not automatically
+names and versions are frozen in the [Step 1 contract](../observability/N4_TRACE_CONTRACT.md). N4 timing is not automatically
 an N3 matching feature or a replacement for cumulative WebRTC means/proxies.
 
 The subsequent reproducible scenario harness remains Phase 1.3 work. N4 does
@@ -72,6 +72,11 @@ Gate: a reproducible baseline and explicit local/hosted/runtime limitations are
 recorded before changing contracts or instrumentation.
 
 ## Step 1 — Freeze the timing, identity and capability contract
+
+**Specification gate:** Complete, 2026-10-09. The [field/method contract](../observability/N4_TRACE_CONTRACT.md),
+[producer capability matrix and real/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md)
+and [independent examples](../observability/N4_TRACE_EXAMPLES.md) are fixed. This
+delivers definitions only; hooks, schemas, commands and real measurements remain pending.
 
 Inspect real capture, encoder, sender and browser boundaries. Author
 `docs/observability/N4_TRACE_CONTRACT.md` and a producer capability matrix with:
@@ -195,7 +200,7 @@ scenario/held-out experiment work stays separate.
 ## Exit checklist
 
 - [x] Both repository baselines and existing reproduction gates are recorded.
-- [ ] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
+- [x] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
 - [ ] Strict additive models/schemas preserve all existing contract bytes.
 - [ ] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
 - [ ] Browser/transport evidence exposes actual capabilities and correlation limits.
@@ -206,6 +211,6 @@ scenario/held-out experiment work stays separate.
 - [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next implementation action:** Step 1 field/capability specification. Step 0 is
-complete locally; trace implementation has not started. Phase 1 also needs the subsequent
+**Next implementation action:** Step 2 strict additive trace models/schemas. Steps
+0–1 are complete locally; runtime instrumentation has not started. Phase 1 also needs the subsequent
 scenario harness; the roadmap's seven phases are not a fixed N1–N7 slice count.

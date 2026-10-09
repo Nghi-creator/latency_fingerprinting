@@ -112,8 +112,10 @@ checks pass locally. Historical milestone counts and audit findings remain in th
 
 The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has reproduced
 this baseline and the applicable Pixelated producer gates in
-[Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Next it specifies additive
-trace contracts before instrumentation. N4 models, hooks, commands and fixtures
+[Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
+[additive trace contract](../observability/N4_TRACE_CONTRACT.md) and
+[real-capture/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md).
+Next is strict model/schema implementation before instrumentation. N4 models, hooks, commands and fixtures
 are not implemented. Existing N2 timing and N3 policy/match outputs remain frozen.
 
 Actual Python 3.11/hosted execution remains pending. N4 separately requires real

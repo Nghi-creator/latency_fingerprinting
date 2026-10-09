@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Step 0 complete locally; Step 1 timing/capability specification is next
+**Status:** Steps 0–1 complete locally; Step 2 strict models/schemas is next
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -103,7 +103,7 @@ observation elapsed time or camera snapshots approved stage-local trace evidence
 N2 unavailable timing and N3 policy/matching meanings remain frozen. Step 1 must
 inspect producer clocks and frame attribution before defining any new methods.
 
-### Next action
+### Step 0 handoff (historical)
 
 Step 1 specifies the timing/identity/clock/capability contract and minimum real
 acceptance case. Current producer locations are `engine/runtime/camera.py` for the
@@ -112,3 +112,39 @@ The plan's camera-state path was already correct; the table now explicitly names
 the pipeline owner as well. No N4 trace contract,
 schema, instrumentation hook, adoption command or timing result is implemented
 by this baseline step.
+
+## Step 1 — Timing/identity/capability specification
+
+Completed locally, 2026-10-09, from core commit
+`8ef1b5fe5cd1e93bed97945a949f7ee36361c9cc` and unchanged producer commit
+`37e50fb7ef919564aba5796af35dbcdc1fc70f3b`. Both trees were clean at this step's start.
+
+- [Normative trace contract](N4_TRACE_CONTRACT.md): two additive v1 roots, closed
+  release/methods, safe export-local identities, separate lifetime clocks, exact
+  boundary/correlation meanings, bounded sampling/loss, canonical hash-verified
+  artifact layout and proposed offline commands.
+- [Producer capability matrix](N4_PRODUCER_CAPABILITIES.md): inspected actual
+  host queue/VP8 boundaries, per-peer pipelines, browser polling/getStats and v2
+  export. No synchronized engine/browser identity, capture-start, wire-send or
+  physical-display evidence is assumed.
+- [Independent examples](N4_TRACE_EXAMPLES.md): same-clock positive/zero/missing/
+  negative pairs, budget equality/negative slack, browser callback lag, sampling
+  and loss accounting, plus rejection cases.
+
+The minimum real acceptance is fixed to a draining Linux/X11/VP8 Pixelated stream,
+with independently reconstructed queue/encode pairs and explicit unavailable
+stages. Five paired disabled/enabled overhead trials have predeclared CPU/FPS
+criteria. These are provisional engineering requirements, not measured results.
+Docker/Linux capture and overhead remain pending.
+
+This step changes documentation only in the core. No production source, tests,
+schema/fixture/policy bytes or producer files change. N2 unavailable timing and
+N3 matching remain frozen. Numeric example checks, all 555 local documentation-link targets, whitespace
+checks and all ten schema/registry/N1–N3 pinned reproduction checks pass locally.
+The nine changed/new files are Markdown; the producer tree remains clean. The
+Step 0 full-suite result remains 1539 tests / 93.58% coverage; the unchanged suite
+was not rerun for this specification-only step.
+
+**Next:** Step 2 implements strict, immutable, revalidated trace/summary models
+and two additive schemas with independent rejection/consistency regressions.
+Hooks, CLI commands, producer artifacts and timing reconstruction remain pending.

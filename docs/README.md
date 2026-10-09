@@ -1,9 +1,12 @@
 # Documentation index
 
 **Current slice:** [N4 stage-level observability](plans/NEXT_IMPLEMENTATION_PLAN.md),
-Step 0 verified locally; Step 1 specification is next. [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md)
+Steps 0–1 complete locally; Step 2 models/schemas are next. [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md)
 records both repository baselines, producer checks and runtime limitations.
-Trace implementation has not begun. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
+The [trace contract](observability/N4_TRACE_CONTRACT.md),
+[producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
+[independent examples](observability/N4_TRACE_EXAMPLES.md) are specified; trace
+implementation has not begun. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 keeps the subsequent scenario harness and scientific evaluation separate.
 
 ## Current implemented references
@@ -18,7 +21,7 @@ keeps the subsequent scenario harness and scientific evaluation separate.
 | Offline matching | [Fingerprints/repositories](analysis/N3_FINGERPRINTS.md), [matching](analysis/N3_MATCHING.md), [commands](analysis/N3_COMMANDS.md) |
 | Verification | [Quality gates](measurement/QUALITY_GATES.md), [N1 fixtures](measurement/ARITHMETIC_FIXTURES.md), [N2 fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [N3 fixtures](analysis/N3_ANALYTICAL_FIXTURES.md) |
 
-N2 stage timing remains unavailable; no N4 method or trace schema is delivered.
+N2 stage timing remains unavailable; no N4 method implementation or trace schema is delivered.
 N3 policy parameters remain provisional. Current local baseline is 1,539 passing
 tests with 93.58% branch-inclusive coverage; actual hosted/minimum-version,
 full-limit scaling and scientific validation remain pending.
