@@ -1,5 +1,8 @@
 # N2 software closeout
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Slice:** N2 — Additive observation-v2 contracts and offline adoption
 **Closed locally:** 2026-10-07
 **Software status:** Steps 0–5 implemented and locally verified
@@ -19,12 +22,12 @@ Existing P0 response construction and matching continue to use v1 contracts.
 
 | Deliverable | Verified behavior |
 | --- | --- |
-| [Field contract](OBSERVATION_V2_CONTRACT.md) | Design 1.0.2; separate v2 roots with contract 2.0.0, pinned registry, provenance, support and pair semantics |
-| [Strict models](OBSERVATION_V2_MODELS.md) | Immutable metadata, all 31 registered outputs, finite arithmetic, counter reconstruction and compatible recorded interventions |
-| [Offline adoption](OBSERVATION_V2_ADOPTION.md) | One validated directory/TAR read, opt-in metadata, declaration precedence, deterministic IDs, privacy-limited diagnostics and canonical JSON |
-| [Stage timing](../../src/latency_fingerprinting/measurement/stage_timing.py) | Four unavailable Pixelated stages with source-aware reasons; no promotion of interval means, proxies or window clocks |
-| [Fixtures and reproduction](OBSERVATION_V2_FIXTURES.md) | Browser-only/v2 adoption and synthetic pair snapshots, exact-byte checks and fixed SHA-256 pins |
-| [Quality gates](QUALITY_GATES.md) | Both configured Python jobs retain the 85% branch floor and P0/N1 gates, adding pinned N2 reproduction and public resource regression tests |
+| [Field contract](../../measurement/OBSERVATION_V2_CONTRACT.md) | Design 1.0.2; separate v2 roots with contract 2.0.0, pinned registry, provenance, support and pair semantics |
+| [Strict models](../../measurement/OBSERVATION_V2_MODELS.md) | Immutable metadata, all 31 registered outputs, finite arithmetic, counter reconstruction and compatible recorded interventions |
+| [Offline adoption](../../measurement/OBSERVATION_V2_ADOPTION.md) | One validated directory/TAR read, opt-in metadata, declaration precedence, deterministic IDs, privacy-limited diagnostics and canonical JSON |
+| [Stage timing](../../../src/latency_fingerprinting/measurement/stage_timing.py) | Four unavailable Pixelated stages with source-aware reasons; no promotion of interval means, proxies or window clocks |
+| [Fixtures and reproduction](../../measurement/OBSERVATION_V2_FIXTURES.md) | Browser-only/v2 adoption and synthetic pair snapshots, exact-byte checks and fixed SHA-256 pins |
+| [Quality gates](../../measurement/QUALITY_GATES.md) | Both configured Python jobs retain the 85% branch floor and P0/N1 gates, adding pinned N2 reproduction and public resource regression tests |
 
 The public addition is `ingest-pixelated-v2`; `validate` accepts both new roots and
 `export-schemas` includes their schemas. Pair assembly is a validated in-memory
@@ -49,7 +52,7 @@ Frozen N1 SHA-256 pins:
 | Registry v2.0.0 | `50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884` |
 | Sanitized shadow report | `295f57a6f0e0ab80f64c7323be3cd5fc4e278aac712825f0173955594513c423` |
 
-The [N2 fixture guide](OBSERVATION_V2_FIXTURES.md) records its three independent
+The [N2 fixture guide](../../measurement/OBSERVATION_V2_FIXTURES.md) records its three independent
 snapshot pins and software provenance limitations. Fixture arithmetic tests and
 the existing N1 hand-authored expectations support numerical verification beyond
 snapshot equality. None of these tests establishes scientific diagnosis validity.
@@ -62,7 +65,7 @@ unchanged. Step 5 itself changes only new fixtures/test support, CI and docs fro
 `2dcc96fccb5eafcc7dc39cdeecd0c92612979bce`. Milestone evidence is retained in
 [N2 progress](N2_IMPLEMENTATION_PROGRESS.md).
 
-Run the [full local gate commands](QUALITY_GATES.md), including:
+Run the [full local gate commands](../../measurement/QUALITY_GATES.md), including:
 
 ```bash
 .venv/bin/python -m tests.measurement.check_reproduction
@@ -72,7 +75,7 @@ Run the [full local gate commands](QUALITY_GATES.md), including:
 Both configured Python CI jobs include N2 reproduction. Neither Python 3.11 nor
 the GitHub CLI is installed here, and hosted results were not retrieved. Workflow
 inspection and local execution do not establish hosted/minimum-version success.
-The [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
+The [archived N2 plan](../../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
 retains that verification item unchecked.
 
 ## Remaining boundaries and next work
@@ -88,14 +91,15 @@ one-way or per-frame timing claim. New instrumentation requires reviewed meaning
 methods, clock evidence and fixtures before value-bearing timing is permitted.
 
 The successor slice is **N3: v2 feature-policy, normalization and offline
-fingerprint/matching**, specified in the [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
-Its [Step 1 analytical specification](../analysis/N3_ANALYTICAL_CONTRACT.md) is now
-complete, and [strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md)
-and [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) are
-implemented, along with [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md).
-[V2 matching](../analysis/N3_MATCHING.md) and [additive commands](../analysis/N3_COMMANDS.md)
+fingerprint/matching**, specified in the [archived plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md).
+Its [Step 1 analytical specification](../../analysis/N3_ANALYTICAL_CONTRACT.md) is now
+complete, and [strict policy/response models](../../analysis/N3_ANALYTICAL_MODELS.md)
+and [pure response derivation](../../analysis/N3_RESPONSE_DERIVATION.md) are
+implemented, along with [v2 fingerprints/repositories](../../analysis/N3_FINGERPRINTS.md).
+[V2 matching](../../analysis/N3_MATCHING.md) and [additive commands](../../analysis/N3_COMMANDS.md)
 and [N3 synthetic fixtures/closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are
-complete locally. Successor scope remains to be selected.
+complete locally. N4 stage-level observability is now the active successor; see
+the archive notice above.
 The analytical contract selects
 features, establishes compatible units/registry versions, defines missing-data and
 coverage eligibility, specifies response/normalization behavior, and keeps audit

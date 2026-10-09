@@ -1,9 +1,12 @@
 # Post-N1 architecture audit
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 This report preserves the original post-N1 findings and verification. Subsequent
 [N2 closeout](N2_SOFTWARE_CLOSEOUT.md) and [health audit](N2_ARCHITECTURE_AUDIT.md)
 deliver the registry binding and typed support that were pending here. The
-[active N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers analytical adoption
+[archived N3 plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) now covers analytical adoption
 and offline fingerprint/matching. Strict policy/response models are delivered;
 pure response derivation, v2 fingerprints and bounded repositories are implemented;
 v2 compatibility, scoring and conservative matching are implemented. Additive
@@ -33,8 +36,8 @@ that every defect has been eliminated.
 Eight new summary regression cases were first run against the previous code;
 all eight failed because contradictory inputs were accepted. They pass with the
 validation fixes. Valid summary serialization and arithmetic remain unchanged.
-Tests live in [summary contracts](../../tests/models/test_measurement_summary.py)
-and [source boundaries](../../tests/pixelated/test_source_boundary.py).
+Tests live in [summary contracts](../../../tests/models/test_measurement_summary.py)
+and [source boundaries](../../../tests/pixelated/test_source_boundary.py).
 
 ## Files and dependency boundaries
 
@@ -51,7 +54,7 @@ and [source boundaries](../../tests/pixelated/test_source_boundary.py).
 - The largest tracked artifact is the 444 KB architecture PNG. No outsized raw
   capture or generated-code file was found among tracked files. The target PNG
   still lacks its original editable source; the implemented-path Mermaid is
-  maintained in [ARCHITECTURE.md](../ARCHITECTURE.md).
+  maintained in [ARCHITECTURE.md](../../ARCHITECTURE.md).
 - The runtime remains standard library plus Pydantic. CLI orchestration, bounded
   I/O, adapter validation, pure arithmetic and matcher policy remain separated;
   N1 does not import the matcher into its aggregation layer.
@@ -64,7 +67,7 @@ registry, both fixture sets, registry/report pins, five controlled P0 artifacts,
 run-001 seed and exact run-002 match bytes pass. Protected P0 files remain
 unchanged against baseline `b1cd7aa07eebf39629572c22cdd20428a78de826`.
 
-The registry/report pins remain those in [QUALITY_GATES.md](QUALITY_GATES.md).
+The registry/report pins remain those in [QUALITY_GATES.md](../../measurement/QUALITY_GATES.md).
 Cross-field validation changes introduce no schema/artifact drift. Local Markdown
 file links and diff whitespace checks pass.
 
@@ -85,7 +88,7 @@ latency guarantee for a 31-output inspection report.
    establish registry membership or authenticate their producer evidence.
 4. The shadow report currently classifies unsupported sources using extraction's
    reason strings. N2 should carry typed support states independently of rendered
-   prose, as required by the [archived N2 plan](../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
+   prose, as required by the [archived N2 plan](../../plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 5. Bundle byte/row limits are tested, but full-limit report memory and throughput
    are not characterized. Measure those before adopting large captures as a
    supported workload; this audit only removes the verified quadratic lookup.

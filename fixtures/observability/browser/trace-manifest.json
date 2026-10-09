@@ -1,0 +1,7 @@
+{
+  "bundle_type": "pixelated_stage_trace",
+  "schema_version": 1,
+  "trace_bytes": 3253,
+  "trace_schema_version": "stage-trace-record-v1",
+  "trace_sha256": "61eb52222b6e5ce12d0de65d8a3ddcea31315199766a12e1a15b373ff7910777"
+}

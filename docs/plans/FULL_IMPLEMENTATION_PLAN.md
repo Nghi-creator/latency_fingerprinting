@@ -1,7 +1,7 @@
 # Latency Fingerprinting: Full Implementation Plan
 
 **Status:** Full post-P0 roadmap through production and final evaluation  
-**Updated:** 2026-10-07
+**Updated:** 2026-10-09
 **Starting point:** The offline P0 path is complete and hardened. Diagnosis accuracy,
 live probing, recovery benefit, and transfer remain unproven.
 
@@ -51,27 +51,41 @@ frame timestamp + deadline budget
 ## Phase 1 — Measurement contract v2 and experiment foundation
 
 N1's registry and aggregation foundation is implemented and locally verified;
-see the [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI
+see the [N1 software closeout](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI
 verification remains pending. N2 additive observation-v2 contracts and offline
-adoption are now [implemented and closed out locally](../measurement/N2_SOFTWARE_CLOSEOUT.md),
+adoption are now [implemented and closed out locally](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md),
 with deterministic fixtures and reproduction gates in both configured Python jobs.
 The [archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) retains its
 completed checklist and pending hosted-verification item. The completed
-[N3 plan](NEXT_IMPLEMENTATION_PLAN.md) specifies v2 feature-policy, response,
+[archived N3 plan](archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) specifies v2 feature-policy, response,
 normalization, fingerprint and offline matcher work. Baseline reproduction and the
 [N3 analytical field/policy specification](../analysis/N3_ANALYTICAL_CONTRACT.md)
 are complete locally. Strict policy/response models and schemas are implemented;
 pure response derivation, v2 fingerprints and bounded repository loading are
 implemented, along with v2 compatibility, scoring and conservative matching.
 Additive commands, independent synthetic fixtures/pins and
-[N3 software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
-The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository, shared
+[N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+The [final audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) records repository, shared
 bundle-reader and arithmetic hardening with whole-tree verification.
 Hosted/minimum-version execution remains pending. N3 does not
 complete the Phase 1 observability and experiment-foundation work below.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.
+
+The active [N4 plan](NEXT_IMPLEMENTATION_PLAN.md) addresses Phase 1.2 stage-level
+observability: timing/clock/capability contracts, bounded producer instrumentation,
+versioned trace export, offline adoption and real stage-local/overhead acceptance.
+Steps 0–6 are [complete locally](../observability/N4_IMPLEMENTATION_PROGRESS.md):
+baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
+[strict models/schemas](../observability/N4_TRACE_MODELS.md) and
+[bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
+[browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
+[trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
+N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
+work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
+closeouts and audits are in the [milestone archive](../archive/README.md).
 
 ### 1.1 Version metric semantics
 

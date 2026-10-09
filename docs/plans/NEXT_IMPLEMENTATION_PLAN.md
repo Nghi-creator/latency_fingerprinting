@@ -1,255 +1,248 @@
-# N3 Implementation Plan: V2 Analytical Features and Offline Matching
+# N4 Implementation Plan: Stage-Level Observability
 
-**Slice ID:** N3
-**Status:** Completed local software closeout; Steps 0–7 verified; hosted verification pending
-**Updated:** 2026-10-08
-**Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
-**Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
-**Archived predecessor plan:** [N2 observation-v2 adoption](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
+**Slice ID:** N4
+**Status:** Steps 0–6 and Step 7 software complete locally; real acceptance pending
+**Updated:** 2026-10-09
+**Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
+**Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
+**Archived predecessor plan:** [N3 analytical features and matching](archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
+**Baseline evidence:** [Post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md)
+**Current progress:** [N4 implementation progress](../observability/N4_IMPLEMENTATION_PROGRESS.md)
+**Latest review:** [Cross-repository health audit](../observability/N4_ARCHITECTURE_AUDIT.md)
 
-N1 measurement semantics and N2 observation-v2 adoption are implemented and
-locally verified. The [post-N2 audit](../measurement/N2_ARCHITECTURE_AUDIT.md)
-records the original N3 baseline: 1,166 passing tests and 93.05% branch-inclusive
-coverage. Actual Python 3.11/hosted verification remains pending. This document
-now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
-and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
-policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
-[Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
-[V2 fingerprints and bounded repository loading](../analysis/N3_FINGERPRINTS.md)
-and [v2 matching](../analysis/N3_MATCHING.md) are implemented, along with the
-[additive commands](../analysis/N3_COMMANDS.md). [Synthetic fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
-and [software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
-The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository hardening
-and final whole-tree verification.
+N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
+1,745 passing tests and 93.69% branch-inclusive coverage at the unchanged 85%
+floor. Actual Python 3.11/hosted verification remains pending. N2 stage records
+remain explicitly unavailable; existing v2 exported elapsed time uses wall clocks.
+N4 now supplies separate opt-in instrumentation, trace export/adoption and offline
+timing reconstruction. Real capture and measured overhead acceptance remain pending.
 
 ## Outcome and boundary
 
-Connect validated `ObservationRecordV2` pairs to an explicitly versioned feature
-policy, auditable response calculation and separate offline fingerprint/matching
-path. Carry registry, feature-policy, context and intervention identities through
-the calculation so incompatible evidence cannot be compared silently.
+Produce sanitized trace evidence that can reconstruct stage-local durations,
+queue waiting and frame age where the producer actually observes them. Each
+value must identify its method, clock domain, source and coverage. Unobservable
+stages remain explicitly unavailable. Independent producer clocks cannot be
+subtracted without a reviewed synchronization method and measured error bounds.
 
-Preserve P0 models, commands, numerical behavior, schemas and controlled results.
-Preserve N1 registry release meaning and N2 observation roots/adoption bytes.
-N2 observations remain immutable inputs; analytical results belong in separate
-contracts rather than adding response fields to the frozen observation schema.
+Pixelated Studio Edition owns runtime instrumentation and export. This repository
+owns strict trace validation, offline reconstruction and evidence inspection.
+Per-frame hooks remain in the producer; Python stays off the frame-critical path.
+Instrumentation must be opt-in, bounded and removable without changing playback.
 
-N3 adds no live probe/remediation, direct timing instrumentation, training service
-or new experiment. Stage timings remain unavailable and audit totals remain audit
-evidence. Synthetic matches verify software, not diagnosis accuracy, calibrated
-confidence or real relief efficacy.
+Preserve P0/N1/N2/N3 schemas, fixture bytes, registry/policy releases, matcher
+thresholds and existing command outputs. In particular, do not relax N2
+`StageTiming` validation to admit new measured values under its old contract.
+Use additive trace/summary roots and explicitly versioned producer artifacts;
+names and versions are frozen in the [Step 1 contract](../observability/N4_TRACE_CONTRACT.md). N4 timing is not automatically
+an N3 matching feature or a replacement for cumulative WebRTC means/proxies.
 
-## Step 0 — Preserve and reproduce the N2 baseline
+The subsequent reproducible scenario harness remains Phase 1.3 work. N4 does
+not implement fault campaigns, diagnosis calibration, live probes, remediation,
+a deadline scheduler, hardware certification or synchronized one-way latency.
 
-**Local gate:** Complete at `06e697105e918c0c2f3ae2d25bf75c833f7982ad`;
-1,166 tests pass, 93.05% branch-inclusive coverage. All frozen reproduction gates
-pass. Actual hosted/minimum-version execution remains pending; see
-[N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+## Repositories and starting surfaces
 
-Record the starting commit and checkout state. Reproduce the
-[quality gates](../measurement/QUALITY_GATES.md): six current schemas, three fixture
-families, N1 registry/report pins, N2 snapshot pins and exact P0 controlled match
-bytes. Retain the unchanged 85% branch-inclusive coverage floor. Track actual
-hosted/minimum-version execution separately; unresolved CI failures must not be
-presented as a successful release gate.
+| Owner | Existing surface to inspect | N4 responsibility |
+| --- | --- | --- |
+| Pixelated engine | `engine/runtime/camera.py` and `engine/runtime/camera_state.py` | Locate actual pipeline boundaries, local monotonic clocks and telemetry/queue hooks |
+| Pixelated browser | `apps/web/src/features/research-mode/researchTelemetryContract.ts` and player collection code | Declare accessible browser evidence and attribution limits |
+| Pixelated exporter | `apps/web/src/features/player/research/researchBundleV2.ts` and `researchRunExportArtifacts.ts` | Add an explicit trace artifact contract with support/loss metadata |
+| Python core | [N2 timing support](../../src/latency_fingerprinting/models/v2_support.py), [adoption](../measurement/OBSERVATION_V2_ADOPTION.md), [safe extraction](../measurement/SAMPLE_EXTRACTION.md) | Preserve existing behavior; add separate trace validation/adoption |
 
-Gate: record a reproducible local baseline and pending verification without
-rewriting frozen artifacts to make checks pass.
+Paths above are starting points in the existing sibling producer repository,
+not an approved hook inventory. Step 1 must inspect actual ownership and applicable
+repository instructions before fixing producer integration locations.
 
-## Step 1 — Freeze the analytical and matching field contract
+## Step 0 — Preserve and reproduce the post-N3 baseline
 
-**Specification gate:** Complete in [N3_ANALYTICAL_CONTRACT.md](../analysis/N3_ANALYTICAL_CONTRACT.md),
-design 1.0.0, with exact initial [policy JSON](../analysis/N3_FEATURE_POLICY_SPEC.json).
-The policy selects 22 registered primary outputs, preserves exclusions, defines
-signed responses and conservative evidence thresholds, and fixes root/version,
-compatibility, fingerprint, matching and command semantics before implementation.
-Parameters are explicitly software-provisional. Runtime enforcement is Step 2 onward.
+**Local gate:** Complete, 2026-10-09. Both starting trees were clean. Core: 1,539
+tests, 93.58% branch-inclusive coverage and all preservation gates pass. Producer:
+182 web tests pass; engine build succeeds with 131 tests passing and one existing
+external-artifact skip. Engine/web lint, web TypeScript compilation and lockfile
+consistency pass. Runtime/hosted limitations and starting commits are recorded
+in [N4 progress](../observability/N4_IMPLEMENTATION_PROGRESS.md).
 
-Author the field-level N3 design before runtime implementation. Use the
-[metric inventory](../measurement/METRIC_SEMANTICS_V2.md),
-[registry](../measurement/CANONICAL_REGISTRY.md) and
-[N2 contract](../measurement/OBSERVATION_V2_CONTRACT.md) as the source of meaning.
-Specify:
+Record commits and working-tree state in both repositories. Reproduce this core's
+[quality gates](../measurement/QUALITY_GATES.md): full coverage suite, ten schemas,
+registry/policy releases, four fixture families, three reproduction modules,
+controlled P0 artifacts, run-001 seed and exact run-002 match. Record applicable
+producer tests and whether the runtime/hardware is available. Preserve unrelated
+working-tree changes and distinguish configured CI from actual execution.
 
-- An explicit feature inventory binding each selected metric to registry
-  version/hash, definition version, unit and primary aggregation.
-- A separately versioned feature-policy identity/content hash, including response
-  direction, normalization formula/reference, numerical floors, clipping, weights
-  and feature/window eligibility rules.
-- Treatment of support, missing/rejected/incomplete summaries, minimum coverage,
-  usable evidence, zero values and confounders. Retain explicit exclusions or
-  invalidity; never replace absent evidence with zeros.
-- A standalone analytical response contract, plus proposed `fingerprint-v2` and
-  `match-result-v2` roots. Freeze exact names, independent versions, embedded versus
-  referenced evidence and cross-validation rules in this step.
-- Fingerprint provenance, source pair references, declared labels/validation status,
-  context/probe compatibility and eligibility for analytical comparison.
-- Shared-feature/positive-weight requirements, distance, residual evidence,
-  deterministic ranking/ties, rejection reasons and conservative `unknown`
-  outcomes. Distinguish invalid configuration from insufficient evidence.
-- Explicit v1/v2 rejection: no silent renaming, normalization or comparison of v1
-  fingerprints/P0 counter aggregates as v2 evidence.
+Gate: a reproducible baseline and explicit local/hosted/runtime limitations are
+recorded before changing contracts or instrumentation.
 
-Floors, clipping, coverage limits, weights and decision thresholds must belong to
-an explicit named/versioned policy with stated provenance. Do not inherit P0
-constants by feature-name coincidence or describe chosen software parameters as
-experimentally calibrated. Enumerate the proposed policy and independently
-auditable examples; settle these choices before Step 2 consumes them.
+## Step 1 — Freeze the timing, identity and capability contract
 
-Gate: every published number and decision has a specified, testable meaning.
-Exclude audit totals, unsupported proxies and unavailable stages from features.
+**Specification gate:** Complete, 2026-10-09. The [field/method contract](../observability/N4_TRACE_CONTRACT.md),
+[producer capability matrix and real/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md)
+and [independent examples](../observability/N4_TRACE_EXAMPLES.md) are fixed. This
+step delivered definitions only; Step 2 subsequently adds models/schemas and
+generic validation. Steps 3–5 subsequently deliver hooks and trace adoption;
+Step 6 subsequently delivers inspection; real measurements remain pending.
 
-## Step 2 — Implement strict policy and analytical response models
+Inspect real capture, encoder, sender and browser boundaries. Author
+`docs/observability/N4_TRACE_CONTRACT.md` and a producer capability matrix with:
 
-**Local gate:** Complete: 94 new analytical tests; 1,260 total tests pass with
-93.15% branch-inclusive coverage. Eight schemas reproduce; all six existing schema
-bytes and P0/N1/N2 reproduction pins remain unchanged. See the
-[model guide](../analysis/N3_ANALYTICAL_MODELS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+- Sanitized session/run/frame/trace identity, sequence scope, restart boundaries,
+  timestamp units, clock source/resolution and method versions. Retain explicit
+  correlation gaps when a frame cannot be followed across an interface.
+- Exact event boundaries for render-ready, capture, pre/post encode, sender queue/
+  send, receive, decode, render and display proxy, marking each available,
+  estimated or unavailable for each producer. Polls are not per-frame events.
+- Duration formulas and legal same-domain pairs, queue occupancy versus sojourn,
+  frame-age reference points, and negative/duplicate/out-of-order handling.
+- Clock-domain and synchronization evidence, error bounds and feedback delays.
+  GStreamer timestamps, Python monotonic time, browser performance time and UTC
+  require explicit relationships; a shared label alone does not synchronize them.
+- Declared deadline budget and versioned derivation, if any. Without an explicit
+  budget/reference, slack and deadline-hit status remain unavailable.
+- Sampling, capacity, drop/overflow accounting, privacy allowlists, byte/row/depth
+  bounds, artifact hashes, version rejection and canonical serialization.
+- Additive trace/summary root names, producer artifact/bundle versioning, local
+  CLI inputs/outputs and unchanged N2/N3 boundaries. No silent v2 reinterpretation.
 
-Add separate immutable analytical modules and additive schemas from Step 1.
-Validate policy version/hash agreement, registered bindings, units, finite numbers,
-unique features, eligibility/exclusion consistency and reconstructable response/
-normalization metadata. Revalidate supplied model instances and detach mutable
-caller containers at validated boundaries.
+Gate: every proposed number has a reviewed measurement meaning and independent
+example; capability gaps and the minimum real producer acceptance case are fixed
+before implementation. Do not promise a browser frame ID or hardware hook that
+the inspected producer cannot supply.
 
-Keep policy loading local, bounded and duplicate-safe. Missing/unknown/altered
-policies fail explicitly; records cannot resolve supplied URLs or alter registry
-meaning. Add root validation without modifying existing v1/N2 roots.
+## Step 2 — Implement strict additive trace contracts
 
-Gate: malformed records fail closed, valid zero remains numeric, and all existing
-schema bytes and reproduction pins remain unchanged.
+**Software gate:** Complete locally, 2026-10-09. [Immutable trace/summary models](../observability/N4_TRACE_MODELS.md),
+two additive schemas and generic validation are delivered, with independent
+identity/clock/loss/arithmetic/resource/copy regressions. Original ten schema bytes
+and N1–N3 reproduction pins are preserved. Steps 3–4 subsequently add host/browser hooks;
+Steps 5–6 subsequently deliver artifact adoption and timing reconstruction.
 
-## Step 3 — Derive auditable responses from validated v2 pairs
+Add focused observability models/modules and schemas using Step 1 definitions.
+Validate finite strict numbers, method versions, ordered unique identities,
+clock references, event/state consistency, loss accounting and bounded containers.
+Revalidate copied instances and detach mutable inputs. Unsupported/unknown methods
+fail closed; unavailable evidence has null values and an explicit reason.
 
-**Local gate:** Complete: 30 new derivation tests; 1,290 total tests pass with
-93.15% branch-inclusive coverage. Explicit policy and observation inputs are
-revalidated; numerical expectations, cadence invariance, exclusions and immutable
-inputs pass. All existing schemas and reproduction pins remain unchanged.
-See the [derivation guide](../analysis/N3_RESPONSE_DERIVATION.md).
+Add independently authored clock/identity/order/range/privacy/resource regressions.
+Do not modify frozen N2 stage records, registry outputs or N3 feature policy.
 
-Implement pure response/normalization functions taking `ObservationRecordV2` and
-an explicit policy. Retain degraded/relief primary values, raw response, normalized
-result, units, policy identity, support/coverage and exclusions required by Step 1.
+Gate: accepted evidence has a reconstructable meaning; existing ten schemas,
+approved releases and reproduction pins remain byte-identical.
 
-Respect window elapsed/interval semantics. Never subtract cross-domain timestamps
-or turn totals into rates without raw intervals. Reuse scalar math only when its
-meaning matches the reviewed contract. Reject unrepresentable arithmetic; preserve
-zero/missing distinctions, input immutability and audit-only metric roles.
+## Step 3 — Add bounded host capture and encoder instrumentation
 
-Gate: independent positive/negative/zero, low-denominator and partial/missing-support
-cases reconstruct responses. Altered clipping parameters fail the initial approved
-policy gate. Equivalent counter activity at different valid cadence retains the
-same eligible rate.
+**Software gate:** Complete locally, 2026-10-09. [Producer host hooks](../observability/N4_HOST_INSTRUMENTATION.md)
+are opt-in and bounded across peers/lifetimes, with source/queue/VP8 pad routing,
+clock/segment isolation, correlation/loss and teardown checks. Real timing and
+measured overhead remain Step 7 gates; this completion is software only.
 
-## Step 4 — Add v2 fingerprints and bounded repository loading
+Implement opt-in hooks at the approved engine boundaries. Use producer-local
+monotonic timestamps and explicitly scoped IDs; retain restart/reset boundaries.
+Keep callbacks short with bounded buffering, sampled collection where specified,
+loss counters and teardown. Avoid synchronous export or Python-core calls in
+frame callbacks. Report queue occupancy and waiting separately.
 
-**Local gate:** Complete: 62 new fingerprint/repository tests; 1,352 total tests
-pass with 93.35% branch-inclusive coverage. Nine schemas
-reproduce; all eight existing schema bytes and P0/N1/N2 pins remain unchanged.
-Independent reconstruction, 16/17 eligibility, declared provenance, immutable
-creation and fail-closed resource/link handling pass. See the
-[fingerprint guide](../analysis/N3_FINGERPRINTS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+Test disabled mode, enabled ordering/correlation, dropped events, overflow,
+shutdown and restarts with the producer's established test tooling. Software
+hook tests do not establish measured timing or real hardware availability.
 
-Implement the separately versioned fingerprint root and dedicated bounded loader.
-Bind policy/registry meaning, context and probe semantics to retained response and
-provenance. Validate that published features derive from declared evidence; retain
-explicit validation/exclusion metadata.
+Gate: bounded trace collection preserves the disabled path and identifies every
+instrumented event's actual location and clock domain.
 
-Require declared labels and source evidence; never infer a real bottleneck label
-from similarity or mark synthetic fingerprints experimentally validated. Define
-read-only deterministic creation without ambient IDs or unrequested file writes.
-Reject duplicate IDs, malformed records and mixed roots under the reviewed policy.
+## Step 4 — Add browser and transport capability evidence
 
-Gate: altered vectors, incompatible meanings and false provenance claims fail;
-invalid files cannot silently become candidates.
+**Software gate:** Complete locally, 2026-10-09. [Opt-in browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md)
+records only approved presentation/callback endpoints, with lifetime/global bounds,
+truthful API/transport/decode capability and exact loss accounting. Fake-video tests
+and a production web build pass; live browser timing/overhead remain pending.
 
-## Step 5 — Implement separate deterministic v2 matching and evidence
+Implement only hooks/API evidence approved in Step 1. Keep existing WebRTC
+cumulative decode/buffer means and RTT separate from per-frame timing. Declare
+receiver, decode, render/display-proxy and sender support individually. Do not
+invent sender-to-browser frame correlation or one-way delay from unrelated clocks.
+Retain clock resolution, sampling and feedback-delay limitations.
 
-**Local gate:** Complete: 76 new matching/model tests; 1,428 total tests pass
-with 93.51% branch-inclusive coverage. Ten schemas reproduce;
-all nine existing schema bytes and P0/N1/N2 pins remain unchanged. Numerical
-reconstruction, compatibility, unknown priorities, threshold boundaries, ties,
-repository verification and finite/resource limits pass. See the
-[matching guide](../analysis/N3_MATCHING.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+Gate: supported stages carry method evidence; inaccessible stages and missing
+correlation remain explicit rather than becoming fabricated timestamps or zeros.
 
-Add v2 compatibility, scoring and decision modules around the explicit policy.
-Filter by context, registry, policy and intervention meanings before comparing
-eligible shared features. Publish residuals, weights, exclusions and rejection
-reasons with reconstructable distances and reproducible ranking.
+## Step 5 — Export and adopt bounded trace artifacts
 
-Require positive usable weight and minimum evidence. Handle empty repositories,
-no compatible candidates, weak coverage, ambiguity, poor matches and contradictory
-evidence with specified `unknown` outcomes. Report similarity/decision evidence
-without implying calibrated causal confidence. Preserve the P0 matcher/defaults.
+**Software gate:** Complete locally, 2026-10-09. [Standalone producer exports and
+bounded Python adoption](../observability/N4_TRACE_ADOPTION.md) deliver host shutdown
+persistence, opt-in browser download and atomic ingest-trace output. Synthetic
+export-to-CLI handoffs reproduce canonical bytes; legacy pins remain unchanged.
 
-Gate: independently calculated cases prove distance/evidence consistency, stable
-tie ordering and conservative decisions under incomplete/contradictory inputs.
+Implement the reviewed producer artifact/version contract, then an additive Python
+reader and CLI. Keep old bundle versions and their existing ingestion outputs
+unchanged. Reuse bounded, duplicate-safe, no-follow input handling where compatible;
+add trace-specific row/event limits, identity/privacy checks and version rejection.
+Include support/loss declarations and hashes in the same validated read.
 
-## Step 6 — Expose additive offline commands
+Document producer export and Python commands together. Wrong versions, malformed
+records, unsafe links, oversized inputs and mismatched artifacts fail without
+partial output. No supplied record can resolve a remote URL or change method meaning.
 
-**Local gate:** Complete: 52 public command tests; 1,480 total tests pass with
-93.56% branch-inclusive coverage. Tests cover exact API parity,
-end-to-end execution, bounded/read-only inputs, output limits, wrong roots/policies
-and deterministic privacy-limited failures. Existing schemas and reproduction
-pins remain unchanged. See the [command guide](../analysis/N3_COMMANDS.md) and
-[progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+Gate: the approved new producer export is consumable deterministically; legacy
+directory/TAR outputs and all existing pinned fixtures still reproduce exactly.
 
-After contracts/functions pass, expose the specified `build-response-v2`,
-`build-fingerprint-v2` and `match-v2` commands. Preserve the field contract
-arguments in the command guide; require
-explicit local policies where needed. Retain existing `build-response`, `match`
-and ingestion behavior.
+## Step 6 — Reconstruct stage-local timing and inspect evidence
 
-Emit complete canonical JSON after validation. Preserve bounded file/repository
-traversal, privacy-limited reasons, deterministic errors and read-only inputs.
-Cover incompatible roots/policies, duplicate keys, byte/depth/file-count limits
-and no partial output on public command failures.
+**Software gate:** Complete locally, 2026-10-09. [Pure reconstruction/inspection](../observability/N4_TIMING_RECONSTRUCTION.md)
+delivers all four approved methods, same-lifetime pairing, priority exclusions,
+exact integer-sum statistics and declared-budget slack/hits. inspect-trace uses
+bounded no-follow input and atomic output; synthetic producer examples reproduce.
 
-Gate: CLI output equals pure API output; no implicit conversion/fallback admits
-wrong-version evidence.
+Implement pure derivation from validated trace evidence. Retain event pairing,
+clock/method references, counts, exclusions, dropped/missing evidence and declared
+sampling. Derive only approved same-domain durations, frame-age references and
+deadline quantities. Reject impossible/nonfinite/unrepresentable arithmetic;
+never bridge restarts, unmatched frames or unsupported cross-domain intervals.
 
-## Step 7 — Fixtures, verification, documentation and software closeout
+Expose a read-only inspection result with independently reconstructable statistics
+and observed/estimated/unavailable distinctions. Keep results separate from N3
+normalization, fingerprints and match decisions.
 
-**Local gate:** Complete: 19 synthetic snapshots, independent numerical
-expectations and pinned reproduction in both configured Python jobs. The final
-repository ancestor-replacement regression is included. 1,520 tests pass with
-93.58% branch-inclusive coverage. See the [closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md),
-[fixtures](../analysis/N3_ANALYTICAL_FIXTURES.md) and [audit](../analysis/N3_ARCHITECTURE_AUDIT.md).
-Actual hosted/minimum-version execution remains pending.
+Gate: independent positive/zero/missing/out-of-order/reset/clock-domain cases prove
+the published durations and coverage, with no one-way latency claim.
 
-Add explicitly synthetic analytical/fingerprint/match fixtures with independently
-authored numerical expectations and exact-byte/SHA-256 drift checks. Cover both
-eligible and conservative-unknown paths. Preserve all P0/N1/N2 inputs/pins;
-new analytical snapshots have separate pins.
+## Step 7 — Verify producer integration, overhead and close out
 
-Run both configured Python suites, coverage/resource/privacy checks, schema/policy/
-fixture drift and existing reproduction gates. Distinguish local execution from
-actual hosted results. Update README, architecture, module/command guides and a
-dedicated N3 closeout. Check the whole final tree, including fixture documentation
-created during closeout.
+**Software gate:** Complete locally, 2026-10-09. [Pinned fixture/integration verification](../observability/N4_INTEGRATION_VERIFICATION.md) reproduces actual synthetic host/browser exports through adoption, reconstruction and CLI inspection. [Software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) records local checks and explicit outstanding real/minimum-version/hosted gates. Docker/Linux runtime is unavailable; full N4 acceptance remains pending.
 
-Archive this plan when replacing it with a successor. Retain pending verification
-explicitly and keep scientific evaluation/new instrumentation separate.
+Add separately pinned synthetic trace fixtures and read-only reproduction. Exercise
+export-to-inspection across producer and Python boundaries. Run applicable tests
+in both repositories, old preservation gates, documentation/link checks and CI
+configuration checks, distinguishing local from actual hosted execution.
 
-The [follow-up health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records post-closeout
-score-underflow and shared bundle-reader repairs and current verification. Step 7
-counts above remain the original milestone evidence; the plan remains complete.
+Execute the minimum real capture acceptance case specified in Step 1. Record
+producer versions, instrumentation locations, runtime/hardware, bounded-buffer
+behavior and overhead with/without instrumentation under a documented procedure.
+Set an overhead acceptance criterion before measurement; do not call an unmeasured
+hook software-validated real timing. Capture at least the approved stage-local
+boundary pair and show explicit unavailability for the rest.
+
+If runtime/hardware is unavailable, retain implemented software and the concrete
+pending integration/overhead gate; do not mark full N4 observability complete.
+Publish `N4_SOFTWARE_CLOSEOUT.md` with separate software, real-capture and hosted
+results. Archive its progress/audits and plan on the following transition.
+
+Gate: a sanitized real trace reconstructs the approved stage-local timing, explains
+unavailable stages and meets the measured overhead criterion. Remaining Phase 1.3
+scenario/held-out experiment work stays separate.
 
 ## Exit checklist
 
-- [x] Baseline and frozen P0/N1/N2 reproduction checks are retained locally.
-- [x] Feature inventory, policy parameters and compatibility meanings are specified.
-- [x] Strict policy/response contracts and schemas are delivered.
-- [x] Strict fingerprint contract/schema and bounded repository are delivered.
-- [x] Strict match contract/schema is delivered.
-- [x] Responses retain auditable values, support, coverage and exclusions.
-- [x] Matching is deterministic and conservative with insufficient/ambiguous evidence.
-- [x] Separate commands preserve v1 behavior and bounded/read-only inputs.
-- [x] Independent synthetic expectations and new pins reproduce exactly.
-- [x] Whole-tree tests, docs and software closeout match delivered behavior.
-- [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
+- [x] Both repository baselines and existing reproduction gates are recorded.
+- [x] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
+- [x] Strict additive models/schemas preserve all existing contract bytes.
+- [x] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
+- [x] Browser/transport evidence exposes actual capabilities and correlation limits.
+- [x] Versioned producer export and Python adoption agree without changing old outputs.
+- [x] Offline timing reconstruction retains clocks, methods, pairing and exclusions.
+- [x] Independent fixtures, pins and cross-repository tests reproduce.
+- [ ] Real stage-local capture and instrumentation overhead acceptance are recorded.
+- [x] Actual minimum-version/hosted results or explicit outstanding items are recorded.
+- [x] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-N3 software is complete locally. Retain this completed plan until a successor
-scope is selected from the broader roadmap, then archive it before replacement.
-Hosted/minimum-version execution remains separately pending; remaining Phase 1
-instrumentation/experiment work and scientific evaluation are outside this closeout.
+**Next acceptance action:** provision the frozen Linux capture/draining-receiver setup; implement/verify the acceptance runner with a fresh recording after warm-up (the camera has no interactive reset control); run the real producer and paired overhead gates, and record actual minimum-version/hosted results. Steps 0–6 and Step 7 synthetic integration/software closeout are complete locally; full N4 acceptance remains pending.
+Phase 1 also needs the subsequent scenario harness; the roadmap's seven phases
+are not a fixed N1–N7 slice count.

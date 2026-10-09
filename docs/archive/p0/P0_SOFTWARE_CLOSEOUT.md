@@ -1,5 +1,8 @@
 # P0 Software Closeout
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Latest local verification:** 2026-10-02
 
 **Software status:** P0 vertical slice verified  
@@ -158,17 +161,17 @@ registry and aggregation work remains planned, not implemented by this review.
 
 ## Inspectable examples
 
-- Clear query input: [`../../fixtures/query_cases/similar_network/observation.json`](../../fixtures/query_cases/similar_network/observation.json)
-- Network reference fingerprint: [`../../fixtures/reference_cases/network_pressure/fingerprint.json`](../../fixtures/reference_cases/network_pressure/fingerprint.json)
-- Ranked matched output: [`../../tests/data/clear-network-match-result.json`](../../tests/data/clear-network-match-result.json)
-- Ambiguous `unknown` output: [`../../fixtures/query_cases/ambiguous/expected-match-result.json`](../../fixtures/query_cases/ambiguous/expected-match-result.json)
-- Sanitized Pixelated adapter input: [`../../tests/data/pixelated_bundle/README.md`](../../tests/data/pixelated_bundle/README.md)
-- Controlled-real procedure and evidence index: [`../../experiments/controlled-run-001/README.md`](../../experiments/controlled-run-001/README.md)
-- Controlled-real response: [`../../experiments/controlled-run-001/observation.json`](../../experiments/controlled-run-001/observation.json)
-- Controlled-real matcher output: [`../../experiments/controlled-run-001/match-result.json`](../../experiments/controlled-run-001/match-result.json)
-- Sanitized bundle checksums: [`../../experiments/controlled-run-001/manifest.json`](../../experiments/controlled-run-001/manifest.json)
-- Independent repeat observation: [`../../experiments/controlled-run-002/observation.json`](../../experiments/controlled-run-002/observation.json)
-- Independent repeat match: [`../../experiments/controlled-run-002/match-result.json`](../../experiments/controlled-run-002/match-result.json)
+- Clear query input: [`../../fixtures/query_cases/similar_network/observation.json`](../../../fixtures/query_cases/similar_network/observation.json)
+- Network reference fingerprint: [`../../fixtures/reference_cases/network_pressure/fingerprint.json`](../../../fixtures/reference_cases/network_pressure/fingerprint.json)
+- Ranked matched output: [`../../tests/data/clear-network-match-result.json`](../../../tests/data/clear-network-match-result.json)
+- Ambiguous `unknown` output: [`../../fixtures/query_cases/ambiguous/expected-match-result.json`](../../../fixtures/query_cases/ambiguous/expected-match-result.json)
+- Sanitized Pixelated adapter input: [`../../tests/data/pixelated_bundle/README.md`](../../../tests/data/pixelated_bundle/README.md)
+- Controlled-real procedure and evidence index: [`../../experiments/controlled-run-001/README.md`](../../../experiments/controlled-run-001/README.md)
+- Controlled-real response: [`../../experiments/controlled-run-001/observation.json`](../../../experiments/controlled-run-001/observation.json)
+- Controlled-real matcher output: [`../../experiments/controlled-run-001/match-result.json`](../../../experiments/controlled-run-001/match-result.json)
+- Sanitized bundle checksums: [`../../experiments/controlled-run-001/manifest.json`](../../../experiments/controlled-run-001/manifest.json)
+- Independent repeat observation: [`../../experiments/controlled-run-002/observation.json`](../../../experiments/controlled-run-002/observation.json)
+- Independent repeat match: [`../../experiments/controlled-run-002/match-result.json`](../../../experiments/controlled-run-002/match-result.json)
 
 The fixture examples use `synthetic` provenance. The controlled-run observation
 uses `controlled_real` provenance and remains clearly separated from those
@@ -184,7 +187,7 @@ python -c "from latency_fingerprinting.synthetic_fixtures import fixture_drift; 
 ```
 
 Controlled-real reproduction is documented in
-[`../../experiments/controlled-run-001/README.md`](../../experiments/controlled-run-001/README.md).
+[`../../experiments/controlled-run-001/README.md`](../../../experiments/controlled-run-001/README.md).
 Private raw bundles remain excluded from Git.
 
 ## Controlled-real outcome

@@ -1,5 +1,9 @@
 # Archived N1 Implementation Plan: Metric Semantics Foundation
 
+> Historical completed plan; implementation statements below retain their milestone context.
+> N1–N3 are complete locally. The [active N4 plan](../NEXT_IMPLEMENTATION_PLAN.md)
+> now covers stage-level observability; hosted verification remains separately pending.
+
 **Slice ID:** N1
 **Status:** Archived software closeout; Steps 0–10 locally verified; hosted CI pending
 **Updated:** 2026-10-06
@@ -8,12 +12,12 @@
 `observation-v1`, `fingerprint-v1`, and `match-result-v1`.
 
 Verified milestone results are recorded in
-[`N1_IMPLEMENTATION_PROGRESS.md`](../../measurement/N1_IMPLEMENTATION_PROGRESS.md).
+[`N1_IMPLEMENTATION_PROGRESS.md`](../../archive/measurement/N1_IMPLEMENTATION_PROGRESS.md).
 The authoritative Step 1 inventory is
 [`METRIC_SEMANTICS_V2.md`](../../measurement/METRIC_SEMANTICS_V2.md).
 Steps 0–10 are complete at the local software boundary. Python 3.11 and hosted
 CI execution remain pending; this archive does not claim remote job success.
-Final results are in [`N1_SOFTWARE_CLOSEOUT.md`](../../measurement/N1_SOFTWARE_CLOSEOUT.md).
+Final results are in [`N1_SOFTWARE_CLOSEOUT.md`](../../archive/measurement/N1_SOFTWARE_CLOSEOUT.md).
 
 ## Slice outcome
 

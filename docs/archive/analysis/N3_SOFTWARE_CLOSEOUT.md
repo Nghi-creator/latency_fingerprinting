@@ -1,5 +1,8 @@
 # N3 software closeout
 
+> Archived milestone record, retained with its original results and limitations.
+> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+
 **Slice:** N3 — V2 analytical features and offline fingerprint/matching
 **Closed locally:** 2026-10-08
 **Software status:** Steps 0–7 implemented and locally verified
@@ -13,13 +16,13 @@ the repository ancestor-replacement fix and the complete fixture documentation.
 
 | Delivered surface | Meaning |
 | --- | --- |
-| [Contract and policy](N3_ANALYTICAL_CONTRACT.md) | 22 registered primary features; exact provisional policy identity/hash, eligibility and compatibility rules |
-| [Strict models](N3_ANALYTICAL_MODELS.md) | Separate policy/response/fingerprint/match roots; immutable revalidated evidence; four additive schemas, ten total |
-| [Response derivation](N3_RESPONSE_DERIVATION.md) | Signed primary-value changes, explicit floors, retained exclusions/confounders and deterministic IDs |
-| [Fingerprints and repositories](N3_FINGERPRINTS.md) | Declared labels/provenance, reconstructable vectors, 17/22 software threshold, bounded fail-closed loading |
-| [Matching](N3_MATCHING.md) | Structural compatibility, finite weighted RMS residual evidence, all comparisons, stable top-five ranking and conservative unknowns |
-| [Commands](N3_COMMANDS.md) | Three additive read-only commands, explicit policies, privacy-limited failures and bounded complete output |
-| [Fixtures](N3_ANALYTICAL_FIXTURES.md) | 19 synthetic snapshots, independent numerical expectations, full-byte hashes and reproduction in both configured CI jobs |
+| [Contract and policy](../../analysis/N3_ANALYTICAL_CONTRACT.md) | 22 registered primary features; exact provisional policy identity/hash, eligibility and compatibility rules |
+| [Strict models](../../analysis/N3_ANALYTICAL_MODELS.md) | Separate policy/response/fingerprint/match roots; immutable revalidated evidence; four additive schemas, ten total |
+| [Response derivation](../../analysis/N3_RESPONSE_DERIVATION.md) | Signed primary-value changes, explicit floors, retained exclusions/confounders and deterministic IDs |
+| [Fingerprints and repositories](../../analysis/N3_FINGERPRINTS.md) | Declared labels/provenance, reconstructable vectors, 17/22 software threshold, bounded fail-closed loading |
+| [Matching](../../analysis/N3_MATCHING.md) | Structural compatibility, finite weighted RMS residual evidence, all comparisons, stable top-five ranking and conservative unknowns |
+| [Commands](../../analysis/N3_COMMANDS.md) | Three additive read-only commands, explicit policies, privacy-limited failures and bounded complete output |
+| [Fixtures](../../analysis/N3_ANALYTICAL_FIXTURES.md) | 19 synthetic snapshots, independent numerical expectations, full-byte hashes and reproduction in both configured CI jobs |
 
 Local Python 3.13.13 verification: **1,520 tests pass; 93.58% branch-inclusive
 coverage**, above the unchanged 85% floor. N3 adds 354 tests to the post-N2 baseline
@@ -38,7 +41,7 @@ The original N3 baseline is `06e697105e918c0c2f3ae2d25bf75c833f7982ad`.
 Step 7 starts at `b5224cb17409ff28640960b060134471a6fd3cfe`. It adds snapshots,
 test support, CI gates and docs, and hardens only v2 repository root opening.
 Pinned N1 registry/report and N2 browser/engine/synthetic bytes are preserved.
-[The fixture README](../../fixtures/analytical-v2/README.md) retains all 19 separate
+[The fixture README](../../../fixtures/analytical-v2/README.md) retains all 19 separate
 N3 full-file pins. The approved policy's self-excluding hash remains:
 
 `sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af`
@@ -61,9 +64,9 @@ verification to check external references. No new live probe, remediation, direc
 stage instrumentation or controlled experiment was run. Stage timings remain
 unavailable under N2's explicit timing contract.
 
-N3 is locally closed out. The [completed implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
-retains its gates and pending hosted item until a successor is selected, then should
-be archived. The [broader roadmap](../plans/FULL_IMPLEMENTATION_PLAN.md) still has
-Phase 1 observability/experiment-foundation work and later scientific evaluation.
-Review a successor's scope against those remaining boundaries before replacing
-the completed N3 plan.
+N3 is locally closed out. Its [archived implementation plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
+retains completed gates and the pending hosted item. The active
+[N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) addresses stage-level observability
+without changing N2/N3 meanings. The [broader roadmap](../../plans/FULL_IMPLEMENTATION_PLAN.md)
+still has Phase 1 scenario-harness work and later scientific evaluation. N4 is
+planned, not implemented.

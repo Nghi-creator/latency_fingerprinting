@@ -1,0 +1,234 @@
+{
+  "method_release": "n4-stage-local-v1",
+  "producer": "pixelated_engine",
+  "producer_version": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": "synthetic",
+  "run_id": "run-1",
+  "schema_version": "stage-trace-record-v1",
+  "session_id": "session-1",
+  "streams": [
+    {
+      "capabilities": [
+        {
+          "boundary": "render_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_begin",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_output",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "encode_input",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "encode_output",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "wire_send",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "receive",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "decode_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "presentation_proxy",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        }
+      ],
+      "clock": {
+        "origin": "stream_start",
+        "resolution_ns": 1,
+        "source": "python_monotonic_ns",
+        "synchronization": "none",
+        "unit": "ns"
+      },
+      "clock_id": "clock-1",
+      "deadline": {
+        "budget_ns": 12000000,
+        "method_id": "capture-output-budget",
+        "method_version": 1
+      },
+      "epoch_id": "epoch-1",
+      "events": [
+        {
+          "boundary": "capture_output",
+          "frame_id": "frame-1",
+          "sequence": 1,
+          "timestamp_ns": 0
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "frame_id": "frame-1",
+          "sequence": 2,
+          "timestamp_ns": 1000000
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "frame_id": "frame-1",
+          "sequence": 3,
+          "timestamp_ns": 4000000
+        },
+        {
+          "boundary": "encode_input",
+          "frame_id": "frame-1",
+          "sequence": 4,
+          "timestamp_ns": 5000000
+        },
+        {
+          "boundary": "encode_output",
+          "frame_id": "frame-1",
+          "sequence": 5,
+          "timestamp_ns": 9000000
+        },
+        {
+          "boundary": "capture_output",
+          "frame_id": "frame-2",
+          "sequence": 6,
+          "timestamp_ns": 20000000
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "frame_id": "frame-2",
+          "sequence": 7,
+          "timestamp_ns": 21000000
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "frame_id": "frame-2",
+          "sequence": 8,
+          "timestamp_ns": 21000000
+        },
+        {
+          "boundary": "encode_input",
+          "frame_id": "frame-2",
+          "sequence": 9,
+          "timestamp_ns": 22000000
+        },
+        {
+          "boundary": "encode_output",
+          "frame_id": "frame-2",
+          "sequence": 10,
+          "timestamp_ns": 32000000
+        },
+        {
+          "boundary": "capture_output",
+          "frame_id": "frame-3",
+          "sequence": 11,
+          "timestamp_ns": 40000000
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "frame_id": "frame-3",
+          "sequence": 12,
+          "timestamp_ns": 41000000
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "frame_id": "frame-3",
+          "sequence": 13,
+          "timestamp_ns": 46000000
+        },
+        {
+          "boundary": "encode_input",
+          "frame_id": "frame-3",
+          "sequence": 14,
+          "timestamp_ns": 47000000
+        },
+        {
+          "boundary": "encode_output",
+          "frame_id": "frame-3",
+          "sequence": 15,
+          "timestamp_ns": 57000000
+        },
+        {
+          "boundary": "capture_output",
+          "frame_id": "frame-4",
+          "sequence": 16,
+          "timestamp_ns": 60000000
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "frame_id": "frame-4",
+          "sequence": 17,
+          "timestamp_ns": 61000000
+        }
+      ],
+      "frames": [
+        {
+          "correlation": "exact",
+          "frame_id": "frame-1",
+          "source_sequence": 1
+        },
+        {
+          "correlation": "exact",
+          "frame_id": "frame-2",
+          "source_sequence": 2
+        },
+        {
+          "correlation": "exact",
+          "frame_id": "frame-3",
+          "source_sequence": 3
+        },
+        {
+          "correlation": "exact",
+          "frame_id": "frame-4",
+          "source_sequence": 4
+        }
+      ],
+      "limits": {
+        "max_events": 10000,
+        "max_frames": 2000
+      },
+      "loss": {
+        "attempted_events": 17,
+        "browser_missed_presentations": 0,
+        "event_capacity_dropped": 0,
+        "event_contention_dropped": 0,
+        "event_correlation_dropped": 0,
+        "event_invalid_timestamp_dropped": 0,
+        "event_shutdown_dropped": 0,
+        "frame_capacity_dropped": 0,
+        "offered_frames": 4,
+        "retained_events": 17,
+        "sampled_frames": 4,
+        "unsampled_frames": 0
+      },
+      "sampling": {
+        "every_nth_frame": 1
+      },
+      "stop_reason": "completed",
+      "stream_id": "stream-1"
+    }
+  ],
+  "trace_id": "trace-1"
+}

@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml/badge.svg)](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml)
 
-This repository contains the detached Python research core and the documents used to build its initial P0 vertical slice. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
+This repository contains the detached Python research core, completed P0/N1–N3 foundations and the active N4 stage-observability plan. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
 
 ## P0 objective
 
@@ -23,9 +23,9 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 2. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) defines the Python/TypeScript boundary and repository structure.
 3. [`docs/p0/DATA_MODEL_AND_MATCHER.md`](docs/p0/DATA_MODEL_AND_MATCHER.md) defines records, normalization and matching.
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
-5. [`docs/p0/P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
+5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
-7. [`docs/plans/NEXT_IMPLEMENTATION_PLAN.md`](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the detailed plan for the active implementation slice.
+7. [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the active implementation plan; Steps 0–6 and Step 7 synthetic integration are complete locally; real capture/overhead acceptance remains pending.
 8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
@@ -91,50 +91,32 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
 
 [Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
 in with independent expected summaries and read-only drift checks.
-[Quality gates](docs/measurement/QUALITY_GATES.md) cover both CI Python versions,
-branch coverage and pinned registry/report reproduction. [N1 software closeout](docs/measurement/N1_SOFTWARE_CLOSEOUT.md)
-is complete with 892 tests passing locally and 91.53% branch-inclusive coverage.
-Python 3.11 and hosted CI verification remain pending. N2 observation-v2 adoption
-is now delivered separately below; v2 features stay separate from P0 matcher inputs.
+[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N4
+paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
+and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
+The latest local suite passes **1,745 tests with 93.69% branch-inclusive
+coverage**; actual Python 3.11/hosted verification remains pending.
 
-The [post-N1 architecture audit](docs/measurement/ARCHITECTURE_AUDIT.md) adds
-summary validation and scaling fixes plus adapter boundary tests: **924 tests
-pass with 91.89% branch-inclusive coverage**. It also records remaining
-verification and N2 contract gaps.
+Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
+[approved provisional policy](docs/analysis/N3_FEATURE_POLICY_SPEC.json),
+[models](docs/analysis/N3_ANALYTICAL_MODELS.md), [response derivation](docs/analysis/N3_RESPONSE_DERIVATION.md),
+[fingerprints/repositories](docs/analysis/N3_FINGERPRINTS.md), [commands](docs/analysis/N3_COMMANDS.md)
+and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 
-N2 delivers the
-[observation-v2 field specification](docs/measurement/OBSERVATION_V2_CONTRACT.md).
-Its [strict models and additive schemas](docs/measurement/OBSERVATION_V2_MODELS.md)
-are implemented, with **1,092 tests passing and 92.60% branch-inclusive coverage**.
-The [progress record](docs/measurement/N2_IMPLEMENTATION_PROGRESS.md) preserves
-verification at each milestone. The
-[offline raw-bundle adoption command](docs/measurement/OBSERVATION_V2_ADOPTION.md)
-now includes explicit unavailable capture/encode/decode/render timing records:
-**1,166 tests pass, 93.05% branch-inclusive coverage**.
-[Deterministic v2 fixtures and reproduction gates](docs/measurement/OBSERVATION_V2_FIXTURES.md)
-are delivered in both configured Python CI jobs. [N2 software closeout](docs/measurement/N2_SOFTWARE_CLOSEOUT.md)
-is complete locally; P0/N1 pins remain unchanged. Actual Python 3.11/hosted results
-remain pending. The [post-N2 health audit](docs/measurement/N2_ARCHITECTURE_AUDIT.md)
-repairs reused-summary validation, synthetic artifact identity and documentation
-test scope. The completed [N3 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md)
-now covers feature-policy design, v2 responses/normalization, fingerprints and
-offline matching. N3 Steps 0–7 are complete locally: the
-[field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md) and explicit provisional
-[policy specification](docs/analysis/N3_FEATURE_POLICY_SPEC.json) are frozen.
-[Strict policy/response models and schemas](docs/analysis/N3_ANALYTICAL_MODELS.md)
-and [pure response derivation](docs/analysis/N3_RESPONSE_DERIVATION.md) are
-implemented, along with [v2 fingerprints and bounded repository loading](docs/analysis/N3_FINGERPRINTS.md).
-The local suite passes 1,539 tests with 93.58% branch-inclusive coverage after the
-[follow-up health audit](docs/analysis/N3_ARCHITECTURE_AUDIT.md), which repairs
-scoring underflow and shared bundle-reader path races with 19 new regressions.
-[V2 compatibility, scoring and conservative matching](docs/analysis/N3_MATCHING.md)
-and [additive v2 commands](docs/analysis/N3_COMMANDS.md) are implemented.
-[Separate analytical fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md),
-[software closeout](docs/analysis/N3_SOFTWARE_CLOSEOUT.md) and the
-[final architecture audit](docs/analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally.
-Successor scope remains to be selected from the broader roadmap. The
-[archived N2 plan](docs/plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves
-the completed checklist and pending hosted verification.
+**Current: [N4 acceptance](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).** Software
+Steps 0–6 and Step 7 synthetic integration are complete locally: strict trace
+models, bounded host/browser instrumentation, standalone export/adoption and
+same-domain timing inspection. The [software closeout](docs/observability/N4_SOFTWARE_CLOSEOUT.md)
+and [health audit](docs/observability/N4_ARCHITECTURE_AUDIT.md) record the evidence.
+Next run the [real capture and overhead gates](docs/observability/N4_INTEGRATION_VERIFICATION.md)
+in the required Linux runtime. Full N4 acceptance remains pending. The Phase 1.3
+scenario harness follows separately; N2 timing and N3 matching meanings stay frozen.
+
+Completed milestone records are in the [documentation archive](docs/archive/README.md),
+and completed N1–N3 plans are in the [plan archive](docs/plans/archive/README.md).
+Their results and pending checks remain historical evidence. The
+[current documentation index](docs/README.md) separates active work, implemented
+reference guides and archived records.
 
 ### Implemented and verified
 
@@ -185,10 +167,10 @@ for subsequent captures.
   mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
 
 The current implementation sequence and exit gates are in the
-[`next-slice plan`](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
+[N4 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
 the finished engine is maintained in the
 [`full implementation plan`](docs/plans/FULL_IMPLEMENTATION_PLAN.md).
 
 Inspectable software examples are linked from
-[`P0_SOFTWARE_CLOSEOUT.md`](docs/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
+[`P0_SOFTWARE_CLOSEOUT.md`](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
 an engineering similarity measure, not probability or calibrated confidence.

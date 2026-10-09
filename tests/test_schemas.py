@@ -27,6 +27,10 @@ def test_checked_in_schemas_match_models() -> None:
 def test_root_schemas_use_contract_json_aliases() -> None:
     for model in SCHEMA_MODELS.values():
         schema = json.loads(render_schema(model))
+        if "schema_version" in schema["properties"]:
+            assert "method_release" in schema["properties"]
+            assert "schemaVersion" not in schema["properties"]
+            continue
         assert "schemaVersion" in schema["properties"]
         if model is not SCHEMA_MODELS["metric-registry-v1.schema.json"]:
             assert "contractVersion" in schema["properties"]

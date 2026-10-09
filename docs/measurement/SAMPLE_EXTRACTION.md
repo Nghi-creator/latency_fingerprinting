@@ -24,7 +24,7 @@ descriptors. Directory members are opened relative to that root with nonblocking
 no-follow flags and must be regular files. TAR inputs are likewise pinned regular
 files; compressed input bytes are bounded before decoding, including file growth
 after the size check. Ancestor links and replacement links/FIFOs fail closed.
-The [post-N3 health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records these repairs
+The [post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) records these repairs
 and preservation checks across P0/N1/N2.
 
 Context must explicitly declare bundle schema version and workload identity.

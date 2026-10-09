@@ -1,16 +1,20 @@
 # Archived N2 Implementation Plan: Additive Observation-v2 Adoption
 
+> Historical completed plan; implementation statements below retain their milestone context.
+> N1–N3 are complete locally. The [active N4 plan](../NEXT_IMPLEMENTATION_PLAN.md)
+> now covers stage-level observability; hosted verification remains separately pending.
+
 **Slice ID:** N2
 **Status:** Archived software closeout; Steps 0–5 locally complete; hosted verification pending
 **Updated:** 2026-10-07
 **Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](../FULL_IMPLEMENTATION_PLAN.md)
-**Predecessor:** [N1 software closeout](../../measurement/N1_SOFTWARE_CLOSEOUT.md)
+**Predecessor:** [N1 software closeout](../../archive/measurement/N1_SOFTWARE_CLOSEOUT.md)
 
 N1 Steps 0–10 are implemented and locally verified. Its Python 3.11/hosted CI
 results remain pending; review those results before claiming cross-version
 release verification. The [archived N1 plan](N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md)
 preserves the completed software checklist. N2's baseline and field specification
-are recorded in [N2 progress](../../measurement/N2_IMPLEMENTATION_PROGRESS.md).
+are recorded in [N2 progress](../../archive/measurement/N2_IMPLEMENTATION_PROGRESS.md).
 Strict observation-v2 models/schemas and raw-bundle adoption are implemented;
 v2 matching is not implemented.
 
@@ -133,7 +137,7 @@ New capture instrumentation is a later slice rather than an implicit N2 dependen
 **Local gate:** Complete. Three deterministic v2 fixtures, exact-byte/SHA-256
 reproduction and both Python CI commands are delivered. Twenty-two new fixture/CLI
 cases pass; full suite: 1,162 tests, 93.04% branch-inclusive coverage. See the
-[N2 software closeout](../../measurement/N2_SOFTWARE_CLOSEOUT.md). Python 3.11/hosted
+[N2 software closeout](../../archive/measurement/N2_SOFTWARE_CLOSEOUT.md). Python 3.11/hosted
 execution remains pending; configured CI is not execution evidence.
 
 Keep both Python versions, the 85% branch floor, bounded-resource/CLI regression
@@ -161,10 +165,10 @@ limitations and the exact next boundary for fingerprint/matcher-v2 adoption.
 N2 software implementation is locally complete. The remaining verification item
 is actual Python 3.11/hosted CI evidence. The next implementation boundary is a
 separately reviewed v2 feature/normalization and fingerprint/matcher contract.
-This completed plan is archived. The [active N3 plan](../NEXT_IMPLEMENTATION_PLAN.md)
+This completed plan is archived. The [archived N3 plan](N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 now specifies the successor analytical/fingerprint/matcher slice. No N2
 implementation is included in the historical N1 closeout.
 
-Subsequent [post-N2 health audit](../../measurement/N2_ARCHITECTURE_AUDIT.md):
+Subsequent [post-N2 health audit](../../archive/measurement/N2_ARCHITECTURE_AUDIT.md):
 1,166 tests pass, 93.05% branch-inclusive coverage; summary instance validation,
 synthetic artifact identity and fixture documentation-test scope are repaired.

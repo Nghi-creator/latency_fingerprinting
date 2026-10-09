@@ -1,0 +1,509 @@
+{
+  "$defs": {
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary": {
+          "enum": [
+            "render_ready",
+            "capture_begin",
+            "capture_output",
+            "pre_encode_queue_enter",
+            "pre_encode_queue_exit",
+            "encode_input",
+            "encode_output",
+            "wire_send",
+            "receive",
+            "decode_ready",
+            "presentation_proxy"
+          ],
+          "title": "Boundary",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_instrumented",
+                "unsupported_source",
+                "api_unavailable",
+                "disabled",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "boundary",
+        "state",
+        "reason"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "Clock": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "const": "stream_start",
+          "title": "Origin",
+          "type": "string"
+        },
+        "resolution_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resolution Ns"
+        },
+        "source": {
+          "enum": [
+            "python_monotonic_ns",
+            "browser_performance"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "synchronization": {
+          "const": "none",
+          "title": "Synchronization",
+          "type": "string"
+        },
+        "unit": {
+          "const": "ns",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "unit",
+        "origin",
+        "resolution_ns",
+        "synchronization"
+      ],
+      "title": "Clock",
+      "type": "object"
+    },
+    "Deadline": {
+      "additionalProperties": false,
+      "properties": {
+        "budget_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "title": "Budget Ns",
+          "type": "integer"
+        },
+        "method_id": {
+          "const": "capture-output-budget",
+          "title": "Method Id",
+          "type": "string"
+        },
+        "method_version": {
+          "const": 1,
+          "title": "Method Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "method_id",
+        "method_version",
+        "budget_ns"
+      ],
+      "title": "Deadline",
+      "type": "object"
+    },
+    "Event": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary": {
+          "enum": [
+            "capture_output",
+            "pre_encode_queue_enter",
+            "pre_encode_queue_exit",
+            "encode_input",
+            "encode_output",
+            "presentation_proxy",
+            "presentation_callback"
+          ],
+          "title": "Boundary",
+          "type": "string"
+        },
+        "frame_id": {
+          "pattern": "^frame-[1-9][0-9]{0,9}$",
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "sequence": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "timestamp_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Timestamp Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sequence",
+        "frame_id",
+        "boundary",
+        "timestamp_ns"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "Frame": {
+      "additionalProperties": false,
+      "properties": {
+        "correlation": {
+          "enum": [
+            "exact",
+            "missing",
+            "ambiguous"
+          ],
+          "title": "Correlation",
+          "type": "string"
+        },
+        "frame_id": {
+          "pattern": "^frame-[1-9][0-9]{0,9}$",
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "source_sequence": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Source Sequence",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "frame_id",
+        "source_sequence",
+        "correlation"
+      ],
+      "title": "Frame",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "max_events": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Events",
+          "type": "integer"
+        },
+        "max_frames": {
+          "maximum": 2000,
+          "minimum": 1,
+          "title": "Max Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_frames",
+        "max_events"
+      ],
+      "title": "Limits",
+      "type": "object"
+    },
+    "Loss": {
+      "additionalProperties": false,
+      "properties": {
+        "attempted_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Attempted Events",
+          "type": "integer"
+        },
+        "browser_missed_presentations": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser Missed Presentations",
+          "type": "integer"
+        },
+        "event_capacity_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Capacity Dropped",
+          "type": "integer"
+        },
+        "event_contention_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Contention Dropped",
+          "type": "integer"
+        },
+        "event_correlation_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Correlation Dropped",
+          "type": "integer"
+        },
+        "event_invalid_timestamp_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Invalid Timestamp Dropped",
+          "type": "integer"
+        },
+        "event_shutdown_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Event Shutdown Dropped",
+          "type": "integer"
+        },
+        "frame_capacity_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frame Capacity Dropped",
+          "type": "integer"
+        },
+        "offered_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Offered Frames",
+          "type": "integer"
+        },
+        "retained_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Retained Events",
+          "type": "integer"
+        },
+        "sampled_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Sampled Frames",
+          "type": "integer"
+        },
+        "unsampled_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Unsampled Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "offered_frames",
+        "sampled_frames",
+        "unsampled_frames",
+        "frame_capacity_dropped",
+        "attempted_events",
+        "retained_events",
+        "event_capacity_dropped",
+        "event_invalid_timestamp_dropped",
+        "event_contention_dropped",
+        "event_shutdown_dropped",
+        "event_correlation_dropped",
+        "browser_missed_presentations"
+      ],
+      "title": "Loss",
+      "type": "object"
+    },
+    "Sampling": {
+      "additionalProperties": false,
+      "properties": {
+        "every_nth_frame": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Every Nth Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "every_nth_frame"
+      ],
+      "title": "Sampling",
+      "type": "object"
+    },
+    "TraceStream": {
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "items": {
+            "$ref": "#/$defs/Capability"
+          },
+          "maxItems": 11,
+          "minItems": 11,
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "clock": {
+          "$ref": "#/$defs/Clock"
+        },
+        "clock_id": {
+          "pattern": "^clock-[1-9][0-9]{0,9}$",
+          "title": "Clock Id",
+          "type": "string"
+        },
+        "deadline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Deadline"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "epoch_id": {
+          "pattern": "^epoch-[1-9][0-9]{0,9}$",
+          "title": "Epoch Id",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/Event"
+          },
+          "maxItems": 10000,
+          "title": "Events",
+          "type": "array"
+        },
+        "frames": {
+          "items": {
+            "$ref": "#/$defs/Frame"
+          },
+          "maxItems": 2000,
+          "title": "Frames",
+          "type": "array"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "loss": {
+          "$ref": "#/$defs/Loss"
+        },
+        "sampling": {
+          "$ref": "#/$defs/Sampling"
+        },
+        "stop_reason": {
+          "enum": [
+            "completed",
+            "disabled",
+            "capacity",
+            "shutdown",
+            "source_error"
+          ],
+          "title": "Stop Reason",
+          "type": "string"
+        },
+        "stream_id": {
+          "pattern": "^stream-[1-9][0-9]{0,9}$",
+          "title": "Stream Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stream_id",
+        "epoch_id",
+        "clock_id",
+        "clock",
+        "capabilities",
+        "sampling",
+        "loss",
+        "limits",
+        "deadline",
+        "frames",
+        "events",
+        "stop_reason"
+      ],
+      "title": "TraceStream",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "method_release": {
+      "const": "n4-stage-local-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "producer": {
+      "enum": [
+        "pixelated_engine",
+        "pixelated_browser"
+      ],
+      "title": "Producer",
+      "type": "string"
+    },
+    "producer_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Producer Version",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "producer_capture",
+        "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^run-[1-9][0-9]{0,9}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "stage-trace-record-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "session_id": {
+      "pattern": "^session-[1-9][0-9]{0,9}$",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "streams": {
+      "items": {
+        "$ref": "#/$defs/TraceStream"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Streams",
+      "type": "array"
+    },
+    "trace_id": {
+      "pattern": "^trace-[1-9][0-9]{0,9}$",
+      "title": "Trace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "trace_id",
+    "session_id",
+    "run_id",
+    "provenance",
+    "producer",
+    "producer_version",
+    "streams"
+  ],
+  "title": "StageTraceRecord",
+  "type": "object"
+}
