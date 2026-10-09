@@ -1,7 +1,7 @@
 # Latency Fingerprinting: Full Implementation Plan
 
 **Status:** Full post-P0 roadmap through production and final evaluation  
-**Updated:** 2026-10-08
+**Updated:** 2026-10-09
 **Starting point:** The offline P0 path is complete and hardened. Diagnosis accuracy,
 live probing, recovery benefit, and transfer remain unproven.
 
@@ -76,7 +76,8 @@ roadmap boundaries.
 The active [N4 plan](NEXT_IMPLEMENTATION_PLAN.md) addresses Phase 1.2 stage-level
 observability: timing/clock/capability contracts, bounded producer instrumentation,
 versioned trace export, offline adoption and real stage-local/overhead acceptance.
-Steps 0–7 are planned and unimplemented. Preserve frozen N2 unavailable timing and
+Step 0 baselines are [verified locally](../observability/N4_IMPLEMENTATION_PROGRESS.md);
+Steps 1–7 remain unimplemented. Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
 work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).

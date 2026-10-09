@@ -1,12 +1,13 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Ready to start; Steps 0–7 not implemented
-**Updated:** 2026-10-08
+**Status:** Step 0 baseline complete locally; Steps 1–7 remain unimplemented
+**Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
 **Archived predecessor plan:** [N3 analytical features and matching](archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Baseline evidence:** [Post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md)
+**Current progress:** [N4 baseline and producer verification](../observability/N4_IMPLEMENTATION_PROGRESS.md)
 
 N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
 1,539 passing tests and 93.58% branch-inclusive coverage at the unchanged 85%
@@ -42,7 +43,7 @@ a deadline scheduler, hardware certification or synchronized one-way latency.
 
 | Owner | Existing surface to inspect | N4 responsibility |
 | --- | --- | --- |
-| Pixelated engine | `engine/runtime/camera_state.py` and the capture/encoder pipeline it owns | Locate real frame boundaries, local monotonic clocks and queue hooks |
+| Pixelated engine | `engine/runtime/camera.py` and `engine/runtime/camera_state.py` | Locate actual pipeline boundaries, local monotonic clocks and telemetry/queue hooks |
 | Pixelated browser | `apps/web/src/features/research-mode/researchTelemetryContract.ts` and player collection code | Declare accessible browser evidence and attribution limits |
 | Pixelated exporter | `apps/web/src/features/player/research/researchBundleV2.ts` and `researchRunExportArtifacts.ts` | Add an explicit trace artifact contract with support/loss metadata |
 | Python core | [N2 timing support](../../src/latency_fingerprinting/models/v2_support.py), [adoption](../measurement/OBSERVATION_V2_ADOPTION.md), [safe extraction](../measurement/SAMPLE_EXTRACTION.md) | Preserve existing behavior; add separate trace validation/adoption |
@@ -52,6 +53,13 @@ not an approved hook inventory. Step 1 must inspect actual ownership and applica
 repository instructions before fixing producer integration locations.
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
+
+**Local gate:** Complete, 2026-10-09. Both starting trees were clean. Core: 1,539
+tests, 93.58% branch-inclusive coverage and all preservation gates pass. Producer:
+182 web tests pass; engine build succeeds with 131 tests passing and one existing
+external-artifact skip. Engine/web lint, web TypeScript compilation and lockfile
+consistency pass. Runtime/hosted limitations and starting commits are recorded
+in [N4 progress](../observability/N4_IMPLEMENTATION_PROGRESS.md).
 
 Record commits and working-tree state in both repositories. Reproduce this core's
 [quality gates](../measurement/QUALITY_GATES.md): full coverage suite, ten schemas,
@@ -186,7 +194,7 @@ scenario/held-out experiment work stays separate.
 
 ## Exit checklist
 
-- [ ] Both repository baselines and existing reproduction gates are recorded.
+- [x] Both repository baselines and existing reproduction gates are recorded.
 - [ ] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
 - [ ] Strict additive models/schemas preserve all existing contract bytes.
 - [ ] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
@@ -198,6 +206,6 @@ scenario/held-out experiment work stays separate.
 - [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**First implementation action:** Step 0 baseline, then Step 1 field/capability
-specification. N4 implementation has not started. Phase 1 also needs the subsequent
+**Next implementation action:** Step 1 field/capability specification. Step 0 is
+complete locally; trace implementation has not started. Phase 1 also needs the subsequent
 scenario harness; the roadmap's seven phases are not a fixed N1–N7 slice count.

@@ -149,7 +149,8 @@ fixture pins reproduce unchanged; these repairs do not change policy meanings.
 
 ## Active N4 boundary
 
-The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) is ready to start and has not been
+The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) has a verified local Step 0 baseline
+in [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 1–7 are not
 implemented. It covers stage-local timing/clock/identity/capability contracts,
 bounded opt-in Pixelated instrumentation, versioned trace export and additive
 Python validation/inspection. Timing hooks stay in the producer; Python remains
@@ -197,6 +198,8 @@ latency-fingerprinting/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/
+│   ├── observability/
+│   │   └── N4_IMPLEMENTATION_PROGRESS.md
 │   └── plans/
 │       ├── NEXT_IMPLEMENTATION_PLAN.md
 │       ├── FULL_IMPLEMENTATION_PLAN.md

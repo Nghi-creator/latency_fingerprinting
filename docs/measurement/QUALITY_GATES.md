@@ -110,8 +110,9 @@ checks pass locally. Historical milestone counts and audit findings remain in th
 [archive](../archive/README.md), including the
 [final N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md).
 
-The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) starts by reproducing
-this baseline and the applicable Pixelated producer gates, then specifies additive
+The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has reproduced
+this baseline and the applicable Pixelated producer gates in
+[Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Next it specifies additive
 trace contracts before instrumentation. N4 models, hooks, commands and fixtures
 are not implemented. Existing N2 timing and N3 policy/match outputs remain frozen.
 

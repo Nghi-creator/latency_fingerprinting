@@ -1,7 +1,9 @@
 # Documentation index
 
 **Current slice:** [N4 stage-level observability](plans/NEXT_IMPLEMENTATION_PLAN.md),
-ready to start; implementation has not begun. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
+Step 0 verified locally; Step 1 specification is next. [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md)
+records both repository baselines, producer checks and runtime limitations.
+Trace implementation has not begun. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 keeps the subsequent scenario harness and scientific evaluation separate.
 
 ## Current implemented references

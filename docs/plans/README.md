@@ -3,8 +3,9 @@
 ## Active work
 
 - [N4 — Stage-level observability](NEXT_IMPLEMENTATION_PLAN.md) is the active
-  implementation plan. Steps 0–7 are ready to start and not implemented. Begin
-  with both repository baselines, then timing/clock/identity/capability definitions.
+  implementation plan. Step 0 baselines are verified locally in
+  [N4 progress](../observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 1–7 remain
+  unimplemented; next define timing/clock/identity/capability meanings.
   The scope spans Pixelated producer hooks/export and separate Python trace
   validation/inspection, preserving all existing N2/N3 meanings and pins.
 - [Full roadmap](FULL_IMPLEMENTATION_PLAN.md) defines Phases 1–7. N4 addresses
