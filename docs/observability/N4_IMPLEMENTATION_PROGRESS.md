@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Steps 0–6 complete locally; Step 7 integrated reproduction/acceptance is next
+**Status:** Steps 0–6 and Step 7 software complete locally; real acceptance pending
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -409,7 +409,31 @@ synchronization, measured overhead, hosted/minimum-version execution or full-lim
 throughput measurement occurred. Docker remains unavailable. The maximum-ledger
 arithmetic case is a resource/logic test, not a throughput acceptance measurement.
 
-**Next:** Step 7 separately pinned integrated reproduction, minimum real producer
+**Step 6 handoff (historical):** Step 7 separately pinned integrated reproduction, minimum real producer
 acceptance, measured overhead and a closeout separating software/runtime/hosted
 results. N4 is still incomplete; a missing runtime must remain an explicit pending
 gate rather than being replaced with synthetic timing claims.
+
+## Step 7 — Synthetic integration and software closeout
+
+Three independent fixture cases pin nine canonical files in release 1.0.0. Ten
+new tests verify read-only pins/drift and both directory/TAR CLI handoffs. Actual
+producer host/browser collectors and exporters reproduce the same record bytes,
+summaries and adoption/inspection CLI outputs. Both CI jobs now run N4 pinned
+reproduction without a sibling runtime dependency.
+
+[Software closeout](N4_SOFTWARE_CLOSEOUT.md) records both starting commits, local
+checks and the concrete pending real/minimum-version/hosted gates. The
+[integration guide](N4_INTEGRATION_VERIFICATION.md) contains rerunnable commands.
+Producer checks: 232 web pass; 133 engine pass, one existing artifact skip; 41
+nested Python trace cases pass; engine/web lint, lockfiles and web build pass.
+All legacy preservation checks pass. Docker and Python 3.11 remain unavailable.
+No real capture or overhead measurement was performed; full N4 remains open.
+
+Core full suite: **1739 pass / 93.69% branch-inclusive coverage**, unchanged 85%
+floor. All twelve schemas, registry, N1/N2/N3 reproduction, original P0 fixtures,
+controlled artifacts, seed and exact run-002 match remain current.
+
+Documentation check: all 655 local targets resolve. Both repository whitespace
+checks pass. N4 remains the active slice while real acceptance is pending; no
+progress/plan archival or subsequent-slice transition was performed.

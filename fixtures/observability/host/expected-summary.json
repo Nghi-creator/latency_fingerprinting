@@ -1,0 +1,253 @@
+{
+  "method_release": "n4-stage-local-v1",
+  "producer": "pixelated_engine",
+  "producer_version": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": "synthetic",
+  "schema_version": "stage-trace-summary-v1",
+  "streams": [
+    {
+      "capabilities": [
+        {
+          "boundary": "render_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_begin",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_output",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "encode_input",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "encode_output",
+          "reason": null,
+          "state": "supported"
+        },
+        {
+          "boundary": "wire_send",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "receive",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "decode_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "presentation_proxy",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        }
+      ],
+      "clock": {
+        "origin": "stream_start",
+        "resolution_ns": 1,
+        "source": "python_monotonic_ns",
+        "synchronization": "none",
+        "unit": "ns"
+      },
+      "clock_id": "clock-1",
+      "deadline_result": {
+        "budget_ns": 12000000,
+        "hit_fraction": 0.6666666666666666,
+        "hit_frames": 2,
+        "method_id": "capture-output-budget",
+        "method_version": 1,
+        "reason": null,
+        "samples": [
+          {
+            "frame_id": "frame-1",
+            "hit": true,
+            "slack_ms": 3.0
+          },
+          {
+            "frame_id": "frame-2",
+            "hit": true,
+            "slack_ms": 0.0
+          },
+          {
+            "frame_id": "frame-3",
+            "hit": false,
+            "slack_ms": -5.0
+          }
+        ],
+        "state": "measured",
+        "usable_frames": 3
+      },
+      "epoch_id": "epoch-1",
+      "loss": {
+        "attempted_events": 17,
+        "browser_missed_presentations": 0,
+        "event_capacity_dropped": 0,
+        "event_contention_dropped": 0,
+        "event_correlation_dropped": 0,
+        "event_invalid_timestamp_dropped": 0,
+        "event_shutdown_dropped": 0,
+        "frame_capacity_dropped": 0,
+        "offered_frames": 4,
+        "retained_events": 17,
+        "sampled_frames": 4,
+        "unsampled_frames": 0
+      },
+      "results": [
+        {
+          "eligible_frames": 4,
+          "excluded_frames": 1,
+          "exclusions": {
+            "correlation_ambiguous": 0,
+            "correlation_missing": 0,
+            "missing_endpoint": 1,
+            "negative_duration": 0,
+            "unsupported": 0
+          },
+          "max_ms": 5.0,
+          "mean_ms": 2.6666666666666665,
+          "method_id": "pre-encode-queue-sojourn",
+          "method_version": 1,
+          "min_ms": 0.0,
+          "reason": null,
+          "samples": [
+            {
+              "delta_ns": 3000000,
+              "frame_id": "frame-1",
+              "value_ms": 3.0
+            },
+            {
+              "delta_ns": 0,
+              "frame_id": "frame-2",
+              "value_ms": 0.0
+            },
+            {
+              "delta_ns": 5000000,
+              "frame_id": "frame-3",
+              "value_ms": 5.0
+            }
+          ],
+          "state": "measured",
+          "usable_frames": 3
+        },
+        {
+          "eligible_frames": 4,
+          "excluded_frames": 1,
+          "exclusions": {
+            "correlation_ambiguous": 0,
+            "correlation_missing": 0,
+            "missing_endpoint": 1,
+            "negative_duration": 0,
+            "unsupported": 0
+          },
+          "max_ms": 10.0,
+          "mean_ms": 8.0,
+          "method_id": "encode-boundary-elapsed",
+          "method_version": 1,
+          "min_ms": 4.0,
+          "reason": null,
+          "samples": [
+            {
+              "delta_ns": 4000000,
+              "frame_id": "frame-1",
+              "value_ms": 4.0
+            },
+            {
+              "delta_ns": 10000000,
+              "frame_id": "frame-2",
+              "value_ms": 10.0
+            },
+            {
+              "delta_ns": 10000000,
+              "frame_id": "frame-3",
+              "value_ms": 10.0
+            }
+          ],
+          "state": "measured",
+          "usable_frames": 3
+        },
+        {
+          "eligible_frames": 4,
+          "excluded_frames": 1,
+          "exclusions": {
+            "correlation_ambiguous": 0,
+            "correlation_missing": 0,
+            "missing_endpoint": 1,
+            "negative_duration": 0,
+            "unsupported": 0
+          },
+          "max_ms": 17.0,
+          "mean_ms": 12.666666666666666,
+          "method_id": "capture-output-age-at-encode-output",
+          "method_version": 1,
+          "min_ms": 9.0,
+          "reason": null,
+          "samples": [
+            {
+              "delta_ns": 9000000,
+              "frame_id": "frame-1",
+              "value_ms": 9.0
+            },
+            {
+              "delta_ns": 12000000,
+              "frame_id": "frame-2",
+              "value_ms": 12.0
+            },
+            {
+              "delta_ns": 17000000,
+              "frame_id": "frame-3",
+              "value_ms": 17.0
+            }
+          ],
+          "state": "measured",
+          "usable_frames": 3
+        },
+        {
+          "eligible_frames": 4,
+          "excluded_frames": 4,
+          "exclusions": {
+            "correlation_ambiguous": 0,
+            "correlation_missing": 0,
+            "missing_endpoint": 0,
+            "negative_duration": 0,
+            "unsupported": 4
+          },
+          "max_ms": null,
+          "mean_ms": null,
+          "method_id": "presentation-callback-lag",
+          "method_version": 1,
+          "min_ms": null,
+          "reason": "unsupported_source",
+          "samples": [],
+          "state": "unavailable",
+          "usable_frames": 0
+        }
+      ],
+      "sampling": {
+        "every_nth_frame": 1
+      },
+      "stream_id": "stream-1"
+    }
+  ],
+  "trace_sha256": "7657d2898d778e27f0ca79f96173d0ff4135f57210fe0dd749749439c578e8be"
+}

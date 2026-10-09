@@ -1,7 +1,7 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Steps 0–6 complete locally; Step 7 remains unimplemented
+**Status:** Steps 0–6 and Step 7 software complete locally; real acceptance pending
 **Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
@@ -10,7 +10,7 @@
 **Current progress:** [N4 implementation progress](../observability/N4_IMPLEMENTATION_PROGRESS.md)
 
 N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
-1,729 passing tests and 93.69% branch-inclusive coverage at the unchanged 85%
+1,739 passing tests and 93.69% branch-inclusive coverage at the unchanged 85%
 floor. Actual Python 3.11/hosted verification remains pending. N2 stage records
 remain explicitly unavailable; existing v2 exported elapsed time uses wall clocks.
 N4 now supplies separate opt-in instrumentation, trace export/adoption and offline
@@ -205,6 +205,8 @@ the published durations and coverage, with no one-way latency claim.
 
 ## Step 7 — Verify producer integration, overhead and close out
 
+**Software gate:** Complete locally, 2026-10-09. [Pinned fixture/integration verification](../observability/N4_INTEGRATION_VERIFICATION.md) reproduces actual synthetic host/browser exports through adoption, reconstruction and CLI inspection. [Software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) records local checks and explicit outstanding real/minimum-version/hosted gates. Docker/Linux runtime is unavailable; full N4 acceptance remains pending.
+
 Add separately pinned synthetic trace fixtures and read-only reproduction. Exercise
 export-to-inspection across producer and Python boundaries. Run applicable tests
 in both repositories, old preservation gates, documentation/link checks and CI
@@ -235,13 +237,11 @@ scenario/held-out experiment work stays separate.
 - [x] Browser/transport evidence exposes actual capabilities and correlation limits.
 - [x] Versioned producer export and Python adoption agree without changing old outputs.
 - [x] Offline timing reconstruction retains clocks, methods, pairing and exclusions.
-- [ ] Independent fixtures, pins and cross-repository tests reproduce.
+- [x] Independent fixtures, pins and cross-repository tests reproduce.
 - [ ] Real stage-local capture and instrumentation overhead acceptance are recorded.
-- [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
-- [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
+- [x] Actual minimum-version/hosted results or explicit outstanding items are recorded.
+- [x] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next implementation action:** Step 7 pinned integrated reproduction, real producer
-acceptance and measured overhead, with separate software/runtime/hosted closeout.
-Steps 0–6 are complete locally; real capture and measured overhead remain pending.
+**Next acceptance action:** provision the frozen Linux capture/draining-receiver setup, run the real producer and paired overhead gates, and record actual minimum-version/hosted results. Steps 0–6 and Step 7 synthetic integration/software closeout are complete locally; full N4 acceptance remains pending.
 Phase 1 also needs the subsequent scenario harness; the roadmap's seven phases
 are not a fixed N1–N7 slice count.

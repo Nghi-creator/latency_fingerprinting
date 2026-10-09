@@ -109,7 +109,7 @@ and strict summary validation. Host means reproduce 0.0001 ms queue waiting,
 callback mean reproduces 1.5 ms; foreign-producer results are explicitly unavailable.
 Those synthetic clocks are arithmetic/interoperability evidence, not real timing.
 
-Next is Step 7: separately pinned integrated reproduction, real Linux/X11/VP8
+Step 7 [pinned integrated reproduction](N4_INTEGRATION_VERIFICATION.md) is delivered. Remaining gates are real Linux/X11/VP8
 acceptance and measured overhead. Live browser/picker interaction, synchronized
 one-way latency, hosted/minimum-version execution and real capture are not
 established by this software. N4 remains incomplete until its acceptance gates

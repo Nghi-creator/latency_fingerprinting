@@ -117,7 +117,7 @@ this baseline and the applicable Pixelated producer gates in
 [real-capture/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md).
 N4 Step 2 delivers [strict models and generic validation](../observability/N4_TRACE_MODELS.md),
 two additive schemas (twelve total) and 86 independent regressions in the existing
-full-suite jobs. Latest local execution passes **1,729 tests with 93.69%
+full-suite jobs. Latest local execution passes **1,739 tests with 93.69%
 branch-inclusive coverage**, retaining the 85% floor. N4 Step 3 delivers [host hooks](../observability/N4_HOST_INSTRUMENTATION.md):
 producer engine build/tests/lint and 31 nested Python collector/pad/teardown
 regressions pass locally. Step 4 delivers [browser collection](../observability/N4_BROWSER_INSTRUMENTATION.md):
@@ -131,3 +131,20 @@ acceptance remain pending. Existing N2 timing and N3 policy/match outputs remain
 Actual Python 3.11/hosted execution remains pending. N4 separately requires real
 stage-local capture and measured instrumentation overhead; those results cannot
 be inferred from synthetic fixtures or this completed software baseline.
+
+## N4 Step 7 software verification
+
+Current local Python 3.13 suite: **1,739 tests / 93.69% branch-inclusive coverage**,
+unchanged 85% floor. Ten new tests cover read-only release pins, changed/missing/extra
+fixture failures and full directory/TAR adoption → inspection CLI handoffs.
+
+```sh
+python -m tests.observability.check_reproduction
+```
+
+Both configured Python CI jobs run this independent N4 gate. The optional actual
+producer export check and frozen real/overhead procedure are in the
+[N4 integration guide](../observability/N4_INTEGRATION_VERIFICATION.md). See the
+[software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) for both repository
+results and pending real/minimum-version/hosted gates. N1–N3 pins and controlled
+P0 artifacts remain unchanged.

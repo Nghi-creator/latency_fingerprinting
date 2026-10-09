@@ -81,6 +81,6 @@ space changes bytes and violates canonical input even if parsed data is equal.
 A modified event with an old manifest hash rejects before output. Research v2
 manifests, unknown trace versions, a third archive member, symlink record files,
 duplicate JSON keys, depth 33 or a 10001st event reject without partial output.
-These cases become separate Step 2/5/6 regressions and Step 7 synthetic fixture
+These cases are covered by Step 2/5/6 regressions and [Step 7 synthetic fixture](N4_INTEGRATION_VERIFICATION.md)
 pins; this document neither refreshes existing fixtures nor establishes a live
 producer measurement.

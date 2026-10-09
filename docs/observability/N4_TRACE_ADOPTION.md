@@ -98,4 +98,4 @@ No live producer, browser picker interaction, real timing, synchronization,
 container/hosted execution or measured overhead was performed.
 
 [Step 6 offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md) are now delivered. Pinned integrated
-reproduction and real capture/overhead acceptance remain Step 7. N4 is incomplete.
+reproduction is delivered in [Step 7 software verification](N4_INTEGRATION_VERIFICATION.md); real capture/overhead acceptance remains pending. N4 is incomplete.

@@ -82,7 +82,7 @@ baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
 [browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
-[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). Step 7 remains unimplemented. Preserve frozen N2 unavailable timing and
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
 work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).
