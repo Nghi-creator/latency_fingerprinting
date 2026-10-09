@@ -8,9 +8,10 @@
 **Archived predecessor plan:** [N3 analytical features and matching](archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Baseline evidence:** [Post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md)
 **Current progress:** [N4 implementation progress](../observability/N4_IMPLEMENTATION_PROGRESS.md)
+**Latest review:** [Cross-repository health audit](../observability/N4_ARCHITECTURE_AUDIT.md)
 
 N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
-1,739 passing tests and 93.69% branch-inclusive coverage at the unchanged 85%
+1,745 passing tests and 93.69% branch-inclusive coverage at the unchanged 85%
 floor. Actual Python 3.11/hosted verification remains pending. N2 stage records
 remain explicitly unavailable; existing v2 exported elapsed time uses wall clocks.
 N4 now supplies separate opt-in instrumentation, trace export/adoption and offline
@@ -242,6 +243,6 @@ scenario/held-out experiment work stays separate.
 - [x] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [x] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next acceptance action:** provision the frozen Linux capture/draining-receiver setup, run the real producer and paired overhead gates, and record actual minimum-version/hosted results. Steps 0–6 and Step 7 synthetic integration/software closeout are complete locally; full N4 acceptance remains pending.
+**Next acceptance action:** provision the frozen Linux capture/draining-receiver setup; implement/verify the acceptance runner with a fresh recording after warm-up (the camera has no interactive reset control); run the real producer and paired overhead gates, and record actual minimum-version/hosted results. Steps 0–6 and Step 7 synthetic integration/software closeout are complete locally; full N4 acceptance remains pending.
 Phase 1 also needs the subsequent scenario harness; the roadmap's seven phases
 are not a fixed N1–N7 slice count.

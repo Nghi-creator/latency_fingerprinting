@@ -54,3 +54,24 @@ def test_independent_export_to_inspection_cli(tmp_path, capsys, case, kind):
     assert record.read_bytes() == (source / "trace-record.json").read_bytes()
     assert summary.read_bytes() == (source / "expected-summary.json").read_bytes()
     assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize("state", ["valid", "missing", "wrong_producer"])
+def test_optional_producer_reproduction_checks_every_archive(tmp_path, state):
+    for case in CASES:
+        source = FIXTURES / ("browser" if state == "wrong_producer" and case == "host" else case)
+        if state == "missing" and case == "browser-unavailable":
+            continue
+        with tarfile.open(tmp_path / f"{case}.tar.gz", "w:gz") as archive:
+            for name in ("trace-record.json", "trace-manifest.json"):
+                payload = (source / name).read_bytes()
+                member = tarfile.TarInfo(name)
+                member.size = len(payload)
+                archive.addfile(member, io.BytesIO(payload))
+    if state == "valid":
+        result = check_reproduction(producer_bundles=tmp_path)
+        assert result["producerIntegration"] == "passed"
+        assert result["provenance"] == "synthetic"
+    else:
+        with pytest.raises(ValueError, match="producer record drift|invalid_trace_bundle"):
+            check_reproduction(producer_bundles=tmp_path)

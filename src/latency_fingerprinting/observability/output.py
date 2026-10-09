@@ -32,13 +32,18 @@ def write_trace_output(path: Path, payload: bytes):
             dir_fd=parent,
         )
         created = True
-        with os.fdopen(fd, "wb") as target:
-            target.write(payload)
-            target.flush()
-            os.fsync(target.fileno())
+        try:
+            with os.fdopen(fd, "wb", closefd=False) as target:
+                target.write(payload)
+                target.flush()
+                os.fsync(target.fileno())
+        finally:
+            os.close(fd)
         os.replace(temporary, path.name, src_dir_fd=parent, dst_dir_fd=parent)
         created = False
     finally:
-        if created:
-            os.unlink(temporary, dir_fd=parent)
-        os.close(parent)
+        try:
+            if created:
+                os.unlink(temporary, dir_fd=parent)
+        finally:
+            os.close(parent)

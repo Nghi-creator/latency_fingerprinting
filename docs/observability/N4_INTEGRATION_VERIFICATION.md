@@ -62,6 +62,10 @@ WebRTC receiver, using an animated nonprivate scene, one peer, 1280×720 at 30 f
 Save exact producer/core commits, runtime versions, configuration, commands and
 CPU allocation. Use sampling 1, caps 2000/10000 and illustrative 50,000,000 ns
 capture-output budget. Start a fresh recording after 10 s warm-up and collect 30 s.
+The current camera records from pipeline start and has no interactive trace reset.
+The acceptance runner must arrange a fresh post-warm-up recording within the
+actual runtime; counting warm-up frames or restarting into a cold pipeline does
+not satisfy this procedure. This runner and its real execution remain pending.
 
 Follow every case in the capability document: at least 500 usable queue and encode
 pairs, ≥95% joint coverage with demonstrated unique PTS association, zero nominal

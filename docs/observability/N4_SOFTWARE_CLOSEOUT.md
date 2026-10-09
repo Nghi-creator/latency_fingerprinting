@@ -67,3 +67,14 @@ Full N4 remains open until the real gates pass. Progress/plan/closeout stay curr
 archive them together on the following slice transition. Contracts, fixture and
 usage guides remain current references. Scientific calibration, held-out scenarios,
 hardware certification and Phase 1.3 remain separate work.
+
+## Subsequent health audit
+
+The [cross-repository audit](N4_ARCHITECTURE_AUDIT.md) fixes browser trailing-line
+validation/provenance guards and descriptor cleanup in both repositories, adds
+optional integration regressions and corrects stale architecture/index docs.
+Latest core result: **1745 pass / 93.69% branch-inclusive coverage**, unchanged 85%
+floor. Producer full workspace: 714 pass, one existing artifact skip; all 42 nested
+Python trace cases pass. Whole-workspace lint/web build and preservation gates pass.
+Original Step 7 counts above remain historical results. Real acceptance still
+requires the post-warm-up recording runner and frozen Linux/overhead procedure.

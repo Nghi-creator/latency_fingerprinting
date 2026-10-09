@@ -2,18 +2,19 @@
 
 ## Active work
 
-- [N4 — Stage-level observability](NEXT_IMPLEMENTATION_PLAN.md) is the active
-  implementation plan. Step 0 baselines are verified locally in
-  [N4 progress](../observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 1–7 remain
-  unimplemented; next define timing/clock/identity/capability meanings.
-  The scope spans Pixelated producer hooks/export and separate Python trace
-  validation/inspection, preserving all existing N2/N3 meanings and pins.
+- [N4 — Stage-level observability](NEXT_IMPLEMENTATION_PLAN.md) remains active
+  for acceptance. Software Steps 0–6 and Step 7 synthetic integration are complete
+  locally; [software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) records
+  the evidence. Next run the frozen real Linux capture and paired overhead gates
+  in the [integration guide](../observability/N4_INTEGRATION_VERIFICATION.md), then
+  attach actual minimum-version/hosted results. Existing N2/N3 meanings remain
+  unchanged. The [health audit](../observability/N4_ARCHITECTURE_AUDIT.md) records
+  subsequent hardening and current checks.
 - [Full roadmap](FULL_IMPLEMENTATION_PLAN.md) defines Phases 1–7. N4 addresses
   Phase 1.2; the Phase 1.3 scenario harness remains subsequent work. Slice numbers
   do not correspond one-to-one to roadmap phases.
 - [Quality gates](../measurement/QUALITY_GATES.md) records the latest completed
-  local baseline: 1,539 tests and 93.58% branch-inclusive coverage. Python 3.11/
-  hosted verification remains pending, independently of starting N4.
+  local results. Python 3.11/hosted verification remains pending.
 
 ## Completed work
 
@@ -28,4 +29,4 @@
 Archive completed plans and milestone records when transitioning slices. Preserve
 their results and limitations, update inbound links, and retain normative
 contracts/approved policies and reproduction artifacts in their canonical places.
-Planned instrumentation must not be described as delivered evidence.
+Implemented software and synthetic checks must remain separate from real measurements.

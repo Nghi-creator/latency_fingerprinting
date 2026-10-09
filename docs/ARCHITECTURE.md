@@ -149,14 +149,25 @@ fixture pins reproduce unchanged; these repairs do not change policy meanings.
 
 ## Active N4 boundary
 
-The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) has a verified local Step 0 baseline
-in [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 1–7 are not
-implemented. It covers stage-local timing/clock/identity/capability contracts,
-bounded opt-in Pixelated instrumentation, versioned trace export and additive
-Python validation/inspection. Timing hooks stay in the producer; Python remains
-off the per-frame path. Existing N2 stage timing stays unavailable and the N3
-policy/matcher is unchanged. Real capture and instrumentation overhead acceptance
-are explicit gates; inaccessible stages remain unavailable.
+The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) has delivered software Steps 0–6
+and Step 7 pinned synthetic integration locally. Pixelated owns opt-in bounded
+X11/queue/VP8 probes, browser presentation/callback collection and standalone
+trace export. This core owns strict immutable trace/summary validation,
+`ingest-trace`, pure same-lifetime reconstruction and `inspect-trace`. See the
+[software closeout](observability/N4_SOFTWARE_CLOSEOUT.md) and
+[integration procedure](observability/N4_INTEGRATION_VERIFICATION.md).
+
+Pairing stays within a stream/epoch/clock and exact admitted frame identity.
+Queue waiting, encoder boundary elapsed, capture-output age and browser callback
+lag each retain methods, capability declarations, sampling, exclusions and loss.
+Independent producer clocks are unsynchronized; unsupported stages remain
+unavailable. Trace snapshots and file I/O stay outside frame callbacks. Existing
+N2 stage timing remains unavailable and N3 policy/matching is unchanged.
+
+Full N4 acceptance still needs the frozen real Linux/Xvfb/PulseAudio capture,
+draining WebRTC receiver and paired overhead trials. Actual minimum-version and
+hosted execution remain pending. Synthetic integration establishes deterministic
+software interoperability, not measured capture performance.
 
 The following scenario harness is still Phase 1.3 work. Completed plans are in
 [plans/archive](plans/archive/README.md); completed closeouts, progress and health
@@ -199,7 +210,10 @@ latency-fingerprinting/
 │   ├── p0/
 │   ├── measurement/
 │   ├── observability/
-│   │   └── N4_IMPLEMENTATION_PROGRESS.md
+│   │   ├── N4_TRACE_CONTRACT.md
+│   │   ├── N4_INTEGRATION_VERIFICATION.md
+│   │   ├── N4_SOFTWARE_CLOSEOUT.md
+│   │   └── N4_ARCHITECTURE_AUDIT.md
 │   └── plans/
 │       ├── NEXT_IMPLEMENTATION_PLAN.md
 │       ├── FULL_IMPLEMENTATION_PLAN.md
@@ -215,7 +229,9 @@ latency-fingerprinting/
 │   ├── fingerprint-v2.schema.json
 │   ├── match-result-v2.schema.json
 │   ├── metric-registry-v1.schema.json
-│   └── metric-registry-v1.json
+│   ├── metric-registry-v1.json
+│   ├── stage-trace-record-v1.schema.json
+│   └── stage-trace-summary-v1.schema.json
 ├── src/latency_fingerprinting/
 │   ├── models/
 │   │   ├── common.py
@@ -241,6 +257,14 @@ latency-fingerprinting/
 │   │   ├── scoring.py
 │   │   ├── decisions.py
 │   │   └── matching.py
+│   ├── observability/
+│   │   ├── contracts.py
+│   │   ├── trace.py
+│   │   ├── summary.py
+│   │   ├── bundle.py
+│   │   ├── input.py
+│   │   ├── output.py
+│   │   └── reconstruct.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
@@ -269,6 +293,7 @@ latency-fingerprinting/
 │   ├── json_io.py
 │   ├── cli.py
 │   ├── cli_v2.py
+│   ├── cli_trace.py
 │   ├── __init__.py
 │   └── adapters/
 │       ├── pixelated_bundle.py
@@ -281,6 +306,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── observability/
 │   ├── analytical-v2/
 │   ├── observation-v2/
 │   ├── reference_cases/

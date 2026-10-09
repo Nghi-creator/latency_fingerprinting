@@ -437,3 +437,15 @@ controlled artifacts, seed and exact run-002 match remain current.
 Documentation check: all 655 local targets resolve. Both repository whitespace
 checks pass. N4 remains the active slice while real acceptance is pending; no
 progress/plan archival or subsequent-slice transition was performed.
+
+## Post-N4 software health audit
+
+[Cross-repository audit](N4_ARCHITECTURE_AUDIT.md) patches strict browser inputs,
+pre-finish provenance guards and descriptor cleanup; adds six core and thirteen
+web regressions; removes duplicate integration prose and stale preimplementation
+claims from current architecture/indexes. Full local result: **1745 core tests /
+93.69% coverage**; 714 producer Node tests pass with one existing artifact skip;
+42 nested Python trace cases pass. Whole-workspace lint/web build and all
+preservation/synthetic integration gates pass. Real post-warm-up recording runner,
+Linux capture, measured overhead and actual minimum-version/hosted results remain
+concrete pending work. No slice transition or historical evidence deletion occurred.

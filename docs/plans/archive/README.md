@@ -8,5 +8,5 @@ These plans retain their completed local gates and explicitly pending hosted
 checks. They are historical execution records. Related closeouts, progress and
 health audits live in the [milestone archive](../../archive/README.md).
 The [active plan](../NEXT_IMPLEMENTATION_PLAN.md) is N4 stage-level observability;
-Step 0 is verified locally and Steps 1–7 remain unimplemented. The [full roadmap](../FULL_IMPLEMENTATION_PLAN.md)
+software Steps 0–6 and Step 7 synthetic integration are complete locally, with real capture/overhead acceptance pending. The [full roadmap](../FULL_IMPLEMENTATION_PLAN.md)
 remains the phase-level sequence beyond N4.

@@ -94,7 +94,7 @@ in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N4
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The latest local suite passes **1,739 tests with 93.69% branch-inclusive
+The latest local suite passes **1,745 tests with 93.69% branch-inclusive
 coverage**; actual Python 3.11/hosted verification remains pending.
 
 Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
@@ -103,18 +103,14 @@ Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_C
 [fingerprints/repositories](docs/analysis/N3_FINGERPRINTS.md), [commands](docs/analysis/N3_COMMANDS.md)
 and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 
-**Next: [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).**
-Steps 0–6 are complete locally: baselines, additive trace models/schemas and the
-[timing/identity contract](docs/observability/N4_TRACE_CONTRACT.md) are recorded in
-[N4 progress](docs/observability/N4_IMPLEMENTATION_PROGRESS.md). Step 7 software integration is delivered; real acceptance remains pending. [Trace models and validation](docs/observability/N4_TRACE_MODELS.md)
-and [bounded host hooks](docs/observability/N4_HOST_INSTRUMENTATION.md)
-and [browser collection](docs/observability/N4_BROWSER_INSTRUMENTATION.md) are
-delivered, alongside [trace export/adoption](docs/observability/N4_TRACE_ADOPTION.md).
-[Offline timing reconstruction](docs/observability/N4_TIMING_RECONSTRUCTION.md) is
-also delivered; [pinned integrated reproduction](docs/observability/N4_INTEGRATION_VERIFICATION.md) and [software closeout](docs/observability/N4_SOFTWARE_CLOSEOUT.md) are delivered; real capture/overhead acceptance remains pending.
-The plan spans Pixelated hooks/export and separate Python trace validation and
-inspection, preserving current N2 timing and N3 matching meanings. The scenario
-harness remains subsequent Phase 1 work.
+**Current: [N4 acceptance](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).** Software
+Steps 0–6 and Step 7 synthetic integration are complete locally: strict trace
+models, bounded host/browser instrumentation, standalone export/adoption and
+same-domain timing inspection. The [software closeout](docs/observability/N4_SOFTWARE_CLOSEOUT.md)
+and [health audit](docs/observability/N4_ARCHITECTURE_AUDIT.md) record the evidence.
+Next run the [real capture and overhead gates](docs/observability/N4_INTEGRATION_VERIFICATION.md)
+in the required Linux runtime. Full N4 acceptance remains pending. The Phase 1.3
+scenario harness follows separately; N2 timing and N3 matching meanings stay frozen.
 
 Completed milestone records are in the [documentation archive](docs/archive/README.md),
 and completed N1–N3 plans are in the [plan archive](docs/plans/archive/README.md).

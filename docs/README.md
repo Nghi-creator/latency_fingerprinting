@@ -1,5 +1,7 @@
 # Documentation index
 
+**Latest review:** [Cross-repository health audit](observability/N4_ARCHITECTURE_AUDIT.md).
+
 **Current slice:** [N4 stage-level observability](plans/NEXT_IMPLEMENTATION_PLAN.md),
 Steps 0–6 and Step 7 synthetic integration complete locally; real acceptance remains pending. [Software closeout](observability/N4_SOFTWARE_CLOSEOUT.md) records the gates. [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md)
 records both repository baselines, producer checks and runtime limitations.
@@ -27,7 +29,7 @@ keeps the subsequent scenario harness and scientific evaluation separate.
 
 N2 stage timing remains unavailable. N4 delivers two additive trace schemas and
 host/browser hooks, trace artifact adoption and offline timing reconstruction.
-N3 policy parameters remain provisional. Current local suite passes 1,739
+N3 policy parameters remain provisional. Current local suite passes 1,745
 tests with 93.69% branch-inclusive coverage; actual hosted/minimum-version,
 full-limit scaling and scientific validation remain pending.
 

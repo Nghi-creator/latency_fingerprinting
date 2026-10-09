@@ -295,3 +295,64 @@ def test_long_tar_extension_chain_fails_before_recursive_parsing(tmp_path):
     )
     with pytest.raises(ValueError, match="^invalid_trace_bundle$"):
         bundle.ingest_trace_bundle(archive(tmp_path, raw))
+
+
+@pytest.mark.parametrize("operation", ["adoption", "output"])
+def test_fdopen_failure_closes_all_pinned_descriptors(tmp_path, monkeypatch, operation):
+    path = directory(tmp_path, files())
+    target = tmp_path / "target.json"
+    target.write_bytes(b"original")
+    opened = []
+    real_open = os.open
+
+    def tracked_open(*args, **kwargs):
+        descriptor = real_open(*args, **kwargs)
+        opened.append(descriptor)
+        return descriptor
+
+    def fail(*args, **kwargs):
+        raise OSError("stream allocation failed")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(os, "open", tracked_open)
+        patch.setattr(os, "fdopen", fail)
+        with pytest.raises((OSError, ValueError)):
+            if operation == "adoption":
+                bundle.ingest_trace_bundle(path)
+            else:
+                output.write_trace_output(target, b"new")
+    assert opened
+    for descriptor in opened:
+        with pytest.raises(OSError):
+            os.fstat(descriptor)
+    assert target.read_bytes() == b"original"
+    assert not list(tmp_path.glob(".n4-*.tmp"))
+
+
+def test_cleanup_failure_still_closes_output_directory(tmp_path, monkeypatch):
+    target = tmp_path / "target.json"
+    target.write_bytes(b"original")
+    descriptors = []
+    original_open, original_unlink = os.open, os.unlink
+
+    def tracked_open(*args, **kwargs):
+        descriptor = original_open(*args, **kwargs)
+        descriptors.append(descriptor)
+        return descriptor
+
+    def fail(*args, **kwargs):
+        raise OSError("injected I/O failure")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(os, "open", tracked_open)
+        patch.setattr(os, "replace", fail)
+        patch.setattr(os, "unlink", fail)
+        with pytest.raises(OSError):
+            output.write_trace_output(target, b"new")
+    for descriptor in descriptors:
+        with pytest.raises(OSError):
+            os.fstat(descriptor)
+    assert target.read_bytes() == b"original"
+    # A filesystem refusing unlink can retain a private temp file; cleanup after injection.
+    for temporary in tmp_path.glob(".n4-*.tmp"):
+        original_unlink(temporary)

@@ -53,8 +53,11 @@ def _directory(descriptor):
     files = {}
     for name in sorted(FILES):
         fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=descriptor)
-        with os.fdopen(fd, "rb") as source:
-            files[name] = _read_file(source, MAX_CONTRACT_JSON_BYTES)
+        try:
+            with os.fdopen(fd, "rb", closefd=False) as source:
+                files[name] = _read_file(source, MAX_CONTRACT_JSON_BYTES)
+        finally:
+            os.close(fd)
     return files
 
 
