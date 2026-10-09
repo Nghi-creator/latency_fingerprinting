@@ -1,4 +1,4 @@
-"""Offline P0 analysis, N1 diagnostics and additive N2/N3 analysis."""
+"""Offline P0 analysis, N1 diagnostics and additive N2/N3/N4 commands."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_model_file, read_bounded_text, strict_json_loads
@@ -315,6 +316,7 @@ def build_parser() -> argparse.ArgumentParser:
     match.set_defaults(handler=_match)
 
     register_v2_commands(subparsers)
+    register_trace_commands(subparsers)
     return parser
 
 

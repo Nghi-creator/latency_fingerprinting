@@ -1,7 +1,7 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Steps 0–4 complete locally; Steps 5–7 remain unimplemented
+**Status:** Steps 0–5 complete locally; Steps 6–7 remain unimplemented
 **Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
@@ -10,7 +10,7 @@
 **Current progress:** [N4 implementation progress](../observability/N4_IMPLEMENTATION_PROGRESS.md)
 
 N1–N3 are complete locally. The latest recorded Python 3.13.13 baseline is
-1,625 passing tests and 93.59% branch-inclusive coverage at the unchanged 85%
+1,683 passing tests and 93.58% branch-inclusive coverage at the unchanged 85%
 floor. Actual Python 3.11/hosted verification remains pending. Current N2 stage
 records are explicitly unavailable; current exported elapsed time is derived
 from wall clocks. N4 is planned work, not evidence that instrumentation exists.
@@ -77,7 +77,8 @@ recorded before changing contracts or instrumentation.
 [producer capability matrix and real/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md)
 and [independent examples](../observability/N4_TRACE_EXAMPLES.md) are fixed. This
 step delivered definitions only; Step 2 subsequently adds models/schemas and
-generic validation. Hooks, trace adoption/inspection and real measurements remain pending.
+generic validation. Steps 3–5 subsequently deliver hooks and trace adoption;
+inspection and real measurements remain pending.
 
 Inspect real capture, encoder, sender and browser boundaries. Author
 `docs/observability/N4_TRACE_CONTRACT.md` and a producer capability matrix with:
@@ -111,7 +112,7 @@ the inspected producer cannot supply.
 two additive schemas and generic validation are delivered, with independent
 identity/clock/loss/arithmetic/resource/copy regressions. Original ten schema bytes
 and N1–N3 reproduction pins are preserved. Steps 3–4 subsequently add host/browser hooks;
-artifact adoption and reconstruction remain pending.
+Step 5 subsequently delivers artifact adoption; reconstruction remains pending.
 
 Add focused observability models/modules and schemas using Step 1 definitions.
 Validate finite strict numbers, method versions, ordered unique identities,
@@ -162,6 +163,11 @@ Gate: supported stages carry method evidence; inaccessible stages and missing
 correlation remain explicit rather than becoming fabricated timestamps or zeros.
 
 ## Step 5 — Export and adopt bounded trace artifacts
+
+**Software gate:** Complete locally, 2026-10-09. [Standalone producer exports and
+bounded Python adoption](../observability/N4_TRACE_ADOPTION.md) deliver host shutdown
+persistence, opt-in browser download and atomic ingest-trace output. Synthetic
+export-to-CLI handoffs reproduce canonical bytes; legacy pins remain unchanged.
 
 Implement the reviewed producer artifact/version contract, then an additive Python
 reader and CLI. Keep old bundle versions and their existing ingestion outputs
@@ -221,14 +227,14 @@ scenario/held-out experiment work stays separate.
 - [x] Strict additive models/schemas preserve all existing contract bytes.
 - [x] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
 - [x] Browser/transport evidence exposes actual capabilities and correlation limits.
-- [ ] Versioned producer export and Python adoption agree without changing old outputs.
+- [x] Versioned producer export and Python adoption agree without changing old outputs.
 - [ ] Offline timing reconstruction retains clocks, methods, pairing and exclusions.
 - [ ] Independent fixtures, pins and cross-repository tests reproduce.
 - [ ] Real stage-local capture and instrumentation overhead acceptance are recorded.
 - [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next implementation action:** Step 5 standalone versioned trace export and
-bounded Python adoption/CLI. Steps 0–4 are complete locally; real capture and
-measured overhead remain pending. Phase 1 also needs the subsequent scenario
-harness; the roadmap's seven phases are not a fixed N1–N7 slice count.
+**Next implementation action:** Step 6 pure same-domain timing reconstruction and
+inspect-trace. Steps 0–5 are complete locally; real capture and measured overhead
+remain pending. Phase 1 also needs the subsequent scenario harness; the roadmap's
+seven phases are not a fixed N1–N7 slice count.

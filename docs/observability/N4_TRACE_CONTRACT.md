@@ -281,9 +281,9 @@ record bytes; bytes equal actual length. Reject noncanonical record serializatio
 hash/length mismatch or unsupported version before returning any output.
 Summary is generated offline, not an accepted third input bundle member.
 
-Step 5 introduces `ingest-trace --bundle PATH --output PATH` (validated canonical
+[Step 5 delivers](N4_TRACE_ADOPTION.md) `ingest-trace --bundle PATH --output PATH` (validated canonical
 record) and Step 6 `inspect-trace --trace PATH --output PATH` (canonical summary).
-These commands do not exist yet. Both are offline, use duplicate-safe/no-follow
+ingest-trace is implemented; inspect-trace remains pending. Both are offline, use duplicate-safe/no-follow
 regular-file reads and atomic output after complete validation. Existing CLI and
 legacy ingestion do not discover or reinterpret these artifacts. Generic schema
 export/validation now includes the two roots delivered in Step 2.

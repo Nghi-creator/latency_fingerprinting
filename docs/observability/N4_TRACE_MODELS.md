@@ -1,8 +1,8 @@
 # N4 trace models and schema validation
 
 **Delivered:** Step 2, 2026-10-09. [Host hooks](N4_HOST_INSTRUMENTATION.md) subsequently
-delivered in Step 3 and browser collection in Step 4; bundle adoption and offline reconstruction
-remain subsequent steps.
+delivered in Step 3 and browser collection in Step 4. [Trace adoption](N4_TRACE_ADOPTION.md)
+is delivered in Step 5; offline reconstruction remains Step 6.
 **Meaning:** [Normative contract](N4_TRACE_CONTRACT.md).
 
 `StageTraceRecord` and `StageTraceSummary` are available from
@@ -64,8 +64,8 @@ new schemas are [record](../../schemas/stage-trace-record-v1.schema.json) and
 shape, closed enums, required fields and local bounds. Runtime validators enforce
 cross-field identity, counts, alias suffix bounds and arithmetic that schemas
 cannot fully express. Generic validate uses its existing file-reading boundary;
-trace-specific no-follow bundle ingestion is Step 5 work. `ingest-trace` and
-`inspect-trace` are not delivered yet.
+[trace-specific no-follow bundle ingestion](N4_TRACE_ADOPTION.md) and ingest-trace
+are delivered in Step 5. inspect-trace remains pending.
 
 The [independent regression suite](../../tests/observability/test_contracts.py)
 covers the [Step 1 examples](N4_TRACE_EXAMPLES.md), false clocks/identities,

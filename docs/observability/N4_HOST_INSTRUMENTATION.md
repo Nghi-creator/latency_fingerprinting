@@ -36,7 +36,7 @@ when a peer disconnects. Stream/epoch/clock aliases are unique across at most
 sixteen lifetimes. Peers can use identical PTS without sharing frame identity.
 Capacity cannot evict earlier ledger entries or refill discarded event slots.
 Further lifetimes need a new recording; their playback continues without new
-trace collection. There is no browser control or persistent trace export yet.
+trace collection. [Step 5](N4_TRACE_ADOPTION.md) adds explicit shutdown persistence and separate browser download.
 
 ## Boundaries and correlation
 
@@ -90,11 +90,11 @@ SIGKILL/process failure cannot promise a finalized or saved trace.
 `snapshot(producer_version, provenance)` return detached sanitized record data;
 it performs correlation filtering/copying outside callbacks and outside the
 recording mutex. A real producer commit is required. Synthetic tests explicitly
-set synthetic provenance. This is an in-memory API, not the Step 5 artifact
-writer or the Step 6 trace-to-summary algorithm. Existing v2 exports, cumulative
+set synthetic provenance. [Step 5 export](N4_TRACE_ADOPTION.md) uses this API after shutdown; the Step 6
+trace-to-summary algorithm remains pending. Existing v2 exports, cumulative
 queue/counter telemetry, unavailable N2 timing and N3 matching remain unchanged.
 
-## Local verification
+## Step 3 verification (historical)
 
 Producer `npm run test:engine` builds and passes 133 Node tests with one existing
 external-mirror artifact skip (134 discovered). Its two new Node cases run the
@@ -108,4 +108,4 @@ A local host GLib loop handles self-SIGTERM and exits/finalizes successfully;
 no X11/VP8 pipeline is involved. Docker/Linux capture is still unavailable here.
 No real timing, browser hook, clock synchronization, overhead comparison or
 hosted/container execution is claimed by these tests. Step 4 subsequently delivers
-[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); trace artifacts/adoption/reconstruction remain Steps 5–6.
+[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; reconstruction remains Step 6.

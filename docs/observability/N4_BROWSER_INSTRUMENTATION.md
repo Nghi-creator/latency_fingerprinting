@@ -5,7 +5,7 @@ and [real-capture/overhead gates](N4_PRODUCER_CAPABILITIES.md) remain authoritat
 
 The sibling Pixelated Studio Edition web app now has a bounded in-memory collector
 in `apps/web/src/features/player/observability/`, attached by `useBrowserStageTrace`
-inside `useStreamPlayback`. Collection makes no React state updates per frame and
+in `PlayerExperience` beside `useStreamPlayback`. Collection makes no React state updates per frame and
 preserves existing playback, black-frame detection and cumulative WebRTC metrics.
 
 ## Enablement and scope
@@ -21,8 +21,8 @@ Vite build-time settings (rebuild the web app after changing them):
 
 Disabled mode allocates no recorder or frame callback and ignores trace knobs.
 Invalid enabled configuration emits one fixed diagnostic per recorder initialization
-and disables collection. There is no browser deadline budget or operator export
-control yet. Configuration is copied, bounded and frozen.
+and disables collection. There is no browser deadline budget. [Step 5](N4_TRACE_ADOPTION.md) adds explicit
+finish/export control with a required VITE_N4_STAGE_TRACE_PRODUCER_VERSION commit. Configuration is copied, bounded and frozen.
 
 One mounted playback hook owns a recording across at most sixteen video/media
 lifetimes. The frame/event limits apply globally across retained closed lifetimes;
@@ -74,10 +74,10 @@ neutralizes late delivery even if native cancellation fails. Callback/registrati
 failures stop tracing without escaping into playback. `finish()` cancels all active
 bindings; `snapshot(commit, provenance)` then returns a detached, sanitized v1
 record. It requires a lowercase forty-hex producer commit and explicit provenance.
-Snapshots do no synchronous work inside callbacks. Persistence/adoption and timing
-reconstruction remain Steps 5–6.
+Snapshots do no synchronous work inside callbacks. [Persistence/adoption](N4_TRACE_ADOPTION.md) is delivered in Step 5; timing
+reconstruction remains Step 6.
 
-Local checks: 38 independent browser collector/configuration/lifecycle cases;
+Step 4 checks: 38 independent browser collector/configuration/lifecycle cases;
 220 total web tests; web lint and production TypeScript/Vite build pass. All 23
 synthetic snapshots from those cases pass strict Python N4 validation. Existing
 core/schema/reproduction gates are preserved. These are software/fake-video checks,

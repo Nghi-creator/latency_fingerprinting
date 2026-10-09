@@ -1,4 +1,4 @@
-"""N4 text decoding caps; bundle/no-follow file adoption belongs to Step 5."""
+"""Bounded duplicate-safe N4 text decoding; file adoption uses bundle.py."""
 
 from ..json_io import MAX_CONTRACT_JSON_BYTES, strict_json_loads
 

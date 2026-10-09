@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Steps 0–4 complete locally; Step 5 trace export/adoption is next
+**Status:** Steps 0–5 complete locally; Step 6 timing reconstruction is next
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -286,4 +286,62 @@ clock synchronization or hosted/minimum-version execution occurred. Docker remai
 unavailable. Persistent trace export/adoption and reconstruction remain Steps 5–6;
 real acceptance/overhead and pinned integrated reproduction remain Step 7 gates.
 
-**Next:** Step 5 standalone versioned trace artifacts and bounded Python adoption/CLI.
+**Step 4 handoff (historical):** Step 5 standalone versioned trace artifacts and bounded Python adoption/CLI.
+
+## Step 5 — Standalone producer export and bounded adoption
+
+Completed software locally, 2026-10-09, from core commit
+`afa39e002b1125662e930758e42be3c7534551ff` and producer commit
+`98f90770a529165b3b7ed0ce426ee3add7afd890`. Both trees started clean; existing
+Steps 3–4 producer implementations were preserved. [Export/adoption guide](N4_TRACE_ADOPTION.md) documents the exact
+standalone layout, producer settings, offline command and failure semantics.
+
+Producer changes add a stdlib host gzip-TAR exporter, both image COPY lists,
+post-finish camera shutdown persistence, browser canonical serialization/hashing/
+gzip, and an explicit opt-in finish/download control. The lifecycle hook moves
+into PlayerExperience after playback's srcObject assignment effect. Export neither
+merges with research bundle v2 nor changes its members, CSVs or metrics. Real
+exports require an explicit deployed producer commit; synthetic APIs declare
+synthetic provenance. No implicit artifact write or network upload is introduced.
+Empty/invalid-version browser export leaves future collection available; successful
+finish stops it. Picker cancellation is reported and permits re-export. Host output
+uses atomic replacement, no-follow ancestor/leaf checks and private 0600 files.
+
+Core changes add a focused standalone reader, atomic output helper and ingest-trace
+command. The reader requires exactly two regular members, checks physical TAR
+headers before extension parsing, bounds compressed/expanded/JSON resources,
+rejects links/path aliases/extra/duplicate/extension members and validates duplicate-
+safe JSON. Manifest version/type/hash/byte count and canonical trace bytes must
+agree before returning a strict immutable record. No supplied URLs or private
+fields are interpreted. CLI failures use a fixed error with no partial output,
+source echoes or change to the previous destination. inspect-trace remains Step 6.
+
+Local verification:
+
+- **1683 full core tests pass / 93.58% branch-inclusive coverage**, unchanged 85%
+  floor, Python 3.13.13, 109.23 s. **58 new adversarial adoption/output cases** cover
+  canonical directory/gzip equality, hostile layouts, a 2000-header TAR extension
+  chain, JSON versions/privacy/depth, resource limits and atomic write failures.
+- **232 web tests pass**, zero failures/skips, including **12 new export cases**;
+  web lint and production TypeScript/Vite build pass.
+- Complete engine build/Node suite passes **133 tests plus one existing external-
+  mirror artifact skip (134 discovered)**. **41 nested host Python cases pass**,
+  including ten new export cases and actual shutdown-code ordering checks.
+  Engine lint, workspace lockfile consistency and producer Python-helper/test
+  Ruff checks pass. Runtime Dockerfiles copy the exporter; no container was built.
+- Actual producer export APIs generate synthetic gzip artifacts: one host frame
+  with five endpoints and two browser frames with four endpoints. Both core API
+  and ingest-trace adopt them with exact canonical output-byte equality. This is
+  synthetic producer-to-CLI interoperability, not a running media pipeline.
+- Twelve schema exports, metric registry and N1/N2/N3 pinned reproduction pass
+  unchanged. Source fixture/policy/schema bytes and dependencies/lockfiles are
+  preserved. Current documentation/navigation and both whitespace checks pass.
+
+A full run was repeated after final reader hardening so the result above reflects
+final behavior, not the earlier in-progress implementation. No live browser/picker,
+Linux/X11/VP8 capture, synchronization, measured overhead, container or hosted/
+minimum-version execution occurred. Docker remains unavailable. Resource limits
+are software caps, not measured full-limit scaling.
+
+**Next:** Step 6 pure same-domain trace-to-summary reconstruction and inspect-trace.
+Step 7 pinned integrated reproduction and real capture/overhead gates remain open.
