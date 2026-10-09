@@ -120,7 +120,9 @@ two additive schemas (twelve total) and 86 independent regressions in the existi
 full-suite jobs. Latest local execution passes **1,625 tests with 93.59%
 branch-inclusive coverage**, retaining the 85% floor. N4 Step 3 delivers [host hooks](../observability/N4_HOST_INSTRUMENTATION.md):
 producer engine build/tests/lint and 31 nested Python collector/pad/teardown
-regressions pass locally. Browser collection, trace adoption/inspection commands
+regressions pass locally. Step 4 delivers [browser collection](../observability/N4_BROWSER_INSTRUMENTATION.md):
+220 web tests (38 new), lint and production build pass; 23 synthetic browser
+snapshots pass strict core validation. Trace adoption/inspection commands
 and pinned trace fixtures remain pending. Existing N2 timing and N3 policy/match outputs remain frozen.
 
 Actual Python 3.11/hosted execution remains pending. N4 separately requires real

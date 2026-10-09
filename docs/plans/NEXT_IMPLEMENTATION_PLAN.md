@@ -1,7 +1,7 @@
 # N4 Implementation Plan: Stage-Level Observability
 
 **Slice ID:** N4
-**Status:** Steps 0–3 complete locally; Steps 4–7 remain unimplemented
+**Status:** Steps 0–4 complete locally; Steps 5–7 remain unimplemented
 **Updated:** 2026-10-09
 **Parent roadmap:** [Phase 1.2](FULL_IMPLEMENTATION_PLAN.md#12-add-stage-level-observability)
 **Predecessor:** [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
@@ -110,7 +110,8 @@ the inspected producer cannot supply.
 **Software gate:** Complete locally, 2026-10-09. [Immutable trace/summary models](../observability/N4_TRACE_MODELS.md),
 two additive schemas and generic validation are delivered, with independent
 identity/clock/loss/arithmetic/resource/copy regressions. Original ten schema bytes
-and N1–N3 reproduction pins are preserved. Step 3 subsequently adds host hooks; browser collection and reconstruction remain pending.
+and N1–N3 reproduction pins are preserved. Steps 3–4 subsequently add host/browser hooks;
+artifact adoption and reconstruction remain pending.
 
 Add focused observability models/modules and schemas using Step 1 definitions.
 Validate finite strict numbers, method versions, ordered unique identities,
@@ -145,6 +146,11 @@ Gate: bounded trace collection preserves the disabled path and identifies every
 instrumented event's actual location and clock domain.
 
 ## Step 4 — Add browser and transport capability evidence
+
+**Software gate:** Complete locally, 2026-10-09. [Opt-in browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md)
+records only approved presentation/callback endpoints, with lifetime/global bounds,
+truthful API/transport/decode capability and exact loss accounting. Fake-video tests
+and a production web build pass; live browser timing/overhead remain pending.
 
 Implement only hooks/API evidence approved in Step 1. Keep existing WebRTC
 cumulative decode/buffer means and RTT separate from per-frame timing. Declare
@@ -214,7 +220,7 @@ scenario/held-out experiment work stays separate.
 - [x] Timing/identity/method/capability/version and privacy/resource meanings are frozen.
 - [x] Strict additive models/schemas preserve all existing contract bytes.
 - [x] Host instrumentation is opt-in, bounded and handles restarts/loss/teardown.
-- [ ] Browser/transport evidence exposes actual capabilities and correlation limits.
+- [x] Browser/transport evidence exposes actual capabilities and correlation limits.
 - [ ] Versioned producer export and Python adoption agree without changing old outputs.
 - [ ] Offline timing reconstruction retains clocks, methods, pairing and exclusions.
 - [ ] Independent fixtures, pins and cross-repository tests reproduce.
@@ -222,7 +228,7 @@ scenario/held-out experiment work stays separate.
 - [ ] Actual minimum-version/hosted results or explicit outstanding items are recorded.
 - [ ] Current docs, commands, archive navigation and closeout match delivered behavior.
 
-**Next implementation action:** Step 4 browser presentation/callback evidence
-and explicit transport/decoder capability limits. Steps 0–3 are complete locally;
-real capture and measured overhead remain pending. Phase 1 also needs the subsequent
-scenario harness; the roadmap's seven phases are not a fixed N1–N7 slice count.
+**Next implementation action:** Step 5 standalone versioned trace export and
+bounded Python adoption/CLI. Steps 0–4 are complete locally; real capture and
+measured overhead remain pending. Phase 1 also needs the subsequent scenario
+harness; the roadmap's seven phases are not a fixed N1–N7 slice count.

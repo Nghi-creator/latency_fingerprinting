@@ -4,7 +4,8 @@
 `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`.
 **Definition:** [Trace contract](N4_TRACE_CONTRACT.md).
 **Delivery status:** Step 3 [host hooks](N4_HOST_INSTRUMENTATION.md) implemented locally.
-The inventory below records inspected starting behavior; browser hooks, real capture
+The inventory below records inspected starting behavior; [browser hooks](N4_BROWSER_INSTRUMENTATION.md)
+are now delivered as Step 4 software. Real capture
 and overhead verification remain pending.
 
 Paths in this document are relative to the sibling `Pixelated-Studio-Edition`
@@ -34,7 +35,7 @@ peer counters and can decrease when a peer disappears; this is not frame identit
 Browser recording elapsed time currently uses UTC-derived values; UI performance
 clocks do not retrospectively synchronize the exported research records.
 
-The proposed browser collector belongs alongside playback telemetry, with its
+The delivered browser collector belongs alongside playback telemetry, with its
 own bounded lifecycle, cancellation and opt-in state. It must not replace the
 existing black-frame fallback or getStats path. No `processingDuration`,
 `receiveTime`, `captureTime`, RTP timestamp or predicted display-time field is

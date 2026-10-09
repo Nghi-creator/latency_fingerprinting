@@ -2,7 +2,7 @@
 
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
-**Status:** Steps 0–3 complete locally; Step 4 browser/capability evidence is next
+**Status:** Steps 0–4 complete locally; Step 5 trace export/adoption is next
 **Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
@@ -236,6 +236,54 @@ was performed. Docker remains unavailable. No real correlation or measured
 instrumentation overhead is claimed. Snapshots are in-memory only; persistence,
 artifact adoption and trace-to-summary reconstruction remain Steps 5–6.
 
-**Next:** Step 4 adds bounded optional browser presentation/callback collection
+**Step 3 handoff (historical):** Step 4 adds bounded optional browser presentation/callback collection
 and explicit sender/receive/decode/display capability limits, retaining cumulative
 WebRTC metrics and unavailable cross-producer latency.
+
+## Step 4 — Bounded browser presentation/callback evidence
+
+Completed software locally, 2026-10-09, from core commit
+`ba9e559fe836b31f69e20d83ca7ffcdc24ee412d`. The core started clean; producer base
+remains `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`, with the Step 3 host changes
+already present and preserved. [Browser integration guide](N4_BROWSER_INSTRUMENTATION.md)
+records build-time opt-in configuration, approved endpoints and capability limits.
+
+Producer implementation adds closed configuration, a bounded recorder/rvfc adapter,
+a focused lifecycle hook wired into actual playback, and independent unit cases.
+The disabled path allocates no recorder or native callback. Enabled collection
+reads only callback now, presentationTime and presentedFrames; snapshots retain
+relative integer ns, exact callback-local pairing and all eleven capabilities.
+Receiver/decode/render-ready/sender stages remain explicitly unsupported. Cumulative
+WebRTC metrics, v2 export and N2/N3 meanings are unchanged.
+
+A recording retains an earliest sampled prefix across sixteen media lifetimes
+with shared frame/event capacity. Counter gaps include unsampled callbacks;
+clock/counter regressions close their scope without joining resets. Bad endpoints,
+capacity and partial pairs retain exact loss/event sequences. Callback registration,
+metadata and cancellation failures cannot escape into playback. One callback is
+outstanding per binding; detach/finish are idempotent and late delivery is ignored.
+No per-frame React update, file/export/core-model work or optional/private metadata
+read occurs. Clock resolution remains unknown; synthetic checks do not assess it.
+
+Local verification:
+
+- **220 web tests pass**, zero failures/skips, including **38 new collector/config/
+  lifecycle cases**. Web lint and production TypeScript/Vite build pass.
+- **23 synthetic browser snapshots** emitted by those cases pass strict core N4
+  validation, covering supported/unavailable APIs, resets, sampling, timestamp
+  loss, global capacity and multiple lifetimes. They are not real browser captures.
+- Core focused N4/schema/CLI checks pass **109 tests**. Twelve schemas, canonical
+  registry and N1/N2/N3 pinned reproduction remain current without refreshing pins.
+- Current docs/navigation and both working-tree whitespace checks pass. Core
+  production source/tests/schema/fixtures and producer dependencies/lockfiles are
+  unchanged. Engine files/tests are unchanged by Step 4; their latest result remains
+  Step 3's 133 passes plus one existing external-artifact skip, not a rerun here.
+- Latest full core execution remains **1625 tests / 93.59% coverage** from Step 2;
+  it was not repeated for producer browser code and documentation changes.
+
+No live browser interaction/timing, Linux/X11/VP8 capture, measured overhead,
+clock synchronization or hosted/minimum-version execution occurred. Docker remains
+unavailable. Persistent trace export/adoption and reconstruction remain Steps 5–6;
+real acceptance/overhead and pinned integrated reproduction remain Step 7 gates.
+
+**Next:** Step 5 standalone versioned trace artifacts and bounded Python adoption/CLI.

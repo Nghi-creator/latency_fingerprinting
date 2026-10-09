@@ -1,7 +1,7 @@
 # N4 trace models and schema validation
 
 **Delivered:** Step 2, 2026-10-09. [Host hooks](N4_HOST_INSTRUMENTATION.md) subsequently
-delivered in Step 3; browser collection, bundle adoption and offline reconstruction
+delivered in Step 3 and browser collection in Step 4; bundle adoption and offline reconstruction
 remain subsequent steps.
 **Meaning:** [Normative contract](N4_TRACE_CONTRACT.md).
 

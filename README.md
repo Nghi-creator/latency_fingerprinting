@@ -25,7 +25,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
 5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
-7. [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the active implementation plan; Steps 0–3 are complete locally and Step 4 is next.
+7. [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the active implementation plan; Steps 0–4 are complete locally and Step 5 is next.
 8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
@@ -104,12 +104,13 @@ Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_C
 and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 
 **Next: [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).**
-Steps 0–3 are complete locally: baselines, additive trace models/schemas and the
+Steps 0–4 are complete locally: baselines, additive trace models/schemas and the
 [timing/identity contract](docs/observability/N4_TRACE_CONTRACT.md) are recorded in
-[N4 progress](docs/observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 4–7 remain
+[N4 progress](docs/observability/N4_IMPLEMENTATION_PROGRESS.md). Steps 5–7 remain
 unimplemented. [Trace models and validation](docs/observability/N4_TRACE_MODELS.md)
-and [bounded host hooks](docs/observability/N4_HOST_INSTRUMENTATION.md) are
-delivered; next, add browser capability evidence.
+and [bounded host hooks](docs/observability/N4_HOST_INSTRUMENTATION.md)
+and [browser collection](docs/observability/N4_BROWSER_INSTRUMENTATION.md) are
+delivered; next, add trace export/adoption.
 The plan spans Pixelated hooks/export and separate Python trace validation and
 inspection, preserving current N2 timing and N3 matching meanings. The scenario
 harness remains subsequent Phase 1 work.

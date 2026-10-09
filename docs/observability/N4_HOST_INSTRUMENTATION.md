@@ -107,5 +107,5 @@ N4/schema/CLI checks pass 109 tests and all twelve schemas reproduce.
 A local host GLib loop handles self-SIGTERM and exits/finalizes successfully;
 no X11/VP8 pipeline is involved. Docker/Linux capture is still unavailable here.
 No real timing, browser hook, clock synchronization, overhead comparison or
-hosted/container execution is claimed by these tests. Next is Step 4 browser
-capability collection; trace artifacts/adoption/reconstruction remain Steps 5–6.
+hosted/container execution is claimed by these tests. Step 4 subsequently delivers
+[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); trace artifacts/adoption/reconstruction remain Steps 5–6.
