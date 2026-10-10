@@ -1,7 +1,8 @@
 # Independent N5 v1 examples
 
 **Frozen:** 2026-10-10. Arithmetic/examples below are hand-authored without a
-producer, model or result derivation. They become Step 3/4/6 regressions and Step 7
+producer, model or result derivation. [Step 3 model regressions](N5_EXPERIMENT_MODELS.md) implement the detached cases;
+runner/linked checks remain Steps 4/6 and pinned releases remain Step 7
 separately pinned fixtures. They do not run CPU pressure, prove real capture or
 refresh existing fixtures. See [contract](N5_EXPERIMENT_CONTRACT.md).
 

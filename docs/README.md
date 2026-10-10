@@ -3,10 +3,10 @@
 **Latest review:** [Cross-repository health audit](archive/observability/N4_ARCHITECTURE_AUDIT.md).
 
 **Current slice:** [N5 reproducible scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md).
-[Baseline/specification](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
+[Steps 1–3](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
 locally; [experiment contract](scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter capabilities](scenarios/N5_ADAPTER_CAPABILITIES.md) and
-[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. Models/schemas are next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) are delivered; bounded lifecycle and recording control are next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 is archived; [real acceptance](observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 The [trace contract](observability/N4_TRACE_CONTRACT.md),
 [producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
@@ -28,13 +28,13 @@ places the active scenario harness in Phase 1.3 and scientific evaluation later.
 | Analytical records | [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md), [approved policy](analysis/N3_FEATURE_POLICY_SPEC.json), [models](analysis/N3_ANALYTICAL_MODELS.md), [derivation](analysis/N3_RESPONSE_DERIVATION.md) |
 | Offline matching | [Fingerprints/repositories](analysis/N3_FINGERPRINTS.md), [matching](analysis/N3_MATCHING.md), [commands](analysis/N3_COMMANDS.md) |
 | N4 trace validation | [Models/commands](observability/N4_TRACE_MODELS.md), [contract](observability/N4_TRACE_CONTRACT.md), [capabilities](observability/N4_PRODUCER_CAPABILITIES.md), [host hooks](observability/N4_HOST_INSTRUMENTATION.md), [browser hooks](observability/N4_BROWSER_INSTRUMENTATION.md), [adoption/export](observability/N4_TRACE_ADOPTION.md), [timing inspection](observability/N4_TIMING_RECONSTRUCTION.md) |
-| N5 scenarios | [Active plan](plans/NEXT_IMPLEMENTATION_PLAN.md), [baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) |
+| N5 scenarios | [Active plan](plans/NEXT_IMPLEMENTATION_PLAN.md), [progress](scenarios/N5_IMPLEMENTATION_PROGRESS.md), [models/validation](scenarios/N5_EXPERIMENT_MODELS.md) |
 | Verification | [Quality gates](measurement/QUALITY_GATES.md), [N1 fixtures](measurement/ARITHMETIC_FIXTURES.md), [N2 fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [N3 fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [N4 fixtures/integration](observability/N4_INTEGRATION_VERIFICATION.md) |
 
 N2 stage timing remains unavailable. N4 delivers two additive trace schemas and
 host/browser hooks, trace artifact adoption and offline timing reconstruction.
-N3 policy parameters remain provisional. Current local suite passes 1,745
-tests with 93.69% branch-inclusive coverage; actual hosted/minimum-version,
+N3 policy parameters remain provisional. Current local suite passes 1,900
+tests with 93.91% branch-inclusive coverage; actual hosted/minimum-version,
 full-limit scaling and scientific validation remain pending.
 
 ## Historical evidence

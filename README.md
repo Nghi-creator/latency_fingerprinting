@@ -26,7 +26,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
 7. [N4 stage-level observability](docs/plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) is complete in software; [runtime acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md) remains pending.
-8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; baseline and specification are complete locally; strict models/schemas are next.
+8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; baseline, specification and strict models/schemas are complete locally; bounded lifecycle and recording control are next.
 8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
@@ -92,10 +92,10 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
 
 [Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
 in with independent expected summaries and read-only drift checks.
-[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N4
+[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The latest local suite passes **1,745 tests with 93.69% branch-inclusive
+The latest local suite passes **1,900 tests with 93.91% branch-inclusive
 coverage**; actual Python 3.11/hosted verification remains pending.
 
 Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
@@ -105,11 +105,11 @@ Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_C
 and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 
 **Current: [N5 reproducible scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).**
-[Baseline/specification](docs/scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
+[Steps 1–3](docs/scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
 locally. The [experiment contract](docs/scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter/effect criteria](docs/scenarios/N5_ADAPTER_CAPABILITIES.md) and
 [independent examples](docs/scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen;
-strict models/schemas are next, before runtime orchestration. N4 trace models, instrumentation, export/adoption
+[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; bounded producer lifecycle and fresh recording control are next. N4 trace models, instrumentation, export/adoption
 and inspection remain delivered; [real acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md)
 is carried forward explicitly. Existing N2 timing and N3 matching meanings stay frozen.
 

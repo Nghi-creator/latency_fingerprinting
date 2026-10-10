@@ -85,7 +85,7 @@ baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. The active [N5 plan](NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3 with a reproduced
 software baseline and [frozen scenario/phase/effect/cleanup contract](../scenarios/N5_EXPERIMENT_CONTRACT.md).
-Strict models/schemas are next; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)
+[Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; bounded lifecycle and recording control are next; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)
 remain pending. N4/N5 software alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).
 

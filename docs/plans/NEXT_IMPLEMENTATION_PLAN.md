@@ -1,7 +1,7 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Steps 1–2 baseline/specification complete locally; Step 3 models is next
+**Status:** Steps 1–3 baseline/contracts/models complete locally; Step 4 lifecycle/recording control is next
 **Updated:** 2026-10-10
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
@@ -65,6 +65,8 @@ Gate: every claimed scenario/effect/result has explicit evidence meaning and a
 bounded cleanup path; no silent reinterpretation of earlier artifact contracts.
 
 ## Step 3 — Implement strict additive experiment contracts
+
+**Local software gate:** Complete, 2026-10-10. [Strict models/schemas and validation](../scenarios/N5_EXPERIMENT_MODELS.md) deliver the three roots and independent regressions. Linked hash/effect verification remains Step 6.
 
 Add immutable strict manifest/result models, schemas and validation under the
 Step 2 contract. Reject unknown versions/actions, ambiguous references, invalid
@@ -132,7 +134,7 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 
 - [x] Baseline, ownership inventory and inherited pending gates recorded.
 - [x] Scenario/phase/evidence/cleanup contract frozen with independent examples.
-- [ ] Strict additive models/schemas preserve existing releases.
+- [x] Strict additive models/schemas preserve existing releases.
 - [ ] Bounded lifecycle and fresh post-warm-up recording control implemented.
 - [ ] Approved adapters verify effects and restoration; unsupported states explicit.
 - [ ] Versioned producer export/core adoption and inspection agree.
@@ -140,6 +142,5 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
 - [ ] Software/runtime/hosted closeout and current docs agree.
 
-**Next implementation action:** Step 3 strict additive experiment models/schemas
-and independent validation regressions. Six planned N5 steps remain. Runtime acceptance still needs
+**Next implementation action:** Step 4 bounded producer lifecycle and fresh recording control. Five planned N5 steps remain. Runtime acceptance still needs
 an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.

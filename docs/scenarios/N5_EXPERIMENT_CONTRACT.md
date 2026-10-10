@@ -1,6 +1,6 @@
 # N5 experiment contract v1
 
-**Frozen:** 2026-10-10, Step 2 specification; implementation begins in Step 3.
+**Frozen:** 2026-10-10, Step 2 specification; [Step 3 models/validation](N5_EXPERIMENT_MODELS.md) are implemented.
 **Method release:** `n5-single-cause-v1`.
 **Plan:** [N5](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Adapter inventory:** [Capabilities](N5_ADAPTER_CAPABILITIES.md).
@@ -8,8 +8,8 @@
 
 N5 records requested plans, observed execution and bounded experiment evidence.
 They do not label scientific diagnoses, promote fingerprints or alter P0/N1–N4.
-Unsupported cases and failed effects remain visible. This specification is not
-an implemented API or evidence of a live trial. Field/method/limit changes require
+Unsupported cases and failed effects remain visible. The detached models implement this specification; runtime and bundle inspection
+remain later steps. This is not evidence of a live trial. Field/method/limit changes require
 reviewed version changes; existing schemas and policy/fixture bytes stay frozen.
 
 ## Roots and serialization
@@ -273,8 +273,8 @@ result and recomputed effect evidence; no producer process or remote access.
 Intended CLI `inspect-experiment --bundle PATH --output PATH` writes canonical
 ExperimentResult only after verification; success is silent. Failure emits exactly
 `error: inspect-experiment: invalid_input_or_output` with no input/path echo and
-preserves existing output. Generic validate gains three additive roots in Step 3;
-inspection is implemented in Step 6. These APIs do not exist at Step 2.
+preserves existing output. Generic validate supports the three additive roots as of Step 3;
+inspection remains Step 6. The intended inspection APIs are not implemented yet.
 
 ## Campaign separation and real acceptance
 

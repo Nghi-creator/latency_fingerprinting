@@ -183,3 +183,22 @@ experiment roots and bounded lifecycle/effect/cleanup meanings. This step is
 specification only; Step 1 suite counts are unchanged historical baseline evidence.
 No schema, runtime code, fixture pin or actual measurement changed. Strict models
 and independent validation regressions are Step 3.
+
+
+## N5 Step 3 strict records and validation
+
+[Models/commands](../scenarios/N5_EXPERIMENT_MODELS.md) deliver three additive
+roots, schema exports and bounded generic validation. The final full core suite
+passes **1900 tests / 93.91% branch-inclusive coverage** with 155 independent N5
+regressions under Python 3.13.13; the existing 85% floor remains unchanged.
+Ruff lint/format, dependency consistency, all fifteen schemas and unchanged
+registry/P0/N1/N2/N3/N4 reproduction pass. Prior twelve schema bytes, fixture pins,
+policy, controlled roots/probes, run-001 seed and exact run-002 match are preserved.
+Both trees pass documentation-link and whitespace checks. Producer code is
+unchanged; Step 1 producer suite/build counts remain historical.
+
+Standalone roots verify intrinsic consistency; artifact hashes, linked worker/
+clock/phase ownership and effect recomputation remain Step 6. Step 4 lifecycle
+and recording control are next. Synthetic validation does not pass Linux trials,
+N4 capture/overhead, actual minimum-version/hosted execution or the two real fault
+classes required for Phase 1.3. See [progress](../scenarios/N5_IMPLEMENTATION_PROGRESS.md).

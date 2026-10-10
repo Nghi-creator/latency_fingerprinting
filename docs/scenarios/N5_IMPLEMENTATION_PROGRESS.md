@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-10. **Status:** Steps 1–2 baseline/specification complete locally; Step 3 models next.
+**Updated:** 2026-10-10. **Status:** Steps 1–3 baseline/contracts/models complete locally; Step 4 lifecycle/recording control next.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -13,7 +13,7 @@ Both checkouts were clean before this step:
 | Core | `2a15bbfefba4a76dc5c5f7ed0e76672ecd963287` |
 | Pixelated testbed | `b65eeed2fba67987610b957a82ed8a39876c5410` |
 
-No applicable AGENTS.md was found in either repository. N5 changes so far are
+No applicable AGENTS.md was found in either repository. At Step 1, N5 changes were
 plan/progress/transition documentation, not a new runtime harness, fault injection
 or a measured scenario. No commit, deployment or hosted workflow was performed.
 
@@ -47,12 +47,12 @@ or a measured scenario. No commit, deployment or hosted workflow was performed.
 | Core | `src/latency_fingerprinting/observability/`, analytical-v2 APIs | Strict offline artifacts/inspection and matching boundaries; experiment phases/actions cannot silently become N3 features |
 
 All producer paths above are in the sibling testbed. The core must not gain a
-runtime dependency on that checkout. N5 has no approved fault adapter matrix yet:
+runtime dependency on that checkout. At Step 1, N5 had no approved fault adapter matrix yet:
 network shaping privileges, encoder/render controls and client pressure all need
 actual ownership/effect inspection in Step 2. Existing smoke scripts are references,
 not authorization to run live hosted calls or alter host networking in this step.
 
-### Contract decisions required next
+### Contract decisions required next at Step 1 (historical)
 
 Freeze separate experiment identity/versioning; phase boundaries and monotonic
 clock scope; requested actions versus executed/verified effects; support states;
@@ -61,7 +61,7 @@ seeds and independent repeat/reference/query assignments; sanitized artifact pat
 hashes and byte/row/depth bounds. Author independent arithmetic/lifecycle examples.
 
 N4 traces are capped at 2000 frames/10000 events across lifetimes. A multi-phase
-run can exceed those ceilings at full sampling. Step 2 must declare artifact scopes
+run can exceed those ceilings at full sampling. Step 2 subsequently declared artifact scopes
 and sampling/phase budgets; never enlarge frozen N4 limits to hide overflow or
 pool independently restarted clocks. Preserve earlier research phase meanings.
 
@@ -110,8 +110,53 @@ not create or refresh pinned fixtures. Independent Fraction arithmetic verifies
 nominal/boundary values and capacity. All 753 core and 32 producer local
 documentation targets resolve, and both trees pass whitespace checks.
 The unchanged Step 1 full-suite numbers are historical baseline results, not a new
-suite execution in this specification step. No new models/schemas/runner/CLI exist.
+suite execution in this specification step. No new models/schemas/runner/CLI existed at Step 2.
 
-**Next:** Step 3 strict additive models/schemas and independent validation tests.
+**Step 2 handoff (historical):** Step 3 strict additive models/schemas and independent validation tests.
 V1 alone does not meet Phase 1.3's two real bottleneck classes. N4 real/overhead and
 actual minimum-version/hosted evidence remain pending.
+
+
+## Step 3 — Strict additive models, schemas and generic validation
+
+[Model/API guide](N5_EXPERIMENT_MODELS.md) documents the three public roots,
+required strict fields, frozen instances/tuples and revalidated copies, closed
+scenario/adapter vocabulary, exact integer phase/recording budgets, actual
+contiguous counter coverage, execution/action/cleanup consistency and sanitized
+artifact references. Generic `validate` accepts each root through duplicate-safe,
+size/depth-bounded JSON and existing canonical output. All fifteen exported
+schemas reproduce; the twelve prior schemas remain byte-for-byte unchanged.
+
+The 155 independent regressions use hand-authored Step 2 tables rather than
+production exporters or an effect calculator. They cover complete, partial,
+unavailable, cancelled, unsupported and failed-effect/cleanup states, strict
+numeric/version/identity bounds, required and extra fields, container preflight,
+mutable copied instances, JSON Schema shape and isolated subprocess CLI imports.
+Artifact hashes/bytes in these shape examples are explicit placeholders, not
+runtime evidence or new release pins.
+
+Cross-root hashes, requested/actual agreement, artifact provenance/clock ownership
+and effect thresholds from sufficient complete evidence require Step 6 inspection;
+standalone validation cannot certify them. No runtime runner/control, live fault,
+measurement or producer source change is introduced here. Both repositories' current
+plan/readme/handoff documents now point to Step 4; historical Step 1/2 outcomes
+remain labelled. Fixture pinning remains Step 7.
+
+### Step 3 verification
+
+Final full core suite: **1900 tests pass / 93.91% branch-inclusive coverage** under
+Python 3.13.13, unchanged 85% floor. All 155 new N5 cases pass. Ruff lint/format,
+dependency consistency, fifteen schema exports, canonical registry and N1/N2/N3/N4
+pinned reproduction pass. Original P0 synthetic fixtures, five controlled roots,
+both executed probes, the run-001 seed and exact run-002 match bytes are preserved.
+No existing fixture, policy, registry or schema release was changed.
+
+All 742 core and 24 producer local documentation targets outside fenced examples
+resolve; both trees pass whitespace checks. Producer runtime code/dependencies
+are unchanged, so Step 1 producer full-suite/build results remain historical,
+not a Step 3 rerun. No actual minimum-version or hosted execution was performed.
+
+**Next:** Step 4 bounded producer lifecycle, resource ownership/cancellation and
+fresh post-warm-up/per-phase recording control. Five planned N5 steps remain.
+N4 runtime/overhead, minimum-version/hosted and two real bottleneck-class gates
+remain pending.

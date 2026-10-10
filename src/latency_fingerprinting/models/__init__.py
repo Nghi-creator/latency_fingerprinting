@@ -5,6 +5,7 @@ the implementation is organized into focused modules.
 """
 
 from ..observability import StageTraceRecord, StageTraceSummary
+from ..scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .common import (
     CONTRACT_VERSION,
     FINGERPRINT_SCHEMA_VERSION,
@@ -204,3 +205,6 @@ __all__ += [
 
 
 __all__ += ["StageTraceRecord", "StageTraceSummary"]
+
+
+__all__ += ["ExperimentManifest", "ExperimentPhaseEvidence", "ExperimentResult"]

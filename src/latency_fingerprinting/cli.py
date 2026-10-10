@@ -54,6 +54,7 @@ from .models import (
 )
 from .observability import StageTraceRecord, StageTraceSummary
 from .pipeline import build_observation_record, canonical_json
+from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .schemas import DEFAULT_SCHEMA_DIRECTORY, SCHEMA_MODELS, export_schemas, schema_drift
 
 CommandHandler = Callable[[argparse.Namespace], None]
@@ -61,6 +62,9 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "experiment-manifest-v1": ExperimentManifest,
+    "experiment-phase-evidence-v1": ExperimentPhaseEvidence,
+    "experiment-result-v1": ExperimentResult,
     "stage-trace-record-v1": StageTraceRecord,
     "stage-trace-summary-v1": StageTraceSummary,
     MATCH_RESULT_V2_SCHEMA_VERSION: MatchResultV2,
@@ -95,6 +99,9 @@ def _validate(args: argparse.Namespace) -> None:
     if schema_version is None and payload.get("schema_version") in (
         "stage-trace-record-v1",
         "stage-trace-summary-v1",
+        "experiment-manifest-v1",
+        "experiment-phase-evidence-v1",
+        "experiment-result-v1",
     ):
         schema_version = payload["schema_version"]
     if not isinstance(schema_version, str):
@@ -108,7 +115,14 @@ def _validate(args: argparse.Namespace) -> None:
 
     validated = (
         model.model_validate_json(input_text)
-        if model in (StageTraceRecord, StageTraceSummary)
+        if model
+        in (
+            StageTraceRecord,
+            StageTraceSummary,
+            ExperimentManifest,
+            ExperimentPhaseEvidence,
+            ExperimentResult,
+        )
         else model.model_validate(payload)
     )
     sys.stdout.write(canonical_json(validated))

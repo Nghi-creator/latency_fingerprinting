@@ -1,4 +1,4 @@
-"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2/N3 roots."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2–N5 roots."""
 
 from __future__ import annotations
 
@@ -14,6 +14,9 @@ from pydantic import BaseModel
 
 from .models import (
     AnalyticalResponseV2,
+    ExperimentManifest,
+    ExperimentPhaseEvidence,
+    ExperimentResult,
     FeaturePolicyV1,
     Fingerprint,
     FingerprintV2,
@@ -32,6 +35,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "experiment-manifest-v1.schema.json": ExperimentManifest,
+    "experiment-phase-evidence-v1.schema.json": ExperimentPhaseEvidence,
+    "experiment-result-v1.schema.json": ExperimentResult,
     "stage-trace-record-v1.schema.json": StageTraceRecord,
     "stage-trace-summary-v1.schema.json": StageTraceSummary,
     "observation-v1.schema.json": ObservationRecord,
