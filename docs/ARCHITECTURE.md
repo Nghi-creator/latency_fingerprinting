@@ -170,8 +170,9 @@ hosted execution remain pending. Synthetic integration establishes deterministic
 software interoperability, not measured capture performance.
 
 The active [N5 scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3.
-Its [baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is delivered;
-manifest, phase, effect and cleanup contracts are next. Producer runtime control
+Its [baseline/specification](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is delivered;
+[manifest, phase, effect and cleanup contract](scenarios/N5_EXPERIMENT_CONTRACT.md)
+is frozen. Strict additive models/schemas are next. Producer runtime control
 and core offline validation stay separate. [N4 runtime acceptance](observability/N4_RUNTIME_ACCEPTANCE.md)
 remains pending and is not cleared by starting N5. Completed plans are in
 [plans/archive](plans/archive/README.md); completed closeouts, progress and health

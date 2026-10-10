@@ -3,8 +3,9 @@
 ## Active work
 
 - [N5 — Reproducible scenario harness](NEXT_IMPLEMENTATION_PLAN.md) is active.
-  [Step 1 baseline/inventory](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
-  locally; Step 2 freezes scenario/phase/evidence/cleanup meanings. [Inherited N4
+  [Steps 1–2 baseline/specification](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
+  locally; [contract](../scenarios/N5_EXPERIMENT_CONTRACT.md) and
+  [examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. Step 3 models/schemas is next. [Inherited N4
   runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 - [Full roadmap](FULL_IMPLEMENTATION_PLAN.md) defines Phases 1–7. N4 addresses
   Phase 1.2; N5 starts the Phase 1.3 scenario harness. Slice numbers

@@ -173,3 +173,13 @@ checks, API TypeScript checks and web build pass. This step changes documentatio
 and archives N4 software records; it introduces no runtime harness or fault trial.
 [Inherited N4 real acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) and actual
 minimum-version/hosted execution remain pending.
+
+## N5 Step 2 specification
+
+[Contract](../scenarios/N5_EXPERIMENT_CONTRACT.md),
+[capabilities](../scenarios/N5_ADAPTER_CAPABILITIES.md) and
+[independent examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) freeze the additive
+experiment roots and bounded lifecycle/effect/cleanup meanings. This step is
+specification only; Step 1 suite counts are unchanged historical baseline evidence.
+No schema, runtime code, fixture pin or actual measurement changed. Strict models
+and independent validation regressions are Step 3.

@@ -1,7 +1,7 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Step 1 baseline/inventory complete locally; Step 2 contract is next
+**Status:** Steps 1–2 baseline/specification complete locally; Step 3 models is next
 **Updated:** 2026-10-10
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
@@ -46,6 +46,8 @@ Gate: a recorded reproducible software baseline and explicit ownership/gap
 inventory. No fault injection or new runtime measurement is performed here.
 
 ## Step 2 — Freeze scenarios, phases, evidence and cleanup contract
+
+**Specification gate:** Complete, 2026-10-10. [Experiment contract](../scenarios/N5_EXPERIMENT_CONTRACT.md), [adapter capabilities/effect criteria](../scenarios/N5_ADAPTER_CAPABILITIES.md) and [independent examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) freeze three additive roots, phases/actions, integer evidence, bounds, cleanup, per-phase recording and intended inspection. V1 approves healthy/host contention for later implementation; other classes remain explicitly unsupported. No N5 models/runner/CLI or real trial is delivered here.
 
 Define a separately versioned experiment manifest and scenario/adapter inventory.
 Specify warm-up, healthy, degraded, probe, recovery and cooldown boundaries,
@@ -129,7 +131,7 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 ## Exit checklist
 
 - [x] Baseline, ownership inventory and inherited pending gates recorded.
-- [ ] Scenario/phase/evidence/cleanup contract frozen with independent examples.
+- [x] Scenario/phase/evidence/cleanup contract frozen with independent examples.
 - [ ] Strict additive models/schemas preserve existing releases.
 - [ ] Bounded lifecycle and fresh post-warm-up recording control implemented.
 - [ ] Approved adapters verify effects and restoration; unsupported states explicit.
@@ -138,6 +140,6 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
 - [ ] Software/runtime/hosted closeout and current docs agree.
 
-**Next implementation action:** Step 2 contract and independent examples. There
-are seven planned N5 steps after this baseline step. Runtime acceptance still needs
+**Next implementation action:** Step 3 strict additive experiment models/schemas
+and independent validation regressions. Six planned N5 steps remain. Runtime acceptance still needs
 an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.

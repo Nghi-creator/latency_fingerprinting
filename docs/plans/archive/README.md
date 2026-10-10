@@ -10,7 +10,7 @@ These plans retain their completed local gates and explicitly pending hosted
 checks. They are historical execution records. Related closeouts, progress and
 health audits live in the [milestone archive](../../archive/README.md).
 The [active plan](../NEXT_IMPLEMENTATION_PLAN.md) is N5, the Phase 1.3 reproducible
-scenario harness. Its baseline/inventory step is complete locally; the contract
-step is next. [N4 real acceptance](../../observability/N4_RUNTIME_ACCEPTANCE.md)
+scenario harness. Baseline/specification are complete locally; strict models/schemas
+are next. [N4 real acceptance](../../observability/N4_RUNTIME_ACCEPTANCE.md)
 remains a live gate. The [full roadmap](../FULL_IMPLEMENTATION_PLAN.md) remains
 the phase-level sequence.

@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-10. **Status:** Step 1 complete locally; Step 2 contract next.
+**Updated:** 2026-10-10. **Status:** Steps 1–2 baseline/specification complete locally; Step 3 models next.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -84,4 +84,34 @@ pass whitespace checks. N4 plan/progress/closeout/audit were archived with links
 updated. Normative N4
 contracts, usage/integration guides, schemas and fixtures remain current.
 
-**Next:** Step 2 scenario/phase/evidence/cleanup contract and independent examples.
+**Step 1 handoff (historical):** Step 2 scenario/phase/evidence/cleanup contract and independent examples.
+
+## Step 2 — Frozen experiment/evidence and cleanup contract
+
+The [contract](N5_EXPERIMENT_CONTRACT.md), [capability matrix](N5_ADAPTER_CAPABILITIES.md)
+and [independent examples](N5_EXPERIMENT_EXAMPLES.md) specify three additive roots,
+immutable planned manifest versus executed result, raw phase intervals, six-phase
+order/timing, bounded CPU actions, integer effect thresholds and verified cleanup.
+Available adapter preflight is separate from action startup, measured effect and
+scientific causality. Healthy/host contention are approved for implementation;
+other fault classes and mixed/changing scenarios are explicitly unsupported in v1.
+
+Fresh post-warm-up/per-phase N4 collector control remains Step 4. Planned phase
+budgets must fit unchanged N4 caps, with no clock bridging. The producer must add
+owned-worker CPU evidence and bounded lease/journal/reap/restore; existing smoke
+cleanup and core pressure joins do not already satisfy that contract. Six complete
+phase-evidence files are required for a completed run; timing gaps cannot be filled.
+
+Independent arithmetic covers 30→24→30 fps with 60% one-core pressure, inclusive
+28.5 fps/50% thresholds, inadequate baselines, unobserved faults/recovery, partial
+or reset/gapped counters, cancellation, restoration failure, unsupported adapters,
+trace capacity and reference/query leakage. Examples run no live pressure and do
+not create or refresh pinned fixtures. Independent Fraction arithmetic verifies
+nominal/boundary values and capacity. All 753 core and 32 producer local
+documentation targets resolve, and both trees pass whitespace checks.
+The unchanged Step 1 full-suite numbers are historical baseline results, not a new
+suite execution in this specification step. No new models/schemas/runner/CLI exist.
+
+**Next:** Step 3 strict additive models/schemas and independent validation tests.
+V1 alone does not meet Phase 1.3's two real bottleneck classes. N4 real/overhead and
+actual minimum-version/hosted evidence remain pending.

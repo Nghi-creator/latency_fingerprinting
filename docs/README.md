@@ -3,8 +3,10 @@
 **Latest review:** [Cross-repository health audit](archive/observability/N4_ARCHITECTURE_AUDIT.md).
 
 **Current slice:** [N5 reproducible scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md).
-[Step 1 baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
-locally; scenario/phase/evidence/cleanup contract is next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+[Baseline/specification](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
+locally; [experiment contract](scenarios/N5_EXPERIMENT_CONTRACT.md),
+[adapter capabilities](scenarios/N5_ADAPTER_CAPABILITIES.md) and
+[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. Models/schemas are next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 is archived; [real acceptance](observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 The [trace contract](observability/N4_TRACE_CONTRACT.md),
 [producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
