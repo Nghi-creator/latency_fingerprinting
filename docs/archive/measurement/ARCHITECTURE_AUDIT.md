@@ -1,7 +1,7 @@
 # Post-N1 architecture audit
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 This report preserves the original post-N1 findings and verification. Subsequent
 [N2 closeout](N2_SOFTWARE_CLOSEOUT.md) and [health audit](N2_ARCHITECTURE_AUDIT.md)

@@ -147,14 +147,14 @@ root and members through no-follow descriptors, enforce regular/nonblocking file
 reads and bound TAR input bytes before decoding. Valid artifacts, schemas and
 fixture pins reproduce unchanged; these repairs do not change policy meanings.
 
-## Active N4 boundary
+## Delivered N4 software boundary
 
-The [N4 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) has delivered software Steps 0–6
+The [N4 plan](plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) has delivered software Steps 0–6
 and Step 7 pinned synthetic integration locally. Pixelated owns opt-in bounded
 X11/queue/VP8 probes, browser presentation/callback collection and standalone
 trace export. This core owns strict immutable trace/summary validation,
 `ingest-trace`, pure same-lifetime reconstruction and `inspect-trace`. See the
-[software closeout](observability/N4_SOFTWARE_CLOSEOUT.md) and
+[software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md) and
 [integration procedure](observability/N4_INTEGRATION_VERIFICATION.md).
 
 Pairing stays within a stream/epoch/clock and exact admitted frame identity.
@@ -169,7 +169,11 @@ draining WebRTC receiver and paired overhead trials. Actual minimum-version and
 hosted execution remain pending. Synthetic integration establishes deterministic
 software interoperability, not measured capture performance.
 
-The following scenario harness is still Phase 1.3 work. Completed plans are in
+The active [N5 scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3.
+Its [baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is delivered;
+manifest, phase, effect and cleanup contracts are next. Producer runtime control
+and core offline validation stay separate. [N4 runtime acceptance](observability/N4_RUNTIME_ACCEPTANCE.md)
+remains pending and is not cleared by starting N5. Completed plans are in
 [plans/archive](plans/archive/README.md); completed closeouts, progress and health
 audits are in the [milestone archive](archive/README.md). Current contracts and API
 guides remain in their topic directories; the [documentation index](README.md)
@@ -205,15 +209,17 @@ latency-fingerprinting/
 │   │   ├── README.md
 │   │   ├── p0/
 │   │   ├── measurement/
-│   │   └── analysis/
+│   │   ├── analysis/
+│   │   └── observability/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/
 │   ├── observability/
 │   │   ├── N4_TRACE_CONTRACT.md
 │   │   ├── N4_INTEGRATION_VERIFICATION.md
-│   │   ├── N4_SOFTWARE_CLOSEOUT.md
-│   │   └── N4_ARCHITECTURE_AUDIT.md
+│   │   └── N4_RUNTIME_ACCEPTANCE.md
+│   ├── scenarios/
+│   │   └── N5_IMPLEMENTATION_PROGRESS.md
 │   └── plans/
 │       ├── NEXT_IMPLEMENTATION_PLAN.md
 │       ├── FULL_IMPLEMENTATION_PLAN.md

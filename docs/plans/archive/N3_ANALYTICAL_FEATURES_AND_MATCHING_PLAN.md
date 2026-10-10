@@ -1,7 +1,7 @@
 # Archived N3 Implementation Plan: V2 Analytical Features and Offline Matching
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 **Slice ID:** N3
 **Status:** Archived local software closeout; Steps 0–7 verified; hosted verification pending
@@ -253,6 +253,6 @@ counts above remain the original milestone evidence; the plan remains complete.
 - [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
 
 N3 software is complete locally. This completed plan is archived at the transition
-to the [active N4 stage-observability plan](../NEXT_IMPLEMENTATION_PLAN.md).
+to the [active N4 stage-observability plan](N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
 Hosted/minimum-version execution remains separately pending; remaining Phase 1
 instrumentation/experiment work and scientific evaluation are outside this closeout.

@@ -100,7 +100,7 @@ container/hosted execution or measured overhead was performed.
 [Step 6 offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md) are now delivered. Pinned integrated
 reproduction is delivered in [Step 7 software verification](N4_INTEGRATION_VERIFICATION.md); real capture/overhead acceptance remains pending. N4 is incomplete.
 
-The [subsequent health audit](N4_ARCHITECTURE_AUDIT.md) hardens descriptor ownership
+The [subsequent health audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md) hardens descriptor ownership
 for failed stream creation/cleanup in core adoption/output and producer export.
 Existing output remains unchanged on failure; a filesystem refusing unlink can
 retain a private temporary file, with the directory still closed and the error

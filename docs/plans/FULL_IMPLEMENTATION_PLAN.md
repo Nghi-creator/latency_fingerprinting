@@ -8,7 +8,7 @@ live probing, recovery benefit, and transfer remain unproven.
 This document defines the complete sequence of major slices required to finish
 the engine. It intentionally stays at roadmap level. The implementation-ready
 plan for only the active slice lives in
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md).
+[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
 
 ## Outcome to build toward
 
@@ -73,18 +73,20 @@ It preserves P0/N1/N2 semantics and requires explicit policy design before runti
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.
 
-The active [N4 plan](NEXT_IMPLEMENTATION_PLAN.md) addresses Phase 1.2 stage-level
+The archived [N4 plan](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) addresses Phase 1.2 stage-level
 observability: timing/clock/capability contracts, bounded producer instrumentation,
 versioned trace export, offline adoption and real stage-local/overhead acceptance.
-Steps 0–6 are [complete locally](../observability/N4_IMPLEMENTATION_PROGRESS.md):
+Steps 0–6 are [complete locally](../archive/observability/N4_IMPLEMENTATION_PROGRESS.md):
 baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [strict models/schemas](../observability/N4_TRACE_MODELS.md) and
 [bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
 [browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
-[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
-N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
-work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
+N3 matching meanings through additive trace contracts. The active [N5 plan](NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3 with a reproduced
+software baseline and ownership inventory. Its scenario/phase/effect/cleanup
+contract is next; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)
+remain pending. N4/N5 software alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).
 
 ### 1.1 Version metric semantics
@@ -393,6 +395,6 @@ The engine is complete only when all of the following are true:
 - all remaining limitations are explicit.
 
 The current implementation-ready work is specified in
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). Dashboard work,
+[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md). Dashboard work,
 a hosted service, unrestricted online learning, and ML/RL remain out of scope
 until measurement semantics, safety, and deterministic baselines justify them.

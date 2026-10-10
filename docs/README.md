@@ -1,10 +1,11 @@
 # Documentation index
 
-**Latest review:** [Cross-repository health audit](observability/N4_ARCHITECTURE_AUDIT.md).
+**Latest review:** [Cross-repository health audit](archive/observability/N4_ARCHITECTURE_AUDIT.md).
 
-**Current slice:** [N4 stage-level observability](plans/NEXT_IMPLEMENTATION_PLAN.md),
-Steps 0–6 and Step 7 synthetic integration complete locally; real acceptance remains pending. [Software closeout](observability/N4_SOFTWARE_CLOSEOUT.md) records the gates. [N4 progress](observability/N4_IMPLEMENTATION_PROGRESS.md)
-records both repository baselines, producer checks and runtime limitations.
+**Current slice:** [N5 reproducible scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md).
+[Step 1 baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) is complete
+locally; scenario/phase/evidence/cleanup contract is next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+is archived; [real acceptance](observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 The [trace contract](observability/N4_TRACE_CONTRACT.md),
 [producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
 [independent examples](observability/N4_TRACE_EXAMPLES.md) are specified. [Trace models/schemas](observability/N4_TRACE_MODELS.md) and generic
@@ -12,7 +13,7 @@ validation, [opt-in host hooks](observability/N4_HOST_INSTRUMENTATION.md),
 [browser collection](observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace adoption](observability/N4_TRACE_ADOPTION.md) and
 [timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real capture/overhead acceptance remains pending. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
-keeps the subsequent scenario harness and scientific evaluation separate.
+places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
 ## Current implemented references
 
@@ -25,6 +26,7 @@ keeps the subsequent scenario harness and scientific evaluation separate.
 | Analytical records | [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md), [approved policy](analysis/N3_FEATURE_POLICY_SPEC.json), [models](analysis/N3_ANALYTICAL_MODELS.md), [derivation](analysis/N3_RESPONSE_DERIVATION.md) |
 | Offline matching | [Fingerprints/repositories](analysis/N3_FINGERPRINTS.md), [matching](analysis/N3_MATCHING.md), [commands](analysis/N3_COMMANDS.md) |
 | N4 trace validation | [Models/commands](observability/N4_TRACE_MODELS.md), [contract](observability/N4_TRACE_CONTRACT.md), [capabilities](observability/N4_PRODUCER_CAPABILITIES.md), [host hooks](observability/N4_HOST_INSTRUMENTATION.md), [browser hooks](observability/N4_BROWSER_INSTRUMENTATION.md), [adoption/export](observability/N4_TRACE_ADOPTION.md), [timing inspection](observability/N4_TIMING_RECONSTRUCTION.md) |
+| N5 scenarios | [Active plan](plans/NEXT_IMPLEMENTATION_PLAN.md), [baseline/inventory](scenarios/N5_IMPLEMENTATION_PROGRESS.md) |
 | Verification | [Quality gates](measurement/QUALITY_GATES.md), [N1 fixtures](measurement/ARITHMETIC_FIXTURES.md), [N2 fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [N3 fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [N4 fixtures/integration](observability/N4_INTEGRATION_VERIFICATION.md) |
 
 N2 stage timing remains unavailable. N4 delivers two additive trace schemas and
@@ -36,7 +38,7 @@ full-limit scaling and scientific validation remain pending.
 ## Historical evidence
 
 Completed closeouts, progress and health audits are in the
-[milestone archive](archive/README.md). Completed N1–N3 plans are in the
+[milestone archive](archive/README.md). Archived N1–N4 software plans are in the
 [plan archive](plans/archive/README.md). Contracts and API/fixture guides above
 remain current references; archiving historical work does not change their meaning.
 Controlled-real artifacts and their procedures remain in

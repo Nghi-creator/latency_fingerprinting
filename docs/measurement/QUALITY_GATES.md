@@ -110,9 +110,9 @@ checks pass locally. Historical milestone counts and audit findings remain in th
 [archive](../archive/README.md), including the
 [final N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md).
 
-The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has reproduced
+The archived [N4 plan](../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) has reproduced
 this baseline and the applicable Pixelated producer gates in
-[Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
+[Step 0](../archive/observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
 [additive trace contract](../observability/N4_TRACE_CONTRACT.md) and
 [real-capture/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md).
 N4 Step 2 delivers [strict models and generic validation](../observability/N4_TRACE_MODELS.md),
@@ -145,13 +145,13 @@ python -m tests.observability.check_reproduction
 Both configured Python CI jobs run this independent N4 gate. The optional actual
 producer export check and frozen real/overhead procedure are in the
 [N4 integration guide](../observability/N4_INTEGRATION_VERIFICATION.md). See the
-[software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) for both repository
+[software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) for both repository
 results and pending real/minimum-version/hosted gates. N1–N3 pins and controlled
 P0 artifacts remain unchanged.
 
 ## Post-N4 software health check
 
-[Cross-repository audit](../observability/N4_ARCHITECTURE_AUDIT.md): **1,745 core tests /
+[Cross-repository audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md): **1,745 core tests /
 93.69% branch-inclusive coverage**. Six new core cases cover descriptor ownership
 on stream/cleanup failures and optional producer reproduction success/missing/wrong
 archives. Pixelated full workspace: 714 passing Node tests, one existing artifact
@@ -160,6 +160,16 @@ checks and production web build pass. Thirteen new browser cases reject line-ter
 and invalid provenance before stopping collection.
 
 All schemas, registry/policy and P0/N1/N2/N3/N4 reproduction pins are preserved.
-The active next step remains real N4 acceptance, including a fresh recording after
+The inherited runtime gate remains real N4 acceptance, including a fresh recording after
 warm-up and all paired overhead trials. Actual Python 3.11/producer Node 24 and
 hosted execution remain pending; local tests ran with core Python 3.13 and Node 26.
+
+## N5 Step 1 baseline
+
+[Baseline/inventory](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) reproduces 1745 core
+tests / 93.69% branch coverage, all preservation gates, 714 producer tests with one
+existing artifact skip and 42 nested Python trace cases. Lint, dependency/lockfile
+checks, API TypeScript checks and web build pass. This step changes documentation
+and archives N4 software records; it introduces no runtime harness or fault trial.
+[Inherited N4 real acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) and actual
+minimum-version/hosted execution remain pending.

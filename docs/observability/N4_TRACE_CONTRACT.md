@@ -5,7 +5,7 @@
 [browser hooks](N4_BROWSER_INSTRUMENTATION.md), [export/adoption](N4_TRACE_ADOPTION.md),
 [reconstruction](N4_TIMING_RECONSTRUCTION.md), [integration](N4_INTEGRATION_VERIFICATION.md);
 real capture/overhead validation remains pending.
-**Plan:** [N4](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+**Plan:** [N4](../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
 **Producer inventory and acceptance:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
 **Independent arithmetic cases:** [Examples](N4_TRACE_EXAMPLES.md).
 

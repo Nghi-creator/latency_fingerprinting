@@ -1,7 +1,7 @@
 # N1 implementation progress
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 **Updated:** 2026-10-06
 **Completed boundary:** Steps 0–10 implemented and locally verified; N1 software closed out.
