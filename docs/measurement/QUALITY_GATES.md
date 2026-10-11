@@ -220,9 +220,29 @@ policy/registry/schema bytes or fixtures changed. Step 3's 1900 tests/93.91% is 
 historical last full core run. API typecheck/production web build from Step 1 were
 not rerun separately for these Python/engine changes.
 
-Concrete native/process/workload adapters and effects remain Step 5. Hooks must
+At the Step 4 handoff, native/process/workload adapters and effects remained
+Step 5; their software delivery is recorded below. Hooks must
 cooperate with their budgets; the runner cannot preempt arbitrary blocking code.
 No actual Linux capture, real pressure, measured rotation/overhead, minimum-version
 or hosted evidence was collected. [N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md)
 and two real fault classes remain pending. Both repositories' current docs and
 whitespace checks pass.
+
+
+## N5 Step 5 supported adapters and fixed effects
+
+[Concrete adapter/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) deliver
+read-only actual camera preflight, durable parked native children, pidfd generation
+checks/cleanup/recovery, owned process CPU clocks and integer effect predicates.
+Full producer suite passes 716 Node tests (one existing engine artifact skip);
+final engine verification includes 100 passing Python cases and one Linux-only
+idle-child integration skip. Lint/lockfiles, engine build, focused Python Ruff and
+syntax checks pass. No actual CPU pressure was executed by these checks.
+
+All 155 focused core N5 model tests, core reproduction modules and actual synthetic
+N4 producer→core API/CLI reproduction pass; all fifteen schemas remain current. Core source and frozen
+schema/registry/policy/fixture bytes are unchanged. Step 3's 1900/93.91% remains
+historical. Linux capture, native idle-child execution on this Mac, real faults,
+N4 overhead, minimum-version/hosted gates and two real fault classes stay pending.
+Step 6 must export/check hashes and independently inspect linked experiment roots;
+private producer effect calculation alone is not detached acceptance.

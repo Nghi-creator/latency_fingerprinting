@@ -1,7 +1,7 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Steps 1–4 software gates complete locally; Step 5 adapters/effect verification is next
+**Status:** Steps 1–5 software gates complete locally; Step 6 export/adoption/inspection is next
 **Updated:** 2026-10-11
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
@@ -77,7 +77,7 @@ Gate: deterministic validation with unchanged earlier schemas/pins/CLI outputs.
 
 ## Step 4 — Implement bounded run lifecycle and recording control
 
-**Local software gate:** Complete, 2026-10-11. [Producer lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) implements the cooperative runner, exact ownership journal/recovery and fresh actual collectors with fake-runtime tests. Concrete native/workload adapters and effect checks remain Step 5; software tests do not establish a real trial.
+**Local software gate:** Complete, 2026-10-11. [Producer lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) implements the cooperative runner, exact ownership journal/recovery and fresh actual collectors with fake-runtime tests. [Concrete adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) subsequently delivered in Step 5; software tests do not establish a real trial.
 
 Implement producer-side orchestration for reproducible workload and phases,
 monotonic action timing, cancellation, cleanup and restoration. Add a fresh
@@ -89,6 +89,8 @@ Gate: run lifecycle and fresh recording can be exercised safely and independentl
 software tests are not evidence of real fault effects or measured overhead.
 
 ## Step 5 — Add supported single-cause adapters and effect verification
+
+**Local software gate:** Complete, 2026-10-11. [Supported adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) deliver actual camera hooks, bounded parked Linux children, private durable pidfd identity/recovery, owned CPU clocks and independent fixed predicates. Fake-dependency tests pass; native idle-child execution and live fault/capture remain unverified on this Mac.
 
 Implement the approved bounded adapters incrementally, starting with healthy and
 host contention using inspected producer ownership. Add remaining single-cause
@@ -138,11 +140,11 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Scenario/phase/evidence/cleanup contract frozen with independent examples.
 - [x] Strict additive models/schemas preserve existing releases.
 - [x] Bounded lifecycle and fresh post-warm-up recording control implemented.
-- [ ] Approved adapters verify effects and restoration; unsupported states explicit.
+- [x] Approved adapters implement evidence-based effect/restoration checks; unsupported states explicit (software only).
 - [ ] Versioned producer export/core adoption and inspection agree.
 - [ ] Independent fixtures/pins and both repository gates reproduce.
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
 - [ ] Software/runtime/hosted closeout and current docs agree.
 
-**Next implementation action:** Step 5 concrete supported adapters and effect verification. Four planned N5 steps remain. Runtime acceptance still needs
+**Next implementation action:** Step 6 producer export and bounded core adoption/inspection. Three planned N5 steps remain. Runtime acceptance still needs
 an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.

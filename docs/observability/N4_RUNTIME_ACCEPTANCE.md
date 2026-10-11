@@ -13,7 +13,8 @@ No synthetic run, test count or factory discovery closes these gates:
 - Actual Linux/Xvfb/PulseAudio X11→queue→VP8 capture with a draining receiver,
   exact versions/config/commands and fresh recording after 10 s warm-up for 30 s.
   [N5 Step 4](../scenarios/N5_RUN_LIFECYCLE.md) delivers explicit single-peer fresh
-  recording control in software. Its actual Linux capture, transition behavior
+  recording control in software; [N5 Step 5](../scenarios/N5_SUPPORTED_ADAPTERS.md)
+  now supplies concrete camera/CPU hooks. Actual Linux capture, transition behavior
   and overhead still require runtime verification before claiming this case.
 - At least 500 usable queue/encode pairs, ≥95% joint coverage with unique PTS
   evidence and zero nominal collector drops; tiny-capacity, interruption/restart,

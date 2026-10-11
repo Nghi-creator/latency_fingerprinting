@@ -9,7 +9,7 @@
 N5 records requested plans, observed execution and bounded experiment evidence.
 They do not label scientific diagnoses, promote fingerprints or alter P0/N1–N4.
 Unsupported cases and failed effects remain visible. The detached models implement this specification; [producer lifecycle](N5_RUN_LIFECYCLE.md) is implemented against fake dependencies;
-concrete runtime adapters and bundle inspection remain later steps. This is not evidence of a live trial. Field/method/limit changes require
+[concrete adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered in software; bundle inspection remains Step 6. This is not evidence of a live trial. Field/method/limit changes require
 reviewed version changes; existing schemas and policy/fixture bytes stay frozen.
 
 ## Roots and serialization

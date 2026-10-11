@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-11. **Status:** Steps 1–4 software gates complete locally; Step 5 adapters/effect verification next.
+**Updated:** 2026-10-11. **Status:** Steps 1–5 software gates complete locally; Step 6 export/adoption/inspection next.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -182,8 +182,8 @@ The barrier spans phase rotation and releases during close; default disabled
 tracing remains unchanged. Both runtime image COPY lists ship the modules. Warm-up
 is separate and cannot be relabelled; phase export/inspection remains Step 6.
 
-Concrete workload/draining-peer and native worker identity/handshake/TERM/KILL/reap
-adapters are still Step 5. The scheduler requires trusted cooperative hooks and
+At the Step 4 handoff, concrete workload/draining-peer and native worker
+identity/handshake/TERM/KILL/reap adapters remained Step 5 (delivered below). The scheduler requires trusted cooperative hooks and
 cannot preempt arbitrary blocking Python/GI code. The private execution structure
 is not an exported ExperimentResult and contains no verified-effect assertion.
 No actual process injection, Linux pipeline, container build or measured trial
@@ -211,7 +211,59 @@ actual minimum-version, hosted and live Linux evidence remain pending.
 Both trees' documentation links and whitespace checks pass. Current readmes,
 architecture, capabilities, model guides, inherited N4 ledger and next plan agree.
 
-**Next:** Step 5 concrete healthy/owned host-CPU adapters, native process ownership,
+**Step 4 handoff (historical):** Step 5 concrete healthy/owned host-CPU adapters, native process ownership,
 bounded reaping, raw worker/frame counters and fixed measured-effect predicates.
-Four N5 steps remain. Unsupported classes cannot count toward Phase 1.3's two
+Four N5 steps remained at this handoff. Unsupported classes cannot count toward Phase 1.3's two
 real bottleneck-class gate; inherited N4 real/overhead acceptance remains open.
+
+
+## Step 5 — Supported camera/native adapters and fixed measured effects
+
+[Supported adapter guide](N5_SUPPORTED_ADAPTERS.md) and the producer guide describe
+actual camera hooks for one existing draining Linux peer, read-only preflight,
+fixed actual caps/configuration, visible affinity/cgroup allocation, source progress
+and owned high-resolution process CPU clocks. Workload identity/seed and engine
+Node version are explicit campaign-owner declarations, not inferred scene proof.
+Plan/recording generation changes fail closed; retired camera callbacks cannot
+increment a replacement peer's counters. Healthy launches no workers.
+
+Trusted native children stay parked until all exact boot/start/PID identities are
+durably recorded. Native pidfds are pinned before generation checks and signals.
+Bounded TERM/KILL/exit/reap keeps exact partial-startup handles, attempts owned
+workers, preserves dirty failures and rejects foreign PID reuse. Restart cleanup
+checks actual native state rather than trusting a stopped declaration. Native-only
+restoration does not certify unknown workload/GI ownership. EOF/park timeout and
+an independent active watchdog bound orphan pressure; owner SIGKILL cannot promise
+whole-runtime restoration. Only prior clean native sidecars are pruned on the next
+run, keeping private retention bounded.
+
+The immutable private effect calculator consumes covered integer intervals and
+uses exact threshold comparisons, separately from startup and run completion.
+Independent nominal/boundary/failure totals exercise baseline → pressure →
+degradation → recovery priority and adapter → incomplete → cleanup → evidence
+unavailability. No unavailable rates are fabricated. Hash/cross-root verification,
+public experiment export and detached recomputation remain Step 6.
+
+### Step 5 verification
+
+Full producer suite: **716 Node passes**, one existing external-artifact engine
+skip, with unchanged 185/135/245/90/61 API/engine/web/desktop/smoke counts. Final
+engine checks include **100 passing nested Python cases**, plus one Linux-only
+parked-child integration skip: 50 trace/control cases and 50 scenario cases pass
+(51 scenario cases discovered). Native/Gst failure tests use fake dependencies;
+no GO is sent by the Linux idle integration case. Workspace lint/lockfile checks,
+engine build, Python syntax and focused Ruff checks pass. Actual synthetic N4
+producer exports still reproduce all frozen records/summaries through core API/CLI.
+All four core reproduction modules, schema drift, Ruff and all 155 focused N5
+core model regressions pass; no core source,
+schemas, registry, policy or fixtures changed. Step 3's 1900/93.91% remains the
+historical last full core suite, not a new full run. Step 1 API typecheck/web build
+and actual minimum-version/hosted checks retain their prior scope/status.
+
+Both repositories' current documentation and the next plan now point to Step 6.
+No live pressure, Linux/GI capture, container build or measured overhead was run.
+Additional real fault classes, independent repetitions/held-out separation and
+all inherited N4 gates remain open.
+
+**Next:** Step 6 producer export and bounded detached adoption/inspection.
+Three N5 steps remain; software adapter support is not live runtime acceptance.

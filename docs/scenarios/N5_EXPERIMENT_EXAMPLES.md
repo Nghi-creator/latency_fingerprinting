@@ -3,8 +3,8 @@
 **Frozen:** 2026-10-10. Arithmetic/examples below are hand-authored without a
 producer, model or result derivation. [Step 3 model regressions](N5_EXPERIMENT_MODELS.md) implement the detached cases;
 [runner checks](N5_RUN_LIFECYCLE.md) are delivered in Step 4 software;
-linked checks remain Step 6 and pinned releases remain Step 7
-separately pinned fixtures. They do not run CPU pressure, prove real capture or
+[fixed producer predicates](N5_SUPPORTED_ADAPTERS.md) now exercise these totals.
+Linked checks remain Step 6 and separately pinned fixtures remain Step 7. They do not run CPU pressure, prove real capture or
 refresh existing fixtures. See [contract](N5_EXPERIMENT_CONTRACT.md).
 
 ## Nominal host contention

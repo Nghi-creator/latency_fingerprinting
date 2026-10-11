@@ -63,8 +63,8 @@ Save exact producer/core commits, runtime versions, configuration, commands and
 CPU allocation. Use sampling 1, caps 2000/10000 and illustrative 50,000,000 ns
 capture-output budget. Start a fresh recording after 10 s warm-up and collect 30 s.
 [N5 Step 4 recording control](../scenarios/N5_RUN_LIFECYCLE.md) now supports a
-fresh single-peer collector in software. The concrete acceptance adapter and
-actual Linux execution must verify it in a warm running pipeline; counting
+fresh single-peer collector in software. [N5 Step 5 adapters](../scenarios/N5_SUPPORTED_ADAPTERS.md)
+now bind the actual camera hooks; actual Linux execution must verify them in a warm running pipeline; counting
 warm-up frames or restarting into a cold pipeline does not satisfy this procedure.
 Its real transition and overhead acceptance remain pending.
 

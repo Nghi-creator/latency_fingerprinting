@@ -15,8 +15,9 @@ Restart recovery verifies those exact identities; dirty/unknown ownership cannot
 be overwritten or restored by guessing a PID.
 
 The runner requires trusted cooperative runtime hooks with explicit budgets. It
-cannot preempt arbitrary blocking Python/GI code. Concrete draining-peer/workload,
-child-handshake/identity, bounded TERM/KILL/reap and worker CPU adapters are Step 5.
+cannot preempt arbitrary blocking Python/GI code. [Step 5 adapters](N5_SUPPORTED_ADAPTERS.md)
+now supply concrete draining-peer hooks, parked-child identities, bounded TERM/KILL/reap
+and owned worker CPU clocks.
 Software tests exercise these boundaries with fake runtime dependencies; no real
 worker or trial is claimed. The internal execution object is not a public
 `ExperimentResult`, artifact bundle or verified effect. Private final-release
@@ -44,7 +45,8 @@ installation, cleanup retry and actual runner→collector integration with fake 
 Synthetic producer→core N4 exports still reproduce all pinned records/summaries
 and API/CLI bytes. Core models/schemas/policies/fixtures are unchanged in Step 4.
 
-**Next:** [Step 5 approved adapters and effect verification](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+**Successor:** [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) delivered.
+**Next:** [Step 6 export/adoption/inspection](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 Bundle export/inspection remains Step 6; independent new pins remain Step 7.
 [N4 live acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md), measured overhead,
 minimum-version/hosted execution and two real fault classes remain pending.

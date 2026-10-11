@@ -1,7 +1,7 @@
 # N5 adapter capabilities and real gates
 
-**Inspected/frozen:** 2026-10-10, Step 2 specification. Nothing below claims a
-new implemented harness or a measured fault. [Contract](N5_EXPERIMENT_CONTRACT.md)
+**Inspected/frozen:** 2026-10-10, Step 2 specification. **Implementation updated:**
+2026-10-11, Step 5 software; no measured live fault is claimed. [Contract](N5_EXPERIMENT_CONTRACT.md)
 defines the exact v1 meaning; [examples](N5_EXPERIMENT_EXAMPLES.md) are synthetic.
 
 Producer paths are relative to Pixelated-Studio-Edition. This is ownership
@@ -9,8 +9,8 @@ inventory, not a runtime dependency or authorization to execute live actions.
 
 | Scenario enum | Inspected surface | V1 approval/support |
 | --- | --- | --- |
-| `healthy` | Camera draining peer, encoder counters, player trace/research collectors | Approved `none` adapter; new runner/phase evidence still unimplemented |
-| `host_contention` | Core bounded CPU-pressure helper; producer runtime process ownership and resource telemetry | Approved `bounded_cpu_pressure`, 1–8 owned workers; producer adapter, worker CPU evidence and bounded crash/cleanup control still unimplemented |
+| `healthy` | Camera draining peer, encoder counters, player trace/research collectors | Approved `none` adapter; lifecycle, actual camera hooks and fixed effect checks delivered in software; Linux availability requires preflight |
+| `host_contention` | Core bounded CPU-pressure helper; producer runtime process ownership and resource telemetry | Approved `bounded_cpu_pressure`, 1–8 workers within observed allocation; durable parked children, pidfd cleanup/recovery, owned CPU clocks and fixed effects delivered in software; live Linux execution pending |
 | `render_capture_slowdown` | camera.py source is X11; no inspected render/capture delay controller | Unavailable/adapter_not_implemented; do not fabricate from CPU pressure |
 | `encoder_overload` | VP8 stream profiles affect several settings/capture cadence | Unavailable/adapter_not_implemented; profile change alone is not isolated encoder ground truth |
 | `network_delay` | Existing signaling/transport smoke tests | Unavailable/adapter_not_implemented; no dedicated owned shaping namespace inspected |
@@ -22,10 +22,10 @@ inventory, not a runtime dependency or authorization to execute live actions.
 | `changing` | No stable single-cause campaign yet | Unavailable/adapter_not_implemented; cannot silently switch cause inside v1 |
 
 Only healthy and host contention may declare an available adapter in v1, after
-actual preflight or in explicitly synthetic tests. Approving implementation is
-not claiming the adapter is implemented or usable on this host.
+actual preflight or in explicitly synthetic tests. Software implementation does
+not establish Linux availability or a verified live effect on this host.
 
-## Runtime ownership gaps to implement
+## Inspected predecessor gaps and delivered replacements
 
 - `engine/runtime/src/runtime/processes/processLifecycle.ts` binds existing
   child error/exit events to session cleanup. It is not a crash-safe experiment
@@ -41,12 +41,12 @@ not claiming the adapter is implemented or usable on this host.
   it and claim N5 cleanup/effect verification; reuse/adapt the approach under
   producer ownership with deadline, exact handles and measured CPU durations.
 - Camera tracing starts at pipeline creation; browser collection ends on explicit
-  export. N5 needs new fresh post-warm-up/per-phase recording control with old
-  callbacks and queued frames excluded. N4 contract and limits remain unchanged.
+  export. [N5 fresh recording control](N5_RUN_LIFECYCLE.md) now excludes old callbacks
+  and queued frames from each measured phase. N4 contract and limits remain unchanged.
 - Existing research configuration also has `custom` alongside healthy/degraded/
   relief. None is silently remapped into N5's six-phase lifecycle.
-- Camera counter snapshots aggregate peers and can regress on peer removal. V1
-  evidence needs one observed peer/encoder generation; a reset is partial/unavailable,
+- Camera counter snapshots aggregate peers and can regress on peer removal. [Step 5](N5_SUPPORTED_ADAPTERS.md) samples one exact peer/encoder generation
+  directly and guards retired callbacks; a reset is partial/unavailable,
   not a negative or clamped throughput measurement.
 
 ## Effect and restoration criteria frozen before trials
@@ -84,7 +84,7 @@ Python 3.11 and hosted verification remain unavailable/unverified in local evide
 ## Step 4 implementation handoff
 
 [Producer lifecycle and fresh recording control](N5_RUN_LIFECYCLE.md) are now
-delivered in software with fake-runtime tests. Concrete workload/CPU adapters,
-worker-native ownership/reap and measured effects remain Step 5. The frozen
+delivered in software with fake-runtime tests. [Concrete camera/CPU adapters](N5_SUPPORTED_ADAPTERS.md),
+worker-native ownership/reap and fixed effect checks are delivered in Step 5 software. The frozen
 approved matrix above is unchanged; it is not a live-availability claim. Browser
 reset/control, actual Linux capture and overhead remain runtime acceptance work.

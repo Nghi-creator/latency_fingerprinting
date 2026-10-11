@@ -3,7 +3,7 @@
 **Delivered:** Step 3 software, 2026-10-10.
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
 **Independent cases:** [Step 2 examples](N5_EXPERIMENT_EXAMPLES.md).
-**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; Step 5 adapters/effect verification is next.
+**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; Step 6 bundle inspection is next.
 
 The detached core exports `ExperimentManifest`, `ExperimentPhaseEvidence` and
 `ExperimentResult` from `latency_fingerprinting.models` and
