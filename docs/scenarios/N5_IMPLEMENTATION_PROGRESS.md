@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-10. **Status:** Steps 1–3 baseline/contracts/models complete locally; Step 4 lifecycle/recording control next.
+**Updated:** 2026-10-11. **Status:** Steps 1–4 software gates complete locally; Step 5 adapters/effect verification next.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -156,7 +156,62 @@ resolve; both trees pass whitespace checks. Producer runtime code/dependencies
 are unchanged, so Step 1 producer full-suite/build results remain historical,
 not a Step 3 rerun. No actual minimum-version or hosted execution was performed.
 
-**Next:** Step 4 bounded producer lifecycle, resource ownership/cancellation and
-fresh post-warm-up/per-phase recording control. Five planned N5 steps remain.
+**Step 3 handoff (historical):** Step 4 bounded producer lifecycle, resource ownership/cancellation and fresh recording control.
 N4 runtime/overhead, minimum-version/hosted and two real bottleneck-class gates
 remain pending.
+
+
+## Step 4 — Bounded producer lifecycle, ownership and fresh recording
+
+[Lifecycle guide](N5_RUN_LIFECYCLE.md) and the producer guide describe a stdlib-only
+single-use runner, immutable bounded local plans, actual six-phase offsets,
+continuous degraded/probe counters, fixed recording budgets and explicit
+cancellation/deadlines. A private no-follow exclusive lease and atomic journal
+record exact resource/generation intent before runtime mutation. Dirty intent
+requires explicit recovery; unknown/foreign resources are never restored by guess.
+Restoration failures retain the run and attempt other owned resources within a
+cooperative ten-second release budget. Pressure stop/restoration must precede
+recovery and fit the declared action duration. Setup is bounded before warm-up's
+origin; final private watchdog times are not public N5 clock evidence.
+
+The actual camera now exposes a local single-peer recording-owner API. A bounded
+IDLE source barrier retires old callbacks and creates fresh collectors/clocks for
+healthy/degraded/probe/recovery. Private admission floors reject stale queued
+buffers; exact failed registration/removal handles survive for cleanup retry.
+The barrier spans phase rotation and releases during close; default disabled
+tracing remains unchanged. Both runtime image COPY lists ship the modules. Warm-up
+is separate and cannot be relabelled; phase export/inspection remains Step 6.
+
+Concrete workload/draining-peer and native worker identity/handshake/TERM/KILL/reap
+adapters are still Step 5. The scheduler requires trusted cooperative hooks and
+cannot preempt arbitrary blocking Python/GI code. The private execution structure
+is not an exported ExperimentResult and contains no verified-effect assertion.
+No actual process injection, Linux pipeline, container build or measured trial
+was run. Synthetic source rotation is not measured overhead acceptance.
+
+### Step 4 verification
+
+Final full producer suite: **716 Node tests pass**, one existing external-artifact
+engine skip (717 discovered): 185 API, 135 engine, 245 web, 90 desktop and 61
+smoke/security. The engine wrappers execute **70 Python cases**: 50 trace/control
+and 20 lifecycle/lease, including actual runner→collector integration with fake
+pads. Cases cover strict budgets and capacity, fractional intervals, cancellation,
+setup origin, pressure-stop allowance, clock/counter/worker/generation failure,
+duplicate ownership, restart recovery, missing barriers and cleanup retry.
+Whole-workspace lint/lockfile checks and final engine lint/build pass. Python
+syntax compilation and focused Ruff lint/format pass for the new modules/tests.
+
+Actual synthetic producer host/browser/unsupported-API exporters still reproduce
+all frozen N4 record/summary pins through core API and CLI adoption/inspection.
+Core schema drift and lint checks pass; no core source, schemas, registry, policy
+or fixtures changed. The last full core count remains Step 3's 1900/93.91%, not a
+new full-suite run. API typecheck/production web build from Step 1 remain historical;
+actual minimum-version, hosted and live Linux evidence remain pending.
+
+Both trees' documentation links and whitespace checks pass. Current readmes,
+architecture, capabilities, model guides, inherited N4 ledger and next plan agree.
+
+**Next:** Step 5 concrete healthy/owned host-CPU adapters, native process ownership,
+bounded reaping, raw worker/frame counters and fixed measured-effect predicates.
+Four N5 steps remain. Unsupported classes cannot count toward Phase 1.3's two
+real bottleneck-class gate; inherited N4 real/overhead acceptance remains open.

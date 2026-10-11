@@ -198,7 +198,31 @@ Both trees pass documentation-link and whitespace checks. Producer code is
 unchanged; Step 1 producer suite/build counts remain historical.
 
 Standalone roots verify intrinsic consistency; artifact hashes, linked worker/
-clock/phase ownership and effect recomputation remain Step 6. Step 4 lifecycle
-and recording control are next. Synthetic validation does not pass Linux trials,
+clock/phase ownership and effect recomputation remain Step 6. At the Step 3 handoff, lifecycle/recording control were next; their subsequent
+Step 4 delivery is recorded below. Synthetic validation does not pass Linux trials,
 N4 capture/overhead, actual minimum-version/hosted execution or the two real fault
 classes required for Phase 1.3. See [progress](../scenarios/N5_IMPLEMENTATION_PROGRESS.md).
+
+
+## N5 Step 4 producer lifecycle and fresh collectors
+
+[Producer lifecycle/control](../scenarios/N5_RUN_LIFECYCLE.md) delivers the
+cooperative scheduler, exclusive private journal/recovery and actual local camera
+recording API with fake-runtime dependencies. Final producer suite passes **716
+Node tests**, one existing external-artifact engine skip, plus **70 nested Python
+cases** (50 trace/control, 20 lifecycle/lease). Whole-workspace lint/lockfiles,
+final engine lint/build, Python syntax and focused Ruff checks pass. Both runtime
+image COPY lists are checked; no container build was performed.
+
+Actual synthetic N4 producer exporters reproduce all pinned records/summaries
+through core APIs and CLI. Core schemas/lint remain current; no core code,
+policy/registry/schema bytes or fixtures changed. Step 3's 1900 tests/93.91% is the
+historical last full core run. API typecheck/production web build from Step 1 were
+not rerun separately for these Python/engine changes.
+
+Concrete native/process/workload adapters and effects remain Step 5. Hooks must
+cooperate with their budgets; the runner cannot preempt arbitrary blocking code.
+No actual Linux capture, real pressure, measured rotation/overhead, minimum-version
+or hosted evidence was collected. [N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md)
+and two real fault classes remain pending. Both repositories' current docs and
+whitespace checks pass.

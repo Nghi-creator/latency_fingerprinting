@@ -80,3 +80,11 @@ its ≥500 pairs, ≥95% correlation, nominal/loss/restart/two-peer/browser tria
 five paired overhead trials and diagnostic/export measurements. N5 effect thresholds
 do not replace or relax those separate gates. Docker/Linux runtime, actual Node 24,
 Python 3.11 and hosted verification remain unavailable/unverified in local evidence.
+
+## Step 4 implementation handoff
+
+[Producer lifecycle and fresh recording control](N5_RUN_LIFECYCLE.md) are now
+delivered in software with fake-runtime tests. Concrete workload/CPU adapters,
+worker-native ownership/reap and measured effects remain Step 5. The frozen
+approved matrix above is unchanged; it is not a live-availability claim. Browser
+reset/control, actual Linux capture and overhead remain runtime acceptance work.

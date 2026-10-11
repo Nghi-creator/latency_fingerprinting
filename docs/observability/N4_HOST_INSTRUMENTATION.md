@@ -109,3 +109,12 @@ no X11/VP8 pipeline is involved. Docker/Linux capture is still unavailable here.
 No real timing, browser hook, clock synchronization, overhead comparison or
 hosted/container execution is claimed by these tests. Step 4 subsequently delivers
 [browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; [reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
+
+## N5 fresh recording control
+
+[N5 Step 4](../scenarios/N5_RUN_LIFECYCLE.md) adds explicit single-peer control
+that retires old probes and starts fresh per-phase collectors behind a bounded
+source barrier. Warm-up remains separate, frame/clock associations never bridge
+records, and export remains outside callbacks. Default disabled tracing is
+unchanged. Source-rotation cost, real Linux behavior and all N4 overhead gates
+still require actual runtime measurements.
