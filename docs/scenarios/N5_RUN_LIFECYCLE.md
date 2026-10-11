@@ -32,7 +32,7 @@ its live cost remains an overhead measurement gate. Missing source/barrier or
 incomplete retirement fails closed and retains exact failed handles for cleanup.
 Normal tracing-disabled playback and frozen N4 root/schema formats are preserved.
 
-Warm-up's initial collector is separate; Step 6 must export the four frozen phase
+Warm-up's initial collector is separate; [Step 6](N5_EXPERIMENT_INSPECTION.md) exports the four frozen phase
 collectors explicitly. Existing shutdown export is never relabelled as a fresh
 post-warm-up phase. No filesystem/export/core work occurs in frame or barrier
 callbacks. Both runtime images copy the helper and harness; no container build
@@ -46,7 +46,7 @@ Synthetic producer→core N4 exports still reproduce all pinned records/summarie
 and API/CLI bytes. Core models/schemas/policies/fixtures are unchanged in Step 4.
 
 **Successor:** [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) delivered.
-**Next:** [Step 6 export/adoption/inspection](../plans/NEXT_IMPLEMENTATION_PLAN.md).
-Bundle export/inspection remains Step 6; independent new pins remain Step 7.
+**Successor:** [Step 6 export/adoption/inspection](N5_EXPERIMENT_INSPECTION.md) delivered.
+**Next:** Step 7 independent fixtures/pins and reproduction.
 [N4 live acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md), measured overhead,
 minimum-version/hosted execution and two real fault classes remain pending.

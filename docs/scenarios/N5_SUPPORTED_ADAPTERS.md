@@ -34,10 +34,10 @@ CPU with unchanged FPS fails degradation; insufficient baseline/pressure/recover
 keeps the frozen reason priority. All three evaluated phases need ≥30 intervals
 and ≥30 seconds. Invalid/partial evidence and unverified cleanup cannot pass.
 
-This remains a private producer calculation, not detached artifact inspection.
+The producer calculation remains private; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) independently recomputes effects from hash-bound artifacts.
 Core roots/schemas, earlier pins, policy releases and matcher thresholds are
-unchanged. [Step 6](../plans/NEXT_IMPLEMENTATION_PLAN.md) must bind actual exported
-roots/checksums and independently recompute effects during bounded offline adoption.
+unchanged. [Step 6](N5_EXPERIMENT_INSPECTION.md) binds actual exported
+roots/checksums and independently recomputes effects during bounded offline adoption.
 Independent fixture releases follow in Step 7.
 
 Local tests use fake native/Gst dependencies and independently specified totals;

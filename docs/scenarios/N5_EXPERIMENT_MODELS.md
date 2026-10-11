@@ -3,7 +3,7 @@
 **Delivered:** Step 3 software, 2026-10-10.
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
 **Independent cases:** [Step 2 examples](N5_EXPERIMENT_EXAMPLES.md).
-**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; Step 6 bundle inspection is next.
+**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) is delivered; Step 7 fixtures/pins are next.
 
 The detached core exports `ExperimentManifest`, `ExperimentPhaseEvidence` and
 `ExperimentResult` from `latency_fingerprinting.models` and
@@ -72,7 +72,7 @@ expected worker counts, N4 trace producer/provenance or clock agreement. It also
 does not prove sufficient effect samples, recompute the inclusive FPS/CPU
 thresholds, or establish independent source runs/reference/query separation.
 
-Step 6 bundle inspection will bind these roots and recompute effects from complete
+[Step 6 bundle inspection](N5_EXPERIMENT_INSPECTION.md) binds these roots and recomputes effects from complete
 hash-verified intervals using integer arithmetic. `inspect_experiment_bundle` and
 `inspect-experiment` are still intended APIs. A supplied `verified` field passing
 shape validation is not proof of a measured fault. Synthetic tests use explicit

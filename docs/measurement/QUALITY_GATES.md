@@ -246,3 +246,26 @@ historical. Linux capture, native idle-child execution on this Mac, real faults,
 N4 overhead, minimum-version/hosted gates and two real fault classes stay pending.
 Step 6 must export/check hashes and independently inspect linked experiment roots;
 private producer effect calculation alone is not detached acceptance.
+
+## N5 Step 6 export and linked inspection
+
+[Experiment export/inspection](../scenarios/N5_EXPERIMENT_INSPECTION.md) delivers
+bounded producer bundles, independent detached hash/ownership/effect verification
+and the private atomic `inspect-experiment` command. Earlier Step 3–5 entries are
+historical handoffs; their Step 6 requirements are delivered here.
+
+Full core verification: **1,932 passed, 93.67% coverage**. Seven added edge cases
+pass in the final **39-case** focused bundle suite, bringing distinct verified core
+tests to **1,939** and combined coverage to **93.77%**. Core Ruff and frozen
+schema/registry/P0/N1/N2/N3/N4 reproduction checks pass unchanged. Producer full
+checks pass **716 Node tests**, with one external-artifact skip; nested Python
+checks pass **106 cases**, with one additional Linux-only idle-child skip.
+Workspace lint and focused new Python Ruff/format checks pass.
+
+Actual synthetic producer collectors/exporters pass core API/CLI for six cases:
+healthy, host contention, failed pressure, unsupported runtime, missing traces and
+unknown cleanup timing. Actual N4 host/browser/unavailable producer exports still
+reproduce their frozen records/summaries through API/CLI. No release pin was
+refreshed. Independent N5 release fixtures and a durable reproduction command are
+Step 7. Live capture/fault campaigns, overhead and inherited runtime gates remain
+pending; software hashes cannot establish source independence or scientific truth.

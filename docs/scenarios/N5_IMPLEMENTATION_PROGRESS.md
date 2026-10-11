@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-11. **Status:** Steps 1–5 software gates complete locally; Step 6 export/adoption/inspection next.
+**Updated:** 2026-10-11. **Status:** Steps 1–6 software gates complete locally; Step 7 fixtures/pins/reproduction next.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -265,5 +265,48 @@ No live pressure, Linux/GI capture, container build or measured overhead was run
 Additional real fault classes, independent repetitions/held-out separation and
 all inherited N4 gates remain open.
 
-**Next:** Step 6 producer export and bounded detached adoption/inspection.
+**Step 5 handoff (historical):** Step 6 producer export and bounded detached adoption/inspection.
 Three N5 steps remain; software adapter support is not live runtime acceptance.
+
+## Step 6 — Producer export and detached linked inspection
+
+**Local software gate:** Complete, 2026-10-11.
+[Export/inspection guide](N5_EXPERIMENT_INSPECTION.md) documents the delivered APIs,
+container bounds and silent `inspect-experiment` command. Producer export retains
+actual raw integer intervals, distinct frozen measured-phase collectors, failed or
+aborted runs, unsupported adapters and unknown cleanup offsets without copying
+private journal/native/watchdog data. Optional old observation roots retain their
+original identities, clocks and phases.
+
+Core inspection checks exact members, duplicate-safe JSON, hashes/lengths, phase
+and action ownership/timing, counter continuity, producer/provenance/version and
+trace policy. Independent integer predicates recompute effects and reject supplied
+contradictions. Inputs remain pinned/no-follow; archive extensions and special files
+reject without extraction. Outputs are private and atomic; errors are fixed and
+preserve existing files. Lazy API loading keeps standalone contract imports free
+of the pipeline/model import cycle.
+
+### Step 6 verification
+
+The full core regression run passes **1,932 tests, 93.67% branch-inclusive coverage**.
+Seven subsequent independent boundary/resource tests also pass; the final focused
+bundle suite is **39 passing cases** and combined coverage is **93.77%**. In total,
+**1,939 distinct core tests** were verified. Core Ruff check/format, fifteen schema
+checks, registry, P0/N1/N2/N3/N4 read-only pins and actual synthetic N4 producer→core
+API/CLI reproduction pass without refreshing any release bytes.
+
+Producer full workspace tests pass **716 Node tests**, with one existing external
+artifact skip. Nested Python verification passes **106 cases** (50 trace/control,
+56 scenario), with one Linux-only idle-child skip. Workspace lint and focused
+Python Ruff/format checks pass. Six actual synthetic producer exports pass core
+API and CLI: healthy, host contention, failed pressure, unavailable runtime,
+missing traces and unknown cleanup timing. No live pressure or real capture ran.
+
+Earlier implementation sections record historical handoffs; their future Step 6
+requirements are delivered here. No released N5 fixtures/pins exist yet. Real
+capture/overhead, native Linux execution, actual minimum versions, container and
+hosted execution, held-out source independence and Phase 1.3's second fault class
+remain unverified.
+
+**Next:** Step 7 independent fixtures/pins and cross-repository reproduction.
+Two planned steps remain; Step 8 real campaign/closeout acceptance remains open.

@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
@@ -331,6 +332,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     register_v2_commands(subparsers)
     register_trace_commands(subparsers)
+    register_experiment_commands(subparsers)
     return parser
 
 

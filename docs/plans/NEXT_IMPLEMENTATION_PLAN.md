@@ -1,7 +1,7 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Steps 1–5 software gates complete locally; Step 6 export/adoption/inspection is next
+**Status:** Steps 1–6 software gates complete locally; Step 7 fixtures/pins/reproduction is next
 **Updated:** 2026-10-11
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
@@ -103,6 +103,8 @@ and restoration evidence; no scenario passes solely because an injector started.
 
 ## Step 6 — Export, adopt and inspect experiment evidence
 
+**Local software gate:** Complete, 2026-10-11. [Export and detached inspection](../scenarios/N5_EXPERIMENT_INSPECTION.md) deliver bounded deterministic producer bundles, hash/ownership validation, independent integer effect recomputation and private atomic CLI output. Synthetic actual-collector handoffs pass; real runtime gates remain open.
+
 Export sanitized versioned manifests/results with checksummed existing trace and
 observation artifacts; preserve their separate meanings. Add bounded no-follow
 adoption/inspection and atomic outputs. Retain partial runs, failed effects,
@@ -141,10 +143,10 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Strict additive models/schemas preserve existing releases.
 - [x] Bounded lifecycle and fresh post-warm-up recording control implemented.
 - [x] Approved adapters implement evidence-based effect/restoration checks; unsupported states explicit (software only).
-- [ ] Versioned producer export/core adoption and inspection agree.
+- [x] Versioned producer export/core adoption and inspection agree in synthetic software checks.
 - [ ] Independent fixtures/pins and both repository gates reproduce.
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
 - [ ] Software/runtime/hosted closeout and current docs agree.
 
-**Next implementation action:** Step 6 producer export and bounded core adoption/inspection. Three planned N5 steps remain. Runtime acceptance still needs
+**Next implementation action:** Step 7 independent fixtures/pins and cross-repository reproduction. Two planned N5 steps remain. Runtime acceptance still needs
 an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.

@@ -3,10 +3,10 @@
 **Latest review:** [Cross-repository health audit](archive/observability/N4_ARCHITECTURE_AUDIT.md).
 
 **Current slice:** [N5 reproducible scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md).
-[Steps 1–5](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
+[Steps 1–6](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
 locally; [experiment contract](scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter capabilities](scenarios/N5_ADAPTER_CAPABILITIES.md) and
-[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are next. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 is archived; [real acceptance](observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 The [trace contract](observability/N4_TRACE_CONTRACT.md),
 [producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
@@ -45,3 +45,5 @@ Completed closeouts, progress and health audits are in the
 remain current references; archiving historical work does not change their meaning.
 Controlled-real artifacts and their procedures remain in
 [experiments](../experiments/CONTROLLED_RUN_PROCESSING.md).
+
+N5 linked artifact verification and command usage: [experiment inspection](scenarios/N5_EXPERIMENT_INSPECTION.md).

@@ -9,7 +9,7 @@
 N5 records requested plans, observed execution and bounded experiment evidence.
 They do not label scientific diagnoses, promote fingerprints or alter P0/N1–N4.
 Unsupported cases and failed effects remain visible. The detached models implement this specification; [producer lifecycle](N5_RUN_LIFECYCLE.md) is implemented against fake dependencies;
-[concrete adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered in software; bundle inspection remains Step 6. This is not evidence of a live trial. Field/method/limit changes require
+[concrete adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered in software; [bundle inspection](N5_EXPERIMENT_INSPECTION.md) is delivered in Step 6 software. This is not evidence of a live trial. Field/method/limit changes require
 reviewed version changes; existing schemas and policy/fixture bytes stay frozen.
 
 ## Roots and serialization
@@ -268,13 +268,13 @@ nonzero trailers fail closed; no extraction into arbitrary paths. Inputs use
 pinned no-follow paths and outputs private atomic writes. Read-only inspection
 recomputes derived effect predicates and rejects supplied claims that disagree.
 
-Intended core API `inspect_experiment_bundle(path)` returns validated manifest,
+Core API `inspect_experiment_bundle(path)` returns validated manifest,
 result and recomputed effect evidence; no producer process or remote access.
-Intended CLI `inspect-experiment --bundle PATH --output PATH` writes canonical
+CLI `inspect-experiment --bundle PATH --output PATH` writes canonical
 ExperimentResult only after verification; success is silent. Failure emits exactly
 `error: inspect-experiment: invalid_input_or_output` with no input/path echo and
 preserves existing output. Generic validate supports the three additive roots as of Step 3;
-inspection remains Step 6. The intended inspection APIs are not implemented yet.
+[linked inspection](N5_EXPERIMENT_INSPECTION.md) is delivered in Step 6.
 
 ## Campaign separation and real acceptance
 
