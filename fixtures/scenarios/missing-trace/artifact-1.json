@@ -1,0 +1,94 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 10000000000,
+  "intervals": [
+    {
+      "active_workers": 0,
+      "end_ns": 1000000000,
+      "frames_end": 30,
+      "frames_start": 0,
+      "start_ns": 0,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 2000000000,
+      "frames_end": 60,
+      "frames_start": 30,
+      "start_ns": 1000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 3000000000,
+      "frames_end": 90,
+      "frames_start": 60,
+      "start_ns": 2000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 4000000000,
+      "frames_end": 120,
+      "frames_start": 90,
+      "start_ns": 3000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 5000000000,
+      "frames_end": 150,
+      "frames_start": 120,
+      "start_ns": 4000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 6000000000,
+      "frames_end": 180,
+      "frames_start": 150,
+      "start_ns": 5000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 7000000000,
+      "frames_end": 210,
+      "frames_start": 180,
+      "start_ns": 6000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 8000000000,
+      "frames_end": 240,
+      "frames_start": 210,
+      "start_ns": 7000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 9000000000,
+      "frames_end": 270,
+      "frames_start": 240,
+      "start_ns": 8000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 10000000000,
+      "frames_end": 300,
+      "frames_start": 270,
+      "start_ns": 9000000000,
+      "worker_cpu_ns": 0
+    }
+  ],
+  "manifest_sha256": "f661ad6fc3f2e0f32d2916fb30e06c3b4d543b8b271aa48dd465783b8ccf8d20",
+  "method_release": "n5-single-cause-v1",
+  "phase": "warmup",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 0,
+  "state": "complete"
+}

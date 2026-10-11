@@ -11,6 +11,6 @@ checks. They are historical execution records. Related closeouts, progress and
 health audits live in the [milestone archive](../../archive/README.md).
 The [active plan](../NEXT_IMPLEMENTATION_PLAN.md) is N5, the Phase 1.3 reproducible
 scenario harness. Baseline, specification and [strict models/schemas](../../scenarios/N5_EXPERIMENT_MODELS.md)
-are complete locally; [bounded producer lifecycle/recording control](../../scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](../../scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; [export/inspection](../../scenarios/N5_EXPERIMENT_INSPECTION.md) is delivered; Step 7 fixtures/pins are next. [N4 real acceptance](../../observability/N4_RUNTIME_ACCEPTANCE.md)
+are complete locally; [bounded producer lifecycle/recording control](../../scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](../../scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; [export/inspection](../../scenarios/N5_EXPERIMENT_INSPECTION.md) is delivered; Step 7 fixtures/pins are delivered; Step 8 real campaigns/closeout remains open. [N4 real acceptance](../../observability/N4_RUNTIME_ACCEPTANCE.md)
 remains a live gate. The [full roadmap](../FULL_IMPLEMENTATION_PLAN.md) remains
 the phase-level sequence.

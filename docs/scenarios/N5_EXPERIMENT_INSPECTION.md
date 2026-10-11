@@ -1,8 +1,8 @@
 # N5 experiment export and detached inspection
 
 **Delivered:** Step 6 software, 2026-10-11. [Contract](N5_EXPERIMENT_CONTRACT.md),
-[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md). Independent release fixtures
-and cross-repository reproduction pins are Step 7; real campaigns are Step 8.
+[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md). [Independent release fixtures
+and reproduction pins](N5_EXPERIMENT_FIXTURES.md) are delivered in Step 7; real campaigns remain Step 8.
 
 Pixelated's `scenario_harness` exports `experiment_bundle_bytes(manifest, plan,
 execution, recordings=(), observation_windows=())`, `unsupported_bundle_bytes(manifest)`

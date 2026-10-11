@@ -3,7 +3,7 @@
 **Delivered:** Step 3 software, 2026-10-10.
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
 **Independent cases:** [Step 2 examples](N5_EXPERIMENT_EXAMPLES.md).
-**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) is delivered; Step 7 fixtures/pins are next.
+**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) is delivered; [Step 7 fixtures/pins](N5_EXPERIMENT_FIXTURES.md) are delivered; Step 8 acceptance remains open.
 
 The detached core exports `ExperimentManifest`, `ExperimentPhaseEvidence` and
 `ExperimentResult` from `latency_fingerprinting.models` and
@@ -85,7 +85,7 @@ regressions for valid/failing plans, raw intervals, complete/aborted/unsupported
 results, cleanup/action states, exact capacity ceilings, strict parsing, required
 fields, immutable copies, JSON Schema shape and isolated generic CLI validation.
 Expectations do not call a production exporter or effect derivation function.
-No fixture release pins are created or refreshed; those remain Step 7 work.
+Step 3 created no fixture release pins; [Step 7 independent release pins](N5_EXPERIMENT_FIXTURES.md) are now delivered.
 
 The current full-suite and preservation results are recorded in
 [N5 progress](N5_IMPLEMENTATION_PROGRESS.md). Producer runtime code is unchanged

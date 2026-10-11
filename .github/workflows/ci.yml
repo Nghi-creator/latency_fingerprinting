@@ -47,6 +47,9 @@ jobs:
       - name: Reproduce pinned N4 stage traces and independent expectations
         run: python -m tests.observability.check_reproduction
 
+      - name: Reproduce pinned N5 experiments and independent expectations
+        run: python -m tests.scenarios.check_reproduction
+
       - name: Check installed dependencies
         run: python -m pip check
 
@@ -140,6 +143,9 @@ jobs:
 
       - name: Reproduce pinned N4 stage traces and independent expectations
         run: python -m tests.observability.check_reproduction
+
+      - name: Reproduce pinned N5 experiments and independent expectations
+        run: python -m tests.scenarios.check_reproduction
 
       - name: Check installed dependencies
         run: python -m pip check

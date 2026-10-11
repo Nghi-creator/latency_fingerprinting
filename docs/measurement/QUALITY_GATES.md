@@ -269,3 +269,21 @@ reproduce their frozen records/summaries through API/CLI. No release pin was
 refreshed. Independent N5 release fixtures and a durable reproduction command are
 Step 7. Live capture/fault campaigns, overhead and inherited runtime gates remain
 pending; software hashes cannot establish source independence or scientific truth.
+
+## N5 Step 7 independent fixture release and reproduction
+
+[Fixture release 1.0.0](../scenarios/N5_EXPERIMENT_FIXTURES.md) delivers eight synthetic
+success/failure/partial/unavailable cases, 80 JSON files (280,156 bytes), independent
+expectations and read-only exact inventory/byte pins. Actual producer fresh
+collectors/export reproduce every uncompressed member and core API/CLI result for
+all eight cases. Producer content-map digests and both configured core CI jobs guard
+reproduction; no pin update mode or earlier release refresh exists.
+
+Full core suite: **1,950 passed, 93.77% branch-inclusive coverage**. Producer full
+suite: **716 Node passed**, one existing external-artifact skip; nested Python:
+**109 passed**, one Linux-only idle-child skip. Ruff/format, workspace lint/lockfiles,
+engine build, API typecheck, production web build, core dependency consistency,
+fifteen schemas, registry, P0/N1/N2/N3/N4 reproduction and both repo doc/whitespace
+checks pass locally. Hosted, actual minimum-version, container, live capture/fault
+and overhead acceptance remain unverified. Step 8 is the remaining planned step;
+healthy plus one CPU class cannot meet Phase 1.3's two real bottleneck-class gate.

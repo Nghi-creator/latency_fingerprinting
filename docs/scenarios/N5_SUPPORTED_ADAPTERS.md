@@ -38,7 +38,7 @@ The producer calculation remains private; [Step 6 inspection](N5_EXPERIMENT_INSP
 Core roots/schemas, earlier pins, policy releases and matcher thresholds are
 unchanged. [Step 6](N5_EXPERIMENT_INSPECTION.md) binds actual exported
 roots/checksums and independently recomputes effects during bounded offline adoption.
-Independent fixture releases follow in Step 7.
+[Independent fixture release](N5_EXPERIMENT_FIXTURES.md) is delivered in Step 7.
 
 Local tests use fake native/Gst dependencies and independently specified totals;
 the actual parked-child integration case is skipped on this Mac. No real pressure,

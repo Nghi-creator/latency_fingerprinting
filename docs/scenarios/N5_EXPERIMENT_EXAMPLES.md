@@ -4,7 +4,7 @@
 producer, model or result derivation. [Step 3 model regressions](N5_EXPERIMENT_MODELS.md) implement the detached cases;
 [runner checks](N5_RUN_LIFECYCLE.md) are delivered in Step 4 software;
 [fixed producer predicates](N5_SUPPORTED_ADAPTERS.md) now exercise these totals.
-[Linked checks](N5_EXPERIMENT_INSPECTION.md) are delivered in Step 6; separately pinned fixtures remain Step 7. They do not run CPU pressure, prove real capture or
+[Linked checks](N5_EXPERIMENT_INSPECTION.md) are delivered in Step 6; [separately pinned fixtures](N5_EXPERIMENT_FIXTURES.md) are delivered in Step 7. They do not run CPU pressure, prove real capture or
 refresh existing fixtures. See [contract](N5_EXPERIMENT_CONTRACT.md).
 
 ## Nominal host contention

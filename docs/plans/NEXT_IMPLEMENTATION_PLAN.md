@@ -1,8 +1,8 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Steps 1–6 software gates complete locally; Step 7 fixtures/pins/reproduction is next
-**Updated:** 2026-10-11
+**Status:** Steps 1–7 software gates complete locally; Step 8 real campaigns/closeout remains open
+**Updated:** 2026-10-12
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 **Archived plan:** [N4 stage observability](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
@@ -115,6 +115,8 @@ phase/action/effect coverage and no implicit promotion into N3 matching features
 
 ## Step 7 — Pin independent fixtures and cross-repository reproduction
 
+**Local software gate:** Complete, 2026-10-12. [Independent experiment fixtures/reproduction](../scenarios/N5_EXPERIMENT_FIXTURES.md) pin eight synthetic cases and exact uncompressed producer member bytes; directory/API/CLI parity and both configured core CI gates are delivered. Actual local reproduction passes; hosted/minimum-version and real runtime acceptance remain unverified.
+
 Author independent synthetic success/failure/partial/unsupported fixtures and
 read-only pins. Exercise producer export → core adoption/inspection, preserve all
 legacy reproduction gates and run applicable full suites, lint/builds and doc checks.
@@ -144,9 +146,9 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Bounded lifecycle and fresh post-warm-up recording control implemented.
 - [x] Approved adapters implement evidence-based effect/restoration checks; unsupported states explicit (software only).
 - [x] Versioned producer export/core adoption and inspection agree in synthetic software checks.
-- [ ] Independent fixtures/pins and both repository gates reproduce.
+- [x] Independent fixtures/pins and both repository software gates reproduce locally.
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
 - [ ] Software/runtime/hosted closeout and current docs agree.
 
-**Next implementation action:** Step 7 independent fixtures/pins and cross-repository reproduction. Two planned N5 steps remain. Runtime acceptance still needs
+**Next implementation action:** Step 8 real repetitions and separate software/runtime/hosted closeout. One planned N5 step remains. Runtime acceptance still needs
 an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.

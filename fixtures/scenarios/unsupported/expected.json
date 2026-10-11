@@ -1,0 +1,19 @@
+{
+  "cleanup": {
+    "ended_ns": null,
+    "owned_workers_remaining": 0,
+    "reason": null,
+    "started_ns": null,
+    "state": "not_required"
+  },
+  "effect": {
+    "degraded_fps": null,
+    "healthy_fps": null,
+    "pressure_cpu_percent": null,
+    "reason": "adapter_unavailable",
+    "recovery_fps": null,
+    "state": "unavailable"
+  },
+  "reason": "runtime_unavailable",
+  "status": "unsupported"
+}

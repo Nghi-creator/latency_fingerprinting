@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-11. **Status:** Steps 1–6 software gates complete locally; Step 7 fixtures/pins/reproduction next.
+**Updated:** 2026-10-12. **Status:** Steps 1–7 software gates complete locally; Step 8 real campaigns/closeout remains open.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -308,5 +308,49 @@ capture/overhead, native Linux execution, actual minimum versions, container and
 hosted execution, held-out source independence and Phase 1.3's second fault class
 remain unverified.
 
-**Next:** Step 7 independent fixtures/pins and cross-repository reproduction.
-Two planned steps remain; Step 8 real campaign/closeout acceptance remains open.
+**Step 6 handoff (historical):** Step 7 independent fixtures/pins and cross-repository reproduction.
+At that handoff two steps remained; Step 7 is delivered below.
+
+## Step 7 — Independent fixtures/pins and cross-repository reproduction
+
+**Local software gate:** Complete, 2026-10-12.
+[Fixture release 1.0.0](N5_EXPERIMENT_FIXTURES.md) adds eight independently authored
+synthetic cases: healthy, host, inclusive boundary, failed pressure, cancelled
+partial run, unsupported runtime, missing traces and unknown cleanup timing.
+The 80 JSON files total 280,156 bytes. Explicit phase/effect/cleanup expectations
+and N4 boundary/capability expectations were authored separately from production
+export or effect calculation. Sparse tracing keeps the corpus compact without
+claiming real tracing coverage. Every fixture byte and exact file inventory are
+pinned; the checker has no refresh mode and keeps expectations outside bundles.
+
+The producer's `scripts/n5/exportSyntheticExperiments.py` supplies fixed synthetic
+integer execution inputs to actual fresh collectors and production export. All
+eight cases reproduce every independent uncompressed member byte, core linked
+adoption/effect verification and canonical API/CLI output. Producer regressions
+separately pin sorted member-name/hash-map digests, repeated-export determinism
+and CLI/private-output behavior. Gzip header hashes are excluded for Python-version
+portability. Both configured core CI jobs run the read-only N5 gate; producer
+scenario discovery includes its reproduction tests. No hosted run is claimed.
+
+### Step 7 verification
+
+The full core suite passes **1,950 tests, 93.77% branch-inclusive coverage**, including
+11 new release/independent-expectation/producer-drift cases. Ruff check/format and
+installed dependency checks pass. All fifteen schemas, registry, P0/N1/N2/N3/N4
+pins and actual synthetic N4 producer→core reproduction remain current unchanged.
+Actual N5 producer export→core API/CLI reproduction passes all eight cases.
+
+Producer full tests pass **716 Node tests**, with the existing external-artifact
+skip. Nested Python verification passes **109 cases**: 50 trace/control and 59
+scenario cases, with one additional Linux-only idle-child skip (60 discovered).
+Three new producer reproduction tests pass. Workspace lint/lockfiles, engine build,
+API typecheck and production web build pass; focused new Python Ruff/format checks
+pass. Local documentation links and whitespace checks pass in both repositories.
+No live workload, pressure, GI capture, container build, actual minimum-version or
+hosted execution was performed. Existing runtime limits and open gates are retained.
+
+**Next:** Step 8 real repetitions and separate software/runtime/hosted closeout.
+One planned step remains. An actual Linux testbed, inherited N4 capture/overhead
+acceptance and a second supported real bottleneck class are still required; these
+synthetic fixtures cannot pass Phase 1.3 or establish held-out source independence.
+Archive active progress/plan only on the subsequent slice transition.

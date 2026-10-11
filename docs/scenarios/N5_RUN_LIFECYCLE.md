@@ -47,6 +47,7 @@ and API/CLI bytes. Core models/schemas/policies/fixtures are unchanged in Step 4
 
 **Successor:** [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) delivered.
 **Successor:** [Step 6 export/adoption/inspection](N5_EXPERIMENT_INSPECTION.md) delivered.
-**Next:** Step 7 independent fixtures/pins and reproduction.
+**Successor:** [Step 7 independent fixtures/pins](N5_EXPERIMENT_FIXTURES.md) delivered.
+**Next:** Step 8 real campaigns/closeout.
 [N4 live acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md), measured overhead,
 minimum-version/hosted execution and two real fault classes remain pending.
