@@ -287,3 +287,37 @@ fifteen schemas, registry, P0/N1/N2/N3/N4 reproduction and both repo doc/whitesp
 checks pass locally. Hosted, actual minimum-version, container, live capture/fault
 and overhead acceptance remain unverified. Step 8 is the remaining planned step;
 healthy plus one CPU class cannot meet Phase 1.3's two real bottleneck-class gate.
+
+## N5 Step 8 software closeout and pending real trials
+
+[Software closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) records the actual Step 7
+local suite/build outcomes without claiming a documentation-only full rerun.
+Closeout N5 fixture, fifteen-schema, registry and both-repository documentation
+link/whitespace checks pass. The actual adapter preflight on Darwin returns
+runtime_unavailable with no resources acquired. Docker is absent and no Linux
+connection/testbed or N5 real campaign artifacts are available. A hung local
+GStreamer version probe was terminated without a successful version/capture claim.
+
+[Runtime acceptance](../scenarios/N5_RUNTIME_ACCEPTANCE.md) keeps concrete live
+dependencies, per-trial/assignment requirements, the missing second fault class,
+inherited N4 capture/correlation/overhead and actual minimum-version/container/hosted
+checks open. No synthetic evidence closes these gates. Local software closeout is
+recorded; Step 8 real acceptance, N5 and Phase 1 remain incomplete.
+
+## N5 end-to-end coding workflow extension
+
+[Campaign workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) delivers additive capture
+pacing, opt-in desktop/container/camera entry, predeclared acquisitions/assignments,
+private cancellation/replay/cleanup safeguards and real overhead collection/report
+commands. Local full core verification passes **1,978 tests at 93.48% coverage**;
+producer full verification passes **718 Node tests**, with the existing artifact
+skip. Final nested checks pass **129 Python cases**, with one Linux idle-child skip.
+The final added CLI check is included in a subsequent engine-wrapper verification.
+
+Ruff/format, workspace lint, desktop/engine builds, 23 schema/registry checks and
+original v1 pinned actual producer reproduction pass. Actual synthetic pacing
+exports pass independent core API/CLI for success, unobserved delay and unknown
+cleanup. Earlier contract/policy/fixture bytes remain unchanged. No live fault,
+capture, container image, hosted or actual minimum-version execution was run.
+The operator procedure is ready; real N4/N5/source-independence acceptance stays
+pending until that procedure and all special/browser cases are executed.

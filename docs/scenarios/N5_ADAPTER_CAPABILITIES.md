@@ -88,3 +88,13 @@ delivered in software with fake-runtime tests. [Concrete camera/CPU adapters](N5
 worker-native ownership/reap and fixed effect checks are delivered in Step 5 software. The frozen
 approved matrix above is unchanged; it is not a live-availability claim. Browser
 reset/control, actual Linux capture and overhead remain runtime acceptance work.
+
+## Additive capture-pacing extension
+
+[Campaign workflow](N5_CAMPAIGN_WORKFLOW.md) implements `render_capture_slowdown`
+through experiment-v2 roots and `n5-capture-pacing-v1`, preserving this frozen v1
+matrix. The bounded owned identity-element delay has measured integer stage-delay,
+FPS and restoration predicates, a watchdog and independent regression checks.
+Both real fault classes remain unverified until live trials. Campaign entry,
+frozen source assignments, overhead collection and detached reports are also
+delivered in this extension; source/workload independence is externally verified.

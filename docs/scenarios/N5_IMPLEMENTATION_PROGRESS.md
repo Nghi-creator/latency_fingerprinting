@@ -1,6 +1,6 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-12. **Status:** Steps 1–7 software gates complete locally; Step 8 real campaigns/closeout remains open.
+**Updated:** 2026-10-12. **Status:** library and end-to-end coding workflows delivered; real runtime acceptance remains pending.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
@@ -349,8 +349,94 @@ pass. Local documentation links and whitespace checks pass in both repositories.
 No live workload, pressure, GI capture, container build, actual minimum-version or
 hosted execution was performed. Existing runtime limits and open gates are retained.
 
-**Next:** Step 8 real repetitions and separate software/runtime/hosted closeout.
-One planned step remains. An actual Linux testbed, inherited N4 capture/overhead
+**Step 7 handoff (historical):** Step 8 real repetitions and separate software/runtime/hosted closeout.
+At that handoff one planned step remained. An actual Linux testbed, inherited N4 capture/overhead
 acceptance and a second supported real bottleneck class are still required; these
 synthetic fixtures cannot pass Phase 1.3 or establish held-out source independence.
 Archive active progress/plan only on the subsequent slice transition.
+
+## Step 8 — Software closeout and explicit pending runtime acceptance
+
+**Recorded:** 2026-10-12. [Software closeout](N5_SOFTWARE_CLOSEOUT.md) publishes the
+local software outcome separately from [live acceptance](N5_RUNTIME_ACCEPTANCE.md).
+Both checkouts started clean at the Step 7 commits recorded in the closeout. This
+step changes documentation only; the latest full regression/build counts remain
+the actual Step 7 results. Closeout read-only N5 fixture, fifteen-schema and registry
+checks pass; both repositories' current documentation links and whitespace pass.
+
+The actual producer Linux camera adapter preflight on this Darwin host returns
+`unavailable / runtime_unavailable`, with zero runtime fields, no acquired resources
+and no prepared plan. Docker is absent; no Linux connection/testbed or N5 real
+campaign artifacts are available. Existing controlled-real P0 runs cannot be
+relabeled into N5. Node reports 26.4.0 and Python 3.14.4, not minimum-version
+execution. A GStreamer version probe hung on macOS service initialization and was
+terminated; no pipeline or fresh GStreamer version result is claimed.
+
+No live camera, workload, native pressure or network change was performed. Real
+healthy/host repetitions, acquisition assignments/held-out separation and all
+inherited N4 capture/coverage/overhead gates remain pending. V1 supports only one
+fault class at that initial closeout; the subsequent additive capture-pacing
+extension below delivers the second adapter. Healthy does not satisfy that requirement. Container,
+actual minimum-version and hosted execution remain unverified.
+
+**Remaining:** Step 8 runtime acceptance; N5/Phase 1 are not complete. Local software
+is closed out and the exact runtime dependencies are recorded. Keep the active
+plan/progress and current normative guides until the subsequent slice transition,
+when their archival is due. No N6 plan is substituted for unmet acceptance.
+
+## End-to-end coding extension — campaign entry, second control and overhead
+
+**Delivered in software:** 2026-10-12. [Workflow specification](N5_CAMPAIGN_WORKFLOW.md)
+and the producer live test guide make the existing library usable from an opt-in
+Pixelated engine. The earlier closeout was limited to Step 1–7 libraries/synthetic
+handoffs; it did not finish these operator-facing coding surfaces.
+
+Capture pacing uses three additive v2 roots and `n5-capture-pacing-v1`, preserving
+all original v1 schema/fixture/policy bytes. A scoped 50 ms identity-element delay
+has an exact-owner restoration watchdog and raw stage-delay/FPS predicates. The
+core recomputes effects independently; requested settings do not count as measured
+verification. Normal startup installs no new element, worker, flags or evidence
+volume. Explicit desktop research startup retains nonroot/read-only/capability
+isolation and adds a private persistent evidence volume.
+
+The producer freezes bounded reference/query schedules and distinct acquisition
+IDs before execution, requires an engine-owner workload/seed declaration and the
+observed parent Node version, rejects replay/dirty ownership, supports cancellation,
+retains unavailable/failed prefixes, and rearms only new source admission/recording
+lifetimes. Missing preflight values never become invented bundle runtime metadata.
+The core checks schedule/receipts/windows and every trial; source independence
+remains externally verified and no features/Phase 1 acceptance are promoted.
+
+A separate overhead request runs the frozen five alternating disabled/enabled
+pairs, raw camera-process CPU/FPS counters, fresh enabled traces, export times and
+explicit bounded callback diagnostics. The inspector uses exact rational medians,
+checks every baseline, hash/coverage/drop count, order, diagnostic sample count and
+cleanup. A smaller trace denominator cannot hide missing encoded-frame coverage.
+Model/schema imports are separate from inspectors to prevent schema/registry
+import cycles and keep these modules bounded.
+
+### Local coding verification
+
+- Full core suite: **1,978 passed, 93.48% branch-inclusive coverage**. Independent
+  pacing/campaign/overhead cases cover exact thresholds, unobserved requested delay,
+  strict actions/source assignments, drift, unsafe paths and preserved outputs.
+- Producer full suite: **718 Node passed**, including two new desktop research
+  opt-in/isolation tests; the existing external-artifact engine skip remains.
+  Final nested Python checks: **129 passed** (54 trace/control and 75 scenario),
+  with one Linux-only idle-child skip. The last added CLI validation test was
+  rerun through the engine wrapper after the full workspace run.
+- Core Ruff/format, producer workspace lint and desktop/engine builds pass.
+  Focused new Python style/syntax and final source checks pass. All 23 schemas,
+  registry and original read-only releases remain current; original v1 actual
+  producer exports still match all eight pinned cases byte for byte.
+- Actual producer pacing exports pass core API/CLI for verified delay, unobserved
+  delay and unknown cleanup, using fixed synthetic collector inputs. No real
+  pacing, pressure, capture, Docker image build or acceptance run was performed.
+- Both repos' current local documentation links and whitespace checks pass.
+
+**Remaining work is live testing:** use the producer's one test procedure with a
+Linux engine inside Docker Desktop or a separate Linux machine, then retain all
+real outcomes and the inherited N4 special/browser cases. Actual minimum-version,
+container/hosted runs and externally verified held-out source separation remain
+pending. The second adapter is now coded; its real effect/restoration still needs
+validation. N5/Phase 1 acceptance is not completed by this coding extension.

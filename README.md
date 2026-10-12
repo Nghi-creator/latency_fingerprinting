@@ -26,7 +26,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
 7. [N4 stage-level observability](docs/plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) is complete in software; [runtime acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md) remains pending.
-8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; Steps 1–7 are complete locally; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 real campaigns/closeout remains open.
+8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; Steps 1–7 are complete locally; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open.
 8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
@@ -109,7 +109,7 @@ and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 locally. The [experiment contract](docs/scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter/effect criteria](docs/scenarios/N5_ADAPTER_CAPABILITIES.md) and
 [independent examples](docs/scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen;
-[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 real campaigns/closeout remains open. N4 trace models, instrumentation, export/adoption
+[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open. N4 trace models, instrumentation, export/adoption
 and inspection remain delivered; [real acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md)
 is carried forward explicitly. Existing N2 timing and N3 matching meanings stay frozen.
 
@@ -175,3 +175,7 @@ the finished engine is maintained in the
 Inspectable software examples are linked from
 [`P0_SOFTWARE_CLOSEOUT.md`](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
 an engineering similarity measure, not probability or calibrated confidence.
+
+The [N5 campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) adds capture pacing,
+frozen acquisition schedules and real overhead collection/inspection tools. These
+are implemented in software; actual trial acceptance remains pending.

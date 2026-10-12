@@ -29,12 +29,23 @@ from .models import (
     StageTraceRecord,
     StageTraceSummary,
 )
+from .scenarios.campaign_models import CampaignIndex, CampaignPlan, CampaignReport
+from .scenarios.overhead_models import OverheadEvidence, OverheadReport
+from .scenarios.pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
 
 SchemaModel: TypeAlias = type[BaseModel]
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "n5-campaign-report-v1.schema.json": CampaignReport,
+    "n4-overhead-report-v1.schema.json": OverheadReport,
+    "n5-campaign-plan-v1.schema.json": CampaignPlan,
+    "n5-campaign-index-v1.schema.json": CampaignIndex,
+    "n4-overhead-evidence-v1.schema.json": OverheadEvidence,
+    "experiment-manifest-v2.schema.json": ExperimentManifestV2,
+    "experiment-phase-evidence-v2.schema.json": ExperimentPhaseEvidenceV2,
+    "experiment-result-v2.schema.json": ExperimentResultV2,
     "experiment-manifest-v1.schema.json": ExperimentManifest,
     "experiment-phase-evidence-v1.schema.json": ExperimentPhaseEvidence,
     "experiment-result-v1.schema.json": ExperimentResult,

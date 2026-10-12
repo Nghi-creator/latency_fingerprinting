@@ -1,6 +1,6 @@
 # N4 inherited runtime acceptance
 
-**Updated:** 2026-10-11. **Status:** pending; carried into N5 without waiving gates.
+**Updated:** 2026-10-12. **Status:** pending; carried into N5 without waiving gates.
 [Archived N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 and [audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md) record delivered
 software and historical local checks. [N5](../plans/NEXT_IMPLEMENTATION_PLAN.md)
@@ -27,3 +27,7 @@ No synthetic run, test count or factory discovery closes these gates:
 
 No deadline/method thresholds or artifact contracts change at the transition.
 Update this live ledger only with new evidence; historical records remain intact.
+
+N5 Step 8 [software closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) and
+[runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) record macOS preflight
+unavailability and no real trials. None of the inherited N4 gates above has closed.

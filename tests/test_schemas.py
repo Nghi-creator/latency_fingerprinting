@@ -28,7 +28,17 @@ def test_root_schemas_use_contract_json_aliases() -> None:
     for model in SCHEMA_MODELS.values():
         schema = json.loads(render_schema(model))
         if "schema_version" in schema["properties"]:
-            assert "method_release" in schema["properties"]
+            metadata = {
+                SCHEMA_MODELS[name]
+                for name in (
+                    "n5-campaign-plan-v1.schema.json",
+                    "n5-campaign-index-v1.schema.json",
+                    "n5-campaign-report-v1.schema.json",
+                    "n4-overhead-evidence-v1.schema.json",
+                    "n4-overhead-report-v1.schema.json",
+                )
+            }
+            assert ("method_release" in schema["properties"]) == (model not in metadata)
             assert "schemaVersion" not in schema["properties"]
             continue
         assert "schemaVersion" in schema["properties"]

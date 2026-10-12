@@ -68,3 +68,7 @@ host contention, failed pressure, unsupported runtime, missing traces and unknow
 software integration evidence, not live capture, measured overhead, scientific
 causality, calibrated confidence or source independence. Earlier schemas, fixture
 pins, metric registry and feature policies remain unchanged.
+
+The [additive campaign/pacing workflow](N5_CAMPAIGN_WORKFLOW.md) adds v2 pacing
+inspection and `inspect-campaign`/`inspect-overhead`, preserving the v1 behavior
+and release pins described above.

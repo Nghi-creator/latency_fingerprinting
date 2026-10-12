@@ -6,7 +6,7 @@
 [Steps 1–7](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
 locally; [experiment contract](scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter capabilities](scenarios/N5_ADAPTER_CAPABILITIES.md) and
-[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 real campaigns/closeout remains open. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+[independent examples](scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](scenarios/N5_RUN_LIFECYCLE.md) is delivered; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open. [N4 software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 is archived; [real acceptance](observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
 The [trace contract](observability/N4_TRACE_CONTRACT.md),
 [producer capabilities/acceptance](observability/N4_PRODUCER_CAPABILITIES.md) and
@@ -49,3 +49,7 @@ Controlled-real artifacts and their procedures remain in
 N5 linked artifact verification and command usage: [experiment inspection](scenarios/N5_EXPERIMENT_INSPECTION.md).
 
 N5 released synthetic expectations and read-only cross-repository checks: [experiment fixtures](scenarios/N5_EXPERIMENT_FIXTURES.md).
+
+N5 software outcome and pending real trials: [software closeout](scenarios/N5_SOFTWARE_CLOSEOUT.md), [runtime acceptance](scenarios/N5_RUNTIME_ACCEPTANCE.md).
+
+N5 end-to-end coding extension and operator commands: [campaign workflow](scenarios/N5_CAMPAIGN_WORKFLOW.md).

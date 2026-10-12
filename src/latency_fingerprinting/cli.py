@@ -56,6 +56,14 @@ from .models import (
 from .observability import StageTraceRecord, StageTraceSummary
 from .pipeline import build_observation_record, canonical_json
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
+from .scenarios.campaign import (
+    CampaignIndex,
+    CampaignPlan,
+    CampaignReport,
+    register_campaign_command,
+)
+from .scenarios.overhead import OverheadEvidence, OverheadReport, register_overhead_command
+from .scenarios.pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
 from .schemas import DEFAULT_SCHEMA_DIRECTORY, SCHEMA_MODELS, export_schemas, schema_drift
 
 CommandHandler = Callable[[argparse.Namespace], None]
@@ -63,6 +71,14 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "n5-campaign-report-v1": CampaignReport,
+    "n4-overhead-report-v1": OverheadReport,
+    "n5-campaign-plan-v1": CampaignPlan,
+    "n5-campaign-index-v1": CampaignIndex,
+    "n4-overhead-evidence-v1": OverheadEvidence,
+    "experiment-manifest-v2": ExperimentManifestV2,
+    "experiment-phase-evidence-v2": ExperimentPhaseEvidenceV2,
+    "experiment-result-v2": ExperimentResultV2,
     "experiment-manifest-v1": ExperimentManifest,
     "experiment-phase-evidence-v1": ExperimentPhaseEvidence,
     "experiment-result-v1": ExperimentResult,
@@ -98,6 +114,14 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "experiment-manifest-v2",
+        "experiment-phase-evidence-v2",
+        "experiment-result-v2",
+        "n5-campaign-plan-v1",
+        "n5-campaign-index-v1",
+        "n5-campaign-report-v1",
+        "n4-overhead-evidence-v1",
+        "n4-overhead-report-v1",
         "stage-trace-record-v1",
         "stage-trace-summary-v1",
         "experiment-manifest-v1",
@@ -120,6 +144,14 @@ def _validate(args: argparse.Namespace) -> None:
         in (
             StageTraceRecord,
             StageTraceSummary,
+            CampaignReport,
+            OverheadReport,
+            CampaignPlan,
+            CampaignIndex,
+            OverheadEvidence,
+            ExperimentManifestV2,
+            ExperimentPhaseEvidenceV2,
+            ExperimentResultV2,
             ExperimentManifest,
             ExperimentPhaseEvidence,
             ExperimentResult,
@@ -333,6 +365,8 @@ def build_parser() -> argparse.ArgumentParser:
     register_v2_commands(subparsers)
     register_trace_commands(subparsers)
     register_experiment_commands(subparsers)
+    register_campaign_command(subparsers)
+    register_overhead_command(subparsers)
     return parser
 
 

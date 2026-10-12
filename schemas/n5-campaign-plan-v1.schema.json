@@ -1,0 +1,125 @@
+{
+  "$defs": {
+    "TrialPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment": {
+          "enum": [
+            "engineering",
+            "reference",
+            "held_out_query"
+          ],
+          "title": "Assignment",
+          "type": "string"
+        },
+        "repeat_index": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Repeat Index",
+          "type": "integer"
+        },
+        "run_id": {
+          "pattern": "^run-[1-9][0-9]{0,8}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "scenario": {
+          "enum": [
+            "healthy",
+            "host_contention",
+            "render_capture_slowdown"
+          ],
+          "title": "Scenario",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "source_id",
+        "scenario",
+        "assignment",
+        "repeat_index"
+      ],
+      "title": "TrialPlan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "campaign_id": {
+      "pattern": "^campaign-[1-9][0-9]{0,8}$",
+      "title": "Campaign Id",
+      "type": "string"
+    },
+    "core_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Core Version",
+      "type": "string"
+    },
+    "host_workers": {
+      "maximum": 8,
+      "minimum": 1,
+      "title": "Host Workers",
+      "type": "integer"
+    },
+    "node_id": {
+      "pattern": "^node-[1-9][0-9]{0,8}$",
+      "title": "Node Id",
+      "type": "string"
+    },
+    "node_version": {
+      "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+      "title": "Node Version",
+      "type": "string"
+    },
+    "producer_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Producer Version",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "n5-campaign-plan-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "trials": {
+      "items": {
+        "$ref": "#/$defs/TrialPlan"
+      },
+      "maxItems": 24,
+      "minItems": 1,
+      "title": "Trials",
+      "type": "array"
+    },
+    "workload_id": {
+      "pattern": "^workload-[1-9][0-9]{0,8}$",
+      "title": "Workload Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "core_version",
+    "producer_version",
+    "node_id",
+    "workload_id",
+    "host_workers",
+    "node_version",
+    "seed",
+    "trials"
+  ],
+  "title": "CampaignPlan",
+  "type": "object"
+}

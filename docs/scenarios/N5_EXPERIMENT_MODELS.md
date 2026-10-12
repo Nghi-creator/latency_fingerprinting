@@ -12,7 +12,8 @@ raw counters and execution/effect/cleanup state respectively. They have no runti
 or filesystem side effects and introduce no matcher features or policy changes.
 
 The three corresponding `experiment-*-v1.schema.json` files are additive.
-`export-schemas --check` checks fifteen schemas; all twelve earlier schema bytes
+`export-schemas --check` now checks 23 schemas after the
+[campaign extension](N5_CAMPAIGN_WORKFLOW.md); all original fifteen schema bytes
 remain unchanged. JSON Schema describes shape and primitive bounds. Cross-field
 rules below require Python validation; schema validation alone cannot prove them.
 

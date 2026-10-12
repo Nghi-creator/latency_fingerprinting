@@ -1,7 +1,7 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Steps 1–7 software gates complete locally; Step 8 real campaigns/closeout remains open
+**Status:** Steps 1–7 software complete; Step 8 software closeout recorded, real runtime acceptance pending
 **Updated:** 2026-10-12
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
@@ -127,6 +127,8 @@ remain explicit and cannot be passed by fake runtime output.
 
 ## Step 8 — Execute real repetitions and close out software/runtime separately
 
+**Software closeout:** Recorded, 2026-10-12. [Closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) separates delivered local software from actual runtime/hosted results. [Live acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) records actual macOS preflight unavailability, local Linux-runtime unavailability; the [additive campaign/pacing workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) now delivers the second adapter and live-entry/overhead tools. No real campaign or Phase 1 completion is claimed.
+
 Run supported real single causes with measured effects, recovery, seeds/config,
 all trial values and independent repetitions. Freeze reference/query assignments
 before analysis; no source run may query its own fingerprint. Phase 1.3 requires
@@ -148,7 +150,6 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Versioned producer export/core adoption and inspection agree in synthetic software checks.
 - [x] Independent fixtures/pins and both repository software gates reproduce locally.
 - [ ] Real repetitions, held-out separation and inherited N4 acceptance recorded.
-- [ ] Software/runtime/hosted closeout and current docs agree.
+- [x] Software/runtime/hosted outcomes and current docs agree; runtime and hosted results explicitly pending.
 
-**Next implementation action:** Step 8 real repetitions and separate software/runtime/hosted closeout. One planned N5 step remains. Runtime acceptance still needs
-an actual Linux testbed; starting N5 does not complete Phase 1.2 or Phase 1 overall.
+**Remaining acceptance action:** Step 8 real repetitions on an actual Linux testbed, live validation of the implemented capture-pacing second fault class, held-out source separation and inherited N4 capture/overhead gates. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.
