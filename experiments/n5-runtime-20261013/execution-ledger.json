@@ -1,0 +1,2480 @@
+{
+  "browser_entry_diagnostic": {
+    "acceptance_evidence": false,
+    "callbacks": 180,
+    "purpose": "noncontract_browser_timing_diagnostic",
+    "report": "browser-entry-diagnostic.json",
+    "summary": {
+      "api_delta_ns": {
+        "max_ns": 0,
+        "median_ns": -100000.0,
+        "min_ns": -300000,
+        "negative": 170,
+        "positive": 0,
+        "zero": 10
+      },
+      "entry_delta_ns": {
+        "max_ns": 600000,
+        "median_ns": 200000.0,
+        "min_ns": 100000,
+        "negative": 0,
+        "positive": 180,
+        "zero": 0
+      },
+      "entry_minus_api_ns": {
+        "max_ns": 800000,
+        "median_ns": 400000.0,
+        "min_ns": 200000,
+        "negative": 0,
+        "positive": 180,
+        "zero": 0
+      }
+    }
+  },
+  "cohorts": [
+    {
+      "affinity": "unpinned",
+      "campaign": "campaign-3",
+      "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+      "index": {
+        "campaign_id": "campaign-3",
+        "plan_sha256": "f20807b850f0a3d29b07f1bf846bec033521f9e9ffc2cf58d8423781360c74ec",
+        "schema_version": "n5-campaign-index-v1",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "acquisition_ended_ns": 140191045896,
+            "acquisition_started_ns": 40297791,
+            "bytes": 217924,
+            "file_name": "run-1.tar.gz",
+            "reason": null,
+            "run_id": "run-1",
+            "sha256": "2acf6969c76b3fee35391518f48c2b49a73c824cd368b6a8dad8053d13169954",
+            "source_id": "2bf7e8838f5f4551a975650fd4905dc9",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 280378460835,
+            "acquisition_started_ns": 140209192896,
+            "bytes": 208652,
+            "file_name": "run-4.tar.gz",
+            "reason": null,
+            "run_id": "run-4",
+            "sha256": "be3e23c41264ce18648cde17bf6929250ba2dda1f3a1440ad3d58218fcad980d",
+            "source_id": "ddab2495caef411492493cd34f0d1dd5",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 420544877066,
+            "acquisition_started_ns": 280404348835,
+            "bytes": 173383,
+            "file_name": "run-7.tar.gz",
+            "reason": null,
+            "run_id": "run-7",
+            "sha256": "bb08806249b61cbead584891bde0c5a40459b28bbc75a4c5804fe05c9639bd9f",
+            "source_id": "9188b2718bee4132a52c9948c8230660",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 560714451840,
+            "acquisition_started_ns": 420571286983,
+            "bytes": 218027,
+            "file_name": "run-10.tar.gz",
+            "reason": null,
+            "run_id": "run-10",
+            "sha256": "3d3434a3967e305e9c1a42e0aa543ded366c8515cfaf700788c8d2d21499d91d",
+            "source_id": "ae2c09dd585b4c289f253c1886a85d9e",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 700917910946,
+            "acquisition_started_ns": 560731327590,
+            "bytes": 208849,
+            "file_name": "run-13.tar.gz",
+            "reason": null,
+            "run_id": "run-13",
+            "sha256": "dd7cb0963b3e094d88c98dbb009b5bc2096c78188a2b4ac98753bd1701d6116c",
+            "source_id": "613c97c0b7ce42b5a1dbe69657be84bd",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 841101389552,
+            "acquisition_started_ns": 700932802030,
+            "bytes": 174140,
+            "file_name": "run-16.tar.gz",
+            "reason": null,
+            "run_id": "run-16",
+            "sha256": "b8ea4f9672233e9ca7db45e535e3d25a5825a4736db9b11dc8ad8ad89a191459",
+            "source_id": "9d011801134146ccbb9aef41ae0594fd",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 981267491282,
+            "acquisition_started_ns": 841116244718,
+            "bytes": 217727,
+            "file_name": "run-2.tar.gz",
+            "reason": null,
+            "run_id": "run-2",
+            "sha256": "7c23f153628c94b74ef5c41b6047be920f0c4613834ef51e9ea1321c95da0058",
+            "source_id": "e28da32617b540d3b4d83a4028c5d4a3",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1121542826263,
+            "acquisition_started_ns": 981307165240,
+            "bytes": 209644,
+            "file_name": "run-5.tar.gz",
+            "reason": null,
+            "run_id": "run-5",
+            "sha256": "39729b29920f9cf4e0376d6a6504717d86cd3315cd8b51ff2053ab1ccd08fe19",
+            "source_id": "f2b14bbc1f944c7ea28da12b967d38d0",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1261758859785,
+            "acquisition_started_ns": 1121581545055,
+            "bytes": 173598,
+            "file_name": "run-8.tar.gz",
+            "reason": null,
+            "run_id": "run-8",
+            "sha256": "18f89c9b1868b5ec1ed5b35fddb04e3dd484426dcc06b44259a8efd910dd3710",
+            "source_id": "380fa419a1bc4141813dcc79ce04765f",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1401925584265,
+            "acquisition_started_ns": 1261777064410,
+            "bytes": 217839,
+            "file_name": "run-11.tar.gz",
+            "reason": null,
+            "run_id": "run-11",
+            "sha256": "28e6b493ef41679d552ece514db1d713e0d96c7418cc528814d67f81223e58ef",
+            "source_id": "340ec62250464d6d88302e79bfc8ecc0",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1542119657205,
+            "acquisition_started_ns": 1401940404848,
+            "bytes": 209473,
+            "file_name": "run-14.tar.gz",
+            "reason": null,
+            "run_id": "run-14",
+            "sha256": "95d68ec895b8db4feedbac4d7bdc62c8501ed053ac8880d5eaf36553a1286a87",
+            "source_id": "52ef85c4b3eb47bf8651165711bee57a",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1682273274228,
+            "acquisition_started_ns": 1542133000580,
+            "bytes": 173069,
+            "file_name": "run-17.tar.gz",
+            "reason": null,
+            "run_id": "run-17",
+            "sha256": "72324c03ca3970e5fcd26ce327e9805a41c270b880b14ad4999291b1339d22e6",
+            "source_id": "25df1421153e4479b18757f600f075fa",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1822465277290,
+            "acquisition_started_ns": 1682304092894,
+            "bytes": 217781,
+            "file_name": "run-3.tar.gz",
+            "reason": null,
+            "run_id": "run-3",
+            "sha256": "7e0d1a7f6b86c0031dbe65947553df793a96e71a1400e6822a5b817f9711d595",
+            "source_id": "6ad925d9fd0246f0af82bd60f71148e2",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 1962696124521,
+            "acquisition_started_ns": 1822503736457,
+            "bytes": 210037,
+            "file_name": "run-6.tar.gz",
+            "reason": null,
+            "run_id": "run-6",
+            "sha256": "ab7dde13276d18b837ffb122cd1a38b5afcc5c458e6fc798faaf1d8344aace5e",
+            "source_id": "6d389d7e5f694ac9bcfc3f0dbf999d9c",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 2102908705418,
+            "acquisition_started_ns": 1962739382230,
+            "bytes": 175177,
+            "file_name": "run-9.tar.gz",
+            "reason": null,
+            "run_id": "run-9",
+            "sha256": "d28d609074bfb23f4f1b69b3a04d4d929e249b4774c38cd75651214d6cc008a3",
+            "source_id": "6e7a7061ed544a48a3ad5bae7d5296c7",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 2243081459148,
+            "acquisition_started_ns": 2102935952877,
+            "bytes": 217964,
+            "file_name": "run-12.tar.gz",
+            "reason": null,
+            "run_id": "run-12",
+            "sha256": "cf71a8f27ba44cddc6daad74f947599f8d3a467552a9fb33e98508591959f78a",
+            "source_id": "4457d1a48c7049878a6b8995389cafd8",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 2284170570251,
+            "acquisition_started_ns": 2243108275065,
+            "bytes": 55643,
+            "file_name": "run-15.tar.gz",
+            "reason": null,
+            "run_id": "run-15",
+            "sha256": "232255cc670674eb507df6fae081104775880d1164d7d59201c632479b2b06c8",
+            "source_id": "4007881e5283416e91d19cdc89375b38",
+            "status": "exported"
+          }
+        ]
+      },
+      "period_us": 1000000,
+      "plan_sha256": "f20807b850f0a3d29b07f1bf846bec033521f9e9ffc2cf58d8423781360c74ec",
+      "producer_commit": "08a473264df67de36038292ede53f575d6d17687",
+      "quota_us": 1000000,
+      "receipt_windows_nonoverlapping": true,
+      "report": {
+        "campaign_id": "campaign-3",
+        "inherited_n4_acceptance": "pending",
+        "phase_1_acceptance": "pending",
+        "planned_trials": 18,
+        "repeated_effect_criteria_passed": false,
+        "repeated_held_out_effects": {
+          "healthy": true,
+          "host_contention": true,
+          "render_capture_slowdown": true
+        },
+        "retained_trials": 17,
+        "schema_version": "n5-campaign-report-v1",
+        "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.9977426558662,
+              "healthy_fps": 29.998800367972486,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.999208006908987,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-1",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 27.56377096573337,
+              "healthy_fps": 29.996751254849602,
+              "pressure_cpu_percent": 86.17714161819148,
+              "reason": null,
+              "recovery_fps": 29.998773287162862,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-4",
+            "scenario": "host_contention",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "capture_delay_ns": 59406500,
+              "degraded_fps": 16.232189519654153,
+              "healthy_fps": 29.999197008493756,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 30.06638290114706,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-7",
+            "scenario": "render_capture_slowdown",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": 29.99916817606501,
+              "healthy_fps": 29.997255654070788,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.998311039091654,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-10",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": 27.631956980950786,
+              "healthy_fps": 29.999160885471095,
+              "pressure_cpu_percent": 86.3954506148723,
+              "reason": null,
+              "recovery_fps": 29.998403611953012,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-13",
+            "scenario": "host_contention",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "capture_delay_ns": 58510959,
+              "degraded_fps": 16.432980427957684,
+              "healthy_fps": 29.96572523048053,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 30.02930822487841,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-16",
+            "scenario": "render_capture_slowdown",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.99809735667604,
+              "healthy_fps": 29.99913426098419,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.999212506672066,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-2",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 27.829973083940235,
+              "healthy_fps": 29.999402540898817,
+              "pressure_cpu_percent": 86.44224136558215,
+              "reason": null,
+              "recovery_fps": 29.998374824044667,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-5",
+            "scenario": "host_contention",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "capture_delay_ns": 59331750,
+              "degraded_fps": 16.23254839168222,
+              "healthy_fps": 29.99870221014438,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.999011477573625,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-8",
+            "scenario": "render_capture_slowdown",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": 29.999462913615567,
+              "healthy_fps": 29.99883724006877,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.999291044754315,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-11",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": 27.729010984089054,
+              "healthy_fps": 29.998257129259162,
+              "pressure_cpu_percent": 86.53272612485948,
+              "reason": null,
+              "recovery_fps": 29.99788700983473,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-14",
+            "scenario": "host_contention",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "capture_delay_ns": 58511417,
+              "degraded_fps": 16.366055500327555,
+              "healthy_fps": 29.998602092141248,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 30.031720115419663,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-17",
+            "scenario": "render_capture_slowdown",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.99792292281828,
+              "healthy_fps": 29.99423355360989,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.995530776897706,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-3",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 27.828347794847563,
+              "healthy_fps": 29.996982205599974,
+              "pressure_cpu_percent": 86.40419481912458,
+              "reason": null,
+              "recovery_fps": 29.998208593977573,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-6",
+            "scenario": "host_contention",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "capture_delay_ns": 57852584,
+              "degraded_fps": 16.798566001612315,
+              "healthy_fps": 29.99805744479217,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 30.032928917921307,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-9",
+            "scenario": "render_capture_slowdown",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": 29.998683460778388,
+              "healthy_fps": 29.999192341744315,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.998640714591353,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-12",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "held_out_query",
+            "effect": {
+              "degraded_fps": null,
+              "healthy_fps": null,
+              "pressure_cpu_percent": null,
+              "reason": "incomplete_run",
+              "recovery_fps": null,
+              "state": "unavailable"
+            },
+            "reason": "incomplete_run",
+            "run_id": "run-15",
+            "scenario": "host_contention",
+            "state": "unavailable"
+          }
+        ]
+      },
+      "source_ids_unique": true
+    },
+    {
+      "affinity": "unpinned",
+      "campaign": "campaign-4",
+      "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+      "index": {
+        "campaign_id": "campaign-4",
+        "plan_sha256": "41b582b76bf25bd900b82f0434cf6dd6badc92684c43bf682b30ea80e0091778",
+        "schema_version": "n5-campaign-index-v1",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "acquisition_ended_ns": 140155944065,
+            "acquisition_started_ns": 12476875,
+            "bytes": 217934,
+            "file_name": "run-1.tar.gz",
+            "reason": null,
+            "run_id": "run-1",
+            "sha256": "be2cf4aae3ea25bf1cf4543ab0a199cbcca02be799aae08036cffd5fc7f0bd72",
+            "source_id": "79071d0930fa4720a198c65cf67c4470",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 280304079503,
+            "acquisition_started_ns": 140171616606,
+            "bytes": 218250,
+            "file_name": "run-2.tar.gz",
+            "reason": null,
+            "run_id": "run-2",
+            "sha256": "fd46e9a05b4ccee38850eedb609b1674b55cf5520c07ecbecdbff11a250e9ace",
+            "source_id": "9cf24fb8820144bdb69dce4fc6fc35a3",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 420479735817,
+            "acquisition_started_ns": 280341788045,
+            "bytes": 217869,
+            "file_name": "run-3.tar.gz",
+            "reason": null,
+            "run_id": "run-3",
+            "sha256": "9f0eebb132758b2b626f0ccb1f2bef5175b0a00380a7d8ee6f1e5cf63e94bbdb",
+            "source_id": "da5c8406c74d41e6ae47aee275e5bcc8",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 560672440382,
+            "acquisition_started_ns": 420507559984,
+            "bytes": 212256,
+            "file_name": "run-4.tar.gz",
+            "reason": null,
+            "run_id": "run-4",
+            "sha256": "b9568f5d34a5de46a761c5faa1fb4fd1863db84a6bd056457981f06f954de212",
+            "source_id": "b2cbadad1e53439a8af0f6b3d2ff1f87",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 650302234047,
+            "acquisition_started_ns": 560710778757,
+            "bytes": 106910,
+            "file_name": "run-5.tar.gz",
+            "reason": null,
+            "run_id": "run-5",
+            "sha256": "8ec5dc96b87b39d158c1e3c41c3a2b6edf0d76673c7b148738ff143081ee5a62",
+            "source_id": "08d2e3194ce44ccfaaaeced27addf013",
+            "status": "exported"
+          }
+        ]
+      },
+      "period_us": 1000000,
+      "plan_sha256": "41b582b76bf25bd900b82f0434cf6dd6badc92684c43bf682b30ea80e0091778",
+      "producer_commit": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+      "quota_us": 1000000,
+      "receipt_windows_nonoverlapping": true,
+      "report": {
+        "campaign_id": "campaign-4",
+        "inherited_n4_acceptance": "pending",
+        "phase_1_acceptance": "pending",
+        "planned_trials": 18,
+        "repeated_effect_criteria_passed": false,
+        "repeated_held_out_effects": {
+          "healthy": false,
+          "host_contention": false,
+          "render_capture_slowdown": false
+        },
+        "retained_trials": 5,
+        "schema_version": "n5-campaign-report-v1",
+        "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.9989462310156,
+              "healthy_fps": 29.99744861900329,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.998318998197515,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-1",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.997102432890205,
+              "healthy_fps": 29.998203386600434,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.99787663629975,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-2",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.998486396370385,
+              "healthy_fps": 29.998392698118593,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.996989664101054,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-3",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 28.531842571188708,
+              "healthy_fps": 29.997729283884734,
+              "pressure_cpu_percent": 86.05213756946065,
+              "reason": "degradation_not_observed",
+              "recovery_fps": 29.998826906873376,
+              "state": "failed"
+            },
+            "reason": "degradation_not_observed",
+            "run_id": "run-4",
+            "scenario": "host_contention",
+            "state": "failed"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": null,
+              "healthy_fps": null,
+              "pressure_cpu_percent": null,
+              "reason": "incomplete_run",
+              "recovery_fps": null,
+              "state": "unavailable"
+            },
+            "reason": "incomplete_run",
+            "run_id": "run-5",
+            "scenario": "host_contention",
+            "state": "unavailable"
+          }
+        ]
+      },
+      "source_ids_unique": true
+    },
+    {
+      "affinity": "unpinned",
+      "campaign": "campaign-5",
+      "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+      "index": {
+        "campaign_id": "campaign-5",
+        "plan_sha256": "b41d19f12258601326c6d94b9e758d85500d4e873fbe77b19a6048b84e64c86a",
+        "schema_version": "n5-campaign-index-v1",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "acquisition_ended_ns": 140170214064,
+            "acquisition_started_ns": 25498709,
+            "bytes": 217810,
+            "file_name": "run-1.tar.gz",
+            "reason": null,
+            "run_id": "run-1",
+            "sha256": "14df86e1a4e489c6ed9370971d6bc56247ab7e3190c007f3d6e95fbf586c7fc8",
+            "source_id": "7f54430a4cc544859979a7be0211d5bb",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 280357228003,
+            "acquisition_started_ns": 140184461147,
+            "bytes": 216630,
+            "file_name": "run-4.tar.gz",
+            "reason": null,
+            "run_id": "run-4",
+            "sha256": "3d2e74e2e8c39c068454e60778df136850a0048fa031e854997858cf112413ab",
+            "source_id": "b25174d6c4b24e51a28efa97bba77936",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 400666544724,
+            "acquisition_started_ns": 280384988378,
+            "bytes": 119754,
+            "file_name": "run-7.tar.gz",
+            "reason": null,
+            "run_id": "run-7",
+            "sha256": "7b4179f96f170ac4bb6b5038789aa4e558a3f98448ca6ef8199ac269e83fea5e",
+            "source_id": "32b4c9cabfc64aa496c2cc143ada087a",
+            "status": "exported"
+          }
+        ]
+      },
+      "period_us": 100000,
+      "plan_sha256": "b41d19f12258601326c6d94b9e758d85500d4e873fbe77b19a6048b84e64c86a",
+      "producer_commit": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+      "quota_us": 100000,
+      "receipt_windows_nonoverlapping": true,
+      "report": {
+        "campaign_id": "campaign-5",
+        "inherited_n4_acceptance": "pending",
+        "phase_1_acceptance": "pending",
+        "planned_trials": 18,
+        "repeated_effect_criteria_passed": false,
+        "repeated_held_out_effects": {
+          "healthy": false,
+          "host_contention": false,
+          "render_capture_slowdown": false
+        },
+        "retained_trials": 3,
+        "schema_version": "n5-campaign-report-v1",
+        "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.996467693955175,
+              "healthy_fps": 29.997999036470738,
+              "pressure_cpu_percent": null,
+              "reason": null,
+              "recovery_fps": 29.99700399323177,
+              "state": "verified"
+            },
+            "reason": null,
+            "run_id": "run-1",
+            "scenario": "healthy",
+            "state": "verified"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": 29.99859746857288,
+              "healthy_fps": 29.964629724075536,
+              "pressure_cpu_percent": 85.26482505040596,
+              "reason": "degradation_not_observed",
+              "recovery_fps": 29.998017117069487,
+              "state": "failed"
+            },
+            "reason": "degradation_not_observed",
+            "run_id": "run-4",
+            "scenario": "host_contention",
+            "state": "failed"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "capture_delay_ns": null,
+              "degraded_fps": null,
+              "healthy_fps": null,
+              "pressure_cpu_percent": null,
+              "reason": "incomplete_run",
+              "recovery_fps": null,
+              "state": "unavailable"
+            },
+            "reason": "incomplete_run",
+            "run_id": "run-7",
+            "scenario": "render_capture_slowdown",
+            "state": "unavailable"
+          }
+        ]
+      },
+      "source_ids_unique": true
+    },
+    {
+      "affinity": "VM CPU 0",
+      "campaign": "campaign-6",
+      "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+      "index": {
+        "campaign_id": "campaign-6",
+        "plan_sha256": "e84adcdaa975b6d9f506d938f34375a7564f9ada76a2dc5abee63fddd2ce5704",
+        "schema_version": "n5-campaign-index-v1",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "acquisition_ended_ns": 141527136647,
+            "acquisition_started_ns": 270792875,
+            "bytes": 131570,
+            "file_name": "run-1.tar.gz",
+            "reason": null,
+            "run_id": "run-1",
+            "sha256": "daddb6a1f40ab0be9af5f05f2e9016d27280dc886e5ecf7f763e86087e806522",
+            "source_id": "81d223cd38ab4636a64d0deeb786d72a",
+            "status": "exported"
+          },
+          {
+            "acquisition_ended_ns": 281165943085,
+            "acquisition_started_ns": 141903886439,
+            "bytes": 130293,
+            "file_name": "run-4.tar.gz",
+            "reason": null,
+            "run_id": "run-4",
+            "sha256": "f70f7449abbd230a5d8456d8309c1c0aeed38ff4faf5bccfd0c692bf0a456e28",
+            "source_id": "af9043323e2340ba9ce7fbe04c544081",
+            "status": "exported"
+          }
+        ]
+      },
+      "period_us": 100000,
+      "plan_sha256": "e84adcdaa975b6d9f506d938f34375a7564f9ada76a2dc5abee63fddd2ce5704",
+      "producer_commit": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+      "quota_us": 100000,
+      "receipt_windows_nonoverlapping": true,
+      "report": {
+        "campaign_id": "campaign-6",
+        "inherited_n4_acceptance": "pending",
+        "phase_1_acceptance": "pending",
+        "planned_trials": 18,
+        "repeated_effect_criteria_passed": false,
+        "repeated_held_out_effects": {
+          "healthy": false,
+          "host_contention": false,
+          "render_capture_slowdown": false
+        },
+        "retained_trials": 2,
+        "schema_version": "n5-campaign-report-v1",
+        "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+        "state": "trial_failed",
+        "trials": [
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": null,
+              "healthy_fps": null,
+              "pressure_cpu_percent": null,
+              "reason": "insufficient_evidence",
+              "recovery_fps": null,
+              "state": "unavailable"
+            },
+            "reason": "insufficient_evidence",
+            "run_id": "run-1",
+            "scenario": "healthy",
+            "state": "unavailable"
+          },
+          {
+            "assignment": "reference",
+            "effect": {
+              "degraded_fps": null,
+              "healthy_fps": null,
+              "pressure_cpu_percent": null,
+              "reason": "incomplete_run",
+              "recovery_fps": null,
+              "state": "unavailable"
+            },
+            "reason": "incomplete_run",
+            "run_id": "run-4",
+            "scenario": "host_contention",
+            "state": "unavailable"
+          }
+        ]
+      },
+      "source_ids_unique": true
+    }
+  ],
+  "commit_message_rewrite": {
+    "code_trees_unchanged": true,
+    "convention": "[fix]",
+    "date": "2026-10-13",
+    "mapping": [
+      {
+        "original": "eac8e58bd4db382de8896bbbf40a02ae1586ca21",
+        "reworded": "9136c625d55ae250de172603c9c5bcc374093e78"
+      },
+      {
+        "original": "08a473264df67de36038292ede53f575d6d17687",
+        "reworded": "3c3dd1b07234caadeb553ba06bb021948e1279af"
+      },
+      {
+        "original": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "reworded": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1"
+      }
+    ],
+    "original_ref": "refs/archive/n5-acceptance-ae00593"
+  },
+  "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+  "docker_version": "29.0.1",
+  "full_n5_acceptance": "pending",
+  "helper_sha256": {
+    "browser-trace.js": "a01f3d0d2d84ae99362567d9f5e998d3884ed145351ca0037dd4fc3095ed0169",
+    "launch-camera.py": "10fa039d8a8a13419db7fa8882d7b281da32d5479f10f8683f1cda8d1febab83",
+    "n4_smoke.py": "64db644ceb80c1263e78aef6b96a3f44509f4088aeb242eaf1414cd9ad06d491",
+    "receiver.cjs": "6a0c063088321d4411eb9e883668bad2347b5569ef0f0a78418d517653b17865",
+    "relay.cjs": "ce020f4182cf91a2668691df1c4cdf69a09df1eda721d70be03901fd27e88667",
+    "scene.py": "52af3da24481feec1257831ca07433fd77c81e2be7cb661ba0daefb383f2d700",
+    "start.sh": "993b174331ac8c40165630f4967495748bc8bbc2e231b7c1952946023b6637de"
+  },
+  "n4": {
+    "browser_execution_v2": {
+      "local_method_runtime": "passed",
+      "method_release": "n4-browser-execution-v1",
+      "record": "../n5-browser-execution-20261014/report.json",
+      "remaining_gates": "normal desktop/picker and hosted checks for final committed browser changes in both repos"
+    },
+    "nominal": [
+      {
+        "collector_drops": {
+          "event_capacity_dropped": 0,
+          "event_contention_dropped": 0,
+          "event_correlation_dropped": 0,
+          "event_invalid_timestamp_dropped": 0,
+          "event_shutdown_dropped": 0,
+          "frame_capacity_dropped": 0
+        },
+        "events": 4500,
+        "frames": 900,
+        "joint_coverage": 1.0,
+        "pairs": [
+          {
+            "excluded": 0,
+            "method": "pre-encode-queue-sojourn",
+            "usable": 900
+          },
+          {
+            "excluded": 0,
+            "method": "encode-boundary-elapsed",
+            "usable": 900
+          }
+        ],
+        "phase": "healthy",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e"
+      },
+      {
+        "collector_drops": {
+          "event_capacity_dropped": 0,
+          "event_contention_dropped": 0,
+          "event_correlation_dropped": 0,
+          "event_invalid_timestamp_dropped": 0,
+          "event_shutdown_dropped": 0,
+          "frame_capacity_dropped": 0
+        },
+        "events": 4500,
+        "frames": 900,
+        "joint_coverage": 1.0,
+        "pairs": [
+          {
+            "excluded": 0,
+            "method": "pre-encode-queue-sojourn",
+            "usable": 900
+          },
+          {
+            "excluded": 0,
+            "method": "encode-boundary-elapsed",
+            "usable": 900
+          }
+        ],
+        "phase": "degraded",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e"
+      },
+      {
+        "collector_drops": {
+          "event_capacity_dropped": 0,
+          "event_contention_dropped": 0,
+          "event_correlation_dropped": 0,
+          "event_invalid_timestamp_dropped": 0,
+          "event_shutdown_dropped": 0,
+          "frame_capacity_dropped": 0
+        },
+        "events": 4500,
+        "frames": 900,
+        "joint_coverage": 1.0,
+        "pairs": [
+          {
+            "excluded": 0,
+            "method": "pre-encode-queue-sojourn",
+            "usable": 900
+          },
+          {
+            "excluded": 0,
+            "method": "encode-boundary-elapsed",
+            "usable": 900
+          }
+        ],
+        "phase": "probe",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e"
+      },
+      {
+        "collector_drops": {
+          "event_capacity_dropped": 0,
+          "event_contention_dropped": 0,
+          "event_correlation_dropped": 0,
+          "event_invalid_timestamp_dropped": 0,
+          "event_shutdown_dropped": 0,
+          "frame_capacity_dropped": 0
+        },
+        "events": 4500,
+        "frames": 900,
+        "joint_coverage": 1.0,
+        "pairs": [
+          {
+            "excluded": 0,
+            "method": "pre-encode-queue-sojourn",
+            "usable": 900
+          },
+          {
+            "excluded": 0,
+            "method": "encode-boundary-elapsed",
+            "usable": 900
+          }
+        ],
+        "phase": "recovery",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e"
+      }
+    ],
+    "single_peer_control": {
+      "interrupted": {
+        "cleanup_verified": true,
+        "distinct_pipeline_generations": true,
+        "file": "interrupted-restarted.tar.gz",
+        "old_pipeline_null": true,
+        "stream_count": 2
+      },
+      "state": "completed",
+      "tiny": {
+        "cleanup_verified": true,
+        "disabled_gap": null,
+        "files": [
+          "tiny-healthy.tar.gz",
+          "tiny-degraded.tar.gz",
+          "tiny-probe.tar.gz",
+          "tiny-recovery.tar.gz"
+        ]
+      },
+      "toggle": {
+        "cleanup_verified": true,
+        "disabled_gap": {
+          "encoded_frames": 60,
+          "trace_probe_count": 0,
+          "wall_ns": 2001646959
+        },
+        "files": [
+          "toggle-healthy.tar.gz",
+          "toggle-degraded.tar.gz",
+          "toggle-probe.tar.gz",
+          "toggle-recovery.tar.gz"
+        ]
+      }
+    },
+    "single_peer_traces": [
+      {
+        "file": "interrupted-restarted.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 315,
+            "frames": 67,
+            "loss": {
+              "attempted_events": 315,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 67,
+              "retained_events": 315,
+              "sampled_frames": 67,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 67,
+                "excluded_frames": 6,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 6,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.189208,
+                "mean_ms": 0.10276231147540983,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.077417,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 61
+              },
+              {
+                "eligible_frames": 67,
+                "excluded_frames": 7,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 7,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 7.710292,
+                "mean_ms": 3.3906772,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 1.872542,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              }
+            ],
+            "stop_reason": "source_error",
+            "stream_id": "stream-1"
+          },
+          {
+            "clock_id": "clock-2",
+            "epoch_id": "epoch-2",
+            "events": 3015,
+            "frames": 603,
+            "loss": {
+              "attempted_events": 3015,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 603,
+              "retained_events": 3015,
+              "sampled_frames": 603,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 603,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.546542,
+                "mean_ms": 0.13740566998341625,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.077208,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 603
+              },
+              {
+                "eligible_frames": 603,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 8.70725,
+                "mean_ms": 3.3695718109452737,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 1.722791,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 603
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-2"
+          }
+        ]
+      },
+      {
+        "file": "tiny-degraded.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 5,
+            "frames": 2,
+            "loss": {
+              "attempted_events": 10,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 5,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 58,
+              "offered_frames": 60,
+              "retained_events": 5,
+              "sampled_frames": 2,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.104833,
+                "mean_ms": 0.104833,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.104833,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              },
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 2.395833,
+                "mean_ms": 2.395833,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.395833,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "tiny-healthy.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 5,
+            "frames": 2,
+            "loss": {
+              "attempted_events": 10,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 5,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 58,
+              "offered_frames": 60,
+              "retained_events": 5,
+              "sampled_frames": 2,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.081458,
+                "mean_ms": 0.081458,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.081458,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              },
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 2.15675,
+                "mean_ms": 2.15675,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.15675,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "tiny-probe.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 5,
+            "frames": 2,
+            "loss": {
+              "attempted_events": 10,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 5,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 58,
+              "offered_frames": 60,
+              "retained_events": 5,
+              "sampled_frames": 2,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.157083,
+                "mean_ms": 0.157083,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.157083,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              },
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 2.453709,
+                "mean_ms": 2.453709,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.453709,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "tiny-recovery.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 5,
+            "frames": 2,
+            "loss": {
+              "attempted_events": 10,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 5,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 58,
+              "offered_frames": 60,
+              "retained_events": 5,
+              "sampled_frames": 2,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.115583,
+                "mean_ms": 0.115583,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.115583,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              },
+              {
+                "eligible_frames": 2,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 3.946333,
+                "mean_ms": 3.946333,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 3.946333,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 1
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "toggle-degraded.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 300,
+            "frames": 60,
+            "loss": {
+              "attempted_events": 300,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 60,
+              "retained_events": 300,
+              "sampled_frames": 60,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.1575,
+                "mean_ms": 0.10565276666666666,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.078375,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              },
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 4.606958,
+                "mean_ms": 3.51238055,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.2005,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "toggle-healthy.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 300,
+            "frames": 60,
+            "loss": {
+              "attempted_events": 300,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 60,
+              "retained_events": 300,
+              "sampled_frames": 60,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.132208,
+                "mean_ms": 0.10138266666666666,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.075,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              },
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 5.243041,
+                "mean_ms": 3.4641590333333334,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.328583,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "toggle-probe.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 299,
+            "frames": 60,
+            "loss": {
+              "attempted_events": 299,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 60,
+              "retained_events": 299,
+              "sampled_frames": 60,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.1975,
+                "mean_ms": 0.10218055,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.0755,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              },
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 1,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 1,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 7.322417,
+                "mean_ms": 3.5080741016949153,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 2.112167,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 59
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      },
+      {
+        "file": "toggle-recovery.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 300,
+            "frames": 60,
+            "loss": {
+              "attempted_events": 300,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 60,
+              "retained_events": 300,
+              "sampled_frames": 60,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.187708,
+                "mean_ms": 0.1061478,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.08075,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              },
+              {
+                "eligible_frames": 60,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 4.325625,
+                "mean_ms": 3.16059585,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 1.919875,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 60
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      }
+    ],
+    "supported_browser": [
+      {
+        "file": "browser-supported-ae00593.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 1800,
+            "frames": 900,
+            "loss": {
+              "attempted_events": 1800,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 900,
+              "retained_events": 1800,
+              "sampled_frames": 900,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 900,
+                "excluded_frames": 681,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 681,
+                  "unsupported": 0
+                },
+                "max_ms": 0.0,
+                "mean_ms": 0.0,
+                "method_id": "presentation-callback-lag",
+                "method_version": 1,
+                "min_ms": 0.0,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 219
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          }
+        ]
+      }
+    ],
+    "two_peer_control": {
+      "cleanup_verified": true,
+      "file": "two-peers.tar.gz",
+      "state": "completed",
+      "stream_count": 2
+    },
+    "two_peer_traces": [
+      {
+        "file": "two-peers.tar.gz",
+        "producer_version": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+        "provenance": "producer_capture",
+        "streams": [
+          {
+            "clock_id": "clock-1",
+            "epoch_id": "epoch-1",
+            "events": 3000,
+            "frames": 600,
+            "loss": {
+              "attempted_events": 3000,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 600,
+              "retained_events": 3000,
+              "sampled_frames": 600,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 600,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.178333,
+                "mean_ms": 0.06087541,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.036916,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 600
+              },
+              {
+                "eligible_frames": 600,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 6.019875,
+                "mean_ms": 1.82614781,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 1.02625,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 600
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-1"
+          },
+          {
+            "clock_id": "clock-2",
+            "epoch_id": "epoch-2",
+            "events": 3000,
+            "frames": 600,
+            "loss": {
+              "attempted_events": 3000,
+              "browser_missed_presentations": 0,
+              "event_capacity_dropped": 0,
+              "event_contention_dropped": 0,
+              "event_correlation_dropped": 0,
+              "event_invalid_timestamp_dropped": 0,
+              "event_shutdown_dropped": 0,
+              "frame_capacity_dropped": 0,
+              "offered_frames": 600,
+              "retained_events": 3000,
+              "sampled_frames": 600,
+              "unsampled_frames": 0
+            },
+            "results": [
+              {
+                "eligible_frames": 600,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 0.3545,
+                "mean_ms": 0.06621747833333333,
+                "method_id": "pre-encode-queue-sojourn",
+                "method_version": 1,
+                "min_ms": 0.041916,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 600
+              },
+              {
+                "eligible_frames": 600,
+                "excluded_frames": 0,
+                "exclusions": {
+                  "correlation_ambiguous": 0,
+                  "correlation_missing": 0,
+                  "missing_endpoint": 0,
+                  "negative_duration": 0,
+                  "unsupported": 0
+                },
+                "max_ms": 6.036875,
+                "mean_ms": 2.020646375,
+                "method_id": "encode-boundary-elapsed",
+                "method_version": 1,
+                "min_ms": 1.13975,
+                "reason": null,
+                "state": "measured",
+                "usable_frames": 600
+              }
+            ],
+            "stop_reason": "completed",
+            "stream_id": "stream-2"
+          }
+        ]
+      }
+    ],
+    "unsupported_browser_environment": {
+      "case": "controlled_api_absence_on_actual_html_video_element",
+      "effective": "undefined",
+      "native": "function",
+      "version": "151.0.7922.34"
+    },
+    "unsupported_browser_producer_commit": "08a473264df67de36038292ede53f575d6d17687"
+  },
+  "phase_1_acceptance": "pending",
+  "producer_commit": "ae0059384cf29609fa9c6233ddf9606002eae35e",
+  "public_archive_receipts": [
+    {
+      "bytes": 40922,
+      "file": "n4-single/interrupted-restarted.tar.gz",
+      "sha256": "54953442e6287a0f93aa47eadaa733b9e48ebb27806e7dee16c1c6b246ec3d40"
+    },
+    {
+      "bytes": 1041,
+      "file": "n4-single/tiny-degraded.tar.gz",
+      "sha256": "387c92f18fff3f91bfa82fe076ef08b082259255104d564e12500ef38db71279"
+    },
+    {
+      "bytes": 1037,
+      "file": "n4-single/tiny-healthy.tar.gz",
+      "sha256": "fb034cae810c91d6a8485084e570583ce561d12188ef4738d219c2e41516ee38"
+    },
+    {
+      "bytes": 1040,
+      "file": "n4-single/tiny-probe.tar.gz",
+      "sha256": "351cab53af551c23abacaa8e7a388456b06808b0a96c5df0c8dc0dd1322355d6"
+    },
+    {
+      "bytes": 1042,
+      "file": "n4-single/tiny-recovery.tar.gz",
+      "sha256": "eeb96ab760b14c81632af07312a983cc6f4d9869fe3b06d3c9ee3ff59b49fd86"
+    },
+    {
+      "bytes": 4750,
+      "file": "n4-single/toggle-degraded.tar.gz",
+      "sha256": "fd337e504ab13c4ff4425d041851dca2f7abb96007ded79e27cdb16cad81aa74"
+    },
+    {
+      "bytes": 4764,
+      "file": "n4-single/toggle-healthy.tar.gz",
+      "sha256": "b2f6a491c10908727174cb2d6c8eefb12150142c499b972e98fff094f7424fcd"
+    },
+    {
+      "bytes": 4722,
+      "file": "n4-single/toggle-probe.tar.gz",
+      "sha256": "fb269ec365ba2fe1ef6a5ed6e5aebd9f5b3c7b8e437094c044178c5a61de5986"
+    },
+    {
+      "bytes": 4741,
+      "file": "n4-single/toggle-recovery.tar.gz",
+      "sha256": "5bc26a08c052251fd2e630e0edc49365e7c542c5f644859e3643047f6bb47591"
+    },
+    {
+      "bytes": 71243,
+      "file": "two-peers.tar.gz",
+      "sha256": "56229514d2571e200754915e686fbb7053d23ddac35a22a6cfd5dd837e020e16"
+    },
+    {
+      "bytes": 23047,
+      "file": "browser-supported-ae00593.tar.gz",
+      "sha256": "497b21337c7a9981cf217195fdd0a5eb67c77bb35219a511f60dfda5961b3955"
+    },
+    {
+      "bytes": 860,
+      "file": "browser-api-absent.tar.gz",
+      "sha256": "31f2efabb50794ff99b399bd0d658ab4a6a4fcf0d236783a605fe0385cad3af0"
+    }
+  ],
+  "record_kind": "research_execution_ledger",
+  "research_image_id": "sha256:cd62376e7c362e085be29e75ecc5150ca209374787a1b30eafe6aca553479bb5",
+  "runtime_versions": {
+    "chromium": "151.0.7922.34",
+    "gstreamer": "1.26.2",
+    "node": "24.18.1",
+    "python": "3.13.5"
+  },
+  "software_checks": {
+    "core_python313": {
+      "coverage_percent": 93.48,
+      "passed": 1978
+    },
+    "hosted_ci": {
+      "core": {
+        "head_sha": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+        "python-311-compatibility": "success",
+        "quality": "success",
+        "run_id": 38198471685
+      },
+      "pixelated": "no Actions run found for pushed 7e78d48 at verification"
+    },
+    "node24_engine": {
+      "failures": 0,
+      "node": "24.18.1",
+      "passed": 135,
+      "skip": "existing external-mirror artifact unavailable",
+      "skipped": 1
+    },
+    "producer_linux_scenarios": {
+      "passed": 78,
+      "skipped": 0
+    },
+    "producer_linux_tracing": {
+      "passed": 58,
+      "skipped": 0
+    },
+    "python311": {
+      "coverage_percent": 93.48,
+      "frozen_reproduction": "passed",
+      "image_digest": "sha256:e88e9763f943ec1834f992a4b51e0f24500486803e8bc534e5767af9ea65f6ce",
+      "passed": 1978,
+      "ruff": "passed",
+      "schemas": 23,
+      "version": "3.11.17"
+    }
+  },
+  "standard_native_image": {
+    "build": "passed",
+    "desktop_picker": "not_run",
+    "image_id": "sha256:26dfdb1bac8c34e2efa3930d7d9f2dcb4f2a43b3ce0a1d1bb10d1c58f8d7b25e",
+    "lock_sha256": "46d11e8650c8670ec2e69898b9a5f8632bec175624831ee081fddbc21a4c7d18",
+    "package_smoke": "passed",
+    "packages_smoked": [
+      "frozen-bubble",
+      "neverball"
+    ],
+    "tag": "pixelated-engine-native:debian-native-v1-46d11e8650c8"
+  },
+  "subsequent_selected_cohort": {
+    "campaign": "campaign-8",
+    "image": {
+      "image_id": "sha256:995a464082209b07664b5e92b27d8fd408c366defe8df3ce7667a3571bbbfdf1",
+      "producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1"
+    },
+    "producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1",
+    "receipt_windows_nonoverlapping": true,
+    "report": {
+      "campaign_id": "campaign-8",
+      "inherited_n4_acceptance": "pending",
+      "phase_1_acceptance": "pending",
+      "planned_trials": 18,
+      "repeated_effect_criteria_passed": true,
+      "repeated_held_out_effects": {
+        "healthy": true,
+        "host_contention": true,
+        "render_capture_slowdown": true
+      },
+      "retained_trials": 18,
+      "schema_version": "n5-campaign-report-v1",
+      "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+      "state": "finished",
+      "trials": [
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 29.998520392978165,
+            "healthy_fps": 29.99802015866768,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.998969563394535,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-1",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 23.743809541961177,
+            "healthy_fps": 29.99678378983723,
+            "pressure_cpu_percent": 72.36217079174132,
+            "reason": null,
+            "recovery_fps": 29.997686748384854,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-4",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "capture_delay_ns": 57407791,
+            "degraded_fps": 16.964543051387828,
+            "healthy_fps": 29.997621633569178,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 30.065164773386478,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-7",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 29.96329436680126,
+            "healthy_fps": 29.997491070841733,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.996254370716354,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-10",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 24.531881443368366,
+            "healthy_fps": 29.997835309207478,
+            "pressure_cpu_percent": 75.07756732093786,
+            "reason": null,
+            "recovery_fps": 29.99905701664152,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-13",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "capture_delay_ns": 56622708,
+            "degraded_fps": 17.165388957506536,
+            "healthy_fps": 29.996537802606476,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.99579936725955,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-16",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 29.997655669210545,
+            "healthy_fps": 29.99898372942803,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.998592636025542,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-2",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 24.19804737405762,
+            "healthy_fps": 29.99712617832141,
+            "pressure_cpu_percent": 73.38446503155816,
+            "reason": null,
+            "recovery_fps": 29.997138967876182,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-5",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "capture_delay_ns": 57220792,
+            "degraded_fps": 16.965770607615987,
+            "healthy_fps": 29.994985367358154,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 30.032516102520326,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-8",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 29.996859814726527,
+            "healthy_fps": 29.99813743564538,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.997520607929772,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-11",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 24.498579173869278,
+            "healthy_fps": 29.99820001100516,
+            "pressure_cpu_percent": 75.58453191599779,
+            "reason": null,
+            "recovery_fps": 29.998744622534616,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-14",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "capture_delay_ns": 57385917,
+            "degraded_fps": 16.9655792589951,
+            "healthy_fps": 29.998365909013295,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 30.064962471349098,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-17",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 29.99901914307039,
+            "healthy_fps": 29.997408667852746,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.99834182865614,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-3",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "degraded_fps": 24.565352920599768,
+            "healthy_fps": 29.99848185482938,
+            "pressure_cpu_percent": 74.63467575823984,
+            "reason": null,
+            "recovery_fps": 29.998782452416076,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-6",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "reference",
+          "effect": {
+            "capture_delay_ns": 57579708,
+            "degraded_fps": 16.899172824358345,
+            "healthy_fps": 29.998547223355406,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.998722915367154,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-9",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 29.998416695566174,
+            "healthy_fps": 29.997264527449747,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 29.998695501726324,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-12",
+          "scenario": "healthy",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "degraded_fps": 24.66529358677063,
+            "healthy_fps": 29.998073693696476,
+            "pressure_cpu_percent": 76.21381827439073,
+            "reason": null,
+            "recovery_fps": 29.99805736280279,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-15",
+          "scenario": "host_contention",
+          "state": "verified"
+        },
+        {
+          "assignment": "held_out_query",
+          "effect": {
+            "capture_delay_ns": 57409000,
+            "degraded_fps": 16.93167357442541,
+            "healthy_fps": 29.998889027143548,
+            "pressure_cpu_percent": null,
+            "reason": null,
+            "recovery_fps": 30.031309960811157,
+            "state": "verified"
+          },
+          "reason": null,
+          "run_id": "run-18",
+          "scenario": "render_capture_slowdown",
+          "state": "verified"
+        }
+      ]
+    },
+    "selected_workload_nominal": [
+      {
+        "drops": 0,
+        "encode_pairs": 900,
+        "frames": 900,
+        "joint_pairs": 900,
+        "phase": "healthy",
+        "queue_pairs": 900
+      },
+      {
+        "drops": 0,
+        "encode_pairs": 900,
+        "frames": 900,
+        "joint_pairs": 900,
+        "phase": "degraded",
+        "queue_pairs": 900
+      },
+      {
+        "drops": 0,
+        "encode_pairs": 900,
+        "frames": 900,
+        "joint_pairs": 900,
+        "phase": "probe",
+        "queue_pairs": 900
+      },
+      {
+        "drops": 0,
+        "encode_pairs": 900,
+        "frames": 900,
+        "joint_pairs": 900,
+        "phase": "recovery",
+        "queue_pairs": 900
+      }
+    ],
+    "selected_workload_overhead": {
+      "campaign_id": "campaign-9",
+      "ownership_journal_state": "clean",
+      "public_file_receipts": [
+        {
+          "bytes": 63215,
+          "name": "overhead-evidence.json",
+          "sha256": "6c88b64e7a6e76c66e49a498972707ff2b1e0347c50071d31ddaf467146ab984"
+        },
+        {
+          "bytes": 2152,
+          "name": "overhead-plan.json",
+          "sha256": "c141ea1a2e48506d4387a138b45e02430a3b326fae06fa8999652416a8917a1d"
+        },
+        {
+          "bytes": 52555,
+          "name": "pair-1-enabled.tar.gz",
+          "sha256": "2644e316b33dc0658eba25669c4567d182af0b5835dd8f32c71fefcd15c5ec10"
+        },
+        {
+          "bytes": 52705,
+          "name": "pair-2-enabled.tar.gz",
+          "sha256": "68077e7528e7749dde2bd92a098a0c4cfae29c2e45564b0f1b323547ab43d3fd"
+        },
+        {
+          "bytes": 52728,
+          "name": "pair-3-enabled.tar.gz",
+          "sha256": "7c9be4f146facc8bc71933f5628da0d390e8c9b6d0bf49d12191b6dbfc6d2fa1"
+        },
+        {
+          "bytes": 52377,
+          "name": "pair-4-enabled.tar.gz",
+          "sha256": "f275af2f9c21e190cd7ec998ce13321a8b6fceb5faa867cad0d1ffa2778f9fd7"
+        },
+        {
+          "bytes": 52568,
+          "name": "pair-5-enabled.tar.gz",
+          "sha256": "0f532d36e9b5060e8dc6023268a9eea09d0d2f16bff4c1db37f0171b2d3b3342"
+        }
+      ],
+      "real_overhead_acceptance": true,
+      "report": "workload-4-overhead-report.json",
+      "state": "completed"
+    },
+    "source_ids_unique": true,
+    "workload_id": "workload-4"
+  },
+  "updated": "2026-10-14",
+  "vm_arch": "aarch64",
+  "vm_cpus": 10,
+  "vm_kernel": "6.12.54-linuxkit",
+  "vm_memory_bytes": 8217448448,
+  "workload": {
+    "codec": "vp8",
+    "fps": 30,
+    "height": 720,
+    "id": "workload-1",
+    "scene": "24 moving colored 80x80 rectangles, deterministic initial positions/colors, frame-based motion",
+    "scene_sha256": "52af3da24481feec1257831ca07433fd77c81e2be7cb661ba0daefb383f2d700",
+    "seed": 7,
+    "width": 1280
+  }
+}

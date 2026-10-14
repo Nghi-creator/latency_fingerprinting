@@ -79,7 +79,7 @@ their behavior; `match` remains the P0 matcher.
 52 public command tests cover CLI/API byte parity, end-to-end module execution,
 explicit statuses/arguments, wrong roots, malformed/altered policies, deterministic
 privacy-limited failures, unsafe inputs/repositories, input growth, exact output
-bounds, read-only inputs and v1 rejection. [Progress](N3_IMPLEMENTATION_PROGRESS.md)
+bounds, read-only inputs and v1 rejection. [Progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md)
 records current local verification. Actual Python 3.11/hosted execution remains
 pending. [Step 7 snapshots/pins](N3_ANALYTICAL_FIXTURES.md) and
-[software closeout](N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+[software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.

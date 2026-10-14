@@ -1,0 +1,254 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 131000000000,
+  "intervals": [
+    {
+      "active_workers": 0,
+      "end_ns": 102000000000,
+      "frames_end": 2700,
+      "frames_start": 2670,
+      "start_ns": 101000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 103000000000,
+      "frames_end": 2730,
+      "frames_start": 2700,
+      "start_ns": 102000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 104000000000,
+      "frames_end": 2760,
+      "frames_start": 2730,
+      "start_ns": 103000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 105000000000,
+      "frames_end": 2790,
+      "frames_start": 2760,
+      "start_ns": 104000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 106000000000,
+      "frames_end": 2820,
+      "frames_start": 2790,
+      "start_ns": 105000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 107000000000,
+      "frames_end": 2850,
+      "frames_start": 2820,
+      "start_ns": 106000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 108000000000,
+      "frames_end": 2880,
+      "frames_start": 2850,
+      "start_ns": 107000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 109000000000,
+      "frames_end": 2910,
+      "frames_start": 2880,
+      "start_ns": 108000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 110000000000,
+      "frames_end": 2940,
+      "frames_start": 2910,
+      "start_ns": 109000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 111000000000,
+      "frames_end": 2970,
+      "frames_start": 2940,
+      "start_ns": 110000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 112000000000,
+      "frames_end": 3000,
+      "frames_start": 2970,
+      "start_ns": 111000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 113000000000,
+      "frames_end": 3030,
+      "frames_start": 3000,
+      "start_ns": 112000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 114000000000,
+      "frames_end": 3060,
+      "frames_start": 3030,
+      "start_ns": 113000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 115000000000,
+      "frames_end": 3090,
+      "frames_start": 3060,
+      "start_ns": 114000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 116000000000,
+      "frames_end": 3120,
+      "frames_start": 3090,
+      "start_ns": 115000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 117000000000,
+      "frames_end": 3150,
+      "frames_start": 3120,
+      "start_ns": 116000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 118000000000,
+      "frames_end": 3180,
+      "frames_start": 3150,
+      "start_ns": 117000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 119000000000,
+      "frames_end": 3210,
+      "frames_start": 3180,
+      "start_ns": 118000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 120000000000,
+      "frames_end": 3240,
+      "frames_start": 3210,
+      "start_ns": 119000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 121000000000,
+      "frames_end": 3270,
+      "frames_start": 3240,
+      "start_ns": 120000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 122000000000,
+      "frames_end": 3300,
+      "frames_start": 3270,
+      "start_ns": 121000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 123000000000,
+      "frames_end": 3330,
+      "frames_start": 3300,
+      "start_ns": 122000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 124000000000,
+      "frames_end": 3360,
+      "frames_start": 3330,
+      "start_ns": 123000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 125000000000,
+      "frames_end": 3390,
+      "frames_start": 3360,
+      "start_ns": 124000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 126000000000,
+      "frames_end": 3420,
+      "frames_start": 3390,
+      "start_ns": 125000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 127000000000,
+      "frames_end": 3450,
+      "frames_start": 3420,
+      "start_ns": 126000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 128000000000,
+      "frames_end": 3480,
+      "frames_start": 3450,
+      "start_ns": 127000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 129000000000,
+      "frames_end": 3510,
+      "frames_start": 3480,
+      "start_ns": 128000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 130000000000,
+      "frames_end": 3540,
+      "frames_start": 3510,
+      "start_ns": 129000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 131000000000,
+      "frames_end": 3570,
+      "frames_start": 3540,
+      "start_ns": 130000000000,
+      "worker_cpu_ns": 0
+    }
+  ],
+  "manifest_sha256": "f661ad6fc3f2e0f32d2916fb30e06c3b4d543b8b271aa48dd465783b8ccf8d20",
+  "method_release": "n5-single-cause-v1",
+  "phase": "recovery",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 101000000000,
+  "state": "complete"
+}

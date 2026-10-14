@@ -95,16 +95,16 @@ brings schema exports to ten roots; generic `validate` accepts the result. The
 existing `match` command remains v1. [Step 6](N3_COMMANDS.md) now delivers
 `build-response-v2`, `build-fingerprint-v2` and `match-v2` commands. Separate
 synthetic snapshots and pins are delivered in [Step 7](N3_ANALYTICAL_FIXTURES.md);
-[software closeout](N3_SOFTWARE_CLOSEOUT.md) is complete locally.
+[software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) is complete locally.
 
 76 new matching/model tests cover independent numerical expectations, unknown
 priorities, compatibility, strict JSON equality, coverage, threshold boundaries,
 conflicts, ties/truncation, finite arithmetic, forged results, immutable inputs,
 repository-backed verification, resource limits and fresh interpreter imports.
-[Progress](N3_IMPLEMENTATION_PROGRESS.md) records local results and separately
+[Progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records local results and separately
 pending Python 3.11/hosted verification.
 
-The [post-closeout health audit](N3_ARCHITECTURE_AUDIT.md) adds seven numerical
+The [post-closeout health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) adds seven numerical
 regressions covering both underflow stages, stored-result reconstruction, public
 CLI failures and small representable scores. The 76 cases above are the original
 Step 5 delivery count.

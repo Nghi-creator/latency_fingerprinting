@@ -1,0 +1,1124 @@
+{
+  "acceptance_evidence": false,
+  "browser_version": "151.0.7922.34",
+  "callback_cost_measured": false,
+  "duration_limit_seconds": 8,
+  "helper_sha256": "d2f075df7230cb7ecc69644d0fdd770b0e062e754b8e03e3c61ea208600a3eae",
+  "image_id": "sha256:995a464082209b07664b5e92b27d8fd408c366defe8df3ce7667a3571bbbfdf1",
+  "producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1",
+  "purpose": "noncontract_browser_timing_diagnostic",
+  "recorded": "2026-10-14",
+  "samples": [
+    {
+      "api_delta_ns": -100000,
+      "callback": 1,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 2,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 3,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 4,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 5,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 6,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 7,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 8,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 9,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 10,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 11,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 12,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 13,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 14,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 15,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 16,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 17,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 18,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 19,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 20,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 21,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 22,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 23,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 24,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 25,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 26,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 27,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 28,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 29,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 30,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 31,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 32,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 33,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 34,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 35,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 36,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 37,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 38,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 39,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 40,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 41,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 42,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 43,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 44,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 45,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 46,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 47,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 48,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 49,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 50,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 51,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 52,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 53,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 54,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 55,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 56,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 57,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 58,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 59,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 60,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 61,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 62,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 63,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 64,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 65,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 66,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 67,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 68,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 69,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 70,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 71,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 72,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 73,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 74,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 75,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 76,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 77,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 78,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 79,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 80,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 81,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 82,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 700000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 83,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 84,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 85,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 86,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 87,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 88,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 89,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 90,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 91,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 92,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 93,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 94,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 95,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 96,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 97,
+      "entry_delta_ns": 500000,
+      "entry_minus_api_ns": 800000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 98,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 99,
+      "entry_delta_ns": 500000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 100,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 101,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 102,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 103,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 104,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 105,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 106,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 107,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 108,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 109,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 110,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 111,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 112,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 113,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 114,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 115,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 116,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 117,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 118,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 119,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 120,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 121,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 122,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 123,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 124,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 125,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 126,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 127,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 128,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -300000,
+      "callback": 129,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 130,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 131,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 132,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 133,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 134,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 135,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 136,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 137,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 138,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 139,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 140,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 141,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 142,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 143,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 144,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 145,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 146,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 147,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 148,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 149,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 150,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 151,
+      "entry_delta_ns": 600000,
+      "entry_minus_api_ns": 800000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 152,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 153,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 154,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 155,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 156,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 157,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 158,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 159,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 160,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 161,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 162,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 163,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 164,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 165,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 166,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 167,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 168,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 169,
+      "entry_delta_ns": 500000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 170,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 171,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 172,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 173,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 300000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 174,
+      "entry_delta_ns": 500000,
+      "entry_minus_api_ns": 700000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 175,
+      "entry_delta_ns": 400000,
+      "entry_minus_api_ns": 600000
+    },
+    {
+      "api_delta_ns": -100000,
+      "callback": 176,
+      "entry_delta_ns": 100000,
+      "entry_minus_api_ns": 200000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 177,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 178,
+      "entry_delta_ns": 200000,
+      "entry_minus_api_ns": 400000
+    },
+    {
+      "api_delta_ns": -200000,
+      "callback": 179,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 500000
+    },
+    {
+      "api_delta_ns": 0,
+      "callback": 180,
+      "entry_delta_ns": 300000,
+      "entry_minus_api_ns": 300000
+    }
+  ],
+  "sampling_limit": 180,
+  "scene_shapes": 512,
+  "scene_size_px": 32,
+  "seed": 7,
+  "summary": {
+    "api_delta_ns": {
+      "max_ns": 0,
+      "median_ns": -100000.0,
+      "min_ns": -300000,
+      "negative": 170,
+      "positive": 0,
+      "zero": 10
+    },
+    "entry_delta_ns": {
+      "max_ns": 600000,
+      "median_ns": 200000.0,
+      "min_ns": 100000,
+      "negative": 0,
+      "positive": 180,
+      "zero": 0
+    },
+    "entry_minus_api_ns": {
+      "max_ns": 800000,
+      "median_ns": 400000.0,
+      "min_ns": 200000,
+      "negative": 0,
+      "positive": 180,
+      "zero": 0
+    }
+  },
+  "workload_id": "workload-4"
+}

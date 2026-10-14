@@ -1,0 +1,19 @@
+{
+  "cleanup": {
+    "ended_ns": 101000000000,
+    "owned_workers_remaining": 0,
+    "reason": null,
+    "started_ns": 100000000000,
+    "state": "restored"
+  },
+  "effect": {
+    "degraded_fps": 24.0,
+    "healthy_fps": 30.0,
+    "pressure_cpu_percent": 40.0,
+    "reason": "pressure_not_observed",
+    "recovery_fps": 30.0,
+    "state": "failed"
+  },
+  "reason": null,
+  "status": "completed"
+}

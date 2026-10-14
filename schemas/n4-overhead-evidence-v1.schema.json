@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "OverheadTrial": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Cpu Ns",
+          "type": "integer"
+        },
+        "export_duration_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Export Duration Ns"
+        },
+        "frames_end": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames End",
+          "type": "integer"
+        },
+        "frames_start": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames Start",
+          "type": "integer"
+        },
+        "mode": {
+          "enum": [
+            "disabled",
+            "enabled"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "pair": {
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Pair",
+          "type": "integer"
+        },
+        "trace_bytes": {
+          "maximum": 33554432,
+          "minimum": 0,
+          "title": "Trace Bytes",
+          "type": "integer"
+        },
+        "trace_file_name": {
+          "anyOf": [
+            {
+              "pattern": "^pair-[1-5]-enabled\\.tar\\.gz$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Trace File Name"
+        },
+        "trace_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Trace Sha256"
+        },
+        "wall_ns": {
+          "maximum": 35000000000,
+          "minimum": 30000000000,
+          "title": "Wall Ns",
+          "type": "integer"
+        },
+        "warmup_ns": {
+          "maximum": 15000000000,
+          "minimum": 10000000000,
+          "title": "Warmup Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "warmup_ns",
+        "wall_ns",
+        "cpu_ns",
+        "frames_start",
+        "frames_end",
+        "pair",
+        "mode",
+        "trace_file_name",
+        "trace_bytes",
+        "trace_sha256",
+        "export_duration_ns"
+      ],
+      "title": "OverheadTrial",
+      "type": "object"
+    },
+    "ProbeDiagnostic": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "$ref": "#/$defs/ProcessMeasure"
+        },
+        "measured": {
+          "$ref": "#/$defs/ProcessMeasure"
+        },
+        "observed_probes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Observed Probes",
+          "type": "integer"
+        },
+        "probe_durations_ns": {
+          "items": {
+            "maximum": 9007199254740991,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "maxItems": 10000,
+          "title": "Probe Durations Ns",
+          "type": "array"
+        }
+      },
+      "required": [
+        "baseline",
+        "measured",
+        "probe_durations_ns",
+        "observed_probes"
+      ],
+      "title": "ProbeDiagnostic",
+      "type": "object"
+    },
+    "ProcessMeasure": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Cpu Ns",
+          "type": "integer"
+        },
+        "frames_end": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames End",
+          "type": "integer"
+        },
+        "frames_start": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames Start",
+          "type": "integer"
+        },
+        "wall_ns": {
+          "maximum": 35000000000,
+          "minimum": 30000000000,
+          "title": "Wall Ns",
+          "type": "integer"
+        },
+        "warmup_ns": {
+          "maximum": 15000000000,
+          "minimum": 10000000000,
+          "title": "Warmup Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "warmup_ns",
+        "wall_ns",
+        "cpu_ns",
+        "frames_start",
+        "frames_end"
+      ],
+      "title": "ProcessMeasure",
+      "type": "object"
+    },
+    "Runtime": {
+      "additionalProperties": false,
+      "properties": {
+        "clock_resolution_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "title": "Clock Resolution Ns",
+          "type": "integer"
+        },
+        "clock_source": {
+          "const": "python_monotonic_ns",
+          "title": "Clock Source",
+          "type": "string"
+        },
+        "codec": {
+          "const": "vp8",
+          "title": "Codec",
+          "type": "string"
+        },
+        "cpu_allocation": {
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Cpu Allocation",
+          "type": "integer"
+        },
+        "fps": {
+          "const": 30,
+          "title": "Fps",
+          "type": "integer"
+        },
+        "gst_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Gst Version",
+          "type": "string"
+        },
+        "height": {
+          "const": 720,
+          "title": "Height",
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "synthetic",
+            "linux_x11"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "node_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Node Version",
+          "type": "string"
+        },
+        "python_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Python Version",
+          "type": "string"
+        },
+        "width": {
+          "const": 1280,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "python_version",
+        "node_version",
+        "gst_version",
+        "cpu_allocation",
+        "width",
+        "height",
+        "fps",
+        "codec",
+        "clock_source",
+        "clock_resolution_ns"
+      ],
+      "title": "Runtime",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "campaign_id": {
+      "pattern": "^campaign-[1-9][0-9]{0,8}$",
+      "title": "Campaign Id",
+      "type": "string"
+    },
+    "cleanup_verified": {
+      "title": "Cleanup Verified",
+      "type": "boolean"
+    },
+    "core_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Core Version",
+      "type": "string"
+    },
+    "diagnostic": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ProbeDiagnostic"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "producer_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Producer Version",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "synthetic",
+        "producer_capture"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "runtime_unavailable",
+            "clock_unavailable",
+            "source_unavailable",
+            "permission_denied",
+            "cancelled",
+            "source_error",
+            "cleanup_failed"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reason"
+    },
+    "runtime": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Runtime"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "const": "n4-overhead-evidence-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "unavailable",
+        "failed",
+        "completed"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "trials": {
+      "items": {
+        "$ref": "#/$defs/OverheadTrial"
+      },
+      "maxItems": 10,
+      "title": "Trials",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "provenance",
+    "campaign_id",
+    "plan_sha256",
+    "core_version",
+    "producer_version",
+    "runtime",
+    "state",
+    "reason",
+    "trials",
+    "diagnostic",
+    "cleanup_verified"
+  ],
+  "title": "OverheadEvidence",
+  "type": "object"
+}

@@ -68,7 +68,7 @@ P0 counter-derived features retain the frozen median interval-delta semantics.
 The [N1 metric inventory](../measurement/METRIC_SEMANTICS_V2.md) separately versions
 rates and audit totals, and [N2 adoption](../measurement/OBSERVATION_V2_ADOPTION.md)
 derives them from raw interval evidence. The active
-[N3 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) defines their analytical eligibility
+[N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) defines their analytical eligibility
 and matching path; P0 aggregates retain their existing meaning.
 
 ## Control boundary

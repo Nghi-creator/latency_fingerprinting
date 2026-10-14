@@ -40,7 +40,7 @@ remain trusted escape hatches, not ingestion boundaries. When an existing N1
 summary instance enters a validated N2 measurement, it is converted back to data
 and fully revalidated, including nested intervals and map freezing. This prevents
 unchecked updates or caller-owned mutable aggregates surviving the N2 boundary.
-See the [post-N2 audit](N2_ARCHITECTURE_AUDIT.md).
+See the [post-N2 audit](../archive/measurement/N2_ARCHITECTURE_AUDIT.md).
 
 ## Meaning and evidence validation
 
@@ -98,4 +98,4 @@ Their [synthetic input builder](../../tests/models/v2_cases.py) is test support,
 not a production importer or a scientific measurement.
 [Deterministic adopted-record fixtures and raw-bundle reproduction](OBSERVATION_V2_FIXTURES.md)
 now lock both root contracts with exact-byte and SHA-256 checks. See the
-[N2 software closeout](N2_SOFTWARE_CLOSEOUT.md) for final local verification.
+[N2 software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) for final local verification.

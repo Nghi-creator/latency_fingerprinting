@@ -1,0 +1,338 @@
+{
+  "$defs": {
+    "DiagnosticSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_increase_percentage_points": {
+          "title": "Cpu Increase Percentage Points",
+          "type": "number"
+        },
+        "fps_change_fraction": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fps Change Fraction"
+        },
+        "max_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max Ns"
+        },
+        "mean_ns": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean Ns"
+        },
+        "min_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min Ns"
+        },
+        "observed_probes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Observed Probes",
+          "type": "integer"
+        },
+        "retained_samples": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Retained Samples",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "observed_probes",
+        "retained_samples",
+        "min_ns",
+        "mean_ns",
+        "max_ns",
+        "cpu_increase_percentage_points",
+        "fps_change_fraction"
+      ],
+      "title": "DiagnosticSummary",
+      "type": "object"
+    },
+    "NominalSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "drops": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Drops",
+          "type": "integer"
+        },
+        "encode_pairs": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Encode Pairs",
+          "type": "integer"
+        },
+        "export_duration_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Export Duration Ns",
+          "type": "integer"
+        },
+        "frame_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "joint_pairs": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Joint Pairs",
+          "type": "integer"
+        },
+        "nominal_capture_passed": {
+          "title": "Nominal Capture Passed",
+          "type": "boolean"
+        },
+        "pair": {
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Pair",
+          "type": "integer"
+        },
+        "queue_pairs": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Queue Pairs",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pair",
+        "queue_pairs",
+        "encode_pairs",
+        "joint_pairs",
+        "frame_count",
+        "drops",
+        "nominal_capture_passed",
+        "export_duration_ns"
+      ],
+      "title": "NominalSummary",
+      "type": "object"
+    },
+    "PairSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_increase_percentage_points": {
+          "title": "Cpu Increase Percentage Points",
+          "type": "number"
+        },
+        "disabled_cpu_percent": {
+          "minimum": 0,
+          "title": "Disabled Cpu Percent",
+          "type": "number"
+        },
+        "disabled_fps": {
+          "minimum": 0,
+          "title": "Disabled Fps",
+          "type": "number"
+        },
+        "enabled_cpu_percent": {
+          "minimum": 0,
+          "title": "Enabled Cpu Percent",
+          "type": "number"
+        },
+        "enabled_fps": {
+          "minimum": 0,
+          "title": "Enabled Fps",
+          "type": "number"
+        },
+        "fps_change_fraction": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fps Change Fraction"
+        },
+        "pair": {
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Pair",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pair",
+        "disabled_cpu_percent",
+        "enabled_cpu_percent",
+        "disabled_fps",
+        "enabled_fps",
+        "cpu_increase_percentage_points",
+        "fps_change_fraction"
+      ],
+      "title": "PairSummary",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "baseline_passed": {
+      "title": "Baseline Passed",
+      "type": "boolean"
+    },
+    "diagnostic": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DiagnosticSummary"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "measured_thresholds_passed": {
+      "title": "Measured Thresholds Passed",
+      "type": "boolean"
+    },
+    "median_cpu_increase_percentage_points": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Median Cpu Increase Percentage Points"
+    },
+    "median_fps_change_fraction": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Median Fps Change Fraction"
+    },
+    "nominal_traces": {
+      "items": {
+        "$ref": "#/$defs/NominalSummary"
+      },
+      "maxItems": 5,
+      "title": "Nominal Traces",
+      "type": "array"
+    },
+    "pairs": {
+      "items": {
+        "$ref": "#/$defs/PairSummary"
+      },
+      "maxItems": 5,
+      "title": "Pairs",
+      "type": "array"
+    },
+    "phase_1_acceptance": {
+      "const": "pending",
+      "title": "Phase 1 Acceptance",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "synthetic",
+        "producer_capture"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "real_overhead_acceptance": {
+      "title": "Real Overhead Acceptance",
+      "type": "boolean"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "runtime_unavailable",
+            "clock_unavailable",
+            "source_unavailable",
+            "permission_denied",
+            "cancelled",
+            "source_error",
+            "cleanup_failed"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reason"
+    },
+    "remaining_n4_cases": {
+      "const": "interruption_tiny_capacity_reenable_two_peer_browser_require_separate_evidence",
+      "title": "Remaining N4 Cases",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "n4-overhead-report-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "unavailable",
+        "failed",
+        "completed"
+      ],
+      "title": "State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "state",
+    "reason",
+    "provenance",
+    "pairs",
+    "median_cpu_increase_percentage_points",
+    "median_fps_change_fraction",
+    "baseline_passed",
+    "nominal_traces",
+    "diagnostic",
+    "measured_thresholds_passed",
+    "real_overhead_acceptance",
+    "remaining_n4_cases",
+    "phase_1_acceptance"
+  ],
+  "title": "OverheadReport",
+  "type": "object"
+}

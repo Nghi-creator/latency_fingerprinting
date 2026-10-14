@@ -1,0 +1,225 @@
+{
+  "head_sha": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+  "jobs": [
+    {
+      "completed_at": "2026-10-12T03:10:58Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/Nghi-creator/latency_fingerprinting/actions/runs/38198471685/job/114646331719",
+      "id": 114646331719,
+      "name": "quality",
+      "started_at": "2026-10-12T03:06:50Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check out repository",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Set up Python 3.13",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install package and development dependencies",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Lint",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check formatting",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run tests",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N4 stage traces and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N5 experiments and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check installed dependencies",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check generated schemas",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check canonical metric registry",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check synthetic fixture drift",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check N1 arithmetic fixture drift",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N1 registry and shadow report",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N2 observation fixtures",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N3 analytical fixtures and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate controlled-real P0 artifacts",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check run 001 seed fingerprint drift",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce run 002 match result",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Set up Python 3.13",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Check out repository",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "completed_at": "2026-10-12T03:11:09Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/Nghi-creator/latency_fingerprinting/actions/runs/38198471685/job/114646331889",
+      "id": 114646331889,
+      "name": "python-311-compatibility",
+      "started_at": "2026-10-12T03:06:50Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check out repository",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Set up minimum supported Python",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install package and development dependencies",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run minimum-version test suite",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check generated schemas and canonical registry",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check N1 arithmetic fixture drift",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N1 registry and shadow report",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N2 observation fixtures",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N3 analytical fixtures and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N4 stage traces and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Reproduce pinned N5 experiments and independent expectations",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check installed dependencies",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Set up minimum supported Python",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Check out repository",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "repo": "Nghi-creator/latency_fingerprinting",
+  "run_id": 38198471685,
+  "run_url": "https://github.com/Nghi-creator/latency_fingerprinting/actions/runs/38198471685"
+}

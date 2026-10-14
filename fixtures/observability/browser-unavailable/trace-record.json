@@ -1,0 +1,106 @@
+{
+  "method_release": "n4-stage-local-v1",
+  "producer": "pixelated_browser",
+  "producer_version": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": "synthetic",
+  "run_id": "run-1",
+  "schema_version": "stage-trace-record-v1",
+  "session_id": "session-1",
+  "streams": [
+    {
+      "capabilities": [
+        {
+          "boundary": "render_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_begin",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "capture_output",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "pre_encode_queue_enter",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "pre_encode_queue_exit",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "encode_input",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "encode_output",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "wire_send",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "receive",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "decode_ready",
+          "reason": "unsupported_source",
+          "state": "unavailable"
+        },
+        {
+          "boundary": "presentation_proxy",
+          "reason": "api_unavailable",
+          "state": "unavailable"
+        }
+      ],
+      "clock": {
+        "origin": "stream_start",
+        "resolution_ns": null,
+        "source": "browser_performance",
+        "synchronization": "none",
+        "unit": "ns"
+      },
+      "clock_id": "clock-1",
+      "deadline": null,
+      "epoch_id": "epoch-1",
+      "events": [],
+      "frames": [],
+      "limits": {
+        "max_events": 10000,
+        "max_frames": 2000
+      },
+      "loss": {
+        "attempted_events": 0,
+        "browser_missed_presentations": 0,
+        "event_capacity_dropped": 0,
+        "event_contention_dropped": 0,
+        "event_correlation_dropped": 0,
+        "event_invalid_timestamp_dropped": 0,
+        "event_shutdown_dropped": 0,
+        "frame_capacity_dropped": 0,
+        "offered_frames": 0,
+        "retained_events": 0,
+        "sampled_frames": 0,
+        "unsampled_frames": 0
+      },
+      "sampling": {
+        "every_nth_frame": 1
+      },
+      "stop_reason": "completed",
+      "stream_id": "stream-1"
+    }
+  ],
+  "trace_id": "trace-1"
+}

@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_id": "action-1",
+      "kind": "cpu_pressure",
+      "max_duration_ns": 70000000000,
+      "start_phase": "degraded",
+      "stop_phase": "recovery",
+      "workers": 1
+    }
+  ],
+  "adapter": {
+    "adapter_id": "bounded_cpu_pressure",
+    "reason": null,
+    "state": "available"
+  },
+  "assignment": "engineering",
+  "clock_id": "clock-1",
+  "core_version": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experiment_id": "experiment-1",
+  "method_release": "n5-single-cause-v1",
+  "node_id": "node-1",
+  "phases": [
+    {
+      "duration_ns": 10000000000,
+      "phase": "warmup"
+    },
+    {
+      "duration_ns": 30000000000,
+      "phase": "healthy"
+    },
+    {
+      "duration_ns": 30000000000,
+      "phase": "degraded"
+    },
+    {
+      "duration_ns": 30000000000,
+      "phase": "probe"
+    },
+    {
+      "duration_ns": 30000000000,
+      "phase": "recovery"
+    },
+    {
+      "duration_ns": 10000000000,
+      "phase": "cooldown"
+    }
+  ],
+  "producer_version": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "provenance": "synthetic",
+  "repeat_index": 1,
+  "run_id": "run-1",
+  "runtime": {
+    "clock_resolution_ns": 1,
+    "clock_source": "python_monotonic_ns",
+    "codec": "vp8",
+    "cpu_allocation": 2,
+    "fps": 30,
+    "gst_version": "1.28.2",
+    "height": 720,
+    "kind": "synthetic",
+    "node_version": "26.4.0",
+    "python_version": "3.14.4",
+    "width": 1280
+  },
+  "scenario": "host_contention",
+  "schema_version": "experiment-manifest-v1",
+  "seed": 7,
+  "trace_policy": {
+    "every_nth_frame": 1000,
+    "max_events": 10,
+    "max_frames": 2,
+    "scope": "per_phase"
+  },
+  "workload_id": "workload-1"
+}

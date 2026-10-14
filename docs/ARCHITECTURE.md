@@ -70,7 +70,7 @@ Implemented: source-declared definitions -> strict registry -> schema/artifact e
 Verified:    independent synthetic arithmetic fixtures and read-only drift checks
 Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
 Closed out:  N1 software implementation and local verification
-Pending:     Python 3.11 and hosted CI verification
+Verified:    Python 3.11 local and core hosted CI (see current execution record)
 Successor:   N2 additive observation-v2 contract/offline adoption (delivered below)
 ```
 
@@ -79,7 +79,7 @@ elapsed timestamps retain their wall-clock-derived limitation; a registry clock
 label does not assert verified monotonic capture. N1 includes no observation-v2
 root, live instrumentation or matcher adoption. The implemented N1 boundary and
 historical successor are documented in the
-[`N1 software closeout`](measurement/N1_SOFTWARE_CLOSEOUT.md) and
+[`N1 software closeout`](archive/measurement/N1_SOFTWARE_CLOSEOUT.md) and
 [archived N2 plan](plans/archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md).
 
 The implemented module dependencies are shown below. The inspection layer joins
@@ -100,7 +100,7 @@ flowchart TD
     Summary --> Inspect
 ```
 
-See the [post-N1 architecture audit](measurement/ARCHITECTURE_AUDIT.md) for
+See the [post-N1 architecture audit](archive/measurement/ARCHITECTURE_AUDIT.md) for
 validation fixes, file-size review and remaining verification gaps.
 
 ## N2 additive contracts
@@ -116,15 +116,15 @@ opt-in metadata from one validated read. The pure
 populates four unavailable records from typed source support; existing means and
 proxies remain separate metrics. Three deterministic software fixtures and pinned
 read-only reproduction are configured in both Python CI jobs. Local software
-[closeout](measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
-pending. N3 delivers the separate v2 analytical path described below. See the
+[closeout](archive/measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; core hosted
+quality/minimum-Python execution is now verified in the current execution record. N3 delivers the separate v2 analytical path described below. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
-[N2 progress](measurement/N2_IMPLEMENTATION_PROGRESS.md). The
-[post-N2 health audit](measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
+[N2 progress](archive/measurement/N2_IMPLEMENTATION_PROGRESS.md). The
+[post-N2 health audit](archive/measurement/N2_ARCHITECTURE_AUDIT.md) records instance-boundary
 hardening, fixture provenance corrections and historical post-N2 verification.
-The completed [N3 plan](plans/NEXT_IMPLEMENTATION_PLAN.md) specifies separate v2
+The completed [N3 plan](plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) specifies separate v2
 feature-policy, response, normalization, fingerprint and matching modules with
 explicit compatibility and conservative evidence rules. Steps 0–7 are complete
 locally: [strict policy/response models](analysis/N3_ANALYTICAL_MODELS.md) validate
@@ -136,16 +136,51 @@ reconstruct declared references and enforce bounded fail-closed loading.
 and conservative decision evidence. [Additive commands](analysis/N3_COMMANDS.md)
 enforce explicit policies, bounded no-follow input reads and complete output before
 stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
-[software closeout](analysis/N3_SOFTWARE_CLOSEOUT.md) and the
-[final audit](analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
+[software closeout](archive/analysis/N3_SOFTWARE_CLOSEOUT.md) and the
+[final audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
 [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
-matching paths; hosted/minimum-version execution remains pending.
+matching paths; Python 3.11 local verification passes ([execution record](../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
-The [follow-up health audit](analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
+The [follow-up health audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
 score underflow and shared directory/TAR adoption. Bundle reads now pin ancestors,
 root and members through no-follow descriptors, enforce regular/nonblocking file
 reads and bound TAR input bytes before decoding. Valid artifacts, schemas and
 fixture pins reproduce unchanged; these repairs do not change policy meanings.
+
+## Delivered N4 software boundary
+
+The [N4 plan](plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) has delivered software Steps 0–6
+and Step 7 pinned synthetic integration locally. Pixelated owns opt-in bounded
+X11/queue/VP8 probes, browser presentation/callback collection and standalone
+trace export. This core owns strict immutable trace/summary validation,
+`ingest-trace`, pure same-lifetime reconstruction and `inspect-trace`. See the
+[software closeout](archive/observability/N4_SOFTWARE_CLOSEOUT.md) and
+[integration procedure](observability/N4_INTEGRATION_VERIFICATION.md).
+
+Pairing stays within a stream/epoch/clock and exact admitted frame identity.
+Queue waiting, encoder boundary elapsed, capture-output age and browser callback
+lag each retain methods, capability declarations, sampling, exclusions and loss.
+Independent producer clocks are unsynchronized; unsupported stages remain
+unavailable. Trace snapshots and file I/O stay outside frame callbacks. Existing
+N2 stage timing remains unavailable and N3 policy/matching is unchanged.
+
+Real Linux capture, five paired overhead trials and host lifecycle/isolation
+cases now pass. Python 3.11 local verification also passes. The additive browser
+execution method now passes local software/live validation. Hosted checks for
+final browser changes in both repos and normal desktop interaction remain open; the [runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)
+records actual outcomes and remaining gates. Synthetic integration establishes deterministic
+software interoperability, not measured capture performance.
+
+The active [N5 scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3.
+Its [Steps 1–7](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are delivered;
+[manifest, phase, effect and cleanup contract](scenarios/N5_EXPERIMENT_CONTRACT.md)
+is frozen. [Strict additive models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) enforce detached record consistency. [Bounded producer lifecycle and recording control](scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; fresh campaign-8 passes all 18 fault/reference/query trials and selected-scene overhead passes. Browser execution method checks pass locally; final desktop/hosted acceptance remains open. Producer runtime control
+and core offline validation stay separate. [N4 runtime acceptance](observability/N4_RUNTIME_ACCEPTANCE.md)
+remains pending and is not cleared by starting N5. Completed plans are in
+[plans/archive](plans/archive/README.md); completed closeouts, progress and health
+audits are in the [milestone archive](archive/README.md). Current contracts and API
+guides remain in their topic directories; the [documentation index](README.md)
+distinguishes them from historical evidence.
 
 ## Target system overview
 
@@ -170,12 +205,28 @@ latency-fingerprinting/
 ├── README.md
 ├── pyproject.toml
 ├── docs/
+│   ├── README.md
 │   ├── ARCHITECTURE.md
 │   ├── analysis/
+│   ├── archive/
+│   │   ├── README.md
+│   │   ├── p0/
+│   │   ├── measurement/
+│   │   ├── analysis/
+│   │   └── observability/
 │   ├── diagrams/
 │   ├── p0/
 │   ├── measurement/
+│   ├── observability/
+│   │   ├── N4_TRACE_CONTRACT.md
+│   │   ├── N4_INTEGRATION_VERIFICATION.md
+│   │   └── N4_RUNTIME_ACCEPTANCE.md
+│   ├── scenarios/
+│   │   └── N5_IMPLEMENTATION_PROGRESS.md
 │   └── plans/
+│       ├── NEXT_IMPLEMENTATION_PLAN.md
+│       ├── FULL_IMPLEMENTATION_PLAN.md
+│       └── archive/
 ├── schemas/
 │   ├── observation-v1.schema.json
 │   ├── fingerprint-v1.schema.json
@@ -187,7 +238,9 @@ latency-fingerprinting/
 │   ├── fingerprint-v2.schema.json
 │   ├── match-result-v2.schema.json
 │   ├── metric-registry-v1.schema.json
-│   └── metric-registry-v1.json
+│   ├── metric-registry-v1.json
+│   ├── stage-trace-record-v1.schema.json
+│   └── stage-trace-summary-v1.schema.json
 ├── src/latency_fingerprinting/
 │   ├── models/
 │   │   ├── common.py
@@ -213,6 +266,14 @@ latency-fingerprinting/
 │   │   ├── scoring.py
 │   │   ├── decisions.py
 │   │   └── matching.py
+│   ├── observability/
+│   │   ├── contracts.py
+│   │   ├── trace.py
+│   │   ├── summary.py
+│   │   ├── bundle.py
+│   │   ├── input.py
+│   │   ├── output.py
+│   │   └── reconstruct.py
 │   ├── validation.py
 │   ├── windows.py
 │   ├── measurement/
@@ -241,6 +302,7 @@ latency-fingerprinting/
 │   ├── json_io.py
 │   ├── cli.py
 │   ├── cli_v2.py
+│   ├── cli_trace.py
 │   ├── __init__.py
 │   └── adapters/
 │       ├── pixelated_bundle.py
@@ -253,6 +315,7 @@ latency-fingerprinting/
 │       ├── pixelated_bundle_validation.py
 │       └── pixelated_bundle_v2.py
 ├── fixtures/
+│   ├── observability/
 │   ├── analytical-v2/
 │   ├── observation-v2/
 │   ├── reference_cases/

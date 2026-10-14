@@ -1,0 +1,392 @@
+{
+  "$defs": {
+    "Adapter": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "anyOf": [
+            {
+              "enum": [
+                "none",
+                "bounded_cpu_pressure"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Adapter Id"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "adapter_not_implemented",
+                "runtime_unavailable",
+                "permission_denied",
+                "clock_unavailable",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "state": {
+          "enum": [
+            "available",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter_id",
+        "state",
+        "reason"
+      ],
+      "title": "Adapter",
+      "type": "object"
+    },
+    "PlannedPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_ns": {
+          "maximum": 300000000000,
+          "minimum": 1000000000,
+          "title": "Duration Ns",
+          "type": "integer"
+        },
+        "phase": {
+          "enum": [
+            "warmup",
+            "healthy",
+            "degraded",
+            "probe",
+            "recovery",
+            "cooldown"
+          ],
+          "title": "Phase",
+          "type": "string"
+        }
+      },
+      "required": [
+        "phase",
+        "duration_ns"
+      ],
+      "title": "PlannedPhase",
+      "type": "object"
+    },
+    "RequestedAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^action-[1-9][0-9]{0,9}$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "kind": {
+          "const": "cpu_pressure",
+          "title": "Kind",
+          "type": "string"
+        },
+        "max_duration_ns": {
+          "maximum": 300000000000,
+          "minimum": 40000000000,
+          "title": "Max Duration Ns",
+          "type": "integer"
+        },
+        "start_phase": {
+          "const": "degraded",
+          "title": "Start Phase",
+          "type": "string"
+        },
+        "stop_phase": {
+          "const": "recovery",
+          "title": "Stop Phase",
+          "type": "string"
+        },
+        "workers": {
+          "maximum": 8,
+          "minimum": 1,
+          "title": "Workers",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "action_id",
+        "kind",
+        "start_phase",
+        "stop_phase",
+        "workers",
+        "max_duration_ns"
+      ],
+      "title": "RequestedAction",
+      "type": "object"
+    },
+    "Runtime": {
+      "additionalProperties": false,
+      "properties": {
+        "clock_resolution_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 1,
+          "title": "Clock Resolution Ns",
+          "type": "integer"
+        },
+        "clock_source": {
+          "const": "python_monotonic_ns",
+          "title": "Clock Source",
+          "type": "string"
+        },
+        "codec": {
+          "const": "vp8",
+          "title": "Codec",
+          "type": "string"
+        },
+        "cpu_allocation": {
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Cpu Allocation",
+          "type": "integer"
+        },
+        "fps": {
+          "const": 30,
+          "title": "Fps",
+          "type": "integer"
+        },
+        "gst_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Gst Version",
+          "type": "string"
+        },
+        "height": {
+          "const": 720,
+          "title": "Height",
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "synthetic",
+            "linux_x11"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "node_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Node Version",
+          "type": "string"
+        },
+        "python_version": {
+          "pattern": "^(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})\\.(0|[1-9][0-9]{0,2})$",
+          "title": "Python Version",
+          "type": "string"
+        },
+        "width": {
+          "const": 1280,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "python_version",
+        "node_version",
+        "gst_version",
+        "cpu_allocation",
+        "width",
+        "height",
+        "fps",
+        "codec",
+        "clock_source",
+        "clock_resolution_ns"
+      ],
+      "title": "Runtime",
+      "type": "object"
+    },
+    "TracePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "every_nth_frame": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Every Nth Frame",
+          "type": "integer"
+        },
+        "max_events": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Events",
+          "type": "integer"
+        },
+        "max_frames": {
+          "maximum": 2000,
+          "minimum": 1,
+          "title": "Max Frames",
+          "type": "integer"
+        },
+        "scope": {
+          "const": "per_phase",
+          "title": "Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "every_nth_frame",
+        "max_frames",
+        "max_events"
+      ],
+      "title": "TracePolicy",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/RequestedAction"
+      },
+      "maxItems": 6,
+      "title": "Actions",
+      "type": "array"
+    },
+    "adapter": {
+      "$ref": "#/$defs/Adapter"
+    },
+    "assignment": {
+      "enum": [
+        "engineering",
+        "reference",
+        "held_out_query"
+      ],
+      "title": "Assignment",
+      "type": "string"
+    },
+    "clock_id": {
+      "pattern": "^clock-[1-9][0-9]{0,9}$",
+      "title": "Clock Id",
+      "type": "string"
+    },
+    "core_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Core Version",
+      "type": "string"
+    },
+    "experiment_id": {
+      "pattern": "^experiment-[1-9][0-9]{0,9}$",
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "method_release": {
+      "const": "n5-single-cause-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "node_id": {
+      "pattern": "^node-[1-9][0-9]{0,9}$",
+      "title": "Node Id",
+      "type": "string"
+    },
+    "phases": {
+      "items": {
+        "$ref": "#/$defs/PlannedPhase"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Phases",
+      "type": "array"
+    },
+    "producer_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Producer Version",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "producer_capture",
+        "synthetic"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "repeat_index": {
+      "maximum": 100,
+      "minimum": 1,
+      "title": "Repeat Index",
+      "type": "integer"
+    },
+    "run_id": {
+      "pattern": "^run-[1-9][0-9]{0,9}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "runtime": {
+      "$ref": "#/$defs/Runtime"
+    },
+    "scenario": {
+      "enum": [
+        "healthy",
+        "host_contention",
+        "render_capture_slowdown",
+        "encoder_overload",
+        "network_delay",
+        "network_jitter",
+        "network_loss",
+        "bandwidth_pressure",
+        "client_decode_pressure",
+        "mixed",
+        "changing"
+      ],
+      "title": "Scenario",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "experiment-manifest-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "trace_policy": {
+      "$ref": "#/$defs/TracePolicy"
+    },
+    "workload_id": {
+      "pattern": "^workload-[1-9][0-9]{0,9}$",
+      "title": "Workload Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "experiment_id",
+    "run_id",
+    "node_id",
+    "workload_id",
+    "clock_id",
+    "provenance",
+    "scenario",
+    "seed",
+    "repeat_index",
+    "assignment",
+    "core_version",
+    "producer_version",
+    "runtime",
+    "adapter",
+    "phases",
+    "actions",
+    "trace_policy"
+  ],
+  "title": "ExperimentManifest",
+  "type": "object"
+}

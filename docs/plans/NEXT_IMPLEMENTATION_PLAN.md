@@ -1,255 +1,156 @@
-# N3 Implementation Plan: V2 Analytical Features and Offline Matching
+# N5 Implementation Plan: Reproducible Scenario Harness
 
-**Slice ID:** N3
-**Status:** Completed local software closeout; Steps 0–7 verified; hosted verification pending
-**Updated:** 2026-10-08
-**Parent roadmap:** [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md)
-**Predecessor:** [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md)
-**Archived predecessor plan:** [N2 observation-v2 adoption](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md)
+**Slice ID:** N5
+**Status:** Software complete, including browser execution method; fault cohort and local method checks pass; final desktop/hosted acceptance pending
+**Updated:** 2026-10-14
+**Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
+**Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
+**Archived plan:** [N4 stage observability](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
+**Progress:** [N5 implementation progress](../scenarios/N5_IMPLEMENTATION_PROGRESS.md)
+**Inherited open gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md)
 
-N1 measurement semantics and N2 observation-v2 adoption are implemented and
-locally verified. The [post-N2 audit](../measurement/N2_ARCHITECTURE_AUDIT.md)
-records the original N3 baseline: 1,166 passing tests and 93.05% branch-inclusive
-coverage. Actual Python 3.11/hosted verification remains pending. This document
-now freezes the analytical design in the [N3 field contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
-and [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json). V2 analytical
-policy/response models and schemas are implemented; see the [model guide](../analysis/N3_ANALYTICAL_MODELS.md).
-[Pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) is implemented.
-[V2 fingerprints and bounded repository loading](../analysis/N3_FINGERPRINTS.md)
-and [v2 matching](../analysis/N3_MATCHING.md) are implemented, along with the
-[additive commands](../analysis/N3_COMMANDS.md). [Synthetic fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md)
-and [software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
-The [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records repository hardening
-and final whole-tree verification.
+N5 begins with N4 software complete locally and real N4 acceptance explicitly
+pending. Starting N5 does not establish real capture, instrumentation overhead,
+clock synchronization, minimum-version execution or hosted CI success. Preserve
+all P0/N1/N2/N3/N4 contract bytes, fixture pins, registry/policy releases, matcher
+thresholds and existing commands. Python remains outside producer frame callbacks.
 
-## Outcome and boundary
+## Outcome and ownership
 
-Connect validated `ObservationRecordV2` pairs to an explicitly versioned feature
-policy, auditable response calculation and separate offline fingerprint/matching
-path. Carry registry, feature-policy, context and intervention identities through
-the calculation so incompatible evidence cannot be compared silently.
+Build bounded, reproducible experiment orchestration with declared scenarios,
+seeds, tool/runtime versions, workload, phase/action timing, evidence checksums,
+measured effects and restoration evidence. Injector startup is not ground truth.
+Use distinct independent source runs for references and held-out queries.
 
-Preserve P0 models, commands, numerical behavior, schemas and controlled results.
-Preserve N1 registry release meaning and N2 observation roots/adoption bytes.
-N2 observations remain immutable inputs; analytical results belong in separate
-contracts rather than adding response fields to the frozen observation schema.
+Pixelated owns live runtime/video hooks, process/fault lifecycle and evidence
+capture. The core owns detached manifest/evidence validation and offline inspection.
+Inspect available boundaries before freezing APIs or privileged adapters. Existing
+CPU-pressure and smoke tools are starting surfaces, not a finished harness.
 
-N3 adds no live probe/remediation, direct timing instrumentation, training service
-or new experiment. Stage timings remain unavailable and audit totals remain audit
-evidence. Synthetic matches verify software, not diagnosis accuracy, calibrated
-confidence or real relief efficacy.
+The target scenario inventory includes healthy, host contention, render/capture
+slowdown, encoder overload, delay, jitter, loss, bandwidth pressure and client
+decode pressure. Each must have a declared support state and measured-effect
+criterion. Unsupported cases cannot count toward acceptance. Add mixed/changing
+cases only after single causes are stable. Live probes/remediation, calibrated
+confidence, profile promotion and the deadline scheduler remain later phases.
 
-## Step 0 — Preserve and reproduce the N2 baseline
+## Step 1 — Preserve baseline and inventory experiment surfaces
 
-**Local gate:** Complete at `06e697105e918c0c2f3ae2d25bf75c833f7982ad`;
-1,166 tests pass, 93.05% branch-inclusive coverage. All frozen reproduction gates
-pass. Actual hosted/minimum-version execution remains pending; see
-[N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+**Local gate:** Complete, 2026-10-10. Both trees started clean at the commits in
+[N5 progress](../scenarios/N5_IMPLEMENTATION_PROGRESS.md). Reproduce core/producer
+checks and pinned outputs; inspect existing controlled-run, pressure, smoke,
+telemetry, recording and cleanup surfaces. Record runtime limitations and carry
+forward every N4 pending gate before changing experiment contracts.
 
-Record the starting commit and checkout state. Reproduce the
-[quality gates](../measurement/QUALITY_GATES.md): six current schemas, three fixture
-families, N1 registry/report pins, N2 snapshot pins and exact P0 controlled match
-bytes. Retain the unchanged 85% branch-inclusive coverage floor. Track actual
-hosted/minimum-version execution separately; unresolved CI failures must not be
-presented as a successful release gate.
+Gate: a recorded reproducible software baseline and explicit ownership/gap
+inventory. No fault injection or new runtime measurement is performed here.
 
-Gate: record a reproducible local baseline and pending verification without
-rewriting frozen artifacts to make checks pass.
+## Step 2 — Freeze scenarios, phases, evidence and cleanup contract
 
-## Step 1 — Freeze the analytical and matching field contract
+**Specification gate:** Complete, 2026-10-10. [Experiment contract](../scenarios/N5_EXPERIMENT_CONTRACT.md), [adapter capabilities/effect criteria](../scenarios/N5_ADAPTER_CAPABILITIES.md) and [independent examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) freeze three additive roots, phases/actions, integer evidence, bounds, cleanup, per-phase recording and intended inspection. V1 approves healthy/host contention for later implementation; other classes remain explicitly unsupported. No N5 models/runner/CLI or real trial is delivered here.
 
-**Specification gate:** Complete in [N3_ANALYTICAL_CONTRACT.md](../analysis/N3_ANALYTICAL_CONTRACT.md),
-design 1.0.0, with exact initial [policy JSON](../analysis/N3_FEATURE_POLICY_SPEC.json).
-The policy selects 22 registered primary outputs, preserves exclusions, defines
-signed responses and conservative evidence thresholds, and fixes root/version,
-compatibility, fingerprint, matching and command semantics before implementation.
-Parameters are explicitly software-provisional. Runtime enforcement is Step 2 onward.
+Define a separately versioned experiment manifest and scenario/adapter inventory.
+Specify warm-up, healthy, degraded, probe, recovery and cooldown boundaries,
+monotonic timing versus UTC metadata, bounded durations/workers/actions, seeds,
+repeat IDs, evidence references/checksums and privacy/resource bounds. Establish
+measured-effect and restoration predicates before trials. Define cancellation,
+partial failure, crash recovery, single-owner cleanup and unavailable states.
 
-Author the field-level N3 design before runtime implementation. Use the
-[metric inventory](../measurement/METRIC_SEMANTICS_V2.md),
-[registry](../measurement/CANONICAL_REGISTRY.md) and
-[N2 contract](../measurement/OBSERVATION_V2_CONTRACT.md) as the source of meaning.
-Specify:
+Keep independent clocks separate; distinguish requested/supported/executed actions
+from verified effects. Specify fresh post-warm-up trace recording control needed
+by N4 acceptance. Freeze intended APIs/CLI only after inspecting actual runtime
+ownership. Author independent positive/failure examples before implementation.
 
-- An explicit feature inventory binding each selected metric to registry
-  version/hash, definition version, unit and primary aggregation.
-- A separately versioned feature-policy identity/content hash, including response
-  direction, normalization formula/reference, numerical floors, clipping, weights
-  and feature/window eligibility rules.
-- Treatment of support, missing/rejected/incomplete summaries, minimum coverage,
-  usable evidence, zero values and confounders. Retain explicit exclusions or
-  invalidity; never replace absent evidence with zeros.
-- A standalone analytical response contract, plus proposed `fingerprint-v2` and
-  `match-result-v2` roots. Freeze exact names, independent versions, embedded versus
-  referenced evidence and cross-validation rules in this step.
-- Fingerprint provenance, source pair references, declared labels/validation status,
-  context/probe compatibility and eligibility for analytical comparison.
-- Shared-feature/positive-weight requirements, distance, residual evidence,
-  deterministic ranking/ties, rejection reasons and conservative `unknown`
-  outcomes. Distinguish invalid configuration from insufficient evidence.
-- Explicit v1/v2 rejection: no silent renaming, normalization or comparison of v1
-  fingerprints/P0 counter aggregates as v2 evidence.
+Gate: every claimed scenario/effect/result has explicit evidence meaning and a
+bounded cleanup path; no silent reinterpretation of earlier artifact contracts.
 
-Floors, clipping, coverage limits, weights and decision thresholds must belong to
-an explicit named/versioned policy with stated provenance. Do not inherit P0
-constants by feature-name coincidence or describe chosen software parameters as
-experimentally calibrated. Enumerate the proposed policy and independently
-auditable examples; settle these choices before Step 2 consumes them.
+## Step 3 — Implement strict additive experiment contracts
 
-Gate: every published number and decision has a specified, testable meaning.
-Exclude audit totals, unsupported proxies and unavailable stages from features.
+**Local software gate:** Complete, 2026-10-10. [Strict models/schemas and validation](../scenarios/N5_EXPERIMENT_MODELS.md) deliver the three roots and independent regressions. Linked hash/effect verification remains Step 6.
 
-## Step 2 — Implement strict policy and analytical response models
+Add immutable strict manifest/result models, schemas and validation under the
+Step 2 contract. Reject unknown versions/actions, ambiguous references, invalid
+phase order, nonfinite/coerced numbers, unsafe resources and identity/hash drift.
+Test independent complete/partial/unavailable/failure cases and copied instances.
 
-**Local gate:** Complete: 94 new analytical tests; 1,260 total tests pass with
-93.15% branch-inclusive coverage. Eight schemas reproduce; all six existing schema
-bytes and P0/N1/N2 reproduction pins remain unchanged. See the
-[model guide](../analysis/N3_ANALYTICAL_MODELS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+Gate: deterministic validation with unchanged earlier schemas/pins/CLI outputs.
 
-Add separate immutable analytical modules and additive schemas from Step 1.
-Validate policy version/hash agreement, registered bindings, units, finite numbers,
-unique features, eligibility/exclusion consistency and reconstructable response/
-normalization metadata. Revalidate supplied model instances and detach mutable
-caller containers at validated boundaries.
+## Step 4 — Implement bounded run lifecycle and recording control
 
-Keep policy loading local, bounded and duplicate-safe. Missing/unknown/altered
-policies fail explicitly; records cannot resolve supplied URLs or alter registry
-meaning. Add root validation without modifying existing v1/N2 roots.
+**Local software gate:** Complete, 2026-10-11. [Producer lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) implements the cooperative runner, exact ownership journal/recovery and fresh actual collectors with fake-runtime tests. [Concrete adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) subsequently delivered in Step 5; software tests do not establish a real trial.
 
-Gate: malformed records fail closed, valid zero remains numeric, and all existing
-schema bytes and reproduction pins remain unchanged.
+Implement producer-side orchestration for reproducible workload and phases,
+monotonic action timing, cancellation, cleanup and restoration. Add a fresh
+post-warm-up recording path without bridging old frames/epochs/clocks or doing
+I/O in frame hooks. Exercise healthy, interruption, restart, duplicate ownership
+and failed cleanup with fake runtime dependencies before real execution.
 
-## Step 3 — Derive auditable responses from validated v2 pairs
+Gate: run lifecycle and fresh recording can be exercised safely and independently;
+software tests are not evidence of real fault effects or measured overhead.
 
-**Local gate:** Complete: 30 new derivation tests; 1,290 total tests pass with
-93.15% branch-inclusive coverage. Explicit policy and observation inputs are
-revalidated; numerical expectations, cadence invariance, exclusions and immutable
-inputs pass. All existing schemas and reproduction pins remain unchanged.
-See the [derivation guide](../analysis/N3_RESPONSE_DERIVATION.md).
+## Step 5 — Add supported single-cause adapters and effect verification
 
-Implement pure response/normalization functions taking `ObservationRecordV2` and
-an explicit policy. Retain degraded/relief primary values, raw response, normalized
-result, units, policy identity, support/coverage and exclusions required by Step 1.
+**Local software gate:** Complete, 2026-10-11. [Supported adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) deliver actual camera hooks, bounded parked Linux children, private durable pidfd identity/recovery, owned CPU clocks and independent fixed predicates. Fake-dependency tests pass; native idle-child execution and live fault/capture remain unverified on this Mac.
 
-Respect window elapsed/interval semantics. Never subtract cross-domain timestamps
-or turn totals into rates without raw intervals. Reuse scalar math only when its
-meaning matches the reviewed contract. Reject unrepresentable arithmetic; preserve
-zero/missing distinctions, input immutability and audit-only metric roles.
+Implement the approved bounded adapters incrementally, starting with healthy and
+host contention using inspected producer ownership. Add remaining single-cause
+adapters only where effects and restoration can be observed. Host/network/browser
+privileges and tool versions must be explicit; unavailable adapters fail closed.
+Do not alter unrelated machine settings or invoke unbounded shell fault commands.
 
-Gate: independent positive/negative/zero, low-denominator and partial/missing-support
-cases reconstruct responses. Altered clipping parameters fail the initial approved
-policy gate. Equivalent counter activity at different valid cadence retains the
-same eligible rate.
+Gate: supported actions have bounded lifecycle, independent measured-effect checks
+and restoration evidence; no scenario passes solely because an injector started.
 
-## Step 4 — Add v2 fingerprints and bounded repository loading
+## Step 6 — Export, adopt and inspect experiment evidence
 
-**Local gate:** Complete: 62 new fingerprint/repository tests; 1,352 total tests
-pass with 93.35% branch-inclusive coverage. Nine schemas
-reproduce; all eight existing schema bytes and P0/N1/N2 pins remain unchanged.
-Independent reconstruction, 16/17 eligibility, declared provenance, immutable
-creation and fail-closed resource/link handling pass. See the
-[fingerprint guide](../analysis/N3_FINGERPRINTS.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+**Local software gate:** Complete, 2026-10-11. [Export and detached inspection](../scenarios/N5_EXPERIMENT_INSPECTION.md) deliver bounded deterministic producer bundles, hash/ownership validation, independent integer effect recomputation and private atomic CLI output. Synthetic actual-collector handoffs pass; real runtime gates remain open.
 
-Implement the separately versioned fingerprint root and dedicated bounded loader.
-Bind policy/registry meaning, context and probe semantics to retained response and
-provenance. Validate that published features derive from declared evidence; retain
-explicit validation/exclusion metadata.
+Export sanitized versioned manifests/results with checksummed existing trace and
+observation artifacts; preserve their separate meanings. Add bounded no-follow
+adoption/inspection and atomic outputs. Retain partial runs, failed effects,
+missing sources, recovery and cleanup results without fabricating measurements.
 
-Require declared labels and source evidence; never infer a real bottleneck label
-from similarity or mark synthetic fingerprints experimentally validated. Define
-read-only deterministic creation without ambient IDs or unrequested file writes.
-Reject duplicate IDs, malformed records and mixed roots under the reviewed policy.
+Gate: producer evidence can be inspected offline deterministically with truthful
+phase/action/effect coverage and no implicit promotion into N3 matching features.
 
-Gate: altered vectors, incompatible meanings and false provenance claims fail;
-invalid files cannot silently become candidates.
+## Step 7 — Pin independent fixtures and cross-repository reproduction
 
-## Step 5 — Implement separate deterministic v2 matching and evidence
+**Local software gate:** Complete, 2026-10-12. [Independent experiment fixtures/reproduction](../scenarios/N5_EXPERIMENT_FIXTURES.md) pin eight synthetic cases and exact uncompressed producer member bytes; directory/API/CLI parity and both configured core CI gates are delivered. Actual local reproduction passes. Subsequent minimum-version and core hosted checks pass; see the current [runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) for the passing cohort and remaining browser/desktop/Pixelated hosted gates.
 
-**Local gate:** Complete: 76 new matching/model tests; 1,428 total tests pass
-with 93.51% branch-inclusive coverage. Ten schemas reproduce;
-all nine existing schema bytes and P0/N1/N2 pins remain unchanged. Numerical
-reconstruction, compatibility, unknown priorities, threshold boundaries, ties,
-repository verification and finite/resource limits pass. See the
-[matching guide](../analysis/N3_MATCHING.md) and [progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
+Author independent synthetic success/failure/partial/unsupported fixtures and
+read-only pins. Exercise producer export → core adoption/inspection, preserve all
+legacy reproduction gates and run applicable full suites, lint/builds and doc checks.
+Keep configured CI distinct from actual hosted/minimum-version execution.
 
-Add v2 compatibility, scoring and decision modules around the explicit policy.
-Filter by context, registry, policy and intervention meanings before comparing
-eligible shared features. Publish residuals, weights, exclusions and rejection
-reasons with reconstructable distances and reproducible ranking.
+Gate: independently reviewed synthetic expectations reproduce; real trial gates
+remain explicit and cannot be passed by fake runtime output.
 
-Require positive usable weight and minimum evidence. Handle empty repositories,
-no compatible candidates, weak coverage, ambiguity, poor matches and contradictory
-evidence with specified `unknown` outcomes. Report similarity/decision evidence
-without implying calibrated causal confidence. Preserve the P0 matcher/defaults.
+## Step 8 — Execute real repetitions and close out software/runtime separately
 
-Gate: independently calculated cases prove distance/evidence consistency, stable
-tie ordering and conservative decisions under incomplete/contradictory inputs.
+**Software closeout:** Recorded, 2026-10-12. [Closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) separates delivered local software from actual runtime/hosted results. [Live acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) records initial macOS preflight unavailability and subsequent real Docker Desktop Linux trials, retained corrected-cohort failures, verified N4 overhead/lifecycle checks, actual minimum-version execution and native image build/smoke; the [additive campaign/pacing workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) now delivers the second adapter and live-entry/overhead tools. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes; browser execution method checks now pass locally; desktop/final hosted acceptance and Phase 1 completion remain pending.
 
-## Step 6 — Expose additive offline commands
+Run supported real single causes with measured effects, recovery, seeds/config,
+all trial values and independent repetitions. Freeze reference/query assignments
+before analysis; no source run may query its own fingerprint. Phase 1.3 requires
+at least two real single-bottleneck classes with repeated runs and held-out queries.
+Mixed/changing scenarios wait until stable single causes. Run inherited N4 capture
+and all predeclared overhead gates without changing thresholds after measurement.
 
-**Local gate:** Complete: 52 public command tests; 1,480 total tests pass with
-93.56% branch-inclusive coverage. Tests cover exact API parity,
-end-to-end execution, bounded/read-only inputs, output limits, wrong roots/policies
-and deterministic privacy-limited failures. Existing schemas and reproduction
-pins remain unchanged. See the [command guide](../analysis/N3_COMMANDS.md) and
-[progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md).
-
-After contracts/functions pass, expose the specified `build-response-v2`,
-`build-fingerprint-v2` and `match-v2` commands. Preserve the field contract
-arguments in the command guide; require
-explicit local policies where needed. Retain existing `build-response`, `match`
-and ingestion behavior.
-
-Emit complete canonical JSON after validation. Preserve bounded file/repository
-traversal, privacy-limited reasons, deterministic errors and read-only inputs.
-Cover incompatible roots/policies, duplicate keys, byte/depth/file-count limits
-and no partial output on public command failures.
-
-Gate: CLI output equals pure API output; no implicit conversion/fallback admits
-wrong-version evidence.
-
-## Step 7 — Fixtures, verification, documentation and software closeout
-
-**Local gate:** Complete: 19 synthetic snapshots, independent numerical
-expectations and pinned reproduction in both configured Python jobs. The final
-repository ancestor-replacement regression is included. 1,520 tests pass with
-93.58% branch-inclusive coverage. See the [closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md),
-[fixtures](../analysis/N3_ANALYTICAL_FIXTURES.md) and [audit](../analysis/N3_ARCHITECTURE_AUDIT.md).
-Actual hosted/minimum-version execution remains pending.
-
-Add explicitly synthetic analytical/fingerprint/match fixtures with independently
-authored numerical expectations and exact-byte/SHA-256 drift checks. Cover both
-eligible and conservative-unknown paths. Preserve all P0/N1/N2 inputs/pins;
-new analytical snapshots have separate pins.
-
-Run both configured Python suites, coverage/resource/privacy checks, schema/policy/
-fixture drift and existing reproduction gates. Distinguish local execution from
-actual hosted results. Update README, architecture, module/command guides and a
-dedicated N3 closeout. Check the whole final tree, including fixture documentation
-created during closeout.
-
-Archive this plan when replacing it with a successor. Retain pending verification
-explicitly and keep scientific evaluation/new instrumentation separate.
-
-The [follow-up health audit](../analysis/N3_ARCHITECTURE_AUDIT.md) records post-closeout
-score-underflow and shared bundle-reader repairs and current verification. Step 7
-counts above remain the original milestone evidence; the plan remains complete.
+Publish separate software/runtime/hosted outcomes. If runtime is unavailable,
+retain a concrete pending gate; do not call Phase 1 complete. Archive progress,
+plan/audits/closeout on the following transition, keeping normative guides current.
 
 ## Exit checklist
 
-- [x] Baseline and frozen P0/N1/N2 reproduction checks are retained locally.
-- [x] Feature inventory, policy parameters and compatibility meanings are specified.
-- [x] Strict policy/response contracts and schemas are delivered.
-- [x] Strict fingerprint contract/schema and bounded repository are delivered.
-- [x] Strict match contract/schema is delivered.
-- [x] Responses retain auditable values, support, coverage and exclusions.
-- [x] Matching is deterministic and conservative with insufficient/ambiguous evidence.
-- [x] Separate commands preserve v1 behavior and bounded/read-only inputs.
-- [x] Independent synthetic expectations and new pins reproduce exactly.
-- [x] Whole-tree tests, docs and software closeout match delivered behavior.
-- [ ] Actual Python 3.11/3.13 CI execution evidence is recorded.
+- [x] Baseline, ownership inventory and inherited pending gates recorded.
+- [x] Scenario/phase/evidence/cleanup contract frozen with independent examples.
+- [x] Strict additive models/schemas preserve existing releases.
+- [x] Bounded lifecycle and fresh post-warm-up recording control implemented.
+- [x] Approved adapters implement evidence-based effect/restoration checks; unsupported states explicit (software only).
+- [x] Versioned producer export/core adoption and inspection agree in synthetic software checks.
+- [x] Independent fixtures/pins and both repository software gates reproduce locally.
+- [x] Real repetitions and disjoint reference/query acquisitions recorded: campaign-8, 18/18 verified.
+- [ ] Full inherited N4 acceptance: browser method validation passes locally; desktop/final hosted gates remain open.
+- [x] Software/runtime/hosted outcomes and current docs agree; fault cohort and core hosted results verified; remaining desktop/final hosted gates explicit.
 
-N3 software is complete locally. Retain this completed plan until a successor
-scope is selected from the broader roadmap, then archive it before replacement.
-Hosted/minimum-version execution remains separately pending; remaining Phase 1
-instrumentation/experiment work and scientific evaluation are outside this closeout.
+**Remaining acceptance action:** Normal desktop/picker interaction and hosted checks of the final changes in both repos. Opt-in browser execution coding, independent fixtures/API/CLI handoff and local live overhead/coverage/diagnostic checks now pass ([evidence](../../experiments/n5-browser-execution-20261014/README.md)). Fresh campaign-8 now verifies all 18 healthy/contention/pacing reference/query acquisitions; source receipt windows are disjoint. Selected-scene five-pair overhead also passes. Nominal N4 capture/overhead and host lifecycle cases now pass; actual Python 3.11/Node 24 and native build/smoke are recorded. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.

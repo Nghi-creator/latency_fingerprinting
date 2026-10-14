@@ -1,0 +1,390 @@
+{
+  "$defs": {
+    "ClassEffects": {
+      "additionalProperties": false,
+      "properties": {
+        "healthy": {
+          "title": "Healthy",
+          "type": "boolean"
+        },
+        "host_contention": {
+          "title": "Host Contention",
+          "type": "boolean"
+        },
+        "render_capture_slowdown": {
+          "title": "Render Capture Slowdown",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "healthy",
+        "host_contention",
+        "render_capture_slowdown"
+      ],
+      "title": "ClassEffects",
+      "type": "object"
+    },
+    "Effect": {
+      "additionalProperties": false,
+      "properties": {
+        "degraded_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Degraded Fps"
+        },
+        "healthy_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Healthy Fps"
+        },
+        "pressure_cpu_percent": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pressure Cpu Percent"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "baseline_inadequate",
+                "pressure_not_observed",
+                "degradation_not_observed",
+                "recovery_not_observed",
+                "adapter_unavailable",
+                "incomplete_run",
+                "cleanup_unverified",
+                "insufficient_evidence"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "recovery_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recovery Fps"
+        },
+        "state": {
+          "enum": [
+            "verified",
+            "failed",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "reason",
+        "healthy_fps",
+        "degraded_fps",
+        "recovery_fps",
+        "pressure_cpu_percent"
+      ],
+      "title": "Effect",
+      "type": "object"
+    },
+    "PacingEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "capture_delay_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Capture Delay Ns"
+        },
+        "degraded_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Degraded Fps"
+        },
+        "healthy_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Healthy Fps"
+        },
+        "pressure_cpu_percent": {
+          "title": "Pressure Cpu Percent",
+          "type": "null"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "baseline_inadequate",
+                "pacing_not_observed",
+                "degradation_not_observed",
+                "recovery_not_observed",
+                "adapter_unavailable",
+                "incomplete_run",
+                "cleanup_unverified",
+                "insufficient_evidence"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "recovery_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recovery Fps"
+        },
+        "state": {
+          "enum": [
+            "verified",
+            "failed",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "reason",
+        "healthy_fps",
+        "degraded_fps",
+        "recovery_fps",
+        "pressure_cpu_percent",
+        "capture_delay_ns"
+      ],
+      "title": "PacingEffect",
+      "type": "object"
+    },
+    "TrialSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment": {
+          "enum": [
+            "engineering",
+            "reference",
+            "held_out_query"
+          ],
+          "title": "Assignment",
+          "type": "string"
+        },
+        "effect": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Effect"
+            },
+            {
+              "$ref": "#/$defs/PacingEffect"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effect"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "baseline_inadequate",
+                "pressure_not_observed",
+                "pacing_not_observed",
+                "degradation_not_observed",
+                "recovery_not_observed",
+                "adapter_unavailable",
+                "incomplete_run",
+                "cleanup_unverified",
+                "insufficient_evidence",
+                "runtime_unavailable",
+                "clock_unavailable",
+                "source_unavailable",
+                "permission_denied",
+                "adapter_not_implemented"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "run_id": {
+          "pattern": "^run-[1-9][0-9]{0,9}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "scenario": {
+          "enum": [
+            "healthy",
+            "host_contention",
+            "render_capture_slowdown"
+          ],
+          "title": "Scenario",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "verified",
+            "failed",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "scenario",
+        "assignment",
+        "state",
+        "reason"
+      ],
+      "title": "TrialSummary",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "campaign_id": {
+      "pattern": "^campaign-[1-9][0-9]{0,8}$",
+      "title": "Campaign Id",
+      "type": "string"
+    },
+    "inherited_n4_acceptance": {
+      "const": "pending",
+      "title": "Inherited N4 Acceptance",
+      "type": "string"
+    },
+    "phase_1_acceptance": {
+      "const": "pending",
+      "title": "Phase 1 Acceptance",
+      "type": "string"
+    },
+    "planned_trials": {
+      "maximum": 24,
+      "minimum": 1,
+      "title": "Planned Trials",
+      "type": "integer"
+    },
+    "repeated_effect_criteria_passed": {
+      "title": "Repeated Effect Criteria Passed",
+      "type": "boolean"
+    },
+    "repeated_held_out_effects": {
+      "$ref": "#/$defs/ClassEffects"
+    },
+    "retained_trials": {
+      "maximum": 24,
+      "minimum": 0,
+      "title": "Retained Trials",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "n5-campaign-report-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_independence": {
+      "const": "declared_disjoint_acquisitions_requires_external_verification",
+      "title": "Source Independence",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "running",
+        "finished",
+        "cancelled",
+        "source_unavailable",
+        "trial_failed",
+        "campaign_failed"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "trials": {
+      "items": {
+        "$ref": "#/$defs/TrialSummary"
+      },
+      "maxItems": 24,
+      "title": "Trials",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "state",
+    "planned_trials",
+    "retained_trials",
+    "trials",
+    "repeated_held_out_effects",
+    "repeated_effect_criteria_passed",
+    "source_independence",
+    "inherited_n4_acceptance",
+    "phase_1_acceptance"
+  ],
+  "title": "CampaignReport",
+  "type": "object"
+}

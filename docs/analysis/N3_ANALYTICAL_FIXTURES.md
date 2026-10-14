@@ -31,7 +31,7 @@ reconstructed canonical bytes, unexpected/missing/changed JSON files and separat
 retained SHA-256 pins. Symlinked snapshot files fail drift checks. Failure leaves
 stdout empty and returns an error without a traceback. It never creates missing
 directories or refreshes fixtures/pins to make CI pass. Both Python 3.13 and 3.11
-CI jobs run it; actual hosted/minimum-version execution remains separately pending.
+CI jobs run it; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
 The full-file policy pin differs from its self-excluding release contentHash.
 Changing policy meanings requires a reviewed new policy release. Snapshot updates
@@ -41,5 +41,5 @@ tree as a reference repository correctly fails on mixed roots.
 
 40 new closeout cases cover all snapshots, public/repository-backed reproduction,
 read-only drift/failure behavior, synthetic hygiene, CI gate presence and the final
-repository ancestor replacement regression. See [closeout](N3_SOFTWARE_CLOSEOUT.md)
-and [architecture audit](N3_ARCHITECTURE_AUDIT.md) for final verification and scope.
+repository ancestor replacement regression. See [closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md)
+and [architecture audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) for final verification and scope.

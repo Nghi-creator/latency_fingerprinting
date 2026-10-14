@@ -1,0 +1,254 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 70000000000,
+  "intervals": [
+    {
+      "active_workers": 1,
+      "end_ns": 41000000000,
+      "frames_end": 1224,
+      "frames_start": 1200,
+      "start_ns": 40000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 42000000000,
+      "frames_end": 1248,
+      "frames_start": 1224,
+      "start_ns": 41000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 43000000000,
+      "frames_end": 1272,
+      "frames_start": 1248,
+      "start_ns": 42000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 44000000000,
+      "frames_end": 1296,
+      "frames_start": 1272,
+      "start_ns": 43000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 45000000000,
+      "frames_end": 1320,
+      "frames_start": 1296,
+      "start_ns": 44000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 46000000000,
+      "frames_end": 1344,
+      "frames_start": 1320,
+      "start_ns": 45000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 47000000000,
+      "frames_end": 1368,
+      "frames_start": 1344,
+      "start_ns": 46000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 48000000000,
+      "frames_end": 1392,
+      "frames_start": 1368,
+      "start_ns": 47000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 49000000000,
+      "frames_end": 1416,
+      "frames_start": 1392,
+      "start_ns": 48000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 50000000000,
+      "frames_end": 1440,
+      "frames_start": 1416,
+      "start_ns": 49000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 51000000000,
+      "frames_end": 1464,
+      "frames_start": 1440,
+      "start_ns": 50000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 52000000000,
+      "frames_end": 1488,
+      "frames_start": 1464,
+      "start_ns": 51000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 53000000000,
+      "frames_end": 1512,
+      "frames_start": 1488,
+      "start_ns": 52000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 54000000000,
+      "frames_end": 1536,
+      "frames_start": 1512,
+      "start_ns": 53000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 55000000000,
+      "frames_end": 1560,
+      "frames_start": 1536,
+      "start_ns": 54000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 56000000000,
+      "frames_end": 1584,
+      "frames_start": 1560,
+      "start_ns": 55000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 57000000000,
+      "frames_end": 1608,
+      "frames_start": 1584,
+      "start_ns": 56000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 58000000000,
+      "frames_end": 1632,
+      "frames_start": 1608,
+      "start_ns": 57000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 59000000000,
+      "frames_end": 1656,
+      "frames_start": 1632,
+      "start_ns": 58000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 60000000000,
+      "frames_end": 1680,
+      "frames_start": 1656,
+      "start_ns": 59000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 61000000000,
+      "frames_end": 1704,
+      "frames_start": 1680,
+      "start_ns": 60000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 62000000000,
+      "frames_end": 1728,
+      "frames_start": 1704,
+      "start_ns": 61000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 63000000000,
+      "frames_end": 1752,
+      "frames_start": 1728,
+      "start_ns": 62000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 64000000000,
+      "frames_end": 1776,
+      "frames_start": 1752,
+      "start_ns": 63000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 65000000000,
+      "frames_end": 1800,
+      "frames_start": 1776,
+      "start_ns": 64000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 66000000000,
+      "frames_end": 1824,
+      "frames_start": 1800,
+      "start_ns": 65000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 67000000000,
+      "frames_end": 1848,
+      "frames_start": 1824,
+      "start_ns": 66000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 68000000000,
+      "frames_end": 1872,
+      "frames_start": 1848,
+      "start_ns": 67000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 69000000000,
+      "frames_end": 1896,
+      "frames_start": 1872,
+      "start_ns": 68000000000,
+      "worker_cpu_ns": 600000000
+    },
+    {
+      "active_workers": 1,
+      "end_ns": 70000000000,
+      "frames_end": 1920,
+      "frames_start": 1896,
+      "start_ns": 69000000000,
+      "worker_cpu_ns": 600000000
+    }
+  ],
+  "manifest_sha256": "f661ad6fc3f2e0f32d2916fb30e06c3b4d543b8b271aa48dd465783b8ccf8d20",
+  "method_release": "n5-single-cause-v1",
+  "phase": "degraded",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 40000000000,
+  "state": "complete"
+}

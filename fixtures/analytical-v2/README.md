@@ -37,7 +37,7 @@ Use individual reference directories; the entire fixture tree contains multiple
 root types and is intentionally not a valid fingerprint repository. Empty repository
 cases use an empty temporary directory in tests. README files remain separate from
 JSON snapshot inventories. [Fixture guide](../../docs/analysis/N3_ANALYTICAL_FIXTURES.md)
-and [software closeout](../../docs/analysis/N3_SOFTWARE_CLOSEOUT.md) record the limits
+and [software closeout](../../docs/archive/analysis/N3_SOFTWARE_CLOSEOUT.md) record the limits
 and verification boundary.
 
 SHA-256 hashes below cover full canonical file bytes. The policy's self-excluding

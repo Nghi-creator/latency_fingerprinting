@@ -1,0 +1,206 @@
+{
+  "campaign_id": "campaign-8",
+  "plan_sha256": "6eb36735f9ea2ddc1db9a04b151338f32d461b528191030f4783403a46398fec",
+  "schema_version": "n5-campaign-index-v1",
+  "state": "finished",
+  "trials": [
+    {
+      "acquisition_ended_ns": 140155316981,
+      "acquisition_started_ns": 24140125,
+      "bytes": 216552,
+      "file_name": "run-1.tar.gz",
+      "reason": null,
+      "run_id": "run-1",
+      "sha256": "f190c048b41b0dca6fa2dbe1555849460ace6ceba65234efb970a2f6a459888d",
+      "source_id": "2d2f64821c364189b7c5e089b17487d5",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 280587131252,
+      "acquisition_started_ns": 140183902814,
+      "bytes": 197079,
+      "file_name": "run-4.tar.gz",
+      "reason": null,
+      "run_id": "run-4",
+      "sha256": "21556b81346003e10d1197857186712cd4042b8ce3abaae9fb5994a25d78921d",
+      "source_id": "e4f2004fde774ef0bd69cdcdb645fbe6",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 420771474399,
+      "acquisition_started_ns": 280629453585,
+      "bytes": 175613,
+      "file_name": "run-7.tar.gz",
+      "reason": null,
+      "run_id": "run-7",
+      "sha256": "5a000950f64ed7f96b452fa1c827b70505f1dec41837406b5051abd7ddf0e7de",
+      "source_id": "ba2310689f824f53896fad37f6515f98",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 560928051545,
+      "acquisition_started_ns": 420786251565,
+      "bytes": 217062,
+      "file_name": "run-10.tar.gz",
+      "reason": null,
+      "run_id": "run-10",
+      "sha256": "d6252ffd9cd229853207d71819f4cc8f8e719c6eaefb3297c83783c3452025d9",
+      "source_id": "524480a710b54127a80e2687cc1edbce",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 701111682984,
+      "acquisition_started_ns": 560955827171,
+      "bytes": 198136,
+      "file_name": "run-13.tar.gz",
+      "reason": null,
+      "run_id": "run-13",
+      "sha256": "e81cc6bc58c48292f778342c3467bd6e4058ef1e7d64c4c73a4a89f524a927d4",
+      "source_id": "1c97d7827d414cf39898e9cb9289096c",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 841295485214,
+      "acquisition_started_ns": 701151575234,
+      "bytes": 175951,
+      "file_name": "run-16.tar.gz",
+      "reason": null,
+      "run_id": "run-16",
+      "sha256": "12a46a677b1055d517d6c32a5ecbcbefbb325e5e47247ded336f5dd551e59159",
+      "source_id": "47a442ba9eb04024985683bf4d05f849",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 981458536945,
+      "acquisition_started_ns": 841322525214,
+      "bytes": 216785,
+      "file_name": "run-2.tar.gz",
+      "reason": null,
+      "run_id": "run-2",
+      "sha256": "60c270411536f7c21d202c09b8a51fbcea730521ce6c5c2c45392f7d17024b7f",
+      "source_id": "4594b540a7ad48249bcc59347ec35fd0",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1121646726342,
+      "acquisition_started_ns": 981486379195,
+      "bytes": 197509,
+      "file_name": "run-5.tar.gz",
+      "reason": null,
+      "run_id": "run-5",
+      "sha256": "6c40332347fe5c797bfbd9006e3fd4ab754ef2f8f2aa78d195e314b9cc221315",
+      "source_id": "4aab269b81bf4d68b33686a27d833416",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1261850069112,
+      "acquisition_started_ns": 1121686299134,
+      "bytes": 175094,
+      "file_name": "run-8.tar.gz",
+      "reason": null,
+      "run_id": "run-8",
+      "sha256": "aeb08771496df784256dae0a4f5c18a31a8e2b2dcc54426ac6fb1c7fd70082a6",
+      "source_id": "1573f46b18814bc59457c4623f869d32",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1402027758802,
+      "acquisition_started_ns": 1261890413446,
+      "bytes": 216647,
+      "file_name": "run-11.tar.gz",
+      "reason": null,
+      "run_id": "run-11",
+      "sha256": "ba2e6b252d4719bad69d89065c6a2a5a60f4a6d163441b0b8ec6e91bdaaf2d92",
+      "source_id": "bca9837123c143ddaaabb6eeaaf5af10",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1542207112283,
+      "acquisition_started_ns": 1402054358927,
+      "bytes": 197589,
+      "file_name": "run-14.tar.gz",
+      "reason": null,
+      "run_id": "run-14",
+      "sha256": "ed40d0e4e9f486d00e1910ce902e0568dca2e6c873189503f62d6b51279ac5fc",
+      "source_id": "39df9b9ed7524375affd317ddc64840e",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1682377908930,
+      "acquisition_started_ns": 1542221604616,
+      "bytes": 175447,
+      "file_name": "run-17.tar.gz",
+      "reason": null,
+      "run_id": "run-17",
+      "sha256": "52e073b18e0efc27c2d76dff4a298602ec662974013327850fac2c0647f82d7c",
+      "source_id": "fb97d7c953404b1185b4b52ed27ca9b8",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1822527355078,
+      "acquisition_started_ns": 1682391651972,
+      "bytes": 216744,
+      "file_name": "run-3.tar.gz",
+      "reason": null,
+      "run_id": "run-3",
+      "sha256": "1409bfb45303a310911575392c4921a900a95d0f3b75d036973fe064b1205cc2",
+      "source_id": "7ab6feffc8964877a19cf380e2c0baf7",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 1962704632351,
+      "acquisition_started_ns": 1822552668536,
+      "bytes": 197511,
+      "file_name": "run-6.tar.gz",
+      "reason": null,
+      "run_id": "run-6",
+      "sha256": "cfe5c5df34603b2e781d6954b9d08d4f913b96fd8125a72eecb18a1819d52a0f",
+      "source_id": "97f8ec88ee0c4e94bd18a37d3003f9d4",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 2102866478456,
+      "acquisition_started_ns": 1962718157809,
+      "bytes": 175286,
+      "file_name": "run-9.tar.gz",
+      "reason": null,
+      "run_id": "run-9",
+      "sha256": "6251c2e4ea467e336fe076f01261f146846b26fcd835d5f9e4c98987a09991aa",
+      "source_id": "1fe555b37ae34d428ff9e42aa467f7aa",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 2243015285727,
+      "acquisition_started_ns": 2102880835664,
+      "bytes": 216517,
+      "file_name": "run-12.tar.gz",
+      "reason": null,
+      "run_id": "run-12",
+      "sha256": "4e05d74c958a0b4470d2734833f64e1eca5bf24c0707a1e222995adc3d2fb50b",
+      "source_id": "45080b95413a4ac0938b07d04334dfe5",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 2383199993999,
+      "acquisition_started_ns": 2243058952560,
+      "bytes": 197935,
+      "file_name": "run-15.tar.gz",
+      "reason": null,
+      "run_id": "run-15",
+      "sha256": "187eabb63e4e278d3783ef73294dd0a0f6e22119543ded5488c74dd5b8f5ee6c",
+      "source_id": "78e3d9d2a1bb4b7599e0bde388690755",
+      "status": "exported"
+    },
+    {
+      "acquisition_ended_ns": 2523369690479,
+      "acquisition_started_ns": 2383213928666,
+      "bytes": 175189,
+      "file_name": "run-18.tar.gz",
+      "reason": null,
+      "run_id": "run-18",
+      "sha256": "b3201ad1a5608975613f44f7e064e709b038cf4653b4087c2f83e4152efa0c0a",
+      "source_id": "86835f0899ba4d88916c855de3ea6a5f",
+      "status": "exported"
+    }
+  ]
+}

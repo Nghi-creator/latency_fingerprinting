@@ -1,57 +1,29 @@
 # Implementation plans
 
-- [NEXT_IMPLEMENTATION_PLAN.md](NEXT_IMPLEMENTATION_PLAN.md) retains the completed **N3**
-  plan for v2 analytical features, normalization, fingerprints and offline matching.
-  Steps 0–7 are complete locally; actual hosted/minimum-version verification
-  remains pending. Select a successor scope before replacing and archiving this plan.
-  [N3 software closeout](../analysis/N3_SOFTWARE_CLOSEOUT.md),
-  [fixtures/pins](../analysis/N3_ANALYTICAL_FIXTURES.md) and
-  [final audit](../analysis/N3_ARCHITECTURE_AUDIT.md) record whole-tree verification.
-  [Strict policy/response models](../analysis/N3_ANALYTICAL_MODELS.md) and
-  [pure response derivation](../analysis/N3_RESPONSE_DERIVATION.md) and
-  [v2 fingerprints/repositories](../analysis/N3_FINGERPRINTS.md) and
-  [v2 matching](../analysis/N3_MATCHING.md) and
-  [additive commands](../analysis/N3_COMMANDS.md) are implemented.
-- [N3 analytical field contract](../analysis/N3_ANALYTICAL_CONTRACT.md) and
-  [policy specification](../analysis/N3_FEATURE_POLICY_SPEC.json) freeze the feature
-  inventory, provisional parameters, record roots and conservative decision rules.
-- [N3 progress](../analysis/N3_IMPLEMENTATION_PROGRESS.md) records baseline
-  reproduction, all seven implementation steps and subsequent health checks.
-- [Archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) preserves completed
-  observation-v2 contracts/adoption and local verification. Actual Python 3.11/hosted
-  execution remains pending.
-- [N2 field contract](../measurement/OBSERVATION_V2_CONTRACT.md) freezes the new
-  root, registry, support, pair and timing semantics used by delivered N2 adoption.
-- [N2 software closeout](../measurement/N2_SOFTWARE_CLOSEOUT.md) records delivered
-  behavior, final evidence, remaining verification and the next contract boundary.
-- [N2 fixtures and gates](../measurement/OBSERVATION_V2_FIXTURES.md) documents exact-byte
-  snapshots and read-only CI reproduction.
-- [Post-N2 health audit](../measurement/N2_ARCHITECTURE_AUDIT.md) records contract
-  hardening, fixture/test maintenance and historical post-N2 verification.
-- [N2 progress](../measurement/N2_IMPLEMENTATION_PROGRESS.md) records baseline
-  verification, completed steps and pending hosted results.
-- [N2 model guide](../measurement/OBSERVATION_V2_MODELS.md) documents strict root
-  validation, schema exports and P0 isolation.
-- [N2 adoption guide](../measurement/OBSERVATION_V2_ADOPTION.md) documents one-read
-  raw evidence adoption and the separate v2 importer/command.
-- [FULL_IMPLEMENTATION_PLAN.md](FULL_IMPLEMENTATION_PLAN.md) is the broader roadmap
-  from the frozen P0 path through production and final evaluation.
-- [Archived N1 plan](archive/N1_METRIC_SEMANTICS_FOUNDATION_PLAN.md) preserves the
-  completed N1 software checklist and pending hosted-verification boundary.
-- [N1 software closeout](../measurement/N1_SOFTWARE_CLOSEOUT.md) records the delivered
-  artifacts, final checks, limitations and exact next boundary.
-- [N1 progress](../measurement/N1_IMPLEMENTATION_PROGRESS.md) preserves milestone history.
-- [Metric inventory](../measurement/METRIC_SEMANTICS_V2.md) is the authoritative
-  reviewed mapping of P0 features to N1 outputs.
-- [Registry models](../measurement/REGISTRY_MODELS.md) and
-  [canonical registry](../measurement/CANONICAL_REGISTRY.md) explain contracts and exports.
-- [Sample extraction](../measurement/SAMPLE_EXTRACTION.md),
-  [gauges](../measurement/GAUGE_AGGREGATION.md) and
-  [counters](../measurement/COUNTER_AGGREGATION.md) document the shadow measurement APIs.
-- [Inspection](../measurement/MEASUREMENT_INSPECTION.md),
-  [fixtures](../measurement/ARITHMETIC_FIXTURES.md) and
-  [quality gates](../measurement/QUALITY_GATES.md) document diagnostics and verification.
+## Active work
 
-Preserve each completed plan in the archive and retain its software closeout
-before replacing the active plan. Keep local software verification distinct from hosted CI and scientific
-validation. The full roadmap stays at major-slice level.
+- [N5 — Reproducible scenario harness](NEXT_IMPLEMENTATION_PLAN.md) is active.
+  [Steps 1–7 baseline/contracts/models/lifecycle](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
+  locally; [contract](../scenarios/N5_EXPERIMENT_CONTRACT.md) and
+  [examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [Step 4 lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) is delivered; Step 5 adapters/effect checks are delivered; Step 6 export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open. [Inherited N4
+  runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) remains open.
+- [Full roadmap](FULL_IMPLEMENTATION_PLAN.md) defines Phases 1–7. N4 addresses
+  Phase 1.2; N5 starts the Phase 1.3 scenario harness. Slice numbers
+  do not correspond one-to-one to roadmap phases.
+- [Quality gates](../measurement/QUALITY_GATES.md) records the latest completed
+  local results. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
+
+## Completed work
+
+- [Archived plans](archive/README.md) retain N1 measurement semantics, N2
+  observation adoption and N3 analytical/fingerprint/matching execution gates, plus N4 software observability.
+- [Milestone archive](../archive/README.md) retains P0/N1/N2/N3/N4 software closeouts, progress
+  and health audits. Historical counts and pending checks remain historical.
+- [Current reference index](../README.md) links the implemented contracts,
+  registry, adoption, analytical APIs, commands, fixtures and architecture.
+  Those guides remain active because the software still uses them.
+
+Archive completed plans and milestone records when transitioning slices. Preserve
+their results and limitations, update inbound links, and retain normative
+contracts/approved policies and reproduction artifacts in their canonical places.
+Implemented software and synthetic checks must remain separate from real measurements.
