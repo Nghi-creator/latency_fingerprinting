@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.2
 **Frozen for Step 2:** 2026-10-06
-**Status:** Steps 0–5 implemented and closed out locally; Python 3.11/hosted verification pending
+**Status:** Steps 0–5 implemented and closed out locally; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json))
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and

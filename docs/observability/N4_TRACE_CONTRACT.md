@@ -4,7 +4,7 @@
 **Implementation:** [Models/validation](N4_TRACE_MODELS.md), [host hooks](N4_HOST_INSTRUMENTATION.md),
 [browser hooks](N4_BROWSER_INSTRUMENTATION.md), [export/adoption](N4_TRACE_ADOPTION.md),
 [reconstruction](N4_TIMING_RECONSTRUCTION.md), [integration](N4_INTEGRATION_VERIFICATION.md);
-real capture/overhead validation remains pending.
+real nominal capture/overhead and host lifecycle checks now pass; full acceptance remains open ([runtime ledger](N4_RUNTIME_ACCEPTANCE.md)).
 **Plan:** [N4](../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
 **Producer inventory and acceptance:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
 **Independent arithmetic cases:** [Examples](N4_TRACE_EXAMPLES.md).

@@ -66,7 +66,9 @@ capture-output budget. Start a fresh recording after 10 s warm-up and collect 30
 fresh single-peer collector in software. [N5 Step 5 adapters](../scenarios/N5_SUPPORTED_ADAPTERS.md)
 now bind the actual camera hooks; actual Linux execution must verify them in a warm running pipeline; counting
 warm-up frames or restarting into a cold pipeline does not satisfy this procedure.
-Its real transition and overhead acceptance remain pending.
+The corrected live nominal transition now passes with 900 queue/encode pairs per
+phase, full joint coverage and zero drops. Overhead and special-case outcomes are
+tracked separately in the current runtime ledger.
 
 Follow every case in the capability document: at least 500 usable queue and encode
 pairs, ≥95% joint coverage with demonstrated unique PTS association, zero nominal
@@ -80,7 +82,12 @@ Each baseline must sustain ≥27 fps. Acceptance requires median CPU increase �
 percentage points and median FPS change ≥−5%, with no failures or nominal drops.
 Save every pair; also report ≥1000-probe diagnostic callback count/min/mean/max,
 diagnostic overhead and export/write time. The capability document governs exact
-formulas and limits. No measured values are currently available.
+formulas and limits. The nominal live trace is measured; see the [current runtime ledger](N4_RUNTIME_ACCEPTANCE.md)
+for passing paired-overhead/host lifecycle outcomes and remaining browser gates.
 
-Full N4 acceptance remains pending until this evidence is recorded. Actual Python
-3.11 and hosted CI execution are also pending; configured jobs are not run results.
+The additive [browser execution release](N4_BROWSER_EXECUTION_CONTRACT.md) now
+passes independent producer-to-core fixture/API/CLI and local live validation.
+Full N4 acceptance remains pending for normal desktop/picker and final hosted
+checks in both repos. Actual Python 3.11.17 passes 1,978 tests, 23 schemas
+and frozen reproduction locally; exact core hosted quality/minimum-Python jobs
+also pass ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).

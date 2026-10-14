@@ -1,4 +1,27 @@
-# N1–N4 quality and CI gates
+# N1–N5 quality and CI gates
+
+## Latest actual verification, 2026-10-14
+
+Core Python 3.13 now passes 2,003 tests with 93.52% coverage, including the
+additive browser execution method and independent fixture release. Actual Linux
+Python 3.11.17 passes 2,003 tests/93.60%, Ruff/format, dependency checks,
+all 25 schemas, registry and frozen N1/N2/N3/N4/N5/P0 seed reproduction. Producer
+Linux scenario/trace suites pass 78/58 tests with no Linux skip; actual Node 24.18.1
+engine execution passes 135 tests with one existing external-artifact skip.
+The standard native image build succeeds. Real nominal capture, five-pair
+overhead and host lifecycle/isolation checks pass. Fresh campaign-8 verifies all
+18 trials and repeated-effect criteria; selected-scene overhead campaign-9 also
+passes. The opt-in browser execution method passes local live checks; actual Node 24
+also passes all 259 web tests. Web lint and default/opt-in production builds pass.
+Normal desktop/picker interaction and final hosted checks remain open. Hosted core CI for exact commit
+`bc6f42b` is now verified: quality and Python 3.11 jobs both succeed ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json));
+that hosted run predates the browser changes; final hosted verification is
+required in both repos.
+[Execution record](../../experiments/n5-runtime-20261013/README.md) and
+[current runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) retain exact evidence.
+The checkpoint sections below are historical software/test records; their counts
+and then-pending gates are not current runtime status.
+
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive

@@ -1,0 +1,505 @@
+{
+  "candidates": [
+    {
+      "both_repetitions_passed": false,
+      "shapes": 24,
+      "size": 80,
+      "trials": [
+        {
+          "bytes": 90214,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-1.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.987561147640935,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5002074002,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 27.46375992062584,
+              "frames": 412,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15001587590,
+              "worker_cpu_percent": 84.46660031800008
+            },
+            "healthy": {
+              "fps": 29.99149552155542,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10002835630,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 26.79908159726027,
+              "frames": 402,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15000514049,
+              "worker_cpu_percent": 83.22869607146754
+            },
+            "recovery": {
+              "fps": 29.991277148009228,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10002908463,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.99105390255109,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5001491461,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-1",
+          "screen_passed": false,
+          "sha256": "9989ea14eac0555cc7cab03e2a3952aae2662f779e5bd36ebb36660144c95e32",
+          "source_id": "b2ac2c1a85f8408790bbbe745731c9e6",
+          "status": "completed"
+        },
+        {
+          "bytes": 88783,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-2.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.99318003674916,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5001136919,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 26.864064496968545,
+              "frames": 403,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15001452965,
+              "worker_cpu_percent": 83.38760463526874
+            },
+            "healthy": {
+              "fps": 29.996721094413235,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001093088,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 25.664075722527084,
+              "frames": 385,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15001514341,
+              "worker_cpu_percent": 79.7227389925141
+            },
+            "recovery": {
+              "fps": 29.990958340874872,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10003014795,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.98745323757042,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5002092002,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-2",
+          "screen_passed": true,
+          "sha256": "47bb1e0ba415974ecd55c4a5f57311e97c37775f84144577712dac505c9ce497",
+          "source_id": "9f63a27db38846b98b1c57fa94dda2b6",
+          "status": "completed"
+        }
+      ],
+      "workload_id": "workload-2"
+    },
+    {
+      "both_repetitions_passed": true,
+      "shapes": 192,
+      "size": 48,
+      "trials": [
+        {
+          "bytes": 86529,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-3.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.987884133117962,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5002020127,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 24.91923284455398,
+              "frames": 376,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15088747007,
+              "worker_cpu_percent": 77.31102219812041
+            },
+            "healthy": {
+              "fps": 29.896777118457596,
+              "frames": 299,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001078003,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 24.795822857661136,
+              "frames": 372,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15002526923,
+              "worker_cpu_percent": 76.3992820997919
+            },
+            "recovery": {
+              "fps": 29.987854406173188,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10004050171,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.994579217673053,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5000903627,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-3",
+          "screen_passed": true,
+          "sha256": "8b920446613fb998bd840997f038a27dd16a5ffb3948bff19593477a48cdf3bc",
+          "source_id": "b974ffe297904c148d5472f76bf9fab5",
+          "status": "completed"
+        },
+        {
+          "bytes": 87969,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-4.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.97735059477171,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5003777753,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 26.328158375835613,
+              "frames": 395,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15002948340,
+              "worker_cpu_percent": 80.7543697107738
+            },
+            "healthy": {
+              "fps": 29.995443056296356,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001519212,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 25.463825669334327,
+              "frames": 382,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15001673549,
+              "worker_cpu_percent": 79.21920201891203
+            },
+            "recovery": {
+              "fps": 29.99430156860965,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001899838,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.988244092517935,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5001960086,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-4",
+          "screen_passed": true,
+          "sha256": "5efb67e21c59a4f5949178f436168c12402c99567464831af43548409315702d",
+          "source_id": "b02e334087974f12bb5703434570bd83",
+          "status": "completed"
+        }
+      ],
+      "workload_id": "workload-3"
+    },
+    {
+      "both_repetitions_passed": true,
+      "shapes": 512,
+      "size": 32,
+      "trials": [
+        {
+          "bytes": 85506,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-5.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.981323122768142,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5003114752,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 24.725759686435204,
+              "frames": 371,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15004594589,
+              "worker_cpu_percent": 75.71796211894306
+            },
+            "healthy": {
+              "fps": 29.997201120148645,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10000933047,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 23.798690465951054,
+              "frames": 357,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15000825382,
+              "worker_cpu_percent": 72.94901204656927
+            },
+            "recovery": {
+              "fps": 29.99434917559441,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001883963,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.793765886879545,
+              "frames": 149,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5001046211,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-5",
+          "screen_passed": true,
+          "sha256": "bde8dc2c2286782b0e5724909dede72ab7e6db156c4ff8d02ee9c4b2752aad24",
+          "source_id": "0c8466ebe6d6446babaaf4eb71387185",
+          "status": "completed"
+        },
+        {
+          "bytes": 85174,
+          "cleanup_state": "restored",
+          "detached_effect": {
+            "degraded_fps": null,
+            "healthy_fps": null,
+            "pressure_cpu_percent": null,
+            "reason": "insufficient_evidence",
+            "recovery_fps": null,
+            "state": "unavailable"
+          },
+          "file_name": "run-6.tar.gz",
+          "phases": {
+            "cooldown": {
+              "fps": 29.986515297965326,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5002248461,
+              "worker_cpu_percent": 0.0
+            },
+            "degraded": {
+              "fps": 24.59522667154563,
+              "frames": 369,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15002911131,
+              "worker_cpu_percent": 75.75437291310847
+            },
+            "healthy": {
+              "fps": 29.99653913429911,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001153755,
+              "worker_cpu_percent": 0.0
+            },
+            "probe": {
+              "fps": 23.726374771979984,
+              "frames": 356,
+              "intervals": 15,
+              "state": "complete",
+              "wall_ns": 15004399257,
+              "worker_cpu_percent": 72.86284773380447
+            },
+            "recovery": {
+              "fps": 29.994782518561593,
+              "frames": 300,
+              "intervals": 10,
+              "state": "complete",
+              "wall_ns": 10001739463,
+              "worker_cpu_percent": 0.0
+            },
+            "warmup": {
+              "fps": 29.988047004368436,
+              "frames": 150,
+              "intervals": 5,
+              "state": "complete",
+              "wall_ns": 5001992960,
+              "worker_cpu_percent": 0.0
+            }
+          },
+          "reason": null,
+          "run_id": "run-6",
+          "screen_passed": true,
+          "sha256": "69a2cdc1e8c15c653d6f4fc5180a93077d6989bf48de9cbe93a8aeb587a81298",
+          "source_id": "eedb5e18b7b049d6b8c0c545f7b9998e",
+          "status": "completed"
+        }
+      ],
+      "workload_id": "workload-4"
+    }
+  ],
+  "image": {
+    "image_id": "sha256:995a464082209b07664b5e92b27d8fd408c366defe8df3ce7667a3571bbbfdf1",
+    "producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1"
+  },
+  "plan": {
+    "affinity": "unpinned",
+    "candidates": [
+      {
+        "shapes": 24,
+        "size": 80,
+        "source_ids": [
+          "b2ac2c1a85f8408790bbbe745731c9e6",
+          "9f63a27db38846b98b1c57fa94dda2b6"
+        ],
+        "workload_id": "workload-2"
+      },
+      {
+        "shapes": 192,
+        "size": 48,
+        "source_ids": [
+          "b974ffe297904c148d5472f76bf9fab5",
+          "b02e334087974f12bb5703434570bd83"
+        ],
+        "workload_id": "workload-3"
+      },
+      {
+        "shapes": 512,
+        "size": 32,
+        "source_ids": [
+          "0c8466ebe6d6446babaaf4eb71387185",
+          "eedb5e18b7b049d6b8c0c545f7b9998e"
+        ],
+        "workload_id": "workload-4"
+      }
+    ],
+    "core_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+    "cpu_period_us": 1000000,
+    "cpu_quota_us": 1000000,
+    "durations_seconds": [
+      5,
+      10,
+      15,
+      15,
+      10,
+      5
+    ],
+    "producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1",
+    "purpose": "engineering_calibration_not_acceptance",
+    "repetitions": 2,
+    "scene_sha256": "b1ff1113d5c44895f46e3db2eb889a088bf0151b7e548cb547131246d397b524",
+    "screening_rule": {
+      "both_repetitions_required": true,
+      "degraded_max_fraction_of_healthy": 0.9,
+      "healthy_and_recovery_min_fps": 27,
+      "recovery_min_fraction_of_healthy": 0.95,
+      "worker_cpu_min_percent": 50
+    },
+    "seed": 7,
+    "workers": 1
+  },
+  "purpose": "engineering_calibration_not_acceptance",
+  "selected_workload_id": "workload-4",
+  "selection_reason": "both richer candidates pass the frozen screen; 512 rectangles have the more consistent observed degradation and retain adequate baseline/CPU/recovery margins"
+}

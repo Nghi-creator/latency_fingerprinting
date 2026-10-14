@@ -8,7 +8,10 @@ Steps 1–7 deliver strict additive experiment contracts, bounded producer lifec
 fresh recording control, concrete healthy/owned CPU adapters, fixed integer effect
 predicates, sanitized deterministic export, independent detached inspection and
 read-only fixture reproduction. Step 8's software/runtime/hosted outcomes are
-published here. Its real campaign gate has not passed.
+published here. The original snapshot below predates live campaigns; current
+[acceptance](N5_RUNTIME_ACCEPTANCE.md) records campaign-8 passing 18/18 trials and
+selected-scene overhead passing. The additive browser execution method also passes
+local software/live checks; final desktop/hosted gates remain open.
 
 The clean closeout baseline is core commit
 `75447e87fca9bee66d7e3bc21001bdb20d3bac9f` and Pixelated commit
@@ -16,14 +19,18 @@ The clean closeout baseline is core commit
 closeout. These identify the delivered Step 7 implementation, not the subsequent
 uncommitted closeout documentation and not a real capture build.
 
-| Outcome | Evidence and limit |
+The table records the original software-closeout snapshot. Current live execution
+uses Docker Desktop Linux and has retained real acquisitions; consult the
+[runtime ledger](N5_RUNTIME_ACCEPTANCE.md) for current outcomes.
+
+| Original closeout outcome | Evidence and limit |
 | --- | --- |
 | Core local software | Step 7 full suite: 1,950 passed, 93.77% branch-inclusive coverage; Ruff/format and dependency checks pass |
 | Producer local software | Step 7 full suite: 716 Node passed; 109 nested Python passed; existing external-artifact and Linux idle-child skips retained |
 | Local builds | Step 7 workspace lint/lockfiles, engine build, API typecheck and production web build pass |
 | Frozen compatibility | Fifteen schemas, registry, P0/N1/N2/N3/N4 pins and synthetic N4 producer API/CLI reproduction remain unchanged/current |
 | N5 synthetic integration | Release 1.0.0: eight independent cases, exact raw producer member parity and canonical API/CLI results; synthetic provenance only |
-| Live availability | Step 8 actual preflight on Darwin returns runtime_unavailable, no resources acquired; Docker absent |
+| Live availability | Step 8 actual preflight on Darwin returns runtime_unavailable, no resources acquired; initial PATH check missed Docker Desktop |
 | Real fault campaigns and N4 overhead | Not run; [acceptance ledger](N5_RUNTIME_ACCEPTANCE.md) retains concrete dependencies/gates |
 | Actual minimum versions, container and hosted execution | Unverified; configured jobs are not observed results |
 

@@ -70,7 +70,7 @@ Implemented: source-declared definitions -> strict registry -> schema/artifact e
 Verified:    independent synthetic arithmetic fixtures and read-only drift checks
 Configured:  Python 3.11/3.13 branch coverage and pinned reproduction CI gates
 Closed out:  N1 software implementation and local verification
-Pending:     Python 3.11 and hosted CI verification
+Verified:    Python 3.11 local and core hosted CI (see current execution record)
 Successor:   N2 additive observation-v2 contract/offline adoption (delivered below)
 ```
 
@@ -116,8 +116,8 @@ opt-in metadata from one validated read. The pure
 populates four unavailable records from typed source support; existing means and
 proxies remain separate metrics. Three deterministic software fixtures and pinned
 read-only reproduction are configured in both Python CI jobs. Local software
-[closeout](archive/measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; hosted execution remains
-pending. N3 delivers the separate v2 analytical path described below. See the
+[closeout](archive/measurement/N2_SOFTWARE_CLOSEOUT.md) is complete; core hosted
+quality/minimum-Python execution is now verified in the current execution record. N3 delivers the separate v2 analytical path described below. See the
 [field contract](measurement/OBSERVATION_V2_CONTRACT.md),
 [model guide](measurement/OBSERVATION_V2_MODELS.md) and
 [adoption guide](measurement/OBSERVATION_V2_ADOPTION.md), plus
@@ -139,7 +139,7 @@ stdout. [Synthetic fixture pins](analysis/N3_ANALYTICAL_FIXTURES.md),
 [software closeout](archive/analysis/N3_SOFTWARE_CLOSEOUT.md) and the
 [final audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) are complete locally under the
 [N3 contract](analysis/N3_ANALYTICAL_CONTRACT.md). P0 and v2 remain separate offline
-matching paths; hosted/minimum-version execution remains pending.
+matching paths; Python 3.11 local verification passes ([execution record](../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
 The [follow-up health audit](archive/analysis/N3_ARCHITECTURE_AUDIT.md) hardens weighted
 score underflow and shared directory/TAR adoption. Bundle reads now pin ancestors,
@@ -164,15 +164,17 @@ Independent producer clocks are unsynchronized; unsupported stages remain
 unavailable. Trace snapshots and file I/O stay outside frame callbacks. Existing
 N2 stage timing remains unavailable and N3 policy/matching is unchanged.
 
-Full N4 acceptance still needs the frozen real Linux/Xvfb/PulseAudio capture,
-draining WebRTC receiver and paired overhead trials. Actual minimum-version and
-hosted execution remain pending. Synthetic integration establishes deterministic
+Real Linux capture, five paired overhead trials and host lifecycle/isolation
+cases now pass. Python 3.11 local verification also passes. The additive browser
+execution method now passes local software/live validation. Hosted checks for
+final browser changes in both repos and normal desktop interaction remain open; the [runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)
+records actual outcomes and remaining gates. Synthetic integration establishes deterministic
 software interoperability, not measured capture performance.
 
 The active [N5 scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3.
 Its [Steps 1–7](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are delivered;
 [manifest, phase, effect and cleanup contract](scenarios/N5_EXPERIMENT_CONTRACT.md)
-is frozen. [Strict additive models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) enforce detached record consistency. [Bounded producer lifecycle and recording control](scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open. Producer runtime control
+is frozen. [Strict additive models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) enforce detached record consistency. [Bounded producer lifecycle and recording control](scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; fresh campaign-8 passes all 18 fault/reference/query trials and selected-scene overhead passes. Browser execution method checks pass locally; final desktop/hosted acceptance remains open. Producer runtime control
 and core offline validation stay separate. [N4 runtime acceptance](observability/N4_RUNTIME_ACCEPTANCE.md)
 remains pending and is not cleared by starting N5. Completed plans are in
 [plans/archive](plans/archive/README.md); completed closeouts, progress and health

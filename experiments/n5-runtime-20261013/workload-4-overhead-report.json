@@ -1,0 +1,121 @@
+{
+  "baseline_passed": true,
+  "diagnostic": {
+    "cpu_increase_percentage_points": 0.49255879196347374,
+    "fps_change_fraction": -4.0208561425772956e-05,
+    "max_ns": 399542,
+    "mean_ns": 19830.131333333335,
+    "min_ns": 5542,
+    "observed_probes": 4500,
+    "retained_samples": 4500
+  },
+  "measured_thresholds_passed": true,
+  "median_cpu_increase_percentage_points": 0.37238475961104606,
+  "median_fps_change_fraction": -5.1691293862854635e-06,
+  "nominal_traces": [
+    {
+      "drops": 0,
+      "encode_pairs": 900,
+      "export_duration_ns": 1615708,
+      "frame_count": 900,
+      "joint_pairs": 900,
+      "nominal_capture_passed": true,
+      "pair": 1,
+      "queue_pairs": 900
+    },
+    {
+      "drops": 0,
+      "encode_pairs": 900,
+      "export_duration_ns": 1656875,
+      "frame_count": 900,
+      "joint_pairs": 900,
+      "nominal_capture_passed": true,
+      "pair": 2,
+      "queue_pairs": 900
+    },
+    {
+      "drops": 0,
+      "encode_pairs": 900,
+      "export_duration_ns": 1981917,
+      "frame_count": 900,
+      "joint_pairs": 900,
+      "nominal_capture_passed": true,
+      "pair": 3,
+      "queue_pairs": 900
+    },
+    {
+      "drops": 0,
+      "encode_pairs": 900,
+      "export_duration_ns": 1656583,
+      "frame_count": 900,
+      "joint_pairs": 900,
+      "nominal_capture_passed": true,
+      "pair": 4,
+      "queue_pairs": 900
+    },
+    {
+      "drops": 0,
+      "encode_pairs": 900,
+      "export_duration_ns": 1164917,
+      "frame_count": 900,
+      "joint_pairs": 900,
+      "nominal_capture_passed": true,
+      "pair": 5,
+      "queue_pairs": 900
+    }
+  ],
+  "pairs": [
+    {
+      "cpu_increase_percentage_points": 1.1952543335605141,
+      "disabled_cpu_percent": 31.343727070845656,
+      "disabled_fps": 29.997785692450663,
+      "enabled_cpu_percent": 32.53898140440617,
+      "enabled_fps": 29.99923079872286,
+      "fps_change_fraction": 4.8173764790949125e-05,
+      "pair": 1
+    },
+    {
+      "cpu_increase_percentage_points": 0.47335545154635345,
+      "disabled_cpu_percent": 31.230459615670817,
+      "disabled_fps": 29.99925725538944,
+      "enabled_cpu_percent": 31.70381506721717,
+      "enabled_fps": 29.999093389398922,
+      "fps_change_fraction": -5.46233492131972e-06,
+      "pair": 2
+    },
+    {
+      "cpu_increase_percentage_points": 0.37238475961104606,
+      "disabled_cpu_percent": 31.790848201686764,
+      "disabled_fps": 29.998391156283898,
+      "enabled_cpu_percent": 32.16323296129781,
+      "enabled_fps": 29.99823609071863,
+      "fps_change_fraction": -5.1691293862854635e-06,
+      "pair": 3
+    },
+    {
+      "cpu_increase_percentage_points": -0.7257363489749181,
+      "disabled_cpu_percent": 31.545012033696324,
+      "disabled_fps": 29.998972063223007,
+      "enabled_cpu_percent": 30.819275684721404,
+      "enabled_fps": 29.998761996090565,
+      "fps_change_fraction": -7.002477684916326e-06,
+      "pair": 4
+    },
+    {
+      "cpu_increase_percentage_points": -0.09105122595659286,
+      "disabled_cpu_percent": 31.47297493962453,
+      "disabled_fps": 29.99882819877239,
+      "enabled_cpu_percent": 31.381923713667938,
+      "enabled_fps": 29.99909105554017,
+      "fps_change_fraction": 8.762234512472357e-06,
+      "pair": 5
+    }
+  ],
+  "phase_1_acceptance": "pending",
+  "provenance": "producer_capture",
+  "real_overhead_acceptance": true,
+  "reason": null,
+  "remaining_n4_cases": "interruption_tiny_capacity_reenable_two_peer_browser_require_separate_evidence",
+  "schema_version": "n4-overhead-report-v1",
+  "state": "completed"
+}

@@ -1,6 +1,6 @@
 """Closed vocabulary and strict primitives for N4, independent of N2/N3."""
 
-from typing import Annotated, Literal
+from typing import Annotated, ClassVar, Literal
 
 from pydantic import (
     AfterValidator,
@@ -94,6 +94,8 @@ StreamID, EpochID, ClockID, FrameID = (
 
 
 class TraceModel(BaseModel):
+    collection_limits: ClassVar[dict[str, int]] = {"results": 4, "capabilities": 11}
+
     model_config = ConfigDict(
         extra="forbid", frozen=True, revalidate_instances="always", validate_default=True
     )
@@ -117,8 +119,7 @@ class TraceModel(BaseModel):
             "frames": MAX_FRAMES,
             "events": MAX_EVENTS,
             "samples": MAX_FRAMES,
-            "results": 4,
-            "capabilities": 11,
+            **cls.collection_limits,
         }
         if info.field_name in caps and not isinstance(value, (list, tuple)):
             raise ValueError("contract collections must be lists or tuples")
@@ -145,20 +146,20 @@ def check_scopes(streams):
             raise ValueError("lifetimes cannot share epoch or clock aliases")
 
 
-def allowed(producer):
-    return ENGINE_EVENTS if producer == "pixelated_engine" else BROWSER_EVENTS
+def allowed(producer, browser_events=BROWSER_EVENTS):
+    return ENGINE_EVENTS if producer == "pixelated_engine" else browser_events
 
 
 def capability_boundary(boundary):
     return "presentation_proxy" if boundary == "presentation_callback" else boundary
 
 
-def check_support(stream, producer):
+def check_support(stream, producer, browser_events=BROWSER_EVENTS):
     expected = "python_monotonic_ns" if producer == "pixelated_engine" else "browser_performance"
     if stream.clock.source != expected:
         raise ValueError("clock source does not match producer")
     for cap in stream.capabilities:
-        if cap.boundary not in allowed(producer) and (
+        if cap.boundary not in allowed(producer, browser_events) and (
             cap.state != "unavailable" or cap.reason not in ("unsupported_source", "disabled")
         ):
             raise ValueError("unsupported producer boundary")
@@ -230,6 +231,8 @@ class Loss(TraceModel):
 
 
 class StreamScope(TraceModel):
+    boundaries: ClassVar[tuple[str, ...]] = BOUNDARIES
+
     stream_id: StreamID
     epoch_id: EpochID
     clock_id: ClockID
@@ -240,7 +243,7 @@ class StreamScope(TraceModel):
 
     @model_validator(mode="after")
     def declarations(self):
-        if tuple(c.boundary for c in self.capabilities) != BOUNDARIES:
+        if tuple(c.boundary for c in self.capabilities) != self.boundaries:
             raise ValueError("capabilities must follow complete boundary order")
         n = self.sampling.every_nth_frame
         eligible = (self.loss.offered_frames + n - 1) // n

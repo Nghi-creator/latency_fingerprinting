@@ -1,10 +1,11 @@
 """Internally reconstructable summaries; a summary alone does not prove its trace."""
 
-from typing import Annotated, Literal
+from typing import Annotated, ClassVar, Literal
 
 from pydantic import Field, StrictBool, model_validator
 
 from .contracts import (
+    BROWSER_EVENTS,
     MAX_EVENTS,
     MAX_FRAMES,
     METHODS,
@@ -133,12 +134,14 @@ class DeadlineResult(TraceModel):
 
 
 class SummaryStream(StreamScope):
+    methods: ClassVar[tuple[str, ...]] = METHODS
+
     results: Annotated[tuple[TimingResult, ...], Field(min_length=4, max_length=4)]
     deadline_result: DeadlineResult
 
     @model_validator(mode="after")
     def consistency(self):
-        if tuple(r.method_id for r in self.results) != METHODS:
+        if tuple(r.method_id for r in self.results) != self.methods:
             raise ValueError("summary must contain ordered method results")
         n = self.sampling.every_nth_frame
         for result in self.results:
@@ -164,6 +167,9 @@ class SummaryStream(StreamScope):
 
 
 class StageTraceSummary(TraceModel):
+    pairs: ClassVar[tuple[tuple[str, str], ...]] = PAIRS
+    browser_events: ClassVar[tuple[str, ...]] = BROWSER_EVENTS
+
     schema_version: Literal["stage-trace-summary-v1"]
     method_release: Release
     trace_sha256: Hash
@@ -180,7 +186,7 @@ class StageTraceSummary(TraceModel):
         if sum(s.loss.retained_events for s in self.streams) > MAX_EVENTS:
             raise ValueError("summary exceeds total events")
         for stream in self.streams:
-            check_support(stream, self.producer)
+            check_support(stream, self.producer, self.browser_events)
             if (
                 self.producer == "pixelated_browser"
                 and stream.deadline_result.budget_ns is not None
@@ -190,7 +196,7 @@ class StageTraceSummary(TraceModel):
             correlation_counts = set()
             for index, result in enumerate(stream.results):
                 own_method = (index < 3) == (self.producer == "pixelated_engine")
-                accessible = all(capability_boundary(b) in supported for b in PAIRS[index])
+                accessible = all(capability_boundary(b) in supported for b in self.pairs[index])
                 if not own_method or not accessible:
                     reason = "unsupported_source" if not own_method else "capability_unavailable"
                     if (

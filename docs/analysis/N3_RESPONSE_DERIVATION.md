@@ -58,7 +58,7 @@ sufficient evidence for a later match.
 check cadence, numerical boundaries, partial evidence, confounders, copied-model
 revalidation and unchanged inputs. At Step 3, the full local suite passed 1,290 tests with
 93.15% branch-inclusive coverage; existing schemas and reproduction pins are
-unchanged. Actual Python 3.11/hosted verification remains pending.
+unchanged. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
 [Step 4 fingerprints and bounded repository loading](N3_FINGERPRINTS.md) are now
 implemented, along with [Step 5 v2 matching](N3_MATCHING.md) and

@@ -7,10 +7,10 @@ from .summary import StageTraceSummary
 from .trace import StageTraceRecord
 
 
-def _timing(stream, index, engine, endpoints):
+def _timing(stream, index, engine, endpoints, methods=METHODS, pairs=PAIRS):
     supported = {cap.boundary for cap in stream.capabilities if cap.state == "supported"}
     own_method = (index < 3) == engine
-    accessible = all(capability_boundary(endpoint) in supported for endpoint in PAIRS[index])
+    accessible = all(capability_boundary(endpoint) in supported for endpoint in pairs[index])
     unavailable = (
         "unsupported_source"
         if not own_method
@@ -27,7 +27,7 @@ def _timing(stream, index, engine, endpoints):
         0,
     )
     samples = []
-    start_boundary, end_boundary = PAIRS[index]
+    start_boundary, end_boundary = pairs[index]
     for frame in stream.frames:
         if unavailable is not None:
             excluded = "unsupported"
@@ -50,7 +50,7 @@ def _timing(stream, index, engine, endpoints):
     values = [sample["value_ms"] for sample in samples]
     eligible, usable = len(stream.frames), len(samples)
     return {
-        "method_id": METHODS[index],
+        "method_id": methods[index],
         "method_version": 1,
         "state": "measured" if usable else "unavailable",
         "reason": None
@@ -106,7 +106,13 @@ def reconstruct_trace(trace: StageTraceRecord) -> StageTraceSummary:
 
     if not isinstance(trace, StageTraceRecord):
         raise ValueError("reconstruction requires a StageTraceRecord")
-    trace = StageTraceRecord.model_validate(trace)
+    from .browser_v2 import BROWSER_METHODS, BROWSER_PAIRS, StageTraceRecordV2, StageTraceSummaryV2
+
+    v2 = isinstance(trace, StageTraceRecordV2)
+    record_model = StageTraceRecordV2 if v2 else StageTraceRecord
+    summary_model = StageTraceSummaryV2 if v2 else StageTraceSummary
+    methods, pairs = (BROWSER_METHODS, BROWSER_PAIRS) if v2 else (METHODS, PAIRS)
+    trace = record_model.model_validate(trace)
     streams = []
     scope_fields = {
         "stream_id",
@@ -122,8 +128,8 @@ def reconstruct_trace(trace: StageTraceRecord) -> StageTraceSummary:
             (event.frame_id, event.boundary): event.timestamp_ns for event in stream.events
         }
         results = [
-            _timing(stream, index, trace.producer == "pixelated_engine", endpoints)
-            for index in range(4)
+            _timing(stream, index, trace.producer == "pixelated_engine", endpoints, methods, pairs)
+            for index in range(len(methods))
         ]
         streams.append(
             {
@@ -133,9 +139,9 @@ def reconstruct_trace(trace: StageTraceRecord) -> StageTraceSummary:
             }
         )
     # Summary validators independently recompute statistics, coverage and budget arithmetic.
-    return StageTraceSummary.model_validate(
+    return summary_model.model_validate(
         {
-            "schema_version": "stage-trace-summary-v1",
+            "schema_version": "stage-trace-summary-v2" if v2 else "stage-trace-summary-v1",
             "method_release": trace.method_release,
             "trace_sha256": hashlib.sha256(canonical_json(trace).encode("utf-8")).hexdigest(),
             "provenance": trace.provenance,

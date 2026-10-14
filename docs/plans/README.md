@@ -11,7 +11,7 @@
   Phase 1.2; N5 starts the Phase 1.3 scenario harness. Slice numbers
   do not correspond one-to-one to roadmap phases.
 - [Quality gates](../measurement/QUALITY_GATES.md) records the latest completed
-  local results. Python 3.11/hosted verification remains pending.
+  local results. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
 ## Completed work
 

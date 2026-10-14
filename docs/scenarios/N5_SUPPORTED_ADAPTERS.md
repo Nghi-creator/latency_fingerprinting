@@ -40,9 +40,13 @@ unchanged. [Step 6](N5_EXPERIMENT_INSPECTION.md) binds actual exported
 roots/checksums and independently recomputes effects during bounded offline adoption.
 [Independent fixture release](N5_EXPERIMENT_FIXTURES.md) is delivered in Step 7.
 
-Local tests use fake native/Gst dependencies and independently specified totals;
-the actual parked-child integration case is skipped on this Mac. No real pressure,
-Linux capture, overhead, minimum-version or hosted result was collected. Supported
+The original Step 5 local tests used fake native/Gst dependencies and independent
+totals; the actual parked-child case was skipped on macOS. Those tests did not
+establish runtime acceptance. Subsequent actual Linux capture/pressure outcomes
+and passing 18-trial cohort, selected-scene overhead, actual minimum versions and
+core hosted CI are recorded in the [runtime ledger](N5_RUNTIME_ACCEPTANCE.md).
+Browser execution method checks pass locally; desktop interaction and hosted
+checks of final browser changes remain open. Supported
 software never establishes live availability. Other scenarios remain unavailable;
 healthy plus one approved CPU fault cannot meet Phase 1.3's two real fault-class
 gate. [Inherited N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) stays open.

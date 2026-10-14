@@ -1,11 +1,12 @@
 """Strict additive stage trace record; no runtime instrumentation."""
 
-from typing import Annotated, Literal
+from typing import Annotated, ClassVar, Literal
 
 from pydantic import Field, model_validator
 
 from .contracts import (
     ALIAS_MAX,
+    BROWSER_EVENTS,
     MAX_EVENTS,
     MAX_FRAMES,
     Commit,
@@ -108,6 +109,8 @@ class TraceStream(StreamScope):
 
 
 class StageTraceRecord(TraceModel):
+    browser_events: ClassVar[tuple[str, ...]] = BROWSER_EVENTS
+
     schema_version: Literal["stage-trace-record-v1"]
     method_release: Release
     trace_id: TraceID
@@ -149,7 +152,7 @@ class StageTraceRecord(TraceModel):
         ):
             raise ValueError("trace exceeds total frame/event limit")
         for stream in self.streams:
-            check_support(stream, self.producer)
+            check_support(stream, self.producer, self.browser_events)
             origin = (
                 "capture_output" if self.producer == "pixelated_engine" else "presentation_proxy"
             )
@@ -157,7 +160,9 @@ class StageTraceRecord(TraceModel):
                 c.boundary == origin and c.state == "supported" for c in stream.capabilities
             ):
                 raise ValueError("frames require a supported source boundary")
-            if any(e.boundary not in allowed(self.producer) for e in stream.events):
+            if any(
+                e.boundary not in allowed(self.producer, self.browser_events) for e in stream.events
+            ):
                 raise ValueError("producer cannot supply event boundary")
             if self.producer == "pixelated_browser" and (
                 stream.deadline is not None or any(f.correlation != "exact" for f in stream.frames)

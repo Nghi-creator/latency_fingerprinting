@@ -90,6 +90,8 @@ Step 3 created no fixture release pins; [Step 7 independent release pins](N5_EXP
 
 The current full-suite and preservation results are recorded in
 [N5 progress](N5_IMPLEMENTATION_PROGRESS.md). Producer runtime code is unchanged
-in Step 3; its Step 1 full-suite counts remain historical. Actual Linux trials,
-[N4 runtime/overhead acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md), minimum
-versions, hosted execution and two real fault classes remain pending.
+in Step 3; its Step 1 full-suite counts remain historical. Subsequent
+[actual execution](N5_RUNTIME_ACCEPTANCE.md) verifies 18/18 trials across healthy
+and two fault classes, selected-scene overhead, actual minimum versions and core
+baseline hosted CI. Browser execution method checks now pass locally; desktop
+interaction and hosted verification of final browser changes remain open.

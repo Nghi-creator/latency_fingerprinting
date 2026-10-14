@@ -15,6 +15,7 @@ Vite build-time settings (rebuild the web app after changing them):
 | Setting | Default / accepted range |
 | --- | --- |
 | `VITE_N4_STAGE_TRACE` | `0`; exactly `1` enables collection |
+| `VITE_N4_STAGE_TRACE_METHOD` | `api-v1` by default; `execution-v2` explicitly adds callback-entry timing |
 | `VITE_N4_STAGE_TRACE_EVERY_NTH_FRAME` | `1`; decimal integer 1–1000 |
 | `VITE_N4_STAGE_TRACE_MAX_FRAMES` | `2000`; decimal integer 1–2000 |
 | `VITE_N4_STAGE_TRACE_MAX_EVENTS` | `10000`; decimal integer 1–10000 |
@@ -82,3 +83,31 @@ Step 4 checks: 38 independent browser collector/configuration/lifecycle cases;
 synthetic snapshots from those cases pass strict Python N4 validation. Existing
 core/schema/reproduction gates are preserved. These are software/fake-video checks,
 not live browser timing, Linux/X11 capture or measured overhead evidence.
+
+## Live API timestamp limitation
+
+The 2026-10-13 Chromium 151 headless WebRTC recording contains 900 callbacks;
+219 pairs reconstruct at zero lag and 681 pairs have negative durations and are
+excluded by the frozen v1 rule. Collection, bounded export and detached arithmetic
+work, but this does not establish a useful positive callback-delivery lag or
+physical display timing. Raw API timestamps are retained without clamping or
+replacement with `performance.now()`.
+
+The [rvfc procedures](https://wicg.github.io/video-rvfc/#procedures) pass the
+rendering-update `now` timestamp into callbacks. This is distinct from taking a
+new clock reading inside the JavaScript callback. The observed negative pairs
+are a runtime limitation of the current API-reported method; the specific browser
+cause has not been established. A different callback-execution measurement needs
+an additive method/version review, not a reinterpretation of frozen v1 events.
+The [runtime ledger](N4_RUNTIME_ACCEPTANCE.md) retains the exact evidence and open
+browser acceptance gate.
+
+## Opt-in execution timing
+
+Set `VITE_N4_STAGE_TRACE_METHOD=execution-v2` alongside tracing enablement and
+rebuild. [Execution method release 1.0.0](N4_BROWSER_EXECUTION_CONTRACT.md) retains
+both original API endpoints and adds one callback-entry clock reading. The player’s
+existing finish/download control exports the matching v2 record/manifest; core
+`ingest-trace`/`inspect-trace` select the explicit version. The original mode stays
+the default, with no additional callback clock read. Browser v2 remains standalone
+and does not change N5 host trace/effect or N2/N3 analytical contracts.

@@ -45,7 +45,9 @@ jobs:
         run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
 
       - name: Reproduce pinned N4 stage traces and independent expectations
-        run: python -m tests.observability.check_reproduction
+        run: |
+          python -m tests.observability.check_reproduction
+          python -m tests.observability.check_browser_execution
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
@@ -142,7 +144,9 @@ jobs:
         run: python -m tests.analytical.check_reproduction
 
       - name: Reproduce pinned N4 stage traces and independent expectations
-        run: python -m tests.observability.check_reproduction
+        run: |
+          python -m tests.observability.check_reproduction
+          python -m tests.observability.check_browser_execution
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction

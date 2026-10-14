@@ -53,7 +53,12 @@ from .models import (
     ProvenanceKind,
     WindowPhase,
 )
-from .observability import StageTraceRecord, StageTraceSummary
+from .observability import (
+    StageTraceRecord,
+    StageTraceRecordV2,
+    StageTraceSummary,
+    StageTraceSummaryV2,
+)
 from .pipeline import build_observation_record, canonical_json
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .scenarios.campaign import (
@@ -71,6 +76,8 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "stage-trace-record-v2": StageTraceRecordV2,
+    "stage-trace-summary-v2": StageTraceSummaryV2,
     "n5-campaign-report-v1": CampaignReport,
     "n4-overhead-report-v1": OverheadReport,
     "n5-campaign-plan-v1": CampaignPlan,
@@ -122,6 +129,8 @@ def _validate(args: argparse.Namespace) -> None:
         "n5-campaign-report-v1",
         "n4-overhead-evidence-v1",
         "n4-overhead-report-v1",
+        "stage-trace-record-v2",
+        "stage-trace-summary-v2",
         "stage-trace-record-v1",
         "stage-trace-summary-v1",
         "experiment-manifest-v1",
@@ -142,6 +151,8 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            StageTraceRecordV2,
+            StageTraceSummaryV2,
             StageTraceRecord,
             StageTraceSummary,
             CampaignReport,

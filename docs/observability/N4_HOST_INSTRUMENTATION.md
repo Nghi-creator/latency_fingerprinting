@@ -68,7 +68,7 @@ counts to event_correlation_dropped without reusing capacity. These rules are
 conservative software association, not proof of real VP8 preservation.
 
 Pad probes also observe SEGMENT and flush events. Each downstream pad must have
-the current source segment sequence before its buffers can join that lifetime.
+the current source segment before its buffers can join that lifetime.
 A source segment transition closes the prior epoch; old queued buffers cannot
 join the new map before their pad transitions. Reused segment keys suspend
 collection. A noninitial source DISCONT flag pauses tracing until a new segment;
@@ -76,6 +76,20 @@ the first-buffer flag is accepted. Clock failure, unrepresentable timestamp or
 regression closes the timing scope with source_error; it never yields a repaired
 cross-reset duration. Gst segment propagation and PTS preservation still need
 real-case verification. [GStreamer probe design](https://gstreamer.freedesktop.org/documentation/additional/design/probes.html).
+
+Live testing on 2026-10-12 found that Gst 1.26.2 VP8 preserved sampled PTS but
+issued a different sequence number for an otherwise identical initial segment.
+The producer now permits one such initial encoder-output event only when the
+pipeline was observed in NULL with no pending transition before registration,
+the source and encoder-input segment have been observed, and their full unit-rate
+TIME descriptions agree with the output. It privately maps that event to the
+source epoch; it never transforms PTS. Playing/unknown installations, later
+output replacements and seek/reset epochs retain the strict sequence guard.
+The mapping survives the existing owned recording handoff without admitting old
+frames. A short native diagnostic produced 110 complete queue/encode pairs and
+zero collector drops; the subsequent full nominal camera case produced 900 pairs
+per 30-second phase, 100% coverage and zero drops. Overhead and special lifecycle
+cases remain pending in the [live ledger](N4_RUNTIME_ACCEPTANCE.md).
 
 ## Teardown and snapshots
 
@@ -105,7 +119,8 @@ strict core N4 validation, without schema/fixture/policy changes. Core focused
 N4/schema/CLI checks pass 109 tests and all twelve schemas reproduce.
 
 A local host GLib loop handles self-SIGTERM and exits/finalizes successfully;
-no X11/VP8 pipeline is involved. Docker/Linux capture is still unavailable here.
+no X11/VP8 pipeline is involved. Docker/Linux capture was unavailable at Step 3. Subsequent actual capture
+results are recorded in the [runtime ledger](N4_RUNTIME_ACCEPTANCE.md).
 No real timing, browser hook, clock synchronization, overhead comparison or
 hosted/container execution is claimed by these tests. Step 4 subsequently delivers
 [browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; [reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.

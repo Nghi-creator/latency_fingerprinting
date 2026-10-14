@@ -18,8 +18,9 @@ The runner requires trusted cooperative runtime hooks with explicit budgets. It
 cannot preempt arbitrary blocking Python/GI code. [Step 5 adapters](N5_SUPPORTED_ADAPTERS.md)
 now supply concrete draining-peer hooks, parked-child identities, bounded TERM/KILL/reap
 and owned worker CPU clocks.
-Software tests exercise these boundaries with fake runtime dependencies; no real
-worker or trial is claimed. The internal execution object is not a public
+The original Step 4 software tests exercised fake runtime dependencies and did
+not establish real workers or trials. Subsequent real acquisitions are recorded
+in the [runtime ledger](N5_RUNTIME_ACCEPTANCE.md). The internal execution object is not a public
 `ExperimentResult`, artifact bundle or verified effect. Private final-release
 watchdog timestamps must not be copied into runner-relative exported evidence.
 
@@ -48,6 +49,9 @@ and API/CLI bytes. Core models/schemas/policies/fixtures are unchanged in Step 4
 **Successor:** [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) delivered.
 **Successor:** [Step 6 export/adoption/inspection](N5_EXPERIMENT_INSPECTION.md) delivered.
 **Successor:** [Step 7 independent fixtures/pins](N5_EXPERIMENT_FIXTURES.md) delivered.
-**Next:** Step 8 real campaigns/closeout.
-[N4 live acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md), measured overhead,
-minimum-version/hosted execution and two real fault classes remain pending.
+**Current:** Step 8 remaining desktop/final hosted acceptance.
+[Current runtime acceptance](N5_RUNTIME_ACCEPTANCE.md) records verified nominal
+capture, selected-workload overhead/lifecycle cases, minimum-version execution
+and the complete passing 18-trial cohort. Browser execution method checks also
+pass locally. Core hosted baseline CI is verified; normal desktop/picker and
+hosted checks of final browser changes in both repos remain open.

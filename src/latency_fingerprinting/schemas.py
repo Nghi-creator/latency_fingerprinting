@@ -29,6 +29,7 @@ from .models import (
     StageTraceRecord,
     StageTraceSummary,
 )
+from .observability.browser_v2 import StageTraceRecordV2, StageTraceSummaryV2
 from .scenarios.campaign_models import CampaignIndex, CampaignPlan, CampaignReport
 from .scenarios.overhead_models import OverheadEvidence, OverheadReport
 from .scenarios.pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
@@ -38,6 +39,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "stage-trace-record-v2.schema.json": StageTraceRecordV2,
+    "stage-trace-summary-v2.schema.json": StageTraceSummaryV2,
     "n5-campaign-report-v1.schema.json": CampaignReport,
     "n4-overhead-report-v1.schema.json": OverheadReport,
     "n5-campaign-plan-v1.schema.json": CampaignPlan,

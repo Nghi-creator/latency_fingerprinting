@@ -67,7 +67,7 @@ Additive commands, independent synthetic fixtures/pins and
 [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
 The [final audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) records repository, shared
 bundle-reader and arithmetic hardening with whole-tree verification.
-Hosted/minimum-version execution remains pending. N3 does not
+Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)). N3 does not
 complete the Phase 1 observability and experiment-foundation work below.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
@@ -82,7 +82,7 @@ baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
 [browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
-[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; normal desktop/picker and final hosted acceptance gates stay open ([runtime ledger](../observability/N4_RUNTIME_ACCEPTANCE.md)). Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. The active [N5 plan](NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3 with a reproduced
 software baseline and [frozen scenario/phase/effect/cleanup contract](../scenarios/N5_EXPERIMENT_CONTRACT.md).
 [Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)

@@ -1,8 +1,10 @@
 # N5 campaign workflow and capture-pacing extension
 
 **Coding status:** implemented; local verification recorded in the progress ledger.
-**Live status:** not run. Docker Desktop on the Mac can provide the Linux engine;
-a separate Linux machine is optional. Record the actual VM/container allocation.
+**Live status:** real Linux acquisitions observed; corrected full campaign in
+progress, complete acceptance pending. Docker Desktop supplies the observed Linux
+engine; a separate Linux machine is optional. See the [runtime ledger](N5_RUNTIME_ACCEPTANCE.md)
+for exact VM/container allocation, retained failures and current outcomes.
 [Original v1 contract](N5_EXPERIMENT_CONTRACT.md), [runtime ledger](N5_RUNTIME_ACCEPTANCE.md).
 
 ## Additive second fault contract

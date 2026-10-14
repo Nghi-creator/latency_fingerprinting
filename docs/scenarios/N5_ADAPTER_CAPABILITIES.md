@@ -10,7 +10,7 @@ inventory, not a runtime dependency or authorization to execute live actions.
 | Scenario enum | Inspected surface | V1 approval/support |
 | --- | --- | --- |
 | `healthy` | Camera draining peer, encoder counters, player trace/research collectors | Approved `none` adapter; lifecycle, actual camera hooks and fixed effect checks delivered in software; Linux availability requires preflight |
-| `host_contention` | Core bounded CPU-pressure helper; producer runtime process ownership and resource telemetry | Approved `bounded_cpu_pressure`, 1–8 workers within observed allocation; durable parked children, pidfd cleanup/recovery, owned CPU clocks and fixed effects delivered in software; live Linux execution pending |
+| `host_contention` | Core bounded CPU-pressure helper; producer runtime process ownership and resource telemetry | Approved `bounded_cpu_pressure`, 1–8 workers within observed allocation; durable parked children, pidfd cleanup/recovery, owned CPU clocks and fixed effects delivered; actual Linux effects verified in campaign-8 |
 | `render_capture_slowdown` | camera.py source is X11; no inspected render/capture delay controller | Unavailable/adapter_not_implemented; do not fabricate from CPU pressure |
 | `encoder_overload` | VP8 stream profiles affect several settings/capture cadence | Unavailable/adapter_not_implemented; profile change alone is not isolated encoder ground truth |
 | `network_delay` | Existing signaling/transport smoke tests | Unavailable/adapter_not_implemented; no dedicated owned shaping namespace inspected |
@@ -72,16 +72,19 @@ and exact restoration in a new reviewed release.
 N5 v1's two approved scenarios contain only one fault class. The roadmap requires
 at least two real single-bottleneck classes with independent repetitions and
 held-out queries; healthy does not count as a bottleneck class. That Phase 1.3 gate
-stays open until additional controls are approved/implemented and real evidence
-exists. V1 cannot claim completion from synthetic runs or one host pressure case.
+is met by the additive v2 capture-pacing extension and complete real campaign-8
+below. V1 alone cannot claim completion from synthetic runs or one host pressure case.
 
 [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) still requires
 its ≥500 pairs, ≥95% correlation, nominal/loss/restart/two-peer/browser trials,
 five paired overhead trials and diagnostic/export measurements. N5 effect thresholds
-do not replace or relax those separate gates. Docker/Linux runtime, actual Node 24,
-Python 3.11 and hosted verification remain unavailable/unverified in local evidence.
+do not replace or relax those separate gates. The [current runtime ledger](N5_RUNTIME_ACCEPTANCE.md) now records actual Docker
+Linux/Node 24 execution, Python 3.11 local verification, nominal capture and
+overhead/lifecycle results. Campaign-8 passes all 18 trials and selected-scene
+overhead also passes. Core baseline hosted CI is verified; browser execution method checks now pass
+locally. Desktop interaction and hosted checks of final browser changes remain open.
 
-## Step 4 implementation handoff
+## Historical Step 4 implementation handoff
 
 [Producer lifecycle and fresh recording control](N5_RUN_LIFECYCLE.md) are now
 delivered in software with fake-runtime tests. [Concrete camera/CPU adapters](N5_SUPPORTED_ADAPTERS.md),
@@ -95,6 +98,7 @@ reset/control, actual Linux capture and overhead remain runtime acceptance work.
 through experiment-v2 roots and `n5-capture-pacing-v1`, preserving this frozen v1
 matrix. The bounded owned identity-element delay has measured integer stage-delay,
 FPS and restoration predicates, a watchdog and independent regression checks.
-Both real fault classes remain unverified until live trials. Campaign entry,
+Both real fault classes are now verified across the complete fresh 18-trial
+campaign-8. Campaign entry,
 frozen source assignments, overhead collection and detached reports are also
 delivered in this extension; source/workload independence is externally verified.

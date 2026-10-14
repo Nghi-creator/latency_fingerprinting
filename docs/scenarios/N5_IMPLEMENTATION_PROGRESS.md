@@ -1,8 +1,25 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-12. **Status:** library and end-to-end coding workflows delivered; real runtime acceptance remains pending.
+**Updated:** 2026-10-14. **Status:** library and end-to-end coding workflows delivered; real runtime acceptance remains pending.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
+
+## Subsequent actual execution, 2026-10-13
+
+[Runtime ledger](N5_RUNTIME_ACCEPTANCE.md) and [execution record](../../experiments/n5-runtime-20261013/README.md)
+record the real Linux acquisitions, retained failed/canceled cohorts, verified
+nominal/overhead/lifecycle checks and browser timestamp limitation. Core 3.13 and
+minimum 3.11.17 now each pass 2,003 tests (93.52%/93.60% coverage respectively)
+and frozen pins; actual Linux
+producer checks pass 78 scenario and 58 trace tests. Node 24.18.1 engine checks
+pass 135 with one existing artifact skip; the standard native image builds.
+Subsequent calibration selects `workload-4`; fresh campaign-8 passes all 18
+reference/query trials and repeated-effect criteria. Selected-scene overhead
+campaign-9 also passes. Exact core hosted quality/minimum-Python jobs are
+verified; Pixelated hosted CI and desktop interaction remain unverified. The additive browser execution method is now implemented and locally live
+validated, with original v1 bytes preserved. Normal desktop/picker interaction
+and hosted checks for final changes in both repos remain open. Earlier step sections below retain historical counts and
+then-pending runtime gates.
 
 ## Step 1 — Baseline and ownership inventory
 

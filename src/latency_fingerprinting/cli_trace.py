@@ -26,11 +26,13 @@ def _inspect_trace(args):
 
 
 def register_trace_commands(subparsers):
-    parser = subparsers.add_parser("ingest-trace", help="adopt a standalone v1 stage trace")
+    parser = subparsers.add_parser("ingest-trace", help="adopt a standalone v1/v2 stage trace")
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.set_defaults(handler=_ingest_trace)
-    inspect = subparsers.add_parser("inspect-trace", help="reconstruct same-domain v1 stage timing")
+    inspect = subparsers.add_parser(
+        "inspect-trace", help="reconstruct same-domain v1/v2 stage timing"
+    )
     inspect.add_argument("--trace", type=Path, required=True)
     inspect.add_argument("--output", type=Path, required=True)
     inspect.set_defaults(handler=_inspect_trace)

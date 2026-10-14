@@ -14,7 +14,7 @@ The [trace contract](observability/N4_TRACE_CONTRACT.md),
 validation, [opt-in host hooks](observability/N4_HOST_INSTRUMENTATION.md),
 [browser collection](observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace adoption](observability/N4_TRACE_ADOPTION.md) and
-[timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real capture/overhead acceptance remains pending. The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
+[timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; final desktop/hosted acceptance remains open ([runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)). The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
 ## Current implemented references
@@ -31,11 +31,16 @@ places the active scenario harness in Phase 1.3 and scientific evaluation later.
 | N5 scenarios | [Active plan](plans/NEXT_IMPLEMENTATION_PLAN.md), [progress](scenarios/N5_IMPLEMENTATION_PROGRESS.md), [models/validation](scenarios/N5_EXPERIMENT_MODELS.md), [producer lifecycle](scenarios/N5_RUN_LIFECYCLE.md), [supported adapters/effects](scenarios/N5_SUPPORTED_ADAPTERS.md) |
 | Verification | [Quality gates](measurement/QUALITY_GATES.md), [N1 fixtures](measurement/ARITHMETIC_FIXTURES.md), [N2 fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [N3 fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [N4 fixtures/integration](observability/N4_INTEGRATION_VERIFICATION.md) |
 
-N2 stage timing remains unavailable. N4 delivers two additive trace schemas and
+N2 stage timing remains unavailable. N4 delivers versioned trace schemas and
 host/browser hooks, trace artifact adoption and offline timing reconstruction.
-N3 policy parameters remain provisional. Current local suite passes 1,900
-tests with 93.91% branch-inclusive coverage; actual hosted/minimum-version,
-full-limit scaling and scientific validation remain pending.
+N3 policy parameters remain provisional. Current Python 3.11/3.13 suites each
+pass 2,003 tests with 93.60%/93.52% branch-inclusive coverage respectively. Core
+hosted baseline quality/minimum-Python jobs pass; final browser changes still
+require hosted verification. N5’s fresh cohort verifies 18/18 trials and
+selected-scene overhead passes. The opt-in browser execution method also passes
+local live checks. Normal Pixelated desktop interaction, final hosted CI in both
+repos, full-limit scaling and scientific validation
+remain pending; see the [runtime ledger](scenarios/N5_RUNTIME_ACCEPTANCE.md).
 
 ## Historical evidence
 
