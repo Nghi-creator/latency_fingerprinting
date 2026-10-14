@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml/badge.svg)](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml)
 
-This repository contains the detached Python research core, completed P0/N1–N3 foundations and the active N4 stage-observability plan. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
+This repository contains the detached Python research core, completed P0/N1–N3 foundations and the active N5 scenario-harness plan. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
 
 ## P0 objective
 
@@ -25,7 +25,8 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
 5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
-7. [N4 stage-level observability](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is the active implementation plan; Steps 0–6 and Step 7 synthetic integration are complete locally; real capture/overhead acceptance remains pending.
+7. [N4 stage-level observability](docs/plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) is complete in software; [runtime acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md) remains pending.
+8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; Steps 1–7 are complete locally; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open.
 8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
@@ -91,11 +92,12 @@ latency-fingerprint inspect-measurements path/to/bundle.tar \
 
 [Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
 in with independent expected summaries and read-only drift checks.
-[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N4
+[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The latest local suite passes **1,745 tests with 93.69% branch-inclusive
-coverage**; actual Python 3.11/hosted verification remains pending.
+The latest suites pass **2,003 tests** on Python 3.13 (93.52% coverage) and actual
+Linux Python 3.11 (93.60%). Core hosted baseline CI is verified; final browser
+changes still require hosted checks in both repos.
 
 Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
 [approved provisional policy](docs/analysis/N3_FEATURE_POLICY_SPEC.json),
@@ -103,17 +105,17 @@ Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_C
 [fingerprints/repositories](docs/analysis/N3_FINGERPRINTS.md), [commands](docs/analysis/N3_COMMANDS.md)
 and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 
-**Current: [N4 acceptance](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).** Software
-Steps 0–6 and Step 7 synthetic integration are complete locally: strict trace
-models, bounded host/browser instrumentation, standalone export/adoption and
-same-domain timing inspection. The [software closeout](docs/observability/N4_SOFTWARE_CLOSEOUT.md)
-and [health audit](docs/observability/N4_ARCHITECTURE_AUDIT.md) record the evidence.
-Next run the [real capture and overhead gates](docs/observability/N4_INTEGRATION_VERIFICATION.md)
-in the required Linux runtime. Full N4 acceptance remains pending. The Phase 1.3
-scenario harness follows separately; N2 timing and N3 matching meanings stay frozen.
+**Current: [N5 reproducible scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).**
+[Steps 1–7](docs/scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
+locally. The [experiment contract](docs/scenarios/N5_EXPERIMENT_CONTRACT.md),
+[adapter/effect criteria](docs/scenarios/N5_ADAPTER_CAPABILITIES.md) and
+[independent examples](docs/scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen;
+[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes. The additive browser execution method also passes local software/live validation; final desktop/picker and hosted checks remain open. N4 trace models, instrumentation, export/adoption
+and inspection remain delivered; [real acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md)
+is carried forward explicitly. Existing N2 timing and N3 matching meanings stay frozen.
 
 Completed milestone records are in the [documentation archive](docs/archive/README.md),
-and completed N1–N3 plans are in the [plan archive](docs/plans/archive/README.md).
+and archived N1–N4 software plans are in the [plan archive](docs/plans/archive/README.md).
 Their results and pending checks remain historical evidence. The
 [current documentation index](docs/README.md) separates active work, implemented
 reference guides and archived records.
@@ -167,10 +169,18 @@ for subsequent captures.
   mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
 
 The current implementation sequence and exit gates are in the
-[N4 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
+[N5 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
 the finished engine is maintained in the
 [`full implementation plan`](docs/plans/FULL_IMPLEMENTATION_PLAN.md).
 
 Inspectable software examples are linked from
 [`P0_SOFTWARE_CLOSEOUT.md`](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
 an engineering similarity measure, not probability or calibrated confidence.
+
+The [N5 campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) adds capture pacing,
+frozen acquisition schedules and real overhead collection/inspection tools. These
+are implemented and live-validated. The [execution record](experiments/n5-runtime-20261013/README.md)
+retains passing campaign/overhead results and earlier failures; the
+[browser execution method](experiments/n5-browser-execution-20261014/README.md)
+also passes local live checks. Normal desktop/picker interaction and hosted
+verification of final changes remain pending; N5/Phase 1 are not closed.

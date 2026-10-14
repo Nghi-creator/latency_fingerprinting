@@ -1,7 +1,7 @@
 # N3 software closeout
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 **Slice:** N3 — V2 analytical features and offline fingerprint/matching
 **Closed locally:** 2026-10-08
@@ -66,7 +66,7 @@ unavailable under N2's explicit timing contract.
 
 N3 is locally closed out. Its [archived implementation plan](../../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 retains completed gates and the pending hosted item. The active
-[N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) addresses stage-level observability
+[N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) addresses stage-level observability
 without changing N2/N3 meanings. The [broader roadmap](../../plans/FULL_IMPLEMENTATION_PLAN.md)
 still has Phase 1 scenario-harness work and later scientific evaluation. N4 is
 planned, not implemented.

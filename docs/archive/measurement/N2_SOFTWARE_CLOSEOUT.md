@@ -1,7 +1,7 @@
 # N2 software closeout
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 **Slice:** N2 — Additive observation-v2 contracts and offline adoption
 **Closed locally:** 2026-10-07

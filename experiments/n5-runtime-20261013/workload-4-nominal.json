@@ -1,0 +1,34 @@
+[
+  {
+    "phase": "healthy",
+    "frames": 900,
+    "queue_pairs": 900,
+    "encode_pairs": 900,
+    "joint_pairs": 900,
+    "drops": 0
+  },
+  {
+    "phase": "degraded",
+    "frames": 900,
+    "queue_pairs": 900,
+    "encode_pairs": 900,
+    "joint_pairs": 900,
+    "drops": 0
+  },
+  {
+    "phase": "probe",
+    "frames": 900,
+    "queue_pairs": 900,
+    "encode_pairs": 900,
+    "joint_pairs": 900,
+    "drops": 0
+  },
+  {
+    "phase": "recovery",
+    "frames": 900,
+    "queue_pairs": 900,
+    "encode_pairs": 900,
+    "joint_pairs": 900,
+    "drops": 0
+  }
+]

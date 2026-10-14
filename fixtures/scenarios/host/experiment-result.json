@@ -1,0 +1,162 @@
+{
+  "actions": [
+    {
+      "action_id": "action-1",
+      "reason": null,
+      "started_ns": 40000000000,
+      "state": "stopped",
+      "stopped_ns": 100000000000
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-1",
+      "bytes": 2091,
+      "file_name": "artifact-1.json",
+      "phase": "warmup",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "35dfd05c3a9b5884b75646ab0bc84bd267a5e97b6a4b7fe8657070aef1b43380"
+    },
+    {
+      "artifact_id": "artifact-2",
+      "bytes": 5691,
+      "file_name": "artifact-2.json",
+      "phase": "healthy",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "b154923a1009fbfb25784c8aff6bc81ea74728925e6035e74365b910c860c923"
+    },
+    {
+      "artifact_id": "artifact-3",
+      "bytes": 5979,
+      "file_name": "artifact-3.json",
+      "phase": "degraded",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "93d57a404c83a95ded3c75941b32838ff4698e3206ce77d6c04184d6443e8da3"
+    },
+    {
+      "artifact_id": "artifact-4",
+      "bytes": 5978,
+      "file_name": "artifact-4.json",
+      "phase": "probe",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "d033474162b15cd7bdd199f3ea44201a2c97ff939c523fed5c515ac070ae7189"
+    },
+    {
+      "artifact_id": "artifact-5",
+      "bytes": 5801,
+      "file_name": "artifact-5.json",
+      "phase": "recovery",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "e94a346ff3b67ac20aa4d5909e3989a72037d1599881fdc0926067f57ac5b3fd"
+    },
+    {
+      "artifact_id": "artifact-6",
+      "bytes": 2181,
+      "file_name": "artifact-6.json",
+      "phase": "cooldown",
+      "role": "phase_evidence",
+      "schema_version": "experiment-phase-evidence-v1",
+      "sha256": "dc09f31939961dba34917d7a5deb6ca7f357794c5d5b6ca1d323374d73f03ab6"
+    },
+    {
+      "artifact_id": "artifact-7",
+      "bytes": 3630,
+      "file_name": "artifact-7.json",
+      "phase": "healthy",
+      "role": "stage_trace",
+      "schema_version": "stage-trace-record-v1",
+      "sha256": "3be96af76e95d816ea7cec787f75d88fc59d0af30f3441bf292e743090af80a2"
+    },
+    {
+      "artifact_id": "artifact-8",
+      "bytes": 3630,
+      "file_name": "artifact-8.json",
+      "phase": "degraded",
+      "role": "stage_trace",
+      "schema_version": "stage-trace-record-v1",
+      "sha256": "0cb8528d84225e78cd37015b1394083cb508916f3008c1d57826ab452e50be82"
+    },
+    {
+      "artifact_id": "artifact-9",
+      "bytes": 3630,
+      "file_name": "artifact-9.json",
+      "phase": "probe",
+      "role": "stage_trace",
+      "schema_version": "stage-trace-record-v1",
+      "sha256": "0cb8528d84225e78cd37015b1394083cb508916f3008c1d57826ab452e50be82"
+    },
+    {
+      "artifact_id": "artifact-10",
+      "bytes": 3630,
+      "file_name": "artifact-10.json",
+      "phase": "recovery",
+      "role": "stage_trace",
+      "schema_version": "stage-trace-record-v1",
+      "sha256": "3be96af76e95d816ea7cec787f75d88fc59d0af30f3441bf292e743090af80a2"
+    }
+  ],
+  "cleanup": {
+    "ended_ns": 101000000000,
+    "owned_workers_remaining": 0,
+    "reason": null,
+    "started_ns": 100000000000,
+    "state": "restored"
+  },
+  "effect": {
+    "degraded_fps": 24.0,
+    "healthy_fps": 30.0,
+    "pressure_cpu_percent": 60.0,
+    "reason": null,
+    "recovery_fps": 30.0,
+    "state": "verified"
+  },
+  "manifest_sha256": "f661ad6fc3f2e0f32d2916fb30e06c3b4d543b8b271aa48dd465783b8ccf8d20",
+  "method_release": "n5-single-cause-v1",
+  "phases": [
+    {
+      "end_ns": 10000000000,
+      "phase": "warmup",
+      "start_ns": 0,
+      "state": "complete"
+    },
+    {
+      "end_ns": 40000000000,
+      "phase": "healthy",
+      "start_ns": 10000000000,
+      "state": "complete"
+    },
+    {
+      "end_ns": 70000000000,
+      "phase": "degraded",
+      "start_ns": 40000000000,
+      "state": "complete"
+    },
+    {
+      "end_ns": 100000000000,
+      "phase": "probe",
+      "start_ns": 70000000000,
+      "state": "complete"
+    },
+    {
+      "end_ns": 131000000000,
+      "phase": "recovery",
+      "start_ns": 101000000000,
+      "state": "complete"
+    },
+    {
+      "end_ns": 141000000000,
+      "phase": "cooldown",
+      "start_ns": 131000000000,
+      "state": "complete"
+    }
+  ],
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-result-v1",
+  "status": "completed"
+}

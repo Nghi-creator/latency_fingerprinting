@@ -114,3 +114,14 @@ acceptance and measured overhead. Live browser/picker interaction, synchronized
 one-way latency, hosted/minimum-version execution and real capture are not
 established by this software. N4 remains incomplete until its acceptance gates
 are met or explicitly retained as pending in a software closeout.
+
+## Additive callback execution result
+
+For [browser trace v2](N4_BROWSER_EXECUTION_CONTRACT.md), `reconstruct_trace` and
+`inspect-trace` retain the four original method results and append
+`presentation-execution-lag` (version 1). Each callback's entry endpoint is paired
+only with its own reported submission in the same stream/epoch/clock. API and
+entry results have independent missing/negative exclusions; a missing entry does
+not remove a usable API pair. Both use integer deltas with independently checked
+statistics. The new summary is explicitly `stage-trace-summary-v2`; no N2/N3 or
+N5 host effect behavior changes.

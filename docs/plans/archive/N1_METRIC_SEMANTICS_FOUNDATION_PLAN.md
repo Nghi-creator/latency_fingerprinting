@@ -1,7 +1,7 @@
 # Archived N1 Implementation Plan: Metric Semantics Foundation
 
 > Historical completed plan; implementation statements below retain their milestone context.
-> N1–N3 are complete locally. The [active N4 plan](../NEXT_IMPLEMENTATION_PLAN.md)
+> N1–N3 are complete locally. The [archived N4 plan](N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
 > now covers stage-level observability; hosted verification remains separately pending.
 
 **Slice ID:** N1

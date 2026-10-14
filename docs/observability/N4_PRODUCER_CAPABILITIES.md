@@ -5,8 +5,8 @@
 **Definition:** [Trace contract](N4_TRACE_CONTRACT.md).
 **Delivery status:** Step 3 [host hooks](N4_HOST_INSTRUMENTATION.md) implemented locally.
 The inventory below records inspected starting behavior; [browser hooks](N4_BROWSER_INSTRUMENTATION.md)
-are now delivered as Step 4 software. Real capture
-and overhead verification remain pending.
+are now delivered as Step 4 software. Real nominal capture, overhead and host lifecycle cases now pass; consult the
+[runtime ledger](N4_RUNTIME_ACCEPTANCE.md) for remaining full-acceptance gates.
 
 Paths in this document are relative to the sibling `Pixelated-Studio-Edition`
 repository. They identify integration locations, not dependencies the Python core
@@ -117,6 +117,8 @@ It explains collector cost; it cannot substitute for paired process/throughput
 measurements. Export/write time stays outside pad callbacks but is reported
 separately. No unmeasured performance claim or hardware-encoder certification.
 
-Docker is unavailable on the current macOS host. Step 0 found Gst factories,
-which does not satisfy these gates. Missing runtime keeps real integration and
-measured overhead pending even after software Steps 2–6 pass.
+The initial macOS inventory found factories but no usable Docker CLI on PATH.
+Subsequent execution uses the installed Docker Desktop Linux VM; the nominal
+900-pair/100%-coverage/zero-drop case is observed. See the [runtime ledger](N4_RUNTIME_ACCEPTANCE.md)
+for current measured outcomes and remaining gates. Factory discovery alone does
+not satisfy the criteria above.

@@ -1,4 +1,27 @@
-# N1–N4 quality and CI gates
+# N1–N5 quality and CI gates
+
+## Latest actual verification, 2026-10-14
+
+Core Python 3.13 now passes 2,003 tests with 93.52% coverage, including the
+additive browser execution method and independent fixture release. Actual Linux
+Python 3.11.17 passes 2,003 tests/93.60%, Ruff/format, dependency checks,
+all 25 schemas, registry and frozen N1/N2/N3/N4/N5/P0 seed reproduction. Producer
+Linux scenario/trace suites pass 78/58 tests with no Linux skip; actual Node 24.18.1
+engine execution passes 135 tests with one existing external-artifact skip.
+The standard native image build succeeds. Real nominal capture, five-pair
+overhead and host lifecycle/isolation checks pass. Fresh campaign-8 verifies all
+18 trials and repeated-effect criteria; selected-scene overhead campaign-9 also
+passes. The opt-in browser execution method passes local live checks; actual Node 24
+also passes all 259 web tests. Web lint and default/opt-in production builds pass.
+Normal desktop/picker interaction and final hosted checks remain open. Hosted core CI for exact commit
+`bc6f42b` is now verified: quality and Python 3.11 jobs both succeed ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json));
+that hosted run predates the browser changes; final hosted verification is
+required in both repos.
+[Execution record](../../experiments/n5-runtime-20261013/README.md) and
+[current runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) retain exact evidence.
+The checkpoint sections below are historical software/test records; their counts
+and then-pending gates are not current runtime status.
+
 
 [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) preserves the existing
 P0 checks and extends both Python 3.13 and 3.11 jobs with explicit branch-inclusive
@@ -110,9 +133,9 @@ checks pass locally. Historical milestone counts and audit findings remain in th
 [archive](../archive/README.md), including the
 [final N3 audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md).
 
-The active [N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) has reproduced
+The archived [N4 plan](../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) has reproduced
 this baseline and the applicable Pixelated producer gates in
-[Step 0](../observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
+[Step 0](../archive/observability/N4_IMPLEMENTATION_PROGRESS.md). Step 1 freezes the
 [additive trace contract](../observability/N4_TRACE_CONTRACT.md) and
 [real-capture/overhead criteria](../observability/N4_PRODUCER_CAPABILITIES.md).
 N4 Step 2 delivers [strict models and generic validation](../observability/N4_TRACE_MODELS.md),
@@ -145,13 +168,13 @@ python -m tests.observability.check_reproduction
 Both configured Python CI jobs run this independent N4 gate. The optional actual
 producer export check and frozen real/overhead procedure are in the
 [N4 integration guide](../observability/N4_INTEGRATION_VERIFICATION.md). See the
-[software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) for both repository
+[software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) for both repository
 results and pending real/minimum-version/hosted gates. N1–N3 pins and controlled
 P0 artifacts remain unchanged.
 
 ## Post-N4 software health check
 
-[Cross-repository audit](../observability/N4_ARCHITECTURE_AUDIT.md): **1,745 core tests /
+[Cross-repository audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md): **1,745 core tests /
 93.69% branch-inclusive coverage**. Six new core cases cover descriptor ownership
 on stream/cleanup failures and optional producer reproduction success/missing/wrong
 archives. Pixelated full workspace: 714 passing Node tests, one existing artifact
@@ -160,6 +183,164 @@ checks and production web build pass. Thirteen new browser cases reject line-ter
 and invalid provenance before stopping collection.
 
 All schemas, registry/policy and P0/N1/N2/N3/N4 reproduction pins are preserved.
-The active next step remains real N4 acceptance, including a fresh recording after
+The inherited runtime gate remains real N4 acceptance, including a fresh recording after
 warm-up and all paired overhead trials. Actual Python 3.11/producer Node 24 and
 hosted execution remain pending; local tests ran with core Python 3.13 and Node 26.
+
+## N5 Step 1 baseline
+
+[Baseline/inventory](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) reproduces 1745 core
+tests / 93.69% branch coverage, all preservation gates, 714 producer tests with one
+existing artifact skip and 42 nested Python trace cases. Lint, dependency/lockfile
+checks, API TypeScript checks and web build pass. This step changes documentation
+and archives N4 software records; it introduces no runtime harness or fault trial.
+[Inherited N4 real acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) and actual
+minimum-version/hosted execution remain pending.
+
+## N5 Step 2 specification
+
+[Contract](../scenarios/N5_EXPERIMENT_CONTRACT.md),
+[capabilities](../scenarios/N5_ADAPTER_CAPABILITIES.md) and
+[independent examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) freeze the additive
+experiment roots and bounded lifecycle/effect/cleanup meanings. This step is
+specification only; Step 1 suite counts are unchanged historical baseline evidence.
+No schema, runtime code, fixture pin or actual measurement changed. Strict models
+and independent validation regressions are Step 3.
+
+
+## N5 Step 3 strict records and validation
+
+[Models/commands](../scenarios/N5_EXPERIMENT_MODELS.md) deliver three additive
+roots, schema exports and bounded generic validation. The final full core suite
+passes **1900 tests / 93.91% branch-inclusive coverage** with 155 independent N5
+regressions under Python 3.13.13; the existing 85% floor remains unchanged.
+Ruff lint/format, dependency consistency, all fifteen schemas and unchanged
+registry/P0/N1/N2/N3/N4 reproduction pass. Prior twelve schema bytes, fixture pins,
+policy, controlled roots/probes, run-001 seed and exact run-002 match are preserved.
+Both trees pass documentation-link and whitespace checks. Producer code is
+unchanged; Step 1 producer suite/build counts remain historical.
+
+Standalone roots verify intrinsic consistency; artifact hashes, linked worker/
+clock/phase ownership and effect recomputation remain Step 6. At the Step 3 handoff, lifecycle/recording control were next; their subsequent
+Step 4 delivery is recorded below. Synthetic validation does not pass Linux trials,
+N4 capture/overhead, actual minimum-version/hosted execution or the two real fault
+classes required for Phase 1.3. See [progress](../scenarios/N5_IMPLEMENTATION_PROGRESS.md).
+
+
+## N5 Step 4 producer lifecycle and fresh collectors
+
+[Producer lifecycle/control](../scenarios/N5_RUN_LIFECYCLE.md) delivers the
+cooperative scheduler, exclusive private journal/recovery and actual local camera
+recording API with fake-runtime dependencies. Final producer suite passes **716
+Node tests**, one existing external-artifact engine skip, plus **70 nested Python
+cases** (50 trace/control, 20 lifecycle/lease). Whole-workspace lint/lockfiles,
+final engine lint/build, Python syntax and focused Ruff checks pass. Both runtime
+image COPY lists are checked; no container build was performed.
+
+Actual synthetic N4 producer exporters reproduce all pinned records/summaries
+through core APIs and CLI. Core schemas/lint remain current; no core code,
+policy/registry/schema bytes or fixtures changed. Step 3's 1900 tests/93.91% is the
+historical last full core run. API typecheck/production web build from Step 1 were
+not rerun separately for these Python/engine changes.
+
+At the Step 4 handoff, native/process/workload adapters and effects remained
+Step 5; their software delivery is recorded below. Hooks must
+cooperate with their budgets; the runner cannot preempt arbitrary blocking code.
+No actual Linux capture, real pressure, measured rotation/overhead, minimum-version
+or hosted evidence was collected. [N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md)
+and two real fault classes remain pending. Both repositories' current docs and
+whitespace checks pass.
+
+
+## N5 Step 5 supported adapters and fixed effects
+
+[Concrete adapter/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) deliver
+read-only actual camera preflight, durable parked native children, pidfd generation
+checks/cleanup/recovery, owned process CPU clocks and integer effect predicates.
+Full producer suite passes 716 Node tests (one existing engine artifact skip);
+final engine verification includes 100 passing Python cases and one Linux-only
+idle-child integration skip. Lint/lockfiles, engine build, focused Python Ruff and
+syntax checks pass. No actual CPU pressure was executed by these checks.
+
+All 155 focused core N5 model tests, core reproduction modules and actual synthetic
+N4 producer→core API/CLI reproduction pass; all fifteen schemas remain current. Core source and frozen
+schema/registry/policy/fixture bytes are unchanged. Step 3's 1900/93.91% remains
+historical. Linux capture, native idle-child execution on this Mac, real faults,
+N4 overhead, minimum-version/hosted gates and two real fault classes stay pending.
+Step 6 must export/check hashes and independently inspect linked experiment roots;
+private producer effect calculation alone is not detached acceptance.
+
+## N5 Step 6 export and linked inspection
+
+[Experiment export/inspection](../scenarios/N5_EXPERIMENT_INSPECTION.md) delivers
+bounded producer bundles, independent detached hash/ownership/effect verification
+and the private atomic `inspect-experiment` command. Earlier Step 3–5 entries are
+historical handoffs; their Step 6 requirements are delivered here.
+
+Full core verification: **1,932 passed, 93.67% coverage**. Seven added edge cases
+pass in the final **39-case** focused bundle suite, bringing distinct verified core
+tests to **1,939** and combined coverage to **93.77%**. Core Ruff and frozen
+schema/registry/P0/N1/N2/N3/N4 reproduction checks pass unchanged. Producer full
+checks pass **716 Node tests**, with one external-artifact skip; nested Python
+checks pass **106 cases**, with one additional Linux-only idle-child skip.
+Workspace lint and focused new Python Ruff/format checks pass.
+
+Actual synthetic producer collectors/exporters pass core API/CLI for six cases:
+healthy, host contention, failed pressure, unsupported runtime, missing traces and
+unknown cleanup timing. Actual N4 host/browser/unavailable producer exports still
+reproduce their frozen records/summaries through API/CLI. No release pin was
+refreshed. Independent N5 release fixtures and a durable reproduction command are
+Step 7. Live capture/fault campaigns, overhead and inherited runtime gates remain
+pending; software hashes cannot establish source independence or scientific truth.
+
+## N5 Step 7 independent fixture release and reproduction
+
+[Fixture release 1.0.0](../scenarios/N5_EXPERIMENT_FIXTURES.md) delivers eight synthetic
+success/failure/partial/unavailable cases, 80 JSON files (280,156 bytes), independent
+expectations and read-only exact inventory/byte pins. Actual producer fresh
+collectors/export reproduce every uncompressed member and core API/CLI result for
+all eight cases. Producer content-map digests and both configured core CI jobs guard
+reproduction; no pin update mode or earlier release refresh exists.
+
+Full core suite: **1,950 passed, 93.77% branch-inclusive coverage**. Producer full
+suite: **716 Node passed**, one existing external-artifact skip; nested Python:
+**109 passed**, one Linux-only idle-child skip. Ruff/format, workspace lint/lockfiles,
+engine build, API typecheck, production web build, core dependency consistency,
+fifteen schemas, registry, P0/N1/N2/N3/N4 reproduction and both repo doc/whitespace
+checks pass locally. Hosted, actual minimum-version, container, live capture/fault
+and overhead acceptance remain unverified. Step 8 is the remaining planned step;
+healthy plus one CPU class cannot meet Phase 1.3's two real bottleneck-class gate.
+
+## N5 Step 8 software closeout and pending real trials
+
+[Software closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) records the actual Step 7
+local suite/build outcomes without claiming a documentation-only full rerun.
+Closeout N5 fixture, fifteen-schema, registry and both-repository documentation
+link/whitespace checks pass. The actual adapter preflight on Darwin returns
+runtime_unavailable with no resources acquired. Docker is absent and no Linux
+connection/testbed or N5 real campaign artifacts are available. A hung local
+GStreamer version probe was terminated without a successful version/capture claim.
+
+[Runtime acceptance](../scenarios/N5_RUNTIME_ACCEPTANCE.md) keeps concrete live
+dependencies, per-trial/assignment requirements, the missing second fault class,
+inherited N4 capture/correlation/overhead and actual minimum-version/container/hosted
+checks open. No synthetic evidence closes these gates. Local software closeout is
+recorded; Step 8 real acceptance, N5 and Phase 1 remain incomplete.
+
+## N5 end-to-end coding workflow extension
+
+[Campaign workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) delivers additive capture
+pacing, opt-in desktop/container/camera entry, predeclared acquisitions/assignments,
+private cancellation/replay/cleanup safeguards and real overhead collection/report
+commands. Local full core verification passes **1,978 tests at 93.48% coverage**;
+producer full verification passes **718 Node tests**, with the existing artifact
+skip. Final nested checks pass **129 Python cases**, with one Linux idle-child skip.
+The final added CLI check is included in a subsequent engine-wrapper verification.
+
+Ruff/format, workspace lint, desktop/engine builds, 23 schema/registry checks and
+original v1 pinned actual producer reproduction pass. Actual synthetic pacing
+exports pass independent core API/CLI for success, unobserved delay and unknown
+cleanup. Earlier contract/policy/fixture bytes remain unchanged. No live fault,
+capture, container image, hosted or actual minimum-version execution was run.
+The operator procedure is ready; real N4/N5/source-independence acceptance stays
+pending until that procedure and all special/browser cases are executed.

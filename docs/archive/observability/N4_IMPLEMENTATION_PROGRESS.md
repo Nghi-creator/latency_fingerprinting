@@ -1,9 +1,11 @@
 # N4 implementation progress
 
+**Archived:** 2026-10-10 at the transition to [N5](../../plans/NEXT_IMPLEMENTATION_PLAN.md). Software results remain historical; pending real/minimum-version/hosted gates are not cleared.
+
 **Slice:** Stage-level observability
 **Started locally:** 2026-10-09
 **Status:** Steps 0–6 and Step 7 software complete locally; real acceptance pending
-**Plan:** [N4 implementation plan](../plans/NEXT_IMPLEMENTATION_PLAN.md)
+**Plan:** [N4 implementation plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
 
 ## Step 0 — Preserve and reproduce the post-N3 baseline
 
@@ -119,15 +121,15 @@ Completed locally, 2026-10-09, from core commit
 `8ef1b5fe5cd1e93bed97945a949f7ee36361c9cc` and unchanged producer commit
 `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`. Both trees were clean at this step's start.
 
-- [Normative trace contract](N4_TRACE_CONTRACT.md): two additive v1 roots, closed
+- [Normative trace contract](../../observability/N4_TRACE_CONTRACT.md): two additive v1 roots, closed
   release/methods, safe export-local identities, separate lifetime clocks, exact
   boundary/correlation meanings, bounded sampling/loss, canonical hash-verified
   artifact layout and proposed offline commands.
-- [Producer capability matrix](N4_PRODUCER_CAPABILITIES.md): inspected actual
+- [Producer capability matrix](../../observability/N4_PRODUCER_CAPABILITIES.md): inspected actual
   host queue/VP8 boundaries, per-peer pipelines, browser polling/getStats and v2
   export. No synchronized engine/browser identity, capture-start, wire-send or
   physical-display evidence is assumed.
-- [Independent examples](N4_TRACE_EXAMPLES.md): same-clock positive/zero/missing/
+- [Independent examples](../../observability/N4_TRACE_EXAMPLES.md): same-clock positive/zero/missing/
   negative pairs, budget equality/negative slack, browser callback lag, sampling
   and loss accounting, plus rejection cases.
 
@@ -151,7 +153,7 @@ Hooks, CLI commands, producer artifacts and timing reconstruction remain pending
 
 ## Step 2 — Strict additive models/schemas
 
-Completed locally, 2026-10-09. [Trace models/validation](N4_TRACE_MODELS.md) are
+Completed locally, 2026-10-09. [Trace models/validation](../../observability/N4_TRACE_MODELS.md) are
 delivered in a focused observability package and exported through the existing
 model API. Generic validate recognizes snake_case trace roots; existing roots
 keep their aliases and outputs. Schema exports add record-v1 and summary-v1,
@@ -192,7 +194,7 @@ Pixelated Studio Edition, with correlation, teardown and exact loss tests.
 Completed software locally, 2026-10-09. Starting core commit
 `012fc03c3786aef2822970508b9ba2266759392a`; producer base remains
 `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`. Both trees were clean before this step.
-[Host integration guide](N4_HOST_INSTRUMENTATION.md) records enablement and limits.
+[Host integration guide](../../observability/N4_HOST_INSTRUMENTATION.md) records enablement and limits.
 
 Producer changes: three focused stdlib helper modules, camera integration, runtime
 image COPY lists, automatic Python regression invocation in the existing engine
@@ -245,7 +247,7 @@ WebRTC metrics and unavailable cross-producer latency.
 Completed software locally, 2026-10-09, from core commit
 `ba9e559fe836b31f69e20d83ca7ffcdc24ee412d`. The core started clean; producer base
 remains `37e50fb7ef919564aba5796af35dbcdc1fc70f3b`, with the Step 3 host changes
-already present and preserved. [Browser integration guide](N4_BROWSER_INSTRUMENTATION.md)
+already present and preserved. [Browser integration guide](../../observability/N4_BROWSER_INSTRUMENTATION.md)
 records build-time opt-in configuration, approved endpoints and capability limits.
 
 Producer implementation adds closed configuration, a bounded recorder/rvfc adapter,
@@ -293,7 +295,7 @@ real acceptance/overhead and pinned integrated reproduction remain Step 7 gates.
 Completed software locally, 2026-10-09, from core commit
 `afa39e002b1125662e930758e42be3c7534551ff` and producer commit
 `98f90770a529165b3b7ed0ce426ee3add7afd890`. Both trees started clean; existing
-Steps 3–4 producer implementations were preserved. [Export/adoption guide](N4_TRACE_ADOPTION.md) documents the exact
+Steps 3–4 producer implementations were preserved. [Export/adoption guide](../../observability/N4_TRACE_ADOPTION.md) documents the exact
 standalone layout, producer settings, offline command and failure semantics.
 
 Producer changes add a stdlib host gzip-TAR exporter, both image COPY lists,
@@ -351,7 +353,7 @@ Step 7 pinned integrated reproduction and real capture/overhead gates remain ope
 Completed software locally, 2026-10-09, from core commit
 `82fc5b662586bd825cce7858c1e3886e8de0a2de` and unchanged producer commit
 `e8f54c77ef3d8f192544e70466e06a826cae18d7`. Both trees started clean.
-[Reconstruction/inspection guide](N4_TIMING_RECONSTRUCTION.md) records the API,
+[Reconstruction/inspection guide](../../observability/N4_TIMING_RECONSTRUCTION.md) records the API,
 command, pairing, exclusion precedence, coverage and remaining runtime gates.
 
 Core changes add a focused pure reconstruction module, bounded no-follow trace
@@ -424,7 +426,7 @@ reproduction without a sibling runtime dependency.
 
 [Software closeout](N4_SOFTWARE_CLOSEOUT.md) records both starting commits, local
 checks and the concrete pending real/minimum-version/hosted gates. The
-[integration guide](N4_INTEGRATION_VERIFICATION.md) contains rerunnable commands.
+[integration guide](../../observability/N4_INTEGRATION_VERIFICATION.md) contains rerunnable commands.
 Producer checks: 232 web pass; 133 engine pass, one existing artifact skip; 41
 nested Python trace cases pass; engine/web lint, lockfiles and web build pass.
 All legacy preservation checks pass. Docker and Python 3.11 remain unavailable.

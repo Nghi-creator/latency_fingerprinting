@@ -1,0 +1,19 @@
+{
+  "cleanup": {
+    "ended_ns": null,
+    "owned_workers_remaining": 0,
+    "reason": "missing_evidence",
+    "started_ns": null,
+    "state": "unverified"
+  },
+  "effect": {
+    "degraded_fps": null,
+    "healthy_fps": null,
+    "pressure_cpu_percent": null,
+    "reason": "incomplete_run",
+    "recovery_fps": null,
+    "state": "unavailable"
+  },
+  "reason": "cancelled",
+  "status": "aborted"
+}

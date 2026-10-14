@@ -1,0 +1,468 @@
+{
+  "$defs": {
+    "ActionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^action-[1-9][0-9]{0,9}$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "start_failed",
+                "exit_failed",
+                "stop_failed",
+                "cancelled",
+                "timeout"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "started_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Started Ns"
+        },
+        "state": {
+          "enum": [
+            "not_started",
+            "started",
+            "stopped",
+            "failed"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "stopped_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Stopped Ns"
+        }
+      },
+      "required": [
+        "action_id",
+        "state",
+        "started_ns",
+        "stopped_ns",
+        "reason"
+      ],
+      "title": "ActionResult",
+      "type": "object"
+    },
+    "ActualPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "end_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "End Ns",
+          "type": "integer"
+        },
+        "phase": {
+          "enum": [
+            "warmup",
+            "healthy",
+            "degraded",
+            "probe",
+            "recovery",
+            "cooldown"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Start Ns",
+          "type": "integer"
+        },
+        "state": {
+          "enum": [
+            "complete",
+            "partial"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "phase",
+        "start_ns",
+        "end_ns",
+        "state"
+      ],
+      "title": "ActualPhase",
+      "type": "object"
+    },
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^artifact-[1-9][0-9]{0,9}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "bytes": {
+          "maximum": 10485760,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "pattern": "^artifact-[1-9][0-9]{0,9}\\.json$",
+          "title": "File Name",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "warmup",
+            "healthy",
+            "degraded",
+            "probe",
+            "recovery",
+            "cooldown"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "phase_evidence",
+            "stage_trace",
+            "observation_window"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "experiment-phase-evidence-v1",
+            "stage-trace-record-v1",
+            "observation-window-v2"
+          ],
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "file_name",
+        "phase",
+        "role",
+        "schema_version",
+        "bytes",
+        "sha256"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "Cleanup": {
+      "additionalProperties": false,
+      "properties": {
+        "ended_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Ended Ns"
+        },
+        "owned_workers_remaining": {
+          "anyOf": [
+            {
+              "maximum": 8,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Owned Workers Remaining"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "stop_failed",
+                "restore_failed",
+                "ownership_lost",
+                "missing_evidence"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "started_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Started Ns"
+        },
+        "state": {
+          "enum": [
+            "not_required",
+            "restored",
+            "failed",
+            "unverified"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "reason",
+        "started_ns",
+        "ended_ns",
+        "owned_workers_remaining"
+      ],
+      "title": "Cleanup",
+      "type": "object"
+    },
+    "Effect": {
+      "additionalProperties": false,
+      "properties": {
+        "degraded_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Degraded Fps"
+        },
+        "healthy_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Healthy Fps"
+        },
+        "pressure_cpu_percent": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pressure Cpu Percent"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "baseline_inadequate",
+                "pressure_not_observed",
+                "degradation_not_observed",
+                "recovery_not_observed",
+                "adapter_unavailable",
+                "incomplete_run",
+                "cleanup_unverified",
+                "insufficient_evidence"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "recovery_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recovery Fps"
+        },
+        "state": {
+          "enum": [
+            "verified",
+            "failed",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "reason",
+        "healthy_fps",
+        "degraded_fps",
+        "recovery_fps",
+        "pressure_cpu_percent"
+      ],
+      "title": "Effect",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/ActionResult"
+      },
+      "maxItems": 6,
+      "title": "Actions",
+      "type": "array"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "maxItems": 18,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "cleanup": {
+      "$ref": "#/$defs/Cleanup"
+    },
+    "effect": {
+      "$ref": "#/$defs/Effect"
+    },
+    "manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Manifest Sha256",
+      "type": "string"
+    },
+    "method_release": {
+      "const": "n5-single-cause-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "phases": {
+      "items": {
+        "$ref": "#/$defs/ActualPhase"
+      },
+      "maxItems": 6,
+      "title": "Phases",
+      "type": "array"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "cancelled",
+            "timeout",
+            "clock_error",
+            "source_error",
+            "action_failed",
+            "cleanup_failed"
+          ],
+          "type": "string"
+        },
+        {
+          "enum": [
+            "adapter_not_implemented",
+            "runtime_unavailable",
+            "permission_denied",
+            "clock_unavailable",
+            "source_unavailable"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reason"
+    },
+    "run_id": {
+      "pattern": "^run-[1-9][0-9]{0,9}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "experiment-result-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "aborted",
+        "unsupported"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "manifest_sha256",
+    "run_id",
+    "status",
+    "reason",
+    "phases",
+    "actions",
+    "artifacts",
+    "effect",
+    "cleanup"
+  ],
+  "title": "ExperimentResult",
+  "type": "object"
+}

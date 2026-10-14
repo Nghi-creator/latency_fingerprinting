@@ -2,7 +2,7 @@
 
 **Design version:** 1.0.0
 **Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Steps 0–7 implemented and closed out locally; hosted/minimum-version verification pending
+**Status:** Step 1 specification complete; Steps 0–7 implemented and closed out locally; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json))
 **Source:** [N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 

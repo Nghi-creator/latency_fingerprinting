@@ -1,0 +1,139 @@
+{
+  "campaign_id": "campaign-8",
+  "core_version": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+  "host_workers": 1,
+  "node_id": "node-1",
+  "node_version": "24.18.1",
+  "producer_version": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1",
+  "schema_version": "n5-campaign-plan-v1",
+  "seed": 7,
+  "trials": [
+    {
+      "assignment": "reference",
+      "repeat_index": 1,
+      "run_id": "run-1",
+      "scenario": "healthy",
+      "source_id": "2d2f64821c364189b7c5e089b17487d5"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 1,
+      "run_id": "run-4",
+      "scenario": "host_contention",
+      "source_id": "e4f2004fde774ef0bd69cdcdb645fbe6"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 1,
+      "run_id": "run-7",
+      "scenario": "render_capture_slowdown",
+      "source_id": "ba2310689f824f53896fad37f6515f98"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 1,
+      "run_id": "run-10",
+      "scenario": "healthy",
+      "source_id": "524480a710b54127a80e2687cc1edbce"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 1,
+      "run_id": "run-13",
+      "scenario": "host_contention",
+      "source_id": "1c97d7827d414cf39898e9cb9289096c"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 1,
+      "run_id": "run-16",
+      "scenario": "render_capture_slowdown",
+      "source_id": "47a442ba9eb04024985683bf4d05f849"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 2,
+      "run_id": "run-2",
+      "scenario": "healthy",
+      "source_id": "4594b540a7ad48249bcc59347ec35fd0"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 2,
+      "run_id": "run-5",
+      "scenario": "host_contention",
+      "source_id": "4aab269b81bf4d68b33686a27d833416"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 2,
+      "run_id": "run-8",
+      "scenario": "render_capture_slowdown",
+      "source_id": "1573f46b18814bc59457c4623f869d32"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 2,
+      "run_id": "run-11",
+      "scenario": "healthy",
+      "source_id": "bca9837123c143ddaaabb6eeaaf5af10"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 2,
+      "run_id": "run-14",
+      "scenario": "host_contention",
+      "source_id": "39df9b9ed7524375affd317ddc64840e"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 2,
+      "run_id": "run-17",
+      "scenario": "render_capture_slowdown",
+      "source_id": "fb97d7c953404b1185b4b52ed27ca9b8"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 3,
+      "run_id": "run-3",
+      "scenario": "healthy",
+      "source_id": "7ab6feffc8964877a19cf380e2c0baf7"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 3,
+      "run_id": "run-6",
+      "scenario": "host_contention",
+      "source_id": "97f8ec88ee0c4e94bd18a37d3003f9d4"
+    },
+    {
+      "assignment": "reference",
+      "repeat_index": 3,
+      "run_id": "run-9",
+      "scenario": "render_capture_slowdown",
+      "source_id": "1fe555b37ae34d428ff9e42aa467f7aa"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 3,
+      "run_id": "run-12",
+      "scenario": "healthy",
+      "source_id": "45080b95413a4ac0938b07d04334dfe5"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 3,
+      "run_id": "run-15",
+      "scenario": "host_contention",
+      "source_id": "78e3d9d2a1bb4b7599e0bde388690755"
+    },
+    {
+      "assignment": "held_out_query",
+      "repeat_index": 3,
+      "run_id": "run-18",
+      "scenario": "render_capture_slowdown",
+      "source_id": "86835f0899ba4d88916c855de3ea6a5f"
+    }
+  ],
+  "workload_id": "workload-4"
+}

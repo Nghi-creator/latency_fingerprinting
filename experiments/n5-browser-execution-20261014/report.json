@@ -1,0 +1,342 @@
+{
+  "api_absence": {
+    "archive_sha256": "cf80d4126160e0fa36d9c8c2161b19596ab4de17a9ce1f6d0befffe6cc7f09a1",
+    "controlled_api_removal": true,
+    "native_html_video_element": true,
+    "natively_unsupported_browser": false,
+    "record": "api-absent-record.json",
+    "state": "verified",
+    "summary": "api-absent-summary.json"
+  },
+  "archive_receipts": [
+    {
+      "bytes": 29178,
+      "canonical_trace_sha256": "f43695915a13a4b8c85ca96384a5ae657cb89039e3b48a0c7e912b0917715ec0",
+      "file": "pair-1-enabled.tar.gz",
+      "sha256": "9d82f004eee172fc9f8c0714e76e46f44818da1948296a42961d5ad87f2b0942"
+    },
+    {
+      "bytes": 30046,
+      "canonical_trace_sha256": "4bac7698b9dbc02e0bf68f25599fb9cab9a6b803718f0b920eaa5966bf6cb848",
+      "file": "pair-2-enabled.tar.gz",
+      "sha256": "574d4e13b9877869172373f07dcbf9d743f49e3ae4479904b73488fc5de5981a"
+    },
+    {
+      "bytes": 30700,
+      "canonical_trace_sha256": "4ba31acc38d191591fffd02bbbf9633da6e804ff07a6342866c718956b3aac1a",
+      "file": "pair-3-enabled.tar.gz",
+      "sha256": "62378da285521937cd6bbbfb0b349d4b81b2f8005de12ec42049e77f08c69ac4"
+    },
+    {
+      "bytes": 30627,
+      "canonical_trace_sha256": "7881818a0c8fb2d2f335f99ea87ba63df74df30d1020cab8b6569dcb822fe02b",
+      "file": "pair-4-enabled.tar.gz",
+      "sha256": "e39db1c6782b7067ba2e49db49652918db68ba25172b06f2b36d6b17926d1915"
+    },
+    {
+      "bytes": 30672,
+      "canonical_trace_sha256": "d840a0be493b9f8ded1729a9475a94d6261ed536886cd075f492f2acb8e61f55",
+      "file": "pair-5-enabled.tar.gz",
+      "sha256": "5a78b473093ec79b42d07836a197ea17a8eeb3b96894f5409e3c162bf28ddccc"
+    },
+    {
+      "bytes": 39769,
+      "canonical_trace_sha256": "896998fec13b0761592a41f50f717ddf5798c1673806fd874e569c209777808b",
+      "file": "diagnostic-enabled.tar.gz",
+      "sha256": "3c40a74985e9a7a245beef506bdb66e423d6e97d3830a7e707e8510b81185e80"
+    }
+  ],
+  "browser_bundle_sha256": "e2f2a902ae4ed968b5254a9a652baca9ecbfc56024e462756e09439c8c522135",
+  "browser_method_runtime_passed": true,
+  "browser_source_sha256": {
+    "apps/web/src/features/player/observability/browserStageTrace.ts": "7ff658d29c9d0a3193c1688740feca8a9e80a313766beaa0a60bf56b3aab16fa",
+    "apps/web/src/features/player/observability/browserStageTraceConfig.ts": "f65272f07281f8624aacbfa0bbad939095833ae6056dd997de29bda08f60943e",
+    "apps/web/src/features/player/observability/stageTraceExport.ts": "c599f25be28d1ce3d7d6b6b1ce560e67ee1a44a78d0cfc56a6db2a54cc8a6edc"
+  },
+  "browser_version": "151.0.7922.34",
+  "core_base_commit": "bc6f42b0668f3d1edd7d3365da9fea70629455ca",
+  "core_source_sha256": {
+    "src/latency_fingerprinting/cli.py": "610c05999cd08006a9eff002444ffa5dd7d541bcfd22328be473ae321cbcca8c",
+    "src/latency_fingerprinting/cli_trace.py": "5dececf636a9c0944bcdf329ae3bc0bad815941bca883ef41c221b80d24572bc",
+    "src/latency_fingerprinting/models/__init__.py": "2eccc7c97b24ee729d390d714a6314aa8ede061a1e0f64811af71f0e128abe1d",
+    "src/latency_fingerprinting/observability/__init__.py": "799184b6575790986c31c87b72a91c5344820c4cab778561cd45406e0b6f1fc4",
+    "src/latency_fingerprinting/observability/browser_v2.py": "8036daaa0b5f8809872163e7eba7e94a86ab84f991a6275479803be989335fed",
+    "src/latency_fingerprinting/observability/bundle.py": "03f9c4673898e1995fd40bf0640448805d85534485a0de0c37c305004ee32d01",
+    "src/latency_fingerprinting/observability/contracts.py": "1b828c09d7f31494f5eeb75b50835af883a38c3982327d1a8bd4eacff9c0a52c",
+    "src/latency_fingerprinting/observability/input.py": "07576d5383a5f2ea7acc692f83c4c0872ad01abc7eb6660221bd0801253afa06",
+    "src/latency_fingerprinting/observability/json.py": "01805b15371b36bff62a605b31d91705bfa343fe3a229116f2a3c0825e06f6f8",
+    "src/latency_fingerprinting/observability/output.py": "81d592fcfa1e7d68f02a01d0cc43484ed6451d87bf1ecaa982e412c064f75e00",
+    "src/latency_fingerprinting/observability/reconstruct.py": "22f0b5c2f2fcb8b8700ded1357dfa20ccd67901cb298dd0ed0e0e2bff7869481",
+    "src/latency_fingerprinting/observability/summary.py": "ac24160782378ddcede06f414a777e73de5464497a86bef6e9837a2a522a8ca2",
+    "src/latency_fingerprinting/observability/trace.py": "2707ec30b03abc4e3c5db71ba04ded1c120254e9274b398d1a8670ff78983a38",
+    "src/latency_fingerprinting/schemas.py": "cd00d6ff830657f887553ef674d97ab2d4019dc711c8f157cca8be1ac9bad636"
+  },
+  "criteria": {
+    "baseline_fps": true,
+    "diagnostic_probe_count": true,
+    "median_cpu_increase": true,
+    "median_fps_change": true,
+    "nominal_coverage_and_loss": true
+  },
+  "diagnostic": {
+    "clock_resolution_ns": null,
+    "cpu_increase_percentage_points": 0.8038811320907584,
+    "fps_change_fraction": 0.0008745909510372655,
+    "includes_wrapper_and_clock_read_cost": true,
+    "max_ns": 200000,
+    "mean_ns": 39583.333333333336,
+    "min_ns": 0,
+    "observed_probes": 1200,
+    "retained_samples": 1200
+  },
+  "helper_sha256": {
+    "inspect_evidence.py": "f2e347df970b94d79b1044a4e317d64e142ed859af16587a616316cbad1fbff4",
+    "receiver-api-absent.cjs": "8695a14dd5cb7b0d4e4e2f643fd1fa48400032c69a6b54abc4d216a8dff9ce05",
+    "receiver.cjs": "04be776266c724ef02c39ee9c5bf862bf21f0d967e070e44e6bf15aaa104e2dc",
+    "run.sh": "d8f2243b810ccc0865bc87e1d44aeac44c62815d53e33f99ef11bcd66c36a9a7",
+    "scene.py": "b1ff1113d5c44895f46e3db2eb889a088bf0151b7e548cb547131246d397b524"
+  },
+  "limitations": [
+    "Headless Pixelated video-element validation; normal player picker/desktop flow remains a separate manual gate.",
+    "CPU pair deltas vary, including a retained +16.06 percentage-point transient; only the predeclared median threshold is claimed.",
+    "Effective performance-clock resolution is unknown; diagnostic durations include zero and wrapper/clock-read cost.",
+    "Earlier software verification ran concurrently during initial acquisition windows; no isolated-machine or causal CPU cost claim."
+  ],
+  "median_cpu_increase_percentage_points": 0.0791847494304827,
+  "median_fps_change_fraction": 2.943073160908121e-05,
+  "method_release": "n4-browser-execution-v1",
+  "nominal_traces": [
+    {
+      "api_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 249,
+        "unsupported": 0
+      },
+      "api_usable_pairs": 651,
+      "archive_materialization_ns": 16100000,
+      "browser_missed_presentations": 0,
+      "drops": 0,
+      "events": 2700,
+      "execution_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 0,
+        "unsupported": 0
+      },
+      "execution_max_ms": 0.3,
+      "execution_mean_ms": 0.12511111111111112,
+      "execution_min_ms": 0.0,
+      "execution_usable_pairs": 900,
+      "frames": 900,
+      "nominal_passed": true,
+      "stop_reason": "shutdown",
+      "window": "pair-1-enabled"
+    },
+    {
+      "api_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 652,
+        "unsupported": 0
+      },
+      "api_usable_pairs": 248,
+      "archive_materialization_ns": 14400000,
+      "browser_missed_presentations": 0,
+      "drops": 0,
+      "events": 2700,
+      "execution_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 0,
+        "unsupported": 0
+      },
+      "execution_max_ms": 8.4,
+      "execution_mean_ms": 0.3541111111111111,
+      "execution_min_ms": 0.1,
+      "execution_usable_pairs": 900,
+      "frames": 900,
+      "nominal_passed": true,
+      "stop_reason": "shutdown",
+      "window": "pair-2-enabled"
+    },
+    {
+      "api_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 661,
+        "unsupported": 0
+      },
+      "api_usable_pairs": 238,
+      "archive_materialization_ns": 19100000,
+      "browser_missed_presentations": 0,
+      "drops": 0,
+      "events": 2697,
+      "execution_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 0,
+        "unsupported": 0
+      },
+      "execution_max_ms": 1.0,
+      "execution_mean_ms": 0.36729699666295884,
+      "execution_min_ms": 0.1,
+      "execution_usable_pairs": 899,
+      "frames": 899,
+      "nominal_passed": true,
+      "stop_reason": "shutdown",
+      "window": "pair-3-enabled"
+    },
+    {
+      "api_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 693,
+        "unsupported": 0
+      },
+      "api_usable_pairs": 207,
+      "archive_materialization_ns": 17800000,
+      "browser_missed_presentations": 0,
+      "drops": 0,
+      "events": 2700,
+      "execution_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 0,
+        "unsupported": 0
+      },
+      "execution_max_ms": 8.4,
+      "execution_mean_ms": 0.37577777777777777,
+      "execution_min_ms": 0.0,
+      "execution_usable_pairs": 900,
+      "frames": 900,
+      "nominal_passed": true,
+      "stop_reason": "shutdown",
+      "window": "pair-4-enabled"
+    },
+    {
+      "api_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 659,
+        "unsupported": 0
+      },
+      "api_usable_pairs": 242,
+      "archive_materialization_ns": 17000000,
+      "browser_missed_presentations": 0,
+      "drops": 0,
+      "events": 2703,
+      "execution_exclusions": {
+        "correlation_ambiguous": 0,
+        "correlation_missing": 0,
+        "missing_endpoint": 0,
+        "negative_duration": 0,
+        "unsupported": 0
+      },
+      "execution_max_ms": 0.6,
+      "execution_mean_ms": 0.34472807991120974,
+      "execution_min_ms": 0.1,
+      "execution_usable_pairs": 901,
+      "frames": 901,
+      "nominal_passed": true,
+      "stop_reason": "shutdown",
+      "window": "pair-5-enabled"
+    }
+  ],
+  "pairs": [
+    {
+      "cpu_increase_percentage_points": 0.0791847494304827,
+      "disabled_cpu_percent": 4.727765242756026,
+      "disabled_fps": 30.030338891124178,
+      "enabled_cpu_percent": 4.806949992186508,
+      "enabled_fps": 29.99821098169258,
+      "fps_change_fraction": -0.0010698483806019714,
+      "pair": 1
+    },
+    {
+      "cpu_increase_percentage_points": 16.06053887153374,
+      "disabled_cpu_percent": 4.8074344912604055,
+      "disabled_fps": 29.96526104621309,
+      "enabled_cpu_percent": 20.867973362794146,
+      "enabled_fps": 30.02895882371711,
+      "fps_change_fraction": 0.0021257207606429785,
+      "pair": 2
+    },
+    {
+      "cpu_increase_percentage_points": 2.354773174706203,
+      "disabled_cpu_percent": 18.86696178240065,
+      "disabled_fps": 29.993612068478658,
+      "enabled_cpu_percent": 21.221734957106854,
+      "enabled_fps": 29.994494802425432,
+      "fps_change_fraction": 2.943073160908121e-05,
+      "pair": 3
+    },
+    {
+      "cpu_increase_percentage_points": -0.32951396396138577,
+      "disabled_cpu_percent": 21.2966707920012,
+      "disabled_fps": 30.029541394034176,
+      "enabled_cpu_percent": 20.967156828039816,
+      "enabled_fps": 29.996423634397196,
+      "fps_change_fraction": -0.0011028393408485143,
+      "pair": 4
+    },
+    {
+      "cpu_increase_percentage_points": -0.34651227516004823,
+      "disabled_cpu_percent": 20.834862125285422,
+      "disabled_fps": 29.993779207209634,
+      "enabled_cpu_percent": 20.488349850125374,
+      "enabled_fps": 30.0275391443112,
+      "fps_change_fraction": 0.0011255646335307193,
+      "pair": 5
+    }
+  ],
+  "phase_1_acceptance": "pending",
+  "plan": {
+    "cpu_source": "Chromium SystemInfo.getProcessInfo CPU time, delta over owned same-process set, percent of one logical core",
+    "diagnostic_measurement_seconds": 40,
+    "enabled_policy": {
+      "every_nth_frame": 1,
+      "max_events": 10000,
+      "max_frames": 2000,
+      "timing_method": "execution-v2"
+    },
+    "method_release": "n4-browser-execution-v1",
+    "pairs": 5,
+    "prior_producer_commit": "7e78d483ec3c1c5bf9e6977048591e19415b1ac1",
+    "purpose": "browser_execution_method_live_validation",
+    "seed": 7,
+    "shape_size": 32,
+    "shapes": 512,
+    "thresholds": {
+      "baseline_fps_min": 27,
+      "diagnostic_probes_min": 1000,
+      "median_cpu_increase_percentage_points_max": 5,
+      "median_fps_change_fraction_min": -0.05,
+      "nominal_coverage_fraction_min": 0.95,
+      "nominal_drops_max": 0,
+      "nominal_usable_pairs_min": 500
+    },
+    "window_measurement_seconds": 30,
+    "window_warmup_seconds": 10,
+    "working_tree_browser_changes": true,
+    "workload_id": "workload-4"
+  },
+  "plan_sha256": "90609e9b9e439cbaec658fd9b8c43776de271afdad43623b4513fce22be24336",
+  "provenance_note": "producer_capture from prior producer commit plus explicitly hashed uncommitted browser source; not an exact committed browser release",
+  "record_kind": "browser_execution_runtime_research_report",
+  "recorded": "2026-10-14",
+  "remaining_manual_gates": [
+    "normal_pixelated_desktop_picker_interaction",
+    "hosted_CI_for_final_changes_in_both_repositories"
+  ],
+  "state": "completed"
+}

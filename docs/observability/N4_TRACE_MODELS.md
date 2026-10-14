@@ -74,3 +74,13 @@ loss/sampling, resource caps, JSON ambiguity, unavailable results and deadline
 arithmetic. These are software tests, not live measurement or overhead evidence.
 N2 StageTiming and N3 matching remain unchanged; no new pinned runtime trace
 fixtures or fixture refresh is introduced in Step 2.
+
+## Browser execution v2
+
+The additive [execution contract](N4_BROWSER_EXECUTION_CONTRACT.md) introduces
+`StageTraceRecordV2` and `StageTraceSummaryV2` from the same public model modules.
+These browser-only roots retain original API endpoints and add callback-entry
+execution timing. V1 models still reject v2 payloads. Generic `validate`,
+`ingest-trace` and `inspect-trace` explicitly dispatch on versioned roots; both
+new generated schemas are checked alongside all original schemas. Shared
+validation policies preserve the exact v1 schema and fixture bytes.

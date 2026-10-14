@@ -80,5 +80,5 @@ responses, unsupported/unavailable/missing/rejected/incomplete evidence, signed 
 zero-floor arithmetic, confounders, immutable inputs, reused model instances and
 public JSON reader failures. At Step 2, the full suite passed 1,260 tests with 93.15%
 branch-inclusive coverage on Python 3.13.13. Existing schema bytes and P0/N1/N2
-pins reproduce unchanged. Actual Python 3.11/hosted execution remains pending;
+pins reproduce unchanged. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json));
 [progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records the separate verification status.

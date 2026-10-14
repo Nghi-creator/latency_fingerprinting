@@ -1,0 +1,94 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 141000000000,
+  "intervals": [
+    {
+      "active_workers": 0,
+      "end_ns": 132000000000,
+      "frames_end": 3960,
+      "frames_start": 3930,
+      "start_ns": 131000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 133000000000,
+      "frames_end": 3990,
+      "frames_start": 3960,
+      "start_ns": 132000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 134000000000,
+      "frames_end": 4020,
+      "frames_start": 3990,
+      "start_ns": 133000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 135000000000,
+      "frames_end": 4050,
+      "frames_start": 4020,
+      "start_ns": 134000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 136000000000,
+      "frames_end": 4080,
+      "frames_start": 4050,
+      "start_ns": 135000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 137000000000,
+      "frames_end": 4110,
+      "frames_start": 4080,
+      "start_ns": 136000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 138000000000,
+      "frames_end": 4140,
+      "frames_start": 4110,
+      "start_ns": 137000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 139000000000,
+      "frames_end": 4170,
+      "frames_start": 4140,
+      "start_ns": 138000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 140000000000,
+      "frames_end": 4200,
+      "frames_start": 4170,
+      "start_ns": 139000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 141000000000,
+      "frames_end": 4230,
+      "frames_start": 4200,
+      "start_ns": 140000000000,
+      "worker_cpu_ns": 0
+    }
+  ],
+  "manifest_sha256": "cfc87c8675245096e321e53ede9cf9d3d7ec8b073e09a52e9f2a064c25beac4c",
+  "method_release": "n5-single-cause-v1",
+  "phase": "cooldown",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 131000000000,
+  "state": "complete"
+}

@@ -1,7 +1,7 @@
 # N1 metric semantics and naming inventory
 
 **Status:** N1 registry, extraction, aggregation and inspection implemented; locally closed out.
-**Closeout:** [N1_SOFTWARE_CLOSEOUT.md](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md); hosted CI verification pending.
+**Closeout:** [N1_SOFTWARE_CLOSEOUT.md](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md); subsequent core hosted CI verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 **Reviewed:** 2026-10-06
 **Canonical registry version:** `latency-metrics-v2.0.0`
 **Definition semantic version:** `1.0.0` for each initial definition.

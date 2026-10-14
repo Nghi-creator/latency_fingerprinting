@@ -1,0 +1,254 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 40000000000,
+  "intervals": [
+    {
+      "active_workers": 0,
+      "end_ns": 11000000000,
+      "frames_end": 330,
+      "frames_start": 300,
+      "start_ns": 10000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 12000000000,
+      "frames_end": 360,
+      "frames_start": 330,
+      "start_ns": 11000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 13000000000,
+      "frames_end": 390,
+      "frames_start": 360,
+      "start_ns": 12000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 14000000000,
+      "frames_end": 420,
+      "frames_start": 390,
+      "start_ns": 13000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 15000000000,
+      "frames_end": 450,
+      "frames_start": 420,
+      "start_ns": 14000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 16000000000,
+      "frames_end": 480,
+      "frames_start": 450,
+      "start_ns": 15000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 17000000000,
+      "frames_end": 510,
+      "frames_start": 480,
+      "start_ns": 16000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 18000000000,
+      "frames_end": 540,
+      "frames_start": 510,
+      "start_ns": 17000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 19000000000,
+      "frames_end": 570,
+      "frames_start": 540,
+      "start_ns": 18000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 20000000000,
+      "frames_end": 600,
+      "frames_start": 570,
+      "start_ns": 19000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 21000000000,
+      "frames_end": 630,
+      "frames_start": 600,
+      "start_ns": 20000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 22000000000,
+      "frames_end": 660,
+      "frames_start": 630,
+      "start_ns": 21000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 23000000000,
+      "frames_end": 690,
+      "frames_start": 660,
+      "start_ns": 22000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 24000000000,
+      "frames_end": 720,
+      "frames_start": 690,
+      "start_ns": 23000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 25000000000,
+      "frames_end": 750,
+      "frames_start": 720,
+      "start_ns": 24000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 26000000000,
+      "frames_end": 780,
+      "frames_start": 750,
+      "start_ns": 25000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 27000000000,
+      "frames_end": 810,
+      "frames_start": 780,
+      "start_ns": 26000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 28000000000,
+      "frames_end": 840,
+      "frames_start": 810,
+      "start_ns": 27000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 29000000000,
+      "frames_end": 870,
+      "frames_start": 840,
+      "start_ns": 28000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 30000000000,
+      "frames_end": 900,
+      "frames_start": 870,
+      "start_ns": 29000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 31000000000,
+      "frames_end": 930,
+      "frames_start": 900,
+      "start_ns": 30000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 32000000000,
+      "frames_end": 960,
+      "frames_start": 930,
+      "start_ns": 31000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 33000000000,
+      "frames_end": 990,
+      "frames_start": 960,
+      "start_ns": 32000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 34000000000,
+      "frames_end": 1020,
+      "frames_start": 990,
+      "start_ns": 33000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 35000000000,
+      "frames_end": 1050,
+      "frames_start": 1020,
+      "start_ns": 34000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 36000000000,
+      "frames_end": 1080,
+      "frames_start": 1050,
+      "start_ns": 35000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 37000000000,
+      "frames_end": 1110,
+      "frames_start": 1080,
+      "start_ns": 36000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 38000000000,
+      "frames_end": 1140,
+      "frames_start": 1110,
+      "start_ns": 37000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 39000000000,
+      "frames_end": 1170,
+      "frames_start": 1140,
+      "start_ns": 38000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 40000000000,
+      "frames_end": 1200,
+      "frames_start": 1170,
+      "start_ns": 39000000000,
+      "worker_cpu_ns": 0
+    }
+  ],
+  "manifest_sha256": "cfc87c8675245096e321e53ede9cf9d3d7ec8b073e09a52e9f2a064c25beac4c",
+  "method_release": "n5-single-cause-v1",
+  "phase": "healthy",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 10000000000,
+  "state": "complete"
+}

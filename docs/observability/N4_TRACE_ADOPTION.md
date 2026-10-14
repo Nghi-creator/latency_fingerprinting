@@ -98,10 +98,19 @@ No live producer, browser picker interaction, real timing, synchronization,
 container/hosted execution or measured overhead was performed.
 
 [Step 6 offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md) are now delivered. Pinned integrated
-reproduction is delivered in [Step 7 software verification](N4_INTEGRATION_VERIFICATION.md); real capture/overhead acceptance remains pending. N4 is incomplete.
+reproduction is delivered in [Step 7 software verification](N4_INTEGRATION_VERIFICATION.md); real nominal capture/overhead and host lifecycle checks now pass; the browser execution method also passes local validation, with final desktop/hosted acceptance still open ([runtime ledger](N4_RUNTIME_ACCEPTANCE.md)).
 
-The [subsequent health audit](N4_ARCHITECTURE_AUDIT.md) hardens descriptor ownership
+The [subsequent health audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md) hardens descriptor ownership
 for failed stream creation/cleanup in core adoption/output and producer export.
 Existing output remains unchanged on failure; a filesystem refusing unlink can
 retain a private temporary file, with the directory still closed and the error
 reported. Canonical records, layouts and published pins are unchanged.
+
+## Additive browser execution archives
+
+Browser [execution v2](N4_BROWSER_EXECUTION_CONTRACT.md) uses the same two-member
+layout and bounded reader, with manifest version 2 and explicit
+`stage-trace-record-v2`. Manifest/record version mismatch is rejected. No CLI flag
+is needed: `ingest-trace` validates the declared version and `inspect-trace`
+returns its matching summary. N5 experiment artifacts continue to require their
+original host trace v1; this extension does not widen their schemas or effects.

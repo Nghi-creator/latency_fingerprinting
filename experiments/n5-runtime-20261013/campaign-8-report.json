@@ -1,0 +1,294 @@
+{
+  "campaign_id": "campaign-8",
+  "inherited_n4_acceptance": "pending",
+  "phase_1_acceptance": "pending",
+  "planned_trials": 18,
+  "repeated_effect_criteria_passed": true,
+  "repeated_held_out_effects": {
+    "healthy": true,
+    "host_contention": true,
+    "render_capture_slowdown": true
+  },
+  "retained_trials": 18,
+  "schema_version": "n5-campaign-report-v1",
+  "source_independence": "declared_disjoint_acquisitions_requires_external_verification",
+  "state": "finished",
+  "trials": [
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 29.998520392978165,
+        "healthy_fps": 29.99802015866768,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.998969563394535,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-1",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 23.743809541961177,
+        "healthy_fps": 29.99678378983723,
+        "pressure_cpu_percent": 72.36217079174132,
+        "reason": null,
+        "recovery_fps": 29.997686748384854,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-4",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "capture_delay_ns": 57407791,
+        "degraded_fps": 16.964543051387828,
+        "healthy_fps": 29.997621633569178,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 30.065164773386478,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-7",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 29.96329436680126,
+        "healthy_fps": 29.997491070841733,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.996254370716354,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-10",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 24.531881443368366,
+        "healthy_fps": 29.997835309207478,
+        "pressure_cpu_percent": 75.07756732093786,
+        "reason": null,
+        "recovery_fps": 29.99905701664152,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-13",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "capture_delay_ns": 56622708,
+        "degraded_fps": 17.165388957506536,
+        "healthy_fps": 29.996537802606476,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.99579936725955,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-16",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 29.997655669210545,
+        "healthy_fps": 29.99898372942803,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.998592636025542,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-2",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 24.19804737405762,
+        "healthy_fps": 29.99712617832141,
+        "pressure_cpu_percent": 73.38446503155816,
+        "reason": null,
+        "recovery_fps": 29.997138967876182,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-5",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "capture_delay_ns": 57220792,
+        "degraded_fps": 16.965770607615987,
+        "healthy_fps": 29.994985367358154,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 30.032516102520326,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-8",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 29.996859814726527,
+        "healthy_fps": 29.99813743564538,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.997520607929772,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-11",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 24.498579173869278,
+        "healthy_fps": 29.99820001100516,
+        "pressure_cpu_percent": 75.58453191599779,
+        "reason": null,
+        "recovery_fps": 29.998744622534616,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-14",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "capture_delay_ns": 57385917,
+        "degraded_fps": 16.9655792589951,
+        "healthy_fps": 29.998365909013295,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 30.064962471349098,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-17",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 29.99901914307039,
+        "healthy_fps": 29.997408667852746,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.99834182865614,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-3",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "degraded_fps": 24.565352920599768,
+        "healthy_fps": 29.99848185482938,
+        "pressure_cpu_percent": 74.63467575823984,
+        "reason": null,
+        "recovery_fps": 29.998782452416076,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-6",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "reference",
+      "effect": {
+        "capture_delay_ns": 57579708,
+        "degraded_fps": 16.899172824358345,
+        "healthy_fps": 29.998547223355406,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.998722915367154,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-9",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 29.998416695566174,
+        "healthy_fps": 29.997264527449747,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 29.998695501726324,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-12",
+      "scenario": "healthy",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "degraded_fps": 24.66529358677063,
+        "healthy_fps": 29.998073693696476,
+        "pressure_cpu_percent": 76.21381827439073,
+        "reason": null,
+        "recovery_fps": 29.99805736280279,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-15",
+      "scenario": "host_contention",
+      "state": "verified"
+    },
+    {
+      "assignment": "held_out_query",
+      "effect": {
+        "capture_delay_ns": 57409000,
+        "degraded_fps": 16.93167357442541,
+        "healthy_fps": 29.998889027143548,
+        "pressure_cpu_percent": null,
+        "reason": null,
+        "recovery_fps": 30.031309960811157,
+        "state": "verified"
+      },
+      "reason": null,
+      "run_id": "run-18",
+      "scenario": "render_capture_slowdown",
+      "state": "verified"
+    }
+  ]
+}

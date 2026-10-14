@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "Interval": {
+      "additionalProperties": false,
+      "properties": {
+        "active_workers": {
+          "maximum": 8,
+          "minimum": 0,
+          "title": "Active Workers",
+          "type": "integer"
+        },
+        "end_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "End Ns",
+          "type": "integer"
+        },
+        "frames_end": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames End",
+          "type": "integer"
+        },
+        "frames_start": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Frames Start",
+          "type": "integer"
+        },
+        "start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Start Ns",
+          "type": "integer"
+        },
+        "worker_cpu_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Worker Cpu Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_ns",
+        "end_ns",
+        "frames_start",
+        "frames_end",
+        "active_workers",
+        "worker_cpu_ns"
+      ],
+      "title": "Interval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "clock_id": {
+      "pattern": "^clock-[1-9][0-9]{0,9}$",
+      "title": "Clock Id",
+      "type": "string"
+    },
+    "end_ns": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "title": "End Ns",
+      "type": "integer"
+    },
+    "intervals": {
+      "items": {
+        "$ref": "#/$defs/Interval"
+      },
+      "maxItems": 1200,
+      "title": "Intervals",
+      "type": "array"
+    },
+    "manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Manifest Sha256",
+      "type": "string"
+    },
+    "method_release": {
+      "const": "n5-single-cause-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "phase": {
+      "enum": [
+        "warmup",
+        "healthy",
+        "degraded",
+        "probe",
+        "recovery",
+        "cooldown"
+      ],
+      "title": "Phase",
+      "type": "string"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "source_unavailable",
+            "counter_reset",
+            "clock_error",
+            "collection_gap",
+            "cancelled",
+            "timeout"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reason"
+    },
+    "run_id": {
+      "pattern": "^run-[1-9][0-9]{0,9}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "experiment-phase-evidence-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "start_ns": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "title": "Start Ns",
+      "type": "integer"
+    },
+    "state": {
+      "enum": [
+        "complete",
+        "partial",
+        "unavailable"
+      ],
+      "title": "State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "manifest_sha256",
+    "run_id",
+    "phase",
+    "clock_id",
+    "start_ns",
+    "end_ns",
+    "state",
+    "reason",
+    "intervals"
+  ],
+  "title": "ExperimentPhaseEvidence",
+  "type": "object"
+}

@@ -8,7 +8,7 @@ live probing, recovery benefit, and transfer remain unproven.
 This document defines the complete sequence of major slices required to finish
 the engine. It intentionally stays at roadmap level. The implementation-ready
 plan for only the active slice lives in
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md).
+[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
 
 ## Outcome to build toward
 
@@ -67,24 +67,26 @@ Additive commands, independent synthetic fixtures/pins and
 [N3 software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
 The [final audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) records repository, shared
 bundle-reader and arithmetic hardening with whole-tree verification.
-Hosted/minimum-version execution remains pending. N3 does not
+Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)). N3 does not
 complete the Phase 1 observability and experiment-foundation work below.
 It preserves P0/N1/N2 semantics and requires explicit policy design before runtime
 changes. New instrumentation and scientific diagnosis validation remain separate
 roadmap boundaries.
 
-The active [N4 plan](NEXT_IMPLEMENTATION_PLAN.md) addresses Phase 1.2 stage-level
+The archived [N4 plan](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) addresses Phase 1.2 stage-level
 observability: timing/clock/capability contracts, bounded producer instrumentation,
 versioned trace export, offline adoption and real stage-local/overhead acceptance.
-Steps 0–6 are [complete locally](../observability/N4_IMPLEMENTATION_PROGRESS.md):
+Steps 0–6 are [complete locally](../archive/observability/N4_IMPLEMENTATION_PROGRESS.md):
 baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [strict models/schemas](../observability/N4_TRACE_MODELS.md) and
 [bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
 [browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
-[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real capture/overhead acceptance remains pending. Preserve frozen N2 unavailable timing and
-N3 matching meanings through additive trace contracts. Phase 1.3 scenario harness
-work remains subsequent; N4 alone does not finish Phase 1. Completed progress,
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; normal desktop/picker and final hosted acceptance gates stay open ([runtime ledger](../observability/N4_RUNTIME_ACCEPTANCE.md)). Preserve frozen N2 unavailable timing and
+N3 matching meanings through additive trace contracts. The active [N5 plan](NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3 with a reproduced
+software baseline and [frozen scenario/phase/effect/cleanup contract](../scenarios/N5_EXPERIMENT_CONTRACT.md).
+[Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)
+remain pending. N4/N5 software alone does not finish Phase 1. Completed progress,
 closeouts and audits are in the [milestone archive](../archive/README.md).
 
 ### 1.1 Version metric semantics
@@ -393,6 +395,6 @@ The engine is complete only when all of the following are true:
 - all remaining limitations are explicit.
 
 The current implementation-ready work is specified in
-[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). Dashboard work,
+[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md). Dashboard work,
 a hosted service, unrestricted online learning, and ML/RL remain out of scope
 until measurement semantics, safety, and deterministic baselines justify them.

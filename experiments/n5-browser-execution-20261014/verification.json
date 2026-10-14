@@ -1,0 +1,46 @@
+{
+  "existing_schema_byte_drift": [],
+  "hosted_final_changes": "pending in both repositories",
+  "log_sha256": {
+    "core-tests.log": "72270a6fcf5f9dd7519df58d66f3f395289cf5a51173af7bc43d8d00b47a53f1",
+    "fixture-parity.json": "aaad534d1a275686f0dda36d89dff619aa3156ad314b6c93e8878fc196fc5f3f",
+    "node24-web-tests.log": "1c4e564e3a01a2e6305e920579f95437903a2f1d04232e5491fdd58df4e69c5a",
+    "python311-checks.log": "dbc3daefe4ca1eea4f733cba306b953051a65a5eed4390a84a1d01ec1111bc26"
+  },
+  "manual_player_picker": "pending",
+  "owned_capture_container": "stopped; volume retained",
+  "owned_measurement_receivers": "stopped",
+  "record_kind": "browser_execution_local_verification",
+  "recorded": "2026-10-14",
+  "software_checks": {
+    "host_node26_web": {
+      "passed": 259,
+      "skipped": 0,
+      "version": "26.4.0"
+    },
+    "linux_node24_web": {
+      "passed": 259,
+      "skipped": 0,
+      "version": "24.18.1"
+    },
+    "linux_python311": {
+      "coverage_percent": 93.6,
+      "dependency_check": "passed",
+      "format": "passed",
+      "frozen_reproductions": "passed",
+      "passed": 2003,
+      "ruff": "passed",
+      "schema_count": 25,
+      "version": "3.11.17"
+    },
+    "producer_to_core_fixture_archives": "exact raw record and independent summary API/CLI parity passed",
+    "python313": {
+      "coverage_percent": 93.52,
+      "passed": 2003,
+      "version": "3.13.13"
+    },
+    "web_lint": "passed",
+    "web_production_build_default": "passed",
+    "web_production_build_execution_v2": "passed"
+  }
+}

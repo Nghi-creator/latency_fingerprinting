@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
@@ -52,8 +53,22 @@ from .models import (
     ProvenanceKind,
     WindowPhase,
 )
-from .observability import StageTraceRecord, StageTraceSummary
+from .observability import (
+    StageTraceRecord,
+    StageTraceRecordV2,
+    StageTraceSummary,
+    StageTraceSummaryV2,
+)
 from .pipeline import build_observation_record, canonical_json
+from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
+from .scenarios.campaign import (
+    CampaignIndex,
+    CampaignPlan,
+    CampaignReport,
+    register_campaign_command,
+)
+from .scenarios.overhead import OverheadEvidence, OverheadReport, register_overhead_command
+from .scenarios.pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
 from .schemas import DEFAULT_SCHEMA_DIRECTORY, SCHEMA_MODELS, export_schemas, schema_drift
 
 CommandHandler = Callable[[argparse.Namespace], None]
@@ -61,6 +76,19 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "stage-trace-record-v2": StageTraceRecordV2,
+    "stage-trace-summary-v2": StageTraceSummaryV2,
+    "n5-campaign-report-v1": CampaignReport,
+    "n4-overhead-report-v1": OverheadReport,
+    "n5-campaign-plan-v1": CampaignPlan,
+    "n5-campaign-index-v1": CampaignIndex,
+    "n4-overhead-evidence-v1": OverheadEvidence,
+    "experiment-manifest-v2": ExperimentManifestV2,
+    "experiment-phase-evidence-v2": ExperimentPhaseEvidenceV2,
+    "experiment-result-v2": ExperimentResultV2,
+    "experiment-manifest-v1": ExperimentManifest,
+    "experiment-phase-evidence-v1": ExperimentPhaseEvidence,
+    "experiment-result-v1": ExperimentResult,
     "stage-trace-record-v1": StageTraceRecord,
     "stage-trace-summary-v1": StageTraceSummary,
     MATCH_RESULT_V2_SCHEMA_VERSION: MatchResultV2,
@@ -93,8 +121,21 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "experiment-manifest-v2",
+        "experiment-phase-evidence-v2",
+        "experiment-result-v2",
+        "n5-campaign-plan-v1",
+        "n5-campaign-index-v1",
+        "n5-campaign-report-v1",
+        "n4-overhead-evidence-v1",
+        "n4-overhead-report-v1",
+        "stage-trace-record-v2",
+        "stage-trace-summary-v2",
         "stage-trace-record-v1",
         "stage-trace-summary-v1",
+        "experiment-manifest-v1",
+        "experiment-phase-evidence-v1",
+        "experiment-result-v1",
     ):
         schema_version = payload["schema_version"]
     if not isinstance(schema_version, str):
@@ -108,7 +149,24 @@ def _validate(args: argparse.Namespace) -> None:
 
     validated = (
         model.model_validate_json(input_text)
-        if model in (StageTraceRecord, StageTraceSummary)
+        if model
+        in (
+            StageTraceRecordV2,
+            StageTraceSummaryV2,
+            StageTraceRecord,
+            StageTraceSummary,
+            CampaignReport,
+            OverheadReport,
+            CampaignPlan,
+            CampaignIndex,
+            OverheadEvidence,
+            ExperimentManifestV2,
+            ExperimentPhaseEvidenceV2,
+            ExperimentResultV2,
+            ExperimentManifest,
+            ExperimentPhaseEvidence,
+            ExperimentResult,
+        )
         else model.model_validate(payload)
     )
     sys.stdout.write(canonical_json(validated))
@@ -317,6 +375,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     register_v2_commands(subparsers)
     register_trace_commands(subparsers)
+    register_experiment_commands(subparsers)
+    register_campaign_command(subparsers)
+    register_overhead_command(subparsers)
     return parser
 
 

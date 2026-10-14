@@ -1,7 +1,7 @@
 # Post-N3 architecture audit
 
 > Archived milestone record, retained with its original results and limitations.
-> The [active N4 plan](../../plans/NEXT_IMPLEMENTATION_PLAN.md) now covers stage-level observability.
+> The [archived N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) now covers stage-level observability.
 
 **Reviewed locally:** 2026-10-08, including the follow-up health check after Step 7
 **Environment:** macOS, Python 3.13.13

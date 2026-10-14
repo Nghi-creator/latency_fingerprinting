@@ -1,5 +1,7 @@
 # N4 cross-repository health audit
 
+**Archived:** 2026-10-10 at the transition to [N5](../../plans/NEXT_IMPLEMENTATION_PLAN.md). Software results remain historical; pending real/minimum-version/hosted gates are not cleared.
+
 **Date:** 2026-10-09. **Scope:** core and Pixelated testbed, with focused review of
 all N4 contracts, collectors, lifecycle integration, exporters, I/O, reconstruction,
 fixtures, CLI commands, documentation and configured verification. Full local
@@ -65,7 +67,7 @@ records would discard reproduction meaning and provenance.
 ## Verification
 
 Full core suite: **1745 pass / 93.69% branch-inclusive coverage**, unchanged 85% floor.
-Local results and coverage are recorded in [quality gates](../measurement/QUALITY_GATES.md).
+Local results and coverage are recorded in [quality gates](../../measurement/QUALITY_GATES.md).
 Core focused observability suite: 206 cases pass. Both full suites and preservation
 checks are rerun for the final changes. Producer: 185 API, 133 engine, 245 web,
 90 desktop and 61 smoke/security/contract tests pass (714 total); one existing
@@ -85,9 +87,9 @@ checks pass in both trees.
 
 ## Next step and remaining evidence
 
-The [active N4 plan](../plans/NEXT_IMPLEMENTATION_PLAN.md) remains at real acceptance,
-not another software implementation step. Follow the [integration procedure](N4_INTEGRATION_VERIFICATION.md)
-and frozen [capability/overhead criteria](N4_PRODUCER_CAPABILITIES.md): actual Linux
+The [active N4 plan](../../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) remains at real acceptance,
+not another software implementation step. Follow the [integration procedure](../../observability/N4_INTEGRATION_VERIFICATION.md)
+and frozen [capability/overhead criteria](../../observability/N4_PRODUCER_CAPABILITIES.md): actual Linux
 X11→leaky queue→VP8 capture with a draining receiver, unique PTS evidence, nominal
 and interrupted/tiny-capacity/two-peer/browser cases, all five paired CPU/FPS
 trials, ≥1000-probe diagnostic and export timing. The acceptance runner must start

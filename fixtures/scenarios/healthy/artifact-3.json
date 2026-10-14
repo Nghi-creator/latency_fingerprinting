@@ -1,0 +1,254 @@
+{
+  "clock_id": "clock-1",
+  "end_ns": 70000000000,
+  "intervals": [
+    {
+      "active_workers": 0,
+      "end_ns": 41000000000,
+      "frames_end": 1230,
+      "frames_start": 1200,
+      "start_ns": 40000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 42000000000,
+      "frames_end": 1260,
+      "frames_start": 1230,
+      "start_ns": 41000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 43000000000,
+      "frames_end": 1290,
+      "frames_start": 1260,
+      "start_ns": 42000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 44000000000,
+      "frames_end": 1320,
+      "frames_start": 1290,
+      "start_ns": 43000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 45000000000,
+      "frames_end": 1350,
+      "frames_start": 1320,
+      "start_ns": 44000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 46000000000,
+      "frames_end": 1380,
+      "frames_start": 1350,
+      "start_ns": 45000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 47000000000,
+      "frames_end": 1410,
+      "frames_start": 1380,
+      "start_ns": 46000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 48000000000,
+      "frames_end": 1440,
+      "frames_start": 1410,
+      "start_ns": 47000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 49000000000,
+      "frames_end": 1470,
+      "frames_start": 1440,
+      "start_ns": 48000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 50000000000,
+      "frames_end": 1500,
+      "frames_start": 1470,
+      "start_ns": 49000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 51000000000,
+      "frames_end": 1530,
+      "frames_start": 1500,
+      "start_ns": 50000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 52000000000,
+      "frames_end": 1560,
+      "frames_start": 1530,
+      "start_ns": 51000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 53000000000,
+      "frames_end": 1590,
+      "frames_start": 1560,
+      "start_ns": 52000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 54000000000,
+      "frames_end": 1620,
+      "frames_start": 1590,
+      "start_ns": 53000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 55000000000,
+      "frames_end": 1650,
+      "frames_start": 1620,
+      "start_ns": 54000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 56000000000,
+      "frames_end": 1680,
+      "frames_start": 1650,
+      "start_ns": 55000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 57000000000,
+      "frames_end": 1710,
+      "frames_start": 1680,
+      "start_ns": 56000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 58000000000,
+      "frames_end": 1740,
+      "frames_start": 1710,
+      "start_ns": 57000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 59000000000,
+      "frames_end": 1770,
+      "frames_start": 1740,
+      "start_ns": 58000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 60000000000,
+      "frames_end": 1800,
+      "frames_start": 1770,
+      "start_ns": 59000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 61000000000,
+      "frames_end": 1830,
+      "frames_start": 1800,
+      "start_ns": 60000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 62000000000,
+      "frames_end": 1860,
+      "frames_start": 1830,
+      "start_ns": 61000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 63000000000,
+      "frames_end": 1890,
+      "frames_start": 1860,
+      "start_ns": 62000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 64000000000,
+      "frames_end": 1920,
+      "frames_start": 1890,
+      "start_ns": 63000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 65000000000,
+      "frames_end": 1950,
+      "frames_start": 1920,
+      "start_ns": 64000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 66000000000,
+      "frames_end": 1980,
+      "frames_start": 1950,
+      "start_ns": 65000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 67000000000,
+      "frames_end": 2010,
+      "frames_start": 1980,
+      "start_ns": 66000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 68000000000,
+      "frames_end": 2040,
+      "frames_start": 2010,
+      "start_ns": 67000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 69000000000,
+      "frames_end": 2070,
+      "frames_start": 2040,
+      "start_ns": 68000000000,
+      "worker_cpu_ns": 0
+    },
+    {
+      "active_workers": 0,
+      "end_ns": 70000000000,
+      "frames_end": 2100,
+      "frames_start": 2070,
+      "start_ns": 69000000000,
+      "worker_cpu_ns": 0
+    }
+  ],
+  "manifest_sha256": "cfc87c8675245096e321e53ede9cf9d3d7ec8b073e09a52e9f2a064c25beac4c",
+  "method_release": "n5-single-cause-v1",
+  "phase": "degraded",
+  "reason": null,
+  "run_id": "run-1",
+  "schema_version": "experiment-phase-evidence-v1",
+  "start_ns": 40000000000,
+  "state": "complete"
+}

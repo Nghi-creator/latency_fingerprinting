@@ -1,0 +1,26 @@
+{
+  "actions": [],
+  "artifacts": [],
+  "cleanup": {
+    "ended_ns": null,
+    "owned_workers_remaining": 0,
+    "reason": null,
+    "started_ns": null,
+    "state": "not_required"
+  },
+  "effect": {
+    "degraded_fps": null,
+    "healthy_fps": null,
+    "pressure_cpu_percent": null,
+    "reason": "adapter_unavailable",
+    "recovery_fps": null,
+    "state": "unavailable"
+  },
+  "manifest_sha256": "fa25d2afec6da4f6a11e2068ddef7f53b53ce5ccd609e9d03052e8a387cd0912",
+  "method_release": "n5-single-cause-v1",
+  "phases": [],
+  "reason": "runtime_unavailable",
+  "run_id": "run-1",
+  "schema_version": "experiment-result-v1",
+  "status": "unsupported"
+}

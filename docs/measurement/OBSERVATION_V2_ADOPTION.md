@@ -108,7 +108,7 @@ diagnostics, CLI validation and repeatable bounded failure handling.
 Local Step 3 result: **1,127 tests pass; 92.91% branch-inclusive coverage** on
 Python 3.13.13. Existing P0 match bytes, N1 registry/report pins, all schema/fixture
 checks and controlled artifacts pass. No bound, frozen artifact or arithmetic
-policy is changed. Python 3.11/hosted verification remains pending. Adopted-record
+policy is changed. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)). Adopted-record
 fixtures and broader N2 reproduction gates were subsequently completed in Step 5
 ([fixture guide](OBSERVATION_V2_FIXTURES.md)).
 
@@ -117,7 +117,7 @@ Local Step 4 result: **1,140 tests pass; 92.93% branch-inclusive coverage**.
 source/support combinations, missing support records and immutability. Expanded
 adoption assertions cover positive decode means, metric versus source declarations,
 v1 absent engines and browser-only unsupported encoders. All local preservation
-gates pass; Python 3.11/hosted verification remains pending.
+gates pass; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
 
 Step 5 final result: **1,162 tests pass; 93.04% branch-inclusive coverage**.
 Both configured Python CI jobs reproduce the adopted snapshots with fixed pins.

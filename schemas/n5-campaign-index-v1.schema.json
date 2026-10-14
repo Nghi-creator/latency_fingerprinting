@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "TrialReference": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition_ended_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Acquisition Ended Ns"
+        },
+        "acquisition_started_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Acquisition Started Ns"
+        },
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "anyOf": [
+            {
+              "pattern": "^run-[1-9][0-9]{0,8}\\.tar\\.gz$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "File Name"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "adapter_not_implemented",
+                "runtime_unavailable",
+                "permission_denied",
+                "clock_unavailable",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        },
+        "run_id": {
+          "pattern": "^run-[1-9][0-9]{0,9}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sha256"
+        },
+        "source_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "exported",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "source_id",
+        "status",
+        "reason",
+        "file_name",
+        "bytes",
+        "sha256",
+        "acquisition_started_ns",
+        "acquisition_ended_ns"
+      ],
+      "title": "TrialReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "campaign_id": {
+      "pattern": "^campaign-[1-9][0-9]{0,8}$",
+      "title": "Campaign Id",
+      "type": "string"
+    },
+    "plan_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Plan Sha256",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "n5-campaign-index-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "running",
+        "finished",
+        "cancelled",
+        "source_unavailable",
+        "trial_failed",
+        "campaign_failed"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "trials": {
+      "items": {
+        "$ref": "#/$defs/TrialReference"
+      },
+      "maxItems": 24,
+      "title": "Trials",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "plan_sha256",
+    "state",
+    "trials"
+  ],
+  "title": "CampaignIndex",
+  "type": "object"
+}

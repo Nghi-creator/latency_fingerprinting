@@ -15,6 +15,7 @@ from pydantic import Field
 from ..adapters.pixelated_bundle_io import _open_bundle
 from ..json_io import MAX_CONTRACT_JSON_BYTES
 from ..pipeline import canonical_json
+from .browser_v2 import parse_trace_record
 from .contracts import Count, TraceModel
 from .json import decode_trace_json
 from .trace import StageTraceRecord
@@ -29,6 +30,11 @@ class TraceManifest(TraceModel):
     trace_schema_version: Literal["stage-trace-record-v1"]
     trace_sha256: Annotated[str, Field(strict=True, pattern=r"^[0-9a-f]{64}$")]
     trace_bytes: Count
+
+
+class TraceManifestV2(TraceManifest):
+    schema_version: Annotated[int, Field(strict=True, ge=2, le=2)]
+    trace_schema_version: Literal["stage-trace-record-v2"]
 
 
 def _read_file(source, maximum):
@@ -138,14 +144,21 @@ def ingest_trace_bundle(path: Path) -> StageTraceRecord:
         finally:
             os.close(descriptor)
         manifest_payload = decode_trace_json(files["trace-manifest.json"])
-        manifest = TraceManifest.model_validate(manifest_payload)
+        manifest_model = (
+            (TraceManifestV2 if manifest_payload.get("schema_version") == 2 else TraceManifest)
+            if isinstance(manifest_payload, dict)
+            else TraceManifest
+        )
+        manifest = manifest_model.model_validate(manifest_payload)
         payload = files["trace-record.json"]
         if (
             len(payload) != manifest.trace_bytes
             or hashlib.sha256(payload).hexdigest() != manifest.trace_sha256
         ):
             raise ValueError("trace hash or byte count mismatch")
-        trace = StageTraceRecord.model_validate_json(payload)
+        trace = parse_trace_record(decode_trace_json(payload))
+        if trace.schema_version != manifest.trace_schema_version:
+            raise ValueError("trace root differs from manifest")
         if canonical_json(trace).encode("utf-8") != payload:
             raise ValueError("noncanonical trace serialization")
         return trace
