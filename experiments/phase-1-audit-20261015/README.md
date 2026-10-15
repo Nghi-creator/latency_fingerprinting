@@ -50,7 +50,7 @@ was relaxed. Original valid artifact/schema/fixture bytes remain unchanged.
   minimum Python. Full job/commit identities are in the linked CI receipts.
 
 Raw local logs and before/after regressions remain in ignored
-`local/phase-1-audit-20261015/`; the structured record publishes hashes without
+`local/phase_1/phase-1-audit-20261015/`; the structured record publishes hashes without
 private process identities or runtime journals. Existing live evidence and its
 original source labels are not rewritten.
 

@@ -2,7 +2,7 @@
 
 **Slice ID:** N5
 **Status:** Software and live method/campaign checks pass; merged-baseline CI verified; manual desktop acceptance and normal CI for subsequent audit fixes pending
-**Updated:** 2026-10-15
+**Updated:** 2026-10-16
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 **Archived plan:** [N4 stage observability](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
@@ -154,5 +154,7 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Merged-baseline hosted verification passes in both repos; [exact receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json).
 - [ ] Full inherited N4 acceptance: user desktop/picker/export sign-off remains open; subsequent audit fixes need normal CI after merge.
 - [x] Software/runtime/hosted outcomes and current docs agree; fault cohort and core hosted results verified; remaining manual acceptance and subsequent audit CI explicit.
+
+**Readiness audit:** The [follow-up review](../../experiments/phase-1-readiness-20261015/README.md) hardens compressed legacy archives and browser save cleanup, splits mixed telemetry/API-test/scenario-test modules and preserves releases. This is preparation for the next phase; it does not close the manual gates below.
 
 **Remaining acceptance action:** User desktop/game-picker and trace-export/cancel/retry checks. Hosted gates pass on the merged baselines; the subsequent audit fixes need their normal CI after merge. See the [pre-manual audit](../../experiments/phase-1-audit-20261015/README.md). Opt-in browser execution coding, independent fixtures/API/CLI handoff and local live overhead/coverage/diagnostic checks now pass ([evidence](../../experiments/n5-browser-execution-20261014/README.md)). Fresh campaign-8 now verifies all 18 healthy/contention/pacing reference/query acquisitions; source receipt windows are disjoint. Selected-scene five-pair overhead also passes. Nominal N4 capture/overhead and host lifecycle cases now pass; actual Python 3.11/Node 24 and native build/smoke are recorded. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.

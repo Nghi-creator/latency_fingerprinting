@@ -1,13 +1,16 @@
 # Phase 1 quality and CI gates
 
-**Updated:** 2026-10-15. [Cross-repository audit](../../experiments/phase-1-audit-20261015/README.md),
+**Updated:** 2026-10-16. [Follow-up readiness audit](../../experiments/phase-1-readiness-20261015/README.md),
+[previous audit](../../experiments/phase-1-audit-20261015/README.md),
 [acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md),
 [historical checkpoints](../archive/phase1/QUALITY_GATE_HISTORY.md).
 
 ## Latest actual verification
 
 Current full-suite results and exact log hashes are recorded in the
-[audit results](../../experiments/phase-1-audit-20261015/results.json).
+[readiness results](../../experiments/phase-1-readiness-20261015/results.json).
+Earlier minimum-version/native Linux counts belong to their recorded baselines;
+the current macOS pass and remaining hosted checks are listed separately.
 The core covers P0 compatibility, N1 aggregation, N2 observation adoption,
 N3 analytical matching, N4 stage reconstruction and N5 campaign inspection.
 Pixelated verification covers API, engine, web, desktop, smoke/security tests,
@@ -61,7 +64,9 @@ and detached recomputation of every retained trial.
 The 2026-10-15 audit specifically adds non-object manifest rejection and
 nonblocking rejection of special JSON/journal files. Invalid evidence cannot
 replace an existing successful output. Valid schemas, methods, arithmetic and
-measurement thresholds remain unchanged.
+measurement thresholds remain unchanged. The follow-up adds bounded compressed
+legacy TAR expansion/physical metadata parsing and browser writable-stream
+cleanup on failed export; its regression tests preserve public failure messages.
 
 ## Local verification commands
 

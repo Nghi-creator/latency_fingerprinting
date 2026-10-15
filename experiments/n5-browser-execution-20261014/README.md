@@ -70,7 +70,7 @@ cmp experiments/n5-browser-execution-20261014/nominal-summary.json \
 ```
 
 All seven actual raw archives, frozen acquisition plan, helper scripts, receipts
-and full test logs remain under ignored `local/n5-browser-execution-20261014/` on
+and full test logs remain under ignored `local/phase_1/n5-browser-execution-20261014/` on
 this host. Private process IDs/getStats diagnostics are not published. The report
 is research metadata, not a new core artifact schema. The trace/summary files are
 actual versioned artifacts, separate from the

@@ -1,6 +1,6 @@
 # N5 runtime acceptance ledger
 
-**Updated:** 2026-10-15. **Status:** complete repeated-fault cohort and browser method checks pass; merged-baseline hosted gates verified. Manual desktop/picker sign-off remains pending; audit fixes require their normal hosted run.
+**Updated:** 2026-10-16. **Status:** complete repeated-fault cohort and browser method checks pass; merged-baseline hosted gates verified. Manual desktop/picker sign-off remains pending; audit fixes require their normal hosted run.
 [Software closeout](N5_SOFTWARE_CLOSEOUT.md), [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md),
 [frozen contract](N5_EXPERIMENT_CONTRACT.md), [execution record](../../experiments/n5-runtime-20261013/README.md).
 
@@ -78,9 +78,11 @@ locally retained. Old `controlled-run-001/002` artifacts are not N5 repetitions.
 | Pixelated hosted CI | npm audits, both engine image scans, three-platform desktop builds, hosted web/API checks, deployment and auth/pairing smoke pass at merged `31d675a` | Subsequent local audit fixes need normal CI after merge |
 | Normal desktop/picker interaction | Manual sign-off unverified | User checks game launch/input/reconnect and trace export/cancel/retry on the final build |
 
-All 79 producer scenario tests and 58 trace/control tests pass on Linux, including
-the previously skipped parked-child integration case. Core Python 3.13 passes
-2,015 tests at 93.61% coverage. Actual Node 24 also passes all 259 web tests. These are software results, separate from real
+Prior native verification passed all 79 producer scenario tests and 58 trace/control tests on Linux, including
+the previously skipped parked-child integration case. Current readiness verification
+passes 2,032 core Python 3.13 tests at 93.55% coverage and 740 Pixelated Node tests
+with one existing external-artifact skip. The earlier actual Node 24 baseline passed
+all 259 web tests. New patch minimum-version/native reruns remain CI work. These are software results, separate from real
 fault effects, scientific validation and hosted CI.
 
 ## Evidence and remaining acceptance
@@ -89,8 +91,8 @@ fault effects, scientific validation and hosted CI.
 contains the actual receipts, measured effects, scope/loss summaries and helper
 hashes. [Overhead report](../../experiments/n5-runtime-20261013/overhead-report.json)
 is the canonical detached inspector output. Raw public archives/full reports and
-trusted research helpers remain under ignored `local/n5-acceptance-20261012/` and
-`local/n5-calibration-20261013/`;
+trusted research helpers remain under ignored `local/phase_1/n5-acceptance-20261012/` and
+`local/phase_1/n5-calibration-20261013/`;
 private leases, native identities and diagnostic PTS are not published. Completed cohort and calibration runtimes are stopped with clean journals;
 the separate selected-scene overhead completed with a clean ownership journal. The bounded browser diagnostic runtime is also stopped.
 
@@ -159,3 +161,12 @@ no live acquisition was replaced or rerun as a new repetition. The
 [current quality guide](../measurement/QUALITY_GATES.md) links the final audit
 counts. All original schemas, arithmetic/effect thresholds and fixture bytes
 remain unchanged. Final manual outcomes are still not supplied.
+
+
+## Follow-up readiness audit
+
+The [follow-up review](../../experiments/phase-1-readiness-20261015/README.md)
+hardens legacy compressed input and browser failed-save cleanup, separates mixed
+source/test modules and reproduces both retained live reports exactly. Its
+macOS tests do not constitute new native Linux or minimum-version execution.
+Manual sign-off and normal hosted verification remain open.

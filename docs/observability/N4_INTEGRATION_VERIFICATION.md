@@ -88,6 +88,6 @@ for passing paired-overhead/host lifecycle outcomes and remaining browser gates.
 The additive [browser execution release](N4_BROWSER_EXECUTION_CONTRACT.md) now
 passes independent producer-to-core fixture/API/CLI and local live validation.
 Full N4 acceptance remains pending for user desktop/picker sign-off and normal
-CI for subsequent audit fixes; both merged baselines pass hosted checks. Actual Python 3.11.17 passes 2,015 tests, 25 schemas
+CI for subsequent audit fixes; both merged baselines pass hosted checks. The prior actual Python 3.11.17 baseline passes 2,015 tests, 25 schemas
 and frozen reproduction locally; exact core hosted quality/minimum-Python jobs
 also pass ([current receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json)).

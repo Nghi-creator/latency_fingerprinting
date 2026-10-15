@@ -17,6 +17,8 @@ validation, [opt-in host hooks](observability/N4_HOST_INSTRUMENTATION.md),
 [timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; manual desktop acceptance and normal CI for subsequent audit fixes remain open ([runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)). The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
+Latest cross-repository review: [follow-up readiness audit](../experiments/phase-1-readiness-20261015/README.md), with module/test restructuring and bounded archive/export fixes.
+
 ## Current implemented references
 
 | Topic | Documents |
@@ -33,8 +35,9 @@ places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
 N2 stage timing remains unavailable. N4 delivers versioned trace schemas and
 host/browser hooks, trace artifact adoption and offline timing reconstruction.
-N3 policy parameters remain provisional. Current Python 3.11/3.13 suites each
-pass 2,015 tests with 93.61% branch-inclusive coverage. Both merged baselines
+N3 policy parameters remain provisional. Current Python 3.13 verification passes 2,032 tests with 93.55% branch-inclusive
+coverage. Earlier actual Linux Python 3.11 verification passed 2,015 tests/93.61%
+on its recorded baseline; the new patches still need minimum-version CI. Both merged baselines
 have verified hosted checks, including Pixelated image security and desktop
 packaging; subsequent audit fixes still need their normal CI run. N5’s fresh cohort verifies 18/18 trials and
 selected-scene overhead passes. The opt-in browser execution method also passes

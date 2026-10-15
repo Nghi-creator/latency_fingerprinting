@@ -1,13 +1,13 @@
 # N5 implementation progress
 
-**Updated:** 2026-10-15. **Status:** library and end-to-end coding workflows delivered; real runtime acceptance remains pending.
+**Updated:** 2026-10-16. **Status:** library and end-to-end coding workflows delivered; real runtime acceptance remains pending.
 **Active plan:** [N5 reproducible scenario harness](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Inherited gates:** [N4 runtime acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md).
 
 ## Current handoff, 2026-10-15
 
 The [pre-manual audit](../../experiments/phase-1-audit-20261015/README.md) records
-2,015 passing core tests on Python 3.11/3.13 (93.61% coverage), all 25 schemas and
+the prior 2,015-test Python 3.11/3.13 baseline (93.61% coverage), all 25 schemas and
 unchanged release pins. Pixelated's full Node suites, lint/builds, browser
 interaction harness, 79 Linux scenario tests and 58 Linux trace tests pass.
 Both merged baselines now have verified hosted CI, including Pixelated image
@@ -19,6 +19,12 @@ rejection and the remaining moderate dependency advisory. Current local fixes
 need their ordinary CI after merge. User desktop/game-picker and trace export
 sign-off remain pending. Earlier step sections below retain historical counts,
 then-pending gates and original software closeout evidence.
+
+The [follow-up readiness audit](../../experiments/phase-1-readiness-20261015/README.md)
+passes 2,032 core tests on Python 3.13 (93.55% coverage) and 740 Pixelated Node
+tests, with one existing external-artifact skip. It adds archive/export failure
+hardening and focused source/test splits. Linux/minimum-version and hosted reruns
+of these new patches remain CI work, separate from the earlier actual results.
 
 ## Step 1 — Baseline and ownership inventory
 
