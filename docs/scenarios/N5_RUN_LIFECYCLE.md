@@ -53,5 +53,5 @@ and API/CLI bytes. Core models/schemas/policies/fixtures are unchanged in Step 4
 [Current runtime acceptance](N5_RUNTIME_ACCEPTANCE.md) records verified nominal
 capture, selected-workload overhead/lifecycle cases, minimum-version execution
 and the complete passing 18-trial cohort. Browser execution method checks also
-pass locally. Core hosted baseline CI is verified; normal desktop/picker and
-hosted checks of final browser changes in both repos remain open.
+pass locally. Both merged baselines pass hosted gates; normal desktop/picker sign-off and
+normal CI for subsequent audit fixes remain open.

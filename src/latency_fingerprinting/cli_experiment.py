@@ -17,7 +17,7 @@ def _inspect(args):
 
 def register_experiment_commands(subparsers):
     parser = subparsers.add_parser(
-        "inspect-experiment", help="verify linked v1 experiment evidence"
+        "inspect-experiment", help="verify linked v1/v2 experiment evidence"
     )
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)

@@ -1,14 +1,14 @@
 # Latency Fingerprinting: Full Implementation Plan
 
 **Status:** Full post-P0 roadmap through production and final evaluation  
-**Updated:** 2026-10-09
+**Updated:** 2026-10-15
 **Starting point:** The offline P0 path is complete and hardened. Diagnosis accuracy,
 live probing, recovery benefit, and transfer remain unproven.
 
 This document defines the complete sequence of major slices required to finish
 the engine. It intentionally stays at roadmap level. The implementation-ready
 plan for only the active slice lives in
-[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md).
 
 ## Outcome to build toward
 
@@ -52,7 +52,7 @@ frame timestamp + deadline budget
 
 N1's registry and aggregation foundation is implemented and locally verified;
 see the [N1 software closeout](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI
-verification remains pending. N2 additive observation-v2 contracts and offline
+for the merged baseline is [verified](../../experiments/phase-1-audit-20261015/hosted-ci.json). N2 additive observation-v2 contracts and offline
 adoption are now [implemented and closed out locally](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md),
 with deterministic fixtures and reproduction gates in both configured Python jobs.
 The [archived N2 plan](archive/N2_OBSERVATION_V2_ADOPTION_PLAN.md) retains its
@@ -82,7 +82,7 @@ baselines, the [trace specification](../observability/N4_TRACE_CONTRACT.md) and
 [bounded host hooks](../observability/N4_HOST_INSTRUMENTATION.md) and
 [browser collector](../observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace export/adoption](../observability/N4_TRACE_ADOPTION.md) and
-[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; normal desktop/picker and final hosted acceptance gates stay open ([runtime ledger](../observability/N4_RUNTIME_ACCEPTANCE.md)). Preserve frozen N2 unavailable timing and
+[offline timing reconstruction](../observability/N4_TIMING_RECONSTRUCTION.md). [Step 7 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md) and pinned synthetic integration are complete locally; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; normal desktop/picker sign-off remains open; baseline hosted gates pass and subsequent audit fixes require their normal CI run ([runtime ledger](../observability/N4_RUNTIME_ACCEPTANCE.md)). Preserve frozen N2 unavailable timing and
 N3 matching meanings through additive trace contracts. The active [N5 plan](NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3 with a reproduced
 software baseline and [frozen scenario/phase/effect/cleanup contract](../scenarios/N5_EXPERIMENT_CONTRACT.md).
 [Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [bounded lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](../scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open; [inherited N4 runtime gates](../observability/N4_RUNTIME_ACCEPTANCE.md)
@@ -395,6 +395,6 @@ The engine is complete only when all of the following are true:
 - all remaining limitations are explicit.
 
 The current implementation-ready work is specified in
-[`NEXT_IMPLEMENTATION_PLAN.md`](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md). Dashboard work,
+[`NEXT_IMPLEMENTATION_PLAN.md`](NEXT_IMPLEMENTATION_PLAN.md). Dashboard work,
 a hosted service, unrestricted online learning, and ML/RL remain out of scope
 until measurement semantics, safety, and deterministic baselines justify them.

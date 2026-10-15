@@ -1,0 +1,235 @@
+{
+  "baselines": {
+    "core": "33131393317863d46238d2dccd9e1af561907a9f",
+    "pixelated": "31d675a5f7aa82370e46c87c829e58e81bc0bb26"
+  },
+  "findings": [
+    {
+      "fix": "Check the root before version dispatch; parse the validated declaration once.",
+      "id": "core_manifest_root",
+      "problem": "Non-object experiment manifests could escape sanitized failures with AttributeError.",
+      "regressions": 10,
+      "status": "fixed"
+    },
+    {
+      "fix": "Open nonblocking where supported, inspect the opened descriptor, require a regular file, retain size/read limits and close on every path.",
+      "id": "core_special_json_input",
+      "problem": "Generic JSON input could wait indefinitely on a FIFO or accept non-file devices as input.",
+      "regressions": 2,
+      "status": "fixed"
+    },
+    {
+      "fix": "Use nonblocking opens before existing private ownership/type checks.",
+      "id": "producer_private_fifo",
+      "problem": "Private journal/worker reads could block before validating a special file.",
+      "regressions": "one test exercises both journal and worker FIFOs in bounded subprocesses",
+      "status": "fixed"
+    },
+    {
+      "fix": "Compatible fast-copy 4.2.0 in root/API locks; no audit exception or severity relaxation.",
+      "id": "dependency_fast_copy",
+      "problem": "Root/API development dependency still had a moderate recursion advisory.",
+      "source": "https://github.com/advisories/GHSA-jggr-w7fw-pc2j",
+      "status": "fixed"
+    },
+    {
+      "fix": "Reconcile current status with exact CI receipts; fix links/counts; move per-step quality history to an explicit archive.",
+      "id": "documentation_drift",
+      "problem": "Current guides still claimed hosted CI unavailable, used 23-schema counts, linked the active plan to an archive, and repeated historical gate counts.",
+      "status": "fixed"
+    }
+  ],
+  "live_campaigns_rerun": false,
+  "log_sha256": {
+    "api-final.log": "2b417e89dfdad3fa638e95229605d3fb5bd7bdf76aca630d876dbe5af3d3cfd0",
+    "browser-producer-parity.json": "aaad534d1a275686f0dda36d89dff619aa3156ad314b6c93e8878fc196fc5f3f",
+    "campaign-8-report.json": "3a56faf6e32f31fa49e412495d560ae3bb0fef74d8dff90cb4b3db6bd02cae10",
+    "core-tests-final.log": "0a61f05861d0e6db3b06f1f7a600a0ed693832f72d9c0588ac39e1988a2d863c",
+    "lease-after.log": "a4f020dc8d655f36be4ad25dd90842371747dd88ebea8a869a561f26e850c403",
+    "lease-fifo-before.log": "e1707f4102ab03455aa7370f3bdf9755b5d13349fc9462548e0a66514f9ebaa1",
+    "linux-scenarios.log": "5b0f9c1b4db1013d355b82d6e2a05910ea4dc15bd22967eb90e35484d1eca287",
+    "linux-tracing.log": "73a8a6b8961c367b729a745fc5de69269ad0f9e98f24b69820f2ccefccc10982",
+    "manifest-root-after.log": "60014928f678064f0fca70c85bfb3e5f6f37be516941a585e0626903e33c59bf",
+    "manifest-root-before.log": "0506d0875f479f6b63d01602ea84d0abf988d1ee25ed506630a4d7f194ff038f",
+    "n4-producer-parity.json": "d086c7058625f89c203ad78f72d29bcc84e6df7afcfaa0789b73c9fa44d04bad",
+    "n5-producer-parity.json": "751975a8bc4fbd81ab0a7395d689cf376a9b3d1949a158a7cc3f43958740452c",
+    "node24-web.log": "53ab2be83ac2ee9f6fc80e315689b89fcc4c6f48cfbebc9cbcacec915edb1366",
+    "overhead-9-report.json": "54463326e2cf8a870bdbd32bcb6f315aee57809e7d73c0da4451400a309eaa8f",
+    "pixelated-build.log": "27074886e6d592e64d0a234721e62ac9c4661c4420f2dabacd0b1d7af70f5fb6",
+    "pixelated-engine-final.log": "33923ce654b13428ee3c8baad35bd7ec10fa1ed5076e46fb61ca1b4501e14212",
+    "pixelated-interactions.log": "9755df9a4385fa4fefc50d00c102929c884a13cb94fc4f587cd55b2b1b7246c2",
+    "pixelated-lint.log": "496b9732f3295fa6e60568304336e36ffafa02e1fbcd45d1d45abf4063c94ba5",
+    "pixelated-tests.log": "782a0ffb17fb3a69f4a32d164ffd2d67ad8951072ceae15eeb71427cb8fb364e",
+    "python311.log": "faeeeddbbf5eb1e0a85fd6d926262bf8d6357fd41469adaa672064bb25658ee9"
+  },
+  "phase_1_acceptance": "pending_manual_signoff",
+  "record_kind": "phase_1_cross_repository_audit",
+  "remaining_acceptance": [
+    "user normal desktop/game-picker/input/stop/reconnect check",
+    "user trace export/cancel/retry and detached v2 inspection on final build",
+    "normal hosted CI for these audit patches after merge"
+  ],
+  "review_date": "2026-10-15",
+  "scope": [
+    "contract/model compatibility and finite arithmetic",
+    "bounded input, archive and private resource safety",
+    "producer lifecycle, cleanup/watchdogs and browser timing",
+    "full repository tests/lint/builds and browser interaction harness",
+    "native Linux and minimum-version checks",
+    "immutable release and actual producer-to-core reproduction",
+    "hosted CI, npm audit and current-vs-historical documentation"
+  ],
+  "source_sha256": {
+    "core/src/latency_fingerprinting/cli_experiment.py": "6750e8005950b3c35e54fe3c562b94a6befd562b7ec6e8b3498814ecd9d12ef4",
+    "core/src/latency_fingerprinting/json_io.py": "1bcebd8b756f557c3d91589a882d4741eeaf889ae5783575d4256a5def7b0bc2",
+    "core/src/latency_fingerprinting/scenarios/inspect.py": "3fb60593f29c4f89b2763871864fe987be49200641231d23726adc6b35234f4d",
+    "pixelated/engine/runtime/scenario_harness/lease.py": "092e2f0a22caca007b5cbf688d6bad798c29a4e0523a109ff2a2abe5745c3fa7",
+    "pixelated/package-lock.json": "67d7193b46def8abafc72a38e4c00a6e902909778ca79cb84de6ff0f0847f83e",
+    "pixelated/services/api/package-lock.json": "b4e194a59290faef3c5afa64f95e7bacfbbeaf9ef1f9971d4ce62b1c32d926e2"
+  },
+  "structure_review": {
+    "core_largest_module_lines": 588,
+    "decision": "Keep the existing focused modules; no broad production restructure warranted. Condense active quality documentation and archive history.",
+    "pixelated_camera_entry_lines": 326,
+    "pixelated_server_entry_lines": 314
+  },
+  "verification": {
+    "actual_producer_archive_api_cli_parity": {
+      "browser_execution_v2": "passed",
+      "n4_v1": "passed",
+      "n5_v1": "passed"
+    },
+    "core_linux_python311": {
+      "coverage_percent": 93.61,
+      "passed": 2015
+    },
+    "core_python313": {
+      "coverage_percent": 93.61,
+      "passed": 2015
+    },
+    "desktop_build_chain_audit": "passed",
+    "linux_native_python": {
+      "scenario_passed": 79,
+      "skipped": 0,
+      "tracing_passed": 58
+    },
+    "node24_linux_web": {
+      "passed": 259,
+      "skipped": 0
+    },
+    "npm_audits": {
+      "api": {
+        "full": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        },
+        "prod": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        }
+      },
+      "desktop": {
+        "full": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        },
+        "prod": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        }
+      },
+      "engine": {
+        "full": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        },
+        "prod": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        }
+      },
+      "root": {
+        "full": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        },
+        "prod": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        }
+      },
+      "web": {
+        "full": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        },
+        "prod": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "moderate": 0,
+          "total": 0
+        }
+      }
+    },
+    "original_registry_policy_fixture_and_schema_releases": "unchanged",
+    "p0_seed_and_exact_run002_match": "passed",
+    "pixelated_all_workspace_builds": "passed",
+    "pixelated_browser_interaction_harness": "passed",
+    "pixelated_lint": "passed",
+    "pixelated_node_suites": {
+      "api_passed": 185,
+      "desktop_passed": 92,
+      "engine_passed": 135,
+      "existing_engine_external_artifact_skip": 1,
+      "note": "Full baseline suite passed; changed API/engine checks rerun after fixes.",
+      "passed_total": 732,
+      "smoke_security_passed": 61,
+      "web_passed": 259
+    },
+    "retained_live_campaign_8": "canonical report reproduced exactly; 18/18 verified",
+    "retained_selected_workload_overhead_9": "canonical report reproduced exactly; fixed criteria pass",
+    "schemas": {
+      "count": 25,
+      "drift": false
+    },
+    "workspace_lock_consistency": "passed"
+  }
+}

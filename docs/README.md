@@ -1,6 +1,6 @@
 # Documentation index
 
-**Latest review:** [Cross-repository health audit](archive/observability/N4_ARCHITECTURE_AUDIT.md).
+**Latest review:** [Pre-manual Phase 1 audit](../experiments/phase-1-audit-20261015/README.md).
 
 **Current slice:** [N5 reproducible scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md).
 [Steps 1–7](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
@@ -14,7 +14,7 @@ The [trace contract](observability/N4_TRACE_CONTRACT.md),
 validation, [opt-in host hooks](observability/N4_HOST_INSTRUMENTATION.md),
 [browser collection](observability/N4_BROWSER_INSTRUMENTATION.md) and
 [trace adoption](observability/N4_TRACE_ADOPTION.md) and
-[timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; final desktop/hosted acceptance remains open ([runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)). The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
+[timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; manual desktop acceptance and normal CI for subsequent audit fixes remain open ([runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)). The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
 ## Current implemented references
@@ -34,12 +34,12 @@ places the active scenario harness in Phase 1.3 and scientific evaluation later.
 N2 stage timing remains unavailable. N4 delivers versioned trace schemas and
 host/browser hooks, trace artifact adoption and offline timing reconstruction.
 N3 policy parameters remain provisional. Current Python 3.11/3.13 suites each
-pass 2,003 tests with 93.60%/93.52% branch-inclusive coverage respectively. Core
-hosted baseline quality/minimum-Python jobs pass; final browser changes still
-require hosted verification. N5’s fresh cohort verifies 18/18 trials and
+pass 2,015 tests with 93.61% branch-inclusive coverage. Both merged baselines
+have verified hosted checks, including Pixelated image security and desktop
+packaging; subsequent audit fixes still need their normal CI run. N5’s fresh cohort verifies 18/18 trials and
 selected-scene overhead passes. The opt-in browser execution method also passes
-local live checks. Normal Pixelated desktop interaction, final hosted CI in both
-repos, full-limit scaling and scientific validation
+local live checks. User desktop/picker sign-off, normal CI for subsequent audit
+fixes, full-limit scaling and scientific validation
 remain pending; see the [runtime ledger](scenarios/N5_RUNTIME_ACCEPTANCE.md).
 
 ## Historical evidence

@@ -1,8 +1,8 @@
 # N5 Implementation Plan: Reproducible Scenario Harness
 
 **Slice ID:** N5
-**Status:** Software complete, including browser execution method; fault cohort and local method checks pass; final desktop/hosted acceptance pending
-**Updated:** 2026-10-14
+**Status:** Software and live method/campaign checks pass; merged-baseline CI verified; manual desktop acceptance and normal CI for subsequent audit fixes pending
+**Updated:** 2026-10-15
 **Parent roadmap:** [Phase 1.3](FULL_IMPLEMENTATION_PLAN.md#13-build-a-reproducible-scenario-harness)
 **Predecessor:** [N4 software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md)
 **Archived plan:** [N4 stage observability](archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md)
@@ -13,7 +13,8 @@ N5 begins with N4 software complete locally and real N4 acceptance explicitly
 pending. Starting N5 does not establish real capture, instrumentation overhead,
 clock synchronization, minimum-version execution or hosted CI success. Preserve
 all P0/N1/N2/N3/N4 contract bytes, fixture pins, registry/policy releases, matcher
-thresholds and existing commands. Python remains outside producer frame callbacks.
+thresholds and existing commands. Core validation/analysis stays outside producer
+frame callbacks; producer trace hooks do bounded in-memory collection.
 
 ## Outcome and ownership
 
@@ -115,7 +116,7 @@ phase/action/effect coverage and no implicit promotion into N3 matching features
 
 ## Step 7 — Pin independent fixtures and cross-repository reproduction
 
-**Local software gate:** Complete, 2026-10-12. [Independent experiment fixtures/reproduction](../scenarios/N5_EXPERIMENT_FIXTURES.md) pin eight synthetic cases and exact uncompressed producer member bytes; directory/API/CLI parity and both configured core CI gates are delivered. Actual local reproduction passes. Subsequent minimum-version and core hosted checks pass; see the current [runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) for the passing cohort and remaining browser/desktop/Pixelated hosted gates.
+**Local software gate:** Complete, 2026-10-12. [Independent experiment fixtures/reproduction](../scenarios/N5_EXPERIMENT_FIXTURES.md) pin eight synthetic cases and exact uncompressed producer member bytes; directory/API/CLI parity and both configured core CI gates are delivered. Actual local reproduction passes. Subsequent minimum-version and core hosted checks pass; see the current [runtime ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) for the passing cohort and remaining manual desktop gate and normal CI for subsequent audit fixes.
 
 Author independent synthetic success/failure/partial/unsupported fixtures and
 read-only pins. Exercise producer export → core adoption/inspection, preserve all
@@ -127,7 +128,7 @@ remain explicit and cannot be passed by fake runtime output.
 
 ## Step 8 — Execute real repetitions and close out software/runtime separately
 
-**Software closeout:** Recorded, 2026-10-12. [Closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) separates delivered local software from actual runtime/hosted results. [Live acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) records initial macOS preflight unavailability and subsequent real Docker Desktop Linux trials, retained corrected-cohort failures, verified N4 overhead/lifecycle checks, actual minimum-version execution and native image build/smoke; the [additive campaign/pacing workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) now delivers the second adapter and live-entry/overhead tools. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes; browser execution method checks now pass locally; desktop/final hosted acceptance and Phase 1 completion remain pending.
+**Software closeout:** Recorded, 2026-10-12. [Closeout](../scenarios/N5_SOFTWARE_CLOSEOUT.md) separates delivered local software from actual runtime/hosted results. [Live acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md) records initial macOS preflight unavailability and subsequent real Docker Desktop Linux trials, retained corrected-cohort failures, verified N4 overhead/lifecycle checks, actual minimum-version execution and native image build/smoke; the [additive campaign/pacing workflow](../scenarios/N5_CAMPAIGN_WORKFLOW.md) now delivers the second adapter and live-entry/overhead tools. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes; browser execution method checks now pass locally; merged-baseline hosted checks pass. Manual desktop acceptance and the normal CI run for subsequent audit fixes remain pending; Phase 1 is not closed.
 
 Run supported real single causes with measured effects, recovery, seeds/config,
 all trial values and independent repetitions. Freeze reference/query assignments
@@ -150,7 +151,8 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 - [x] Versioned producer export/core adoption and inspection agree in synthetic software checks.
 - [x] Independent fixtures/pins and both repository software gates reproduce locally.
 - [x] Real repetitions and disjoint reference/query acquisitions recorded: campaign-8, 18/18 verified.
-- [ ] Full inherited N4 acceptance: browser method validation passes locally; desktop/final hosted gates remain open.
-- [x] Software/runtime/hosted outcomes and current docs agree; fault cohort and core hosted results verified; remaining desktop/final hosted gates explicit.
+- [x] Merged-baseline hosted verification passes in both repos; [exact receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json).
+- [ ] Full inherited N4 acceptance: user desktop/picker/export sign-off remains open; subsequent audit fixes need normal CI after merge.
+- [x] Software/runtime/hosted outcomes and current docs agree; fault cohort and core hosted results verified; remaining manual acceptance and subsequent audit CI explicit.
 
-**Remaining acceptance action:** Normal desktop/picker interaction and hosted checks of the final changes in both repos. Opt-in browser execution coding, independent fixtures/API/CLI handoff and local live overhead/coverage/diagnostic checks now pass ([evidence](../../experiments/n5-browser-execution-20261014/README.md)). Fresh campaign-8 now verifies all 18 healthy/contention/pacing reference/query acquisitions; source receipt windows are disjoint. Selected-scene five-pair overhead also passes. Nominal N4 capture/overhead and host lifecycle cases now pass; actual Python 3.11/Node 24 and native build/smoke are recorded. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.
+**Remaining acceptance action:** User desktop/game-picker and trace-export/cancel/retry checks. Hosted gates pass on the merged baselines; the subsequent audit fixes need their normal CI after merge. See the [pre-manual audit](../../experiments/phase-1-audit-20261015/README.md). Opt-in browser execution coding, independent fixtures/API/CLI handoff and local live overhead/coverage/diagnostic checks now pass ([evidence](../../experiments/n5-browser-execution-20261014/README.md)). Fresh campaign-8 now verifies all 18 healthy/contention/pacing reference/query acquisitions; source receipt windows are disjoint. Selected-scene five-pair overhead also passes. Nominal N4 capture/overhead and host lifecycle cases now pass; actual Python 3.11/Node 24 and native build/smoke are recorded. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.

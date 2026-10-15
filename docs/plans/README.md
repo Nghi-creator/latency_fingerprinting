@@ -2,7 +2,7 @@
 
 ## Active work
 
-- [N5 — Reproducible scenario harness](NEXT_IMPLEMENTATION_PLAN.md) is active.
+- [N5 — Reproducible scenario harness](NEXT_IMPLEMENTATION_PLAN.md) is active pending manual acceptance.
   [Steps 1–7 baseline/contracts/models/lifecycle](../scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
   locally; [contract](../scenarios/N5_EXPERIMENT_CONTRACT.md) and
   [examples](../scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen. [Strict models/schemas](../scenarios/N5_EXPERIMENT_MODELS.md) are delivered; [Step 4 lifecycle/recording control](../scenarios/N5_RUN_LIFECYCLE.md) is delivered; Step 5 adapters/effect checks are delivered; Step 6 export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open. [Inherited N4
@@ -27,3 +27,8 @@ Archive completed plans and milestone records when transitioning slices. Preserv
 their results and limitations, update inbound links, and retain normative
 contracts/approved policies and reproduction artifacts in their canonical places.
 Implemented software and synthetic checks must remain separate from real measurements.
+
+The [2026-10-15 cross-repository audit](../../experiments/phase-1-audit-20261015/README.md)
+records successful merged-baseline CI in both repos. User desktop/picker/export
+sign-off and normal CI for the subsequent audit fixes remain outstanding; N5 is
+not archived and no Phase 2 plan is substituted before that handoff.

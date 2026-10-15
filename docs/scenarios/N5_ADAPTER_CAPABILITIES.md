@@ -82,7 +82,7 @@ do not replace or relax those separate gates. The [current runtime ledger](N5_RU
 Linux/Node 24 execution, Python 3.11 local verification, nominal capture and
 overhead/lifecycle results. Campaign-8 passes all 18 trials and selected-scene
 overhead also passes. Core baseline hosted CI is verified; browser execution method checks now pass
-locally. Desktop interaction and hosted checks of final browser changes remain open.
+locally. Desktop interaction and normal CI for subsequent audit fixes remain open; both merged baselines pass hosted gates.
 
 ## Historical Step 4 implementation handoff
 

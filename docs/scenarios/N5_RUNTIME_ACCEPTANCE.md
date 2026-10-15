@@ -1,6 +1,6 @@
 # N5 runtime acceptance ledger
 
-**Updated:** 2026-10-14. **Status:** complete repeated-fault cohort and browser method checks pass locally; desktop/final hosted acceptance remains open.
+**Updated:** 2026-10-15. **Status:** complete repeated-fault cohort and browser method checks pass; merged-baseline hosted gates verified. Manual desktop/picker sign-off remains pending; audit fixes require their normal hosted run.
 [Software closeout](N5_SOFTWARE_CLOSEOUT.md), [active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md),
 [frozen contract](N5_EXPERIMENT_CONTRACT.md), [execution record](../../experiments/n5-runtime-20261013/README.md).
 
@@ -15,7 +15,7 @@ Observed Docker is 29.0.1, VM Linux 6.12.54-linuxkit/aarch64, 10 CPUs and
 8,217,448,448 bytes RAM. The research capture image is
 `sha256:cd62376e7c362e085be29e75ecc5150ca209374787a1b30eafe6aca553479bb5`,
 with exact producer `ae0059384cf29609fa9c6233ddf9606002eae35e`, Node 24.18.1,
-Python 3.13.5 and Gst 1.26.2. Core source is `bc6f42b0668f3d1edd7d3365da9fea70629455ca`.
+Python 3.13.5 and Gst 1.26.2. The original capture core source is `bc6f42b0668f3d1edd7d3365da9fea70629455ca`.
 Chromium 151.0.7922.34 drains VP8 from the fixed seed-7 animated X11 scene at
 1280×720/30, with PulseAudio `auto_null.monitor`. Containers have a 2 GiB memory
 limit, no new privileges, bounded PIDs and loopback-only receiver signaling.
@@ -27,8 +27,10 @@ accepted overhead allocation. The research image and standard native image both 
 `sha256:26dfdb1bac8c34e2efa3930d7d9f2dcb4f2a43b3ce0a1d1bb10d1c58f8d7b25e`
 passes the native Gst import and bounded Frozen Bubble/Neverball package smoke.
 Its Node 24.18.1 engine suite passes 135 tests with one existing external-artifact
-skip. Normal desktop/picker interaction and Pixelated hosted CI remain unverified;
-core hosted quality/minimum-Python jobs are verified separately.
+skip. Normal desktop/picker interaction remains unverified. Both merged baselines
+now have successful hosted verification; [exact CI receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json)
+supersede the earlier pending entries. The subsequent audit fixes are locally
+verified and need their normal hosted run after merge.
 
 ## Runtime fixes and retained failures
 
@@ -70,14 +72,15 @@ locally retained. Old `controlled-run-001/002` artifacts are not N5 repetitions.
 | N4 five-pair overhead | Selected workload passes: baselines ≥29.997 FPS, median CPU +0.37238 percentage points, median FPS −0.000517%, five enabled traces each 900 joint pairs/zero drops; 4,500 diagnostic probes | [Canonical report](../../experiments/n5-runtime-20261013/workload-4-overhead-report.json); earlier lighter-scene result retained separately |
 | N4 host lifecycle/isolation | Tiny capacity, disabled/re-enabled, interruption/restart and two-peer cases pass detached validation and owned cleanup | Short-smoke partial endpoints remain explicitly excluded |
 | Browser | Opt-in execution v2 passes five live paired overhead/coverage checks and 1,200-probe diagnostic; original v1 API limitations remain recorded | Normal desktop/picker and exact final committed build checks remain separate; [new method evidence](../../experiments/n5-browser-execution-20261014/README.md) |
-| Minimum Python | Pass: Python 3.11.17, 2,003 tests, 93.60% coverage, 25 schemas, Ruff and frozen reproduction | Local Linux result and separate hosted core CI both verified |
+| Minimum Python | Pass: Python 3.11.17, 2,015 tests, 93.61% coverage, 25 schemas, Ruff and frozen reproduction | Local Linux result and separate hosted core CI both verified |
 | Standard native image | Build and two native-package smoke tests pass; actual Node 24 engine suite 135 passed/one artifact skip | Image identity and lock hash recorded separately from research image |
-| Hosted core CI | Verified quality and Python 3.11 jobs for baseline bc6f42b ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)) | Final browser changes require hosted verification in both repos |
-| Desktop/Pixelated hosted CI | Unverified | Actual UI/hosted execution; container checks and configured jobs cannot substitute |
+| Hosted core CI | Quality and Python 3.11 jobs pass at merged `3313139`; [CI receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json) | Subsequent local audit fixes need normal CI after merge |
+| Pixelated hosted CI | npm audits, both engine image scans, three-platform desktop builds, hosted web/API checks, deployment and auth/pairing smoke pass at merged `31d675a` | Subsequent local audit fixes need normal CI after merge |
+| Normal desktop/picker interaction | Manual sign-off unverified | User checks game launch/input/reconnect and trace export/cancel/retry on the final build |
 
-All 78 producer scenario tests and 58 trace/control tests pass on Linux, including
+All 79 producer scenario tests and 58 trace/control tests pass on Linux, including
 the previously skipped parked-child integration case. Core Python 3.13 passes
-2,003 tests at 93.52% coverage. Actual Node 24 also passes all 259 web tests. These are software results, separate from real
+2,015 tests at 93.61% coverage. Actual Node 24 also passes all 259 web tests. These are software results, separate from real
 fault effects, scientific validation and hosted CI.
 
 ## Evidence and remaining acceptance
@@ -142,5 +145,17 @@ deltas are negative and ten zero; callback-entry deltas are all positive,
 [additive method review](../observability/N4_BROWSER_TIMING_REVIEW.md), and is retained as noncontract research evidence. Subsequent versioned
 [method validation](../../experiments/n5-browser-execution-20261014/README.md) now
 passes with five complete enabled traces and a separate 1,200-probe diagnostic.
-Normal desktop/picker interaction and hosted verification of final browser changes
-in both repos remain open; no N6/Phase 1 completion is claimed.
+Merged-baseline hosted verification now passes in both repos. Normal
+desktop/picker sign-off and the ordinary hosted run for subsequent audit fixes
+remain open; no N6/Phase 1 completion is claimed.
+
+## Pre-manual cross-repository audit, 2026-10-15
+
+[Audit record](../../experiments/phase-1-audit-20261015/README.md) records bounded
+malformed-manifest/special-file fixes, regression tests, dependency cleanup and
+current hosted receipts. Re-inspection of the retained campaign-8 and selected
+workload overhead archives reproduces their original canonical reports exactly;
+no live acquisition was replaced or rerun as a new repetition. The
+[current quality guide](../measurement/QUALITY_GATES.md) links the final audit
+counts. All original schemas, arithmetic/effect thresholds and fixture bytes
+remain unchanged. Final manual outcomes are still not supplied.

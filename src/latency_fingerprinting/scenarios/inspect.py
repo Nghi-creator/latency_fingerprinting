@@ -128,13 +128,13 @@ def inspect_experiment_bundle(path: Path) -> InspectedExperiment:
         from .pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
         from .pacing_effect import recompute_pacing
 
-        pacing = (
-            decode_trace_json(files["experiment-manifest.json"]).get("schema_version")
-            == "experiment-manifest-v2"
-        )
+        declaration = decode_trace_json(files["experiment-manifest.json"])
+        if not isinstance(declaration, dict):
+            raise ValueError("experiment manifest must be an object")
+        pacing = declaration.get("schema_version") == "experiment-manifest-v2"
         manifest_class = ExperimentManifestV2 if pacing else ExperimentManifest
         result_class = ExperimentResultV2 if pacing else ExperimentResult
-        manifest = manifest_class.model_validate_json(files["experiment-manifest.json"])
+        manifest = manifest_class.model_validate(declaration)
         result = result_class.model_validate_json(files["experiment-result.json"])
         if result.manifest_sha256 != hashlib.sha256(files["experiment-manifest.json"]).hexdigest():
             raise ValueError("manifest checksum mismatch")
