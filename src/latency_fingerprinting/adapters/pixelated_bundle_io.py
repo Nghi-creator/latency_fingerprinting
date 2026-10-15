@@ -13,6 +13,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from ..json_io import strict_json_loads
+from .pixelated_archive import bounded_tar_bytes
 from .pixelated_bundle_common import PixelatedBundleError
 
 MAX_ARCHIVE_MEMBERS = 64
@@ -59,7 +60,10 @@ def _read_tar(source, readable_files: Set[str]) -> dict[str, bytes]:
         payload = source.read(MAX_ARCHIVE_BYTES + 1)
         if len(payload) > MAX_ARCHIVE_BYTES:
             raise PixelatedBundleError("TAR archive is too large after reading")
-        with tarfile.open(fileobj=io.BytesIO(payload), mode="r:*") as archive:
+        expanded = bounded_tar_bytes(
+            payload, declared_limit=MAX_ARCHIVE_DECLARED_BYTES, member_limit=MAX_ARCHIVE_MEMBERS
+        )
+        with tarfile.open(fileobj=io.BytesIO(expanded), mode="r:") as archive:
             return _read_tar_members(archive, readable_files)
     except (OSError, tarfile.TarError) as error:
         raise PixelatedBundleError(f"cannot read TAR archive: {error}") from error

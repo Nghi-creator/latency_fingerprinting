@@ -166,15 +166,15 @@ N2 stage timing remains unavailable and N3 policy/matching is unchanged.
 
 Real Linux capture, five paired overhead trials and host lifecycle/isolation
 cases now pass. Python 3.11 local verification also passes. The additive browser
-execution method now passes local software/live validation. Hosted checks for
-final browser changes in both repos and normal desktop interaction remain open; the [runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)
+execution method now passes local software/live validation. Both merged baselines now pass hosted checks. User desktop/picker sign-off and
+normal CI for subsequent audit fixes remain open; the [runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)
 records actual outcomes and remaining gates. Synthetic integration establishes deterministic
 software interoperability, not measured capture performance.
 
 The active [N5 scenario harness](plans/NEXT_IMPLEMENTATION_PLAN.md) starts Phase 1.3.
 Its [Steps 1–7](scenarios/N5_IMPLEMENTATION_PROGRESS.md) are delivered;
 [manifest, phase, effect and cleanup contract](scenarios/N5_EXPERIMENT_CONTRACT.md)
-is frozen. [Strict additive models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) enforce detached record consistency. [Bounded producer lifecycle and recording control](scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; fresh campaign-8 passes all 18 fault/reference/query trials and selected-scene overhead passes. Browser execution method checks pass locally; final desktop/hosted acceptance remains open. Producer runtime control
+is frozen. [Strict additive models/schemas](scenarios/N5_EXPERIMENT_MODELS.md) enforce detached record consistency. [Bounded producer lifecycle and recording control](scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; fresh campaign-8 passes all 18 fault/reference/query trials and selected-scene overhead passes. Browser execution method checks pass locally; user desktop/picker acceptance and normal CI for subsequent audit fixes remain open. Producer runtime control
 and core offline validation stay separate. [N4 runtime acceptance](observability/N4_RUNTIME_ACCEPTANCE.md)
 remains pending and is not cleared by starting N5. Completed plans are in
 [plans/archive](plans/archive/README.md); completed closeouts, progress and health

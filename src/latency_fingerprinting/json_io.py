@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import math
+import os
+import stat
 from pathlib import Path
 from typing import Any, TypeVar
 
@@ -84,11 +86,20 @@ def read_bounded_text(
 
     if maximum_bytes <= 0:
         raise ValueError("maximum_bytes must be greater than zero")
-    size = path.stat().st_size
-    if size > maximum_bytes:
-        raise ValueError(f"JSON file is too large: {path} ({size} bytes; max {maximum_bytes})")
-    with path.open("rb") as source:
-        payload = source.read(maximum_bytes + 1)
+    flags = os.O_RDONLY | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_BINARY", 0)
+    descriptor = os.open(path, flags)
+    try:
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode):
+            raise ValueError("JSON input must be a regular file")
+        if metadata.st_size > maximum_bytes:
+            raise ValueError(
+                f"JSON file is too large: {path} ({metadata.st_size} bytes; max {maximum_bytes})"
+            )
+        with os.fdopen(descriptor, "rb", closefd=False) as source:
+            payload = source.read(maximum_bytes + 1)
+    finally:
+        os.close(descriptor)
     if len(payload) > maximum_bytes:
         raise ValueError(
             f"JSON file is too large: {path} ({len(payload)} bytes; max {maximum_bytes})"

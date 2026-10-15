@@ -314,3 +314,22 @@ def test_special_directory_member_and_duplicate_artifact_json(tmp_path):
     (path / "experiment-result.json").write_bytes(encoded(result))
     with pytest.raises(ValueError, match="^invalid_experiment_bundle$"):
         inspect_experiment_bundle(path)
+
+
+@pytest.mark.parametrize("root", [None, [], True, 42, "private-manifest-marker"])
+@pytest.mark.parametrize("container", ["directory", "gzip"])
+def test_nonobject_manifest_root_fails_closed_without_output(tmp_path, capsys, root, container):
+    files = members()
+    files["experiment-manifest.json"] = encoded(root)
+    if container == "directory":
+        path = directory(tmp_path / "bundle", files)
+    else:
+        path = tmp_path / "bundle.tar.gz"
+        path.write_bytes(gzip.compress(archive(files.items())))
+    output = tmp_path / "preserved.json"
+    output.write_bytes(b"previous\n")
+    with pytest.raises(ValueError, match="^invalid_experiment_bundle$"):
+        inspect_experiment_bundle(path)
+    assert main(["inspect-experiment", "--bundle", str(path), "--output", str(output)]) == 1
+    assert output.read_bytes() == b"previous\n"
+    assert capsys.readouterr() == ("", "error: inspect-experiment: invalid_input_or_output\n")

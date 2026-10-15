@@ -77,15 +77,6 @@ def overhead(directory, *, cpu_extra=1_500_000_000, enabled_frames=855, capture_
                 retained_events=nominal * 5,
             )
             record = encoded(trace)
-            manifest = encoded(
-                dict(
-                    schema_version="stage-trace-manifest-v1",
-                    record_file="trace-record.json",
-                    record_schema_version="stage-trace-record-v1",
-                    record_sha256=hashlib.sha256(record).hexdigest(),
-                    record_bytes=len(record),
-                )
-            )
             # Use the independently pinned N4 manifest shape, replacing only its receipt.
             template = json.loads((TRACE.parent / "trace-manifest.json").read_bytes())
             for key in template:

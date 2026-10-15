@@ -12,8 +12,9 @@ raw counters and execution/effect/cleanup state respectively. They have no runti
 or filesystem side effects and introduce no matcher features or policy changes.
 
 The three corresponding `experiment-*-v1.schema.json` files are additive.
-`export-schemas --check` now checks 23 schemas after the
-[campaign extension](N5_CAMPAIGN_WORKFLOW.md); all original fifteen schema bytes
+`export-schemas --check` checks 25 schemas after the
+[campaign extension](N5_CAMPAIGN_WORKFLOW.md) and separate
+[browser execution release](../observability/N4_BROWSER_EXECUTION_CONTRACT.md); all original fifteen schema bytes
 remain unchanged. JSON Schema describes shape and primitive bounds. Cross-field
 rules below require Python validation; schema validation alone cannot prove them.
 
@@ -94,4 +95,4 @@ in Step 3; its Step 1 full-suite counts remain historical. Subsequent
 [actual execution](N5_RUNTIME_ACCEPTANCE.md) verifies 18/18 trials across healthy
 and two fault classes, selected-scene overhead, actual minimum versions and core
 baseline hosted CI. Browser execution method checks now pass locally; desktop
-interaction and hosted verification of final browser changes remain open.
+interaction and normal CI for subsequent audit fixes remain open; both merged baselines pass hosted gates.

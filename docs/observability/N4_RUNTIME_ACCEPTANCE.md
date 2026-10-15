@@ -1,7 +1,7 @@
 # N4 inherited runtime acceptance
 
-**Updated:** 2026-10-14. **Status:** nominal capture, overhead and host lifecycle
-cases and opt-in browser execution method verified locally; desktop/final hosted gates open.
+**Updated:** 2026-10-16. **Status:** nominal capture, overhead and host lifecycle
+cases and opt-in browser execution method verified locally; merged-baseline hosted gates pass, manual desktop sign-off remains open.
 [Software closeout](../archive/observability/N4_SOFTWARE_CLOSEOUT.md),
 [frozen criteria](N4_PRODUCER_CAPABILITIES.md),
 [execution record](../../experiments/n5-runtime-20261013/README.md),
@@ -43,18 +43,19 @@ The [additive method review](N4_BROWSER_TIMING_REVIEW.md) records a concrete
 rationale and independent verification cases; the additive
 [execution contract](N4_BROWSER_EXECUTION_CONTRACT.md) is implemented and locally validated.
 
-Python 3.11.17 passes all 2,003 core tests at 93.60% coverage, Ruff, all 25
+The prior Python 3.11.17 baseline passes all 2,015 core tests at 93.61% coverage, Ruff, all 25
 schemas and every frozen reproduction check. The standard native image now builds and passes two bounded native-package
 smoke cases and its actual Node 24.18.1 engine suite (135 passed/one artifact skip).
-Core hosted quality/minimum-Python jobs are verified for `bc6f42b`; Pixelated
-hosted CI and normal picker/desktop interaction remain unverified. The core hosted
-result also predates the new browser changes; those require final hosted verification.
+[Hosted receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json) verify
+core `3313139` and Pixelated `31d675a`, including image security and desktop
+packaging. Normal picker/desktop interaction remains a manual check. Subsequent
+audit fixes are locally verified and need their normal hosted run.
 The research capture and standard game image identities are recorded separately. No clock synchronization, physical
 scan-out, end-to-end latency or hardware encoder claim follows from these results.
 
 Full N4 and Phase 1.2 acceptance remain open. The [N5 ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md)
 separately records the now-passing complete 18-trial repeated-fault cohort;
-these results do not close the remaining browser/desktop gates or Phase 1.
+these results do not replace manual desktop/picker sign-off or close Phase 1.
 
 ## Selected workload confirmation
 
@@ -66,9 +67,8 @@ each with 900 queue/encode joint pairs and zero collector drops. Selected-scene
 also passes: median CPU +0.37238 percentage points, FPS −0.000517%, each enabled
 trace 900 joint pairs/zero drops, exports 1.165–1.982 ms. Its separate 4,500-probe
 diagnostic averages 19.830 µs with a 399.542 µs maximum. The lighter-scene overhead
-above remains retained separately. Hosted core quality/minimum-Python
-jobs are verified for `bc6f42b`; final core/Pixelated hosted checks and normal player/picker interaction
-remain separate gates.
+above remains retained separately. Current merged-baseline hosted checks pass
+in both repos; normal player/picker interaction remains a separate manual gate.
 
 The [180-callback live entry diagnostic](../../experiments/n5-runtime-20261013/browser-entry-diagnostic.json)
 reproduces 170 negative API deltas and ten zero deltas. Reading the performance
@@ -91,7 +91,14 @@ is 14.4–19.1 ms outside callbacks. Actual HTMLVideoElement API absence exports
 explicit v2 unavailable result. Original API timestamps/exclusions remain intact.
 
 These artifacts identify base commits plus hashed working-tree browser changes,
-not an exact final committed release. Normal desktop/picker interaction and hosted
-checks of final changes in both repos remain pending. The inherited browser
+not an exact final committed release. Later merged-baseline hosted checks now
+pass. Normal desktop/picker interaction and CI for subsequent audit fixes remain
+pending. The inherited browser
 coding/method issue is resolved locally; full N4, N5 and Phase 1 acceptance remain
 open for the final execution gates.
+
+
+The [follow-up readiness audit](../../experiments/phase-1-readiness-20261015/README.md)
+passes current macOS software checks and adds failed-save stream cleanup. Earlier
+native/minimum-version evidence retains its exact baseline; final patches require
+normal CI and the user's manual desktop/export sign-off.

@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -69,7 +72,28 @@ def test_growing_file_is_read_only_up_to_the_limit(
             read_sizes.append(size)
             return super().read(size)
 
-    monkeypatch.setattr(Path, "open", lambda *_args, **_kwargs: GrowingFile(b" " * 100))
+    monkeypatch.setattr(os, "fdopen", lambda *_args, **_kwargs: GrowingFile(b" " * 100))
     with pytest.raises(ValueError, match="too large"):
         read_bounded_text(path, maximum_bytes=8)
     assert read_sizes == [9]
+
+
+@pytest.mark.skipif(not hasattr(os, "mkfifo"), reason="POSIX named pipes required")
+def test_named_pipe_input_fails_without_waiting_for_a_writer(tmp_path: Path) -> None:
+    pipe = tmp_path / "input.json"
+    os.mkfifo(pipe, 0o600)
+    result = subprocess.run(  # noqa: S603 - fixed interpreter/module and test-owned FIFO.
+        [sys.executable, "-m", "latency_fingerprinting", "validate", str(pipe)],
+        capture_output=True,
+        text=True,
+        timeout=3,
+        check=False,
+    )
+    assert result.returncode == 1
+    assert "regular file" in result.stderr
+    assert "Traceback" not in result.stderr
+
+
+def test_device_input_is_not_treated_as_json() -> None:
+    with pytest.raises(ValueError, match="regular file"):
+        read_bounded_text(Path(os.devnull))

@@ -49,7 +49,7 @@ for `bc6f42b`; Pixelated hosted CI remains unverified.
 ## Inspect retained public evidence on this host
 
 Raw public archives and full reports remain under ignored
-`local/n5-acceptance-20261012/` in the core checkout. Private ownership journals,
+`local/phase_1/n5-acceptance-20261012/` in the core checkout. Private ownership journals,
 leases, native identities and diagnostic PTS are not published. This directory
 also retains the trusted research scene/relay/receiver/lifecycle helpers, with
 hashes in the execution ledger. The runtime is stopped after measurement.
@@ -58,13 +58,13 @@ From the core checkout:
 
 ```sh
 .venv/bin/python -m latency_fingerprinting inspect-campaign \
-  --directory local/n5-acceptance-20261012/campaign-4 \
+  --directory local/phase_1/n5-acceptance-20261012/campaign-4 \
   --output /private/tmp/n5-campaign-4-report.json
 .venv/bin/python -m latency_fingerprinting inspect-overhead \
-  --directory local/n5-acceptance-20261012/overhead-7 \
+  --directory local/phase_1/n5-acceptance-20261012/overhead-7 \
   --output /private/tmp/n5-overhead-7-report.json
 .venv/bin/python -m latency_fingerprinting ingest-trace \
-  --bundle local/n5-acceptance-20261012/two-peers.tar.gz \
+  --bundle local/phase_1/n5-acceptance-20261012/two-peers.tar.gz \
   --output /private/tmp/n5-two-peers-trace.json
 .venv/bin/python -m latency_fingerprinting inspect-trace \
   --trace /private/tmp/n5-two-peers-trace.json \
@@ -109,7 +109,7 @@ Its [canonical report](workload-4-overhead-report.json) records median CPU +0.37
 percentage points, FPS −0.000517%, and five enabled traces each with 900 joint
 pairs/zero drops. All 4,500 separate diagnostic probes are retained (mean 19.830 µs,
 maximum 399.542 µs). Raw evidence is under ignored
-`local/n5-calibration-20261013/overhead-9/`; the execution ledger includes file
+`local/phase_1/n5-calibration-20261013/overhead-9/`; the execution ledger includes file
 checksums and clean ownership state. Docker stopped after measurement; completed
 outputs were copied without restarting the old inbox.
 

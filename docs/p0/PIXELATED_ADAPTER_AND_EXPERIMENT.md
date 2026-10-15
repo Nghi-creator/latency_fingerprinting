@@ -40,6 +40,14 @@ overflow; checks the explicit workload context; requires strict per-source time
 ordering; cross-checks elapsed and UTC clocks; aligns engine samples with the
 browser window; and retains exporter-declared invalidity.
 
+Compressed legacy research TARs are bounded before member interpretation: input
+≤64 MiB, total physical declared contents ≤128 MiB, at most 64 physical headers
+(including GNU/PAX extensions), and expanded bytes ≤128 MiB + 64 KiB + 10 KiB TAR
+record allowance. LZMA decoder memory is capped at 128 MiB. Plain TAR, gzip,
+bzip2, XZ, LZMA-alone and ordinary PAX metadata remain supported. The separate
+N4/N5 bundle formats keep their own stricter layouts and bounds. See the
+[readiness audit](../../experiments/phase-1-readiness-20261015/README.md).
+
 The producer side of this contract uses one capture instant for each engine
 row's UTC and elapsed clocks, declares metric support only from available rows,
 and calculates summary duration as the last browser sample minus the first.
@@ -67,7 +75,7 @@ validated proxy exists.
 P0 counter-derived features retain the frozen median interval-delta semantics.
 The [N1 metric inventory](../measurement/METRIC_SEMANTICS_V2.md) separately versions
 rates and audit totals, and [N2 adoption](../measurement/OBSERVATION_V2_ADOPTION.md)
-derives them from raw interval evidence. The active
+derives them from raw interval evidence. The archived
 [N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) defines their analytical eligibility
 and matching path; P0 aggregates retain their existing meaning.
 

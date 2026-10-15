@@ -1,0 +1,191 @@
+{
+  "baselines": {
+    "core": "93ae7b6bad007d70f96b12902e1cac70574c5711",
+    "pixelated": "4dfd368a8334363325106bb264f39c5c9ebd47d0"
+  },
+  "completed_date": "2026-10-16",
+  "findings": [
+    {
+      "id": "legacy_compressed_tar",
+      "regressions": 17,
+      "result": "Bound decompression, physical headers/declared bytes and LZMA dictionary memory before TAR metadata interpretation; preserve valid forms and existing member-limit errors.",
+      "status": "fixed"
+    },
+    {
+      "id": "failed_browser_save",
+      "regressions": 8,
+      "result": "Abort writable after write/close failure, preserving cancellation and fallback.",
+      "status": "fixed"
+    },
+    {
+      "id": "mixed_module_boundaries",
+      "result": "Separate telemetry response/CSV, API fake queries/RPC and scenario effects/workers/camera tests; 32 original test methods and fakes AST-identical.",
+      "status": "refactored"
+    },
+    {
+      "id": "discarded_test_setup",
+      "result": "Delete overwritten overhead manifest construction.",
+      "status": "removed"
+    },
+    {
+      "id": "stale_navigation",
+      "result": "Correct reorganized local evidence paths, current-vs-historical test counts and release-note navigation.",
+      "status": "updated"
+    }
+  ],
+  "linux_and_minimum_python": "Not rerun in this pass: no usable Docker application/daemon or local Python 3.11. Earlier native/minimum-version evidence retains original source identities; current patches require configured CI.",
+  "log_sha256": {
+    "archive-after.log": "b6797c99d4a11fa01dcaf849c576915720eda0bae2d562b5084a723eecf7cf60",
+    "archive-before.log": "4d15455539a4ae56313d6a73d99daea4b10620b6eca3e70e7edc8d1641e87857",
+    "archive-final-focused.log": "c7210c7ed0b6fdf81e44092be6deb9e5adc55af0b4aa0667441c9e648619854b",
+    "browser-pins.json": "751818d06210d50e4ba83c92173eb22b2cc2af1cfa25417617b92cf9f404b06f",
+    "browser-producer-parity.json": "aaad534d1a275686f0dda36d89dff619aa3156ad314b6c93e8878fc196fc5f3f",
+    "campaign-8-report.json": "3a56faf6e32f31fa49e412495d560ae3bb0fef74d8dff90cb4b3db6bd02cae10",
+    "core-tests.log": "f159ab07fce1f4c151af96800e159776da4ce41e4996b4d2dbcc2237da102c5c",
+    "download-after.log": "3bf36f78f3ce2d14064b3f78c9c3785d6961ef4ac7eeb03c58979273c61af7d3",
+    "download-before.log": "5a4aadee80594b55a4c601df70766849cdff1c3a3a69f53e2e71a38e3d1fe661",
+    "n1-pins.json": "32f4c4a90e2fa081ac05ae39ddefd7e027abbf8ea2d7fe665c18dc9980ee18a3",
+    "n2-pins.json": "bf6f7b6c7e9687f6b2a3e046c58877f04d6f3c363c17fec8436a41e41585adbf",
+    "n3-pins.json": "8441a522976cdda6a0a5127232b648bb3ca1e0a7b42f0cf094eee1213042518c",
+    "n4-pins.json": "5d7e732dc4beff4ad5298cd6b578400a305cfb55469de03786ee8e7dcdde40f0",
+    "n4-producer-parity.json": "d086c7058625f89c203ad78f72d29bcc84e6df7afcfaa0789b73c9fa44d04bad",
+    "n5-pins.json": "c28c94d83bbd8294f0048ae480d22094dc27e0e495a6ed0cbdcab240ce29e8f1",
+    "n5-producer-parity.json": "751975a8bc4fbd81ab0a7395d689cf376a9b3d1949a158a7cc3f43958740452c",
+    "npm-api.json": "f954b09f49b16f79a192606743330ec28060721f92deef5a61eab8951c7a1f64",
+    "npm-desktop.json": "3e1a0c51b834db53e8d0b61f781fd0cb8d45f3aa926316794432c5499fe0b9bf",
+    "npm-engine.json": "d4bf3be7c397ed973377f6e893b4e6d079caee200501ecbe2be8bbffc03dc1e0",
+    "npm-root.json": "f2915c8cc7ef17ce3130b49fbc7c7ac5c00a43009dba8a4dab0c839d2cda1a2c",
+    "npm-web.json": "25384f9258b5e3d74f1edc022805950d1d7503a39ffe077fc2a4071eca10bd3e",
+    "overhead-9-report.json": "54463326e2cf8a870bdbd32bcb6f315aee57809e7d73c0da4451400a309eaa8f",
+    "p0-match.json": "b432121296621cb9bcba1f0ca01bfc5edc0c5d1e7fbaeebfd36396a481cc6b37",
+    "p0-seed.log": "f8042fcd86b3b658aaa8f1c278edcffc28cd928a4e9a6523538987e62bfcfa83",
+    "pixelated-readiness-api.log": "0827755cf9f528de020a68bdaa9e7def0d98a27a8deee6f649508c5e5e45646d",
+    "pixelated-readiness-build.log": "f7c7ac49b01e11ab0a159ef1059f79816385689b8f3689e969f347f798754ee0",
+    "pixelated-readiness-desktop-audit.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pixelated-readiness-engine-final.log": "e672e32d7d60564df8397a9633d56688f291c13605d0c1eb4abce146a17c3033",
+    "pixelated-readiness-interactions.log": "bd7af5262e2a943234e1d8bf6aa05a359e6b70e65dd008049af2e342398862d9",
+    "pixelated-readiness-lint.log": "496b9732f3295fa6e60568304336e36ffafa02e1fbcd45d1d45abf4063c94ba5",
+    "pixelated-readiness-scenarios.log": "7d7271730d2efbd9234835bde0522b54058ff1946bbaebd68baa07ff68e01106",
+    "pixelated-readiness-tests.log": "c19bf4cd6fcbdbd69fe4b4475b25b95b5606ef909ad854957b71bf67400ec4b6",
+    "pixelated-readiness-web-build.log": "354345c839dddd57026b2885ae2f2907256a56c40ea7e861114f50bd75faa274",
+    "pixelated-readiness-web-lint.log": "1cf3abd3906d51852489ef453ac5aa807f594ed0a73d8f1518b8936585893b91",
+    "pixelated-readiness-web.log": "17c72e350c4eb36d07e00a62f263f79502d3e2f0e2bb1c3fc0fc47b24ba6e61d"
+  },
+  "phase_1_acceptance": "pending_manual_signoff_and_normal_ci",
+  "record_kind": "phase_1_follow_up_readiness_audit",
+  "remaining": [
+    "normal CI for final patches, including minimum Python/native supported platforms",
+    "user desktop/game-picker/input/reconnect and trace export/cancel/retry sign-off"
+  ],
+  "retention_decisions": {
+    "arbitrary_line_limit": "not imposed",
+    "archived_n1_plan_lines": 1020,
+    "documents": "preserve linked contracts/history/release notes and live failure evidence",
+    "largest_core_module_lines": 588,
+    "production_orphans": "none requiring deletion found by import/reference inventory"
+  },
+  "review_date": "2026-10-15",
+  "source_sha256": {
+    "core/src/latency_fingerprinting/adapters/pixelated_archive.py": "4a5919cd30040149471871c6addd8aa0bc94b7176fcf47ed9a3212f4aad03a35",
+    "core/src/latency_fingerprinting/adapters/pixelated_bundle_io.py": "3a1e0a25a52d7463586cf00760fe96183da2f4a937256be999cbe986f22382a6",
+    "core/tests/pixelated/test_compressed_archives.py": "fccf590fe0ce4b1d8004aa41a08016a0efac95bb3d981d671051ed1ea9206c56",
+    "core/tests/scenarios/test_overhead.py": "af31b02d3c1355dc2fc678fe8862f5bb4b2d24f82a10e7322879c789b53a326f",
+    "pixelated/apps/web/src/features/player/downloadFile.ts": "a49441943da7d5efd29f6859fc21ddac58b383f179216791d3193e7470a70376",
+    "pixelated/apps/web/src/features/player/telemetry/engineResearchTelemetry.ts": "bb5899487f190084a20231284cf030023b39bdbc04b421496c71769883c35672",
+    "pixelated/apps/web/src/features/player/telemetry/engineResearchTelemetryCsv.ts": "ec0efeceb045d32a390ec8e96b05f838582fd5057cc53afa47adb210b9b3d0aa",
+    "pixelated/apps/web/src/features/player/telemetry/engineResearchTelemetryResponse.ts": "13930da3744e47cf718f02fc72177016ccdc3751c987a6bf80afd688fa037f76",
+    "pixelated/apps/web/tests/unit/player/downloadFile.test.ts": "b696a86aaa9deb3e00b6f1f00de4f3e3072c89f6772d0b1aeab6145a565cbc29",
+    "pixelated/engine/runtime/tests/python/scenario_adapter_support.py": "1bb8058b7a6ee53135a3c7c91a9a1dd6499b0c8f5de159101fa4bc21c700293f",
+    "pixelated/engine/runtime/tests/python/test_scenario_adapters.py": "5f9040ac38c27a97bbcf863fd5af731cbd838b685d3479952fee350668e1ab10",
+    "pixelated/engine/runtime/tests/python/test_scenario_effects.py": "d4f93068b4f8c94695b5b2cbb875d29091a45666ddf6c1c652e9a26cf8fe4945",
+    "pixelated/engine/runtime/tests/python/test_scenario_export.py": "3b970177961e310157e6bd0235bd47f2d5cd541665d1bb551e8615dce6430997",
+    "pixelated/engine/runtime/tests/python/test_scenario_pacing.py": "4088f2f76cccda18a540d51c9b42ff566d58eddfed08f51b5fe5b3f319fb6248",
+    "pixelated/engine/runtime/tests/python/test_scenario_workers.py": "0c5e2bbd4d6166ebc3bc525239937535785df14e4fadb37d150899e3bad5120a",
+    "pixelated/services/api/tests/integration/support/dataBoundaryDatabase.ts": "d6238686e6c00a7a82df98d52ef4c7880792a311811cd0aa9819734ca0c8dd85",
+    "pixelated/services/api/tests/integration/support/dataBoundaryQueries.ts": "38251fec9b1c0d50e61e634dc584ea208fed10c700fe5fb23bad4f302634ca49",
+    "pixelated/services/api/tests/integration/support/dataBoundaryRpcs.ts": "5c6935b906a9fca1c3f13817fcaa461a3bbb2fb12068a7f532092255e3308179"
+  },
+  "verification": {
+    "broken_markdown_targets": 0,
+    "browser_interaction_smoke": "passed",
+    "desktop_build_chain_audit": "passed",
+    "final_ruff_and_format": "passed",
+    "live_campaign_report": "exact canonical reproduction, 18/18 effects verified",
+    "markdown_local_targets": 1116,
+    "node26": {
+      "existing_external_artifact_skips": 1,
+      "passed": 740,
+      "suites": {
+        "api": 185,
+        "desktop": 92,
+        "engine": 135,
+        "smoke_security": 61,
+        "web": 267
+      }
+    },
+    "npm_full_audits": {
+      "api": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "desktop": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "engine": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "root": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "web": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      }
+    },
+    "p0_seed_and_exact_match": "passed",
+    "python313": {
+      "branch_inclusive_coverage_percent": 93.55,
+      "passed": 2032
+    },
+    "registry_and_frozen_pins": "current",
+    "retained_producer_archive_parity": [
+      "n4_v1",
+      "browser_execution_v2",
+      "n5_v1"
+    ],
+    "scenario_python314": {
+      "linux_only_skipped": 1,
+      "passed": 78,
+      "test_inventory": "32 refactored adapter methods and shared fake ASTs preserved",
+      "total": 79
+    },
+    "schemas": 25,
+    "selected_workload_overhead_report": "exact canonical reproduction",
+    "unindexed_guides": 0,
+    "workspace_builds": "passed",
+    "workspace_lint": "passed"
+  }
+}

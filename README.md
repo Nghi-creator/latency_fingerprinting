@@ -95,9 +95,10 @@ in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The latest suites pass **2,003 tests** on Python 3.13 (93.52% coverage) and actual
-Linux Python 3.11 (93.60%). Core hosted baseline CI is verified; final browser
-changes still require hosted checks in both repos.
+The [readiness audit](experiments/phase-1-readiness-20261015/README.md) passes
+**2,032 tests on Python 3.13, with 93.55% coverage**. Earlier actual Linux Python
+3.11 verification passed 2,015 tests/93.61% on its recorded baseline. [Both merged baselines pass hosted checks](experiments/phase-1-audit-20261015/hosted-ci.json);
+subsequent audit fixes need their normal CI run.
 
 Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
 [approved provisional policy](docs/analysis/N3_FEATURE_POLICY_SPEC.json),
@@ -110,7 +111,7 @@ and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
 locally. The [experiment contract](docs/scenarios/N5_EXPERIMENT_CONTRACT.md),
 [adapter/effect criteria](docs/scenarios/N5_ADAPTER_CAPABILITIES.md) and
 [independent examples](docs/scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen;
-[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes. The additive browser execution method also passes local software/live validation; final desktop/picker and hosted checks remain open. N4 trace models, instrumentation, export/adoption
+[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes. The additive browser execution method also passes local software/live validation; user desktop/picker sign-off and normal CI for subsequent audit fixes remain open. N4 trace models, instrumentation, export/adoption
 and inspection remain delivered; [real acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md)
 is carried forward explicitly. Existing N2 timing and N3 matching meanings stay frozen.
 
@@ -182,5 +183,4 @@ frozen acquisition schedules and real overhead collection/inspection tools. Thes
 are implemented and live-validated. The [execution record](experiments/n5-runtime-20261013/README.md)
 retains passing campaign/overhead results and earlier failures; the
 [browser execution method](experiments/n5-browser-execution-20261014/README.md)
-also passes local live checks. Normal desktop/picker interaction and hosted
-verification of final changes remain pending; N5/Phase 1 are not closed.
+also passes local live checks. User desktop/picker sign-off and normal CI for subsequent audit fixes remain pending; N5/Phase 1 are not closed.
