@@ -6,10 +6,13 @@
 
 ## Actual environment
 
-Docker Desktop supplies the Linux camera testbed on this macOS host; a separate
-Linux machine is optional. The initial PATH check missed Docker because its
-symlink pointed to an absent OrbStack installation. The working CLI is
-`/Applications/Docker.app/Contents/Resources/bin/docker`.
+The recorded acceptance runs used Docker Desktop as the Linux camera testbed on
+this macOS host; a separate Linux machine is optional. The initial PATH check missed Docker because its
+symlink pointed to an absent OrbStack installation. The bundled CLI used for those runs is
+`/Applications/Docker.app/Contents/Resources/bin/docker`. The final 2026-10-16
+check finds this client present but its configured daemon socket unavailable.
+The versions and captures below describe the recorded acceptance environment;
+start Docker Desktop and repeat preflight before any new live acquisition.
 
 Observed Docker is 29.0.1, VM Linux 6.12.54-linuxkit/aarch64, 10 CPUs and
 8,217,448,448 bytes RAM. The research capture image is
@@ -80,7 +83,7 @@ locally retained. Old `controlled-run-001/002` artifacts are not N5 repetitions.
 
 Prior native verification passed all 79 producer scenario tests and 58 trace/control tests on Linux, including
 the previously skipped parked-child integration case. Current readiness verification
-passes 2,032 core Python 3.13 tests at 93.55% coverage and 740 Pixelated Node tests
+passes 2,032 core Python 3.13 tests at 93.55% coverage and 783 Pixelated Node tests
 with one existing external-artifact skip. The earlier actual Node 24 baseline passed
 all 259 web tests. New patch minimum-version/native reruns remain CI work. These are software results, separate from real
 fault effects, scientific validation and hosted CI.
@@ -170,3 +173,17 @@ hardens legacy compressed input and browser failed-save cleanup, separates mixed
 source/test modules and reproduces both retained live reports exactly. Its
 macOS tests do not constitute new native Linux or minimum-version execution.
 Manual sign-off and normal hosted verification remain open.
+
+
+The [script/CI hardening pass](../../experiments/phase-1-script-ci-20261016/README.md)
+splits the remaining large utilities, repairs owned cleanup/validation gaps and
+adds full producer regression/deploy gating plus isolated core wheel verification.
+The current checks pass locally; new hosted execution and manual sign-off remain open.
+
+## Final cross-repository check
+
+The [final review](../../experiments/phase-1-final-check-20261016/README.md) passes
+2,032 core tests and 783 Node tests, all workspace checks, frozen release checks,
+installed-wheel verification and fresh zero-vulnerability npm audits. It fixes
+hosted smoke selection of a nonmatching native build and embedded signed-URL
+redaction. Manual sign-off and actual hosted CI for the final patches remain open.

@@ -17,7 +17,7 @@ validation, [opt-in host hooks](observability/N4_HOST_INSTRUMENTATION.md),
 [timing reconstruction](observability/N4_TIMING_RECONSTRUCTION.md) are delivered; real nominal capture, paired overhead and host lifecycle cases now pass; the browser execution method also passes local validation; manual desktop acceptance and normal CI for subsequent audit fixes remain open ([runtime ledger](observability/N4_RUNTIME_ACCEPTANCE.md)). The [roadmap](plans/FULL_IMPLEMENTATION_PLAN.md)
 places the active scenario harness in Phase 1.3 and scientific evaluation later.
 
-Latest cross-repository review: [follow-up readiness audit](../experiments/phase-1-readiness-20261015/README.md), with module/test restructuring and bounded archive/export fixes.
+Latest cross-repository review: [script boundaries and CI hardening](../experiments/phase-1-script-ci-20261016/README.md), following the [readiness audit](../experiments/phase-1-readiness-20261015/README.md).
 
 ## Current implemented references
 

@@ -1,6 +1,8 @@
 # Phase 1 quality and CI gates
 
-**Updated:** 2026-10-16. [Follow-up readiness audit](../../experiments/phase-1-readiness-20261015/README.md),
+**Updated:** 2026-10-16. [Final check](../../experiments/phase-1-final-check-20261016/README.md),
+[script/CI hardening](../../experiments/phase-1-script-ci-20261016/README.md),
+[readiness audit](../../experiments/phase-1-readiness-20261015/README.md),
 [previous audit](../../experiments/phase-1-audit-20261015/README.md),
 [acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md),
 [historical checkpoints](../archive/phase1/QUALITY_GATE_HISTORY.md).
@@ -8,7 +10,7 @@
 ## Latest actual verification
 
 Current full-suite results and exact log hashes are recorded in the
-[readiness results](../../experiments/phase-1-readiness-20261015/results.json).
+[current verification results](../../experiments/phase-1-final-check-20261016/results.json).
 Earlier minimum-version/native Linux counts belong to their recorded baselines;
 the current macOS pass and remaining hosted checks are listed separately.
 The core covers P0 compatibility, N1 aggregation, N2 observation adoption,
@@ -87,3 +89,18 @@ consistency. Original P0/N1/N2/N3/N4/N5 schema bytes and release pins are preser
 Use the producer's [live/manual procedure](../../../Pixelated-Studio-Edition/docs/n5-live-test-procedure.md)
 for desktop and exact-build evidence; versioned local research captures remain
 separate from final committed-build and scientific-validation claims.
+
+
+## Installed artifact and full producer CI
+
+Both core jobs also run `python -m tests.packaging.check_wheel`: build a wheel,
+install it outside the checkout in a fresh venv, verify its import location/console
+entry point and compare all schema exports with the frozen files. It needs normal
+package-index access for build/runtime dependencies. Existing v7 action versions
+are pinned to their verified commits.
+
+Pixelated's reusable Repository Quality workflow runs all workspaces on the pinned
+production Node version and Node 26 compatibility, including engine tests on Linux.
+Hosted deployment waits for that workflow. Tooling typechecks are part of normal
+lint, API verification and predeploy. New lane execution remains a hosted gate;
+local validation does not establish remote success.

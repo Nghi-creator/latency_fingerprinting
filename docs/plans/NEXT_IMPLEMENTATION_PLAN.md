@@ -158,3 +158,10 @@ plan/audits/closeout on the following transition, keeping normative guides curre
 **Readiness audit:** The [follow-up review](../../experiments/phase-1-readiness-20261015/README.md) hardens compressed legacy archives and browser save cleanup, splits mixed telemetry/API-test/scenario-test modules and preserves releases. This is preparation for the next phase; it does not close the manual gates below.
 
 **Remaining acceptance action:** User desktop/game-picker and trace-export/cancel/retry checks. Hosted gates pass on the merged baselines; the subsequent audit fixes need their normal CI after merge. See the [pre-manual audit](../../experiments/phase-1-audit-20261015/README.md). Opt-in browser execution coding, independent fixtures/API/CLI handoff and local live overhead/coverage/diagnostic checks now pass ([evidence](../../experiments/n5-browser-execution-20261014/README.md)). Fresh campaign-8 now verifies all 18 healthy/contention/pacing reference/query acquisitions; source receipt windows are disjoint. Selected-scene five-pair overhead also passes. Nominal N4 capture/overhead and host lifecycle cases now pass; actual Python 3.11/Node 24 and native build/smoke are recorded. Local software closeout is recorded; runtime acceptance is pending. N5 and Phase 1 remain open.
+
+
+The [subsequent script/CI pass](../../experiments/phase-1-script-ci-20261016/README.md)
+adds focused utility modules, bounded capture/diagnostic cleanup and mandatory
+producer quality before deployment. Core CI now checks the isolated installed
+wheel on both Python versions. These new gates still require hosted execution;
+this does not transition the active plan to Phase 2.
