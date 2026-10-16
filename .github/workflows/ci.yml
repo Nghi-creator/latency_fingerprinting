@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Python 3.13
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.13"
           cache: pip
@@ -51,6 +51,9 @@ jobs:
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
+
+      - name: Verify isolated installed wheel
+        run: python -m tests.packaging.check_wheel
 
       - name: Check installed dependencies
         run: python -m pip check
@@ -107,10 +110,10 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up minimum supported Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.11"
           cache: pip
@@ -150,6 +153,9 @@ jobs:
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
+
+      - name: Verify isolated installed wheel
+        run: python -m tests.packaging.check_wheel
 
       - name: Check installed dependencies
         run: python -m pip check

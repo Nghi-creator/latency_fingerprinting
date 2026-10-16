@@ -1,0 +1,183 @@
+{
+  "baselines": {
+    "core": "de5e53821bc221717db6a537418a69fd3041fdf0",
+    "pixelated": "e2870a3b8bcd3c4a7ccb2efb03b5999f72bde6b0"
+  },
+  "ci_configured": {
+    "api_production_audit": "deployment-blocking; current local audit passes",
+    "branch_protection": "unchanged",
+    "core_action_pins": {
+      "actions/checkout@v7": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "actions/setup-python@v7": "5fda3b95a4ea91299a34e894583c3862153e4b97"
+    },
+    "core_python": [
+      "3.13",
+      "3.11"
+    ],
+    "deployment_order": "repository_quality -> hosted_api_deploy_gate -> existing_deploy_jobs",
+    "pin_provenance": "published GitHub REST tag references read 2026-10-16",
+    "pin_provenance_urls": [
+      "https://api.github.com/repos/actions/checkout/git/ref/tags/v7",
+      "https://api.github.com/repos/actions/setup-python/git/ref/tags/v7"
+    ],
+    "producer_nodes": [
+      "24.18.0",
+      "26"
+    ],
+    "producer_python": "3.13",
+    "triggers": [
+      "pull_request",
+      "push_main",
+      "workflow_dispatch",
+      "workflow_call"
+    ]
+  },
+  "entry_point_lines": {
+    "scripts/hosted/hostedPairingSmoke.mjs": 50,
+    "scripts/lan/multiplayerSmoke.mjs": 46,
+    "services/api/scripts/captureCatalogArtwork.ts": 107,
+    "services/api/scripts/stagingSmoke.ts": 44
+  },
+  "findings_fixed": [
+    "capture workspaces leaked on success/failure",
+    "capture timeout lacked escalation and confirmed exit",
+    "unbounded artifact/file/PNG/HTTP reads",
+    "partial LAN joins could lose owned guests",
+    "unrelated RPC failure could count as permission denial",
+    "empty storage removal could count as cleanup",
+    "pairing restoration deleted the saved value before replacement",
+    "hosted diagnostic URLs/response bodies could retain sensitive values",
+    "four unused artwork helpers escaped existing script checks",
+    "complete engine regressions and isolated wheel checks missing from hosted gates",
+    "failed/ambiguous staging upload acknowledgement skipped owned-probe cleanup"
+  ],
+  "log_sha256": {
+    "api-final.log": "9c28154c93e8dfd7b283aeaf16496100ef5ec6df1000859296b027f5cfb23865",
+    "api-production-audit.json": "f954b09f49b16f79a192606743330ec28060721f92deef5a61eab8951c7a1f64",
+    "artwork-focused.log": "71af8c72ff1c8dfcd49d4d512425a20bdf96fa71b90e6a2be60d686df841acf5",
+    "artwork-help.log": "cea38c59104b6aa9fe66fdcf46ec0eb945ca82d23e1d8c1914f07e00cf3f800d",
+    "browser-interactions.log": "73db1805f58469e11b9c09fc203a29c37c852bfa7783cb5ded3d9844db4b568d",
+    "browser-pins.json": "751818d06210d50e4ba83c92173eb22b2cc2af1cfa25417617b92cf9f404b06f",
+    "ci-contract-final.log": "073d23637cc6b66ea68941ee0a237f3be3621766d21539d2c0626d4044f35c1e",
+    "core-tests.log": "d7fb31fca03fa7bbac5562670c30f02f284e099373c34c597618e644617e6670",
+    "hosted-contract.log": "dbd6feed5e1d04810749fa3d94c4aa37b44096412ae6e4b7178b6a4d8367324a",
+    "lan-help.log": "adda8b7d11b197e81bdfa895ed4fe1699262d05717998d4050911f686185680c",
+    "n1-pins.json": "32f4c4a90e2fa081ac05ae39ddefd7e027abbf8ea2d7fe665c18dc9980ee18a3",
+    "n2-pins.json": "bf6f7b6c7e9687f6b2a3e046c58877f04d6f3c363c17fec8436a41e41585adbf",
+    "n3-pins.json": "8441a522976cdda6a0a5127232b648bb3ca1e0a7b42f0cf094eee1213042518c",
+    "n4-pins.json": "5d7e732dc4beff4ad5298cd6b578400a305cfb55469de03786ee8e7dcdde40f0",
+    "n5-pins.json": "c28c94d83bbd8294f0048ae480d22094dc27e0e495a6ed0cbdcab240ce29e8f1",
+    "producer-build.log": "602a6a0d051de8eaa65ad140fadba58ad871585993d652cd48aea9bbd8ddb203",
+    "producer-lint.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+    "producer-tests.log": "eab61d549113f17e6e3df455ec371deacbb929731461909794c37ea617a84568",
+    "smoke-final.log": "ad9ffb6b6229d15da4a65d233f748e99499bd0496a3b7eeee79a00a1b5868da3",
+    "tooling-focused.log": "07e9f60b6b34c8c8e55773b7a958ac4b5320220cb5e67a5d01002b164a320c7d",
+    "wheel-check.log": "6538213bd4ac6816c44dfd54b9b454731b9090f58484cabeae68168b8ee0f7a8"
+  },
+  "not_executed": [
+    "live hosted/staging mutation or artwork upload",
+    "deployment or branch protection changes",
+    "fresh long fault campaigns",
+    "new local minimum-version/native Linux run"
+  ],
+  "phase_1_acceptance": "pending_manual_and_final_hosted_verification",
+  "record_kind": "phase_1_script_and_ci_hardening",
+  "remaining_acceptance": [
+    "actual hosted execution of new quality/wheel lanes and existing gates",
+    "user desktop/picker/input/reconnect and trace export/cancel/retry sign-off"
+  ],
+  "review_date": "2026-10-16",
+  "runtime_limits": {
+    "artwork_download_bytes": 67108864,
+    "browser_log_entries_per_channel": 1000,
+    "browser_log_text_characters": 4096,
+    "capture_timeout_max_ms": 600000,
+    "image_file_bytes": 8388608,
+    "smoke_http_body_default_bytes": 8388608,
+    "staging_http_body_bytes": 1048576
+  },
+  "source_sha256": {
+    "core/.github/workflows/ci.yml": "f95a713ad3147a1cc4bf26273c46569f04ac32f9c8bf40e857e31afb10421b66",
+    "core/tests/packaging/__init__.py": "1185530ce3899dc240a689785daec81ea1a6a7bc550858e3531a8c1f9167d455",
+    "core/tests/packaging/check_wheel.py": "6d64e85a14c0edd02935d6ffbdc272e3361d29514eeba581f1faf1c961fc4290",
+    "pixelated/.github/workflows/hosted-api-deploy-gate.yml": "9257feb51ed8a133eb71f5a97413732d5122c5d956b75969852ca45ac0025c02",
+    "pixelated/.github/workflows/hosted-deploy.yml": "ff75402aeac6965935f1e6742ac4511333510e678beb3d671ba562c2855e3a4c",
+    "pixelated/.github/workflows/quality.yml": "8c3ad7b86c84084b1cbef27d870068c8498b23966697916e354b57d3b9c9266e",
+    "pixelated/package.json": "708ccf6f03d4db9da15bf6771fc5f53e7ae63411dbcd7e1e76c54e9066be8448",
+    "pixelated/scripts/hosted/hostedPairingClient.mjs": "1f6bc20a2bae628a36e03e44690213bb12b69a74341a58e8603cb6f1eaa9cfea",
+    "pixelated/scripts/hosted/hostedPairingConfig.mjs": "ab1798d0e5736d46df730e52722250eeae6bf7fba7d962d58652e0e2f004f3af",
+    "pixelated/scripts/hosted/hostedPairingReport.mjs": "cbb7c6ee4189919cce3228c924c3cb4bf7848a748bca11cd1b45f0fdb822cb2c",
+    "pixelated/scripts/hosted/hostedPairingRuntime.mjs": "139ab6aa606a1f87688e54b5fa75fa05256d06278d76136ced18ad514a761a30",
+    "pixelated/scripts/hosted/hostedPairingSmoke.mjs": "57503b5c5178cf82026653c825f30b3fa489ec4737327f449a99b98378f29167",
+    "pixelated/scripts/hosted/smokeInfrastructure.test.mjs": "7cc3af359ef4f7e23f7b8f32ca5aa48ddc8b119cb0dfdd297c2d1f96acb119a9",
+    "pixelated/scripts/lan/multiplayerSmoke.mjs": "fedea07fc86936dd6a8a0e6e59e1773d5c43d96edd9473e2287cc59a7e0d211d",
+    "pixelated/scripts/lan/multiplayerSmokeCleanup.mjs": "c6f0a62cf8b58219858c2ca66f85b6f0ac43d33c759a7f9179a07eb6db7429ea",
+    "pixelated/scripts/lan/multiplayerSmokeLifecycle.test.mjs": "7d6624a73639351381b848b41b7964c9c78f703d4724734143490fb195cde1a7",
+    "pixelated/scripts/lan/multiplayerSmokeOptions.mjs": "79ab25091ee4b0f328f94506e8c5b11122cbfd7a43f3366df4829120ca3bf774",
+    "pixelated/scripts/lan/multiplayerSmokeRun.mjs": "112cc5d572f2b54588326047c7eb0a83b6056b748ede11c7d4898657b0819494",
+    "pixelated/scripts/lan/multiplayerSmokeSession.mjs": "39157cce7ac9766d8f4048cd3514639f235cf9890e36e3085c42416779b01715",
+    "pixelated/scripts/lan/multiplayerSmokeTelemetry.mjs": "bb7757eb64c27b2337e09a6a02aaab671f614b267c9433be7fa4605b29903166",
+    "pixelated/scripts/security/nodeRuntimeContract.test.mjs": "addfb33dfc75a7db7a90cedc64b902975c3f2b3bd067460243b59c87499f4b82",
+    "pixelated/scripts/shared/smokeArtifacts.mjs": "0875d0d805b7bf2130b65d0bfcf32380406d11486f66cdffee8b57301a187cd9",
+    "pixelated/scripts/shared/smokeHttp.mjs": "f1f62ebd971e38e4ffe52482feb18659cbbc19b347d189fc5d0cf4a005459b98",
+    "pixelated/scripts/shared/smokeHttp.test.mjs": "5d88157ad1d572ab6550645997795e44e2c279ad0406109675118eb77f43ff2a",
+    "pixelated/services/api/eslint.config.js": "8e0d93d661d2abfc2e65d742c375dbdbc9e87983aadbad67015224fd2dbe8ea1",
+    "pixelated/services/api/package.json": "90cff5c497fba1b38bd3ce3d27598299a089ce0dae2b736f36b2dde4eaa22610",
+    "pixelated/services/api/scripts/artwork/capture.ts": "4e97b2a09292cf144e0b2a2b1af920314f21ece9b2007c98fd0f77281a1276b8",
+    "pixelated/services/api/scripts/artwork/catalog.ts": "17b6ccdc26be30a133a6327cff02e2df5ee3d0bbe89048fb6c9314307f9a1d80",
+    "pixelated/services/api/scripts/artwork/options.ts": "e3de5475cd835d9029d9e30185853484542f92913d50a88113f60dc9f515d3c6",
+    "pixelated/services/api/scripts/artwork/types.ts": "962fe5a5de5226a5df830afd855b9c5517ef361612669ba44ca19d5b97578fb4",
+    "pixelated/services/api/scripts/captureCatalogArtwork.ts": "c6d502bd2546be8f65387bb5fd1b5aa98e9a343515fcdd435500de94ce5e3636",
+    "pixelated/services/api/scripts/hostedPredeploy.mjs": "bee69f99b3c55cef55751e6bbf9bdf8a3cf66e3785e47a5e3f4895cf6c631bdf",
+    "pixelated/services/api/scripts/staging/catalog.ts": "26f93c1b3ae5d46bb41e46362f125a200526ecf6f0ac5963fc66679c494f1e71",
+    "pixelated/services/api/scripts/staging/client.ts": "c8a85d7260fcea33f80e7896b8dad5cebe8e0f2389a33cf7dd42b1c7e0e7cda4",
+    "pixelated/services/api/scripts/staging/config.ts": "63a4cc3bf365e8839550be715cabfe53d3ac667a284a236ecd504b436947c091",
+    "pixelated/services/api/scripts/staging/sessions.ts": "3c41c3a7e27654fad281eb0abbd88a17814c186975e0239aa89a08c3110ec6ca",
+    "pixelated/services/api/scripts/staging/storage.ts": "e86c1c27bfafcb96db3989c7381041b4c3e820cc3e45114c1cf53b7508625e43",
+    "pixelated/services/api/scripts/stagingSmoke.ts": "81ca57d5afab2b695d535e112dc9d70eb840ef81d7eab67cc8d5401d8f0ead2a",
+    "pixelated/services/api/src/infrastructure/boundedRead.ts": "cb879d8dadc520ecb10398829f425c45a386dc86328e26e323d01dd4ec72b2a1",
+    "pixelated/services/api/src/modules/catalog/ingestion/infrastructure/catalogArtworkCapture.ts": "0270886790a8ef78f31f00672c142565657d57b2ca7512d4d28cbc55b0152776",
+    "pixelated/services/api/src/modules/catalog/ingestion/infrastructure/catalogArtworkCommand.ts": "ca86182e672d1eeec68f873672db429efabafe25fe0a0ac3b89ece5d5ef131aa",
+    "pixelated/services/api/src/modules/catalog/ingestion/infrastructure/catalogArtworkImage.ts": "efdf8e7c24e0f13a23f23187d7be5bb0a893ecc33b6c1b7011d79a0437339d29",
+    "pixelated/services/api/tests/unit/contracts/hostedPredeploy.test.ts": "8cdfeb067e21d83f04e49a6383f00bb64044b631530b5a2fcd7722a493e85e06",
+    "pixelated/services/api/tests/unit/tooling/artworkLifecycle.test.ts": "46ca885b6c708b388aad6db965571f1325f79bad51ba39a196ae9a0a5dfce68d",
+    "pixelated/services/api/tests/unit/tooling/stagingSmoke.test.ts": "ae34fff5ea780b1b00ee7275d2a479cf8e0f0cf745de8a8e78b2576fb3b04c60",
+    "pixelated/services/api/tsconfig.tooling.json": "61071a0ed0e9ba07c841b9fb3d2a4bbf5dad961c2df6c34b4ed52754251fe1b9"
+  },
+  "verification": {
+    "all_workspace_builds": "passed",
+    "api_production_audit": {
+      "critical": 0,
+      "high": 0,
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "total": 0
+    },
+    "broken_local_links": 0,
+    "browser_interactions": "passed",
+    "core_python313": {
+      "branch_inclusive_coverage_percent": 93.55,
+      "passed": 2032
+    },
+    "final_changed_api_and_smoke_tests": "passed",
+    "frozen_releases": "all P0/N1/N2/N3/N4/browser/N5 schemas/fixtures/pins preserved",
+    "isolated_wheel": "clean venv, external cwd, ignored PYTHONPATH/PYTHONHOME, installed import/console and 25 exact schemas pass",
+    "legacy_parser_and_upload_serialization": "AST/printer-equivalent original functions",
+    "lint_and_tooling_typecheck": "passed",
+    "lockfile_consistency": "passed; dependency locks unchanged",
+    "markdown_local_targets": 1131,
+    "offline_command_entry_points": "passed",
+    "producer_node26": {
+      "api": 209,
+      "desktop": 92,
+      "engine": 135,
+      "existing_external_artifact_skips": 1,
+      "passed": 780,
+      "smoke_security": 77,
+      "web": 267
+    },
+    "test_mode": "Final full workspace suite after the last cleanup change; final full lint/typechecks/builds and earlier unchanged browser interaction check pass.",
+    "workflow_yaml": "all parse"
+  }
+}

@@ -98,7 +98,7 @@ and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
 The [readiness audit](experiments/phase-1-readiness-20261015/README.md) passes
 **2,032 tests on Python 3.13, with 93.55% coverage**. Earlier actual Linux Python
 3.11 verification passed 2,015 tests/93.61% on its recorded baseline. [Both merged baselines pass hosted checks](experiments/phase-1-audit-20261015/hosted-ci.json);
-subsequent audit fixes need their normal CI run.
+subsequent audit fixes need their normal CI run. The [script/CI pass](experiments/phase-1-script-ci-20261016/README.md) adds full producer regression/deploy gating and isolated wheel verification.
 
 Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
 [approved provisional policy](docs/analysis/N3_FEATURE_POLICY_SPEC.json),
