@@ -95,7 +95,7 @@ in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The [readiness audit](experiments/phase-1-readiness-20261015/README.md) passes
+The [final cross-repository check](experiments/phase-1-final-check-20261016/README.md) passes
 **2,032 tests on Python 3.13, with 93.55% coverage**. Earlier actual Linux Python
 3.11 verification passed 2,015 tests/93.61% on its recorded baseline. [Both merged baselines pass hosted checks](experiments/phase-1-audit-20261015/hosted-ci.json);
 subsequent audit fixes need their normal CI run. The [script/CI pass](experiments/phase-1-script-ci-20261016/README.md) adds full producer regression/deploy gating and isolated wheel verification.

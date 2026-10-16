@@ -20,10 +20,10 @@ need their ordinary CI after merge. User desktop/game-picker and trace export
 sign-off remain pending. Earlier step sections below retain historical counts,
 then-pending gates and original software closeout evidence.
 
-The [latest script/CI verification](../../experiments/phase-1-script-ci-20261016/README.md)
-passes 2,032 core tests on Python 3.13 (93.55% coverage) and 780 Pixelated Node
-tests, with one existing external-artifact skip. It adds archive/export failure
-hardening and focused source/test splits. Linux/minimum-version and hosted reruns
+The [final cross-repository verification](../../experiments/phase-1-final-check-20261016/README.md)
+passes 2,032 core tests on Python 3.13 (93.55% coverage) and 783 Pixelated Node
+tests, with one existing external-artifact skip. It verifies the archive/export and script/CI hardening, and fixes hosted smoke
+build selection and embedded-URL credential redaction. Linux/minimum-version and hosted reruns
 of these new patches remain CI work, separate from the earlier actual results.
 
 ## Step 1 — Baseline and ownership inventory

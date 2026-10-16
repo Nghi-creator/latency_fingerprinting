@@ -1,6 +1,7 @@
 # Phase 1 quality and CI gates
 
-**Updated:** 2026-10-16. [Script/CI hardening](../../experiments/phase-1-script-ci-20261016/README.md),
+**Updated:** 2026-10-16. [Final check](../../experiments/phase-1-final-check-20261016/README.md),
+[script/CI hardening](../../experiments/phase-1-script-ci-20261016/README.md),
 [readiness audit](../../experiments/phase-1-readiness-20261015/README.md),
 [previous audit](../../experiments/phase-1-audit-20261015/README.md),
 [acceptance ledger](../scenarios/N5_RUNTIME_ACCEPTANCE.md),
@@ -9,7 +10,7 @@
 ## Latest actual verification
 
 Current full-suite results and exact log hashes are recorded in the
-[current verification results](../../experiments/phase-1-script-ci-20261016/results.json).
+[current verification results](../../experiments/phase-1-final-check-20261016/results.json).
 Earlier minimum-version/native Linux counts belong to their recorded baselines;
 the current macOS pass and remaining hosted checks are listed separately.
 The core covers P0 compatibility, N1 aggregation, N2 observation adoption,
