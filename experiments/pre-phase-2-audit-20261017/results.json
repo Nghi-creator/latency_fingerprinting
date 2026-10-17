@@ -1,0 +1,127 @@
+{
+  "baselines": {
+    "Pixelated-Studio-Edition": "d4d82fc218cceba7d1f61a9990629ad7d76238dd",
+    "latency_fingerprinting": "c64b55aab8595f6be7a9591310bb50c95bcd0fbb"
+  },
+  "date": "2026-10-17",
+  "environment": {
+    "core_python": "3.13.13",
+    "node": "v26.4.0",
+    "platform": "Darwin"
+  },
+  "findings_fixed": [
+    "campaign acquisition shorter than linked execution",
+    "negative queue/encode durations counted toward nominal overhead acceptance",
+    "unhandled cloud artifact open errors and cleanup before ownership",
+    "unbounded cloud artifact DNS resolution",
+    "duplicated process-counter parsing with whitespace and malformed-number gaps"
+  ],
+  "log_sha256": {
+    "latency-audit-coverage.json": "bce0f438fa8e817af7df02f2f40be83ffe56dcdef3d3d69ac4a62df632ae5e76",
+    "latency-audit-final-tests.log": "ae2cccc3b99706f2ceb673eb1b56e5dea631967b09dd4f0a5e1557b69f6f4378",
+    "latency-audit-focused.log": "34c270b42065691d429b8546537aa7e89d20ca8d4fc321e7a7368d534eabc28c",
+    "latency-audit-live-reinspection.log": "fb76be40f9100e8d24857a7cd30b070d75f4c3562a2575602613d934da1d5b22",
+    "latency-audit-regressions-before.log": "d4b23194a6def544e3b154d74d0d9ef2d7ac2596066ceed946bc26753d2bf007",
+    "latency-audit-reproduction.log": "1ad57d52fba3f1c1d07eb0525798bbe064ead2aaa3f81ec4e9f53da6aa84f1bb",
+    "latency-audit-wheel.log": "50124a31303e491331eda09537990e833eccb2ae7de7cd888ea51594807e43ea",
+    "pixelated-audit-api.log": "a033c3ee20070a24e24d5885cccafbaf17afe26a89e5f9db9495c6778273a930",
+    "pixelated-audit-build.log": "11742d7cbe898502e5b078864e424c2cd5bf0518a8ca1941ee2d984f59a7354a",
+    "pixelated-audit-dependencies-api.json": "f954b09f49b16f79a192606743330ec28060721f92deef5a61eab8951c7a1f64",
+    "pixelated-audit-dependencies-desktop.json": "3e1a0c51b834db53e8d0b61f781fd0cb8d45f3aa926316794432c5499fe0b9bf",
+    "pixelated-audit-dependencies-engine.json": "d4bf3be7c397ed973377f6e893b4e6d079caee200501ecbe2be8bbffc03dc1e0",
+    "pixelated-audit-dependencies-root.json": "f2915c8cc7ef17ce3130b49fbc7c7ac5c00a43009dba8a4dab0c839d2cda1a2c",
+    "pixelated-audit-dependencies-web.json": "25384f9258b5e3d74f1edc022805950d1d7503a39ffe077fc2a4071eca10bd3e",
+    "pixelated-audit-desktop-chain.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pixelated-audit-final-engine-lint.log": "ab4d4443fb9645f31c39bd0045276c4d02d7ecb40a303d1993fbff6f18205d4a",
+    "pixelated-audit-final-engine.log": "4bca4b1d2807521caf275ef5e62d496bea8fbcf59ecb231e406d13d5f4c8b93b",
+    "pixelated-audit-final-lint.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+    "pixelated-audit-hosted.log": "07115e2e526b3d416b63df8c2c3bc62110c523461d2086ea154d63d2d1125e97",
+    "pixelated-audit-tests.log": "6003d603443d2352261f8a56627ba39a1c13c8df3568a15e5949d3b21ffe934d"
+  },
+  "not_executed": [
+    "fresh Linux/Python 3.11/Node 24 tests",
+    "new hosted workflows, CodeQL or image scans",
+    "release packaging/platform validation",
+    "production mutations or fresh long fault campaigns",
+    "manual desktop/picker/input/reconnect/export/cancel/retry"
+  ],
+  "phase_1_acceptance": "pending_manual_and_final_hosted_verification",
+  "record_kind": "pre_phase_2_cross_repository_audit",
+  "source_sha256": {
+    "core/src/latency_fingerprinting/scenarios/campaign.py": "23ee36663436e459e7b40fee2c65d215d3b9e3f6bbb70eeb93c6f95e297b2f28",
+    "core/src/latency_fingerprinting/scenarios/overhead.py": "da1dfd8da6010990a4d2b4e8328e85f5cd956e4f8846605b87980cb829ecc5cf",
+    "core/tests/scenarios/test_campaign.py": "2a4098eb47836d5f94242240dec28e44929a7d038830dc3f1e484f5b7fdcaaa9",
+    "core/tests/scenarios/test_overhead.py": "c2ae74d8a5026b0e1ec77f1b98d7878557dae0d626f8a0afc236166f0ee0ee64",
+    "producer/engine/runtime/src/roms/cloudRomDownloader.ts": "52213b089c5fe80e042ebcad2827811f30d4930ee438e4c56edced48cb5b0599",
+    "producer/engine/runtime/src/telemetry/intervalResourceSampler.ts": "6acde883799e2b9886df702d798f992a7462502a2af69bfd2bb73242972de77e",
+    "producer/engine/runtime/src/telemetry/linuxProcessCounters.ts": "333c386efaa3218bc7e7affe4b7d5963d09aa92cfcfddd8c8da16e94a15d643c",
+    "producer/engine/runtime/src/telemetry/resourceSnapshot.ts": "0b9eb7f6ee43dc2534772a019476ed0cdb06f63aa0fcc257de6826861e062195",
+    "producer/engine/runtime/tests/roms/cloudRomDownloader.test.ts": "a3040f6efa03d370579e21468e3df8507093fbc11cf2097349433c298a83da87",
+    "producer/engine/runtime/tests/telemetry/linuxProcessCounters.test.ts": "a6637c4efb5e78415b40f7113b189f86ee1a492684d4cf14ff9a84df550dfee7"
+  },
+  "verification": {
+    "api_verification": "passed",
+    "core_branch_inclusive_coverage_percent": 93.56,
+    "core_lint_format": "passed",
+    "core_original_code_regressions": "3 fail before fixes; all pass after",
+    "core_passed": 2035,
+    "desktop_build_chain_audit": "passed",
+    "hosted_contract_browser_interactions_tls_isolation": "passed",
+    "installed_wheel": "passed; all 25 schemas match",
+    "npm_audits": {
+      "api": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "desktop": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "engine": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "root": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "web": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      }
+    },
+    "producer_existing_skipped": 1,
+    "producer_lint_build_tooling_typechecks": "passed",
+    "producer_passed": 800,
+    "producer_suites": {
+      "api": 210,
+      "desktop": 92,
+      "engine": 147,
+      "smoke_security": 84,
+      "web": 267
+    },
+    "retained_live_reports": "campaign-8 and selected-workload overhead-9 reproduced byte-for-byte",
+    "schemas_registry_reproduction_and_pip_check": "passed",
+    "skip_reason": "local curated game mirrors unavailable"
+  }
+}

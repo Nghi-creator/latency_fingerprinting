@@ -13,7 +13,14 @@ from tests.scenarios.test_bundle import TRACE, archive, encoded
 from tests.scenarios.test_campaign import plan
 
 
-def overhead(directory, *, cpu_extra=1_500_000_000, enabled_frames=855, capture_frames=None):
+def overhead(
+    directory,
+    *,
+    cpu_extra=1_500_000_000,
+    enabled_frames=855,
+    capture_frames=None,
+    reversed_pair=None,
+):
     directory.mkdir()
     schedule = plan(
         [
@@ -76,6 +83,16 @@ def overhead(directory, *, cpu_extra=1_500_000_000, enabled_frames=855, capture_
                 attempted_events=nominal * 5,
                 retained_events=nominal * 5,
             )
+            if reversed_pair is not None:
+                start, end = reversed_pair
+                for event in stream["events"]:
+                    if event["boundary"] == end:
+                        offset = 1 if start == "pre_encode_queue_enter" else 3
+                        event["timestamp_ns"] = (
+                            (int(event["frame_id"].split("-")[1]) - 1) * 33_333_333
+                            + offset * 1_000_000
+                            - 1
+                        )
             record = encoded(trace)
             # Use the independently pinned N4 manifest shape, replacing only its receipt.
             template = json.loads((TRACE.parent / "trace-manifest.json").read_bytes())
@@ -156,6 +173,16 @@ def test_frozen_overhead_boundaries_from_raw_counters(tmp_path, cpu_extra, frame
 
 def test_missing_source_pairs_cannot_hide_behind_a_smaller_trace_denominator(tmp_path):
     path, _ = overhead(tmp_path / "overhead", capture_frames=500)
+    report = inspect_overhead(path)
+    assert report["measured_thresholds_passed"] is False
+    assert all(t["nominal_capture_passed"] is False for t in report["nominal_traces"])
+
+
+@pytest.mark.parametrize(
+    "pair", [("pre_encode_queue_enter", "pre_encode_queue_exit"), ("encode_input", "encode_output")]
+)
+def test_negative_trace_durations_cannot_pass_nominal_capture(tmp_path, pair):
+    path, _ = overhead(tmp_path / "overhead", reversed_pair=pair)
     report = inspect_overhead(path)
     assert report["measured_thresholds_passed"] is False
     assert all(t["nominal_capture_passed"] is False for t in report["nominal_traces"])

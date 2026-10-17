@@ -22,6 +22,10 @@ def measure_fps(item):
     return Fraction((item.frames_end - item.frames_start) * SECOND, item.wall_ns)
 
 
+def _usable_pair(endpoints, start, end):
+    return start in endpoints and end in endpoints and endpoints[end] >= endpoints[start]
+
+
 def inspect_overhead(directory):
     directory = Path(directory)
     try:
@@ -89,14 +93,15 @@ def inspect_overhead(directory):
                 raise ValueError("nominal trace policy drift")
             events = {}
             for event in stream.events:
-                events.setdefault(event.frame_id, set()).add(event.boundary)
+                events.setdefault(event.frame_id, {})[event.boundary] = event.timestamp_ns
             queue = encode = joint = 0
             for frame in stream.frames:
                 if frame.correlation != "exact":
                     continue
-                seen = events.get(frame.frame_id, set())
-                q = {"pre_encode_queue_enter", "pre_encode_queue_exit"} <= seen
-                e = {"encode_input", "encode_output"} <= seen
+                seen = events.get(frame.frame_id, {})
+
+                q = _usable_pair(seen, "pre_encode_queue_enter", "pre_encode_queue_exit")
+                e = _usable_pair(seen, "encode_input", "encode_output")
                 queue += q
                 encode += e
                 joint += q and e

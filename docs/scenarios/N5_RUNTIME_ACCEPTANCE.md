@@ -197,3 +197,13 @@ local verification passes 2,032 core tests/93.55% coverage and 788 Node tests
 with one existing artifact skip, plus the real two-certificate browser TLS test.
 Fresh npm/Python advisory audits are clear. Hosted CodeQL/image/minimum-version
 checks and manual acceptance remain separate pending gates.
+
+## Pre-Phase 2 audit, 2026-10-17
+
+The [cross-repository audit](../../experiments/pre-phase-2-audit-20261017/README.md)
+closes acquisition-duration and negative-timing acceptance gaps, hardens producer
+download ownership/deadlines, and consolidates process-counter parsing. Current
+verification passes 2,035 core tests/93.56% coverage and 800 Node tests with one
+existing local-artifact skip. Retained campaign-8 and selected-workload overhead-9
+reports reproduce byte-for-byte. Manual sign-off and the normal hosted/platform
+checks for the edited trees remain open; this record does not close Phase 1.

@@ -110,7 +110,8 @@ def test_detached_campaign_and_cli_keep_acceptance_separate(tmp_path, capsys, av
 
 
 @pytest.mark.parametrize(
-    "drift", ["plan", "source", "length", "hash", "extra", "alias", "finished_missing"]
+    "drift",
+    ["plan", "source", "length", "hash", "extra", "alias", "finished_missing", "duration"],
 )
 def test_campaign_drift_rejects_and_preserves_output(tmp_path, capsys, drift):
     path = campaign(tmp_path / "campaign")
@@ -129,6 +130,8 @@ def test_campaign_drift_rejects_and_preserves_output(tmp_path, capsys, drift):
         source = path / "run-1.tar.gz"
         source.rename(tmp_path / "original.gz")
         source.symlink_to(tmp_path / "original.gz")
+    elif drift == "duration":
+        index["trials"][0]["acquisition_ended_ns"] = 2
     else:
         index["trials"] = []
     (path / "campaign-index.json").write_bytes(encoded(index))
