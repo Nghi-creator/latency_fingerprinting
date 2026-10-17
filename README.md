@@ -27,7 +27,7 @@ P0 demonstrates that the proposed mechanism is executable. It does not yet prove
 6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
 7. [N4 stage-level observability](docs/plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) is complete in software; [runtime acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md) remains pending.
 8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; Steps 1–7 are complete locally; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open.
-8. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
+9. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
 
 ## Development setup
 
@@ -95,8 +95,9 @@ in with independent expected summaries and read-only drift checks.
 [Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
 paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
 and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The [final cross-repository check](experiments/phase-1-final-check-20261016/README.md) passes
-**2,032 tests on Python 3.13, with 93.55% coverage**. Earlier actual Linux Python
+The [pre-Phase 2 audit](experiments/pre-phase-2-audit-20261017/README.md) passes
+**2,035 tests on Python 3.13, with 93.56% coverage**, plus 800 passing Pixelated
+Node tests. Earlier actual Linux Python
 3.11 verification passed 2,015 tests/93.61% on its recorded baseline. [Both merged baselines pass hosted checks](experiments/phase-1-audit-20261015/hosted-ci.json);
 subsequent audit fixes need their normal CI run. The [script/CI pass](experiments/phase-1-script-ci-20261016/README.md) adds full producer regression/deploy gating and isolated wheel verification.
 

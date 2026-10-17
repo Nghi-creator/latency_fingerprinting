@@ -94,6 +94,10 @@ def inspect_campaign(directory):
                     source.write(data)
                 inspected = inspect_experiment_bundle(snapshot)
             manifest, result = inspected.manifest, inspected.result
+            execution_end = max((p.end_ns for p in result.phases), default=0)
+            execution_end = max(execution_end, result.cleanup.ended_ns or 0)
+            if ref.acquisition_ended_ns - ref.acquisition_started_ns < execution_end:
+                raise ValueError("acquisition cannot be shorter than its execution")
             checks = dict(
                 run_id=requested.run_id,
                 scenario=requested.scenario,
