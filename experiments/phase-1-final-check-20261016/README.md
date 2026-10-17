@@ -46,3 +46,21 @@ input/reconnect and trace export/cancel/retry sign-off, recorded in the
 [acceptance ledger](../../docs/scenarios/N5_RUNTIME_ACCEPTANCE.md).
 N5/Phase 1 remains open until those results are supplied. Raw logs are under
 ignored `local/phase-1-final-check-20261016/`.
+
+## Subsequent CodeQL screenshot review
+
+The earlier broad review missed the LAN utility's process-wide TLS bypass.
+It is now removed; the legacy flag is rejected with trusted-certificate setup
+guidance. All three insecure-randomness alerts share the staging ID helper,
+which now uses a 128-bit cryptographic suffix. The reported test expression is
+formatted without changing its grouping. Two regression tests were added.
+Current producer verification passes **785 tests**, one existing artifact skip,
+plus full lint/tooling typechecks. The core implementation is unchanged.
+
+The two reported network-to-file flows write response/error content to locally
+configured reports. Review found no remote control of their destination paths.
+They retain their intended evidence-writing behavior, with the assessment in
+the producer's [maintenance guide](../../../Pixelated-Studio-Edition/docs/script-maintenance.md#security-review-follow-up).
+No alert dismissal/suppression or hosted CodeQL run occurred. Hosted CodeQL needs
+to rerun after these patches; local tests do not establish alert resolution.
+Structured results retain this follow-up separately from the original baseline.

@@ -1,0 +1,181 @@
+{
+  "auto_merge_settings": "If enabled, strict required rules must include both quality lanes; missing rules/checks fail closed. No remote settings changed.",
+  "baselines": {
+    "Pixelated-Studio-Edition": "0f07e5545542053246b8dbc8c4e6e7ab0c3cd15a",
+    "latency_fingerprinting": "dd4d8ae6258e20cf55f228d96571d172dbe0ea47"
+  },
+  "findings_fixed": [
+    "hosted browser context-wide TLS bypass replaced with explicit validation plus generated-key SPKI exception",
+    "timestamp-only probe credential replaced with 192-bit cryptographic randomness",
+    "predictable certificate pathname replaced with runtime mkdtemp private workspace",
+    "Dependabot policy now requires both Repository Quality lanes and corresponding strict rules; workflow reacts to quality completion"
+  ],
+  "local_verification": {
+    "all_workspace_lint_typecheck_build": "passed",
+    "browser_interaction_harness": "passed",
+    "browser_tls": "actual Chromium: owned key accepted, unrelated self-signed key rejected, owned endpoint remains usable; same browser/context factory as live smoke; invalid PEM rejected before launch",
+    "browser_tls_ci_wiring": "npm run verify:hosted-contract ends with npm run test:hosted-tls after desktop tests/build",
+    "core": {
+      "branch_inclusive_coverage_percent": 93.55,
+      "passed": 2032
+    },
+    "core_lint_format_schema_registry_frozen_n1_n5_browser": {
+      "browser": 0,
+      "dependencies": 0,
+      "format": 0,
+      "lint": 0,
+      "n1": 0,
+      "n2": 0,
+      "n3": 0,
+      "n4": 0,
+      "n5": 0,
+      "registry": 0,
+      "schemas": 0
+    },
+    "desktop_build_chain_audit": "passed",
+    "local_markdown": {
+      "broken": [],
+      "checked": 1141
+    },
+    "npm_audits": {
+      "api-audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "desktop-audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "engine-audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "root-audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "web-audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      }
+    },
+    "offline_hosted_contract": "passed",
+    "producer": {
+      "api": 210,
+      "desktop": 92,
+      "engine": 135,
+      "existing_external_artifact_skips": 1,
+      "passed": 788,
+      "smoke_security": 84,
+      "web": 267
+    },
+    "python_audit": {
+      "excluded": [
+        {
+          "name": "latency-fingerprinting",
+          "reason": "distribution marked as editable"
+        }
+      ],
+      "known_advisories": 0,
+      "third_party_distributions_checked": 20,
+      "tool": "pip-audit 2.10.1 installed only in a temporary tooling venv"
+    },
+    "secret_pattern_scan": {
+      "Pixelated-Studio-Edition": {
+        "matching_files": [],
+        "scope": "tracked working-tree files; existing CI token patterns; contents not printed"
+      },
+      "latency_fingerprinting": {
+        "matching_files": [],
+        "scope": "tracked working-tree files; existing CI token patterns; contents not printed"
+      }
+    },
+    "workflow_yaml": "all 7 parse"
+  },
+  "log_sha256": {
+    "api-audit.json": "f954b09f49b16f79a192606743330ec28060721f92deef5a61eab8951c7a1f64",
+    "browser-interactions.log": "0563eb6d57742e4f49445063a54b2a283441d20c3923595efd5b24afe322ff50",
+    "browser-tls.log": "1c99953b78d9b589231c2547997e6ce96b5efa44824147a4eb381764ed450b61",
+    "core-browser.log": "751818d06210d50e4ba83c92173eb22b2cc2af1cfa25417617b92cf9f404b06f",
+    "core-check-status.json": "2b6fa80614887a4ce9aa8fd452c6a2f88bdc95cd7493797e5fabb9dc73920cc7",
+    "core-dependencies.log": "851a1855dca5206a9ea4e02eec3d85cffcf8875f23adcb5b8c52e3d9da5b9a3f",
+    "core-format.log": "34ccb91ddedefaed4f5277d5992a1e4d77d71939a97eb9363cdf59e537337314",
+    "core-lint.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "core-n1.log": "32f4c4a90e2fa081ac05ae39ddefd7e027abbf8ea2d7fe665c18dc9980ee18a3",
+    "core-n2.log": "bf6f7b6c7e9687f6b2a3e046c58877f04d6f3c363c17fec8436a41e41585adbf",
+    "core-n3.log": "8441a522976cdda6a0a5127232b648bb3ca1e0a7b42f0cf094eee1213042518c",
+    "core-n4.log": "5d7e732dc4beff4ad5298cd6b578400a305cfb55469de03786ee8e7dcdde40f0",
+    "core-n5.log": "c28c94d83bbd8294f0048ae480d22094dc27e0e495a6ed0cbdcab240ce29e8f1",
+    "core-registry.log": "7be44cf7d7b2118a50aa4d9d3f6d9256b85830e6074789b9d882a5d5526c5657",
+    "core-schemas.log": "b8a75b3e91d3a9402d2fc15ac97388191f7508af58ed8d66df0eef1cec275084",
+    "core-tests.log": "72e44ed8676b36baf7acbe1aa3d72815d5aea3e195183f5ee8406cd8315a7697",
+    "desktop-audit.json": "3e1a0c51b834db53e8d0b61f781fd0cb8d45f3aa926316794432c5499fe0b9bf",
+    "desktop-chain.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "engine-audit.json": "d4bf3be7c397ed973377f6e893b4e6d079caee200501ecbe2be8bbffc03dc1e0",
+    "hosted-contract.log": "853271abaf438123f74623e85fe3ec1a3e592fa25f073e20bb605185cb32aa53",
+    "markdown.json": "89d2dccb59e3c6302f8af82a3e76c20c1e6055f72c190ab9f114c258d6d1e4f4",
+    "producer-build.log": "2975d8c2416c883cc3b905dcf93bbbc07e5e59a559c769d45660ddfd44b8aafb",
+    "producer-lint.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+    "producer-tests.log": "e9db41f3b51770586e514d53526771f46ce6958c48dc7a12e4c125d405dc1176",
+    "python-audit-tool.log": "9488cb923d3d83945eb5e66c41d03578348879a9250c94a17e7fd12b38c26817",
+    "python-audit.json": "c117295d2aec53cf3c8f0820c58b9722d9c40b3b04d4cfb84cba123627059184",
+    "root-audit.json": "f2915c8cc7ef17ce3130b49fbc7c7ac5c00a43009dba8a4dab0c839d2cda1a2c",
+    "secret-patterns.json": "0c75c65a0d9a9bec399025ce09dc60001d282a40bfac2c3a786ffe221d3628cf",
+    "web-audit.json": "25384f9258b5e3d74f1edc022805950d1d7503a39ffe077fc2a4071eca10bd3e",
+    "workflows.log": "606a8b6d5b2ab8c5326e01c44f06fa16db424222d46b58c9e1ef16b944be2997"
+  },
+  "not_executed": [
+    "hosted CodeQL/security jobs or new image scans",
+    "new minimum-Python/production-Node/native Linux run",
+    "live hosted mutations, deployments, PR merges or branch-rule changes",
+    "manual desktop/export acceptance or long live campaigns"
+  ],
+  "phase_1_acceptance": "pending_manual_and_final_hosted_verification",
+  "preexisting_core_changes": "CodeQL follow-up documentation/evidence edits retained; no core implementation changes",
+  "record_kind": "focused_security_review",
+  "remaining_gates": [
+    "hosted security/quality runs for final sources",
+    "manual desktop/picker/input/reconnect/export/cancel/retry sign-off"
+  ],
+  "review_date": "2026-10-17",
+  "reviewed_boundaries": [
+    "bounded non-extracting core archive/JSON input",
+    "producer argv process launch and owned controlled-pressure helpers",
+    "API auth and companion guest/host scope enforcement",
+    "renderer isolation/IPC and cloud-ROM DNS pinning",
+    "local report destination versus network-derived report content",
+    "privileged workflow trusted checkout and allowed dependency patch policy"
+  ],
+  "source_sha256": {
+    "pixelated/.github/workflows/dependabot-automerge.yml": "c7fe0dd0493c56065c63d19b8bd5f3b94aebf71fa306d4610ef3b4aef856d9db",
+    "pixelated/package.json": "b99bfb145041217a8041d42a42e406bdd09f979a264cd40f126713eb38472643",
+    "pixelated/scripts/hosted/hostedPairingBrowser.mjs": "b9b3848771ed7da9dee2832869e5dc9c55939af5309b07de29c075c3edb43940",
+    "pixelated/scripts/hosted/hostedPairingConfig.mjs": "dd90f078b15081e3439d029649024cb7aa723ab1b180a58714609542896cf0a4",
+    "pixelated/scripts/hosted/hostedPairingRuntime.mjs": "46628de9ebf2404ab622127171d14ba8e0f4ebd27f717d7c9760ced03dbaa614",
+    "pixelated/scripts/hosted/smokeInfrastructure.test.mjs": "c4c05cbd89474b0beca06ce491f1a03bc8c9e7a6b6cb16d42946ed1c3fc823a2",
+    "pixelated/scripts/hosted/verifyPairingTls.mjs": "c838b776e15394c39cfc02f309367b52fdb2fe0d2746834de25764ce0f31dad3",
+    "pixelated/scripts/security/dependabotAutomerge.test.mjs": "25bfe8f6319cb5d93e8fdc56614e1c0e87dbeab22841b68e47ce4b8485c972cd",
+    "pixelated/scripts/security/dependabotMergePolicy.mjs": "5f34a7fcba83db8344a11ef76facc59fbf85aaf65557b15ac148a96bb18572e1",
+    "pixelated/scripts/security/nodeRuntimeContract.test.mjs": "fd8d8515e9062a282f67b734c7cce648f3ad65b274de6f87318623bab951d23e"
+  }
+}

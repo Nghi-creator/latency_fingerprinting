@@ -3,6 +3,38 @@
     "Pixelated-Studio-Edition": "6d17e9881cdc5339f47de5eb5d5a7d152db1eec1",
     "latency_fingerprinting": "a82bbafcaa8f9e05d23c3efd071adfaa270cf041"
   },
+  "codeql_followup": {
+    "findings_fixed": [
+      "removed process-wide TLS certificate bypass; legacy flag rejected; trust PEM certificate via NODE_EXTRA_CA_CERTS",
+      "all three weak-randomness alerts fixed at shared staging ID helper with randomBytes(16)",
+      "Boolean test-expression whitespace clarified with unchanged grouping"
+    ],
+    "hosted_codeql": "not rerun; pending after patch publication",
+    "log_sha256": {
+      "producer-lint.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+      "producer-tests.log": "1f59f2e0aeab646e0ba7e1ddabb3c6ce7a0466ba0a7b0a610ecc9388f9064fed"
+    },
+    "network_to_file_review": "expected report content; output paths come from local configuration and fixed basenames, not remote payloads; no suppression/dismissal",
+    "producer_baseline": "4585ae08de98dc7ffe5e536a581040e96a6f18e4",
+    "review_date": "2026-10-16",
+    "source_sha256": {
+      "scripts/lan/multiplayerSmokeLifecycle.test.mjs": "c658d6963e7540d54cfe7b6beef09055f8d37eeccfd3c44d0b765710ffbafd9a",
+      "scripts/lan/multiplayerSmokeOptions.mjs": "a89f6cb0f0f2a95720544c8cd3ac4c8eee84e85213618de8f4f74799dddcc9cc",
+      "scripts/lan/multiplayerSmokeRun.mjs": "a80b9a3a1aeb2f8728ab654efb70b1414006a263708da8fe7180bd26246a33b3",
+      "services/api/scripts/staging/config.ts": "a4d3cbecfb6abb348cecaf28d76551d6e2b740893506533733beffe91d226333",
+      "services/api/tests/unit/tooling/stagingSmoke.test.ts": "80ef1d1baff086d48bdbd27e7c0e784043df0feb5985b5bc04b5798f856d3d6b"
+    },
+    "verification": {
+      "api": 210,
+      "desktop": 92,
+      "engine": 135,
+      "existing_external_artifact_skips": 1,
+      "lint_and_tooling_typecheck": "passed",
+      "producer_passed": 785,
+      "smoke_security": 81,
+      "web": 267
+    }
+  },
   "docker_daemon": "unavailable: configured desktop-linux daemon socket absent; Docker 29.0.1 bundled client present",
   "environment": {
     "core_python": "Python 3.13.13",
