@@ -1,6 +1,5 @@
 # N4 timing reconstruction and inspection
 
-**Delivered:** Step 6 software, 2026-10-09.
 **Meaning:** [Frozen trace/method contract](N4_TRACE_CONTRACT.md).
 **Input:** [Standalone export and adoption](N4_TRACE_ADOPTION.md).
 
@@ -82,38 +81,15 @@ recomputes the result. No supplied summary is adopted as inspection evidence.
 Input reads pin no-follow ancestors/leaf, require a regular file, bound JSON to
 10 MiB/depth 32 and reject duplicate keys before strict trace validation. Standalone
 trace JSON may use different whitespace/key order; its identity is still the
-canonical model hash. The Step 5 producer bundle remains stricter and requires
+canonical model hash. The producer bundle remains stricter and requires
 canonical record bytes plus matching manifest hash/length.
 
-inspect-trace atomically writes canonical summary JSON through the Step 5 output
+inspect-trace atomically writes canonical summary JSON through the output
 helper after complete validation. Parent output directories must exist. Success
 returns 0 and no stdout. Failure returns 1 with the fixed
 `error: inspect-trace: invalid_input_or_output` message, no source/path/private
 value echo and no partial output or replacement of a previous destination.
 Symlink/special inputs and outputs fail; no remote resource is resolved.
-
-## Software verification and remaining gate
-
-46 independent cases cover the hand-authored complete Step 1 example, all methods'
-positive/zero/negative pairs, exclusion precedence, capability absence, sampling/
-loss, out-of-order arrival, reset isolation, optional/equal/negative-slack budgets,
-immutable repeatability, canonical hash identity and forged copy rejection. A
-2000-frame safe-limit case checks exact large integer sums with an independent
-rational expectation. Fresh imports check that public models and reconstruction
-avoid a serialization dependency cycle. CLI cases cover bounded/duplicate/deep
-JSON, no-follow paths/special files, fixed failures and preserved output.
-
-The actual Step 5 synthetic host/browser exporter artifacts also pass inspect-trace
-and strict summary validation. Host means reproduce 0.0001 ms queue waiting,
-0.0001 ms encoder boundary elapsed and 0.0004 ms capture-output age. Browser
-callback mean reproduces 1.5 ms; foreign-producer results are explicitly unavailable.
-Those synthetic clocks are arithmetic/interoperability evidence, not real timing.
-
-Step 7 [pinned integrated reproduction](N4_INTEGRATION_VERIFICATION.md) is delivered. Remaining gates are real Linux/X11/VP8
-acceptance and measured overhead. Live browser/picker interaction, synchronized
-one-way latency, hosted/minimum-version execution and real capture are not
-established by this software. N4 remains incomplete until its acceptance gates
-are met or explicitly retained as pending in a software closeout.
 
 ## Additive callback execution result
 

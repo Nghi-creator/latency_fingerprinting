@@ -1,23 +1,20 @@
 # Browser timestamp method review
 
-**Status:** implemented opt-in additive method, release 1.0.0; local live validation passes; final desktop/hosted acceptance remains separate.
-[Exact execution contract](N4_BROWSER_EXECUTION_CONTRACT.md).
-[Observed limitation](N4_BROWSER_INSTRUMENTATION.md#live-api-timestamp-limitation),
-[frozen v1 contract](N4_TRACE_CONTRACT.md), [runtime ledger](N4_RUNTIME_ACCEPTANCE.md).
+See the [execution contract](N4_BROWSER_EXECUTION_CONTRACT.md),
+[browser instrumentation](N4_BROWSER_INSTRUMENTATION.md) and [frozen v1 contract](N4_TRACE_CONTRACT.md).
 
-## Problem and evidence
+## Timestamp limitation
 
-The actual Chromium 151 recording has 900 callbacks. Frozen v1 pairs the
-API-supplied `now` argument with `metadata.presentationTime`; 681 negative deltas
-are excluded and 219 pairs produce zero lag. The collector and detached exclusion
-arithmetic agree. Replacing those timestamps or clamping negatives inside v1
-would change a frozen method and hide the observed limitation.
+Frozen v1 pairs the API-supplied `now` argument with
+`metadata.presentationTime`. The first timestamp may precede the second, yielding
+negative durations that reconstruction excludes. Replacing timestamps or clamping
+negative values inside v1 would change the method and hide this limitation.
 
 The [rvfc procedures](https://wicg.github.io/video-rvfc/#procedures) pass the
 rendering-update timestamp into callbacks. It is distinct from reading the
 performance clock inside the JavaScript callback. A rendering-update timestamp
-preceding compositor submission is a plausible explanation for the observed
-pairs; the particular Chromium cause has not been independently established.
+preceding compositor submission is consistent with this timestamp distinction; it does not establish a specific
+browser implementation cause.
 
 ## Implemented additional measurement
 
@@ -42,7 +39,7 @@ features or N5 v1/v2 experiments.
 
 ## Concrete review and verification cases
 
-| Same callback, milliseconds | Frozen v1 result | Proposed additional result |
+| Same callback, milliseconds | Frozen v1 result | Additional method result |
 | --- | --- | --- |
 | API `now` 10.00, submission 10.05, observed entry 10.40 | −50,000 ns, excluded | 350,000 ns, usable |
 | Entry precedes API-reported submission | Existing exclusions unchanged | Negative duration excluded |
@@ -56,19 +53,3 @@ integer fixtures and actual producer-to-core archive/API/CLI reproduction cover
 paired, partial-capacity and API-unavailable cases. Tests exercise failed entry
 clock reads, regressions including unsampled callbacks, coarse-clock zeros and
 late callbacks after failed cancellation. Original v1 pins remain unchanged.
-
-The [bounded live diagnostic](../../experiments/n5-runtime-20261013/browser-entry-diagnostic.json)
-on 2026-10-14 collects 180 actual paired API-argument/entry timestamps on
-Pixelated's draining video element, Chromium 151 and selected `workload-4`.
-API deltas are negative in 170 callbacks and zero in ten (median −0.1 ms).
-Entry deltas are all positive, 0.1–0.6 ms (median 0.2 ms); entry-minus-API is
-0.2–0.8 ms (median 0.4 ms). These observations support the implemented distinction;
-they do not establish Chromium's internal cause or validate a released method.
-The diagnostic publishes only relative deltas and does not measure callback cost.
-
-The [versioned live validation](../../experiments/n5-browser-execution-20261014/README.md)
-now passes all five paired overhead/coverage checks and the separate 1,200-probe
-diagnostic using the production v2 collector on Pixelated's video element. It
-retains every original API exclusion, the CPU transient and working-tree source
-hashes. Normal player/picker interaction and hosted checks for final committed
-changes remain open. Local method validation does not close Phase 1.

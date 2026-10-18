@@ -1,9 +1,9 @@
 # N5 strict experiment records
 
-**Delivered:** Step 3 software, 2026-10-10.
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
-**Independent cases:** [Step 2 examples](N5_EXPERIMENT_EXAMPLES.md).
-**Successor:** [Step 4 producer lifecycle/recording control](N5_RUN_LIFECYCLE.md) delivered in software; [Step 5 adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) is delivered; [Step 7 fixtures/pins](N5_EXPERIMENT_FIXTURES.md) are delivered; Step 8 acceptance remains open.
+**Independent cases:** [Examples](N5_EXPERIMENT_EXAMPLES.md).
+See [lifecycle](N5_RUN_LIFECYCLE.md), [adapters](N5_SUPPORTED_ADAPTERS.md),
+[inspection](N5_EXPERIMENT_INSPECTION.md) and [fixture reproduction](N5_EXPERIMENT_FIXTURES.md).
 
 The detached core exports `ExperimentManifest`, `ExperimentPhaseEvidence` and
 `ExperimentResult` from `latency_fingerprinting.models` and
@@ -74,25 +74,17 @@ expected worker counts, N4 trace producer/provenance or clock agreement. It also
 does not prove sufficient effect samples, recompute the inclusive FPS/CPU
 thresholds, or establish independent source runs/reference/query separation.
 
-[Step 6 bundle inspection](N5_EXPERIMENT_INSPECTION.md) binds these roots and recomputes effects from complete
+[bundle inspection](N5_EXPERIMENT_INSPECTION.md) binds these roots and recomputes effects from complete
 hash-verified intervals using integer arithmetic. `inspect_experiment_bundle` and
-`inspect-experiment` are still intended APIs. A supplied `verified` field passing
+`inspect-experiment` provide linked inspection. A supplied `verified` field passing
 shape validation is not proof of a measured fault. Synthetic tests use explicit
 placeholder artifact hashes/byte counts and cannot establish real capture.
 
 ## Verification
 
-`tests/scenarios/` contains independent hand-authored Step 2 tables and 155
+`tests/scenarios/` contains independent hand-authored contract tables and
 regressions for valid/failing plans, raw intervals, complete/aborted/unsupported
 results, cleanup/action states, exact capacity ceilings, strict parsing, required
 fields, immutable copies, JSON Schema shape and isolated generic CLI validation.
 Expectations do not call a production exporter or effect derivation function.
-Step 3 created no fixture release pins; [Step 7 independent release pins](N5_EXPERIMENT_FIXTURES.md) are now delivered.
-
-The current full-suite and preservation results are recorded in
-[N5 progress](N5_IMPLEMENTATION_PROGRESS.md). Producer runtime code is unchanged
-in Step 3; its Step 1 full-suite counts remain historical. Subsequent
-[actual execution](N5_RUNTIME_ACCEPTANCE.md) verifies 18/18 trials across healthy
-and two fault classes, selected-scene overhead, actual minimum versions and core
-baseline hosted CI. Browser execution method checks now pass locally; desktop
-interaction and normal CI for subsequent audit fixes remain open; both merged baselines pass hosted gates.
+See [independent release pins](N5_EXPERIMENT_FIXTURES.md).

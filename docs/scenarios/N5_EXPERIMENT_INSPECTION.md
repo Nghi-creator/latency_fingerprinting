@@ -1,8 +1,7 @@
 # N5 experiment export and detached inspection
 
-**Delivered:** Step 6 software, 2026-10-11. [Contract](N5_EXPERIMENT_CONTRACT.md),
-[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md). [Independent release fixtures
-and reproduction pins](N5_EXPERIMENT_FIXTURES.md) are delivered in Step 7; real campaigns remain Step 8.
+See the [experiment contract](N5_EXPERIMENT_CONTRACT.md) and
+[independent fixtures and reproduction pins](N5_EXPERIMENT_FIXTURES.md).
 
 Pixelated's `scenario_harness` exports `experiment_bundle_bytes(manifest, plan,
 execution, recordings=(), observation_windows=())`, `unsupported_bundle_bytes(manifest)`
@@ -63,11 +62,10 @@ use inspection for linked verification.
 
 Independent regressions cover hashes/ownership/policy drift, threshold equality,
 partial evidence, old observation meanings, unsafe containers and preserved output.
-Actual synthetic producer collectors/exporters passed core API and CLI for healthy,
-host contention, failed pressure, unsupported runtime, missing traces and unknown cleanup timing. This is
-software integration evidence, not live capture, measured overhead, scientific
-causality, calibrated confidence or source independence. Earlier schemas, fixture
-pins, metric registry and feature policies remain unchanged.
+See [fixture reproduction](N5_EXPERIMENT_FIXTURES.md) for producer/core API and
+CLI checks. Synthetic evidence covers healthy, host contention, failed pressure,
+unsupported runtime, missing traces and unknown cleanup; it does not establish
+real capture, measured overhead, causality or source independence.
 
 The [additive campaign/pacing workflow](N5_CAMPAIGN_WORKFLOW.md) adds v2 pacing
 inspection and `inspect-campaign`/`inspect-overhead`, preserving the v1 behavior

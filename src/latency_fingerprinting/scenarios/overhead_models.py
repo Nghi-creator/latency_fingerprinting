@@ -107,6 +107,9 @@ class OverheadEvidence(ExperimentModel):
 
     @model_validator(mode="after")
     def consistency(self):
+        expected_runtime = "synthetic" if self.provenance == "synthetic" else "linux_x11"
+        if self.runtime is not None and self.runtime.kind != expected_runtime:
+            raise ValueError("overhead runtime does not match provenance")
         if (self.state == "completed") != (self.reason is None):
             raise ValueError("overhead state/reason disagree")
         if any(

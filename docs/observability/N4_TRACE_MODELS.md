@@ -1,9 +1,9 @@
 # N4 trace models and schema validation
 
-**Delivered:** Step 2, 2026-10-09. [Host hooks](N4_HOST_INSTRUMENTATION.md) subsequently
-delivered in Step 3 and browser collection in Step 4. [Trace adoption](N4_TRACE_ADOPTION.md)
-is delivered in Step 5; [offline reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
 **Meaning:** [Normative contract](N4_TRACE_CONTRACT.md).
+See [host instrumentation](N4_HOST_INSTRUMENTATION.md),
+[browser instrumentation](N4_BROWSER_INSTRUMENTATION.md),
+[adoption](N4_TRACE_ADOPTION.md) and [reconstruction](N4_TIMING_RECONSTRUCTION.md).
 
 `StageTraceRecord` and `StageTraceSummary` are available from
 `latency_fingerprinting.observability` and `latency_fingerprinting.models`.
@@ -38,7 +38,7 @@ event references/order/unique endpoints, declared/total capacities, missing or
 ambiguous correlation and exact conservation of ledger/event loss. Disabled
 streams contain no evidence. Browser callbacks cannot claim host clocks/budgets.
 Timestamp ties/interleaving and negative endpoint differences remain valid trace
-input; Step 6 classifies negative pairs as exclusions rather than repairing them.
+input; reconstruction classifies negative pairs as exclusions rather than repairing them.
 
 Summary validation independently reconstructs sample values and min/mean/max
 from integer deltas, checks sample order and coverage/exclusions, requires all
@@ -46,7 +46,7 @@ four methods, applies producer/capability unavailability, and checks deadline
 sample identity, slack, boundary-equality hits and hit fraction. Supported host
 methods must agree on shared correlation exclusions. It normalizes floating
 negative zero. A hash field alone does not authenticate a supplied summary;
-[Step 6 reconstruction](N4_TIMING_RECONSTRUCTION.md) recomputes it with its validated input record.
+[reconstruction](N4_TIMING_RECONSTRUCTION.md) recomputes it with its validated input record.
 
 ## Delivered commands and schemas
 
@@ -58,22 +58,20 @@ Existing `validate` recognizes the two new roots and prints canonical JSON:
 .venv/bin/python -m latency_fingerprinting export-schemas --check
 ```
 
-Schema export now has twelve roots. The original ten schema bytes are unchanged;
-new schemas are [record](../../schemas/stage-trace-record-v1.schema.json) and
+The v1 schemas are [record](../../schemas/stage-trace-record-v1.schema.json) and
 [summary](../../schemas/stage-trace-summary-v1.schema.json). JSON Schema describes
 shape, closed enums, required fields and local bounds. Runtime validators enforce
 cross-field identity, counts, alias suffix bounds and arithmetic that schemas
 cannot fully express. Generic validate uses its existing file-reading boundary;
 [trace-specific no-follow bundle ingestion](N4_TRACE_ADOPTION.md) and ingest-trace
-are delivered in Step 5. inspect-trace is delivered in [Step 6](N4_TIMING_RECONSTRUCTION.md).
+are available. inspect-trace is delivered in [implementation guide](N4_TIMING_RECONSTRUCTION.md).
 
 The [independent regression suite](../../tests/observability/test_contracts.py)
-covers the [Step 1 examples](N4_TRACE_EXAMPLES.md), false clocks/identities,
+covers the [examples](N4_TRACE_EXAMPLES.md), false clocks/identities,
 capabilities, versions, boolean/range errors, copied instances, partial correlation,
 loss/sampling, resource caps, JSON ambiguity, unavailable results and deadline
 arithmetic. These are software tests, not live measurement or overhead evidence.
-N2 StageTiming and N3 matching remain unchanged; no new pinned runtime trace
-fixtures or fixture refresh is introduced in Step 2.
+N2 StageTiming and N3 matching retain their separate contracts.
 
 ## Browser execution v2
 

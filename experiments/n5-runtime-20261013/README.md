@@ -22,7 +22,7 @@ Docker Desktop 29.0.1 supplies an aarch64 Linux 6.12.54 VM with 10 CPUs and
 with producer `ae0059384cf29609fa9c6233ddf9606002eae35e`, Node 24.18.1,
 Python 3.13.5 and Gst 1.26.2. Chromium is 151.0.7922.34. The seed-7 nonprivate X11
 scene animates 24 colored rectangles at 1280×720/30; VP8 and PulseAudio use the
-frozen producer settings. Full N4 criteria are in the [runtime ledger](../../docs/observability/N4_RUNTIME_ACCEPTANCE.md).
+frozen producer settings. Full N4 criteria are in the [runtime criteria](../../docs/observability/N4_PRODUCER_CAPABILITIES.md).
 
 | Cohort | Allocation/order | Outcome retained |
 | --- | --- | --- |

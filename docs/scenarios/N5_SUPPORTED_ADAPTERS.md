@@ -1,10 +1,9 @@
 # N5 supported adapters and fixed effects
 
-**Delivered:** Step 5 software, 2026-10-11.
 **Producer implementation/API:** [Supported adapter guide](../../../Pixelated-Studio-Edition/docs/n5-adapters.md).
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
 **Criteria/availability:** [Capability matrix](N5_ADAPTER_CAPABILITIES.md).
-**Independent expectations:** [Step 2 tables](N5_EXPERIMENT_EXAMPLES.md).
+**Independent expectations:** [tables](N5_EXPERIMENT_EXAMPLES.md).
 
 The producer now supplies concrete control-thread hooks for one existing Linux
 camera peer and bounded owned CPU subprocesses. Preflight checks actual source,
@@ -34,18 +33,8 @@ CPU with unchanged FPS fails degradation; insufficient baseline/pressure/recover
 keeps the frozen reason priority. All three evaluated phases need ≥30 intervals
 and ≥30 seconds. Invalid/partial evidence and unverified cleanup cannot pass.
 
-The producer calculation remains private; [Step 6 inspection](N5_EXPERIMENT_INSPECTION.md) independently recomputes effects from hash-bound artifacts.
+The producer calculation remains private; [inspection](N5_EXPERIMENT_INSPECTION.md) independently recomputes effects from hash-bound artifacts.
 Core roots/schemas, earlier pins, policy releases and matcher thresholds are
-unchanged. [Step 6](N5_EXPERIMENT_INSPECTION.md) binds actual exported
+unchanged. [implementation guide](N5_EXPERIMENT_INSPECTION.md) binds actual exported
 roots/checksums and independently recomputes effects during bounded offline adoption.
-[Independent fixture release](N5_EXPERIMENT_FIXTURES.md) is delivered in Step 7.
-
-The original Step 5 local tests used fake native/Gst dependencies and independent
-totals; the actual parked-child case was skipped on macOS. Those tests did not
-establish runtime acceptance. Subsequent actual Linux capture/pressure outcomes
-and passing 18-trial cohort, selected-scene overhead, actual minimum versions and
-core hosted CI are recorded in the [runtime ledger](N5_RUNTIME_ACCEPTANCE.md).
-Browser execution method checks pass locally; desktop interaction and normal CI for subsequent audit fixes remain open; both merged baselines pass hosted gates. Supported
-software never establishes live availability. Other scenarios remain unavailable;
-healthy plus one approved CPU fault cannot meet Phase 1.3's two real fault-class
-gate. [Inherited N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md) stays open.
+[Independent fixture release](N5_EXPERIMENT_FIXTURES.md) is available.

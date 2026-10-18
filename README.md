@@ -1,187 +1,90 @@
 # Latency Fingerprinting
 
-[![CI](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml/badge.svg)](https://github.com/Nghi-creator/latency_fingerprinting/actions/workflows/ci.yml)
+A detached Python research core for interpreting latency changes from recorded
+perturbation-response experiments. Pixelated Studio Edition is the first telemetry
+producer and integration testbed.
 
-This repository contains the detached Python research core, completed P0/N1–N3 foundations and the active N5 scenario-harness plan. Pixelated Studio Edition remains the first telemetry-producing testbed and integration target.
+The offline pipeline validates observation windows, derives a response vector,
+compares compatible stored fingerprints, and returns an interpretable match or
+`unknown`. Match strength is a similarity measure, not a calibrated probability
+or proof of a bottleneck's cause.
 
-## P0 objective
+## Install
 
-```text
-versioned testbed record
--> comparable observation windows
--> response delta
--> normalized response vector
--> stored candidate fingerprints
--> interpretable match or unknown
-```
+Python 3.11 or newer is required.
 
-P0 demonstrates that the proposed mechanism is executable. It does not yet prove diagnosis accuracy, recovery benefit or generalization.
-
-## Reading order
-
-1. [`docs/p0/RESEARCH_CONTRACT.md`](docs/p0/RESEARCH_CONTRACT.md) defines the terminology and behavioral invariants.
-2. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) defines the Python/TypeScript boundary and repository structure.
-3. [`docs/p0/DATA_MODEL_AND_MATCHER.md`](docs/p0/DATA_MODEL_AND_MATCHER.md) defines records, normalization and matching.
-4. [`docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md`](docs/p0/PIXELATED_ADAPTER_AND_EXPERIMENT.md) defines real-data ingestion and the first controlled run.
-5. [Archived P0 software closeout](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md) records verified software and controlled-real evidence plus the remaining limitations.
-6. [`experiments/CONTROLLED_RUN_PROCESSING.md`](experiments/CONTROLLED_RUN_PROCESSING.md) is the reusable post-capture command and evidence checklist for controlled runs.
-7. [N4 stage-level observability](docs/plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md) is complete in software; [runtime acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md) remains pending.
-8. [N5 scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md) is active; Steps 1–7 are complete locally; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded; real runtime acceptance remains open.
-9. [`docs/plans/FULL_IMPLEMENTATION_PLAN.md`](docs/plans/FULL_IMPLEMENTATION_PLAN.md) is the complete roadmap through final engine delivery and evaluation.
-
-## Development setup
-
-The local development environment uses Python 3.13 while the package supports Python 3.11 and newer.
-
-```bash
-python3.13 -m venv .venv
+```sh
+python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
 ```
 
-The synthetic analytical path, offline CLI and Pixelated bundle adapter are
-implemented and regression-tested. Two controlled-real runs now exercise the
-same end-to-end path: run 001 establishes a seed and run 002 independently
-repeats the experiment as a held-out query.
+## Quick start
 
-```bash
+Validate and match the included synthetic observation:
+
+```sh
 latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
-latency-fingerprint export-schemas --check
+latency-fingerprint match \
+  fixtures/query_cases/similar_network/observation.json \
+  --fingerprints fixtures/reference_cases
+```
+
+Construct an observation from a degraded/relief pair and a recorded intervention:
+
+```sh
 latency-fingerprint build-response \
   --degraded fixtures/query_cases/similar_network/degraded.json \
   --relief fixtures/query_cases/similar_network/relief.json \
   --probe fixtures/query_cases/similar_network/probe.json
-latency-fingerprint match \
-  fixtures/query_cases/similar_network/observation.json \
-  --fingerprints fixtures/reference_cases
+```
+
+Import a Pixelated research bundle with an explicit context:
+
+```sh
 latency-fingerprint ingest-pixelated path/to/bundle.tar \
-  --phase degraded \
-  --comparison-case-id controlled-run-001 \
+  --phase degraded --comparison-case-id example-001 \
   --context path/to/context.json
 ```
 
-## Current status
+Commands emit JSON to stdout and diagnostics to stderr. Use
+`latency-fingerprint --help` for the complete command list.
 
-N1's metric inventory, strict registry models, canonical 31-output registry and
-timestamped sample extraction, pure gauge/counter aggregation and migration
-inspection reports are implemented. This additive foundation remains
-offline/shadow work; P0 still
-uses its frozen feature configuration. Registry commands are available:
+## Documentation
 
-```bash
-latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json
-latency-fingerprint export-metric-registry --output schemas/metric-registry-v1.json --check
-latency-fingerprint validate schemas/metric-registry-v1.json
+Start with the [documentation index](docs/README.md) and
+[architecture](docs/ARCHITECTURE.md).
+
+- [P0 research contract](docs/p0/RESEARCH_CONTRACT.md) and
+  [data model/matcher](docs/p0/DATA_MODEL_AND_MATCHER.md) describe the original path.
+- [Metric registry](docs/measurement/CANONICAL_REGISTRY.md) and
+  [observation-v2 adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md) describe
+  versioned raw measurement semantics.
+- [Analytical v2 contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md) and
+  [commands](docs/analysis/N3_COMMANDS.md) describe explicit feature policies,
+  response construction and separate v2 matching.
+- [Stage traces](docs/observability/N4_TRACE_CONTRACT.md) describe bounded host and
+  browser instrumentation, clocks, loss and same-lifetime timing reconstruction.
+- [Scenario contracts](docs/scenarios/N5_EXPERIMENT_CONTRACT.md) and
+  [campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) describe experiment
+  bundles and detached effect/cleanup verification.
+- [Controlled-run processing](experiments/CONTROLLED_RUN_PROCESSING.md) explains
+  how to process recorded experiments. Sanitized experimental artifacts remain
+  under `experiments/`; synthetic regression inputs remain under `fixtures/`.
+
+P0 and v2 are separate contracts and matching paths. Existing cumulative means and
+proxies are not direct stage latency measurements. The core does not run live
+probes or autonomous recovery, and the supplied experiments do not establish
+cause discrimination, recovery benefit or cross-context generalization.
+
+## Development checks
+
+```sh
+python -m pytest --cov=latency_fingerprinting --cov-branch --cov-fail-under=85
+ruff check .
+ruff format --check .
+latency-fingerprint export-schemas --output schemas --check
 ```
 
-`export-schemas` also includes the additive metric-registry schema. Registry
-definitions and inspection commands are described in the
-[`canonical registry guide`](docs/measurement/CANONICAL_REGISTRY.md). The
-[`sample extraction guide`](docs/measurement/SAMPLE_EXTRACTION.md) describes the
-Python extraction API. The [`gauge guide`](docs/measurement/GAUGE_AGGREGATION.md)
-describes registered statistics, coverage and summary states. The
-[`counter guide`](docs/measurement/COUNTER_AGGREGATION.md) describes totals, weighted
-rates, gaps and resets. The [`inspection guide`](docs/measurement/MEASUREMENT_INSPECTION.md)
-describes the offline migration-readiness report:
-
-```bash
-latency-fingerprint inspect-measurements path/to/bundle.tar \
-  --context path/to/context.json --phase degraded --comparison-case-id example-001
-```
-
-[Focused synthetic arithmetic fixtures](fixtures/measurement/README.md) are checked
-in with independent expected summaries and read-only drift checks.
-[Quality gates](docs/measurement/QUALITY_GATES.md) cover the implemented P0/N1–N5
-paths. N1 metric semantics and aggregation, [N2 observation adoption](docs/measurement/OBSERVATION_V2_ADOPTION.md)
-and [N3 analytical matching](docs/analysis/N3_MATCHING.md) are complete locally.
-The [pre-Phase 2 audit](experiments/pre-phase-2-audit-20261017/README.md) passes
-**2,035 tests on Python 3.13, with 93.56% coverage**, plus 800 passing Pixelated
-Node tests. Earlier actual Linux Python
-3.11 verification passed 2,015 tests/93.61% on its recorded baseline. [Both merged baselines pass hosted checks](experiments/phase-1-audit-20261015/hosted-ci.json);
-subsequent audit fixes need their normal CI run. The [script/CI pass](experiments/phase-1-script-ci-20261016/README.md) adds full producer regression/deploy gating and isolated wheel verification.
-
-Current N3 references include the [field contract](docs/analysis/N3_ANALYTICAL_CONTRACT.md),
-[approved provisional policy](docs/analysis/N3_FEATURE_POLICY_SPEC.json),
-[models](docs/analysis/N3_ANALYTICAL_MODELS.md), [response derivation](docs/analysis/N3_RESPONSE_DERIVATION.md),
-[fingerprints/repositories](docs/analysis/N3_FINGERPRINTS.md), [commands](docs/analysis/N3_COMMANDS.md)
-and [fixture pins](docs/analysis/N3_ANALYTICAL_FIXTURES.md).
-
-**Current: [N5 reproducible scenario harness](docs/plans/NEXT_IMPLEMENTATION_PLAN.md).**
-[Steps 1–7](docs/scenarios/N5_IMPLEMENTATION_PROGRESS.md) are complete
-locally. The [experiment contract](docs/scenarios/N5_EXPERIMENT_CONTRACT.md),
-[adapter/effect criteria](docs/scenarios/N5_ADAPTER_CAPABILITIES.md) and
-[independent examples](docs/scenarios/N5_EXPERIMENT_EXAMPLES.md) are frozen;
-[strict models/schemas](docs/scenarios/N5_EXPERIMENT_MODELS.md) are implemented; [bounded producer lifecycle and fresh recording control](docs/scenarios/N5_RUN_LIFECYCLE.md) are delivered in software; [supported adapters/effect checks](docs/scenarios/N5_SUPPORTED_ADAPTERS.md) are delivered; export/inspection is delivered; Step 7 fixtures/pins are delivered; Step 8 software closeout is recorded. Fresh campaign-8 passes all 18 trials and selected-scene overhead passes. The additive browser execution method also passes local software/live validation; user desktop/picker sign-off and normal CI for subsequent audit fixes remain open. N4 trace models, instrumentation, export/adoption
-and inspection remain delivered; [real acceptance](docs/observability/N4_RUNTIME_ACCEPTANCE.md)
-is carried forward explicitly. Existing N2 timing and N3 matching meanings stay frozen.
-
-Completed milestone records are in the [documentation archive](docs/archive/README.md),
-and archived N1–N4 software plans are in the [plan archive](docs/plans/archive/README.md).
-Their results and pending checks remain historical evidence. The
-[current documentation index](docs/README.md) separates active work, implemented
-reference guides and archived records.
-
-### Implemented and verified
-
-- Existing Pixelated testbed and research-run export: implemented.
-- P0 research contract and architecture: specified.
-- Clean Python 3.13 editable installation and declared dependencies: verified.
-- Python analytical core: validation, raw deltas, normalization, fingerprint
-  loading, evidence and conservative matching implemented.
-- Synthetic matcher fixtures and end-to-end regression pipeline: implemented.
-- Offline CLI: validation, schema export/checking, response construction and
-  matching implemented.
-- Pixelated bundle adapter and `ingest-pixelated` command: implemented for TAR
-  archives and extracted directories with an explicit research context.
-- Post-P0 hardening pass: strict and bounded JSON/file boundaries, stronger
-  cross-record derivation/provenance invariants, cross-file telemetry identity
-  and clock checks, finite-range-safe adapter, delta, normalization and evidence
-  arithmetic, immutable P0 feature semantics, bounded fingerprint traversal,
-  atomic schema exports, zero-weight matcher gate correction, and CI
-  coverage/security checks implemented.
-
-### P0 result
-
-- Controlled real fingerprinting bundles and sanitized checksums: captured.
-- Operator-observed restoration evidence: recorded with an explicit limitation
-  that it is not a post-restoration recovery telemetry window.
-- Derived real windows and response observation: validated.
-- Real matcher output: validated `unknown` because no stored synthetic
-  fingerprint shares the real run's compatibility group.
-- Run 001 response: frozen as an unvalidated controlled-real seed fingerprint
-  for a separately captured run 002 repeatability query.
-- Run 002 held-out query: matched the run 001 seed with full feature coverage;
-  provisional match strength `0.9819067687174997` over 22 shared features.
-- Interpretation: preliminary within-context repeatability only. One seed
-  candidate and deterministic effects from the shared composite preset cannot
-  establish cause discrimination or diagnosis accuracy.
-- Evidence claim: end-to-end integration feasibility only; diagnosis accuracy,
-  recovery benefit and generalization remain unproven.
-
-The complete evidence records are
-[`controlled-run-001`](experiments/controlled-run-001/README.md) and
-[`controlled-run-002`](experiments/controlled-run-002/README.md). Use the
-[`controlled-run processing guide`](experiments/CONTROLLED_RUN_PROCESSING.md)
-for subsequent captures.
-
-### Deferred beyond P0
-
-- Live encoder mutation, autonomous recovery, calibrated probabilities,
-  mixed-bottleneck inference, ML/RL and cross-node transfer evaluation.
-
-The current implementation sequence and exit gates are in the
-[N5 implementation plan](docs/plans/NEXT_IMPLEMENTATION_PLAN.md). The broader path to
-the finished engine is maintained in the
-[`full implementation plan`](docs/plans/FULL_IMPLEMENTATION_PLAN.md).
-
-Inspectable software examples are linked from
-[`P0_SOFTWARE_CLOSEOUT.md`](docs/archive/p0/P0_SOFTWARE_CLOSEOUT.md). Match strength is
-an engineering similarity measure, not probability or calibrated confidence.
-
-The [N5 campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) adds capture pacing,
-frozen acquisition schedules and real overhead collection/inspection tools. These
-are implemented and live-validated. The [execution record](experiments/n5-runtime-20261013/README.md)
-retains passing campaign/overhead results and earlier failures; the
-[browser execution method](experiments/n5-browser-execution-20261014/README.md)
-also passes local live checks. User desktop/picker sign-off and normal CI for subsequent audit fixes remain pending; N5/Phase 1 are not closed.
+The [testing guide](docs/measurement/QUALITY_GATES.md) covers fixture reproduction,
+registry checks, packaging and cross-repository integration.

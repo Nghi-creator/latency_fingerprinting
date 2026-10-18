@@ -1,8 +1,7 @@
 # N1 focused arithmetic fixtures
 
 [`fixtures/measurement`](../../fixtures/measurement/README.md) contains 13 small,
-synthetic JSON cases for the pure N1 aggregation APIs. It implements Step 8's nine
-minimum cases plus rejected gauge cells, unavailable/malformed counter rows and a
+synthetic JSON cases for the pure N1 aggregation APIs. Cases include rejected gauge cells, unavailable/malformed counter rows and a
 single counter baseline. It adds no runtime capture, public API or CLI command.
 
 Both regular counter cases cover the same ten-second window and cumulative
@@ -47,11 +46,6 @@ the workflow in this step. Checks create no directories and write no files:
 ```
 
 The [fixture README](../../fixtures/measurement/README.md) gives the intentional
-regeneration command. Generated JSON is sorted, indented UTF-8 with LF line endings
-and a trailing newline, and disallows non-finite JSON values. Exact bytes, including
-formatting, are protected. No P0 schema, fixture, controlled artifact, registry,
-adapter, normalization or matcher code is changed. [Step 9](QUALITY_GATES.md)
-implements quality, CI and security/resource-bound gates.
-[N1 software closeout](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md) is complete; hosted CI verification
-remains pending. [N2 observation-v2 adoption](OBSERVATION_V2_ADOPTION.md) and its
-[separate fixture gates](OBSERVATION_V2_FIXTURES.md) are now delivered locally.
+regeneration command. Generated JSON is sorted, indented UTF-8 with LF endings, a
+trailing newline and no non-finite values. Exact bytes, including formatting, are
+protected. See [testing](QUALITY_GATES.md) and [observation fixtures](OBSERVATION_V2_FIXTURES.md).

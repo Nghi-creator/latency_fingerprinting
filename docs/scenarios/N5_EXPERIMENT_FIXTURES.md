@@ -1,12 +1,10 @@
 # N5 independent experiment fixtures and reproduction
 
-**Delivered:** Step 7 software, 2026-10-12. **Fixture release:** 1.0.0.
-[Inspection](N5_EXPERIMENT_INSPECTION.md), [contract](N5_EXPERIMENT_CONTRACT.md),
-[active plan](../plans/NEXT_IMPLEMENTATION_PLAN.md).
+See [inspection](N5_EXPERIMENT_INSPECTION.md) and the [contract](N5_EXPERIMENT_CONTRACT.md).
 
 The `fixtures/scenarios/` corpus contains eight independently authored synthetic
 cases, 80 JSON files and 280,156 bytes. Fixtures were constructed from the frozen
-Step 2 arithmetic and explicit N4 event/capability expectations, independently of
+contract arithmetic and explicit N4 event/capability expectations, independently of
 producer export and effect calculation. Every byte is pinned in
 `tests/scenarios/check_reproduction.py`; there is no regeneration/update mode.
 `expected.json` is a separate expectation, never a bundle member. Changing a
@@ -69,7 +67,3 @@ release content pins, repeated-export determinism, silent CLI/private output and
 sanitized failure. Both configured core CI jobs include this gate; the producer's
 existing Node scenario wrapper discovers its new Python reproduction tests.
 Configured CI is separate from observed hosted/minimum-version execution.
-
-Earlier P0/N1/N2/N3/N4 pins, schema/registry/policy bytes, thresholds and commands
-remain unchanged. Step 8 real repetitions and software/runtime closeout remain
-open, including the inherited N4 gates and the second real bottleneck class.

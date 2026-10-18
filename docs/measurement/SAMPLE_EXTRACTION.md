@@ -24,8 +24,6 @@ descriptors. Directory members are opened relative to that root with nonblocking
 no-follow flags and must be regular files. TAR inputs are likewise pinned regular
 files; compressed input bytes are bounded before decoding, including file growth
 after the size check. Ancestor links and replacement links/FIFOs fail closed.
-The [post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) records these repairs
-and preservation checks across P0/N1/N2.
 
 Context must explicitly declare bundle schema version and workload identity.
 Mixed session/source identities reject input. Every source is separately checked
@@ -42,7 +40,7 @@ path is retained in the result object.
 
 N1 selects `packets_lost_total` instead of the legacy packet interval-delta field.
 It does not run P0's delta consistency validator or compute deltas. Counter
-decreases remain raw values; the registered reset policy is applied in Step 6.
+decreases remain raw values; the registered reset policy is applied.
 P0 continues using its original validator and aggregation path.
 
 ## Sample states
@@ -96,6 +94,6 @@ missing values, stale cells, reset values retained without derivation, one-read
 reuse, clocks/identities, input immutability and inherited security/resource bounds.
 Sample-state tests are in
 [`tests/models/test_measurement_samples.py`](../../tests/models/test_measurement_samples.py).
-[`Gauge aggregation`](GAUGE_AGGREGATION.md) is implemented in Step 5; counter
-derivation is implemented in [Step 6](COUNTER_AGGREGATION.md); the deterministic
-[shadow report/CLI](MEASUREMENT_INSPECTION.md) is implemented in Step 7.
+[`Gauge aggregation`](GAUGE_AGGREGATION.md) is available; counter
+derivation is implemented in [implementation guide](COUNTER_AGGREGATION.md); the deterministic
+[shadow report/CLI](MEASUREMENT_INSPECTION.md) is available.

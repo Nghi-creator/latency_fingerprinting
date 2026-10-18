@@ -1,12 +1,9 @@
 # N4 trace contract, version 1
 
-**Status:** Step 1 specification frozen, 2026-10-09; software Steps 2–7 delivered locally.
-**Implementation:** [Models/validation](N4_TRACE_MODELS.md), [host hooks](N4_HOST_INSTRUMENTATION.md),
-[browser hooks](N4_BROWSER_INSTRUMENTATION.md), [export/adoption](N4_TRACE_ADOPTION.md),
-[reconstruction](N4_TIMING_RECONSTRUCTION.md), [integration](N4_INTEGRATION_VERIFICATION.md);
-real nominal capture/overhead and host lifecycle checks now pass; full acceptance remains open ([runtime ledger](N4_RUNTIME_ACCEPTANCE.md)).
-**Plan:** [N4](../plans/archive/N4_STAGE_LEVEL_OBSERVABILITY_PLAN.md).
-**Producer inventory and acceptance:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
+**Implementation:** [Models](N4_TRACE_MODELS.md), [host hooks](N4_HOST_INSTRUMENTATION.md),
+[browser hooks](N4_BROWSER_INSTRUMENTATION.md), [adoption](N4_TRACE_ADOPTION.md) and
+[reconstruction](N4_TIMING_RECONSTRUCTION.md).
+**Runtime criteria:** [Capability matrix](N4_PRODUCER_CAPABILITIES.md).
 **Independent arithmetic cases:** [Examples](N4_TRACE_EXAMPLES.md).
 
 This is the normative software contract for Steps 2–6. Changes to a field,
@@ -283,9 +280,9 @@ record bytes; bytes equal actual length. Reject noncanonical record serializatio
 hash/length mismatch or unsupported version before returning any output.
 Summary is generated offline, not an accepted third input bundle member.
 
-[Step 5 delivers](N4_TRACE_ADOPTION.md) `ingest-trace --bundle PATH --output PATH` (validated canonical
-record) and [Step 6 delivers](N4_TIMING_RECONSTRUCTION.md) `inspect-trace --trace PATH --output PATH` (canonical summary).
+[delivers](N4_TRACE_ADOPTION.md) `ingest-trace --bundle PATH --output PATH` (validated canonical
+record) and [delivers](N4_TIMING_RECONSTRUCTION.md) `inspect-trace --trace PATH --output PATH` (canonical summary).
 Both commands are implemented, are offline and use duplicate-safe/no-follow
 regular-file reads and atomic output after complete validation. Existing CLI and
 legacy ingestion do not discover or reinterpret these artifacts. Generic schema
-export/validation now includes the two roots delivered in Step 2.
+export/validation now includes the two roots available.

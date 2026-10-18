@@ -72,16 +72,6 @@ and semantics review surface; source declarations are the executable registry.
 Settings such as target FPS remain context. Existing `P0_FEATURE_CONFIG` continues
 to drive the production v1 analytical path.
 
-Step 4 implements
-[`immutable timestamped sample extraction`](SAMPLE_EXTRACTION.md) through the
-existing bounded bundle reader. Step 5 adds pure
-[`gauge aggregation`](GAUGE_AGGREGATION.md); Step 6 adds
-[`counter derivation`](COUNTER_AGGREGATION.md). Step 7 implements
-[`shadow migration inspection`](MEASUREMENT_INSPECTION.md). Step 8 adds
-[focused synthetic fixtures](ARITHMETIC_FIXTURES.md). Step 9 implements
-[quality/CI gates](QUALITY_GATES.md). Step 10 completes
-[N1 software closeout](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md). Hosted CI verification remains
-pending. [N2 observation-v2 adoption](OBSERVATION_V2_ADOPTION.md) is now
-[closed out locally](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md); v2 normalization and matching remain
-separate future contracts. Registry export commands
-operate on definitions and artifacts only.
+See [sample extraction](SAMPLE_EXTRACTION.md), [gauge aggregation](GAUGE_AGGREGATION.md),
+[counter derivation](COUNTER_AGGREGATION.md), [migration inspection](MEASUREMENT_INSPECTION.md),
+[synthetic fixtures](ARITHMETIC_FIXTURES.md) and [testing](QUALITY_GATES.md).

@@ -45,8 +45,7 @@ Compressed legacy research TARs are bounded before member interpretation: input
 (including GNU/PAX extensions), and expanded bytes ≤128 MiB + 64 KiB + 10 KiB TAR
 record allowance. LZMA decoder memory is capped at 128 MiB. Plain TAR, gzip,
 bzip2, XZ, LZMA-alone and ordinary PAX metadata remain supported. The separate
-N4/N5 bundle formats keep their own stricter layouts and bounds. See the
-[readiness audit](../../experiments/phase-1-readiness-20261015/README.md).
+N4/N5 bundle formats keep their own stricter layouts and bounds.
 
 The producer side of this contract uses one capture instant for each engine
 row's UTC and elapsed clocks, declares metric support only from available rows,
@@ -76,7 +75,7 @@ P0 counter-derived features retain the frozen median interval-delta semantics.
 The [N1 metric inventory](../measurement/METRIC_SEMANTICS_V2.md) separately versions
 rates and audit totals, and [N2 adoption](../measurement/OBSERVATION_V2_ADOPTION.md)
 derives them from raw interval evidence. The archived
-[N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md) defines their analytical eligibility
+[analytical contract](../analysis/N3_ANALYTICAL_CONTRACT.md) defines their analytical eligibility
 and matching path; P0 aggregates retain their existing meaning.
 
 ## Control boundary
@@ -91,7 +90,7 @@ relief run with one lower-cost setting
 
 This is `stream_profile_relief` with `applicationMethod: paired_run`, not live probing.
 
-## Controlled run 001
+## Controlled capture procedure
 
 Use one repeatable host/encoder-pressure condition:
 
@@ -158,18 +157,3 @@ nominal context; their actual stream profiles remain distinct effective
 settings on their generated windows.
 
 Commands emit JSON to stdout, diagnostics to stderr and non-zero exit codes on failure.
-
-## Completion evidence
-
-- [x] Sanitized bundle fixture exercises the adapter.
-- [x] Unsafe TAR and missing-column cases are tested.
-- [x] Healthy, degraded and relief runs are captured and ingested.
-- [x] The controlled-real response and conservative matcher result validate.
-- [x] The executed probe records every changed control.
-- [x] Run 001 restoration and runtime-health evidence is recorded; run 002
-  truthfully retains restoration as `unknown` because separate evidence was not
-  captured.
-- [x] Both real responses pass validation and normalization.
-- [x] Both matcher outputs are schema-valid.
-- [x] Results remain honest: run 001 preserves `unknown`, and run 002 is labeled
-  only preliminary within-context repeatability.

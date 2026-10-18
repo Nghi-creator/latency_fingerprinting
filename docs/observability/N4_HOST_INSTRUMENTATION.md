@@ -1,8 +1,7 @@
 # N4 host instrumentation
 
-**Delivered:** Step 3 software, 2026-10-09. Real Pixelated capture, correlation
-verification and measured overhead remain the [Step 7 gates](N4_PRODUCER_CAPABILITIES.md).
 **Meaning:** [Trace contract](N4_TRACE_CONTRACT.md).
+**Runtime checks:** [Capabilities and overhead criteria](N4_PRODUCER_CAPABILITIES.md).
 
 The sibling Pixelated Studio Edition repository now contains three focused
 stdlib Python helpers in `engine/runtime/`: `camera_trace_config.py` (closed opt-in
@@ -36,7 +35,7 @@ when a peer disconnects. Stream/epoch/clock aliases are unique across at most
 sixteen lifetimes. Peers can use identical PTS without sharing frame identity.
 Capacity cannot evict earlier ledger entries or refill discarded event slots.
 Further lifetimes need a new recording; their playback continues without new
-trace collection. [Step 5](N4_TRACE_ADOPTION.md) adds explicit shutdown persistence and separate browser download.
+trace collection. [implementation guide](N4_TRACE_ADOPTION.md) adds explicit shutdown persistence and separate browser download.
 
 ## Boundaries and correlation
 
@@ -77,19 +76,12 @@ regression closes the timing scope with source_error; it never yields a repaired
 cross-reset duration. Gst segment propagation and PTS preservation still need
 real-case verification. [GStreamer probe design](https://gstreamer.freedesktop.org/documentation/additional/design/probes.html).
 
-Live testing on 2026-10-12 found that Gst 1.26.2 VP8 preserved sampled PTS but
-issued a different sequence number for an otherwise identical initial segment.
-The producer now permits one such initial encoder-output event only when the
-pipeline was observed in NULL with no pending transition before registration,
-the source and encoder-input segment have been observed, and their full unit-rate
-TIME descriptions agree with the output. It privately maps that event to the
-source epoch; it never transforms PTS. Playing/unknown installations, later
-output replacements and seek/reset epochs retain the strict sequence guard.
-The mapping survives the existing owned recording handoff without admitting old
-frames. A short native diagnostic produced 110 complete queue/encode pairs and
-zero collector drops; the subsequent full nominal camera case produced 900 pairs
-per 30-second phase, 100% coverage and zero drops. Overhead and special lifecycle
-cases remain pending in the [live ledger](N4_RUNTIME_ACCEPTANCE.md).
+Host routing recognizes one unchanged initial unit-rate TIME segment from a
+pipeline observed NULL before probe installation, after matching source and
+encoder-input events. VP8 may replace the initial segment sequence number while
+preserving frame PTS. Later output replacement events and seek/reset epochs retain
+the strict guard. PTS is never transformed. Recording handoffs retain established
+private routing.
 
 ## Teardown and snapshots
 
@@ -104,30 +96,13 @@ SIGKILL/process failure cannot promise a finalized or saved trace.
 `snapshot(producer_version, provenance)` return detached sanitized record data;
 it performs correlation filtering/copying outside callbacks and outside the
 recording mutex. A real producer commit is required. Synthetic tests explicitly
-set synthetic provenance. [Step 5 export](N4_TRACE_ADOPTION.md) uses this API after shutdown; the Step 6
+set synthetic provenance. [export](N4_TRACE_ADOPTION.md) uses this API after shutdown; the
 [trace-to-summary algorithm](N4_TIMING_RECONSTRUCTION.md) is now delivered. Existing v2 exports, cumulative
 queue/counter telemetry, unavailable N2 timing and N3 matching remain unchanged.
 
-## Step 3 verification (historical)
-
-Producer `npm run test:engine` builds and passes 133 Node tests with one existing
-external-mirror artifact skip (134 discovered). Its two new Node cases run the
-**31 Python collector/fake-pad tests** and check camera wiring. These 31 cases are
-nested software checks, not 31 additional Node test results. Engine lint and
-lockfile consistency pass. Twenty-five snapshots produced by those tests pass
-strict core N4 validation, without schema/fixture/policy changes. Core focused
-N4/schema/CLI checks pass 109 tests and all twelve schemas reproduce.
-
-A local host GLib loop handles self-SIGTERM and exits/finalizes successfully;
-no X11/VP8 pipeline is involved. Docker/Linux capture was unavailable at Step 3. Subsequent actual capture
-results are recorded in the [runtime ledger](N4_RUNTIME_ACCEPTANCE.md).
-No real timing, browser hook, clock synchronization, overhead comparison or
-hosted/container execution is claimed by these tests. Step 4 subsequently delivers
-[browser capability collection](N4_BROWSER_INSTRUMENTATION.md); [trace artifacts/adoption](N4_TRACE_ADOPTION.md) are delivered in Step 5; [reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
-
 ## N5 fresh recording control
 
-[N5 Step 4](../scenarios/N5_RUN_LIFECYCLE.md) adds explicit single-peer control
+[implementation guide](../scenarios/N5_RUN_LIFECYCLE.md) adds explicit single-peer control
 that retires old probes and starts fresh per-phase collectors behind a bounded
 source barrier. Warm-up remains separate, frame/clock associations never bridge
 records, and export remains outside callbacks. Default disabled tracing is

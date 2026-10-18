@@ -1,12 +1,7 @@
 # N4 producer capabilities and real acceptance
 
-**Inspected:** 2026-10-09. Engine/browser producer commit
-`37e50fb7ef919564aba5796af35dbcdc1fc70f3b`.
-**Definition:** [Trace contract](N4_TRACE_CONTRACT.md).
-**Delivery status:** Step 3 [host hooks](N4_HOST_INSTRUMENTATION.md) implemented locally.
-The inventory below records inspected starting behavior; [browser hooks](N4_BROWSER_INSTRUMENTATION.md)
-are now delivered as Step 4 software. Real nominal capture, overhead and host lifecycle cases now pass; consult the
-[runtime ledger](N4_RUNTIME_ACCEPTANCE.md) for remaining full-acceptance gates.
+This matrix defines producer capabilities, unsupported boundaries and reproducible
+runtime checks for the [trace contract](N4_TRACE_CONTRACT.md).
 
 Paths in this document are relative to the sibling `Pixelated-Studio-Edition`
 repository. They identify integration locations, not dependencies the Python core
@@ -17,9 +12,9 @@ loads at runtime. No applicable AGENTS.md was found in either repository/ancesto
 | Boundary / evidence | Existing implementation | Approved N4 v1 scope / remaining gap |
 | --- | --- | --- |
 | Game render-ready | No hook inspected | Unavailable; do not infer from capture |
-| Capture begin / output | `engine/runtime/camera.py`: `ximagesrc` per peer, X11 display `:99` | Step 3: stable source name and src-pad probe delivered for output only; capture duration unavailable |
-| Pre-encode queue | Same file: `pre_encoder_queue`, one-buffer downstream-leaky queue; existing sink probe counts frames | Step 3: timestamped sink/src probes delivered; instantaneous occupancy and overrun signals are not sojourn or verified frame-drop counts |
-| Encode input/output | Same file: VP8 `video_encoder`; existing src probe counts output buffers | Step 3: sink/src timestamps and conditional unique PTS correlation delivered; includes scheduling/buffering, no CPU-time claim |
+| Capture begin / output | `engine/runtime/camera.py`: `ximagesrc` per peer, X11 display `:99` | stable source name and src-pad probe delivered for output only; capture duration unavailable |
+| Pre-encode queue | Same file: `pre_encoder_queue`, one-buffer downstream-leaky queue; existing sink probe counts frames | timestamped sink/src probes delivered; instantaneous occupancy and overrun signals are not sojourn or verified frame-drop counts |
+| Encode input/output | Same file: VP8 `video_encoder`; existing src probe counts output buffers | sink/src timestamps and conditional unique PTS correlation delivered; includes scheduling/buffering, no CPU-time claim |
 | Post-encode queue | `rtpvp8pay` then `post_encoder_queue` | Packet buffers may split one frame; excluded from frame duration methods |
 | Sender enqueue / wire send | `webrtcbin` pipeline branch | No approved wire-send hook; enqueue is not send |
 | Snapshot / engine resource interval | `camera_state.py` atomic JSON; `src/telemetry/researchTelemetrySnapshot.ts` monotonic interval sampler | Keep existing telemetry; neither is a per-frame timing trace |
@@ -60,7 +55,7 @@ cross-producer frame age and end-to-end deadline slack remain unavailable.
 
 ## Minimum real case, fixed before measurement
 
-Step 7 must execute the actual Pixelated X11 capture → leaky queue → VP8 encoder
+Runtime verification must execute the actual Pixelated X11 capture → leaky queue → VP8 encoder
 path in a Linux/Xvfb/PulseAudio runtime. A bare `videotestsrc` unit pipeline or
 macOS factory lookup is useful software evidence but does not satisfy this case.
 A local WebRTC receiver must keep the pipeline draining. Use one peer, 1280×720,
@@ -116,9 +111,3 @@ Also record enabled callback execution cost using a separate diagnostic run
 It explains collector cost; it cannot substitute for paired process/throughput
 measurements. Export/write time stays outside pad callbacks but is reported
 separately. No unmeasured performance claim or hardware-encoder certification.
-
-The initial macOS inventory found factories but no usable Docker CLI on PATH.
-Subsequent execution uses the installed Docker Desktop Linux VM; the nominal
-900-pair/100%-coverage/zero-drop case is observed. See the [runtime ledger](N4_RUNTIME_ACCEPTANCE.md)
-for current measured outcomes and remaining gates. Factory discovery alone does
-not satisfy the criteria above.

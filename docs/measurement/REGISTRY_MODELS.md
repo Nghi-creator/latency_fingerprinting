@@ -37,10 +37,10 @@ for producer FPS gauges. Kind describes raw input; unit describes derived output
 can be declared only with a width; no arithmetic or inferred wraparound happens
 in these models. N1's canonical inventory uses `reject_segment` without widths.
 Optional normalization/clipping/direction metadata is not included because N1
-has no consumer for it. Step 4 adds `MeasurementSample` for
-[`raw extraction`](SAMPLE_EXTRACTION.md). Step 5 adds the frozen
+has no consumer for it. The implementation includes `MeasurementSample` for
+[`raw extraction`](SAMPLE_EXTRACTION.md). The implementation includes the frozen
 `MetricSeriesSummary` and `MetricSeriesStatus` contracts for
-[`gauge aggregation`](GAUGE_AGGREGATION.md). Step 6 adds `CounterInterval` and
+[`gauge aggregation`](GAUGE_AGGREGATION.md). The implementation includes `CounterInterval` and
 extends summaries with validated [counter evidence](COUNTER_AGGREGATION.md).
 
 All required nullable fields must be supplied explicitly. Cadence and tolerance
@@ -81,5 +81,5 @@ duplicate-safe untrusted file reader.
 [`test_measurement.py`](../../tests/models/test_measurement.py) covers these
 invariants, JSON aliases/schema shape, deterministic ordering, immutability,
 finite/overflow input and root/nested duplicate-key rejection. Checked-in schema
-artifacts and export/drift commands are implemented with the Step 3
+artifacts and export/drift commands are implemented with the
 [`canonical registry`](CANONICAL_REGISTRY.md).

@@ -1,6 +1,5 @@
 # N3 v2 fingerprints and repository loading
 
-**Delivered:** Step 4, 2026-10-08
 **Contract:** [Analytical field contract](N3_ANALYTICAL_CONTRACT.md)
 **Input:** [Pure response derivation](N3_RESPONSE_DERIVATION.md)
 
@@ -47,7 +46,7 @@ fingerprints = repository.fingerprints
 The directory loader visits sorted entries recursively and validates every `.json`
 file as `FingerprintV2`, including files named differently from `fingerprint.json`.
 Non-JSON files are ignored but count toward the entry limit. It retains all valid
-audit statuses; [Step 5 matching](N3_MATCHING.md) filters candidates. Results are immutable tuples
+audit statuses; [matching](N3_MATCHING.md) filters candidates. Results are immutable tuples
 in fingerprint ID order. An empty valid directory returns an empty repository.
 
 | Limit | Bound |
@@ -69,17 +68,7 @@ paths and malformed contents. The P0 loader and its limits remain unchanged.
 
 ## Schema and validation
 
-The additive [fingerprint-v2 schema](../../schemas/fingerprint-v2.schema.json)
-brings schema exports to nine roots. Generic `validate` accepts this root; runtime
-validation also enforces reconstruction and evidence thresholds beyond JSON Schema.
-Existing v1 matching rejects v2 fingerprints. The `build-fingerprint-v2`
-and `match-v2` commands are now implemented in [Step 6](N3_COMMANDS.md).
-
-62 new tests cover independent full-record expectations, the 16/17 threshold,
-audit statuses, false provenance, forged vectors/IDs, sanitized labels, immutable
-inputs, resource boundaries, unsafe links, file replacement/growth and fail-closed
-repository behavior. [Progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records current local
-results and unchanged reproduction pins. Actual Python 3.11/hosted verification
-remains pending. [Step 5 compatibility/scoring/matching](N3_MATCHING.md) is now
-implemented, along with [additive v2 commands](N3_COMMANDS.md). Separate
-analytical fixtures and [software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+The [fingerprint-v2 schema](../../schemas/fingerprint-v2.schema.json) describes
+the root accepted by generic `validate`. Runtime validation additionally enforces
+reconstruction and evidence thresholds. V1 matching rejects v2 fingerprints.
+See [commands](N3_COMMANDS.md) for `build-fingerprint-v2` and `match-v2`.

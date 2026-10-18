@@ -1,6 +1,5 @@
 # N3 additive offline commands
 
-**Delivered:** Step 6, 2026-10-08
 **Contract:** [Analytical field contract](N3_ANALYTICAL_CONTRACT.md)
 **APIs:** [Responses](N3_RESPONSE_DERIVATION.md), [fingerprints](N3_FINGERPRINTS.md),
 [matching](N3_MATCHING.md)
@@ -75,11 +74,3 @@ Input/calculation/output failures exit 1, leave stdout empty and print only
 input echoes are excluded. Argument/usage errors retain argparse's exit 2 behavior.
 Existing v1 commands, generic root validation, ingestion and schema exports retain
 their behavior; `match` remains the P0 matcher.
-
-52 public command tests cover CLI/API byte parity, end-to-end module execution,
-explicit statuses/arguments, wrong roots, malformed/altered policies, deterministic
-privacy-limited failures, unsafe inputs/repositories, input growth, exact output
-bounds, read-only inputs and v1 rejection. [Progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md)
-records current local verification. Actual Python 3.11/hosted execution remains
-pending. [Step 7 snapshots/pins](N3_ANALYTICAL_FIXTURES.md) and
-[software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.

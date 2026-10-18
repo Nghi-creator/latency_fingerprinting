@@ -2,7 +2,7 @@
 
 **Implemented:** `n4-browser-execution-v1`, opt-in standalone browser trace v2.
 [Original v1 contract](N4_TRACE_CONTRACT.md), [method rationale](N4_BROWSER_TIMING_REVIEW.md),
-[browser integration](N4_BROWSER_INSTRUMENTATION.md), [runtime outcomes](N4_RUNTIME_ACCEPTANCE.md).
+[browser integration](N4_BROWSER_INSTRUMENTATION.md).
 
 ## Timestamp meaning and version boundary
 

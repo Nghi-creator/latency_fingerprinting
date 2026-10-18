@@ -3,7 +3,7 @@
 **Outcome:** implementation and local live method checks pass. Normal desktop/picker
 interaction and hosted verification of final committed changes remain pending.
 [Method contract](../../docs/observability/N4_BROWSER_EXECUTION_CONTRACT.md),
-[research report](report.json), [N5 acceptance ledger](../../docs/scenarios/N5_RUNTIME_ACCEPTANCE.md).
+[research report](report.json), [runtime criteria](../../docs/observability/N4_PRODUCER_CAPABILITIES.md).
 
 This is real Pixelated VP8 playback on a draining Chromium 151.0.7922.34 video
 element. The same seed-7 `workload-4` scene animates 512 rectangles of size 32 pixels
