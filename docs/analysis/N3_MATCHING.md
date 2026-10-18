@@ -1,6 +1,5 @@
 # N3 v2 compatibility, scoring and matching
 
-**Delivered:** Step 5, 2026-10-08
 **Contract:** [Analytical field contract](N3_ANALYTICAL_CONTRACT.md)
 **References:** [V2 fingerprints and repositories](N3_FINGERPRINTS.md)
 
@@ -91,20 +90,6 @@ Use it when verifying a stored result against a supplied repository. Producer
 provenance and bottleneck labels remain declared evidence.
 
 The additive [match-result-v2 schema](../../schemas/match-result-v2.schema.json)
-brings schema exports to ten roots; generic `validate` accepts the result. The
-existing `match` command remains v1. [Step 6](N3_COMMANDS.md) now delivers
-`build-response-v2`, `build-fingerprint-v2` and `match-v2` commands. Separate
-synthetic snapshots and pins are delivered in [Step 7](N3_ANALYTICAL_FIXTURES.md);
-[software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) is complete locally.
-
-76 new matching/model tests cover independent numerical expectations, unknown
-priorities, compatibility, strict JSON equality, coverage, threshold boundaries,
-conflicts, ties/truncation, finite arithmetic, forged results, immutable inputs,
-repository-backed verification, resource limits and fresh interpreter imports.
-[Progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records local results and separately
-pending Python 3.11/hosted verification.
-
-The [post-closeout health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md) adds seven numerical
-regressions covering both underflow stages, stored-result reconstruction, public
-CLI failures and small representable scores. The 76 cases above are the original
-Step 5 delivery count.
+is accepted by generic `validate`. The existing `match` command remains v1.
+[Analytical commands](N3_COMMANDS.md) provide `build-response-v2`,
+`build-fingerprint-v2` and `match-v2`. See [synthetic snapshots and pins](N3_ANALYTICAL_FIXTURES.md).

@@ -1,6 +1,6 @@
 # Independent N4 trace examples
 
-**Status:** Hand-authored Step 1 arithmetic/acceptance oracle, not runtime fixtures.
+**Status:** Hand-authored contract arithmetic/acceptance oracle, not runtime fixtures.
 **Definition:** [Contract](N4_TRACE_CONTRACT.md).
 
 All times below are relative integer nanoseconds in a single engine stream/epoch/
@@ -81,6 +81,6 @@ space changes bytes and violates canonical input even if parsed data is equal.
 A modified event with an old manifest hash rejects before output. Research v2
 manifests, unknown trace versions, a third archive member, symlink record files,
 duplicate JSON keys, depth 33 or a 10001st event reject without partial output.
-These cases are covered by Step 2/5/6 regressions and [Step 7 synthetic fixture](N4_INTEGRATION_VERIFICATION.md)
+These cases are covered by model/adoption/reconstruction regressions and [synthetic fixture](N4_INTEGRATION_VERIFICATION.md)
 pins; this document neither refreshes existing fixtures nor establishes a live
 producer measurement.

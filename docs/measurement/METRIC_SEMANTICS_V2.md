@@ -1,8 +1,5 @@
 # N1 metric semantics and naming inventory
 
-**Status:** N1 registry, extraction, aggregation and inspection implemented; locally closed out.
-**Closeout:** [N1_SOFTWARE_CLOSEOUT.md](../archive/measurement/N1_SOFTWARE_CLOSEOUT.md); subsequent core hosted CI verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
-**Reviewed:** 2026-10-06
 **Canonical registry version:** `latency-metrics-v2.0.0`
 **Definition semantic version:** `1.0.0` for each initial definition.
 
@@ -189,7 +186,7 @@ connection, error and manifest support states govern validation/availability;
 they are not analytical metrics. `stream-events.csv` remains event/probe evidence;
 no event-count metric is introduced in this slice.
 
-## Audit sources and implementation boundary
+## Source mappings and validation
 
 The mappings are checked against
 [`pixelated_bundle_metrics.py`](../../src/latency_fingerprinting/adapters/pixelated_bundle_metrics.py),
@@ -199,23 +196,11 @@ and the headers in
 P0 packet baseline/reset validation is in
 [`pixelated_bundle_validation.py`](../../src/latency_fingerprinting/adapters/pixelated_bundle_validation.py).
 
-Producer audit used Pixelated Studio Edition checkout
-`37e50fb7ef919564aba5796af35dbcdc1fc70f3b`, reading
-`apps/web/src/lib/webrtc/telemetry/webrtcStatsParser.ts`,
-`apps/web/src/features/player/telemetry/streamTelemetryExport.ts`,
-`apps/web/src/features/player/telemetry/engineResearchTelemetry.ts`,
-`engine/runtime/src/telemetry/intervalResourceSampler.ts`, and
-`engine/runtime/camera_state.py`. This records inspected current code, not a claim
-that every older captured bundle used that exact producer revision.
-
 [`test_metric_inventory.py`](../../tests/measurement/test_metric_inventory.py)
 checks adapter/config completeness, unique output declarations, raw-field coverage,
 units, counter source selection, and context exclusion. It reads these tables directly
 so documentation drift fails without adding a second runtime registry prematurely.
-Step 2 implements the strict registry models documented in
-[`REGISTRY_MODELS.md`](REGISTRY_MODELS.md). Step 3 adds the
+The implementation provides the strict registry models documented in
+[`REGISTRY_MODELS.md`](REGISTRY_MODELS.md). The implementation includes the
 [`canonical registry`](CANONICAL_REGISTRY.md) and tests comparing its names and
 definitions to these declarations.
-
-Baseline and milestone verification are recorded in
-[`N1_IMPLEMENTATION_PROGRESS.md`](../archive/measurement/N1_IMPLEMENTATION_PROGRESS.md).

@@ -1,10 +1,10 @@
 # Independent N5 v1 examples
 
 **Frozen:** 2026-10-10. Arithmetic/examples below are hand-authored without a
-producer, model or result derivation. [Step 3 model regressions](N5_EXPERIMENT_MODELS.md) implement the detached cases;
-[runner checks](N5_RUN_LIFECYCLE.md) are delivered in Step 4 software;
+producer, model or result derivation. [model regressions](N5_EXPERIMENT_MODELS.md) implement the detached cases;
+[runner checks](N5_RUN_LIFECYCLE.md) are available;
 [fixed producer predicates](N5_SUPPORTED_ADAPTERS.md) now exercise these totals.
-[Linked checks](N5_EXPERIMENT_INSPECTION.md) are delivered in Step 6; [separately pinned fixtures](N5_EXPERIMENT_FIXTURES.md) are delivered in Step 7. They do not run CPU pressure, prove real capture or
+[Linked checks](N5_EXPERIMENT_INSPECTION.md) are available; [separately pinned fixtures](N5_EXPERIMENT_FIXTURES.md) are available. They do not run CPU pressure, prove real capture or
 refresh existing fixtures. See [contract](N5_EXPERIMENT_CONTRACT.md).
 
 ## Nominal host contention

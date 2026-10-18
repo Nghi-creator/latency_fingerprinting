@@ -1,6 +1,5 @@
 # N4 standalone trace export and adoption
 
-**Delivered:** Step 5 software, 2026-10-09.
 **Meaning:** [Frozen v1 contract](N4_TRACE_CONTRACT.md).
 **Collectors:** [Host](N4_HOST_INSTRUMENTATION.md), [browser](N4_BROWSER_INSTRUMENTATION.md).
 
@@ -84,27 +83,20 @@ trace. These are provisional resource caps, not measured full-limit throughput.
 
 ## Verification and next step
 
-58 independent core cases cover directory/gzip equivalence, manifest/version/hash/
-byte failures, noncanonical/private/duplicate/deep JSON, hostile TAR headers and
-extension chains, links/special files, resource caps and failed atomic output.
-Twelve new web export cases and ten new nested host Python export cases cover
-canonical bytes, bounded gzip layout, required versions, empty recordings,
-shutdown persistence, private permissions, byte limits and write failures.
+Core and producer tests cover canonical bytes, bounded gzip layout, required
+versions, empty recordings, shutdown persistence, private permissions, hostile
+archive/JSON inputs, resource caps and failed atomic output.
 
-Actual host/browser exporter APIs produced synthetic gzip archives, with host five
-endpoints and browser two callback pairs. Core API/CLI adopted each with exact
-canonical output equality. Existing schemas, registry and N1–N3 pins are unchanged.
-No live producer, browser picker interaction, real timing, synchronization,
-container/hosted execution or measured overhead was performed.
 
-[Step 6 offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md) are now delivered. Pinned integrated
-reproduction is delivered in [Step 7 software verification](N4_INTEGRATION_VERIFICATION.md); real nominal capture/overhead and host lifecycle checks now pass; the browser execution method also passes local validation, with final desktop/hosted acceptance still open ([runtime ledger](N4_RUNTIME_ACCEPTANCE.md)).
 
-The [subsequent health audit](../archive/observability/N4_ARCHITECTURE_AUDIT.md) hardens descriptor ownership
-for failed stream creation/cleanup in core adoption/output and producer export.
-Existing output remains unchanged on failure; a filesystem refusing unlink can
-retain a private temporary file, with the directory still closed and the error
-reported. Canonical records, layouts and published pins are unchanged.
+See [offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md),
+[integrated reproduction](N4_INTEGRATION_VERIFICATION.md) and the
+[runtime measurement criteria](N4_PRODUCER_CAPABILITIES.md).
+
+Atomic output closes file and directory descriptors on stream-creation or cleanup
+failures. Existing output is preserved on failure. If temporary-file removal fails,
+the private temporary file may remain; the directory is still closed and the
+cleanup error is reported.
 
 ## Additive browser execution archives
 

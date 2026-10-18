@@ -1,7 +1,7 @@
 # N4 browser instrumentation
 
-**Delivered:** Step 4 software, 2026-10-09. [Trace contract](N4_TRACE_CONTRACT.md)
-and [real-capture/overhead gates](N4_PRODUCER_CAPABILITIES.md) remain authoritative.
+See the [trace contract](N4_TRACE_CONTRACT.md) and
+[runtime/overhead criteria](N4_PRODUCER_CAPABILITIES.md).
 
 The sibling Pixelated Studio Edition web app now has a bounded in-memory collector
 in `apps/web/src/features/player/observability/`, attached by `useBrowserStageTrace`
@@ -22,7 +22,7 @@ Vite build-time settings (rebuild the web app after changing them):
 
 Disabled mode allocates no recorder or frame callback and ignores trace knobs.
 Invalid enabled configuration emits one fixed diagnostic per recorder initialization
-and disables collection. There is no browser deadline budget. [Step 5](N4_TRACE_ADOPTION.md) adds explicit
+and disables collection. There is no browser deadline budget. [implementation guide](N4_TRACE_ADOPTION.md) adds explicit
 finish/export control with a required VITE_N4_STAGE_TRACE_PRODUCER_VERSION commit. Configuration is copied, bounded and frozen.
 
 One mounted playback hook owns a recording across at most sixteen video/media
@@ -75,32 +75,20 @@ neutralizes late delivery even if native cancellation fails. Callback/registrati
 failures stop tracing without escaping into playback. `finish()` cancels all active
 bindings; `snapshot(commit, provenance)` then returns a detached, sanitized v1
 record. It requires a lowercase forty-hex producer commit and explicit provenance.
-Snapshots do no synchronous work inside callbacks. [Persistence/adoption](N4_TRACE_ADOPTION.md) is delivered in Step 5; timing
-[reconstruction](N4_TIMING_RECONSTRUCTION.md) is delivered in Step 6.
-
-Step 4 checks: 38 independent browser collector/configuration/lifecycle cases;
-220 total web tests; web lint and production TypeScript/Vite build pass. All 23
-synthetic snapshots from those cases pass strict Python N4 validation. Existing
-core/schema/reproduction gates are preserved. These are software/fake-video checks,
-not live browser timing, Linux/X11 capture or measured overhead evidence.
+Snapshots do no synchronous work inside callbacks. [Persistence/adoption](N4_TRACE_ADOPTION.md) is available; timing
+[reconstruction](N4_TIMING_RECONSTRUCTION.md) is available.
 
 ## Live API timestamp limitation
 
-The 2026-10-13 Chromium 151 headless WebRTC recording contains 900 callbacks;
-219 pairs reconstruct at zero lag and 681 pairs have negative durations and are
-excluded by the frozen v1 rule. Collection, bounded export and detached arithmetic
-work, but this does not establish a useful positive callback-delivery lag or
-physical display timing. Raw API timestamps are retained without clamping or
-replacement with `performance.now()`.
+The callback API timestamp can precede the reported presentation timestamp.
+Negative durations are excluded by the frozen v1 reconstruction policy. Retain
+raw timestamps without clamping or substituting `performance.now()`. A retained
+zero duration describes that timestamp pair, not physical display timing.
 
 The [rvfc procedures](https://wicg.github.io/video-rvfc/#procedures) pass the
-rendering-update `now` timestamp into callbacks. This is distinct from taking a
-new clock reading inside the JavaScript callback. The observed negative pairs
-are a runtime limitation of the current API-reported method; the specific browser
-cause has not been established. A different callback-execution measurement needs
-an additive method/version review, not a reinterpretation of frozen v1 events.
-The [runtime ledger](N4_RUNTIME_ACCEPTANCE.md) retains the exact evidence and open
-browser acceptance gate.
+rendering-update `now` timestamp into callbacks. This differs from reading a clock
+at callback entry. The [additive execution method](N4_BROWSER_EXECUTION_CONTRACT.md)
+uses a separate version to preserve this distinction.
 
 ## Opt-in execution timing
 

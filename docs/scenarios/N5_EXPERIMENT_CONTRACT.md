@@ -1,15 +1,14 @@
 # N5 experiment contract v1
 
-**Frozen:** 2026-10-10, Step 2 specification; [Step 3 models/validation](N5_EXPERIMENT_MODELS.md) are implemented.
+**Models and validation:** [Model guide](N5_EXPERIMENT_MODELS.md).
 **Method release:** `n5-single-cause-v1`.
-**Plan:** [N5](../plans/NEXT_IMPLEMENTATION_PLAN.md).
 **Adapter inventory:** [Capabilities](N5_ADAPTER_CAPABILITIES.md).
 **Independent expectations:** [Examples](N5_EXPERIMENT_EXAMPLES.md).
 
 N5 records requested plans, observed execution and bounded experiment evidence.
 They do not label scientific diagnoses, promote fingerprints or alter P0/N1–N4.
 Unsupported cases and failed effects remain visible. The detached models implement this specification; [producer lifecycle](N5_RUN_LIFECYCLE.md) is implemented against fake dependencies;
-[concrete adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered in software; [bundle inspection](N5_EXPERIMENT_INSPECTION.md) is delivered in Step 6 software. This is not evidence of a live trial. Field/method/limit changes require
+[concrete adapters/effect checks](N5_SUPPORTED_ADAPTERS.md) are delivered in software; [bundle inspection](N5_EXPERIMENT_INSPECTION.md) is available. This is not evidence of a live trial. Field/method/limit changes require
 reviewed version changes; existing schemas and policy/fixture bytes stay frozen.
 
 ## Roots and serialization
@@ -273,8 +272,8 @@ result and recomputed effect evidence; no producer process or remote access.
 CLI `inspect-experiment --bundle PATH --output PATH` writes canonical
 ExperimentResult only after verification; success is silent. Failure emits exactly
 `error: inspect-experiment: invalid_input_or_output` with no input/path echo and
-preserves existing output. Generic validate supports the three additive roots as of Step 3;
-[linked inspection](N5_EXPERIMENT_INSPECTION.md) is delivered in Step 6.
+preserves existing output. Generic validate supports the three additive roots;
+[linked inspection](N5_EXPERIMENT_INSPECTION.md) is available.
 
 ## Campaign separation and real acceptance
 
@@ -285,7 +284,6 @@ repeatable, not observations identical; retain all unsuccessful trials. A single
 manifest cannot prove campaign disjointness; campaign evidence/manual audit must
 verify underlying acquisition ownership. No new matching/promotion API in v1.
 
-N5 v1 starts healthy/host contention only. Unsupported classes cannot supply the
-roadmap's two real single-bottleneck classes; Phase 1.3 stays incomplete until
-supported real repeated/held-out evidence satisfies that gate. [N4 acceptance](../observability/N4_RUNTIME_ACCEPTANCE.md)
-remains separately pending, including all frozen capture/overhead/browser criteria.
+The frozen v1 contract supports healthy and host-contention experiments. Capture
+pacing uses additive v2 roots. Effect verification and source independence require
+actual measurements; see the [capability matrix](N5_ADAPTER_CAPABILITIES.md).

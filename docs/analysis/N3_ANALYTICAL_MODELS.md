@@ -1,8 +1,7 @@
 # N3 strict policy and analytical response models
 
-**Delivered:** Step 2, 2026-10-07
 **Contract:** [Analytical field contract](N3_ANALYTICAL_CONTRACT.md)
-**Successor:** [Step 3 pure response derivation](N3_RESPONSE_DERIVATION.md), implemented 2026-10-08
+**Related API:** [pure response derivation](N3_RESPONSE_DERIVATION.md)
 
 `FeaturePolicyV1` and `AnalyticalResponseV2` are exported from
 `latency_fingerprinting.models`. They use required camelCase JSON fields, strict
@@ -48,11 +47,10 @@ confounder excludes all features and makes the response invalid. Without a
 confounder, an entirely excluded inventory has `no_eligible_features`; a valid
 response alone does not establish enough evidence for matching.
 
-Step 2 validates supplied response records. [Step 3](N3_RESPONSE_DERIVATION.md)
-now provides a public pure derivation function, and [Step 4](N3_FINGERPRINTS.md)
-delivers fingerprints/repositories. [Step 5](N3_MATCHING.md) implements the separate
-v2 matcher, and [Step 6](N3_COMMANDS.md) delivers additive build/match commands. Existing v1
-`build-response` and `match` commands reject these analytical roots; generic
+The models validate supplied response records. [Pure derivation](N3_RESPONSE_DERIVATION.md)
+builds responses; [fingerprints/repositories](N3_FINGERPRINTS.md),
+[v2 matching](N3_MATCHING.md) and [commands](N3_COMMANDS.md) consume them.
+The v1 `build-response` and `match` commands reject analytical roots; generic
 `validate` accepts them.
 
 ## Validation and schema export
@@ -66,19 +64,12 @@ canonical record. For example, the normative policy can be checked read-only:
 .venv/bin/python -m latency_fingerprinting export-schemas --check
 ```
 
-The additive schemas are
-[feature-policy-v1](../../schemas/feature-policy-v1.schema.json) and
-[analytical-response-v2](../../schemas/analytical-response-v2.schema.json), bringing
-exports to eight roots at Step 2. Delivered fingerprint/match schemas now bring
-the complete export to ten roots. JSON Schema describes field structure; runtime
-validation also enforces trusted release content and cross-record reconstruction.
+The additive schemas are [feature-policy-v1](../../schemas/feature-policy-v1.schema.json)
+and [analytical-response-v2](../../schemas/analytical-response-v2.schema.json).
+JSON Schema describes structure; runtime validation also enforces trusted release
+content and cross-record reconstruction.
 
-## Local verification
+## Testing
 
-94 analytical tests cover policy tampering with recomputed hashes, reconstructed
-responses, unsupported/unavailable/missing/rejected/incomplete evidence, signed and
-zero-floor arithmetic, confounders, immutable inputs, reused model instances and
-public JSON reader failures. At Step 2, the full suite passed 1,260 tests with 93.15%
-branch-inclusive coverage on Python 3.13.13. Existing schema bytes and P0/N1/N2
-pins reproduce unchanged. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json));
-[progress](../archive/analysis/N3_IMPLEMENTATION_PROGRESS.md) records the separate verification status.
+See [fixture reproduction](N3_ANALYTICAL_FIXTURES.md) and the
+[testing guide](../measurement/QUALITY_GATES.md).

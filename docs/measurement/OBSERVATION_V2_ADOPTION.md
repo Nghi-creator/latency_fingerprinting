@@ -34,7 +34,7 @@ cannot change the adopted record.
 Shared bundle reads now pin ancestors, root and members through no-follow file
 descriptors, reject nonregular files without blocking, and bound TAR bytes before
 decoding even if the file grows. See [safe extraction](SAMPLE_EXTRACTION.md) and
-the [post-N3 health audit](../archive/analysis/N3_ARCHITECTURE_AUDIT.md). Valid adopted bytes
+ Valid adopted bytes
 and source hashes remain unchanged.
 
 Producer version is taken only from an explicitly supplied, non-empty string
@@ -104,22 +104,3 @@ directory/TAR/repeated-output equality, unchanged input bytes, one read, caller
 context isolation, immutable opt-in metadata, declarations over stale values,
 zero/reset/gap arithmetic, partial/absent sources, producer versions, fixed
 diagnostics, CLI validation and repeatable bounded failure handling.
-
-Local Step 3 result: **1,127 tests pass; 92.91% branch-inclusive coverage** on
-Python 3.13.13. Existing P0 match bytes, N1 registry/report pins, all schema/fixture
-checks and controlled artifacts pass. No bound, frozen artifact or arithmetic
-policy is changed. Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)). Adopted-record
-fixtures and broader N2 reproduction gates were subsequently completed in Step 5
-([fixture guide](OBSERVATION_V2_FIXTURES.md)).
-
-Local Step 4 result: **1,140 tests pass; 92.93% branch-inclusive coverage**.
-[13 timing helper cases](../../tests/measurement/test_stage_timing.py) cover all
-source/support combinations, missing support records and immutability. Expanded
-adoption assertions cover positive decode means, metric versus source declarations,
-v1 absent engines and browser-only unsupported encoders. All local preservation
-gates pass; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)).
-
-Step 5 final result: **1,162 tests pass; 93.04% branch-inclusive coverage**.
-Both configured Python CI jobs reproduce the adopted snapshots with fixed pins.
-[N2 software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) records remaining hosted verification
-and the separate feature/normalization/fingerprint/matcher-v2 boundary.

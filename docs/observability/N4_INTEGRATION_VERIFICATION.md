@@ -55,20 +55,17 @@ Success reports `producerIntegration: passed` and `provenance: synthetic`.
 The default command reports `producerIntegration: not_run`; standalone fixture
 reproduction cannot silently stand in for cross-repository execution.
 
-## Remaining real gate
+## Real-runtime verification
 
 Provision the frozen Linux/Xvfb/PulseAudio X11→queue→VP8 path and a draining local
 WebRTC receiver, using an animated nonprivate scene, one peer, 1280×720 at 30 fps.
 Save exact producer/core commits, runtime versions, configuration, commands and
 CPU allocation. Use sampling 1, caps 2000/10000 and illustrative 50,000,000 ns
 capture-output budget. Start a fresh recording after 10 s warm-up and collect 30 s.
-[N5 Step 4 recording control](../scenarios/N5_RUN_LIFECYCLE.md) now supports a
-fresh single-peer collector in software. [N5 Step 5 adapters](../scenarios/N5_SUPPORTED_ADAPTERS.md)
+[N5 recording control](../scenarios/N5_RUN_LIFECYCLE.md) now supports a
+fresh single-peer collector in software. [N5 adapters](../scenarios/N5_SUPPORTED_ADAPTERS.md)
 now bind the actual camera hooks; actual Linux execution must verify them in a warm running pipeline; counting
 warm-up frames or restarting into a cold pipeline does not satisfy this procedure.
-The corrected live nominal transition now passes with 900 queue/encode pairs per
-phase, full joint coverage and zero drops. Overhead and special-case outcomes are
-tracked separately in the current runtime ledger.
 
 Follow every case in the capability document: at least 500 usable queue and encode
 pairs, ≥95% joint coverage with demonstrated unique PTS association, zero nominal
@@ -82,12 +79,8 @@ Each baseline must sustain ≥27 fps. Acceptance requires median CPU increase �
 percentage points and median FPS change ≥−5%, with no failures or nominal drops.
 Save every pair; also report ≥1000-probe diagnostic callback count/min/mean/max,
 diagnostic overhead and export/write time. The capability document governs exact
-formulas and limits. The nominal live trace is measured; see the [current runtime ledger](N4_RUNTIME_ACCEPTANCE.md)
-for passing paired-overhead/host lifecycle outcomes and remaining browser gates.
+formulas and limits.
 
-The additive [browser execution release](N4_BROWSER_EXECUTION_CONTRACT.md) now
-passes independent producer-to-core fixture/API/CLI and local live validation.
-Full N4 acceptance remains pending for user desktop/picker sign-off and normal
-CI for subsequent audit fixes; both merged baselines pass hosted checks. The prior actual Python 3.11.17 baseline passes 2,015 tests, 25 schemas
-and frozen reproduction locally; exact core hosted quality/minimum-Python jobs
-also pass ([current receipts](../../experiments/phase-1-audit-20261015/hosted-ci.json)).
+The [browser execution release](N4_BROWSER_EXECUTION_CONTRACT.md) has separate
+producer-to-core fixtures. Synthetic reproduction checks interoperability; use
+real browser and desktop trials to measure clock behavior and export interaction.

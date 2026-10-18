@@ -63,11 +63,3 @@ Changes require deliberate review of record differences and the fixed pins.
 proposed records before replacing fixtures. No fixture generation command is part
 of CI. Keep existing raw source fixtures unchanged and update N2 snapshots only
 when the reviewed contract/adoption behavior warrants it.
-
-Both Python 3.11 and 3.13 jobs run the reproduction command. Local final evidence
-is **1,166 passing tests and 93.05% branch-inclusive coverage** on Python 3.13.13;
-Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json)). See the
-[software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) and
-[post-N2 audit](../archive/measurement/N2_ARCHITECTURE_AUDIT.md). The audit deliberately revised the
-synthetic-pair pin after replacing its placeholder source hashes; adopted-record
-pins remain unchanged.

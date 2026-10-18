@@ -1,6 +1,6 @@
 # N2 strict observation models
 
-Step 2 implements the [v2 field contract](OBSERVATION_V2_CONTRACT.md) through four
+The implementation provides the [v2 field contract](OBSERVATION_V2_CONTRACT.md) through four
 focused modules, exported additively from the public `models` package:
 
 | Module | Responsibility |
@@ -14,7 +14,7 @@ focused modules, exported additively from the public `models` package:
 `observation-v2`. Both require explicit `contractVersion: "2.0.0"`. P0 version
 constants and roots are unchanged. No response delta, normalization or matcher
 adoption is added to these models. The separate [v2 importer/command](OBSERVATION_V2_ADOPTION.md)
-is implemented in Step 3.
+is available.
 
 ## Validated construction and file boundaries
 
@@ -40,7 +40,6 @@ remain trusted escape hatches, not ingestion boundaries. When an existing N1
 summary instance enters a validated N2 measurement, it is converted back to data
 and fully revalidated, including nested intervals and map freezing. This prevents
 unchecked updates or caller-owned mutable aggregates surviving the N2 boundary.
-See the [post-N2 audit](../archive/measurement/N2_ARCHITECTURE_AUDIT.md).
 
 ## Meaning and evidence validation
 
@@ -91,11 +90,6 @@ Existing `match` and `build-response` commands reject v2 records through their
 unchanged v1 loaders. No v1 record or production match result is generated from v2.
 
 The [window tests](../../tests/models/test_observation_v2.py) and
-[pair tests](../../tests/models/test_observation_pair_v2.py) add 168 cases covering
-meaning, support, arithmetic evidence, privacy, strict values, immutability,
-round trips, schema conformance, root validation, duplicate keys and P0 isolation.
-Their [synthetic input builder](../../tests/models/v2_cases.py) is test support,
-not a production importer or a scientific measurement.
-[Deterministic adopted-record fixtures and raw-bundle reproduction](OBSERVATION_V2_FIXTURES.md)
-now lock both root contracts with exact-byte and SHA-256 checks. See the
-[N2 software closeout](../archive/measurement/N2_SOFTWARE_CLOSEOUT.md) for final local verification.
+[pair tests](../../tests/models/test_observation_pair_v2.py) cover meaning, support,
+arithmetic, strict fields, nested immutability and cross-record consistency.
+See [fixture reproduction](OBSERVATION_V2_FIXTURES.md).

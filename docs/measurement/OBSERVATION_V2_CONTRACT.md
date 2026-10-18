@@ -1,8 +1,6 @@
 # N2 observation-v2 field contract
 
 **Design version:** 1.0.2
-**Frozen for Step 2:** 2026-10-06
-**Status:** Steps 0–5 implemented and closed out locally; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json))
 
 This specifies additive offline measurement records using the unchanged
 [N1 registry](CANONICAL_REGISTRY.md), [gauge](GAUGE_AGGREGATION.md) and
@@ -22,8 +20,8 @@ Both roots require `contractVersion: "2.0.0"`. These constants belong in new v2
 modules; do not change P0's `CONTRACT_VERSION` or existing schema dispatch values.
 An embedded window retains its own root/version fields. Unknown fields and root
 versions fail validation. The existing P0 matcher and response builder must reject
-v2 inputs rather than converting them. Step 2 adds root validation/schema exports;
-Step 3 adds a separate `ingest-pixelated-v2` command for standalone windows.
+v2 inputs rather than converting them. The implementation includes root validation/schema exports;
+The implementation includes a separate `ingest-pixelated-v2` command for standalone windows.
 Pair assembly is an in-memory validated constructor in N2; a new pair-building CLI
 is not required by this slice.
 
@@ -304,23 +302,23 @@ metadata additively and preserve N1 report/sample behavior and pins. Freeze sour
 state before aggregation; declarations cannot be overridden by stale numeric cells.
 Respect existing byte/row bounds; do not raise them to accommodate larger reports.
 
-Step 2 must test both roots, immutable nested maps, strict finite/null/zero states,
+Tests must cover both roots, immutable nested maps, strict finite/null/zero states,
 registry hash/version/definition mismatches, duplicate/unknown/omitted metrics,
 typed support contradictions, summary/window bounds, rate/total evidence equality,
 counter reconstruction, safe diagnostics, all pair rejection rules and unavailable
-timing. Step 3 must additionally prove directory/TAR equality, unchanged inputs,
+timing. Importer tests must prove directory/TAR equality, unchanged inputs,
 deterministic IDs, declaration precedence and explicit legacy-clock limitations.
-Step 4 may populate unavailable timing only until a reviewed producer method exists.
+Importers may populate unavailable timing only until a reviewed producer method exists.
 Existing P0/N1 schema, fixture, registry/report and exact match gates remain required.
 
-Specification changes during Step 2 must be explicit revisions to this document;
+Specification changes must be explicit revisions to this document;
 do not resolve field ambiguity by silently changing a frozen v1/N1 meaning.
 
-Design 1.0.1 records Step 2's explicit cross-validation clarifications for canonical
+Design 1.0.1 records cross-validation clarifications for canonical
 reset rejection, rate/total status/reasons and unavailable timing/source agreement.
 It adds no fields or registry meanings. Runtime behavior and construction are in
 the [model guide](OBSERVATION_V2_MODELS.md).
 
-Design 1.0.2 records Step 4's Pixelated stage/source associations and explicit
+Design 1.0.2 records Pixelated stage/source associations and explicit
 unavailable population policy. Root contract versions, schemas and registry
 meaning are unchanged.

@@ -1,11 +1,8 @@
 # N5 campaign workflow and capture-pacing extension
 
-**Coding status:** implemented; local verification recorded in the progress ledger.
-**Live status:** real Linux acquisitions observed; complete 18-trial campaign and selected-scene overhead pass. Final manual
-acceptance remains pending. Docker Desktop supplies the observed Linux
-engine; a separate Linux machine is optional. See the [runtime ledger](N5_RUNTIME_ACCEPTANCE.md)
-for exact VM/container allocation, retained failures and current outcomes.
-[Original v1 contract](N5_EXPERIMENT_CONTRACT.md), [runtime ledger](N5_RUNTIME_ACCEPTANCE.md).
+The campaign workflow runs frozen experiment schedules in the opt-in Pixelated
+engine. Docker Desktop supplies a Linux VM on macOS; a separate Linux host is
+optional. See the [experiment contract](N5_EXPERIMENT_CONTRACT.md).
 
 ## Additive second fault contract
 
@@ -131,5 +128,4 @@ all new root/report shapes; use inspection for linked numerical evidence.
 Both new inspection commands write canonical private atomic output silently and
 preserve existing output on fixed failure without supplied path/data echo. Tiny
 capacity, interruption/restart, disable/re-enable/two-peer/browser cases and external
-source independence still require the separate actual trials in the inherited
-acceptance ledger. Coding these tools does not replace running them.
+source independence still require the separate runtime trials. Run them on the target environment and retain results.

@@ -1,20 +1,14 @@
 # N3 analytical features and offline matching contract
 
 **Design version:** 1.0.0
-**Specified:** 2026-10-07
-**Status:** Step 1 specification complete; Steps 0–7 implemented and closed out locally; Python 3.11 local verification passes ([execution record](../../experiments/n5-runtime-20261013/README.md)); hosted core CI is verified ([job record](../../experiments/n5-runtime-20261013/core-hosted-ci.json))
-**Source:** [N3 plan](../plans/archive/N3_ANALYTICAL_FEATURES_AND_MATCHING_PLAN.md)
 **Normative initial policy:** [N3_FEATURE_POLICY_SPEC.json](N3_FEATURE_POLICY_SPEC.json)
 
 This contract connects [N2 observation pairs](../measurement/OBSERVATION_V2_CONTRACT.md)
-to separate analytical records. It preserves N1 registry meaning, N2 observation
-schemas and the P0 matching path. The JSON policy remains a normative specification
-artifact. [Step 2 models](N3_ANALYTICAL_MODELS.md), schema export and `validate`
-accept policy and analytical response roots. [Step 3 derivation](N3_RESPONSE_DERIVATION.md)
-builds responses from explicit validated inputs. [Step 4 fingerprints/repositories](N3_FINGERPRINTS.md)
-and [Step 5 matching](N3_MATCHING.md) are implemented, along with the
-[Step 6 commands](N3_COMMANDS.md). [Step 7 fixtures/pins](N3_ANALYTICAL_FIXTURES.md)
-and [software closeout](../archive/analysis/N3_SOFTWARE_CLOSEOUT.md) are complete locally.
+to analytical records while preserving registry meanings and the P0 matching path.
+The policy specification is normative. See [models](N3_ANALYTICAL_MODELS.md),
+[response derivation](N3_RESPONSE_DERIVATION.md), [fingerprints](N3_FINGERPRINTS.md),
+[matching](N3_MATCHING.md), [commands](N3_COMMANDS.md) and
+[reproducible fixtures](N3_ANALYTICAL_FIXTURES.md).
 
 ## Versioned roots and trust boundary
 
@@ -53,7 +47,7 @@ parameter explicitly; no ambient/P0 defaults are inherited. Its content hash is:
 Compute `contentHash` by removing that root field, rendering the remaining policy
 with the canonical JSON rules above (`allow_nan=False`), and hashing those UTF-8
 bytes. Hash presence, identity, known version and exact approved content must all
-agree. Step 2 implements an in-package trusted renderer/release check that
+agree. The implementation provides an in-package trusted renderer/release check that
 reproduces this specification and rejects altered content even with a recomputed hash.
 
 | Policy field/group | Frozen meaning |
@@ -356,19 +350,16 @@ repository/comparison entries and 22 feature entries per comparison.
 | One residual0.6, other21 zero | distance0.6/sqrt(22); strength>0.8; conflict contribution1; conflicting_evidence |
 | Two equal-distance fingerprints | Stable ID order, zero margin; unknown regardless of label |
 
-Step 2 must enforce root/policy identities, strict/immutable data, registry binding,
-policy pin and response reconstruction without implementing the matcher early.
-Steps 3–5 must add independent numerical and repository-backed reconstruction cases,
-including invalid/confounded pairs, exact threshold boundaries, policy tampering,
-unit/version mismatch, unsupported sources, arithmetic range failures, duplicate
-fingerprints and ranking beyond five entries. Unknown releases or changed clipping
-bounds fail the initial policy gate; future clipping requires a new approved release.
+Validation enforces root/policy identities, strict immutable data, registry binding,
+policy pins and response reconstruction. Independent numerical and repository-backed
+cases cover invalid/confounded pairs, exact thresholds, policy tampering, unit/version
+mismatches, unsupported sources, arithmetic range failures, duplicate fingerprints
+and rankings beyond five entries. Unknown releases and changed clipping bounds fail
+the initial policy gate; clipping requires a new approved release.
 
-Step 6 commands are `build-response-v2 --observation --policy`,
+The [commands](N3_COMMANDS.md) are `build-response-v2 --observation --policy`,
 `build-fingerprint-v2 --response --policy --bottleneck-label [--validation-status]`,
-and `match-v2 --response --policy --fingerprints`, with all path arguments explicit.
+and `match-v2 --response --policy --fingerprints`. All paths are explicit.
 The supplied policy must equal the embedded policy. Commands are read-only and emit
-canonical JSON only on success. Existing v1 commands stay unchanged. Step 7 adds
-separate synthetic fixtures/pins, both CI jobs, privacy/resource regressions and
-software closeout. Step 1 delivered specification only; Step 2 now delivers
-[policy/response validation and two additive schemas](N3_ANALYTICAL_MODELS.md).
+canonical JSON only on success. See [synthetic fixtures](N3_ANALYTICAL_FIXTURES.md)
+for reproducibility checks.

@@ -126,5 +126,5 @@ covers unit conversion, cadence, time weighting, all policies, gaps/resets,
 finite arithmetic, interval contracts, no I/O, immutability, JSON round trips,
 sanitized bundles and deterministic offset/scaling/splitting/gap invariants.
 P0 models, configuration, aggregation and match outputs remain unchanged.
-[Step 7](MEASUREMENT_INSPECTION.md) implements the migration-readiness report
+[implementation guide](MEASUREMENT_INSPECTION.md) implements the migration-readiness report
 and inspection CLI.
