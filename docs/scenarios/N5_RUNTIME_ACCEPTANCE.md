@@ -207,3 +207,13 @@ verification passes 2,035 core tests/93.56% coverage and 800 Node tests with one
 existing local-artifact skip. Retained campaign-8 and selected-workload overhead-9
 reports reproduce byte-for-byte. Manual sign-off and the normal hosted/platform
 checks for the edited trees remain open; this record does not close Phase 1.
+
+## Deep follow-up audit, 2026-10-18
+
+The [deep audit](../../experiments/deep-audit-20261018/README.md) enforces pacing
+integer and overhead runtime/provenance consistency, handles companion proxy
+disconnects and bounds health probes. All 2,038 core tests pass on local Python
+3.13 and 3.11; Pixelated passes 814 Node tests across local Node 24/26 checks.
+Retained live reports and original pins remain unchanged. Docker's daemon is
+unavailable, and hosted Linux/image/CodeQL/platform and manual acceptance remain
+separate gates for these changes.

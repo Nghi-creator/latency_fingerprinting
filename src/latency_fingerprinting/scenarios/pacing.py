@@ -2,9 +2,10 @@
 
 from typing import Annotated, Literal
 
-from pydantic import Field, model_validator
+from pydantic import BeforeValidator, Field, model_validator
 
 from ..observability.contracts import Count
+from .contracts import strict_integer
 from .evidence import ExperimentPhaseEvidence
 from .manifest import Adapter, ExperimentManifest, RequestedAction
 from .result import Artifact, Effect, ExperimentResult
@@ -19,7 +20,7 @@ class PacingAdapter(Adapter):
 class PacingAction(RequestedAction):
     kind: Literal["capture_pacing"]
     workers: Annotated[int, Field(strict=True, ge=0, le=0)]
-    delay_us: Literal[50000]
+    delay_us: Annotated[Literal[50000], BeforeValidator(strict_integer)]
 
 
 class ExperimentManifestV2(ExperimentManifest):

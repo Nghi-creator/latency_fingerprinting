@@ -10,7 +10,7 @@
 ## Latest actual verification
 
 Current full-suite results and exact log hashes are recorded in the
-[current verification results](../../experiments/pre-phase-2-audit-20261017/results.json).
+[current verification results](../../experiments/deep-audit-20261018/results.json).
 Earlier minimum-version/native Linux counts belong to their recorded baselines;
 the current macOS pass and remaining hosted checks are listed separately.
 The core covers P0 compatibility, N1 aggregation, N2 observation adoption,

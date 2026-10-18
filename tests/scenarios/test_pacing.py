@@ -142,7 +142,14 @@ def test_requested_sleep_is_not_measured_effect(tmp_path):
 
 
 @pytest.mark.parametrize(
-    "key,value", [("workers", False), ("workers", 1), ("delay_us", 49999), ("kind", "cpu_pressure")]
+    "key,value",
+    [
+        ("workers", False),
+        ("workers", 1),
+        ("delay_us", 49999),
+        ("delay_us", 50000.0),
+        ("kind", "cpu_pressure"),
+    ],
 )
 def test_pacing_action_is_strict_and_additive(key, value):
     manifest = json.loads(pacing_members()["experiment-manifest.json"])

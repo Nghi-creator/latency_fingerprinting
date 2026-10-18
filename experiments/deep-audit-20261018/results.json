@@ -1,0 +1,155 @@
+{
+  "baselines": {
+    "Pixelated-Studio-Edition": "7c62d875aa264115129a253995e4bf6b961aff51",
+    "latency_fingerprinting": "a93af8558b5a6450ffddda918895339b07803d2f"
+  },
+  "date": "2026-10-18",
+  "findings_fixed": [
+    "floating-point pacing literal accepted despite integer contract",
+    "overhead runtime/provenance mismatch accepted",
+    "companion proxy error, disconnect and graceful-close lifecycle gaps",
+    "companion health probe unbounded total lifetime/body and unhandled response errors",
+    "duplicated proxy helpers and links to deleted documentation"
+  ],
+  "log_sha256": {
+    "api.log": "a8f1b21170c5acd0417f1cc36377de921e4862ac5f72c9ce794ffbead24b5f2e",
+    "core-before.log": "d23c2f7f4132779a5d8c70c2a748be105ecce57ae76ed9c7f5f40873e123cf3f",
+    "core-focused.log": "51912774091d1ad21acd2b4cef0ecf9a8cc3143ee3a86d961b8a27e9c9b2f4e8",
+    "core-tests.log": "aa2e0641f59bd5a73c6f248b1dff7d87377bca909315ff95f6a633bc2ab2695a",
+    "coverage.json": "724e5828d983b53aa745b5a1eee33d69464162c2d51ad18ae8caba59c9dea470",
+    "desktop-chain.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "desktop-tests-final.log": "0a46f9709b9da886e74482a77bf0c3bebbf704142f23f1b2690166575d1df309",
+    "docker.log": "cb5d186cc8e7db2824a6ae9fa9988e82df8a9624ca37e02a6b6a371d9654ac33",
+    "health-before.log": "6e84f2bd3fbc27445f16542c657971f4713eb377f9de0e3a9f12a2d771182e98",
+    "live-reinspection.log": "079ec15f26296509bfeb2e32f0f0170fcfff278e09bfe35eae34024d985c1568",
+    "markdown.json": "0e9c71582f492d7f0fd915f9e08f4592b837fe493f101c0f03c0ccbb875f76b2",
+    "node24-build.log": "2e280322648f51295452525fc1d2d468d6a6c2d6fa24be922c00df822ed813fa",
+    "node24-hosted-final.log": "fb9ab6f293201135f1937915cceab7146e0b194ff760f2ae4e1b589e52eee523",
+    "node24-lint-final.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+    "node24-tests.log": "2b6c0d189fc5754892a9d598b7f681bdd25c9fd45e0feec49746786b0cc66b02",
+    "node26-final-tests.log": "74459c8cc77f4f301b8de9218fe3907ee062d629d7d19ed61acf55613d5becd7",
+    "npm-api.json": "f954b09f49b16f79a192606743330ec28060721f92deef5a61eab8951c7a1f64",
+    "npm-desktop.json": "3e1a0c51b834db53e8d0b61f781fd0cb8d45f3aa926316794432c5499fe0b9bf",
+    "npm-engine.json": "d4bf3be7c397ed973377f6e893b4e6d079caee200501ecbe2be8bbffc03dc1e0",
+    "npm-root.json": "f2915c8cc7ef17ce3130b49fbc7c7ac5c00a43009dba8a4dab0c839d2cda1a2c",
+    "npm-web.json": "25384f9258b5e3d74f1edc022805950d1d7503a39ffe077fc2a4071eca10bd3e",
+    "producer-lint.log": "56f25ed453211a4e1999c8b623d9b6b0cdbef9e9304a41f38be9afa110ac2d07",
+    "proxy-before.log": "a6b7a985432aff15923f173df49d5996a9305e7bfaa37704cb120a294b36f6bf",
+    "python-advisories.json": "c117295d2aec53cf3c8f0820c58b9722d9c40b3b04d4cfb84cba123627059184",
+    "python-advisories.log": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955",
+    "python311-dependencies.log": "75260727cb125f1b3e136526732d0bd88d0e8ab8f18c6a88585b778457c2140b",
+    "python311-dependency-check.log": "c8afc24c616a21677e2ab84f22ee5f0b8a6d7ab8780418d4a5aa88a6474a8412",
+    "python311-reproduction.log": "9d5ca382522424200688bab623da5f81b79f02dd58582392ab337967396aaa17",
+    "python311-tests.log": "a1ad1bc74e832f153a8c1b82c2800d51626d9ea23b14f93a271d113321b1b996",
+    "reproduction.log": "63a6a75b4d9014251aa36f372fd30c9a29a4880d65deee6436ac53d6e816e1a0",
+    "wheel.log": "56b87004d063dd0ff459b9ce6d68c85b147dc8254993a0a48dbd583e26d403e9"
+  },
+  "not_executed": [
+    "fresh Linux/native Docker validation: daemon socket absent",
+    "new hosted CodeQL/image/platform workflows",
+    "release packaging and production mutation",
+    "manual desktop/picker/input/reconnect/export/cancel/retry"
+  ],
+  "phase_1_acceptance": "pending_final_hosted_platform_and_manual_acceptance",
+  "record_kind": "deep_cross_repository_audit",
+  "regression_evidence": {
+    "after": "all pass, including real 128 KiB streaming and graceful WebSocket flush",
+    "core_original_modules": "3 failed",
+    "health_original": "stream-error regression failed; body-bound and total-deadline regressions timed out",
+    "proxy_original": "7 failed, 1 passed"
+  },
+  "source_sha256": {
+    "core/src/latency_fingerprinting/scenarios/overhead_models.py": "a5e3a539fbc423d8a489a8ac181d0ba2656a6c4e9c91cede598ec3225b1d7681",
+    "core/src/latency_fingerprinting/scenarios/pacing.py": "1fb401c03c57abed205f19186fb5074b14ba28f4e4ae22820b993b962c7781b8",
+    "core/tests/scenarios/test_overhead.py": "fc3e13d5f3dac5318b96e2fa9f4faa2c1aa676c43bf7a6d8d2367f3bc5049436",
+    "core/tests/scenarios/test_pacing.py": "35a5166e8d08e79ee192650d5468c54d108a27c43fd482cd2d59996376f8e716",
+    "producer/apps/desktop/main/companion/engine/engineHealth.ts": "d3c41a45a3a1684e4bae41e0075880e65c86c2871f5c1fc00639a1e40082d416",
+    "producer/apps/desktop/main/companion/engine/proxy.ts": "bc02ef64bf45a72b4d2e7c43abd2d7d03f98eeb5b45e78b330eeb625ccaa9bc6",
+    "producer/apps/desktop/tests/unit/companion/companionProxyLifecycle.test.ts": "06c28b2a334067956a2386839f3bdd21e0158d1a71b6879763ffee624ad1df21",
+    "producer/apps/desktop/tests/unit/companion/engineHealth.test.ts": "75d14a0be5f957539975da6852aeb3a78efd6f2c3d54b3944c0fa89a22974188"
+  },
+  "verification": {
+    "api": "passed",
+    "core_lint_format_schema_registry_frozen_pins_seed": "passed",
+    "core_python311": {
+      "passed": 2038,
+      "pydantic": "2.14.1",
+      "python": "3.11.17",
+      "reproduction_schemas_registry_dependencies": "passed"
+    },
+    "core_python313": {
+      "branch_inclusive_coverage_percent": 93.56,
+      "passed": 2038,
+      "pydantic": "2.13.4",
+      "python": "3.13.13"
+    },
+    "hosted_browser_interactions_tls": "passed on Node 24 and 26; final changed code on Node 24",
+    "isolated_wheel": "passed; 25 schema exports match",
+    "local_markdown_targets": {
+      "broken": [],
+      "checked": 1143
+    },
+    "npm_audits": {
+      "api": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "desktop": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "engine": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "root": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "web": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      }
+    },
+    "packaged_desktop_build_chain_audit": "passed",
+    "producer": {
+      "existing_curated_mirror_skip": 1,
+      "passed": 814,
+      "runtime_execution": "full suites on both; final desktop additions also verified via Node 24 hosted contract and final complete Node 26 suite",
+      "runtimes": [
+        "24.18.0",
+        "26.4.0"
+      ],
+      "suites": {
+        "api": 210,
+        "desktop": 106,
+        "engine": 147,
+        "smoke_security": 84,
+        "web": 267
+      }
+    },
+    "producer_workspace_lint_tooling_builds": "passed; production Node 24 builds and lint verified",
+    "python_advisories": "No known vulnerabilities in installed core environment; editable local project skipped",
+    "retained_live_reports": "campaign-8 and overhead-9 match retained reports byte-for-byte"
+  }
+}

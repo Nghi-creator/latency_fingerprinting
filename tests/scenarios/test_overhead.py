@@ -204,6 +204,20 @@ def test_order_cleanup_and_diagnostics_cannot_be_omitted(tmp_path):
             OverheadEvidence.model_validate(value)
 
 
+@pytest.mark.parametrize(
+    "provenance,kind", [("producer_capture", "synthetic"), ("synthetic", "linux_x11")]
+)
+def test_overhead_runtime_must_agree_with_provenance(tmp_path, provenance, kind):
+    path, evidence = overhead(tmp_path / "overhead")
+    evidence["provenance"] = provenance
+    evidence["runtime"]["kind"] = kind
+    with pytest.raises(ValueError, match="runtime does not match provenance"):
+        OverheadEvidence.model_validate(evidence)
+    (path / "overhead-evidence.json").write_bytes(encoded(evidence))
+    with pytest.raises(ValueError, match="^invalid_overhead_evidence$"):
+        inspect_overhead(path)
+
+
 def test_cli_canonical_report_and_fixed_preserved_output(tmp_path, capsys):
     path, _ = overhead(tmp_path / "overhead")
     output = tmp_path / "report.json"
