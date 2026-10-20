@@ -110,6 +110,6 @@ is retained; malformed declarations or invalid split integrity raise
 `ValueError("invalid_calibration_lineage")` without echoing identifiers or content.
 
 Generic `validate` still checks standalone models. Call this API explicitly for
-declared source-component and split checks. `inspect-calibration` and actual
-artifact/experiment-byte verification remain separate, unimplemented interfaces.
+declared source-component and split checks. Use [linked inspection](N6_INSPECTION.md) for `inspect-calibration` and actual
+artifact/experiment-byte verification.
 No profile building, source-file ingestion or live producer mutation occurs here.

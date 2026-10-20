@@ -185,7 +185,7 @@ Each SourceBinding has exactly `window_role` (`degraded`, `relief`, `healthy`),
 `source_id` and `window_id` (exact original ID, nonblank, at most 256 UTF-8 bytes).
 A response requires degraded and relief bindings in that order, each equal to its
 embedded window's source identity/run/window. A healthy window requires one
-healthy binding and actual `phase=healthy`. A missing entry has null artifact,
+healthy binding and actual N2 `phase=baseline` (the N6-to-N2 role mapping). A missing entry has null artifact,
 empty bindings, unknown label basis, null label/review/experiment/phase, and cannot
 claim checked evidence. A healthy-window entry must have label `healthy` or null;
 its nonnull experiment phase must be `healthy`. Wrong references, roles,
@@ -212,7 +212,10 @@ confirmed label-binding review. The selected phase must exist and be complete.
 The binding review must assert correspondence between that phase's acquisition
 and the entry's healthy/degraded source; N2 and N5 local aliases/clocks do not
 supply this correspondence themselves. Check all mechanically comparable fields:
-label/scenario/release/phase, workload ID and encoder family `vp8`. Required
+label/scenario/release/phase, workload ID and encoder family `vp8`. When the selected
+window declares `effective_settings.targetFps`, it must agree exactly with manifest
+`runtime.fps` (booleans do not equal numbers). This applies to the degraded or
+baseline acquisition, not to the deliberately changed relief setting. Required
 producer revision is `capture_method.producer_version`; it must be nonnull and
 equal the experiment manifest producer revision. Context `versions` are retained
 in the partition and checked if they declare a `pixelatedSourceRevision` revision. A known mismatch is rejected even if a review
@@ -367,11 +370,11 @@ for baseline use, not response profiles. No N6 count is a sample-size/trust gate
 N7 defines adequate profile/calibration support. No outcome implies causality,
 calibrated confidence, acquisition authenticity or Phase 2 completion.
 
-## I/O, bounds and intended interface
+## I/O, bounds and interface
 
-The intended Python API is `inspect_calibration_dataset(directory: Path)` in
+The Python API is `inspect_calibration_dataset(directory: Path)` in
 `latency_fingerprinting.calibration`, returning immutable dataset/report/validated
-artifact records. Intended CLI:
+artifact records. CLI:
 
 ```sh
 latency-fingerprint inspect-calibration --directory DATASET_DIR --output REPORT.json
@@ -389,17 +392,23 @@ Bounds: 257 directory entries; manifest/report each at most 10 MiB UTF-8 includi
 LF; depth 32 for new JSON and JSON artifacts (or stricter embedded parser bounds);
 response/window each at most 10 MiB; experiment archive each at most 64 MiB with
 existing 64 MiB expanded/member constraints; aggregate input at most 256 MiB,
-including manifest and all listed files. JSON map/string/number constraints from
+including manifest and all listed files. A separate 256 MiB decoded budget counts
+the manifest, response/window JSON and uncompressed experiment member payloads.
+Each archive expansion, including TAR headers/padding, must also fit the remaining
+decoded budget before decoding; retained members consume that budget for later
+artifacts. This prevents many small compressed bundles bypassing the aggregate
+limit. JSON map/string/number constraints from
 embedded records still apply. No truncation or silent omission to meet bounds.
 
 Check all bounds before corresponding allocation/parse; bounded snapshots may be
 staged in private temporary files for the existing experiment inspector. Unknown
 versions and supplied hash changes fail closed. CLI success is silent exit 0 and
 writes canonical private mode-0600 output atomically. Existing output survives
-failure; parent directory must exist. CLI failure is exit 1 with exactly
+failure; parent directory must exist and must be outside the input directory
+(the exact input inventory cannot also contain an output report). CLI failure is exit 1 with exactly
 `error: inspect-calibration: invalid_input_or_output`, empty stdout and no supplied
 path/payload echo. API boundary is `ValueError("invalid_calibration_dataset")`.
-Argument errors retain argparse exit 2. Generic `validate`/schema export will add
+Argument errors retain argparse exit 2. Generic `validate`/schema export recognize
 both roots without changing existing dispatch. Standalone validation checks only
 the root and intrinsic relations; supplied-artifact verification requires inspection.
 

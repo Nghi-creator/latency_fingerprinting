@@ -106,3 +106,6 @@ their meanings. [Model tests](../../tests/calibration/test_models.py),
 [report tests](../../tests/calibration/test_report.py) and
 [boundary tests](../../tests/calibration/test_boundaries.py) use independently
 written expectations and the standard library for identity oracles.
+
+Use [linked inspection](N6_INSPECTION.md) to verify the supplied artifact bytes,
+actual window bindings and experiment effects before consuming eligibility.

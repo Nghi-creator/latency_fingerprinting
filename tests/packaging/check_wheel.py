@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -61,6 +62,27 @@ def main() -> None:
             "latency-fingerprint.exe" if os.name == "nt" else "latency-fingerprint"
         )
         run([str(executable), "--help"], directory=directory)
+        # Exercise linked N6 dispatch in the installed package with no checkout imports.
+        from tests.calibration.cases import canonical, dataset
+
+        calibration = directory / "calibration"
+        calibration.mkdir()
+        (calibration / "calibration-dataset.json").write_bytes(canonical(dataset(missing=True)))
+        inspected = directory / "calibration-report.json"
+        run(
+            [
+                str(executable),
+                "inspect-calibration",
+                "--directory",
+                str(calibration),
+                "--output",
+                str(inspected),
+            ],
+            directory=directory,
+        )
+        report = json.loads(inspected.read_bytes())
+        if report["entries"][0]["reason_codes"] != ["missing_measurements"]:
+            raise ValueError("installed wheel calibration inspection differs")
         exported = directory / "schemas"
         run(
             [

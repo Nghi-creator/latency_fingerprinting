@@ -20,7 +20,7 @@ def _name(name):
     return name in ROOTS or re.fullmatch(r"artifact-[1-9][0-9]{0,9}\.json", name) is not None
 
 
-def _directory(fd):
+def _directory(fd, maximum=MAX_BUNDLE_BYTES):
     names = []
     with os.scandir(fd) as entries:
         for entry in entries:
@@ -32,7 +32,7 @@ def _directory(fd):
         child = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=fd)
         try:
             with os.fdopen(child, "rb", closefd=False) as source:
-                payload = _read_file(source, min(MAX_JSON_BYTES, MAX_BUNDLE_BYTES - total))
+                payload = _read_file(source, min(MAX_JSON_BYTES, maximum - total))
             total += len(payload)
             files[name] = payload
         finally:
@@ -40,11 +40,11 @@ def _directory(fd):
     return files
 
 
-def _archive(source):
+def _archive(source, maximum=MAX_BUNDLE_BYTES):
     compressed = _read_file(source, MAX_BUNDLE_BYTES)
     with gzip.GzipFile(fileobj=io.BytesIO(compressed)) as decoder:
-        expanded = decoder.read(MAX_BUNDLE_BYTES + 1)
-    if len(expanded) > MAX_BUNDLE_BYTES:
+        expanded = decoder.read(maximum + 1)
+    if len(expanded) > maximum:
         raise ValueError("expanded experiment exceeds bound")
     # Preflight physical headers before tarfile can interpret any extension.
     offset, names = 0, []
@@ -93,12 +93,14 @@ def _archive(source):
     return files
 
 
-def read_members(path):
+def read_members(path, *, max_expanded_bytes=MAX_BUNDLE_BYTES):
+    if type(max_expanded_bytes) is not int or not 1 <= max_expanded_bytes <= MAX_BUNDLE_BYTES:
+        raise ValueError("invalid experiment expanded-byte budget")
     fd = _open_bundle(Path(path))
     try:
         if stat.S_ISDIR(os.fstat(fd).st_mode):
-            return _directory(fd)
+            return _directory(fd, max_expanded_bytes)
         with os.fdopen(fd, "rb", closefd=False) as source:
-            return _archive(source)
+            return _archive(source, max_expanded_bytes)
     finally:
         os.close(fd)

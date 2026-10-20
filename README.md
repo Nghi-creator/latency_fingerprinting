@@ -68,6 +68,8 @@ Start with the [documentation index](docs/README.md) and
 - [Scenario contracts](docs/scenarios/N5_EXPERIMENT_CONTRACT.md) and
   [campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) describe experiment
   bundles and detached effect/cleanup verification.
+- [Calibration inspection](docs/calibration/N6_INSPECTION.md) verifies linked
+  source evidence, labels, independent splits and retained eligibility decisions.
 - [Controlled-run processing](experiments/CONTROLLED_RUN_PROCESSING.md) explains
   how to process recorded experiments. Sanitized experimental artifacts remain
   under `experiments/`; synthetic regression inputs remain under `fixtures/`.
