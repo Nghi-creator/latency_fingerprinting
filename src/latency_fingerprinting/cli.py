@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .calibration import CalibrationDataset, CalibrationReport
 from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
@@ -76,6 +77,8 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "calibration-dataset-v1": CalibrationDataset,
+    "calibration-report-v1": CalibrationReport,
     "stage-trace-record-v2": StageTraceRecordV2,
     "stage-trace-summary-v2": StageTraceSummaryV2,
     "n5-campaign-report-v1": CampaignReport,
@@ -121,6 +124,8 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "calibration-dataset-v1",
+        "calibration-report-v1",
         "experiment-manifest-v2",
         "experiment-phase-evidence-v2",
         "experiment-result-v2",
@@ -151,6 +156,8 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            CalibrationDataset,
+            CalibrationReport,
             StageTraceRecordV2,
             StageTraceSummaryV2,
             StageTraceRecord,

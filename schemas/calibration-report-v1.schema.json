@@ -1,0 +1,492 @@
+{
+  "$defs": {
+    "CalibrationArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "maxLength": 135,
+          "title": "File Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "analytical_response",
+            "observation_window",
+            "experiment_bundle"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "kind",
+        "file_name",
+        "sha256",
+        "bytes"
+      ],
+      "title": "CalibrationArtifact",
+      "type": "object"
+    },
+    "CalibrationCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "by_role": {
+          "$ref": "#/$defs/RoleCounts"
+        },
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups",
+        "by_role"
+      ],
+      "title": "CalibrationCounts",
+      "type": "object"
+    },
+    "EntryInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible": {
+          "title": "Eligible",
+          "type": "boolean"
+        },
+        "eligible_feature_count": {
+          "anyOf": [
+            {
+              "maximum": 22,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eligible Feature Count"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:group-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Group Id"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window",
+            "missing"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label"
+        },
+        "partition_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:partition-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Partition Id"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "engineering_only",
+              "retrospective_split",
+              "split_unverified",
+              "independence_unverified",
+              "synthetic_only",
+              "confounded_response",
+              "insufficient_response_features",
+              "baseline_invalid",
+              "label_unverified",
+              "effect_unverified",
+              "binding_unverified",
+              "duplicate_evidence"
+            ],
+            "type": "string"
+          },
+          "maxItems": 13,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "representative_entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Representative Entry Id",
+          "type": "string"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "engineering",
+                "training",
+                "validation",
+                "final_test"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        }
+      },
+      "required": [
+        "entry_id",
+        "input_kind",
+        "group_id",
+        "role",
+        "partition_id",
+        "label",
+        "eligible",
+        "reason_codes",
+        "representative_entry_id",
+        "eligible_feature_count"
+      ],
+      "title": "EntryInspection",
+      "type": "object"
+    },
+    "EvidenceCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups"
+      ],
+      "title": "EvidenceCounts",
+      "type": "object"
+    },
+    "GroupInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "independence_review_state": {
+          "enum": [
+            "confirmed",
+            "rejected",
+            "uncertain",
+            "missing"
+          ],
+          "title": "Independence Review State",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "group_id",
+        "source_ids",
+        "role",
+        "independence_review_state"
+      ],
+      "title": "GroupInspection",
+      "type": "object"
+    },
+    "PartitionInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "partition_id": {
+          "pattern": "^(?:partition-[a-f0-9]{64})$",
+          "title": "Partition Id",
+          "type": "string"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "partition_id",
+        "input_kind",
+        "retained_entries",
+        "eligible_entries",
+        "eligible_groups"
+      ],
+      "title": "PartitionInspection",
+      "type": "object"
+    },
+    "RoleCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "engineering": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "final_test": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "training": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "validation": {
+          "$ref": "#/$defs/EvidenceCounts"
+        }
+      },
+      "required": [
+        "engineering",
+        "training",
+        "validation",
+        "final_test"
+      ],
+      "title": "RoleCounts",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifact_receipts": {
+      "items": {
+        "$ref": "#/$defs/CalibrationArtifact"
+      },
+      "maxItems": 256,
+      "title": "Artifact Receipts",
+      "type": "array"
+    },
+    "assurance": {
+      "const": "external_review_declarations_not_authenticated",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "counts": {
+      "$ref": "#/$defs/CalibrationCounts"
+    },
+    "dataset_content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Dataset Content Hash",
+      "type": "string"
+    },
+    "dataset_id": {
+      "pattern": "^(?:dataset-[a-f0-9]{64})$",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/EntryInspection"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "title": "Entries",
+      "type": "array"
+    },
+    "groups": {
+      "items": {
+        "$ref": "#/$defs/GroupInspection"
+      },
+      "maxItems": 256,
+      "title": "Groups",
+      "type": "array"
+    },
+    "method_release": {
+      "const": "n6-calibration-evidence-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "partitions": {
+      "items": {
+        "$ref": "#/$defs/PartitionInspection"
+      },
+      "maxItems": 256,
+      "title": "Partitions",
+      "type": "array"
+    },
+    "report_id": {
+      "pattern": "^(?:calibration-report-[a-f0-9]{64})$",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "calibration-report-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "split_id": {
+      "pattern": "^(?:split-[a-f0-9]{64})$",
+      "title": "Split Id",
+      "type": "string"
+    },
+    "split_mode": {
+      "enum": [
+        "prospective",
+        "retrospective"
+      ],
+      "title": "Split Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "report_id",
+    "dataset_id",
+    "dataset_content_hash",
+    "split_id",
+    "split_mode",
+    "artifact_receipts",
+    "groups",
+    "entries",
+    "partitions",
+    "counts",
+    "assurance"
+  ],
+  "title": "CalibrationReport",
+  "type": "object"
+}

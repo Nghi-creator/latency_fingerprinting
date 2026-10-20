@@ -78,7 +78,9 @@ def test_v1_and_v2_are_explicit_disjoint_contracts():
         parse_trace_record([])
     with pytest.raises(ValueError):
         parse_trace_record({"schema_version": "stage-trace-record-v3"})
-    assert len(SCHEMA_MODELS) == 25
+    assert SCHEMA_MODELS["stage-trace-record-v1.schema.json"] is StageTraceRecord
+    assert SCHEMA_MODELS["stage-trace-record-v2.schema.json"] is StageTraceRecordV2
+    assert SCHEMA_MODELS["stage-trace-summary-v2.schema.json"] is StageTraceSummaryV2
 
 
 @pytest.mark.parametrize(

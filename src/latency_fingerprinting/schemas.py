@@ -12,6 +12,7 @@ from typing import TypeAlias
 
 from pydantic import BaseModel
 
+from .calibration import CalibrationDataset, CalibrationReport
 from .models import (
     AnalyticalResponseV2,
     ExperimentManifest,
@@ -39,6 +40,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "calibration-dataset-v1.schema.json": CalibrationDataset,
+    "calibration-report-v1.schema.json": CalibrationReport,
     "stage-trace-record-v2.schema.json": StageTraceRecordV2,
     "stage-trace-summary-v2.schema.json": StageTraceSummaryV2,
     "n5-campaign-report-v1.schema.json": CampaignReport,
