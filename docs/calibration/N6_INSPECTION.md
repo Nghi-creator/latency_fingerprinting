@@ -82,3 +82,6 @@ such an anchor, the inspector checks internal consistency of the supplied input.
 Reviews remain unsigned external declarations. Inspection cannot authenticate
 physical acquisitions, establish prospective timing or prove the truth of labels.
 The report always retains `external_review_declarations_not_authenticated` assurance.
+
+The [frozen synthetic corpus](N6_FIXTURES.md) reproduces linked decisions and
+denominators through both the API and installed CLI.

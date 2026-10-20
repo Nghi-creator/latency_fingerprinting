@@ -1,0 +1,126 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "response-a",
+      "bytes": 60477,
+      "file_name": "response-a.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c"
+    },
+    {
+      "artifact_id": "response-b",
+      "bytes": 60479,
+      "file_name": "response-b.json",
+      "kind": "observation_window",
+      "sha256": "sha256:43f4afb6d301ea99cf3c846a7ef177a7300494317b48ba4eb1df1858aa795c83"
+    }
+  ],
+  "content_hash": "sha256:0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+  "dataset_id": "dataset-0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "response-a",
+      "entry_id": "entry-a",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label",
+      "source_bindings": [
+        {
+          "source_id": "source-a",
+          "window_id": "window-baseline",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "response-b",
+      "entry_id": "entry-b",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-b",
+      "source_bindings": [
+        {
+          "source_id": "source-a",
+          "window_id": "window-baseline-b",
+          "window_role": "healthy"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "independence",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "source-a"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "entry-a"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-b",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "entry-b"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "acquisition-system",
+      "bundle_schema_version": null,
+      "independence_group": "independent-source-a",
+      "review_id": "independence",
+      "run_id": "run-baseline",
+      "session_id": "session-source-a",
+      "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+      "source_id": "source-a",
+      "source_type": "synthetic_series"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd"
+  }
+}

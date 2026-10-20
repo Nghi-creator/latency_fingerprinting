@@ -52,6 +52,9 @@ jobs:
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
 
+      - name: Reproduce pinned N6 calibration evidence and independent expectations
+        run: python -m tests.calibration.check_reproduction
+
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
 
@@ -153,6 +156,9 @@ jobs:
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
+
+      - name: Reproduce pinned N6 calibration evidence and independent expectations
+        run: python -m tests.calibration.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
