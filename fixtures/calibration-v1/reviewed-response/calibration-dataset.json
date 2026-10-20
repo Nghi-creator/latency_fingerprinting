@@ -1,0 +1,109 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "response-a",
+      "bytes": 168664,
+      "file_name": "response-a.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00"
+    }
+  ],
+  "content_hash": "sha256:e9e2a65e4f6ada5e5f8c37851ae2c8dae1fe1381d046d0d4b5e826e9c20fdbbb",
+  "dataset_id": "dataset-e9e2a65e4f6ada5e5f8c37851ae2c8dae1fe1381d046d0d4b5e826e9c20fdbbb",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "response-a",
+      "entry_id": "entry-a",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label",
+      "source_bindings": [
+        {
+          "source_id": "source-a",
+          "window_id": "window-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "source-b",
+          "window_id": "window-relief",
+          "window_role": "relief"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "split-7afa6ff148042cc8b78136e2fcfdc0a432b6ed8616fcc2446b22d6b2b0de63cf"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "independence",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "source-a",
+        "source-b"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "entry-a"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "acquisition-system",
+      "bundle_schema_version": null,
+      "independence_group": "independent-source-a",
+      "review_id": "independence",
+      "run_id": "run-degraded",
+      "session_id": "session-source-a",
+      "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+      "source_id": "source-a",
+      "source_type": "synthetic_series"
+    },
+    {
+      "acquisition_namespace": "acquisition-system",
+      "bundle_schema_version": null,
+      "independence_group": "independent-source-b",
+      "review_id": "independence",
+      "run_id": "run-relief",
+      "session_id": "session-source-b",
+      "source_content_hash": "sha256:3ee31c24a25bb74948e6705b9845e66a1ebd141d93cf2699e7bd31356905db58",
+      "source_id": "source-b",
+      "source_type": "synthetic_series"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-7afa6ff148042cc8b78136e2fcfdc0a432b6ed8616fcc2446b22d6b2b0de63cf"
+  }
+}

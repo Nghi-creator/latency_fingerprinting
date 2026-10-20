@@ -1,0 +1,116 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "experiment-a",
+      "bytes": 4875,
+      "file_name": "experiment-a.tar.gz",
+      "kind": "experiment_bundle",
+      "sha256": "sha256:93f09329eb96ade8977d71af8828e71ae869df156b4c69cd029a1f79c8fd34e2"
+    },
+    {
+      "artifact_id": "response-a",
+      "bytes": 168684,
+      "file_name": "response-a.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:5c56d3e87d87c5e4d43699dc5374996262e200ba2c7456eb0ca7e9ca5fcb2e4b"
+    }
+  ],
+  "content_hash": "sha256:edd5177561772f6e86f7570101f75982f48c39193eb57cd82232985e99ad4b62",
+  "dataset_id": "dataset-edd5177561772f6e86f7570101f75982f48c39193eb57cd82232985e99ad4b62",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "response-a",
+      "entry_id": "entry-a",
+      "experiment_artifact_id": "experiment-a",
+      "experiment_phase": "degraded",
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "controlled_effect",
+      "label_review_id": "label",
+      "source_bindings": [
+        {
+          "source_id": "source-a",
+          "window_id": "window-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "source-b",
+          "window_id": "window-relief",
+          "window_role": "relief"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "split-7afa6ff148042cc8b78136e2fcfdc0a432b6ed8616fcc2446b22d6b2b0de63cf"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "independence",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "source-a",
+        "source-b"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label",
+      "reviewer_id": "reviewer",
+      "subject_ids": [
+        "entry-a"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "acquisition-system",
+      "bundle_schema_version": null,
+      "independence_group": "independent-source-a",
+      "review_id": "independence",
+      "run_id": "run-degraded",
+      "session_id": "session-source-a",
+      "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+      "source_id": "source-a",
+      "source_type": "synthetic_series"
+    },
+    {
+      "acquisition_namespace": "acquisition-system",
+      "bundle_schema_version": null,
+      "independence_group": "independent-source-b",
+      "review_id": "independence",
+      "run_id": "run-relief",
+      "session_id": "session-source-b",
+      "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+      "source_id": "source-b",
+      "source_type": "synthetic_series"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-7afa6ff148042cc8b78136e2fcfdc0a432b6ed8616fcc2446b22d6b2b0de63cf"
+  }
+}

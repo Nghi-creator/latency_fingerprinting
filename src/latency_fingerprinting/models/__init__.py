@@ -4,6 +4,7 @@ Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
 """
 
+from ..calibration import CalibrationDataset, CalibrationReport
 from ..observability import (
     StageTraceRecord,
     StageTraceRecordV2,
@@ -213,3 +214,6 @@ __all__ += ["StageTraceRecord", "StageTraceSummary", "StageTraceRecordV2", "Stag
 
 
 __all__ += ["ExperimentManifest", "ExperimentPhaseEvidence", "ExperimentResult"]
+
+
+__all__ += ["CalibrationDataset", "CalibrationReport"]

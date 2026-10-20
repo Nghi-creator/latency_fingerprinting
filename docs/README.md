@@ -1,7 +1,7 @@
 # Documentation
 
 These guides describe the project's contracts, APIs, workflows and limitations.
-The P0 and N1–N5 names identify the original analysis path and its additive
+The P0 and N1–N6 names identify the original analysis path and its additive
 measurement, analytical, observability and experiment contracts.
 
 | Topic | Start here |
@@ -18,7 +18,8 @@ measurement, analytical, observability and experiment contracts.
 | Browser execution timing | [Contract](observability/N4_BROWSER_EXECUTION_CONTRACT.md), [timestamp-method rationale](observability/N4_BROWSER_TIMING_REVIEW.md) |
 | Scenario experiments | [Contract](scenarios/N5_EXPERIMENT_CONTRACT.md), [models](scenarios/N5_EXPERIMENT_MODELS.md), [examples](scenarios/N5_EXPERIMENT_EXAMPLES.md), [inspection](scenarios/N5_EXPERIMENT_INSPECTION.md) |
 | Runtime adapters | [Capabilities](scenarios/N5_ADAPTER_CAPABILITIES.md), [lifecycle](scenarios/N5_RUN_LIFECYCLE.md), [supported adapters/effects](scenarios/N5_SUPPORTED_ADAPTERS.md), [campaign workflow](scenarios/N5_CAMPAIGN_WORKFLOW.md) |
-| Development and reproduction | [Testing/CI](measurement/QUALITY_GATES.md), [arithmetic fixtures](measurement/ARITHMETIC_FIXTURES.md), [observation fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [analytical fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [trace integration](observability/N4_INTEGRATION_VERIFICATION.md), [experiment fixtures](scenarios/N5_EXPERIMENT_FIXTURES.md) |
+| Calibration evidence | [Evidence, lineage and split contract](calibration/N6_EVIDENCE_CONTRACT.md), [independent examples](calibration/N6_EVIDENCE_EXAMPLES.md), [models and validation](calibration/N6_MODELS.md), [lineage and splits](calibration/N6_LINEAGE.md), [linked inspection and CLI](calibration/N6_INSPECTION.md) |
+| Development and reproduction | [Testing/CI](measurement/QUALITY_GATES.md), [arithmetic fixtures](measurement/ARITHMETIC_FIXTURES.md), [observation fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [analytical fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [trace integration](observability/N4_INTEGRATION_VERIFICATION.md), [experiment fixtures](scenarios/N5_EXPERIMENT_FIXTURES.md), [calibration fixtures](calibration/N6_FIXTURES.md) |
 
 Sanitized recorded experiments and their reusable processing procedure are in
 [experiments](../experiments/CONTROLLED_RUN_PROCESSING.md). Synthetic fixtures and

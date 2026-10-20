@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -61,6 +63,48 @@ def main() -> None:
             "latency-fingerprint.exe" if os.name == "nt" else "latency-fingerprint"
         )
         run([str(executable), "--help"], directory=directory)
+        # Frozen source data and independent expectations run against the installed CLI.
+        from tests.calibration.check_reproduction import FIXTURES, load_release, report_projection
+
+        release = load_release()
+        corpus = directory / "calibration"
+        shutil.copytree(FIXTURES, corpus)
+        inspected = directory / "calibration-report.json"
+        for name, expected_case in release["cases"].items():
+            inspected.write_bytes(b"retained output\n")
+            arguments = [
+                str(executable),
+                "inspect-calibration",
+                "--directory",
+                str(corpus / name),
+                "--output",
+                str(inspected),
+            ]
+            # Trusted installed executable and copied pinned data; no shell.
+            completed = subprocess.run(  # noqa: S603
+                arguments,
+                cwd=directory,
+                capture_output=True,
+                check=False,
+                timeout=30,
+                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
+            )
+            invalid = "error" in expected_case
+            expected_error = (
+                b"error: inspect-calibration: invalid_input_or_output\n" if invalid else b""
+            )
+            if (
+                completed.returncode != int(invalid)
+                or completed.stdout
+                or completed.stderr != expected_error
+            ):
+                raise ValueError("installed N6 CLI status/privacy drift")
+            if invalid:
+                if inspected.read_bytes() != b"retained output\n":
+                    raise ValueError("installed N6 CLI failed to preserve output")
+            elif report_projection(json.loads(inspected.read_bytes())) != expected_case:
+                raise ValueError("installed N6 independent expectation mismatch")
+        load_release(corpus)
         exported = directory / "schemas"
         run(
             [
@@ -79,7 +123,8 @@ def main() -> None:
         if not expected or expected != actual:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
-            f"Installed wheel imports, console entry point and all {len(actual)} schemas verified."
+            f"Installed wheel imports, all 14 N6 cases, console entry point "
+            f"and all {len(actual)} schemas verified."
         )
 
 

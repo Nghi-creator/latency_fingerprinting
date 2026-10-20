@@ -1,0 +1,30 @@
+{
+  "artifacts": [],
+  "content_hash": "sha256:d48aabbf4f69b7442029fc1726c173551ced78e7a1ee3c142843fd8d31ec3a73",
+  "dataset_id": "dataset-d48aabbf4f69b7442029fc1726c173551ced78e7a1ee3c142843fd8d31ec3a73",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": null,
+      "entry_id": "entry-a",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "missing",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": []
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [],
+  "split": {
+    "assignments": [],
+    "freeze_review_id": null,
+    "mode": "retrospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-0c6b1bd78443a18eb7649af164888c0201f0ebb0fa7279f85595f2f8906b7fdd"
+  }
+}

@@ -1,0 +1,967 @@
+{
+  "cases": {
+    "baseline": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-a",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "confounded": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 0,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only",
+            "confounded_response",
+            "insufficient_response_features"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "controlled-healthy": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-a",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "controlled-host": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "controlled-pacing": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "render_capture_slowdown",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "declared": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "retrospective_split",
+            "independence_unverified",
+            "synthetic_only",
+            "label_unverified"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "missing",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "duplicate": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 2,
+            "retained_entries": 2,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 2,
+        "retained_entries": 2,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-b",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only",
+            "duplicate_evidence"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a",
+          "entry-b"
+        ]
+      ]
+    },
+    "failed-effect": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only",
+            "effect_unverified"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "missing": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 0
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-a",
+          "group_id": null,
+          "input_kind": "missing",
+          "label": null,
+          "reason_codes": [
+            "missing_measurements"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": null
+        }
+      ],
+      "groups": [],
+      "partition_members": []
+    },
+    "mixed-settings": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 2,
+            "retained_entries": 2,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 2,
+        "retained_entries": 2,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-a",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-b",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-b",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ],
+        [
+          "entry-b"
+        ]
+      ]
+    },
+    "reviewed-response": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 1,
+        "retained_entries": 1,
+        "retained_groups": 1
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a"
+        ]
+      ]
+    },
+    "reviewed-roles": {
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 3,
+        "retained_entries": 3,
+        "retained_groups": 3
+      },
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-b",
+          "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-b",
+          "role": "validation"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-c",
+          "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+          "input_kind": "response",
+          "label": "host_contention",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-c",
+          "role": "final_test"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+          "independence_review_state": "confirmed",
+          "role": "final_test",
+          "source_ids": [
+            "source-e",
+            "source-f"
+          ]
+        },
+        {
+          "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+          "independence_review_state": "confirmed",
+          "role": "validation",
+          "source_ids": [
+            "source-c",
+            "source-d"
+          ]
+        },
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "partition_members": [
+        [
+          "entry-a",
+          "entry-b",
+          "entry-c"
+        ]
+      ]
+    },
+    "split-leakage": {
+      "error": "invalid_calibration_dataset"
+    },
+    "wrong-binding": {
+      "error": "invalid_calibration_dataset"
+    }
+  },
+  "fixture_release": "1.0.0",
+  "provenance": "synthetic",
+  "sha256": {
+    "baseline/calibration-dataset.json": "1974f5d272713b50e8307be608d6b7effc41694d322591a612e45458ddd5a890",
+    "baseline/response-a.json": "d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c",
+    "confounded/calibration-dataset.json": "a5a2a02dd184fa05e8b976a583134351a40080d4b6ed3f8fc81409fa093054c5",
+    "confounded/response-a.json": "6c0999a60f5cd80b3b3151a98e6d351ca86e5e27520caf9fcef93ea8f6a2d2c8",
+    "controlled-healthy/calibration-dataset.json": "48e79af0697d8590e91251d41e81dc80760a72dbe35fb5da1e536f633b442350",
+    "controlled-healthy/experiment-a.tar.gz": "fc6ae762b5f04901fc3d53020b1b85fbb0a46d553f043e0152be2defb4294edd",
+    "controlled-healthy/response-a.json": "12a6d110063992f91aed2694a354455db90612eff22a3789790aea00dc1c2e39",
+    "controlled-host/calibration-dataset.json": "35c0b217843d4cdcf81cfae52df68db753696d6cfa6b4aa10aeb1794fbb093c4",
+    "controlled-host/experiment-a.tar.gz": "93f09329eb96ade8977d71af8828e71ae869df156b4c69cd029a1f79c8fd34e2",
+    "controlled-host/response-a.json": "5c56d3e87d87c5e4d43699dc5374996262e200ba2c7456eb0ca7e9ca5fcb2e4b",
+    "controlled-pacing/calibration-dataset.json": "e523271ccda7a415b0f353c09f5f4a021ca50d391959c7bf7a4dbe31747bfaa9",
+    "controlled-pacing/experiment-a.tar.gz": "c89eb1f1c2bf5cac5f4ab81517711ee5ddd78c725a36d4e12158f3de1e184b1e",
+    "controlled-pacing/response-a.json": "5c56d3e87d87c5e4d43699dc5374996262e200ba2c7456eb0ca7e9ca5fcb2e4b",
+    "declared/calibration-dataset.json": "e967a54d62917a08e1c53dc5b7ba0bf28f76fc7f62db5604ef445f1a7a666819",
+    "declared/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "duplicate/calibration-dataset.json": "840039e409f870133357d65babdca1f5d23e24bc2425bd7ccf769852692a0d47",
+    "duplicate/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "duplicate/response-b.json": "c994fc29e4eb1506fd3e9d267ddadab337e0c1ed2d32488fbe88429e9886bde3",
+    "failed-effect/calibration-dataset.json": "0aabcd3980debf9a3bb360c5a6724fd1ea3132132491d0e2f7914f8a18a59661",
+    "failed-effect/experiment-a.tar.gz": "2534da291f2c15f1823554f451f491e4ad677e1d73080de0b49d5c4bded18e51",
+    "failed-effect/response-a.json": "5c56d3e87d87c5e4d43699dc5374996262e200ba2c7456eb0ca7e9ca5fcb2e4b",
+    "missing/calibration-dataset.json": "a7cd041b55c38d45224de0b5a2581c35c926a1a8f26793ec359d57d645569af0",
+    "mixed-settings/calibration-dataset.json": "cba409ff4c39105e16361aba67efa333eb1a59875cd539bdca83ae2f7a5caa31",
+    "mixed-settings/response-a.json": "d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c",
+    "mixed-settings/response-b.json": "43f4afb6d301ea99cf3c846a7ef177a7300494317b48ba4eb1df1858aa795c83",
+    "reviewed-response/calibration-dataset.json": "370f917d0ae67d893a3bce5866050976da4d821e3efc36b96bd624f56afc950b",
+    "reviewed-response/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "reviewed-roles/calibration-dataset.json": "b131877a19b9e68d30cefcae187e48e0aa411f82fc7677c11b4b55bb0845b3e5",
+    "reviewed-roles/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "reviewed-roles/response-b.json": "7c9e06a7f696319322a55f1013926e0de981065e2d19ead576e6c7d7bd760c91",
+    "reviewed-roles/response-c.json": "35324f0e13f329a6d11b2d02717f0b8058638a4006bfcc7935edfce5a1830661",
+    "split-leakage/calibration-dataset.json": "6a525a94dfa3562805c94d67f9c25ae871fce287015a183aa03b2b48d7f0b028",
+    "split-leakage/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "wrong-binding/calibration-dataset.json": "31f2ed6e594cbeb4c771b8ce596c93d13a5c7087e5806810c4115efdc6263eea",
+    "wrong-binding/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00"
+  }
+}

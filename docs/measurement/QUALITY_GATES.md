@@ -27,6 +27,7 @@ python -m tests.analytical.check_reproduction
 python -m tests.observability.check_reproduction
 python -m tests.observability.check_browser_execution
 python -m tests.scenarios.check_reproduction
+python -m tests.calibration.check_reproduction
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
@@ -41,7 +42,8 @@ python -m tests.packaging.check_wheel
 ```
 
 This builds a wheel and installs it in a fresh temporary environment outside the
-checkout. It verifies the import location, console entry point and schema exports.
+checkout. It verifies the import location, console entry point, all frozen N6
+calibration cases (including private errors/preserved output), and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

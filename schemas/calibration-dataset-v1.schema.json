@@ -1,0 +1,519 @@
+{
+  "$defs": {
+    "CalibrationArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "maxLength": 135,
+          "title": "File Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "analytical_response",
+            "observation_window",
+            "experiment_bundle"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "kind",
+        "file_name",
+        "sha256",
+        "bytes"
+      ],
+      "title": "CalibrationArtifact",
+      "type": "object"
+    },
+    "CalibrationEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Artifact Id"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "experiment_artifact_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment Artifact Id"
+        },
+        "experiment_phase": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "degraded"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment Phase"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window",
+            "missing"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label"
+        },
+        "label_basis": {
+          "enum": [
+            "controlled_effect",
+            "external_confirmation",
+            "declared_only",
+            "unknown"
+          ],
+          "title": "Label Basis",
+          "type": "string"
+        },
+        "label_review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label Review Id"
+        },
+        "source_bindings": {
+          "items": {
+            "$ref": "#/$defs/SourceBinding"
+          },
+          "maxItems": 2,
+          "title": "Source Bindings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entry_id",
+        "input_kind",
+        "artifact_id",
+        "source_bindings",
+        "label",
+        "label_basis",
+        "label_review_id",
+        "experiment_artifact_id",
+        "experiment_phase"
+      ],
+      "title": "CalibrationEntry",
+      "type": "object"
+    },
+    "CalibrationSource": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition_namespace": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Acquisition Namespace",
+          "type": "string"
+        },
+        "bundle_schema_version": {
+          "anyOf": [
+            {
+              "enum": [
+                "1",
+                "2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bundle Schema Version"
+        },
+        "independence_group": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Independence Group",
+          "type": "string"
+        },
+        "review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Review Id"
+        },
+        "run_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "session_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "source_content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Source Content Hash",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_type": {
+          "enum": [
+            "pixelated_bundle",
+            "synthetic_series"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "acquisition_namespace",
+        "run_id",
+        "session_id",
+        "independence_group",
+        "source_type",
+        "source_content_hash",
+        "bundle_schema_version",
+        "review_id"
+      ],
+      "title": "CalibrationSource",
+      "type": "object"
+    },
+    "EvidenceReview": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Evidence Sha256",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "independence",
+            "label_binding",
+            "split_freeze"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "confirmed",
+            "rejected",
+            "uncertain"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "review_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Review Id",
+          "type": "string"
+        },
+        "reviewer_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Reviewer Id",
+          "type": "string"
+        },
+        "subject_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Subject Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "review_id",
+        "reviewer_id",
+        "kind",
+        "subject_ids",
+        "outcome",
+        "evidence_sha256"
+      ],
+      "title": "EvidenceReview",
+      "type": "object"
+    },
+    "SourceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "window_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Window Id",
+          "type": "string"
+        },
+        "window_role": {
+          "enum": [
+            "degraded",
+            "relief",
+            "healthy"
+          ],
+          "title": "Window Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "window_role",
+        "source_id",
+        "window_id"
+      ],
+      "title": "SourceBinding",
+      "type": "object"
+    },
+    "SourceEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "child_source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Child Source Id",
+          "type": "string"
+        },
+        "parent_source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Parent Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_source_id",
+        "child_source_id"
+      ],
+      "title": "SourceEdge",
+      "type": "object"
+    },
+    "SplitAssignment": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group_id",
+        "role"
+      ],
+      "title": "SplitAssignment",
+      "type": "object"
+    },
+    "SplitDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "assignments": {
+          "items": {
+            "$ref": "#/$defs/SplitAssignment"
+          },
+          "maxItems": 256,
+          "title": "Assignments",
+          "type": "array"
+        },
+        "freeze_review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Freeze Review Id"
+        },
+        "mode": {
+          "enum": [
+            "prospective",
+            "retrospective"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "protocol_sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Protocol Sha256",
+          "type": "string"
+        },
+        "split_id": {
+          "pattern": "^(?:split-[a-f0-9]{64})$",
+          "title": "Split Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "split_id",
+        "mode",
+        "protocol_sha256",
+        "assignments",
+        "freeze_review_id"
+      ],
+      "title": "SplitDeclaration",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/CalibrationArtifact"
+      },
+      "maxItems": 256,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "dataset_id": {
+      "pattern": "^(?:dataset-[a-f0-9]{64})$",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "derivations": {
+      "items": {
+        "$ref": "#/$defs/SourceEdge"
+      },
+      "maxItems": 512,
+      "title": "Derivations",
+      "type": "array"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/CalibrationEntry"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "title": "Entries",
+      "type": "array"
+    },
+    "method_release": {
+      "const": "n6-calibration-evidence-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "reviews": {
+      "items": {
+        "$ref": "#/$defs/EvidenceReview"
+      },
+      "maxItems": 256,
+      "title": "Reviews",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "calibration-dataset-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/CalibrationSource"
+      },
+      "maxItems": 256,
+      "title": "Sources",
+      "type": "array"
+    },
+    "split": {
+      "$ref": "#/$defs/SplitDeclaration"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "dataset_id",
+    "content_hash",
+    "artifacts",
+    "sources",
+    "derivations",
+    "reviews",
+    "split",
+    "entries"
+  ],
+  "title": "CalibrationDataset",
+  "type": "object"
+}
