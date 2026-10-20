@@ -62,7 +62,8 @@ response counts below 17 require the current policy's insufficient-evidence reas
 Global, all-four-role and partition entry/group counts reconstruct from the
 report's actual entries. Multiple windows do not add independent groups. Duplicate
 entries require an earlier direct representative with matching kind, group,
-partition, label and feature count. Retrospective/engineering and group-review
+partition and feature count. Nullable labels are retained; conflicting nonnull
+labels anywhere in a duplicate class are rejected. Retrospective/engineering and group-review
 exclusions must agree with their declarations. A split-freeze state applies
 consistently to the whole report. Assurance is always the literal
 `external_review_declarations_not_authenticated`.
@@ -74,8 +75,8 @@ sessions, original/content identities, paired sources and derivations, or prove
 that the declared split excludes shared source lineage. It does not open artifact
 files, verify their actual bytes, reconstruct analytical responses/compatibility
 partitions from those files, recompute experiment effects, or verify that a report
-matches a particular dataset. These checks belong to source/split validation and
-linked inspection; the `inspect-calibration` API/command is not yet available.
+matches a particular dataset. The explicit [source/split API](N6_LINEAGE.md) checks declared components and
+split integrity. Actual file/record verification still requires linked inspection; the `inspect-calibration` API/command is not yet available.
 
 A valid declaration or self-consistent report is not a verified calibration set.
 External review declarations are neither authenticated authority nor physical

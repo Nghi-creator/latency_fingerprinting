@@ -2,8 +2,8 @@
 
 **Method release:** `n6-calibration-evidence-v1`.
 **Specification:** 1.0.0. [Standalone models, schemas and generic validation](N6_MODELS.md)
-are implemented. Source-component/split reconstruction and linked inspection
-remain specified interfaces, not implemented inspection capabilities.
+and [pure source-component/split checks](N6_LINEAGE.md) are implemented.
+Linked file inspection remains a specified interface, not an implemented capability.
 **Independent examples:** [Evidence and split examples](N6_EVIDENCE_EXAMPLES.md).
 
 ## Purpose and limits
@@ -269,6 +269,10 @@ no independent-run support. An exact response identity, or SHA-256 of the full c
 (with original camelCase aliases), reused under multiple entry aliases is a duplicate: retain all aliases, report the
 lexically first as representative, and exclude other aliases from eligible counts.
 No duplicated content may acquire conflicting nonnull labels; that is an error.
+A nullable representative label is retained without transferring label support
+from another alias. Known identical raw artifact receipts can establish aliases
+before file inspection; semantic response/window identity checks require the
+actual validated records.
 
 N5 `reference` and `held_out_query` are historical declarations, not automatically
 training/validation/final-test assignments. A new mapping of already observed

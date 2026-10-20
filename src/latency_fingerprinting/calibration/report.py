@@ -190,6 +190,7 @@ class CalibrationReport(CalibrationModel):
         freeze_states = {"split_unverified" in entry.reason_codes for entry in measured}
         if len(freeze_states) > 1 or (self.split_mode == "retrospective" and True in freeze_states):
             raise ValueError("split freeze evidence must be consistent across the report")
+        duplicate_labels = {}
         for entry in measured:
             group = groups[entry.group_id]
             if entry.role != group.role:
@@ -210,18 +211,21 @@ class CalibrationReport(CalibrationModel):
                     representative.input_kind,
                     representative.group_id,
                     representative.partition_id,
-                    representative.label,
                     representative.eligible_feature_count,
                 )
                 != (
                     entry.input_kind,
                     entry.group_id,
                     entry.partition_id,
-                    entry.label,
                     entry.eligible_feature_count,
                 )
             ):
                 raise ValueError("invalid duplicate representative")
+            labels = duplicate_labels.setdefault(entry.representative_entry_id, set())
+            if entry.label is not None:
+                labels.add(entry.label)
+                if len(labels) > 1:
+                    raise ValueError("duplicate content has conflicting nonnull labels")
         expected = _counts(self.entries, self.groups)
         if self.counts.model_dump(exclude={"by_role"}) != expected:
             raise ValueError("global evidence counts do not reconstruct")
