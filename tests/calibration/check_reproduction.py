@@ -3,12 +3,15 @@
 import hashlib
 import io
 import json
+import os
 import sys
 import tempfile
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
+from latency_fingerprinting.adapters.pixelated_bundle_io import _open_bundle
 from latency_fingerprinting.calibration import inspect_calibration_dataset
+from latency_fingerprinting.calibration.bundle_io import read_at
 from latency_fingerprinting.cli import main as cli_main
 from tests.calibration.cases import canonical
 
@@ -32,6 +35,15 @@ CASES = (
 )
 
 
+def _read_fixture(path, maximum):
+    # Reuse the no-follow/nonblocking bounded reader, including post-inventory races.
+    parent = _open_bundle(path.parent)
+    try:
+        return read_at(parent, path.name, maximum)
+    finally:
+        os.close(parent)
+
+
 def load_release(directory=FIXTURES):
     """Check the complete exact inventory before consuming any declared case paths."""
     directory = Path(directory)
@@ -43,9 +55,7 @@ def load_release(directory=FIXTURES):
             raise ValueError("N6 fixture inventory mismatch")
         paths.append(path)
     release_path = directory / "release.json"
-    if release_path.stat().st_size > 1024 * 1024:
-        raise ValueError("N6 release exceeds bound")
-    raw = release_path.read_bytes()
+    raw = _read_fixture(release_path, 1024 * 1024)
     if hashlib.sha256(raw).hexdigest() != RELEASE_SHA256:
         raise ValueError("N6 release pin mismatch")
     release = json.loads(raw)
@@ -60,9 +70,8 @@ def load_release(directory=FIXTURES):
         raise ValueError("N6 fixture inventory mismatch")
     for name, expected in release["sha256"].items():
         path = files[name]
-        if path.stat().st_size > 10 * 1024 * 1024:
-            raise ValueError("N6 fixture exceeds bound")
-        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+        raw = _read_fixture(path, 10 * 1024 * 1024)
+        if hashlib.sha256(raw).hexdigest() != expected:
             raise ValueError("N6 fixture release pin mismatch")
     return release
 
@@ -114,9 +123,8 @@ def check_case(source, expected, output):
     result = inspect_calibration_dataset(source)
     if report_projection(result.report) != expected:
         raise ValueError("N6 independent eligibility expectation mismatch")
-    if cli_main(args) != 0 or output.read_bytes() != canonical(
-        result.report.model_dump(mode="json")
-    ):
+    invoke(0)
+    if output.read_bytes() != canonical(result.report.model_dump(mode="json")):
         raise ValueError("N6 API/CLI drift")
     # Generic public dispatch revalidates canonical inspection output.
     from latency_fingerprinting.calibration import CalibrationReport

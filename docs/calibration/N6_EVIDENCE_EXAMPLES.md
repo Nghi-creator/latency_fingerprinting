@@ -1,7 +1,7 @@
 # Independent calibration evidence and split examples
 
 These are hand-authored expectations for the
-[calibration evidence contract](N6_EVIDENCE_CONTRACT.md), independent of future
+[calibration evidence contract](N6_EVIDENCE_CONTRACT.md), independent of
 model, grouping and inspector code. The examples specify synthetic design inputs;
 they neither assert real measurements nor create eligible scientific data.
 The projection notation below is not an additional production schema or a
@@ -200,4 +200,4 @@ For actual safe aliases `source-a`, `source-b`, canonical input is exactly:
 Include the final LF. SHA-256 and group ID are pinned in the
 [design-vector file](N6_DESIGN_VECTORS.json). A second vector pins the five-source
 component from example 3. These hashes use only standard-library JSON/SHA-256,
-not the future N6 renderer or grouping implementation.
+not the N6 renderer or grouping implementation.

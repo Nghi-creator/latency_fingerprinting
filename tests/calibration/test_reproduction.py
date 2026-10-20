@@ -106,3 +106,67 @@ def test_main_error_is_fixed_and_does_not_echo_path(monkeypatch, capsys):
     monkeypatch.setattr(module, "check_reproduction", fail)
     assert module.main() == 1
     assert capsys.readouterr() == ("", "error: N6 reproduction failed\n")
+
+
+@pytest.mark.parametrize("stream", ["stdout", "stderr"])
+def test_valid_case_rejects_unexpected_cli_output(tmp_path, monkeypatch, stream):
+    import sys
+
+    original = module.cli_main
+
+    def noisy(args):
+        code = original(args)
+        print("unexpected diagnostic", file=getattr(sys, stream))
+        return code
+
+    monkeypatch.setattr(module, "cli_main", noisy)
+    expected = module.load_release()["cases"]["baseline"]
+    with pytest.raises(ValueError, match="CLI status/privacy drift"):
+        module.check_case(module.FIXTURES / "baseline", expected, tmp_path / "report.json")
+
+
+@pytest.mark.parametrize("kind", ["fifo", "directory"])
+def test_release_root_rejects_special_files_before_read(tmp_path, kind):
+    import os
+
+    root = tmp_path / "corpus"
+    shutil.copytree(module.FIXTURES, root)
+    path = root / "release.json"
+    path.unlink()
+    if kind == "fifo":
+        os.mkfifo(path)
+    else:
+        path.mkdir()
+    with pytest.raises((ValueError, OSError)):
+        module.load_release(root)
+
+
+@pytest.mark.parametrize("kind", ["fifo", "symlink", "growth"])
+def test_fixture_replacement_after_inventory_is_bounded(tmp_path, monkeypatch, kind):
+    import os
+
+    root = tmp_path / "corpus"
+    shutil.copytree(module.FIXTURES, root)
+    original = module.read_at
+    changed = False
+
+    def replace(parent, name, maximum):
+        nonlocal changed
+        if name == "release.json" and not changed:
+            changed = True
+            path = root / name
+            if kind == "growth":
+                with path.open("ab") as output:
+                    output.truncate(maximum + 1)
+            else:
+                path.unlink()
+                if kind == "fifo":
+                    os.mkfifo(path)
+                else:
+                    path.symlink_to(module.FIXTURES / name)
+        return original(parent, name, maximum)
+
+    monkeypatch.setattr(module, "read_at", replace)
+    with pytest.raises((ValueError, OSError)):
+        module.load_release(root)
+    assert changed

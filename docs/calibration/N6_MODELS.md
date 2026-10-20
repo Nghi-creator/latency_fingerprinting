@@ -76,7 +76,8 @@ that the declared split excludes shared source lineage. It does not open artifac
 files, verify their actual bytes, reconstruct analytical responses/compatibility
 partitions from those files, recompute experiment effects, or verify that a report
 matches a particular dataset. The explicit [source/split API](N6_LINEAGE.md) checks declared components and
-split integrity. Actual file/record verification still requires linked inspection; the `inspect-calibration` API/command is not yet available.
+split integrity. Use [linked inspection](N6_INSPECTION.md) for actual file/record
+verification through `inspect_calibration_dataset` or `inspect-calibration`.
 
 A valid declaration or self-consistent report is not a verified calibration set.
 External review declarations are neither authenticated authority nor physical
