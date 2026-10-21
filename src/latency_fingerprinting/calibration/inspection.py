@@ -39,6 +39,17 @@ def inspect_calibration_dataset(
     directory: Path, *, expected_split_id=None, expected_dataset_content_hash=None
 ) -> InspectedCalibration:
     """Verify actual bounded artifact bytes, retaining all valid unsupported evidence."""
+    return _inspect_calibration_snapshot(
+        directory,
+        expected_split_id=expected_split_id,
+        expected_dataset_content_hash=expected_dataset_content_hash,
+    )[0]
+
+
+def _inspect_calibration_snapshot(
+    directory: Path, *, expected_split_id=None, expected_dataset_content_hash=None
+):
+    """Same inspector, also retaining actual pinned root identity for safe callers."""
     snapshot = None
     try:
         snapshot = DatasetSnapshot(Path(directory))
@@ -50,11 +61,12 @@ def inspect_calibration_dataset(
         )
         records = _records(snapshot)
         report = _report(dataset, lineage, records)
+        metadata = os.fstat(snapshot.descriptor)
         return InspectedCalibration(
             dataset,
             report,
             tuple(ValidatedArtifact(identifier, record) for identifier, record in records.items()),
-        )
+        ), (metadata.st_dev, metadata.st_ino)
     except (OSError, ValueError, TypeError, KeyError, EOFError, tarfile.TarError, zlib.error):
         raise ValueError("invalid_calibration_dataset") from None
     finally:

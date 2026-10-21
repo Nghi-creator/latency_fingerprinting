@@ -71,8 +71,7 @@ N6 report as a declaration, not as proof of fresh linked inspection. Model-only
 unit examples with eligible report metadata are artificial arithmetic tests and
 are not real calibration evidence.
 
-The linked profile builder, create/build/transition commands, and parent/replacement
-preservation operations remain the next implementation step. Their frozen names
-in the contract are not callable yet. Lifecycle models check the current record's
-shape; they do not authenticate unseen parent history. Candidates remain
+The [linked builder and lifecycle API/CLI](N7_COMMANDS.md) inspect actual N6
+files and preserve supplied parent evidence during withdrawal. Lifecycle models
+check the current record's shape; they do not authenticate unseen parent history. Candidates remain
 provisional or rejected support summaries, not trusted or match-eligible profiles.

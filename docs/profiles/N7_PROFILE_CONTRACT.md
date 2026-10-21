@@ -2,8 +2,9 @@
 
 This specification freezes `n7-profile-statistics-v1`. The additive policy and
 snapshot models, exact arithmetic and standalone validate/schema dispatch are
-implemented; see the [model guide](N7_MODELS.md). Linked building and lifecycle
-operations described here remain separate, unimplemented interfaces. The [policy specification](N7_PROFILE_POLICY_SPEC.json) and
+implemented; see the [model guide](N7_MODELS.md). Linked building and immutable
+lifecycle operations are available through the [API and CLI](N7_COMMANDS.md).
+The [policy specification](N7_PROFILE_POLICY_SPEC.json) and
 [independent examples](N7_PROFILE_EXAMPLES.md) define the first release's exact
 software-provisional behavior. Existing P0 and N2–N6 formats, releases, fixture
 pins and `match-v2` remain unchanged.

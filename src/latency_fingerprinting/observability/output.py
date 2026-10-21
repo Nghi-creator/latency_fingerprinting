@@ -9,7 +9,7 @@ from ..adapters.pixelated_bundle_io import _open_bundle
 from ..json_io import MAX_CONTRACT_JSON_BYTES
 
 
-def write_trace_output(path: Path, payload: bytes):
+def write_trace_output(path: Path, payload: bytes, *, target_guard=None):
     if len(payload) > MAX_CONTRACT_JSON_BYTES:
         raise ValueError("trace output exceeds byte limit")
     path = Path(path).absolute()
@@ -25,6 +25,8 @@ def write_trace_output(path: Path, payload: bytes):
             metadata = None
         if metadata is not None and not stat.S_ISREG(metadata.st_mode):
             raise ValueError("output must be a regular file")
+        if target_guard is not None:
+            target_guard(parent, path.name, metadata)
         fd = os.open(
             temporary,
             os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
