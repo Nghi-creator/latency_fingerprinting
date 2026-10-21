@@ -62,6 +62,8 @@ from .observability import (
     StageTraceSummaryV2,
 )
 from .pipeline import build_observation_record, canonical_json
+from .profiles import ProfilePolicy, ProfileSnapshot
+from .profiles.commands import register_profile_commands
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .scenarios.campaign import (
     CampaignIndex,
@@ -78,6 +80,8 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "profile-policy-v1": ProfilePolicy,
+    "profile-snapshot-v1": ProfileSnapshot,
     "calibration-dataset-v1": CalibrationDataset,
     "calibration-report-v1": CalibrationReport,
     "stage-trace-record-v2": StageTraceRecordV2,
@@ -125,6 +129,8 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "profile-policy-v1",
+        "profile-snapshot-v1",
         "calibration-dataset-v1",
         "calibration-report-v1",
         "experiment-manifest-v2",
@@ -157,6 +163,8 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            ProfilePolicy,
+            ProfileSnapshot,
             CalibrationDataset,
             CalibrationReport,
             StageTraceRecordV2,
@@ -387,6 +395,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_campaign_command(subparsers)
     register_overhead_command(subparsers)
     register_calibration_command(subparsers)
+    register_profile_commands(subparsers)
     return parser
 
 

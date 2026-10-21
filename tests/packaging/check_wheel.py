@@ -105,6 +105,38 @@ def main() -> None:
             elif report_projection(json.loads(inspected.read_bytes())) != expected_case:
                 raise ValueError("installed N6 independent expectation mismatch")
         load_release(corpus)
+        from tests.profiles.check_reproduction import FIXTURES as PROFILE_FIXTURES
+        from tests.profiles.check_reproduction import check_reproduction as check_profiles
+
+        profile_corpus = directory / "profiles"
+        shutil.copytree(PROFILE_FIXTURES, profile_corpus)
+
+        def invoke_installed(arguments):
+            # Trusted installed executable and pinned fixture operands, without a shell.
+            completed = subprocess.run(  # noqa: S603
+                [str(executable), *map(str, arguments)],
+                cwd=directory,
+                capture_output=True,
+                check=False,
+                timeout=30,
+                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
+            )
+            return completed.returncode, completed.stdout, completed.stderr
+
+        profile_release = check_profiles(
+            profile_corpus,
+            n6_directory=corpus,
+            invoke=invoke_installed,
+        )
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                "from latency_fingerprinting.models import ProfilePolicy, ProfileSnapshot",
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -123,8 +155,8 @@ def main() -> None:
         if not expected or expected != actual:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
-            f"Installed wheel imports, all 14 N6 cases, console entry point "
-            f"and all {len(actual)} schemas verified."
+            f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
+            f"entry point and all {len(actual)} schemas verified."
         )
 
 
