@@ -1,0 +1,7 @@
+{
+  "actor_id": "operator",
+  "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "reason_code": "operator_rejected",
+  "replacement_snapshot_id": null,
+  "subject_snapshot_id": "profile-snapshot-2b0ae8135f5ca266265770ffbe120e160fa13412885d1911a1c2e6e1dd663f98"
+}

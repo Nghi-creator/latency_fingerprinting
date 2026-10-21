@@ -5,8 +5,8 @@ Run checks from an installed development environment:
 ```sh
 python -m pytest --cov=latency_fingerprinting --cov-branch \
   --cov-report=term-missing --cov-fail-under=85
-ruff check.
-ruff format --check.
+ruff check .
+ruff format --check .
 python -m pip check
 python -m latency_fingerprinting export-schemas --output schemas --check
 python -m latency_fingerprinting export-metric-registry \
@@ -28,6 +28,7 @@ python -m tests.observability.check_reproduction
 python -m tests.observability.check_browser_execution
 python -m tests.scenarios.check_reproduction
 python -m tests.calibration.check_reproduction
+python -m tests.profiles.check_reproduction
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
@@ -43,8 +44,9 @@ python -m tests.packaging.check_wheel
 
 This builds a wheel and installs it in a fresh temporary environment outside the
 checkout. It verifies the import location, console entry point, all frozen N6
-calibration cases (including private errors/preserved output), N7 policy/snapshot
-standalone validation and schema exports.
+calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md),
+including standalone validation, linked builds, lifecycle operations, private
+errors/preserved output and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

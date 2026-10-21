@@ -105,107 +105,29 @@ def main() -> None:
             elif report_projection(json.loads(inspected.read_bytes())) != expected_case:
                 raise ValueError("installed N6 independent expectation mismatch")
         load_release(corpus)
-        from tests.profiles.cases import (
-            canonical,
-            draft,
-            excluded,
-            policy,
-            reviewed,
-            seal,
-            supported,
+        from tests.profiles.check_reproduction import FIXTURES as PROFILE_FIXTURES
+        from tests.profiles.check_reproduction import check_reproduction as check_profiles
+
+        profile_corpus = directory / "profiles"
+        shutil.copytree(PROFILE_FIXTURES, profile_corpus)
+
+        def invoke_installed(arguments):
+            # Trusted installed executable and pinned fixture operands, without a shell.
+            completed = subprocess.run(  # noqa: S603
+                [str(executable), *map(str, arguments)],
+                cwd=directory,
+                capture_output=True,
+                check=False,
+                timeout=30,
+                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
+            )
+            return completed.returncode, completed.stdout, completed.stderr
+
+        profile_release = check_profiles(
+            profile_corpus,
+            n6_directory=corpus,
+            invoke=invoke_installed,
         )
-
-        for name, payload in (
-            ("profile-policy", policy()),
-            ("profile-draft", draft()),
-            ("profile-supported", supported()),
-        ):
-            source = directory / (name + ".json")
-            source.write_bytes(canonical(payload))
-            # Validate independent model-only examples with the installed entry point.
-            completed = subprocess.run(  # noqa: S603
-                [str(executable), "validate", str(source)],
-                cwd=directory,
-                capture_output=True,
-                check=False,
-                timeout=30,
-                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
-            )
-            if (
-                completed.returncode != 0
-                or completed.stderr
-                or completed.stdout != source.read_bytes()
-            ):
-                raise ValueError("installed N7 standalone validation drift")
-
-        # All new commands execute outside the checkout against the installed wheel.
-        def profile_command(command, arguments, expected=None):
-            output = directory / "profile-output.json"
-            output.write_bytes(b"retained output\n")
-            completed = subprocess.run(  # noqa: S603
-                [str(executable), command, *map(str, arguments), "--output", str(output)],
-                cwd=directory,
-                capture_output=True,
-                check=False,
-                timeout=30,
-                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
-            )
-            invalid = expected is None
-            if (
-                completed.returncode != int(invalid)
-                or completed.stdout
-                or completed.stderr
-                != (f"error: {command}: invalid_input_or_output\n".encode() if invalid else b"")
-                or output.read_bytes() != (b"retained output\n" if invalid else canonical(expected))
-            ):
-                raise ValueError("installed N7 command parity/privacy drift")
-
-        policy_path = directory / "profile-policy.json"
-        profile_command("create-profile-snapshot", ["--policy", policy_path], draft())
-        for name, expected_case in release["cases"].items():
-            profile_command(
-                "build-profiles",
-                ["--directory", corpus / name, "--policy", policy_path],
-                None if "error" in expected_case else excluded(name),
-            )
-        parent = supported()  # Artificial model-only lifecycle checks, not linked evidence.
-        target = supported()
-        target["lifecycle"]["parent_snapshot_id"] = draft()["snapshot_id"]
-        seal(target)
-        target_path = directory / "replacement.json"
-        target_path.write_bytes(canonical(target))
-        for operation, reason in (
-            ("mark_stale", "external_review"),
-            ("reject", "operator_rejected"),
-            ("supersede", "replacement_selected"),
-        ):
-            target_id = target["snapshot_id"] if operation == "supersede" else None
-            declaration = dict(
-                actor_id="operator",
-                subject_snapshot_id=parent["snapshot_id"],
-                replacement_snapshot_id=target_id,
-                reason_code=reason,
-                evidence_sha256="sha256:" + "a" * 64,
-            )
-            review_path = directory / "review.json"
-            review_path.write_bytes(canonical(declaration))
-            arguments = [
-                "--snapshot",
-                directory / "profile-supported.json",
-                "--operation",
-                operation,
-                "--reason",
-                reason,
-                "--review",
-                review_path,
-            ]
-            if target_id is not None:
-                arguments += ["--replacement", target_path]
-            expected = reviewed(parent, operation, reason, target_id)
-            # The independent helper uses the same declared review digest.
-            assert expected["lifecycle"]["review"] == declaration
-            profile_command("transition-profile-snapshot", arguments, expected)
-        load_release(corpus)
         run(
             [
                 str(python),
@@ -233,8 +155,8 @@ def main() -> None:
         if not expected or expected != actual:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
-            f"Installed wheel imports, all 14 N6/N7 cases, N7 lifecycle commands, entry point "
-            f"and all {len(actual)} schemas verified."
+            f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
+            f"entry point and all {len(actual)} schemas verified."
         )
 
 
