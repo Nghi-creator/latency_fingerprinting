@@ -1,8 +1,9 @@
 # Robust profile policy and snapshot contract
 
-This specification freezes `n7-profile-statistics-v1`. It is an additive design
-contract; the models, schema exports, APIs and commands described here are not
-implemented yet. The [policy specification](N7_PROFILE_POLICY_SPEC.json) and
+This specification freezes `n7-profile-statistics-v1`. The additive policy and
+snapshot models, exact arithmetic and standalone validate/schema dispatch are
+implemented; see the [model guide](N7_MODELS.md). Linked building and lifecycle
+operations described here remain separate, unimplemented interfaces. The [policy specification](N7_PROFILE_POLICY_SPEC.json) and
 [independent examples](N7_PROFILE_EXAMPLES.md) define the first release's exact
 software-provisional behavior. Existing P0 and N2–N6 formats, releases, fixture
 pins and `match-v2` remain unchanged.
@@ -15,7 +16,7 @@ accuracy claims. No supplied real calibration set is asserted adequate.
 
 ## Roots, canonical identities and validation
 
-The public module will be `latency_fingerprinting.profiles`, with immutable
+The public module is `latency_fingerprinting.profiles`, with immutable
 `ProfilePolicy` (`profile-policy-v1`) and `ProfileSnapshot`
 (`profile-snapshot-v1`) roots. Both use snake_case and require every listed field,
 including nullable fields. Unknown fields, duplicate JSON keys, nonfinite values,
@@ -291,8 +292,8 @@ latency-fingerprint transition-profile-snapshot --snapshot SNAPSHOT.json \
 Build also accepts `--parent`, `--expected-split-id`,
 `--expected-dataset-content-hash`. Transition operation choices are `mark_stale`,
 `reject`, `supersede`; `--replacement` is required only for supersede and forbidden
-otherwise. Create has no source dataset. Generic validate/schema export will add
-only the two new roots. Review is a closed nested object, not a third root.
+otherwise. Create has no source dataset. Generic validate/schema export recognize
+only the two new profile roots. Review is a closed nested object, not a third root.
 
 Linked public function failures are fixed `ValueError("invalid_profile_snapshot")`
 for create/transition and `ValueError("invalid_profile_build")` for build. Internal

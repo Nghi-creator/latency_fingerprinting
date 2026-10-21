@@ -1,0 +1,331 @@
+{
+  "$defs": {
+    "Gates": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_active_coverage": {
+          "$ref": "#/$defs/Threshold"
+        },
+        "minimum_active_features": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Active Features",
+          "type": "integer"
+        },
+        "minimum_feature_availability": {
+          "$ref": "#/$defs/Threshold"
+        },
+        "minimum_feature_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Feature Groups",
+          "type": "integer"
+        },
+        "minimum_training_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Training Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "minimum_training_groups",
+        "minimum_feature_groups",
+        "minimum_feature_availability",
+        "minimum_active_features",
+        "minimum_active_coverage"
+      ],
+      "title": "Gates",
+      "type": "object"
+    },
+    "Registry": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registry_version",
+        "content_hash"
+      ],
+      "title": "Registry",
+      "type": "object"
+    },
+    "SelectionPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "exclude_duplicates": {
+          "title": "Exclude Duplicates",
+          "type": "boolean"
+        },
+        "input_kind": {
+          "const": "response",
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "mixed_group_labels": {
+          "const": "exclude_partition_group",
+          "title": "Mixed Group Labels",
+          "type": "string"
+        },
+        "partition_method": {
+          "const": "n6_exact_partition_v1",
+          "title": "Partition Method",
+          "type": "string"
+        },
+        "require_n6_eligible": {
+          "title": "Require N6 Eligible",
+          "type": "boolean"
+        },
+        "role": {
+          "const": "training",
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_kind",
+        "role",
+        "require_n6_eligible",
+        "exclude_duplicates",
+        "mixed_group_labels",
+        "partition_method"
+      ],
+      "title": "SelectionPolicy",
+      "type": "object"
+    },
+    "StatisticsPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "absolute_deviation": {
+          "const": "exact_binary64_difference_round_once",
+          "title": "Absolute Deviation",
+          "type": "string"
+        },
+        "center": {
+          "const": "median",
+          "title": "Center",
+          "type": "string"
+        },
+        "computed_zero": {
+          "const": "positive_zero",
+          "title": "Computed Zero",
+          "type": "string"
+        },
+        "dispersion": {
+          "const": "raw_mad",
+          "title": "Dispersion",
+          "type": "string"
+        },
+        "dispersion_floor": {
+          "title": "Dispersion Floor",
+          "type": "null"
+        },
+        "empty_feature": {
+          "const": "unavailable",
+          "title": "Empty Feature",
+          "type": "string"
+        },
+        "even_median": {
+          "const": "exact_binary64_midpoint_round_once",
+          "title": "Even Median",
+          "type": "string"
+        },
+        "finite_arithmetic": {
+          "const": "reject_unrepresentable",
+          "title": "Finite Arithmetic",
+          "type": "string"
+        },
+        "nonzero_to_zero": {
+          "const": "reject",
+          "title": "Nonzero To Zero",
+          "type": "string"
+        },
+        "within_group": {
+          "const": "median",
+          "title": "Within Group",
+          "type": "string"
+        },
+        "zero_dispersion": {
+          "const": "exclude",
+          "title": "Zero Dispersion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "within_group",
+        "center",
+        "dispersion",
+        "even_median",
+        "absolute_deviation",
+        "empty_feature",
+        "zero_dispersion",
+        "dispersion_floor",
+        "nonzero_to_zero",
+        "finite_arithmetic",
+        "computed_zero"
+      ],
+      "title": "StatisticsPolicy",
+      "type": "object"
+    },
+    "Threshold": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "title": "Threshold",
+      "type": "object"
+    },
+    "Weights": {
+      "additionalProperties": false,
+      "properties": {
+        "excluded": {
+          "title": "Excluded",
+          "type": "number"
+        },
+        "supported": {
+          "title": "Supported",
+          "type": "number"
+        }
+      },
+      "required": [
+        "supported",
+        "excluded"
+      ],
+      "title": "Weights",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "calibration_method_release": {
+      "const": "n6-calibration-evidence-v1",
+      "title": "Calibration Method Release",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "feature_names": {
+      "items": {
+        "enum": [
+          "client.available_incoming_bitrate_kbps",
+          "client.decode_time_mean_ms",
+          "client.frames_decoded_rate_fps",
+          "client.frames_dropped_rate_fps",
+          "client.freeze_count_rate_per_min",
+          "client.freeze_duration_rate_ms_per_s",
+          "client.jitter_buffer_delay_mean_ms",
+          "client.received_bitrate_kbps",
+          "client.received_fps",
+          "encoder.frames_dropped_rate_fps",
+          "encoder.frames_in_rate_fps",
+          "encoder.frames_out_rate_fps",
+          "encoder.queue_level_buffers",
+          "host.camera_cpu_percent",
+          "host.camera_rss_mib",
+          "host.game_cpu_percent",
+          "host.game_rss_mib",
+          "host.node_cpu_percent",
+          "host.node_rss_mib",
+          "transport.jitter_ms",
+          "transport.packets_lost_rate_per_s",
+          "transport.round_trip_time_ms"
+        ],
+        "type": "string"
+      },
+      "maxItems": 22,
+      "minItems": 22,
+      "title": "Feature Names",
+      "type": "array"
+    },
+    "gates": {
+      "$ref": "#/$defs/Gates"
+    },
+    "method_release": {
+      "const": "n7-profile-statistics-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "parameter_provenance": {
+      "const": "software_provisional",
+      "title": "Parameter Provenance",
+      "type": "string"
+    },
+    "policy_id": {
+      "pattern": "^(?:profile-policy-[a-f0-9]{64})$",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "policy_version": {
+      "const": "1.0.0",
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "registry": {
+      "$ref": "#/$defs/Registry"
+    },
+    "response_policy_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Response Policy Hash",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "profile-policy-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "selection": {
+      "$ref": "#/$defs/SelectionPolicy"
+    },
+    "statistics": {
+      "$ref": "#/$defs/StatisticsPolicy"
+    },
+    "weights": {
+      "$ref": "#/$defs/Weights"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "policy_id",
+    "content_hash",
+    "policy_version",
+    "parameter_provenance",
+    "calibration_method_release",
+    "registry",
+    "response_policy_hash",
+    "feature_names",
+    "selection",
+    "statistics",
+    "gates",
+    "weights"
+  ],
+  "title": "ProfilePolicy",
+  "type": "object"
+}

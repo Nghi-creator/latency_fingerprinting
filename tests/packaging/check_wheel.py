@@ -105,6 +105,39 @@ def main() -> None:
             elif report_projection(json.loads(inspected.read_bytes())) != expected_case:
                 raise ValueError("installed N6 independent expectation mismatch")
         load_release(corpus)
+        from tests.profiles.cases import canonical, draft, policy, supported
+
+        for name, payload in (
+            ("profile-policy", policy()),
+            ("profile-draft", draft()),
+            ("profile-supported", supported()),
+        ):
+            source = directory / (name + ".json")
+            source.write_bytes(canonical(payload))
+            # Validate independent model-only examples with the installed entry point.
+            completed = subprocess.run(  # noqa: S603
+                [str(executable), "validate", str(source)],
+                cwd=directory,
+                capture_output=True,
+                check=False,
+                timeout=30,
+                env={k: v for k, v in os.environ.items() if k not in {"PYTHONPATH", "PYTHONHOME"}},
+            )
+            if (
+                completed.returncode != 0
+                or completed.stderr
+                or completed.stdout != source.read_bytes()
+            ):
+                raise ValueError("installed N7 standalone validation drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                "from latency_fingerprinting.models import ProfilePolicy, ProfileSnapshot",
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -123,7 +156,7 @@ def main() -> None:
         if not expected or expected != actual:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
-            f"Installed wheel imports, all 14 N6 cases, console entry point "
+            f"Installed wheel imports, all 14 N6 cases, N7 standalone roots, console entry point "
             f"and all {len(actual)} schemas verified."
         )
 

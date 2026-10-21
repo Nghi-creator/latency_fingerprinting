@@ -11,6 +11,7 @@ from ..observability import (
     StageTraceSummary,
     StageTraceSummaryV2,
 )
+from ..profiles import ProfilePolicy, ProfileSnapshot
 from ..scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .common import (
     CONTRACT_VERSION,
@@ -217,3 +218,6 @@ __all__ += ["ExperimentManifest", "ExperimentPhaseEvidence", "ExperimentResult"]
 
 
 __all__ += ["CalibrationDataset", "CalibrationReport"]
+
+
+__all__ += ["ProfilePolicy", "ProfileSnapshot"]

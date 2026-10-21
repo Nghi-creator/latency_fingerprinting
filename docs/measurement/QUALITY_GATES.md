@@ -43,7 +43,8 @@ python -m tests.packaging.check_wheel
 
 This builds a wheel and installs it in a fresh temporary environment outside the
 checkout. It verifies the import location, console entry point, all frozen N6
-calibration cases (including private errors/preserved output), and schema exports.
+calibration cases (including private errors/preserved output), N7 policy/snapshot
+standalone validation and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

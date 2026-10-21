@@ -1,0 +1,1472 @@
+{
+  "$defs": {
+    "CalibrationArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "maxLength": 135,
+          "title": "File Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "analytical_response",
+            "observation_window",
+            "experiment_bundle"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "kind",
+        "file_name",
+        "sha256",
+        "bytes"
+      ],
+      "title": "CalibrationArtifact",
+      "type": "object"
+    },
+    "CalibrationCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "by_role": {
+          "$ref": "#/$defs/RoleCounts"
+        },
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups",
+        "by_role"
+      ],
+      "title": "CalibrationCounts",
+      "type": "object"
+    },
+    "CalibrationReport": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_receipts": {
+          "items": {
+            "$ref": "#/$defs/CalibrationArtifact"
+          },
+          "maxItems": 256,
+          "title": "Artifact Receipts",
+          "type": "array"
+        },
+        "assurance": {
+          "const": "external_review_declarations_not_authenticated",
+          "title": "Assurance",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/CalibrationCounts"
+        },
+        "dataset_content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Dataset Content Hash",
+          "type": "string"
+        },
+        "dataset_id": {
+          "pattern": "^(?:dataset-[a-f0-9]{64})$",
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/EntryInspection"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Entries",
+          "type": "array"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/$defs/GroupInspection"
+          },
+          "maxItems": 256,
+          "title": "Groups",
+          "type": "array"
+        },
+        "method_release": {
+          "const": "n6-calibration-evidence-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "partitions": {
+          "items": {
+            "$ref": "#/$defs/PartitionInspection"
+          },
+          "maxItems": 256,
+          "title": "Partitions",
+          "type": "array"
+        },
+        "report_id": {
+          "pattern": "^(?:calibration-report-[a-f0-9]{64})$",
+          "title": "Report Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "calibration-report-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "split_id": {
+          "pattern": "^(?:split-[a-f0-9]{64})$",
+          "title": "Split Id",
+          "type": "string"
+        },
+        "split_mode": {
+          "enum": [
+            "prospective",
+            "retrospective"
+          ],
+          "title": "Split Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "report_id",
+        "dataset_id",
+        "dataset_content_hash",
+        "split_id",
+        "split_mode",
+        "artifact_receipts",
+        "groups",
+        "entries",
+        "partitions",
+        "counts",
+        "assurance"
+      ],
+      "title": "CalibrationReport",
+      "type": "object"
+    },
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "active_feature_count": {
+          "maximum": 22,
+          "minimum": 0,
+          "title": "Active Feature Count",
+          "type": "integer"
+        },
+        "active_feature_coverage": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "features": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FeatureStatistics"
+          },
+          "maxProperties": 22,
+          "minProperties": 22,
+          "propertyNames": {
+            "enum": [
+              "client.available_incoming_bitrate_kbps",
+              "client.decode_time_mean_ms",
+              "client.frames_decoded_rate_fps",
+              "client.frames_dropped_rate_fps",
+              "client.freeze_count_rate_per_min",
+              "client.freeze_duration_rate_ms_per_s",
+              "client.jitter_buffer_delay_mean_ms",
+              "client.received_bitrate_kbps",
+              "client.received_fps",
+              "encoder.frames_dropped_rate_fps",
+              "encoder.frames_in_rate_fps",
+              "encoder.frames_out_rate_fps",
+              "encoder.queue_level_buffers",
+              "host.camera_cpu_percent",
+              "host.camera_rss_mib",
+              "host.game_cpu_percent",
+              "host.game_rss_mib",
+              "host.node_cpu_percent",
+              "host.node_rss_mib",
+              "transport.jitter_ms",
+              "transport.packets_lost_rate_per_s",
+              "transport.round_trip_time_ms"
+            ]
+          },
+          "title": "Features",
+          "type": "object"
+        },
+        "label": {
+          "enum": [
+            "healthy",
+            "host_contention",
+            "render_capture_slowdown"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "partition_id": {
+          "pattern": "^(?:partition-[a-f0-9]{64})$",
+          "title": "Partition Id",
+          "type": "string"
+        },
+        "profile_id": {
+          "pattern": "^(?:profile-[a-f0-9]{64})$",
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "selected_entry_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "title": "Selected Entry Ids",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "provisional",
+            "rejected"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "training_group_ids": {
+          "items": {
+            "pattern": "^(?:group-[a-f0-9]{64})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "title": "Training Group Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "profile_id",
+        "partition_id",
+        "label",
+        "state",
+        "reason_codes",
+        "training_group_ids",
+        "selected_entry_ids",
+        "features",
+        "active_feature_count",
+        "active_feature_coverage"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "EntryInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible": {
+          "title": "Eligible",
+          "type": "boolean"
+        },
+        "eligible_feature_count": {
+          "anyOf": [
+            {
+              "maximum": 22,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eligible Feature Count"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:group-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Group Id"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window",
+            "missing"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label"
+        },
+        "partition_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:partition-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Partition Id"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "engineering_only",
+              "retrospective_split",
+              "split_unverified",
+              "independence_unverified",
+              "synthetic_only",
+              "confounded_response",
+              "insufficient_response_features",
+              "baseline_invalid",
+              "label_unverified",
+              "effect_unverified",
+              "binding_unverified",
+              "duplicate_evidence"
+            ],
+            "type": "string"
+          },
+          "maxItems": 13,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "representative_entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Representative Entry Id",
+          "type": "string"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "engineering",
+                "training",
+                "validation",
+                "final_test"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        }
+      },
+      "required": [
+        "entry_id",
+        "input_kind",
+        "group_id",
+        "role",
+        "partition_id",
+        "label",
+        "eligible",
+        "reason_codes",
+        "representative_entry_id",
+        "eligible_feature_count"
+      ],
+      "title": "EntryInspection",
+      "type": "object"
+    },
+    "EvidenceCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups"
+      ],
+      "title": "EvidenceCounts",
+      "type": "object"
+    },
+    "FeatureStatistics": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "center": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Center"
+        },
+        "contributing_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Contributing Groups",
+          "type": "integer"
+        },
+        "dispersion": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Dispersion"
+        },
+        "group_values": {
+          "items": {
+            "$ref": "#/$defs/GroupValue"
+          },
+          "maxItems": 256,
+          "title": "Group Values",
+          "type": "array"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "insufficient_group_support",
+              "insufficient_availability",
+              "zero_dispersion"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "excluded"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "weight": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Weight",
+          "type": "number"
+        }
+      },
+      "required": [
+        "state",
+        "reason_codes",
+        "weight",
+        "group_values",
+        "contributing_groups",
+        "availability",
+        "center",
+        "dispersion"
+      ],
+      "title": "FeatureStatistics",
+      "type": "object"
+    },
+    "Gates": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_active_coverage": {
+          "$ref": "#/$defs/Threshold"
+        },
+        "minimum_active_features": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Active Features",
+          "type": "integer"
+        },
+        "minimum_feature_availability": {
+          "$ref": "#/$defs/Threshold"
+        },
+        "minimum_feature_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Feature Groups",
+          "type": "integer"
+        },
+        "minimum_training_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Minimum Training Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "minimum_training_groups",
+        "minimum_feature_groups",
+        "minimum_feature_availability",
+        "minimum_active_features",
+        "minimum_active_coverage"
+      ],
+      "title": "Gates",
+      "type": "object"
+    },
+    "GroupInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "independence_review_state": {
+          "enum": [
+            "confirmed",
+            "rejected",
+            "uncertain",
+            "missing"
+          ],
+          "title": "Independence Review State",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "group_id",
+        "source_ids",
+        "role",
+        "independence_review_state"
+      ],
+      "title": "GroupInspection",
+      "type": "object"
+    },
+    "GroupValue": {
+      "additionalProperties": false,
+      "properties": {
+        "entry_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Entry Ids",
+          "type": "array"
+        },
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "median": {
+          "title": "Median",
+          "type": "number"
+        }
+      },
+      "required": [
+        "group_id",
+        "entry_ids",
+        "median"
+      ],
+      "title": "GroupValue",
+      "type": "object"
+    },
+    "InputSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "feature_values": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "maxProperties": 22,
+              "minProperties": 22,
+              "propertyNames": {
+                "enum": [
+                  "client.available_incoming_bitrate_kbps",
+                  "client.decode_time_mean_ms",
+                  "client.frames_decoded_rate_fps",
+                  "client.frames_dropped_rate_fps",
+                  "client.freeze_count_rate_per_min",
+                  "client.freeze_duration_rate_ms_per_s",
+                  "client.jitter_buffer_delay_mean_ms",
+                  "client.received_bitrate_kbps",
+                  "client.received_fps",
+                  "encoder.frames_dropped_rate_fps",
+                  "encoder.frames_in_rate_fps",
+                  "encoder.frames_out_rate_fps",
+                  "encoder.queue_level_buffers",
+                  "host.camera_cpu_percent",
+                  "host.camera_rss_mib",
+                  "host.game_cpu_percent",
+                  "host.game_rss_mib",
+                  "host.node_cpu_percent",
+                  "host.node_rss_mib",
+                  "transport.jitter_ms",
+                  "transport.packets_lost_rate_per_s",
+                  "transport.round_trip_time_ms"
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Feature Values"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "baseline_only",
+              "not_training",
+              "n6_excluded",
+              "duplicate_evidence",
+              "unknown_label",
+              "mixed_group_labels"
+            ],
+            "type": "string"
+          },
+          "maxItems": 7,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "selected": {
+          "title": "Selected",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "entry_id",
+        "selected",
+        "reason_codes",
+        "feature_values"
+      ],
+      "title": "InputSelection",
+      "type": "object"
+    },
+    "Lifecycle": {
+      "additionalProperties": false,
+      "properties": {
+        "operation": {
+          "enum": [
+            "create",
+            "build",
+            "mark_stale",
+            "reject",
+            "supersede"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "parent_snapshot_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:profile-snapshot-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parent Snapshot Id"
+        },
+        "reason_code": {
+          "enum": [
+            "draft",
+            "supported_profiles",
+            "no_supported_profiles",
+            "method_changed",
+            "context_changed",
+            "policy_changed",
+            "external_review",
+            "operator_rejected",
+            "evidence_rejected",
+            "replacement_selected"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "replacement_snapshot_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:profile-snapshot-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Replacement Snapshot Id"
+        },
+        "review": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LifecycleReview"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "enum": [
+            "created",
+            "provisional",
+            "rejected",
+            "stale",
+            "superseded"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "operation",
+        "parent_snapshot_id",
+        "replacement_snapshot_id",
+        "reason_code",
+        "review"
+      ],
+      "title": "Lifecycle",
+      "type": "object"
+    },
+    "LifecycleReview": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "evidence_sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Evidence Sha256",
+          "type": "string"
+        },
+        "reason_code": {
+          "enum": [
+            "draft",
+            "supported_profiles",
+            "no_supported_profiles",
+            "method_changed",
+            "context_changed",
+            "policy_changed",
+            "external_review",
+            "operator_rejected",
+            "evidence_rejected",
+            "replacement_selected"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "replacement_snapshot_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:profile-snapshot-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Replacement Snapshot Id"
+        },
+        "subject_snapshot_id": {
+          "pattern": "^(?:profile-snapshot-[a-f0-9]{64})$",
+          "title": "Subject Snapshot Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_id",
+        "subject_snapshot_id",
+        "replacement_snapshot_id",
+        "reason_code",
+        "evidence_sha256"
+      ],
+      "title": "LifecycleReview",
+      "type": "object"
+    },
+    "PartitionInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "partition_id": {
+          "pattern": "^(?:partition-[a-f0-9]{64})$",
+          "title": "Partition Id",
+          "type": "string"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "partition_id",
+        "input_kind",
+        "retained_entries",
+        "eligible_entries",
+        "eligible_groups"
+      ],
+      "title": "PartitionInspection",
+      "type": "object"
+    },
+    "ProfilePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "calibration_method_release": {
+          "const": "n6-calibration-evidence-v1",
+          "title": "Calibration Method Release",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "feature_names": {
+          "items": {
+            "enum": [
+              "client.available_incoming_bitrate_kbps",
+              "client.decode_time_mean_ms",
+              "client.frames_decoded_rate_fps",
+              "client.frames_dropped_rate_fps",
+              "client.freeze_count_rate_per_min",
+              "client.freeze_duration_rate_ms_per_s",
+              "client.jitter_buffer_delay_mean_ms",
+              "client.received_bitrate_kbps",
+              "client.received_fps",
+              "encoder.frames_dropped_rate_fps",
+              "encoder.frames_in_rate_fps",
+              "encoder.frames_out_rate_fps",
+              "encoder.queue_level_buffers",
+              "host.camera_cpu_percent",
+              "host.camera_rss_mib",
+              "host.game_cpu_percent",
+              "host.game_rss_mib",
+              "host.node_cpu_percent",
+              "host.node_rss_mib",
+              "transport.jitter_ms",
+              "transport.packets_lost_rate_per_s",
+              "transport.round_trip_time_ms"
+            ],
+            "type": "string"
+          },
+          "maxItems": 22,
+          "minItems": 22,
+          "title": "Feature Names",
+          "type": "array"
+        },
+        "gates": {
+          "$ref": "#/$defs/Gates"
+        },
+        "method_release": {
+          "const": "n7-profile-statistics-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "parameter_provenance": {
+          "const": "software_provisional",
+          "title": "Parameter Provenance",
+          "type": "string"
+        },
+        "policy_id": {
+          "pattern": "^(?:profile-policy-[a-f0-9]{64})$",
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_version": {
+          "const": "1.0.0",
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "registry": {
+          "$ref": "#/$defs/Registry"
+        },
+        "response_policy_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Response Policy Hash",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "profile-policy-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "selection": {
+          "$ref": "#/$defs/SelectionPolicy"
+        },
+        "statistics": {
+          "$ref": "#/$defs/StatisticsPolicy"
+        },
+        "weights": {
+          "$ref": "#/$defs/Weights"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "policy_id",
+        "content_hash",
+        "policy_version",
+        "parameter_provenance",
+        "calibration_method_release",
+        "registry",
+        "response_policy_hash",
+        "feature_names",
+        "selection",
+        "statistics",
+        "gates",
+        "weights"
+      ],
+      "title": "ProfilePolicy",
+      "type": "object"
+    },
+    "Ratio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator",
+        "value"
+      ],
+      "title": "Ratio",
+      "type": "object"
+    },
+    "Registry": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registry_version",
+        "content_hash"
+      ],
+      "title": "Registry",
+      "type": "object"
+    },
+    "RoleCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "engineering": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "final_test": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "training": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "validation": {
+          "$ref": "#/$defs/EvidenceCounts"
+        }
+      },
+      "required": [
+        "engineering",
+        "training",
+        "validation",
+        "final_test"
+      ],
+      "title": "RoleCounts",
+      "type": "object"
+    },
+    "SelectionCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Baseline Entries",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "heldout_response_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Heldout Response Entries",
+          "type": "integer"
+        },
+        "missing_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Missing Entries",
+          "type": "integer"
+        },
+        "mixed_label_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Mixed Label Groups",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "selected_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Selected Entries",
+          "type": "integer"
+        },
+        "selected_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Selected Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "selected_entries",
+        "excluded_entries",
+        "selected_groups",
+        "baseline_entries",
+        "missing_entries",
+        "heldout_response_entries",
+        "mixed_label_groups"
+      ],
+      "title": "SelectionCounts",
+      "type": "object"
+    },
+    "SelectionPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "exclude_duplicates": {
+          "title": "Exclude Duplicates",
+          "type": "boolean"
+        },
+        "input_kind": {
+          "const": "response",
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "mixed_group_labels": {
+          "const": "exclude_partition_group",
+          "title": "Mixed Group Labels",
+          "type": "string"
+        },
+        "partition_method": {
+          "const": "n6_exact_partition_v1",
+          "title": "Partition Method",
+          "type": "string"
+        },
+        "require_n6_eligible": {
+          "title": "Require N6 Eligible",
+          "type": "boolean"
+        },
+        "role": {
+          "const": "training",
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_kind",
+        "role",
+        "require_n6_eligible",
+        "exclude_duplicates",
+        "mixed_group_labels",
+        "partition_method"
+      ],
+      "title": "SelectionPolicy",
+      "type": "object"
+    },
+    "StatisticsPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "absolute_deviation": {
+          "const": "exact_binary64_difference_round_once",
+          "title": "Absolute Deviation",
+          "type": "string"
+        },
+        "center": {
+          "const": "median",
+          "title": "Center",
+          "type": "string"
+        },
+        "computed_zero": {
+          "const": "positive_zero",
+          "title": "Computed Zero",
+          "type": "string"
+        },
+        "dispersion": {
+          "const": "raw_mad",
+          "title": "Dispersion",
+          "type": "string"
+        },
+        "dispersion_floor": {
+          "title": "Dispersion Floor",
+          "type": "null"
+        },
+        "empty_feature": {
+          "const": "unavailable",
+          "title": "Empty Feature",
+          "type": "string"
+        },
+        "even_median": {
+          "const": "exact_binary64_midpoint_round_once",
+          "title": "Even Median",
+          "type": "string"
+        },
+        "finite_arithmetic": {
+          "const": "reject_unrepresentable",
+          "title": "Finite Arithmetic",
+          "type": "string"
+        },
+        "nonzero_to_zero": {
+          "const": "reject",
+          "title": "Nonzero To Zero",
+          "type": "string"
+        },
+        "within_group": {
+          "const": "median",
+          "title": "Within Group",
+          "type": "string"
+        },
+        "zero_dispersion": {
+          "const": "exclude",
+          "title": "Zero Dispersion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "within_group",
+        "center",
+        "dispersion",
+        "even_median",
+        "absolute_deviation",
+        "empty_feature",
+        "zero_dispersion",
+        "dispersion_floor",
+        "nonzero_to_zero",
+        "finite_arithmetic",
+        "computed_zero"
+      ],
+      "title": "StatisticsPolicy",
+      "type": "object"
+    },
+    "Threshold": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "title": "Threshold",
+      "type": "object"
+    },
+    "Weights": {
+      "additionalProperties": false,
+      "properties": {
+        "excluded": {
+          "title": "Excluded",
+          "type": "number"
+        },
+        "supported": {
+          "title": "Supported",
+          "type": "number"
+        }
+      },
+      "required": [
+        "supported",
+        "excluded"
+      ],
+      "title": "Weights",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assurance": {
+      "const": "software_provisional_external_reviews_not_authenticated",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "counts": {
+      "$ref": "#/$defs/SelectionCounts"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/InputSelection"
+      },
+      "maxItems": 256,
+      "title": "Inputs",
+      "type": "array"
+    },
+    "lifecycle": {
+      "$ref": "#/$defs/Lifecycle"
+    },
+    "method_release": {
+      "const": "n7-profile-statistics-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "policy": {
+      "$ref": "#/$defs/ProfilePolicy"
+    },
+    "profiles": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "maxItems": 256,
+      "title": "Profiles",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "profile-snapshot-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "pattern": "^(?:profile-snapshot-[a-f0-9]{64})$",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "source_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CalibrationReport"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "snapshot_id",
+    "content_hash",
+    "policy",
+    "source_report",
+    "inputs",
+    "profiles",
+    "counts",
+    "lifecycle",
+    "assurance"
+  ],
+  "title": "ProfileSnapshot",
+  "type": "object"
+}
