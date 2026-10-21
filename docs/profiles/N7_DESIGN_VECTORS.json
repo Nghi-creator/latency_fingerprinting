@@ -1,0 +1,1251 @@
+{
+  "candidate_cases": [
+    {
+      "active_features": 17,
+      "case_id": "supported_boundary",
+      "expected_reasons": [],
+      "expected_state": "provisional",
+      "training_groups": 5
+    },
+    {
+      "active_features": 0,
+      "case_id": "four_training_groups",
+      "expected_reasons": [
+        "insufficient_training_groups",
+        "insufficient_active_features",
+        "insufficient_active_coverage"
+      ],
+      "expected_state": "rejected",
+      "training_groups": 4
+    },
+    {
+      "active_features": 16,
+      "case_id": "sixteen_features",
+      "expected_reasons": [
+        "insufficient_active_features",
+        "insufficient_active_coverage"
+      ],
+      "expected_state": "rejected",
+      "training_groups": 5
+    },
+    {
+      "active_features": 0,
+      "case_id": "no_training_data",
+      "expected_reasons": [
+        "insufficient_training_groups",
+        "insufficient_active_features",
+        "insufficient_active_coverage"
+      ],
+      "expected_state": "rejected",
+      "training_groups": 0
+    },
+    {
+      "active_features": 22,
+      "case_id": "all_features",
+      "expected_reasons": [],
+      "expected_state": "provisional",
+      "training_groups": 5
+    }
+  ],
+  "feature_cases": [
+    {
+      "case_id": "one_vote_per_group",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 5,
+          "value": 1.0
+        },
+        "center": 2.0,
+        "contributing_groups": 5,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ]
+      ]
+    },
+    {
+      "case_id": "even_group_count",
+      "expected": {
+        "availability": {
+          "denominator": 6,
+          "numerator": 6,
+          "value": 1.0
+        },
+        "center": 5.0,
+        "contributing_groups": 6,
+        "dispersion": 3.0,
+        "group_medians": [
+          0.0,
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          2.0
+        ],
+        [
+          4.0
+        ],
+        [
+          6.0
+        ],
+        [
+          8.0
+        ],
+        [
+          10.0
+        ]
+      ]
+    },
+    {
+      "case_id": "four_groups",
+      "expected": {
+        "availability": {
+          "denominator": 4,
+          "numerator": 4,
+          "value": 1.0
+        },
+        "center": 1.5,
+        "contributing_groups": 4,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0
+        ],
+        "reason_codes": [
+          "insufficient_group_support"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ]
+      ]
+    },
+    {
+      "case_id": "five_groups",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 5,
+          "value": 1.0
+        },
+        "center": 2.0,
+        "contributing_groups": 5,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ]
+      ]
+    },
+    {
+      "case_id": "availability_four_fifths_but_count_short",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 4,
+          "value": 0.8
+        },
+        "center": 1.5,
+        "contributing_groups": 4,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          null
+        ],
+        "reason_codes": [
+          "insufficient_group_support"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        []
+      ]
+    },
+    {
+      "case_id": "availability_three_fifths",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 3,
+          "value": 0.6
+        },
+        "center": 1.0,
+        "contributing_groups": 3,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          null,
+          null
+        ],
+        "reason_codes": [
+          "insufficient_group_support",
+          "insufficient_availability"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "case_id": "availability_boundary_supported",
+      "expected": {
+        "availability": {
+          "denominator": 10,
+          "numerator": 8,
+          "value": 0.8
+        },
+        "center": 3.5,
+        "contributing_groups": 8,
+        "dispersion": 2.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          null,
+          null
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ],
+        [
+          5.0
+        ],
+        [
+          6.0
+        ],
+        [
+          7.0
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "case_id": "availability_only_fails",
+      "expected": {
+        "availability": {
+          "denominator": 10,
+          "numerator": 6,
+          "value": 0.6
+        },
+        "center": 2.5,
+        "contributing_groups": 6,
+        "dispersion": 1.5,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "reason_codes": [
+          "insufficient_availability"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ],
+        [
+          5.0
+        ],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "case_id": "constant",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 5,
+          "value": 1.0
+        },
+        "center": 2.0,
+        "contributing_groups": 5,
+        "dispersion": 0.0,
+        "group_medians": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "reason_codes": [
+          "zero_dispersion"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          2.0
+        ],
+        [
+          2.0
+        ],
+        [
+          2.0
+        ],
+        [
+          2.0
+        ],
+        [
+          2.0
+        ]
+      ]
+    },
+    {
+      "case_id": "one_observation",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 1,
+          "value": 0.2
+        },
+        "center": 2.0,
+        "contributing_groups": 1,
+        "dispersion": 0.0,
+        "group_medians": [
+          2.0,
+          null,
+          null,
+          null,
+          null
+        ],
+        "reason_codes": [
+          "insufficient_group_support",
+          "insufficient_availability",
+          "zero_dispersion"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [
+          2.0
+        ],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "case_id": "missing_feature",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "center": null,
+        "contributing_groups": 0,
+        "dispersion": null,
+        "group_medians": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "reason_codes": [
+          "missing_measurements",
+          "insufficient_group_support",
+          "insufficient_availability"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "case_id": "no_selected_groups",
+      "expected": {
+        "availability": {
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "center": null,
+        "contributing_groups": 0,
+        "dispersion": null,
+        "group_medians": [],
+        "reason_codes": [
+          "missing_measurements",
+          "insufficient_group_support",
+          "insufficient_availability"
+        ],
+        "state": "excluded",
+        "weight": 0.0
+      },
+      "groups": []
+    },
+    {
+      "case_id": "outlier",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 5,
+          "value": 1.0
+        },
+        "center": 2.0,
+        "contributing_groups": 5,
+        "dispersion": 1.0,
+        "group_medians": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          100.0
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          100.0
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_values",
+      "expected": {
+        "availability": {
+          "denominator": 5,
+          "numerator": 5,
+          "value": 1.0
+        },
+        "center": -6.0,
+        "contributing_groups": 5,
+        "dispersion": 2.0,
+        "group_medians": [
+          -10.0,
+          -8.0,
+          -6.0,
+          -4.0,
+          -2.0
+        ],
+        "reason_codes": [],
+        "state": "supported",
+        "weight": 1.0
+      },
+      "groups": [
+        [
+          -10.0
+        ],
+        [
+          -8.0
+        ],
+        [
+          -6.0
+        ],
+        [
+          -4.0
+        ],
+        [
+          -2.0
+        ]
+      ]
+    }
+  ],
+  "feature_overflow_case": {
+    "error": "invalid_profile_arithmetic",
+    "groups": [
+      [
+        -1.7976931348623157e+308
+      ],
+      [
+        -1.7976931348623157e+308
+      ],
+      [
+        1.7976931348623157e+308
+      ]
+    ]
+  },
+  "heldout_case": {
+    "expected_center": 2.0,
+    "expected_dispersion": 1.0,
+    "final_test_values": [
+      -1000.0
+    ],
+    "mutated_final_test_values": [
+      1.7976931348623157e+308
+    ],
+    "mutated_validation_values": [
+      -1.7976931348623157e+308
+    ],
+    "training_groups": [
+      [
+        0.0
+      ],
+      [
+        1.0
+      ],
+      [
+        2.0
+      ],
+      [
+        3.0
+      ],
+      [
+        4.0
+      ]
+    ],
+    "validation_values": [
+      1000.0
+    ]
+  },
+  "lifecycle_cases": [
+    {
+      "error": null,
+      "expected_state": "created",
+      "has_review": false,
+      "has_source_report": false,
+      "operation": "create",
+      "parent": null,
+      "replacement_state": null
+    },
+    {
+      "error": null,
+      "expected_state": "provisional",
+      "has_review": false,
+      "has_source_report": true,
+      "operation": "build",
+      "parent": "created",
+      "replacement_state": null
+    },
+    {
+      "error": null,
+      "expected_state": "rejected",
+      "has_review": true,
+      "has_source_report": false,
+      "operation": "reject",
+      "parent": "created",
+      "replacement_state": null
+    },
+    {
+      "error": "invalid_profile_snapshot",
+      "expected_state": null,
+      "has_review": true,
+      "has_source_report": false,
+      "operation": "mark_stale",
+      "parent": "rejected",
+      "replacement_state": null
+    },
+    {
+      "error": null,
+      "expected_state": "stale",
+      "has_review": true,
+      "has_source_report": true,
+      "operation": "mark_stale",
+      "parent": "provisional",
+      "replacement_state": null
+    },
+    {
+      "error": "invalid_profile_snapshot",
+      "expected_state": null,
+      "has_review": false,
+      "has_source_report": true,
+      "operation": "mark_stale",
+      "parent": "provisional",
+      "replacement_state": null
+    },
+    {
+      "error": null,
+      "expected_state": "rejected",
+      "has_review": true,
+      "has_source_report": true,
+      "operation": "reject",
+      "parent": "stale",
+      "replacement_state": null
+    },
+    {
+      "error": null,
+      "expected_state": "superseded",
+      "has_review": true,
+      "has_source_report": true,
+      "operation": "supersede",
+      "parent": "stale",
+      "replacement_state": "provisional"
+    },
+    {
+      "error": "invalid_profile_snapshot",
+      "expected_state": null,
+      "has_review": true,
+      "has_source_report": true,
+      "operation": "supersede",
+      "parent": "provisional",
+      "replacement_state": "rejected"
+    },
+    {
+      "error": "invalid_profile_build",
+      "expected_state": null,
+      "has_review": false,
+      "has_source_report": true,
+      "operation": "build",
+      "parent": "superseded",
+      "replacement_state": null
+    },
+    {
+      "error": "invalid_profile_snapshot",
+      "expected_state": null,
+      "has_review": true,
+      "has_source_report": true,
+      "operation": "promote",
+      "parent": "provisional",
+      "replacement_state": null
+    },
+    {
+      "error": "invalid_profile_build",
+      "expected_state": null,
+      "has_review": false,
+      "has_source_report": true,
+      "operation": "build",
+      "parent": "trusted",
+      "replacement_state": null
+    }
+  ],
+  "method_release": "n7-profile-statistics-v1",
+  "numeric_cases": [
+    {
+      "case_id": "odd_unsorted",
+      "error": null,
+      "expected_hex": "0x1.0000000000000p+1",
+      "expected_value": 2.0,
+      "operation": "median",
+      "values": [
+        3.0,
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "case_id": "even",
+      "error": null,
+      "expected_hex": "0x1.8000000000000p+1",
+      "expected_value": 3.0,
+      "operation": "median",
+      "values": [
+        1.0,
+        2.0,
+        4.0,
+        9.0
+      ]
+    },
+    {
+      "case_id": "positive_extreme_midpoint",
+      "error": null,
+      "expected_hex": "0x1.fffffffffffffp+1023",
+      "expected_value": 1.7976931348623157e+308,
+      "operation": "median",
+      "values": [
+        1.7976931348623157e+308,
+        1.7976931348623157e+308
+      ]
+    },
+    {
+      "case_id": "negative_extreme_midpoint",
+      "error": null,
+      "expected_hex": "-0x1.fffffffffffffp+1023",
+      "expected_value": -1.7976931348623157e+308,
+      "operation": "median",
+      "values": [
+        -1.7976931348623157e+308,
+        -1.7976931348623157e+308
+      ]
+    },
+    {
+      "case_id": "identical_smallest_subnormal",
+      "error": null,
+      "expected_hex": "0x0.0000000000001p-1022",
+      "expected_value": 5e-324,
+      "operation": "median",
+      "values": [
+        5e-324,
+        5e-324
+      ]
+    },
+    {
+      "case_id": "subnormal_tie_even",
+      "error": null,
+      "expected_hex": "0x0.0000000000002p-1022",
+      "expected_value": 1e-323,
+      "operation": "median",
+      "values": [
+        5e-324,
+        1e-323
+      ]
+    },
+    {
+      "case_id": "subnormal_exact_cancellation",
+      "error": null,
+      "expected_hex": "0x0.0p+0",
+      "expected_value": 0.0,
+      "operation": "median",
+      "values": [
+        -5e-324,
+        5e-324
+      ]
+    },
+    {
+      "case_id": "midpoint_nonzero_rounds_to_zero",
+      "error": "invalid_profile_arithmetic",
+      "expected_hex": null,
+      "expected_value": null,
+      "operation": "median",
+      "values": [
+        0.0,
+        5e-324
+      ]
+    },
+    {
+      "case_id": "tie_to_even_lower",
+      "error": null,
+      "expected_hex": "0x1.0000000000000p+0",
+      "expected_value": 1.0,
+      "operation": "median",
+      "values": [
+        1.0,
+        1.0000000000000002
+      ]
+    },
+    {
+      "case_id": "tie_to_even_upper",
+      "error": null,
+      "expected_hex": "0x1.0000000000002p+0",
+      "expected_value": 1.0000000000000004,
+      "operation": "median",
+      "values": [
+        1.0000000000000002,
+        1.0000000000000004
+      ]
+    },
+    {
+      "case_id": "signed_zero_normalized",
+      "error": null,
+      "expected_hex": "0x0.0p+0",
+      "expected_value": 0.0,
+      "operation": "median",
+      "values": [
+        -0.0
+      ]
+    },
+    {
+      "case_id": "empty",
+      "error": "invalid_profile_arithmetic",
+      "expected_hex": null,
+      "expected_value": null,
+      "operation": "median",
+      "values": []
+    },
+    {
+      "case_id": "deviation_overflow",
+      "error": "invalid_profile_arithmetic",
+      "expected_hex": null,
+      "expected_value": null,
+      "operation": "absolute_deviation",
+      "values": [
+        1.7976931348623157e+308,
+        -1.7976931348623157e+308
+      ]
+    },
+    {
+      "case_id": "deviation_extreme_finite",
+      "error": null,
+      "expected_hex": "0x1.fffffffffffffp+1023",
+      "expected_value": 1.7976931348623157e+308,
+      "operation": "absolute_deviation",
+      "values": [
+        1.7976931348623157e+308,
+        0.0
+      ]
+    }
+  ],
+  "policy_content_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+  "provenance": "synthetic_design_only",
+  "schema_version": "n7-design-vectors-v1",
+  "selection_cases": [
+    {
+      "case_id": "training_only",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": []
+      },
+      "expected_selected_entries": [
+        "e1"
+      ],
+      "expected_selected_groups": [
+        "group-a"
+      ]
+    },
+    {
+      "case_id": "heldout",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "validation"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "not_training"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "n6_exclusion",
+      "entries": [
+        {
+          "eligible": false,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "n6_excluded"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "duplicate",
+      "entries": [
+        {
+          "eligible": false,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e0",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "n6_excluded",
+          "duplicate_evidence"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "unknown_label",
+      "entries": [
+        {
+          "eligible": false,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": null,
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "n6_excluded",
+          "unknown_label"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "missing",
+      "entries": [
+        {
+          "eligible": false,
+          "entry_id": "e1",
+          "group_id": null,
+          "input_kind": "missing",
+          "label": null,
+          "partition_id": null,
+          "representative_entry_id": "e1",
+          "role": null
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "missing_measurements"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "baseline",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "baseline_only"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "mixed_labels",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        },
+        {
+          "eligible": true,
+          "entry_id": "e2",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "render_capture_slowdown",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e2",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [
+          "mixed_group_labels"
+        ],
+        "e2": [
+          "mixed_group_labels"
+        ]
+      },
+      "expected_selected_entries": [],
+      "expected_selected_groups": []
+    },
+    {
+      "case_id": "unverified_label_does_not_poison",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "entry_id": "e2",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "render_capture_slowdown",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e2",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [],
+        "e2": [
+          "n6_excluded"
+        ]
+      },
+      "expected_selected_entries": [
+        "e1"
+      ],
+      "expected_selected_groups": [
+        "group-a"
+      ]
+    },
+    {
+      "case_id": "heldout_label_does_not_poison",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        },
+        {
+          "eligible": true,
+          "entry_id": "e2",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "render_capture_slowdown",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e2",
+          "role": "final_test"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [],
+        "e2": [
+          "not_training"
+        ]
+      },
+      "expected_selected_entries": [
+        "e1"
+      ],
+      "expected_selected_groups": [
+        "group-a"
+      ]
+    },
+    {
+      "case_id": "partitions_remain_separate",
+      "entries": [
+        {
+          "eligible": true,
+          "entry_id": "e1",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-a",
+          "representative_entry_id": "e1",
+          "role": "training"
+        },
+        {
+          "eligible": true,
+          "entry_id": "e2",
+          "group_id": "group-a",
+          "input_kind": "response",
+          "label": "render_capture_slowdown",
+          "partition_id": "partition-b",
+          "representative_entry_id": "e2",
+          "role": "training"
+        }
+      ],
+      "expected_reasons": {
+        "e1": [],
+        "e2": []
+      },
+      "expected_selected_entries": [
+        "e1",
+        "e2"
+      ],
+      "expected_selected_groups": [
+        "group-a"
+      ]
+    }
+  ],
+  "synthetic_dataset_expectation": {
+    "active_features": 0,
+    "profile_state": "rejected",
+    "profiles": 1,
+    "retained_entries": 3,
+    "selected_entries": 0,
+    "selected_groups": 0,
+    "source_fixture": "fixtures/calibration-v1/reviewed-roles"
+  }
+}
