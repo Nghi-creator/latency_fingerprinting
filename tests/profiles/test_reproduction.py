@@ -289,3 +289,15 @@ def test_post_execution_source_mutation_is_detected(family, tmp_path):
     with pytest.raises(ValueError, match="release pin mismatch"):
         module.check_reproduction(root, n6_directory=n6, invoke=invoke)
     assert calls == len(RELEASE["cases"])
+
+
+@pytest.mark.parametrize("fault", ["accept", "wrong_error"])
+def test_reproduction_rejects_faulty_api_error_behavior(fault, tmp_path, monkeypatch):
+    def broken(*args, **kwargs):
+        if fault == "wrong_error":
+            raise ValueError("different private failure")
+        return module.create_profile_snapshot(PAYLOADS["policy.json"])
+
+    monkeypatch.setattr(module, "build_profile_snapshot", broken)
+    with pytest.raises(ValueError, match="N7 (invalid case accepted|API error drift)"):
+        module.check_case(RELEASE["cases"]["changed-center"], PAYLOADS, tmp_path / "out.json")
