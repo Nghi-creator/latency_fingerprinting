@@ -1,0 +1,1450 @@
+{
+  "decision_cases": [
+    {
+      "case_id": "clear",
+      "chosen": "host_contention",
+      "common_count": 22,
+      "reasons": [],
+      "scores": [
+        [
+          "host_contention",
+          0.5
+        ],
+        [
+          "healthy",
+          1.0
+        ]
+      ],
+      "state": "provisional_match"
+    },
+    {
+      "case_id": "margin_boundary",
+      "chosen": "healthy",
+      "common_count": 17,
+      "reasons": [],
+      "scores": [
+        [
+          "healthy",
+          0.5
+        ],
+        [
+          "host_contention",
+          0.75
+        ]
+      ],
+      "state": "provisional_match"
+    },
+    {
+      "case_id": "small_margin",
+      "chosen": null,
+      "common_count": 22,
+      "reasons": [
+        "ambiguous_labels"
+      ],
+      "scores": [
+        [
+          "healthy",
+          0.5
+        ],
+        [
+          "host_contention",
+          0.625
+        ]
+      ],
+      "state": "unknown"
+    },
+    {
+      "case_id": "tie",
+      "chosen": null,
+      "common_count": 22,
+      "reasons": [
+        "ambiguous_labels"
+      ],
+      "scores": [
+        [
+          "healthy",
+          1.0
+        ],
+        [
+          "host_contention",
+          1.0
+        ]
+      ],
+      "state": "unknown"
+    },
+    {
+      "case_id": "distance_boundary",
+      "chosen": "healthy",
+      "common_count": 22,
+      "reasons": [],
+      "scores": [
+        [
+          "healthy",
+          3.0
+        ],
+        [
+          "host_contention",
+          3.5
+        ]
+      ],
+      "state": "provisional_match"
+    },
+    {
+      "case_id": "distance_shift",
+      "chosen": null,
+      "common_count": 22,
+      "reasons": [
+        "distance_exceeded"
+      ],
+      "scores": [
+        [
+          "healthy",
+          3.5
+        ],
+        [
+          "host_contention",
+          4.0
+        ]
+      ],
+      "state": "unknown"
+    },
+    {
+      "case_id": "single_label",
+      "chosen": null,
+      "common_count": 22,
+      "reasons": [
+        "no_competing_label"
+      ],
+      "scores": [
+        [
+          "healthy",
+          0.0
+        ]
+      ],
+      "state": "unknown"
+    },
+    {
+      "case_id": "single_far_label",
+      "chosen": null,
+      "common_count": 22,
+      "reasons": [
+        "no_competing_label",
+        "distance_exceeded"
+      ],
+      "scores": [
+        [
+          "healthy",
+          4.0
+        ]
+      ],
+      "state": "unknown"
+    },
+    {
+      "case_id": "no_compatible_profiles",
+      "chosen": null,
+      "common_count": 0,
+      "reasons": [
+        "no_compatible_profiles"
+      ],
+      "scores": [],
+      "state": "unknown"
+    },
+    {
+      "case_id": "sixteen_common",
+      "chosen": null,
+      "common_count": 16,
+      "reasons": [
+        "insufficient_common_features",
+        "insufficient_common_coverage"
+      ],
+      "scores": [
+        [
+          "healthy",
+          0.0
+        ],
+        [
+          "host_contention",
+          2.0
+        ]
+      ],
+      "state": "unknown"
+    }
+  ],
+  "evaluation_cases": [
+    {
+      "case_id": "one_group_one_vote",
+      "expected": {
+        "accuracy": [
+          1,
+          3
+        ],
+        "correct": 1,
+        "groups": 3,
+        "incorrect": 1,
+        "known_truth": 3,
+        "truth_coverage": [
+          3,
+          3
+        ],
+        "unknown": 1,
+        "unknown_rate": [
+          1,
+          3
+        ]
+      },
+      "expected_values": {
+        "accuracy": 0.3333333333333333,
+        "truth_coverage": 1.0,
+        "unknown_rate": 0.3333333333333333
+      },
+      "predictions": [
+        [
+          "healthy",
+          "healthy"
+        ],
+        [
+          null
+        ],
+        [
+          "host_contention"
+        ]
+      ],
+      "truth": [
+        "healthy",
+        "host_contention",
+        "healthy"
+      ]
+    },
+    {
+      "case_id": "disagreement_and_unverified_truth",
+      "expected": {
+        "accuracy": [
+          0,
+          1
+        ],
+        "correct": 0,
+        "groups": 2,
+        "incorrect": 0,
+        "known_truth": 1,
+        "truth_coverage": [
+          1,
+          2
+        ],
+        "unknown": 2,
+        "unknown_rate": [
+          2,
+          2
+        ]
+      },
+      "expected_values": {
+        "accuracy": 0.0,
+        "truth_coverage": 0.5,
+        "unknown_rate": 1.0
+      },
+      "predictions": [
+        [
+          "healthy",
+          "host_contention"
+        ],
+        [
+          null
+        ]
+      ],
+      "truth": [
+        "healthy",
+        null
+      ]
+    },
+    {
+      "case_id": "empty",
+      "expected": {
+        "accuracy": [
+          0,
+          0
+        ],
+        "correct": 0,
+        "groups": 0,
+        "incorrect": 0,
+        "known_truth": 0,
+        "truth_coverage": [
+          0,
+          0
+        ],
+        "unknown": 0,
+        "unknown_rate": [
+          0,
+          0
+        ]
+      },
+      "expected_values": {
+        "accuracy": null,
+        "truth_coverage": null,
+        "unknown_rate": null
+      },
+      "predictions": [],
+      "truth": []
+    }
+  ],
+  "feature_cases": [
+    {
+      "case_id": "shared_mask",
+      "expected_common": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "expected_distances": [
+        0.0,
+        1.0
+      ],
+      "profiles": [
+        {
+          "active": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "centers": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "label": "healthy",
+          "scales": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "active": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "centers": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "label": "host_contention",
+          "scales": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ]
+        }
+      ],
+      "query": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "case_id": "asymmetric_missingness",
+      "expected_common": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "expected_distances": null,
+      "profiles": [
+        {
+          "active": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "centers": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "label": "healthy",
+          "scales": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "active": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "centers": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "label": "host_contention",
+          "scales": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "query": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "case_id": "weights_are_not_zero_filled",
+      "expected_common": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "expected_distances": [
+        1.0,
+        2.0
+      ],
+      "profiles": [
+        {
+          "active": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "centers": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "label": "healthy",
+          "scales": [
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0,
+            2.0
+          ]
+        },
+        {
+          "active": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "centers": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "label": "host_contention",
+          "scales": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "query": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  ],
+  "group_outcome_cases": [
+    {
+      "case_id": "feature_failure_retains_truth",
+      "labels": [
+        "healthy",
+        "healthy"
+      ],
+      "n6_reasons": [
+        [
+          "insufficient_response_features"
+        ],
+        []
+      ],
+      "prediction": null,
+      "prediction_reasons": [
+        "entry_unknown"
+      ],
+      "predictions": [
+        null,
+        "healthy"
+      ],
+      "truth": "healthy",
+      "truth_reasons": []
+    },
+    {
+      "case_id": "unverified_truth",
+      "labels": [
+        "healthy",
+        null
+      ],
+      "n6_reasons": [
+        [],
+        [
+          "label_unverified"
+        ]
+      ],
+      "prediction": null,
+      "prediction_reasons": [
+        "entry_unknown"
+      ],
+      "predictions": [
+        null,
+        null
+      ],
+      "truth": null,
+      "truth_reasons": [
+        "label_unverified"
+      ]
+    },
+    {
+      "case_id": "mixed_truth_and_predictions",
+      "labels": [
+        "healthy",
+        "host_contention"
+      ],
+      "n6_reasons": [
+        [],
+        []
+      ],
+      "prediction": null,
+      "prediction_reasons": [
+        "entry_disagreement"
+      ],
+      "predictions": [
+        "healthy",
+        "host_contention"
+      ],
+      "truth": null,
+      "truth_reasons": [
+        "mixed_labels"
+      ]
+    },
+    {
+      "case_id": "truth_reason_order",
+      "labels": [
+        "healthy",
+        "host_contention"
+      ],
+      "n6_reasons": [
+        [
+          "effect_unverified"
+        ],
+        []
+      ],
+      "prediction": null,
+      "prediction_reasons": [
+        "entry_unknown"
+      ],
+      "predictions": [
+        null,
+        "healthy"
+      ],
+      "truth": null,
+      "truth_reasons": [
+        "label_unverified",
+        "mixed_labels"
+      ]
+    },
+    {
+      "case_id": "prediction_reason_order",
+      "labels": [
+        "healthy",
+        "healthy",
+        "healthy"
+      ],
+      "n6_reasons": [
+        [],
+        [],
+        []
+      ],
+      "prediction": null,
+      "prediction_reasons": [
+        "entry_unknown",
+        "entry_disagreement"
+      ],
+      "predictions": [
+        "healthy",
+        "host_contention",
+        null
+      ],
+      "truth": "healthy",
+      "truth_reasons": []
+    }
+  ],
+  "metadata_cases": [
+    {
+      "case_id": "eligible",
+      "expected_error": null,
+      "expected_reasons": [],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "training_query",
+      "expected_error": null,
+      "expected_reasons": [
+        "not_held_out"
+      ],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "training",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "missing",
+      "expected_error": null,
+      "expected_reasons": [
+        "missing_measurements"
+      ],
+      "n6_eligible": false,
+      "query_kind": "missing",
+      "query_role": null,
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "baseline",
+      "expected_error": null,
+      "expected_reasons": [
+        "baseline_only"
+      ],
+      "n6_eligible": true,
+      "query_kind": "healthy_window",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "synthetic_excluded",
+      "expected_error": null,
+      "expected_reasons": [
+        "n6_excluded"
+      ],
+      "n6_eligible": false,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "duplicate",
+      "expected_error": null,
+      "expected_reasons": [
+        "n6_excluded",
+        "duplicate_evidence"
+      ],
+      "n6_eligible": false,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": false,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "all_query_reasons",
+      "expected_error": null,
+      "expected_reasons": [
+        "baseline_only",
+        "not_held_out",
+        "n6_excluded",
+        "duplicate_evidence"
+      ],
+      "n6_eligible": false,
+      "query_kind": "healthy_window",
+      "query_role": "training",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": false,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "different_dataset",
+      "expected_error": "invalid_profile_match",
+      "expected_reasons": [],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": false,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "multiple_revisions",
+      "expected_error": "invalid_profile_match",
+      "expected_reasons": [],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 2,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "provisional"
+    },
+    {
+      "case_id": "created",
+      "expected_error": null,
+      "expected_reasons": [
+        "snapshot_unavailable"
+      ],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "created"
+    },
+    {
+      "case_id": "rejected",
+      "expected_error": null,
+      "expected_reasons": [
+        "snapshot_unavailable"
+      ],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "rejected"
+    },
+    {
+      "case_id": "stale",
+      "expected_error": null,
+      "expected_reasons": [
+        "snapshot_unavailable"
+      ],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "stale"
+    },
+    {
+      "case_id": "superseded",
+      "expected_error": null,
+      "expected_reasons": [
+        "snapshot_unavailable"
+      ],
+      "n6_eligible": true,
+      "query_kind": "response",
+      "query_role": "validation",
+      "revision_count": 1,
+      "scope_bound": true,
+      "self_representative": true,
+      "snapshot_state": "superseded"
+    }
+  ],
+  "method_release": "n8-profile-matching-v1",
+  "numeric_cases": [
+    {
+      "case_id": "signed_zero",
+      "error": null,
+      "expected_hex": "0x0.0p+0",
+      "operation": "deviation",
+      "values": [
+        -0.0,
+        0.0
+      ]
+    },
+    {
+      "case_id": "absolute_difference",
+      "error": null,
+      "expected_hex": "0x1.8000000000000p+1",
+      "operation": "deviation",
+      "values": [
+        -2.0,
+        1.0
+      ]
+    },
+    {
+      "case_id": "ratio_third",
+      "error": null,
+      "expected_hex": "0x1.5555555555555p-2",
+      "operation": "standardize",
+      "values": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "case_id": "ratio_underflow",
+      "error": "invalid_profile_match_arithmetic",
+      "expected_hex": null,
+      "operation": "standardize",
+      "values": [
+        5e-324,
+        2.0
+      ]
+    },
+    {
+      "case_id": "ratio_overflow",
+      "error": "invalid_profile_match_arithmetic",
+      "expected_hex": null,
+      "operation": "standardize",
+      "values": [
+        1.7976931348623157e+308,
+        0.5
+      ]
+    },
+    {
+      "case_id": "zero_scale",
+      "error": "invalid_profile_match_arithmetic",
+      "expected_hex": null,
+      "operation": "standardize",
+      "values": [
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "case_id": "difference_overflow",
+      "error": "invalid_profile_match_arithmetic",
+      "expected_hex": null,
+      "operation": "deviation",
+      "values": [
+        1.7976931348623157e+308,
+        -1.7976931348623157e+308
+      ]
+    },
+    {
+      "case_id": "exact_sum_avoids_overflow",
+      "error": null,
+      "expected_hex": "0x1.fffffffffffffp+1023",
+      "operation": "mean",
+      "values": [
+        1.7976931348623157e+308,
+        1.7976931348623157e+308
+      ]
+    },
+    {
+      "case_id": "mean_subnormal_underflow",
+      "error": "invalid_profile_match_arithmetic",
+      "expected_hex": null,
+      "operation": "mean",
+      "values": [
+        5e-324,
+        0.0
+      ]
+    },
+    {
+      "case_id": "margin",
+      "error": null,
+      "expected_hex": "0x1.0000000000000p-2",
+      "operation": "margin",
+      "values": [
+        0.75,
+        0.5
+      ]
+    }
+  ],
+  "overlap_cases": [
+    {
+      "case_id": "same_component",
+      "excluded": true,
+      "query_group": "g1",
+      "query_receipts": [
+        "a"
+      ],
+      "query_sources": [
+        "q"
+      ],
+      "training_groups": [
+        "g1"
+      ],
+      "training_receipts": [
+        "b"
+      ],
+      "training_sources": [
+        "t"
+      ]
+    },
+    {
+      "case_id": "shared_source",
+      "excluded": true,
+      "query_group": "g1",
+      "query_receipts": [
+        "a"
+      ],
+      "query_sources": [
+        "q"
+      ],
+      "training_groups": [
+        "g2"
+      ],
+      "training_receipts": [
+        "b"
+      ],
+      "training_sources": [
+        "q"
+      ]
+    },
+    {
+      "case_id": "shared_receipt",
+      "excluded": true,
+      "query_group": "g1",
+      "query_receipts": [
+        "a"
+      ],
+      "query_sources": [
+        "q"
+      ],
+      "training_groups": [
+        "g2"
+      ],
+      "training_receipts": [
+        "a"
+      ],
+      "training_sources": [
+        "t"
+      ]
+    },
+    {
+      "case_id": "disjoint_within_dataset",
+      "excluded": false,
+      "query_group": "g1",
+      "query_receipts": [
+        "a"
+      ],
+      "query_sources": [
+        "q"
+      ],
+      "training_groups": [
+        "g2"
+      ],
+      "training_receipts": [
+        "b"
+      ],
+      "training_sources": [
+        "t"
+      ]
+    }
+  ],
+  "provenance": "synthetic_design_only",
+  "refit_cases": [
+    {
+      "case_id": "whole_group_not_one_window",
+      "expected_center": 3.0,
+      "expected_group_count": 5,
+      "expected_mad": 1.0,
+      "expected_supported": true,
+      "groups": [
+        [
+          0.0,
+          2.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ],
+        [
+          5.0
+        ]
+      ],
+      "removed_group": 0
+    },
+    {
+      "case_id": "support_drops_after_refit",
+      "expected_center": 2.5,
+      "expected_group_count": 4,
+      "expected_mad": 1.0,
+      "expected_supported": false,
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          4.0
+        ]
+      ],
+      "removed_group": 0
+    },
+    {
+      "case_id": "zero_mad_after_refit",
+      "expected_center": 1.0,
+      "expected_group_count": 5,
+      "expected_mad": 0.0,
+      "expected_supported": false,
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ],
+        [
+          1.0
+        ]
+      ],
+      "removed_group": 0
+    }
+  ],
+  "vector_version": "1.0.0"
+}

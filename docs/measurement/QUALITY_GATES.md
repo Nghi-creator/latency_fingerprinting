@@ -29,12 +29,15 @@ python -m tests.observability.check_browser_execution
 python -m tests.scenarios.check_reproduction
 python -m tests.calibration.check_reproduction
 python -m tests.profiles.check_reproduction
+python -m pytest tests/profile_matching
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
 These commands check release pins and independent expectations without blessing
 drift or regenerating expected results. Synthetic arithmetic is software evidence,
 not a replacement for live capture. Versioned browser methods retain separate pins.
+The N8 design tests pin its policy/vectors and independently check the specified
+arithmetic and decisions; they do not exercise an implemented N8 runtime.
 
 ## Installed package
 
