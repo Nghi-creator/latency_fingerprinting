@@ -76,6 +76,7 @@ inspection. Scores remain software-provisional; accuracy/unknown-rate ratios are
 reconstructed evaluation accounting, not a claim of scientific generalization.
 
 The linked `match_profile_snapshot` / `evaluate_profile_snapshot` operations and
-`match-profiles` / `evaluate-profiles` commands in the contract are not implemented
-yet. They require fresh N6 inspection and training/query binding from one pinned
-inspection. There is no trust promotion, probability calibration or producer call.
+`match-profiles` / `evaluate-profiles` commands perform fresh N6 inspection and
+verify training/query bindings from one pinned inspection; see the
+[command guide](N8_COMMANDS.md). There is no trust promotion, probability
+calibration or producer call.

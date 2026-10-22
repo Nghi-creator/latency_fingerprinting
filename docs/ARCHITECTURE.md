@@ -90,8 +90,9 @@ See [calibration inspection](calibration/N6_INSPECTION.md) and
 The additive [N8 matching method](profile_matching/N8_MATCH_CONTRACT.md) specifies
 offline label comparisons on a shared feature mask and whole-source-group refits
 for evaluation. [Standalone N8 models](profile_matching/N8_MODELS.md) reconstruct
-retained scoring/evaluation declarations; linked source inspection and commands
-remain unimplemented. Existing point-fingerprint matching keeps its separate behavior.
+retained scoring/evaluation declarations. [Linked N8 operations](profile_matching/N8_COMMANDS.md)
+share one N6 inspection for fresh training verification and query extraction.
+Existing point-fingerprint matching keeps its separate behavior.
 
 ## File and numeric boundaries
 

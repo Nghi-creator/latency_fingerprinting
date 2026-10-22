@@ -5,7 +5,8 @@ This freezes `n8-profile-matching-v1`, its
 [independent examples](N8_MATCH_EXAMPLES.md) and
 [design vectors](N8_DESIGN_VECTORS.json). Standalone immutable models, exact pure scoring and reconstruction, generic
 validation and three additive schemas are implemented; see the [model guide](N8_MODELS.md).
-Linked matching/evaluation APIs and commands remain separate, unimplemented interfaces.
+Linked source inspection, matching/evaluation APIs and commands are also implemented;
+see the [command guide](N8_COMMANDS.md).
 P0, `match-v2`, N2–N7 formats, policies, schemas and fixture releases retain their
 existing behavior. N8 performs offline provisional comparison and evaluation;
 it neither promotes N7 snapshots nor authenticates acquisition/review evidence.
@@ -250,7 +251,7 @@ leaks. Structurally valid unsupported evidence produces unknown results rather
 than inventing scores. Standalone root validation raises `ValueError` on invalid
 declarations; it does not promise the linked API's fixed message.
 
-Future commands are `match-profiles` and `evaluate-profiles`, both with required
+Commands are `match-profiles` and `evaluate-profiles`, both with required
 `--directory`, `--snapshot`, `--policy`, `--output` and optional
 `--expected-split-id`, `--expected-dataset-content-hash`. Match requires
 `--query-entry-id`; evaluation requires `--mode` with the three exact policy modes.
@@ -268,5 +269,4 @@ only per child: 256 entries/candidates, 22 features, 64 refits, 4096 candidate r
 and entry references each. N7's existing snapshot budgets also apply. Each root's
 complete canonical bytes must fit 10 MiB; evidence is embedded once per result.
 Bounds include excluded rows. An oversized request fails; do not drop entries,
-folds, labels, source receipts or unknown outcomes to fit a budget. These limits apply to the implemented standalone models and pure kernels.
-The linked match/evaluation operations and commands described above are not callable yet.
+folds, labels, source receipts or unknown outcomes to fit a budget. These limits apply to standalone models, pure kernels and linked operations.

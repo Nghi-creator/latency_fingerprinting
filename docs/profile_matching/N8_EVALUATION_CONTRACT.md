@@ -2,8 +2,8 @@
 
 This is part of the [N8 design contract](N8_MATCH_CONTRACT.md), with the same
 policy, arithmetic and trust boundary. Standalone models and reconstruction are
-implemented; linked evaluation operations remain unimplemented. See the
-[model guide](N8_MODELS.md).
+implemented alongside linked source inspection and evaluation operations. See the
+[model guide](N8_MODELS.md) and [command guide](N8_COMMANDS.md).
 `ProfileEvaluationResult` has exactly `schema_version`, `method_release`,
 `result_id`, `content_hash`, `policy`, `evidence`, `mode`, `refits`, `decisions`,
 `group_outcomes`, `confusion_matrix`, `counts`, `metrics`, `assurance`.

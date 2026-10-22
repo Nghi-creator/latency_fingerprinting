@@ -26,9 +26,12 @@ def inventory(descriptor):
     return names
 
 
-def read_at(descriptor, name, maximum):
+def read_at(descriptor, name, maximum, *, identities=None):
     child = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=descriptor)
     try:
+        if identities is not None:
+            metadata = os.fstat(child)
+            identities.add((metadata.st_dev, metadata.st_ino))
         with os.fdopen(child, "rb", closefd=False) as source:
             return _read_file(source, maximum)
     finally:
@@ -46,7 +49,8 @@ class DatasetSnapshot:
             self.names = inventory(self.descriptor)
             if MANIFEST not in self.names:
                 raise ValueError("calibration manifest missing")
-            raw = read_at(self.descriptor, MANIFEST, JSON_BYTES)
+            self.file_identities = set()
+            raw = read_at(self.descriptor, MANIFEST, JSON_BYTES, identities=self.file_identities)
             self.dataset = CalibrationDataset.model_validate_json(raw)
             expected = {MANIFEST} | {artifact.file_name for artifact in self.dataset.artifacts}
             if len(expected) != len(self.dataset.artifacts) + 1 or self.names != expected:
@@ -59,7 +63,12 @@ class DatasetSnapshot:
 
     def read(self, artifact):
         remaining = AGGREGATE_BYTES - self.input_bytes
-        raw = read_at(self.descriptor, artifact.file_name, min(artifact.bytes, remaining))
+        raw = read_at(
+            self.descriptor,
+            artifact.file_name,
+            min(artifact.bytes, remaining),
+            identities=self.file_identities,
+        )
         self.input_bytes += len(raw)
         return raw
 

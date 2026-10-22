@@ -63,6 +63,7 @@ from .observability import (
 )
 from .pipeline import build_observation_record, canonical_json
 from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
+from .profile_matching.commands import register_profile_matching_commands
 from .profiles import ProfilePolicy, ProfileSnapshot
 from .profiles.commands import register_profile_commands
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
@@ -406,6 +407,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_overhead_command(subparsers)
     register_calibration_command(subparsers)
     register_profile_commands(subparsers)
+    register_profile_matching_commands(subparsers)
     return parser
 
 

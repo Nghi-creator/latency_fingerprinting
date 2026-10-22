@@ -33,6 +33,7 @@ class InspectedCalibration:
     dataset: CalibrationDataset
     report: CalibrationReport
     artifacts: tuple[ValidatedArtifact, ...]
+    file_identities: frozenset[tuple[int, int]] = frozenset()
 
 
 def inspect_calibration_dataset(
@@ -66,6 +67,7 @@ def _inspect_calibration_snapshot(
             dataset,
             report,
             tuple(ValidatedArtifact(identifier, record) for identifier, record in records.items()),
+            frozenset(snapshot.file_identities),
         ), (metadata.st_dev, metadata.st_ino)
     except (OSError, ValueError, TypeError, KeyError, EOFError, tarfile.TarError, zlib.error):
         raise ValueError("invalid_calibration_dataset") from None

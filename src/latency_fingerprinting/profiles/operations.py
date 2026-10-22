@@ -70,6 +70,11 @@ def _build_profile_snapshot(
         expected_split_id=expected_split_id,
         expected_dataset_content_hash=expected_dataset_content_hash,
     )
+    return _fit_inspected_profile_snapshot(inspected, policy, parent=parent), origin
+
+
+def _fit_inspected_profile_snapshot(inspected, policy, *, parent=None):
+    """Fit from one already inspected N6 object; never reopen its source directory."""
     reasons, _ = selection_reasons(inspected.report.entries)
     declarations = {e.entry_id: e for e in inspected.dataset.entries}
     records = {a.artifact_id: a.record for a in inspected.artifacts}
@@ -119,7 +124,7 @@ def _build_profile_snapshot(
             review=None,
         ),
     )
-    return _seal(payload), origin
+    return _seal(payload)
 
 
 def build_profile_snapshot(
