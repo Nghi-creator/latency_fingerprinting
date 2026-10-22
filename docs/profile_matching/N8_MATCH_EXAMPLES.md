@@ -1,6 +1,6 @@
 # Independent matching and evaluation examples
 
-These freeze synthetic design calculations before N8 production code exists.
+These synthetic design calculations were frozen before N8 production code.
 They are abstract arithmetic/selection kernels, not complete N6/N7 model roots,
 linked acquisitions, a fixture release or evidence of diagnostic accuracy. The
 [machine-readable vectors](N8_DESIGN_VECTORS.json) and
@@ -66,4 +66,5 @@ independent high-precision Decimal oracle. They also check label blindness,
 feature-mask symmetry, reason ordering, whole-group removal and denominators.
 Production is specified separately to use bounded rational binary64 arithmetic.
 Change expected outcomes only after reviewing the specification, never by copying
-future scorer output. No N8 runtime module or schema is claimed implemented here.
+scorer output. The [standalone models](N8_MODELS.md) now reconstruct this method;
+linked source inspection and matching/evaluation commands remain a separate gate.

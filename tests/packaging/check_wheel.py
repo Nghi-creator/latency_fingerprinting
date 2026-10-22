@@ -137,6 +137,30 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.profile_matching.cases import canonical, evaluation, match, policy
+
+        for name, payload in (
+            ("match-policy", policy()),
+            ("profile-match", match()),
+            ("profile-evaluation", evaluation("leave_training_group_out")),
+        ):
+            source = directory / (name + ".json")
+            source.write_bytes(canonical(payload))
+            code, stdout, stderr = invoke_installed(["validate", source])
+            if code != 0 or stderr or stdout != source.read_bytes():
+                raise ValueError("installed N8 standalone validation drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                (
+                    "from latency_fingerprinting.models import "
+                    "ProfileMatchPolicy, ProfileMatchResult, ProfileEvaluationResult"
+                ),
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -156,7 +180,7 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"entry point and all {len(actual)} schemas verified."
+            f"N8 standalone roots, entry point and all {len(actual)} schemas verified."
         )
 
 

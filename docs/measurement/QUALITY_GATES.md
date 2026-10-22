@@ -36,8 +36,9 @@ python experiments/controlled-run-001/record_seed_fingerprint.py --check
 These commands check release pins and independent expectations without blessing
 drift or regenerating expected results. Synthetic arithmetic is software evidence,
 not a replacement for live capture. Versioned browser methods retain separate pins.
-The N8 design tests pin its policy/vectors and independently check the specified
-arithmetic and decisions; they do not exercise an implemented N8 runtime.
+N8 tests pin independent policy/vectors and check immutable standalone models,
+exact pure scoring/refits, complete result reconstruction and validation dispatch.
+Linked N8 source-inspection commands remain outside the implemented boundary.
 
 ## Installed package
 
@@ -49,7 +50,7 @@ This builds a wheel and installs it in a fresh temporary environment outside the
 checkout. It verifies the import location, console entry point, all frozen N6
 calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md),
 including standalone validation, linked builds, lifecycle operations, private
-errors/preserved output and schema exports.
+errors/preserved output, N8 standalone match/evaluation roots and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

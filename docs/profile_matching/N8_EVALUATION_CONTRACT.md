@@ -1,7 +1,9 @@
 # Offline evaluation and source-group refits
 
 This is part of the [N8 design contract](N8_MATCH_CONTRACT.md), with the same
-policy, arithmetic, trust boundary and design-only implementation status.
+policy, arithmetic and trust boundary. Standalone models and reconstruction are
+implemented; linked evaluation operations remain unimplemented. See the
+[model guide](N8_MODELS.md).
 `ProfileEvaluationResult` has exactly `schema_version`, `method_release`,
 `result_id`, `content_hash`, `policy`, `evidence`, `mode`, `refits`, `decisions`,
 `group_outcomes`, `confusion_matrix`, `counts`, `metrics`, `assurance`.

@@ -3,8 +3,9 @@
 This freezes `n8-profile-matching-v1`, its
 [software-provisional policy](N8_MATCH_POLICY_SPEC.json),
 [independent examples](N8_MATCH_EXAMPLES.md) and
-[design vectors](N8_DESIGN_VECTORS.json). This is the design release: production
-models, schemas, scoring and commands described below are not implemented yet.
+[design vectors](N8_DESIGN_VECTORS.json). Standalone immutable models, exact pure scoring and reconstruction, generic
+validation and three additive schemas are implemented; see the [model guide](N8_MODELS.md).
+Linked matching/evaluation APIs and commands remain separate, unimplemented interfaces.
 P0, `match-v2`, N2–N7 formats, policies, schemas and fixture releases retain their
 existing behavior. N8 performs offline provisional comparison and evaluation;
 it neither promotes N7 snapshots nor authenticates acquisition/review evidence.
@@ -16,7 +17,7 @@ do not imply Gaussian coverage or confidence levels.
 
 ## Roots and identities
 
-The future public module is `latency_fingerprinting.profile_matching`, with roots:
+The public model module is `latency_fingerprinting.profile_matching`, with roots:
 
 | Model | Schema version | ID prefix |
 | --- | --- | --- |
@@ -267,5 +268,5 @@ only per child: 256 entries/candidates, 22 features, 64 refits, 4096 candidate r
 and entry references each. N7's existing snapshot budgets also apply. Each root's
 complete canonical bytes must fit 10 MiB; evidence is embedded once per result.
 Bounds include excluded rows. An oversized request fails; do not drop entries,
-folds, labels, source receipts or unknown outcomes to fit a budget. Neither these
-contracts nor policy JSON add callable commands or schema exports in this design slice.
+folds, labels, source receipts or unknown outcomes to fit a budget. These limits apply to the implemented standalone models and pure kernels.
+The linked match/evaluation operations and commands described above are not callable yet.
