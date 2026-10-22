@@ -84,3 +84,6 @@ Linked operations verify source bytes and bindings, not physical independence or
 external review authenticity. Scores remain software-provisional. Synthetic N6
 fixtures remain excluded and produce unknown outcomes; positive model-only tests
 do not establish real acquisition quality, calibration or diagnostic accuracy.
+
+The [runtime fixture release](N8_FIXTURES.md) exercises all commands and evaluation
+modes through both the checkout and an isolated installed wheel.

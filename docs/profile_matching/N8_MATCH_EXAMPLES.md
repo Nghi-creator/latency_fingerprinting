@@ -68,3 +68,6 @@ Production is specified separately to use bounded rational binary64 arithmetic.
 Change expected outcomes only after reviewing the specification, never by copying
 scorer output. The [standalone models](N8_MODELS.md) now reconstruct this method;
 linked source inspection and matching/evaluation commands remain a separate gate.
+
+The [runtime fixture release](N8_FIXTURES.md) additionally freezes complete model
+roots and linked command outcomes with independent expectations and source pins.

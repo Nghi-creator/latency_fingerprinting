@@ -137,125 +137,42 @@ def main() -> None:
             ],
             directory=directory,
         )
-        from tests.profile_matching.cases import canonical, evaluation, match, policy
+        from tests.profile_matching.check_reproduction import FIXTURES as MATCH_FIXTURES
+        from tests.profile_matching.check_reproduction import check_reproduction as check_matching
 
-        for name, payload in (
-            ("match-policy", policy()),
-            ("profile-match", match()),
-            ("profile-evaluation", evaluation("leave_training_group_out")),
-        ):
-            source = directory / (name + ".json")
-            source.write_bytes(canonical(payload))
-            code, stdout, stderr = invoke_installed(["validate", source])
-            if code != 0 or stderr or stdout != source.read_bytes():
-                raise ValueError("installed N8 standalone validation drift")
-        run(
-            [
-                str(python),
-                "-I",
-                "-c",
-                (
-                    "from latency_fingerprinting.models import "
-                    "ProfileMatchPolicy, ProfileMatchResult, ProfileEvaluationResult"
-                ),
-            ],
-            directory=directory,
+        match_corpus = directory / "profile-matching"
+        shutil.copytree(MATCH_FIXTURES, match_corpus)
+        match_release = check_matching(
+            match_corpus,
+            n6_directory=corpus,
+            n7_directory=profile_corpus,
+            invoke=invoke_installed,
         )
-        from tests.profile_matching.cases import root_seal
-        from tests.profile_matching.test_synthetic_inputs import source as n8_source
-        from tests.profile_matching.test_synthetic_inputs import unknown
-
-        ev, records = n8_source("reviewed-roles")
-        supplied_snapshot = directory / "n8-snapshot.json"
-        supplied_snapshot.write_bytes(canonical(ev["snapshot"]))
-        supplied_policy = directory / "n8-policy.json"
-        supplied_policy.write_bytes(canonical(policy()))
-        output = directory / "n8-result.json"
-        base = [
-            "--directory",
-            corpus / "reviewed-roles",
-            "--snapshot",
-            supplied_snapshot,
-            "--policy",
-            supplied_policy,
-        ]
-        query = ev["report"]["entries"][1]
-        expected_match = root_seal(
-            dict(
-                schema_version="profile-match-result-v1",
-                method_release="n8-profile-matching-v1",
-                policy=policy(),
-                evidence=ev,
-                decision=unknown(ev, query, records),
-                assurance=ev["snapshot"]["assurance"],
-            )
-        )
-        code, stdout, stderr = invoke_installed(
-            [
-                "match-profiles",
-                *base,
-                "--query-entry-id",
-                query["entry_id"],
-                "--output",
-                output,
-            ]
-        )
-        if code or stdout or stderr or output.read_bytes() != canonical(expected_match):
-            raise ValueError("installed N8 linked match differs from independent expectation")
-        for mode in ("validation", "final_test", "leave_training_group_out"):
-            code, stdout, stderr = invoke_installed(
-                [
-                    "evaluate-profiles",
-                    *base,
-                    "--mode",
-                    mode,
-                    "--output",
-                    output,
-                ]
-            )
-            if code or stdout or stderr:
-                raise ValueError("installed N8 linked evaluation status/privacy drift")
-            result = json.loads(output.read_bytes())
-            role = "training" if mode == "leave_training_group_out" else mode
-            entry = next(e for e in ev["report"]["entries"] if e["role"] == role)
-            expected_decision = unknown(ev, entry, records, mode == "leave_training_group_out")
-            if (
-                result["decisions"] != [expected_decision]
-                or result["counts"]["classification_groups"] != 1
-                or result["counts"]["unknown_groups"] != 1
-                or result["counts"]["known_truth_groups"] != 1
-                or result["counts"]["correct_groups"] != 0
-                or result["counts"]["skipped_refits"] != int(role == "training")
-                or result["metrics"]
-                != dict(
-                    accuracy=dict(numerator=0, denominator=1, value=0.0),
-                    unknown_rate=dict(numerator=1, denominator=1, value=1.0),
-                    truth_coverage=dict(numerator=1, denominator=1, value=1.0),
-                )
-            ):
-                raise ValueError("installed N8 unknown/denominator expectation drift")
-            code, stdout, stderr = invoke_installed(["validate", output])
-            if code or stderr or stdout != output.read_bytes():
-                raise ValueError("installed N8 linked output fails standalone validation")
+        protected = match_corpus / "snapshot-reviewed-roles.json"
+        original = protected.read_bytes()
         for command, extra in (
-            ("match-profiles", ["--query-entry-id", query["entry_id"]]),
+            ("match-profiles", ["--query-entry-id", "entry-a"]),
             ("evaluate-profiles", ["--mode", "validation"]),
         ):
-            before = supplied_snapshot.read_bytes()
             code, stdout, stderr = invoke_installed(
                 [
                     command,
-                    *base,
+                    "--directory",
+                    corpus / "reviewed-roles",
+                    "--snapshot",
+                    protected,
+                    "--policy",
+                    match_corpus / "policy.json",
                     *extra,
                     "--output",
-                    supplied_snapshot,
+                    protected,
                 ]
             )
             if (
                 code != 1
                 or stdout
                 or stderr != f"error: {command}: invalid_input_or_output\n".encode()
-                or supplied_snapshot.read_bytes() != before
+                or protected.read_bytes() != original
             ):
                 raise ValueError("installed N8 input/output protection drift")
         run(
@@ -263,6 +180,8 @@ def main() -> None:
                 str(python),
                 "-I",
                 "-c",
+                "from latency_fingerprinting.models import "
+                "ProfileMatchPolicy, ProfileMatchResult, ProfileEvaluationResult; "
                 "from latency_fingerprinting.profile_matching import "
                 "match_profile_snapshot, evaluate_profile_snapshot",
             ],
@@ -287,7 +206,7 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"N8 standalone roots and linked commands, entry point "
+            f"{match_release['cases']} N8 cases, entry point "
             f"and all {len(actual)} schemas verified."
         )
 

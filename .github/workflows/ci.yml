@@ -58,6 +58,9 @@ jobs:
       - name: Reproduce pinned N7 profiles and independent expectations
         run: python -m tests.profiles.check_reproduction
 
+      - name: Reproduce pinned N8 matching and independent expectations
+        run: python -m tests.profile_matching.check_reproduction
+
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
 
@@ -165,6 +168,9 @@ jobs:
 
       - name: Reproduce pinned N7 profiles and independent expectations
         run: python -m tests.profiles.check_reproduction
+
+      - name: Reproduce pinned N8 matching and independent expectations
+        run: python -m tests.profile_matching.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel

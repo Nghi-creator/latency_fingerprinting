@@ -29,6 +29,7 @@ python -m tests.observability.check_browser_execution
 python -m tests.scenarios.check_reproduction
 python -m tests.calibration.check_reproduction
 python -m tests.profiles.check_reproduction
+python -m tests.profile_matching.check_reproduction
 python -m pytest tests/profile_matching
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
@@ -52,7 +53,8 @@ checkout. It verifies the import location, console entry point, all frozen N6
 calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md),
 including standalone validation, linked builds, lifecycle operations, private
 errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
-and all three evaluation modes, and schema exports.
+and all three evaluation modes, the complete
+[frozen N8 corpus](../profile_matching/N8_FIXTURES.md), and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks
