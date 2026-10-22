@@ -1,0 +1,1367 @@
+{
+  "assurance": "software_provisional_external_reviews_not_authenticated",
+  "confusion_matrix": {
+    "healthy": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    },
+    "host_contention": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 1
+    },
+    "render_capture_slowdown": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    },
+    "unverified_truth": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    }
+  },
+  "content_hash": "sha256:2e398e45785ecfa9f8f8f222cd24aafd3f8ef59272be77d7b5efb11ad2cbd27c",
+  "counts": {
+    "baseline_entries": 0,
+    "baseline_only_groups": 0,
+    "classification_groups": 1,
+    "computed_refits": 0,
+    "correct_groups": 0,
+    "duplicate_entries": 0,
+    "evaluated_entries": 1,
+    "global_missing_entries": 0,
+    "incorrect_groups": 0,
+    "known_truth_groups": 1,
+    "n6_excluded_entries": 1,
+    "provisional_match_groups": 0,
+    "response_entries": 1,
+    "retained_entries": 3,
+    "skipped_refits": 0,
+    "unknown_groups": 1,
+    "unverified_truth_groups": 0
+  },
+  "decisions": [
+    {
+      "best_distance": null,
+      "best_label": null,
+      "candidates": [
+        {
+          "distance": null,
+          "features": null,
+          "label": "host_contention",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "profile_id": "profile-691b32f53fb4fd68a8bfb1f30d6a7906b2d37ddd3d16f07cb7600a8934ff078c",
+          "reason_codes": [
+            "snapshot_unavailable",
+            "query_unavailable",
+            "profile_rejected"
+          ],
+          "state": "excluded",
+          "weight_sum": null
+        }
+      ],
+      "chosen_label": null,
+      "common_coverage": {
+        "denominator": 22,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "common_feature_names": [],
+      "excluded_group_id": null,
+      "margin": null,
+      "query_artifact_id": "response-b",
+      "query_entry_id": "entry-b",
+      "query_feature_values": null,
+      "query_mode": "held_out",
+      "query_record_id": "response-v2-ccb39aacae0cec1d8deeca64cccde4eed4e6147a85bbbf4def5bfa8c8da5a262",
+      "ranked_profile_ids": [],
+      "reason_codes": [
+        "snapshot_unavailable",
+        "n6_excluded"
+      ],
+      "refit_id": null,
+      "runner_up_distance": null,
+      "runner_up_label": null,
+      "state": "unknown"
+    }
+  ],
+  "evidence": {
+    "dataset": {
+      "artifacts": [
+        {
+          "artifact_id": "response-a",
+          "bytes": 168664,
+          "file_name": "response-a.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00"
+        },
+        {
+          "artifact_id": "response-b",
+          "bytes": 168664,
+          "file_name": "response-b.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:7c9e06a7f696319322a55f1013926e0de981065e2d19ead576e6c7d7bd760c91"
+        },
+        {
+          "artifact_id": "response-c",
+          "bytes": 168664,
+          "file_name": "response-c.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:35324f0e13f329a6d11b2d02717f0b8058638a4006bfcc7935edfce5a1830661"
+        }
+      ],
+      "content_hash": "sha256:04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+      "dataset_id": "dataset-04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+      "derivations": [],
+      "entries": [
+        {
+          "artifact_id": "response-a",
+          "entry_id": "entry-a",
+          "experiment_artifact_id": null,
+          "experiment_phase": null,
+          "input_kind": "response",
+          "label": "host_contention",
+          "label_basis": "external_confirmation",
+          "label_review_id": "label-a",
+          "source_bindings": [
+            {
+              "source_id": "source-a",
+              "window_id": "window-degraded",
+              "window_role": "degraded"
+            },
+            {
+              "source_id": "source-b",
+              "window_id": "window-relief",
+              "window_role": "relief"
+            }
+          ]
+        },
+        {
+          "artifact_id": "response-b",
+          "entry_id": "entry-b",
+          "experiment_artifact_id": null,
+          "experiment_phase": null,
+          "input_kind": "response",
+          "label": "host_contention",
+          "label_basis": "external_confirmation",
+          "label_review_id": "label-b",
+          "source_bindings": [
+            {
+              "source_id": "source-c",
+              "window_id": "window-degraded",
+              "window_role": "degraded"
+            },
+            {
+              "source_id": "source-d",
+              "window_id": "window-relief",
+              "window_role": "relief"
+            }
+          ]
+        },
+        {
+          "artifact_id": "response-c",
+          "entry_id": "entry-c",
+          "experiment_artifact_id": null,
+          "experiment_phase": null,
+          "input_kind": "response",
+          "label": "host_contention",
+          "label_basis": "external_confirmation",
+          "label_review_id": "label-c",
+          "source_bindings": [
+            {
+              "source_id": "source-e",
+              "window_id": "window-degraded",
+              "window_role": "degraded"
+            },
+            {
+              "source_id": "source-f",
+              "window_id": "window-relief",
+              "window_role": "relief"
+            }
+          ]
+        }
+      ],
+      "method_release": "n6-calibration-evidence-v1",
+      "reviews": [
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "split_freeze",
+          "outcome": "confirmed",
+          "review_id": "freeze",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "split-a58c64fed7fc2b79041878d55ed6d6cee77c2aaa681e4d570a29ab4f931df456"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "independence",
+          "outcome": "confirmed",
+          "review_id": "independence-a",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "source-a",
+            "source-b"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "independence",
+          "outcome": "confirmed",
+          "review_id": "independence-b",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "source-c",
+            "source-d"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "independence",
+          "outcome": "confirmed",
+          "review_id": "independence-c",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "source-e",
+            "source-f"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "label_binding",
+          "outcome": "confirmed",
+          "review_id": "label-a",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "entry-a"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "label_binding",
+          "outcome": "confirmed",
+          "review_id": "label-b",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "entry-b"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "label_binding",
+          "outcome": "confirmed",
+          "review_id": "label-c",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "entry-c"
+          ]
+        }
+      ],
+      "schema_version": "calibration-dataset-v1",
+      "sources": [
+        {
+          "acquisition_namespace": "site-a",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-a",
+          "review_id": "independence-a",
+          "run_id": "run-degraded",
+          "session_id": "session-source-a",
+          "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+          "source_id": "source-a",
+          "source_type": "synthetic_series"
+        },
+        {
+          "acquisition_namespace": "site-a",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-b",
+          "review_id": "independence-a",
+          "run_id": "run-relief",
+          "session_id": "session-source-b",
+          "source_content_hash": "sha256:3ee31c24a25bb74948e6705b9845e66a1ebd141d93cf2699e7bd31356905db58",
+          "source_id": "source-b",
+          "source_type": "synthetic_series"
+        },
+        {
+          "acquisition_namespace": "site-b",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-c",
+          "review_id": "independence-b",
+          "run_id": "run-degraded",
+          "session_id": "session-source-c",
+          "source_content_hash": "sha256:f5583b58a4023c8a6870fc3fad0c1493e0962b6922c79929b8f0fdeed1428daf",
+          "source_id": "source-c",
+          "source_type": "synthetic_series"
+        },
+        {
+          "acquisition_namespace": "site-b",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-d",
+          "review_id": "independence-b",
+          "run_id": "run-relief",
+          "session_id": "session-source-d",
+          "source_content_hash": "sha256:7314324f425ff18109e322b43c6e2a97823f959289f588620824aff6d138c167",
+          "source_id": "source-d",
+          "source_type": "synthetic_series"
+        },
+        {
+          "acquisition_namespace": "site-c",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-e",
+          "review_id": "independence-c",
+          "run_id": "run-degraded",
+          "session_id": "session-source-e",
+          "source_content_hash": "sha256:2d3a020e64928db3aedf890748c5c7c8b5a2f736e55f041e2b4bfc0b65066716",
+          "source_id": "source-e",
+          "source_type": "synthetic_series"
+        },
+        {
+          "acquisition_namespace": "site-c",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-f",
+          "review_id": "independence-c",
+          "run_id": "run-relief",
+          "session_id": "session-source-f",
+          "source_content_hash": "sha256:f1738ebc0c4aeb86f268fd879e2d47bbe1c6126f31b267e6bc734d98b29b4725",
+          "source_id": "source-f",
+          "source_type": "synthetic_series"
+        }
+      ],
+      "split": {
+        "assignments": [
+          {
+            "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+            "role": "final_test"
+          },
+          {
+            "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+            "role": "validation"
+          },
+          {
+            "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+            "role": "training"
+          }
+        ],
+        "freeze_review_id": "freeze",
+        "mode": "prospective",
+        "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "split_id": "split-a58c64fed7fc2b79041878d55ed6d6cee77c2aaa681e4d570a29ab4f931df456"
+      }
+    },
+    "report": {
+      "artifact_receipts": [
+        {
+          "artifact_id": "response-a",
+          "bytes": 168664,
+          "file_name": "response-a.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00"
+        },
+        {
+          "artifact_id": "response-b",
+          "bytes": 168664,
+          "file_name": "response-b.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:7c9e06a7f696319322a55f1013926e0de981065e2d19ead576e6c7d7bd760c91"
+        },
+        {
+          "artifact_id": "response-c",
+          "bytes": 168664,
+          "file_name": "response-c.json",
+          "kind": "analytical_response",
+          "sha256": "sha256:35324f0e13f329a6d11b2d02717f0b8058638a4006bfcc7935edfce5a1830661"
+        }
+      ],
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 1,
+            "retained_entries": 1,
+            "retained_groups": 1
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 3,
+        "retained_entries": 3,
+        "retained_groups": 3
+      },
+      "dataset_content_hash": "sha256:04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+      "dataset_id": "dataset-04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-a",
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-b",
+          "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-b",
+          "role": "validation"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": 22,
+          "entry_id": "entry-c",
+          "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+          "input_kind": "response",
+          "label": "host_contention",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-c",
+          "role": "final_test"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+          "independence_review_state": "confirmed",
+          "role": "final_test",
+          "source_ids": [
+            "source-e",
+            "source-f"
+          ]
+        },
+        {
+          "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+          "independence_review_state": "confirmed",
+          "role": "validation",
+          "source_ids": [
+            "source-c",
+            "source-d"
+          ]
+        },
+        {
+          "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a",
+            "source-b"
+          ]
+        }
+      ],
+      "method_release": "n6-calibration-evidence-v1",
+      "partitions": [
+        {
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "input_kind": "response",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "retained_entries": 3
+        }
+      ],
+      "report_id": "calibration-report-750d9a2ad9c46cd9e6cd3db9254ff8295c14a981cb5e89a9de8f3dd9109bfb85",
+      "schema_version": "calibration-report-v1",
+      "split_id": "split-a58c64fed7fc2b79041878d55ed6d6cee77c2aaa681e4d570a29ab4f931df456",
+      "split_mode": "prospective"
+    },
+    "snapshot": {
+      "assurance": "software_provisional_external_reviews_not_authenticated",
+      "content_hash": "sha256:148eaf05e5f050ef9196f0289dda16b6990a70a9fb3843efbd4faac4133b119f",
+      "counts": {
+        "baseline_entries": 0,
+        "excluded_entries": 3,
+        "heldout_response_entries": 2,
+        "missing_entries": 0,
+        "mixed_label_groups": 0,
+        "retained_entries": 3,
+        "selected_entries": 0,
+        "selected_groups": 0
+      },
+      "inputs": [
+        {
+          "entry_id": "entry-a",
+          "feature_values": null,
+          "reason_codes": [
+            "n6_excluded"
+          ],
+          "selected": false
+        },
+        {
+          "entry_id": "entry-b",
+          "feature_values": null,
+          "reason_codes": [
+            "not_training",
+            "n6_excluded"
+          ],
+          "selected": false
+        },
+        {
+          "entry_id": "entry-c",
+          "feature_values": null,
+          "reason_codes": [
+            "not_training",
+            "n6_excluded"
+          ],
+          "selected": false
+        }
+      ],
+      "lifecycle": {
+        "operation": "build",
+        "parent_snapshot_id": null,
+        "reason_code": "no_supported_profiles",
+        "replacement_snapshot_id": null,
+        "review": null,
+        "state": "rejected"
+      },
+      "method_release": "n7-profile-statistics-v1",
+      "policy": {
+        "calibration_method_release": "n6-calibration-evidence-v1",
+        "content_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+        "feature_names": [
+          "client.available_incoming_bitrate_kbps",
+          "client.decode_time_mean_ms",
+          "client.frames_decoded_rate_fps",
+          "client.frames_dropped_rate_fps",
+          "client.freeze_count_rate_per_min",
+          "client.freeze_duration_rate_ms_per_s",
+          "client.jitter_buffer_delay_mean_ms",
+          "client.received_bitrate_kbps",
+          "client.received_fps",
+          "encoder.frames_dropped_rate_fps",
+          "encoder.frames_in_rate_fps",
+          "encoder.frames_out_rate_fps",
+          "encoder.queue_level_buffers",
+          "host.camera_cpu_percent",
+          "host.camera_rss_mib",
+          "host.game_cpu_percent",
+          "host.game_rss_mib",
+          "host.node_cpu_percent",
+          "host.node_rss_mib",
+          "transport.jitter_ms",
+          "transport.packets_lost_rate_per_s",
+          "transport.round_trip_time_ms"
+        ],
+        "gates": {
+          "minimum_active_coverage": {
+            "denominator": 4,
+            "numerator": 3
+          },
+          "minimum_active_features": 17,
+          "minimum_feature_availability": {
+            "denominator": 5,
+            "numerator": 4
+          },
+          "minimum_feature_groups": 5,
+          "minimum_training_groups": 5
+        },
+        "method_release": "n7-profile-statistics-v1",
+        "parameter_provenance": "software_provisional",
+        "policy_id": "profile-policy-8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+        "policy_version": "1.0.0",
+        "registry": {
+          "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+          "registry_version": "latency-metrics-v2.0.0"
+        },
+        "response_policy_hash": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+        "schema_version": "profile-policy-v1",
+        "selection": {
+          "exclude_duplicates": true,
+          "input_kind": "response",
+          "mixed_group_labels": "exclude_partition_group",
+          "partition_method": "n6_exact_partition_v1",
+          "require_n6_eligible": true,
+          "role": "training"
+        },
+        "statistics": {
+          "absolute_deviation": "exact_binary64_difference_round_once",
+          "center": "median",
+          "computed_zero": "positive_zero",
+          "dispersion": "raw_mad",
+          "dispersion_floor": null,
+          "empty_feature": "unavailable",
+          "even_median": "exact_binary64_midpoint_round_once",
+          "finite_arithmetic": "reject_unrepresentable",
+          "nonzero_to_zero": "reject",
+          "within_group": "median",
+          "zero_dispersion": "exclude"
+        },
+        "weights": {
+          "excluded": 0.0,
+          "supported": 1.0
+        }
+      },
+      "profiles": [
+        {
+          "active_feature_count": 0,
+          "active_feature_coverage": {
+            "denominator": 22,
+            "numerator": 0,
+            "value": 0.0
+          },
+          "features": {
+            "client.available_incoming_bitrate_kbps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.decode_time_mean_ms": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.frames_decoded_rate_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.frames_dropped_rate_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.freeze_count_rate_per_min": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.freeze_duration_rate_ms_per_s": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.jitter_buffer_delay_mean_ms": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.received_bitrate_kbps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "client.received_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "encoder.frames_dropped_rate_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "encoder.frames_in_rate_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "encoder.frames_out_rate_fps": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "encoder.queue_level_buffers": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.camera_cpu_percent": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.camera_rss_mib": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.game_cpu_percent": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.game_rss_mib": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.node_cpu_percent": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "host.node_rss_mib": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "transport.jitter_ms": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "transport.packets_lost_rate_per_s": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            },
+            "transport.round_trip_time_ms": {
+              "availability": {
+                "denominator": 0,
+                "numerator": 0,
+                "value": null
+              },
+              "center": null,
+              "contributing_groups": 0,
+              "dispersion": null,
+              "group_values": [],
+              "reason_codes": [
+                "missing_measurements",
+                "insufficient_group_support",
+                "insufficient_availability"
+              ],
+              "state": "excluded",
+              "weight": 0.0
+            }
+          },
+          "label": "host_contention",
+          "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+          "profile_id": "profile-691b32f53fb4fd68a8bfb1f30d6a7906b2d37ddd3d16f07cb7600a8934ff078c",
+          "reason_codes": [
+            "insufficient_training_groups",
+            "insufficient_active_features",
+            "insufficient_active_coverage"
+          ],
+          "selected_entry_ids": [],
+          "state": "rejected",
+          "training_group_ids": []
+        }
+      ],
+      "schema_version": "profile-snapshot-v1",
+      "snapshot_id": "profile-snapshot-148eaf05e5f050ef9196f0289dda16b6990a70a9fb3843efbd4faac4133b119f",
+      "source_report": {
+        "artifact_receipts": [
+          {
+            "artifact_id": "response-a",
+            "bytes": 168664,
+            "file_name": "response-a.json",
+            "kind": "analytical_response",
+            "sha256": "sha256:479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00"
+          },
+          {
+            "artifact_id": "response-b",
+            "bytes": 168664,
+            "file_name": "response-b.json",
+            "kind": "analytical_response",
+            "sha256": "sha256:7c9e06a7f696319322a55f1013926e0de981065e2d19ead576e6c7d7bd760c91"
+          },
+          {
+            "artifact_id": "response-c",
+            "bytes": 168664,
+            "file_name": "response-c.json",
+            "kind": "analytical_response",
+            "sha256": "sha256:35324f0e13f329a6d11b2d02717f0b8058638a4006bfcc7935edfce5a1830661"
+          }
+        ],
+        "assurance": "external_review_declarations_not_authenticated",
+        "counts": {
+          "by_role": {
+            "engineering": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 0,
+              "retained_entries": 0,
+              "retained_groups": 0
+            },
+            "final_test": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 1,
+              "retained_entries": 1,
+              "retained_groups": 1
+            },
+            "training": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 1,
+              "retained_entries": 1,
+              "retained_groups": 1
+            },
+            "validation": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 1,
+              "retained_entries": 1,
+              "retained_groups": 1
+            }
+          },
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "excluded_entries": 3,
+          "retained_entries": 3,
+          "retained_groups": 3
+        },
+        "dataset_content_hash": "sha256:04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+        "dataset_id": "dataset-04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+        "entries": [
+          {
+            "eligible": false,
+            "eligible_feature_count": 22,
+            "entry_id": "entry-a",
+            "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+            "input_kind": "response",
+            "label": "host_contention",
+            "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+            "reason_codes": [
+              "synthetic_only"
+            ],
+            "representative_entry_id": "entry-a",
+            "role": "training"
+          },
+          {
+            "eligible": false,
+            "eligible_feature_count": 22,
+            "entry_id": "entry-b",
+            "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+            "input_kind": "response",
+            "label": "host_contention",
+            "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+            "reason_codes": [
+              "synthetic_only"
+            ],
+            "representative_entry_id": "entry-b",
+            "role": "validation"
+          },
+          {
+            "eligible": false,
+            "eligible_feature_count": 22,
+            "entry_id": "entry-c",
+            "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+            "input_kind": "response",
+            "label": "host_contention",
+            "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+            "reason_codes": [
+              "synthetic_only"
+            ],
+            "representative_entry_id": "entry-c",
+            "role": "final_test"
+          }
+        ],
+        "groups": [
+          {
+            "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+            "independence_review_state": "confirmed",
+            "role": "final_test",
+            "source_ids": [
+              "source-e",
+              "source-f"
+            ]
+          },
+          {
+            "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+            "independence_review_state": "confirmed",
+            "role": "validation",
+            "source_ids": [
+              "source-c",
+              "source-d"
+            ]
+          },
+          {
+            "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+            "independence_review_state": "confirmed",
+            "role": "training",
+            "source_ids": [
+              "source-a",
+              "source-b"
+            ]
+          }
+        ],
+        "method_release": "n6-calibration-evidence-v1",
+        "partitions": [
+          {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "input_kind": "response",
+            "partition_id": "partition-1a4f908701dc361cb14e1e11ad7458e3d323a98a0d5c4716298bd76c73d14ad9",
+            "retained_entries": 3
+          }
+        ],
+        "report_id": "calibration-report-750d9a2ad9c46cd9e6cd3db9254ff8295c14a981cb5e89a9de8f3dd9109bfb85",
+        "schema_version": "calibration-report-v1",
+        "split_id": "split-a58c64fed7fc2b79041878d55ed6d6cee77c2aaa681e4d570a29ab4f931df456",
+        "split_mode": "prospective"
+      }
+    }
+  },
+  "group_outcomes": [
+    {
+      "entry_ids": [
+        "entry-b"
+      ],
+      "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+      "predicted_label": null,
+      "prediction_reason_codes": [
+        "entry_unknown"
+      ],
+      "representative_entry_ids": [
+        "entry-b"
+      ],
+      "truth_label": "host_contention",
+      "truth_reason_codes": []
+    }
+  ],
+  "method_release": "n8-profile-matching-v1",
+  "metrics": {
+    "accuracy": {
+      "denominator": 1,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "truth_coverage": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "unknown_rate": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    }
+  },
+  "mode": "validation",
+  "policy": {
+    "calibration_method_release": "n6-calibration-evidence-v1",
+    "content_hash": "sha256:b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+    "evaluation": {
+      "accuracy": "correct_groups_over_all_known_truth_groups",
+      "automatic_tuning": false,
+      "fold_candidate_inventory": "original_training_keys",
+      "group_prediction": "unanimous_nonduplicate_response_decisions",
+      "modes": [
+        "validation",
+        "final_test",
+        "leave_training_group_out"
+      ],
+      "refit": "remove_whole_component_then_n7_statistics",
+      "trust_promotion": false,
+      "truth_coverage": "known_truth_groups_over_all_response_groups",
+      "truth_invalid_reasons": [
+        "label_unverified",
+        "effect_unverified",
+        "binding_unverified"
+      ],
+      "unknown_rate": "unknown_groups_over_all_response_groups",
+      "voting_unit": "one_n6_source_group"
+    },
+    "feature_names": [
+      "client.available_incoming_bitrate_kbps",
+      "client.decode_time_mean_ms",
+      "client.frames_decoded_rate_fps",
+      "client.frames_dropped_rate_fps",
+      "client.freeze_count_rate_per_min",
+      "client.freeze_duration_rate_ms_per_s",
+      "client.jitter_buffer_delay_mean_ms",
+      "client.received_bitrate_kbps",
+      "client.received_fps",
+      "encoder.frames_dropped_rate_fps",
+      "encoder.frames_in_rate_fps",
+      "encoder.frames_out_rate_fps",
+      "encoder.queue_level_buffers",
+      "host.camera_cpu_percent",
+      "host.camera_rss_mib",
+      "host.game_cpu_percent",
+      "host.game_rss_mib",
+      "host.node_cpu_percent",
+      "host.node_rss_mib",
+      "transport.jitter_ms",
+      "transport.packets_lost_rate_per_s",
+      "transport.round_trip_time_ms"
+    ],
+    "gates": {
+      "maximum_best_distance": 3.0,
+      "minimum_absolute_margin": 0.25,
+      "minimum_common_coverage": {
+        "denominator": 4,
+        "numerator": 3
+      },
+      "minimum_common_features": 17,
+      "minimum_scored_labels": 2
+    },
+    "limits": {
+      "maximum_candidates": 256,
+      "maximum_entries": 256,
+      "maximum_features": 22,
+      "maximum_json_bytes": 10485760,
+      "maximum_json_depth": 32,
+      "maximum_refits": 64,
+      "maximum_total_candidate_rows": 4096,
+      "maximum_total_feature_rows": 5632,
+      "maximum_total_refit_candidates": 256,
+      "maximum_total_refit_entry_references": 32768,
+      "maximum_total_refit_group_values": 32768
+    },
+    "method_release": "n8-profile-matching-v1",
+    "operating_mode": "offline_provisional",
+    "parameter_provenance": "software_provisional",
+    "policy_id": "profile-match-policy-b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+    "policy_version": "1.0.0",
+    "profile_method_release": "n7-profile-statistics-v1",
+    "profile_policy_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+    "registry": {
+      "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+      "registry_version": "latency-metrics-v2.0.0"
+    },
+    "response_policy_hash": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+    "schema_version": "profile-match-policy-v1",
+    "scoring": {
+      "absolute_deviation": "exact_binary64_difference_round_once",
+      "computed_zero": "positive_zero",
+      "distance": "positive_weight_mean_absolute_standardized_deviation",
+      "finite_arithmetic": "reject_unrepresentable",
+      "imputation": null,
+      "label_aggregation": "one_candidate_per_exact_partition_label",
+      "margin": "rounded_score_difference_round_once",
+      "nonzero_to_zero": "reject",
+      "rank_order": [
+        "distance",
+        "label",
+        "profile_id"
+      ],
+      "scale": "n7_raw_mad",
+      "scale_floor": null,
+      "shared_features": "intersection_across_all_prequalified_labels",
+      "standardized_deviation": "exact_binary64_ratio_round_once",
+      "weighted_mean": "exact_binary64_weighted_sum_and_division_round_once"
+    },
+    "source": {
+      "compatibility": "n6_exact_partition_v1",
+      "exclude_duplicates": true,
+      "label_use": "evaluation_truth_only",
+      "overlap": "whole_n6_connected_component_and_receipts",
+      "query_roles": [
+        "validation",
+        "final_test"
+      ],
+      "require_n6_eligible": true,
+      "scope": "one_fresh_n6_dataset",
+      "snapshot_selection": "one_explicit_revision",
+      "snapshot_state": "provisional"
+    }
+  },
+  "refits": [],
+  "result_id": "profile-evaluation-2e398e45785ecfa9f8f8f222cd24aafd3f8ef59272be77d7b5efb11ad2cbd27c",
+  "schema_version": "profile-evaluation-result-v1"
+}

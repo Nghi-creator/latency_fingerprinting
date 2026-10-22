@@ -137,6 +137,56 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.profile_matching.check_reproduction import FIXTURES as MATCH_FIXTURES
+        from tests.profile_matching.check_reproduction import check_reproduction as check_matching
+
+        match_corpus = directory / "profile-matching"
+        shutil.copytree(MATCH_FIXTURES, match_corpus)
+        match_release = check_matching(
+            match_corpus,
+            n6_directory=corpus,
+            n7_directory=profile_corpus,
+            invoke=invoke_installed,
+        )
+        protected = match_corpus / "snapshot-reviewed-roles.json"
+        original = protected.read_bytes()
+        for command, extra in (
+            ("match-profiles", ["--query-entry-id", "entry-a"]),
+            ("evaluate-profiles", ["--mode", "validation"]),
+        ):
+            code, stdout, stderr = invoke_installed(
+                [
+                    command,
+                    "--directory",
+                    corpus / "reviewed-roles",
+                    "--snapshot",
+                    protected,
+                    "--policy",
+                    match_corpus / "policy.json",
+                    *extra,
+                    "--output",
+                    protected,
+                ]
+            )
+            if (
+                code != 1
+                or stdout
+                or stderr != f"error: {command}: invalid_input_or_output\n".encode()
+                or protected.read_bytes() != original
+            ):
+                raise ValueError("installed N8 input/output protection drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                "from latency_fingerprinting.models import "
+                "ProfileMatchPolicy, ProfileMatchResult, ProfileEvaluationResult; "
+                "from latency_fingerprinting.profile_matching import "
+                "match_profile_snapshot, evaluate_profile_snapshot",
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -156,7 +206,8 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"entry point and all {len(actual)} schemas verified."
+            f"{match_release['cases']} N8 cases, entry point "
+            f"and all {len(actual)} schemas verified."
         )
 
 

@@ -62,6 +62,8 @@ from .observability import (
     StageTraceSummaryV2,
 )
 from .pipeline import build_observation_record, canonical_json
+from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
+from .profile_matching.commands import register_profile_matching_commands
 from .profiles import ProfilePolicy, ProfileSnapshot
 from .profiles.commands import register_profile_commands
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
@@ -80,6 +82,9 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "profile-match-policy-v1": ProfileMatchPolicy,
+    "profile-match-result-v1": ProfileMatchResult,
+    "profile-evaluation-result-v1": ProfileEvaluationResult,
     "profile-policy-v1": ProfilePolicy,
     "profile-snapshot-v1": ProfileSnapshot,
     "calibration-dataset-v1": CalibrationDataset,
@@ -129,6 +134,9 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "profile-match-policy-v1",
+        "profile-match-result-v1",
+        "profile-evaluation-result-v1",
         "profile-policy-v1",
         "profile-snapshot-v1",
         "calibration-dataset-v1",
@@ -163,6 +171,9 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            ProfileMatchPolicy,
+            ProfileMatchResult,
+            ProfileEvaluationResult,
             ProfilePolicy,
             ProfileSnapshot,
             CalibrationDataset,
@@ -396,6 +407,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_overhead_command(subparsers)
     register_calibration_command(subparsers)
     register_profile_commands(subparsers)
+    register_profile_matching_commands(subparsers)
     return parser
 
 

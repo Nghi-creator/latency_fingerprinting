@@ -23,6 +23,25 @@ def reconstruct(report, inputs, policy_hash):
                 raise ValueError("selected feature count disagrees with N6")
             vectors[entry.entry_id] = item.feature_values
             selected.append(entry)
+    profiles = fit_profiles(report, selected, vectors, policy_hash)
+    counts = dict(
+        retained_entries=len(entries),
+        selected_entries=len(selected),
+        excluded_entries=len(entries) - len(selected),
+        selected_groups=len({entry.group_id for entry in selected}),
+        baseline_entries=sum(e.input_kind == "healthy_window" for e in entries),
+        missing_entries=sum(e.input_kind == "missing" for e in entries),
+        heldout_response_entries=sum(
+            e.input_kind == "response" and e.role in ("validation", "final_test") for e in entries
+        ),
+        mixed_label_groups=len(mixed),
+    )
+    return profiles, counts
+
+
+def fit_profiles(report, selected, vectors, policy_hash):
+    """Shared internal N7 fitting over already selected bounded entries and vectors."""
+    entries = report.entries
     profiles = []
     keys = sorted(
         {
@@ -80,16 +99,4 @@ def reconstruct(report, inputs, policy_hash):
             )[7:]
         )
         profiles.append(profile)
-    counts = dict(
-        retained_entries=len(entries),
-        selected_entries=len(selected),
-        excluded_entries=len(entries) - len(selected),
-        selected_groups=len({entry.group_id for entry in selected}),
-        baseline_entries=sum(e.input_kind == "healthy_window" for e in entries),
-        missing_entries=sum(e.input_kind == "missing" for e in entries),
-        heldout_response_entries=sum(
-            e.input_kind == "response" and e.role in ("validation", "final_test") for e in entries
-        ),
-        mixed_label_groups=len(mixed),
-    )
-    return profiles, counts
+    return profiles

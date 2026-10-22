@@ -79,6 +79,21 @@ IDs do not prove scientific independence or causality. See the
 [lifecycle](scenarios/N5_RUN_LIFECYCLE.md) and
 [campaign workflow](scenarios/N5_CAMPAIGN_WORKFLOW.md).
 
+## Calibration and profiles
+
+N6 inspects linked evidence, connected source groups and frozen split assignments.
+N7 fits training-only group medians and raw-MAD profiles, retaining exclusions and
+explicit immutable lifecycle revisions. Supported profiles remain provisional.
+See [calibration inspection](calibration/N6_INSPECTION.md) and
+[profile building](profiles/N7_COMMANDS.md).
+
+The additive [N8 matching method](profile_matching/N8_MATCH_CONTRACT.md) specifies
+offline label comparisons on a shared feature mask and whole-source-group refits
+for evaluation. [Standalone N8 models](profile_matching/N8_MODELS.md) reconstruct
+retained scoring/evaluation declarations. [Linked N8 operations](profile_matching/N8_COMMANDS.md)
+share one N6 inspection for fresh training verification and query extraction.
+Existing point-fingerprint matching keeps its separate behavior.
+
 ## File and numeric boundaries
 
 Public JSON readers reject duplicate keys, nonfinite numbers, excessive nesting,

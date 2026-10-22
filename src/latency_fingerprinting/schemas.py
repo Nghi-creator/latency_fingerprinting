@@ -1,4 +1,4 @@
-"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2–N7 roots."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2–N8 roots."""
 
 from __future__ import annotations
 
@@ -31,6 +31,7 @@ from .models import (
     StageTraceSummary,
 )
 from .observability.browser_v2 import StageTraceRecordV2, StageTraceSummaryV2
+from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
 from .profiles import ProfilePolicy, ProfileSnapshot
 from .scenarios.campaign_models import CampaignIndex, CampaignPlan, CampaignReport
 from .scenarios.overhead_models import OverheadEvidence, OverheadReport
@@ -41,6 +42,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "profile-match-policy-v1.schema.json": ProfileMatchPolicy,
+    "profile-match-result-v1.schema.json": ProfileMatchResult,
+    "profile-evaluation-result-v1.schema.json": ProfileEvaluationResult,
     "profile-policy-v1.schema.json": ProfilePolicy,
     "profile-snapshot-v1.schema.json": ProfileSnapshot,
     "calibration-dataset-v1.schema.json": CalibrationDataset,

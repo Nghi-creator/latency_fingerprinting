@@ -5,6 +5,7 @@ on:
   pull_request:
     branches:
       - main
+      - phase_2
   workflow_dispatch:
 
 permissions:
@@ -17,7 +18,8 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Includes coverage, independent reproductions and an isolated wheel install.
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -42,7 +44,8 @@ jobs:
         run: ruff format --check .
 
       - name: Run tests
-        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
+        timeout-minutes: 20
+        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85 --durations=25
 
       - name: Reproduce pinned N4 stage traces and independent expectations
         run: |
@@ -57,6 +60,9 @@ jobs:
 
       - name: Reproduce pinned N7 profiles and independent expectations
         run: python -m tests.profiles.check_reproduction
+
+      - name: Reproduce pinned N8 matching and independent expectations
+        run: python -m tests.profile_matching.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
@@ -112,7 +118,7 @@ jobs:
 
   python-311-compatibility:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -131,7 +137,8 @@ jobs:
           python -m pip install -e '.[dev]'
 
       - name: Run minimum-version test suite
-        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
+        timeout-minutes: 20
+        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85 --durations=25
 
       - name: Check generated schemas and canonical registry
         run: |
@@ -165,6 +172,9 @@ jobs:
 
       - name: Reproduce pinned N7 profiles and independent expectations
         run: python -m tests.profiles.check_reproduction
+
+      - name: Reproduce pinned N8 matching and independent expectations
+        run: python -m tests.profile_matching.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel

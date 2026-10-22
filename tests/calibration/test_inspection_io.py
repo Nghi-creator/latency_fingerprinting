@@ -127,18 +127,21 @@ def test_pinned_root_survives_path_replacement(tmp_path, monkeypatch):
     original = bundle_io.read_at
     renamed = False
 
-    def replace_root(fd, name, maximum):
+    def replace_root(fd, name, maximum, **kwargs):
         nonlocal renamed
         if not renamed:
             renamed = True
             path.rename(moved)
             path.mkdir()
             (path / bundle_io.MANIFEST).write_bytes(b"untrusted replacement")
-        return original(fd, name, maximum)
+        return original(fd, name, maximum, **kwargs)
 
     monkeypatch.setattr(bundle_io, "read_at", replace_root)
     result = inspect_calibration_dataset(path)
     assert result.dataset.content_hash == p["content_hash"]
+    assert result.file_identities == frozenset(
+        (member.stat().st_dev, member.stat().st_ino) for member in moved.iterdir()
+    )
     assert (path / bundle_io.MANIFEST).read_bytes() == b"untrusted replacement"
 
 
@@ -147,8 +150,8 @@ def test_inventory_mutation_rejects_final_snapshot(tmp_path, monkeypatch):
     path = write(tmp_path, p, files)
     original = bundle_io.read_at
 
-    def mutate(fd, name, maximum):
-        raw = original(fd, name, maximum)
+    def mutate(fd, name, maximum, **kwargs):
+        raw = original(fd, name, maximum, **kwargs)
         if name == "response-a.json":
             (path / "new.json").write_bytes(b"{}")
         return raw

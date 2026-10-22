@@ -13,10 +13,17 @@ python -m latency_fingerprinting export-metric-registry \
   --output schemas/metric-registry-v1.json --check
 ```
 
-CI runs the core suite on Python 3.13 and the minimum supported Python 3.11.
+CI checks pushes and pull requests targeting `main` or `phase_2`, using Python
+3.13 and the minimum supported Python 3.11 for the core suite.
 The branch-inclusive coverage floor is 85%. Tests cover P0 compatibility,
 registered aggregation, v2 adoption/matching, trace reconstruction, bounded file
 and archive inputs, finite arithmetic, provenance and scenario inspection.
+
+Each Python job has a 30-minute budget for setup, coverage, independent
+reproductions and the installed-wheel check. The test step is separately bounded
+to 20 minutes and reports its 25 slowest tests. Coverage and case inventories are
+unchanged by these time budgets. A rerun of an old commit still uses that commit's
+workflow; changed budgets take effect on a run containing the workflow update.
 
 ## Frozen fixture reproduction
 
@@ -29,12 +36,18 @@ python -m tests.observability.check_browser_execution
 python -m tests.scenarios.check_reproduction
 python -m tests.calibration.check_reproduction
 python -m tests.profiles.check_reproduction
+python -m tests.profile_matching.check_reproduction
+python -m pytest tests/profile_matching
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
 These commands check release pins and independent expectations without blessing
 drift or regenerating expected results. Synthetic arithmetic is software evidence,
 not a replacement for live capture. Versioned browser methods retain separate pins.
+N8 tests pin independent policy/vectors and check immutable standalone models,
+exact pure scoring/refits, complete result reconstruction and validation dispatch.
+Linked N8 checks cover one-inspection source binding, fresh training verification,
+query extraction, group refits and private commands with protected output.
 
 ## Installed package
 
@@ -46,7 +59,9 @@ This builds a wheel and installs it in a fresh temporary environment outside the
 checkout. It verifies the import location, console entry point, all frozen N6
 calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md),
 including standalone validation, linked builds, lifecycle operations, private
-errors/preserved output and schema exports.
+errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
+and all three evaluation modes, the complete
+[frozen N8 corpus](../profile_matching/N8_FIXTURES.md), and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

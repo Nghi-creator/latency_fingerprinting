@@ -1,0 +1,680 @@
+{
+  "assurance": "software_provisional_external_reviews_not_authenticated",
+  "confusion_matrix": {
+    "healthy": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    },
+    "host_contention": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    },
+    "render_capture_slowdown": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    },
+    "unverified_truth": {
+      "healthy": 0,
+      "host_contention": 0,
+      "render_capture_slowdown": 0,
+      "unknown": 0
+    }
+  },
+  "content_hash": "sha256:0759543bef5bfe44e3135997da496d3ec8c4ad8446add2718667578c73019cb8",
+  "counts": {
+    "baseline_entries": 0,
+    "baseline_only_groups": 0,
+    "classification_groups": 0,
+    "computed_refits": 0,
+    "correct_groups": 0,
+    "duplicate_entries": 0,
+    "evaluated_entries": 0,
+    "global_missing_entries": 0,
+    "incorrect_groups": 0,
+    "known_truth_groups": 0,
+    "n6_excluded_entries": 0,
+    "provisional_match_groups": 0,
+    "response_entries": 0,
+    "retained_entries": 2,
+    "skipped_refits": 0,
+    "unknown_groups": 0,
+    "unverified_truth_groups": 0
+  },
+  "decisions": [],
+  "evidence": {
+    "dataset": {
+      "artifacts": [
+        {
+          "artifact_id": "response-a",
+          "bytes": 60477,
+          "file_name": "response-a.json",
+          "kind": "observation_window",
+          "sha256": "sha256:d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c"
+        },
+        {
+          "artifact_id": "response-b",
+          "bytes": 60479,
+          "file_name": "response-b.json",
+          "kind": "observation_window",
+          "sha256": "sha256:43f4afb6d301ea99cf3c846a7ef177a7300494317b48ba4eb1df1858aa795c83"
+        }
+      ],
+      "content_hash": "sha256:0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+      "dataset_id": "dataset-0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+      "derivations": [],
+      "entries": [
+        {
+          "artifact_id": "response-a",
+          "entry_id": "entry-a",
+          "experiment_artifact_id": null,
+          "experiment_phase": null,
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "label_basis": "external_confirmation",
+          "label_review_id": "label",
+          "source_bindings": [
+            {
+              "source_id": "source-a",
+              "window_id": "window-baseline",
+              "window_role": "healthy"
+            }
+          ]
+        },
+        {
+          "artifact_id": "response-b",
+          "entry_id": "entry-b",
+          "experiment_artifact_id": null,
+          "experiment_phase": null,
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "label_basis": "external_confirmation",
+          "label_review_id": "label-b",
+          "source_bindings": [
+            {
+              "source_id": "source-a",
+              "window_id": "window-baseline-b",
+              "window_role": "healthy"
+            }
+          ]
+        }
+      ],
+      "method_release": "n6-calibration-evidence-v1",
+      "reviews": [
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "split_freeze",
+          "outcome": "confirmed",
+          "review_id": "freeze",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "independence",
+          "outcome": "confirmed",
+          "review_id": "independence",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "source-a"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "label_binding",
+          "outcome": "confirmed",
+          "review_id": "label",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "entry-a"
+          ]
+        },
+        {
+          "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "kind": "label_binding",
+          "outcome": "confirmed",
+          "review_id": "label-b",
+          "reviewer_id": "reviewer",
+          "subject_ids": [
+            "entry-b"
+          ]
+        }
+      ],
+      "schema_version": "calibration-dataset-v1",
+      "sources": [
+        {
+          "acquisition_namespace": "acquisition-system",
+          "bundle_schema_version": null,
+          "independence_group": "independent-source-a",
+          "review_id": "independence",
+          "run_id": "run-baseline",
+          "session_id": "session-source-a",
+          "source_content_hash": "sha256:25be7102183918152c13d010a070cfc41b40ae9893a98ddc5952aa2cf0e8a8ed",
+          "source_id": "source-a",
+          "source_type": "synthetic_series"
+        }
+      ],
+      "split": {
+        "assignments": [
+          {
+            "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+            "role": "training"
+          }
+        ],
+        "freeze_review_id": "freeze",
+        "mode": "prospective",
+        "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "split_id": "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd"
+      }
+    },
+    "report": {
+      "artifact_receipts": [
+        {
+          "artifact_id": "response-a",
+          "bytes": 60477,
+          "file_name": "response-a.json",
+          "kind": "observation_window",
+          "sha256": "sha256:d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c"
+        },
+        {
+          "artifact_id": "response-b",
+          "bytes": 60479,
+          "file_name": "response-b.json",
+          "kind": "observation_window",
+          "sha256": "sha256:43f4afb6d301ea99cf3c846a7ef177a7300494317b48ba4eb1df1858aa795c83"
+        }
+      ],
+      "assurance": "external_review_declarations_not_authenticated",
+      "counts": {
+        "by_role": {
+          "engineering": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "final_test": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          },
+          "training": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 2,
+            "retained_entries": 2,
+            "retained_groups": 1
+          },
+          "validation": {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "excluded_entries": 0,
+            "retained_entries": 0,
+            "retained_groups": 0
+          }
+        },
+        "eligible_entries": 0,
+        "eligible_groups": 0,
+        "excluded_entries": 2,
+        "retained_entries": 2,
+        "retained_groups": 1
+      },
+      "dataset_content_hash": "sha256:0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+      "dataset_id": "dataset-0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+      "entries": [
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-a",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "partition_id": "partition-1b1beaccc41d38b9e77d78c463bd111143027fd540235b7ed38e5400970303da",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-a",
+          "role": "training"
+        },
+        {
+          "eligible": false,
+          "eligible_feature_count": null,
+          "entry_id": "entry-b",
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "input_kind": "healthy_window",
+          "label": "healthy",
+          "partition_id": "partition-758cc9a0977607cf9f538841c58e5bbdf04cd296d544b0673b1ff2d5e8e5dc65",
+          "reason_codes": [
+            "synthetic_only"
+          ],
+          "representative_entry_id": "entry-b",
+          "role": "training"
+        }
+      ],
+      "groups": [
+        {
+          "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+          "independence_review_state": "confirmed",
+          "role": "training",
+          "source_ids": [
+            "source-a"
+          ]
+        }
+      ],
+      "method_release": "n6-calibration-evidence-v1",
+      "partitions": [
+        {
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "input_kind": "healthy_window",
+          "partition_id": "partition-1b1beaccc41d38b9e77d78c463bd111143027fd540235b7ed38e5400970303da",
+          "retained_entries": 1
+        },
+        {
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "input_kind": "healthy_window",
+          "partition_id": "partition-758cc9a0977607cf9f538841c58e5bbdf04cd296d544b0673b1ff2d5e8e5dc65",
+          "retained_entries": 1
+        }
+      ],
+      "report_id": "calibration-report-99005ea622d35eb78aad3a4ec371079d9be5460a90b28d3da30fdca696c43b90",
+      "schema_version": "calibration-report-v1",
+      "split_id": "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd",
+      "split_mode": "prospective"
+    },
+    "snapshot": {
+      "assurance": "software_provisional_external_reviews_not_authenticated",
+      "content_hash": "sha256:aca136c3f8fa5de4d72a4dd3e14e44ddf95108c5705b26e579c24ade2b81413a",
+      "counts": {
+        "baseline_entries": 2,
+        "excluded_entries": 2,
+        "heldout_response_entries": 0,
+        "missing_entries": 0,
+        "mixed_label_groups": 0,
+        "retained_entries": 2,
+        "selected_entries": 0,
+        "selected_groups": 0
+      },
+      "inputs": [
+        {
+          "entry_id": "entry-a",
+          "feature_values": null,
+          "reason_codes": [
+            "baseline_only",
+            "n6_excluded"
+          ],
+          "selected": false
+        },
+        {
+          "entry_id": "entry-b",
+          "feature_values": null,
+          "reason_codes": [
+            "baseline_only",
+            "n6_excluded"
+          ],
+          "selected": false
+        }
+      ],
+      "lifecycle": {
+        "operation": "build",
+        "parent_snapshot_id": null,
+        "reason_code": "no_supported_profiles",
+        "replacement_snapshot_id": null,
+        "review": null,
+        "state": "rejected"
+      },
+      "method_release": "n7-profile-statistics-v1",
+      "policy": {
+        "calibration_method_release": "n6-calibration-evidence-v1",
+        "content_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+        "feature_names": [
+          "client.available_incoming_bitrate_kbps",
+          "client.decode_time_mean_ms",
+          "client.frames_decoded_rate_fps",
+          "client.frames_dropped_rate_fps",
+          "client.freeze_count_rate_per_min",
+          "client.freeze_duration_rate_ms_per_s",
+          "client.jitter_buffer_delay_mean_ms",
+          "client.received_bitrate_kbps",
+          "client.received_fps",
+          "encoder.frames_dropped_rate_fps",
+          "encoder.frames_in_rate_fps",
+          "encoder.frames_out_rate_fps",
+          "encoder.queue_level_buffers",
+          "host.camera_cpu_percent",
+          "host.camera_rss_mib",
+          "host.game_cpu_percent",
+          "host.game_rss_mib",
+          "host.node_cpu_percent",
+          "host.node_rss_mib",
+          "transport.jitter_ms",
+          "transport.packets_lost_rate_per_s",
+          "transport.round_trip_time_ms"
+        ],
+        "gates": {
+          "minimum_active_coverage": {
+            "denominator": 4,
+            "numerator": 3
+          },
+          "minimum_active_features": 17,
+          "minimum_feature_availability": {
+            "denominator": 5,
+            "numerator": 4
+          },
+          "minimum_feature_groups": 5,
+          "minimum_training_groups": 5
+        },
+        "method_release": "n7-profile-statistics-v1",
+        "parameter_provenance": "software_provisional",
+        "policy_id": "profile-policy-8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+        "policy_version": "1.0.0",
+        "registry": {
+          "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+          "registry_version": "latency-metrics-v2.0.0"
+        },
+        "response_policy_hash": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+        "schema_version": "profile-policy-v1",
+        "selection": {
+          "exclude_duplicates": true,
+          "input_kind": "response",
+          "mixed_group_labels": "exclude_partition_group",
+          "partition_method": "n6_exact_partition_v1",
+          "require_n6_eligible": true,
+          "role": "training"
+        },
+        "statistics": {
+          "absolute_deviation": "exact_binary64_difference_round_once",
+          "center": "median",
+          "computed_zero": "positive_zero",
+          "dispersion": "raw_mad",
+          "dispersion_floor": null,
+          "empty_feature": "unavailable",
+          "even_median": "exact_binary64_midpoint_round_once",
+          "finite_arithmetic": "reject_unrepresentable",
+          "nonzero_to_zero": "reject",
+          "within_group": "median",
+          "zero_dispersion": "exclude"
+        },
+        "weights": {
+          "excluded": 0.0,
+          "supported": 1.0
+        }
+      },
+      "profiles": [],
+      "schema_version": "profile-snapshot-v1",
+      "snapshot_id": "profile-snapshot-aca136c3f8fa5de4d72a4dd3e14e44ddf95108c5705b26e579c24ade2b81413a",
+      "source_report": {
+        "artifact_receipts": [
+          {
+            "artifact_id": "response-a",
+            "bytes": 60477,
+            "file_name": "response-a.json",
+            "kind": "observation_window",
+            "sha256": "sha256:d1a9ab364fc310fc29462afe0a61fd965e7bbe6c9cd934b963621398ac6cc39c"
+          },
+          {
+            "artifact_id": "response-b",
+            "bytes": 60479,
+            "file_name": "response-b.json",
+            "kind": "observation_window",
+            "sha256": "sha256:43f4afb6d301ea99cf3c846a7ef177a7300494317b48ba4eb1df1858aa795c83"
+          }
+        ],
+        "assurance": "external_review_declarations_not_authenticated",
+        "counts": {
+          "by_role": {
+            "engineering": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 0,
+              "retained_entries": 0,
+              "retained_groups": 0
+            },
+            "final_test": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 0,
+              "retained_entries": 0,
+              "retained_groups": 0
+            },
+            "training": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 2,
+              "retained_entries": 2,
+              "retained_groups": 1
+            },
+            "validation": {
+              "eligible_entries": 0,
+              "eligible_groups": 0,
+              "excluded_entries": 0,
+              "retained_entries": 0,
+              "retained_groups": 0
+            }
+          },
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "excluded_entries": 2,
+          "retained_entries": 2,
+          "retained_groups": 1
+        },
+        "dataset_content_hash": "sha256:0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+        "dataset_id": "dataset-0d033fc4a7edd214fdd4409806efb653f9f634585ba8e1b849514c4e8ce2e6da",
+        "entries": [
+          {
+            "eligible": false,
+            "eligible_feature_count": null,
+            "entry_id": "entry-a",
+            "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+            "input_kind": "healthy_window",
+            "label": "healthy",
+            "partition_id": "partition-1b1beaccc41d38b9e77d78c463bd111143027fd540235b7ed38e5400970303da",
+            "reason_codes": [
+              "synthetic_only"
+            ],
+            "representative_entry_id": "entry-a",
+            "role": "training"
+          },
+          {
+            "eligible": false,
+            "eligible_feature_count": null,
+            "entry_id": "entry-b",
+            "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+            "input_kind": "healthy_window",
+            "label": "healthy",
+            "partition_id": "partition-758cc9a0977607cf9f538841c58e5bbdf04cd296d544b0673b1ff2d5e8e5dc65",
+            "reason_codes": [
+              "synthetic_only"
+            ],
+            "representative_entry_id": "entry-b",
+            "role": "training"
+          }
+        ],
+        "groups": [
+          {
+            "group_id": "group-cf7df5e6e923b5b8dd96e9ffa9affc3f44aa84a0d694f8ec5cd027544da97b7d",
+            "independence_review_state": "confirmed",
+            "role": "training",
+            "source_ids": [
+              "source-a"
+            ]
+          }
+        ],
+        "method_release": "n6-calibration-evidence-v1",
+        "partitions": [
+          {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "input_kind": "healthy_window",
+            "partition_id": "partition-1b1beaccc41d38b9e77d78c463bd111143027fd540235b7ed38e5400970303da",
+            "retained_entries": 1
+          },
+          {
+            "eligible_entries": 0,
+            "eligible_groups": 0,
+            "input_kind": "healthy_window",
+            "partition_id": "partition-758cc9a0977607cf9f538841c58e5bbdf04cd296d544b0673b1ff2d5e8e5dc65",
+            "retained_entries": 1
+          }
+        ],
+        "report_id": "calibration-report-99005ea622d35eb78aad3a4ec371079d9be5460a90b28d3da30fdca696c43b90",
+        "schema_version": "calibration-report-v1",
+        "split_id": "split-a16d7355283f1599d45473d051de2511183a90d4991e7b671688a5511a9520fd",
+        "split_mode": "prospective"
+      }
+    }
+  },
+  "group_outcomes": [],
+  "method_release": "n8-profile-matching-v1",
+  "metrics": {
+    "accuracy": {
+      "denominator": 0,
+      "numerator": 0,
+      "value": null
+    },
+    "truth_coverage": {
+      "denominator": 0,
+      "numerator": 0,
+      "value": null
+    },
+    "unknown_rate": {
+      "denominator": 0,
+      "numerator": 0,
+      "value": null
+    }
+  },
+  "mode": "final_test",
+  "policy": {
+    "calibration_method_release": "n6-calibration-evidence-v1",
+    "content_hash": "sha256:b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+    "evaluation": {
+      "accuracy": "correct_groups_over_all_known_truth_groups",
+      "automatic_tuning": false,
+      "fold_candidate_inventory": "original_training_keys",
+      "group_prediction": "unanimous_nonduplicate_response_decisions",
+      "modes": [
+        "validation",
+        "final_test",
+        "leave_training_group_out"
+      ],
+      "refit": "remove_whole_component_then_n7_statistics",
+      "trust_promotion": false,
+      "truth_coverage": "known_truth_groups_over_all_response_groups",
+      "truth_invalid_reasons": [
+        "label_unverified",
+        "effect_unverified",
+        "binding_unverified"
+      ],
+      "unknown_rate": "unknown_groups_over_all_response_groups",
+      "voting_unit": "one_n6_source_group"
+    },
+    "feature_names": [
+      "client.available_incoming_bitrate_kbps",
+      "client.decode_time_mean_ms",
+      "client.frames_decoded_rate_fps",
+      "client.frames_dropped_rate_fps",
+      "client.freeze_count_rate_per_min",
+      "client.freeze_duration_rate_ms_per_s",
+      "client.jitter_buffer_delay_mean_ms",
+      "client.received_bitrate_kbps",
+      "client.received_fps",
+      "encoder.frames_dropped_rate_fps",
+      "encoder.frames_in_rate_fps",
+      "encoder.frames_out_rate_fps",
+      "encoder.queue_level_buffers",
+      "host.camera_cpu_percent",
+      "host.camera_rss_mib",
+      "host.game_cpu_percent",
+      "host.game_rss_mib",
+      "host.node_cpu_percent",
+      "host.node_rss_mib",
+      "transport.jitter_ms",
+      "transport.packets_lost_rate_per_s",
+      "transport.round_trip_time_ms"
+    ],
+    "gates": {
+      "maximum_best_distance": 3.0,
+      "minimum_absolute_margin": 0.25,
+      "minimum_common_coverage": {
+        "denominator": 4,
+        "numerator": 3
+      },
+      "minimum_common_features": 17,
+      "minimum_scored_labels": 2
+    },
+    "limits": {
+      "maximum_candidates": 256,
+      "maximum_entries": 256,
+      "maximum_features": 22,
+      "maximum_json_bytes": 10485760,
+      "maximum_json_depth": 32,
+      "maximum_refits": 64,
+      "maximum_total_candidate_rows": 4096,
+      "maximum_total_feature_rows": 5632,
+      "maximum_total_refit_candidates": 256,
+      "maximum_total_refit_entry_references": 32768,
+      "maximum_total_refit_group_values": 32768
+    },
+    "method_release": "n8-profile-matching-v1",
+    "operating_mode": "offline_provisional",
+    "parameter_provenance": "software_provisional",
+    "policy_id": "profile-match-policy-b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+    "policy_version": "1.0.0",
+    "profile_method_release": "n7-profile-statistics-v1",
+    "profile_policy_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+    "registry": {
+      "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+      "registry_version": "latency-metrics-v2.0.0"
+    },
+    "response_policy_hash": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+    "schema_version": "profile-match-policy-v1",
+    "scoring": {
+      "absolute_deviation": "exact_binary64_difference_round_once",
+      "computed_zero": "positive_zero",
+      "distance": "positive_weight_mean_absolute_standardized_deviation",
+      "finite_arithmetic": "reject_unrepresentable",
+      "imputation": null,
+      "label_aggregation": "one_candidate_per_exact_partition_label",
+      "margin": "rounded_score_difference_round_once",
+      "nonzero_to_zero": "reject",
+      "rank_order": [
+        "distance",
+        "label",
+        "profile_id"
+      ],
+      "scale": "n7_raw_mad",
+      "scale_floor": null,
+      "shared_features": "intersection_across_all_prequalified_labels",
+      "standardized_deviation": "exact_binary64_ratio_round_once",
+      "weighted_mean": "exact_binary64_weighted_sum_and_division_round_once"
+    },
+    "source": {
+      "compatibility": "n6_exact_partition_v1",
+      "exclude_duplicates": true,
+      "label_use": "evaluation_truth_only",
+      "overlap": "whole_n6_connected_component_and_receipts",
+      "query_roles": [
+        "validation",
+        "final_test"
+      ],
+      "require_n6_eligible": true,
+      "scope": "one_fresh_n6_dataset",
+      "snapshot_selection": "one_explicit_revision",
+      "snapshot_state": "provisional"
+    }
+  },
+  "refits": [],
+  "result_id": "profile-evaluation-0759543bef5bfe44e3135997da496d3ec8c4ad8446add2718667578c73019cb8",
+  "schema_version": "profile-evaluation-result-v1"
+}

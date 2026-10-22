@@ -1,0 +1,602 @@
+{
+  "cases": {
+    "changed-anchor-evaluate": {
+      "error": "invalid_profile_evaluation",
+      "expected_dataset_content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "mode": "validation",
+      "operation": "evaluate",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "changed-anchor-match": {
+      "error": "invalid_profile_match",
+      "expected_dataset_content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "mode": "validation",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "distance-boundary": {
+      "expected_file": "distance-boundary.json",
+      "operand": "distance-boundary.json",
+      "operation": "validate"
+    },
+    "distance-exceeded": {
+      "expected_file": "distance-exceeded.json",
+      "operand": "distance-exceeded.json",
+      "operation": "validate"
+    },
+    "evaluation-final-test": {
+      "expected_file": "evaluation-final-test.json",
+      "operand": "evaluation-final-test.json",
+      "operation": "validate"
+    },
+    "evaluation-validation": {
+      "expected_file": "evaluation-validation.json",
+      "operand": "evaluation-validation.json",
+      "operation": "validate"
+    },
+    "finite-mean": {
+      "expected_file": "finite-mean.json",
+      "operand": "finite-mean.json",
+      "operation": "validate"
+    },
+    "invalid-evaluate-split-leakage": {
+      "error": "invalid_profile_evaluation",
+      "mode": "validation",
+      "operation": "evaluate",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "split-leakage"
+    },
+    "invalid-evaluate-wrong-binding": {
+      "error": "invalid_profile_evaluation",
+      "mode": "validation",
+      "operation": "evaluate",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "wrong-binding"
+    },
+    "invalid-match-split-leakage": {
+      "error": "invalid_profile_match",
+      "mode": "validation",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "split-leakage"
+    },
+    "invalid-match-wrong-binding": {
+      "error": "invalid_profile_match",
+      "mode": "validation",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "wrong-binding"
+    },
+    "invalid-policy-evaluate": {
+      "error": "invalid_profile_evaluation",
+      "mode": "validation",
+      "operation": "evaluate",
+      "policy": "invalid-policy.json",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "invalid-policy-match": {
+      "error": "invalid_profile_match",
+      "mode": "validation",
+      "operation": "match",
+      "policy": "invalid-policy.json",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "invalid-snapshot-evaluate": {
+      "error": "invalid_profile_evaluation",
+      "mode": "validation",
+      "operation": "evaluate",
+      "query_entry_id": "entry-a",
+      "snapshot": "invalid-snapshot.json",
+      "source": "reviewed-roles"
+    },
+    "invalid-snapshot-match": {
+      "error": "invalid_profile_match",
+      "mode": "validation",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "invalid-snapshot.json",
+      "source": "reviewed-roles"
+    },
+    "linked-final_test-baseline": {
+      "expected_file": "evaluate-baseline-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-baseline.json",
+      "source": "baseline"
+    },
+    "linked-final_test-confounded": {
+      "expected_file": "evaluate-confounded-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-confounded.json",
+      "source": "confounded"
+    },
+    "linked-final_test-controlled-healthy": {
+      "expected_file": "evaluate-controlled-healthy-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-healthy.json",
+      "source": "controlled-healthy"
+    },
+    "linked-final_test-controlled-host": {
+      "expected_file": "evaluate-controlled-host-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-host.json",
+      "source": "controlled-host"
+    },
+    "linked-final_test-controlled-pacing": {
+      "expected_file": "evaluate-controlled-pacing-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-pacing.json",
+      "source": "controlled-pacing"
+    },
+    "linked-final_test-declared": {
+      "expected_file": "evaluate-declared-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-declared.json",
+      "source": "declared"
+    },
+    "linked-final_test-duplicate": {
+      "expected_file": "evaluate-duplicate-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-duplicate.json",
+      "source": "duplicate"
+    },
+    "linked-final_test-failed-effect": {
+      "expected_file": "evaluate-failed-effect-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-failed-effect.json",
+      "source": "failed-effect"
+    },
+    "linked-final_test-missing": {
+      "expected_file": "evaluate-missing-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-missing.json",
+      "source": "missing"
+    },
+    "linked-final_test-mixed-settings": {
+      "expected_file": "evaluate-mixed-settings-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-mixed-settings.json",
+      "source": "mixed-settings"
+    },
+    "linked-final_test-reviewed-response": {
+      "expected_file": "evaluate-reviewed-response-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-response.json",
+      "source": "reviewed-response"
+    },
+    "linked-final_test-reviewed-roles": {
+      "expected_file": "evaluate-reviewed-roles-final_test.json",
+      "mode": "final_test",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "linked-leave_training_group_out-baseline": {
+      "expected_file": "evaluate-baseline-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-baseline.json",
+      "source": "baseline"
+    },
+    "linked-leave_training_group_out-confounded": {
+      "expected_file": "evaluate-confounded-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-confounded.json",
+      "source": "confounded"
+    },
+    "linked-leave_training_group_out-controlled-healthy": {
+      "expected_file": "evaluate-controlled-healthy-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-healthy.json",
+      "source": "controlled-healthy"
+    },
+    "linked-leave_training_group_out-controlled-host": {
+      "expected_file": "evaluate-controlled-host-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-host.json",
+      "source": "controlled-host"
+    },
+    "linked-leave_training_group_out-controlled-pacing": {
+      "expected_file": "evaluate-controlled-pacing-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-pacing.json",
+      "source": "controlled-pacing"
+    },
+    "linked-leave_training_group_out-declared": {
+      "expected_file": "evaluate-declared-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-declared.json",
+      "source": "declared"
+    },
+    "linked-leave_training_group_out-duplicate": {
+      "expected_file": "evaluate-duplicate-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-duplicate.json",
+      "source": "duplicate"
+    },
+    "linked-leave_training_group_out-failed-effect": {
+      "expected_file": "evaluate-failed-effect-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-failed-effect.json",
+      "source": "failed-effect"
+    },
+    "linked-leave_training_group_out-missing": {
+      "expected_file": "evaluate-missing-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-missing.json",
+      "source": "missing"
+    },
+    "linked-leave_training_group_out-mixed-settings": {
+      "expected_file": "evaluate-mixed-settings-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-mixed-settings.json",
+      "source": "mixed-settings"
+    },
+    "linked-leave_training_group_out-reviewed-response": {
+      "expected_file": "evaluate-reviewed-response-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-response.json",
+      "source": "reviewed-response"
+    },
+    "linked-leave_training_group_out-reviewed-roles": {
+      "expected_file": "evaluate-reviewed-roles-leave_training_group_out.json",
+      "mode": "leave_training_group_out",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "linked-match-baseline": {
+      "expected_file": "match-baseline.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-baseline.json",
+      "source": "baseline"
+    },
+    "linked-match-confounded": {
+      "expected_file": "match-confounded.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-confounded.json",
+      "source": "confounded"
+    },
+    "linked-match-controlled-healthy": {
+      "expected_file": "match-controlled-healthy.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-controlled-healthy.json",
+      "source": "controlled-healthy"
+    },
+    "linked-match-controlled-host": {
+      "expected_file": "match-controlled-host.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-controlled-host.json",
+      "source": "controlled-host"
+    },
+    "linked-match-controlled-pacing": {
+      "expected_file": "match-controlled-pacing.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-controlled-pacing.json",
+      "source": "controlled-pacing"
+    },
+    "linked-match-declared": {
+      "expected_file": "match-declared.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-declared.json",
+      "source": "declared"
+    },
+    "linked-match-duplicate": {
+      "expected_file": "match-duplicate.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-duplicate.json",
+      "source": "duplicate"
+    },
+    "linked-match-failed-effect": {
+      "expected_file": "match-failed-effect.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-failed-effect.json",
+      "source": "failed-effect"
+    },
+    "linked-match-missing": {
+      "expected_file": "match-missing.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-missing.json",
+      "source": "missing"
+    },
+    "linked-match-mixed-settings": {
+      "expected_file": "match-mixed-settings.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-mixed-settings.json",
+      "source": "mixed-settings"
+    },
+    "linked-match-reviewed-response": {
+      "expected_file": "match-reviewed-response.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-response.json",
+      "source": "reviewed-response"
+    },
+    "linked-match-reviewed-roles": {
+      "expected_file": "match-reviewed-roles.json",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "linked-validation-baseline": {
+      "expected_file": "evaluate-baseline-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-baseline.json",
+      "source": "baseline"
+    },
+    "linked-validation-confounded": {
+      "expected_file": "evaluate-confounded-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-confounded.json",
+      "source": "confounded"
+    },
+    "linked-validation-controlled-healthy": {
+      "expected_file": "evaluate-controlled-healthy-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-healthy.json",
+      "source": "controlled-healthy"
+    },
+    "linked-validation-controlled-host": {
+      "expected_file": "evaluate-controlled-host-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-host.json",
+      "source": "controlled-host"
+    },
+    "linked-validation-controlled-pacing": {
+      "expected_file": "evaluate-controlled-pacing-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-controlled-pacing.json",
+      "source": "controlled-pacing"
+    },
+    "linked-validation-declared": {
+      "expected_file": "evaluate-declared-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-declared.json",
+      "source": "declared"
+    },
+    "linked-validation-duplicate": {
+      "expected_file": "evaluate-duplicate-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-duplicate.json",
+      "source": "duplicate"
+    },
+    "linked-validation-failed-effect": {
+      "expected_file": "evaluate-failed-effect-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-failed-effect.json",
+      "source": "failed-effect"
+    },
+    "linked-validation-missing": {
+      "expected_file": "evaluate-missing-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-missing.json",
+      "source": "missing"
+    },
+    "linked-validation-mixed-settings": {
+      "expected_file": "evaluate-mixed-settings-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-mixed-settings.json",
+      "source": "mixed-settings"
+    },
+    "linked-validation-reviewed-response": {
+      "expected_file": "evaluate-reviewed-response-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-response.json",
+      "source": "reviewed-response"
+    },
+    "linked-validation-reviewed-roles": {
+      "expected_file": "evaluate-reviewed-roles-validation.json",
+      "mode": "validation",
+      "operation": "evaluate",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "margin-below": {
+      "expected_file": "margin-below.json",
+      "operand": "margin-below.json",
+      "operation": "validate"
+    },
+    "margin-boundary": {
+      "expected_file": "margin-boundary.json",
+      "operand": "margin-boundary.json",
+      "operation": "validate"
+    },
+    "match-six-groups": {
+      "expected_file": "match-six-groups.json",
+      "operand": "match-six-groups.json",
+      "operation": "validate"
+    },
+    "match-supported": {
+      "expected_file": "match-supported.json",
+      "operand": "match-supported.json",
+      "operation": "validate"
+    },
+    "policy": {
+      "expected_file": "policy.json",
+      "operand": "policy.json",
+      "operation": "validate"
+    },
+    "refits-supported": {
+      "expected_file": "refits-supported.json",
+      "operand": "refits-supported.json",
+      "operation": "validate"
+    },
+    "refits-unsupported": {
+      "expected_file": "refits-unsupported.json",
+      "operand": "refits-unsupported.json",
+      "operation": "validate"
+    },
+    "signed-zero": {
+      "expected_file": "signed-zero.json",
+      "operand": "signed-zero.json",
+      "operation": "validate"
+    },
+    "tie": {
+      "expected_file": "tie.json",
+      "operand": "tie.json",
+      "operation": "validate"
+    },
+    "unknown-query": {
+      "error": "invalid_profile_match",
+      "operation": "match",
+      "query_entry_id": "absent",
+      "snapshot": "snapshot-reviewed-roles.json",
+      "source": "reviewed-roles"
+    },
+    "wrong-snapshot-evaluate": {
+      "error": "invalid_profile_evaluation",
+      "mode": "validation",
+      "operation": "evaluate",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-missing.json",
+      "source": "reviewed-roles"
+    },
+    "wrong-snapshot-match": {
+      "error": "invalid_profile_match",
+      "mode": "validation",
+      "operation": "match",
+      "query_entry_id": "entry-a",
+      "snapshot": "snapshot-missing.json",
+      "source": "reviewed-roles"
+    }
+  },
+  "design_vectors_sha256": "42b2bb4d483f3605122a8aa2090153f200470f03466163f552e0ef8497e35c65",
+  "fixture_release": "1.0.0",
+  "method_release": "n8-profile-matching-v1",
+  "n6_release_sha256": "f2ff8d1060571096743289cbe28641a9a881c0b76a79787d697452c97b03f823",
+  "n7_release_sha256": "4fd65662be2bff3f1f87866e32c5156d2857f2728f22a1b00a803794f950a1c3",
+  "policy_content_hash": "sha256:b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+  "provenance": "synthetic_and_model_only",
+  "sha256": {
+    "distance-boundary.json": "6e43c1caaa0d4cd3045de2a110cb5d47b111f26608abfa2ea8ce451349f64ebd",
+    "distance-exceeded.json": "6a29ed1d73714b6550a866c7b629a95b9118144807f05e30a78e4022bb5a9c74",
+    "evaluate-baseline-final_test.json": "1e8d0db6fffa5f7dc2ecc3178675480528f1a8c356466942d1ebf9513bcaad67",
+    "evaluate-baseline-leave_training_group_out.json": "628010c8c23900fcfdb6b48ec7944ab202ec8b4c37194a9e2da91f14f21981e6",
+    "evaluate-baseline-validation.json": "a472679a7bf6cf85940c9645cf17b6fbc1bebe0df361bf1acf37cf5eace207af",
+    "evaluate-confounded-final_test.json": "57f33fdd8c27e1ded03eea48382722da3fa027069deb4818ecb2d53109812487",
+    "evaluate-confounded-leave_training_group_out.json": "cb88099c61a3c6389e8f220e4e21ffecd4c10ce2dd9c0758ffa089c05ab01715",
+    "evaluate-confounded-validation.json": "d583951c94969922f8141b5e8b98481977e904c240308ad2321db70dbb531169",
+    "evaluate-controlled-healthy-final_test.json": "c14f42f51693019eeb886589901fcc1417a37cba4104c975d38ba7643b040034",
+    "evaluate-controlled-healthy-leave_training_group_out.json": "04955050f1baa130b9de78f5c7c70e7774758f5002b0795f15cafbbb1041ed26",
+    "evaluate-controlled-healthy-validation.json": "fede85d845ed586c3bac07b467c02e7ccd2a4b712bd03c944119ab65c58dfc7c",
+    "evaluate-controlled-host-final_test.json": "4715de49359d57a18a66fba73108909d80f7786f21c620b9e3c5f5cf0296d6c6",
+    "evaluate-controlled-host-leave_training_group_out.json": "caa2210f121547e379d8c76635dd3a32a6915d98e628ad0d81f80d580a6e6623",
+    "evaluate-controlled-host-validation.json": "68544c697c0df7fdfdfdb350d249e8daf592204df4a2cbf345f94a117d4a196b",
+    "evaluate-controlled-pacing-final_test.json": "8bcc619de19e8fda26b033a55a2b1bb3d484128a9832abd990348f79363d77f1",
+    "evaluate-controlled-pacing-leave_training_group_out.json": "59414818fe689e1e0cb5ed4466359415e65b4d8cc59b6711922fcfd61f8b07f8",
+    "evaluate-controlled-pacing-validation.json": "2e0d591c8c761b875947fb7b660217b0a969bd4470b60c3d0299fac98be2322b",
+    "evaluate-declared-final_test.json": "64154fd1058c9f946c80b06871e77cb986a0cdb29d7d2b67ff77d2d3260dd064",
+    "evaluate-declared-leave_training_group_out.json": "a0cea72b8edaa4f37ff71e7eab46ce13569897cd2a4e5355108395443d97e453",
+    "evaluate-declared-validation.json": "149cbd8d2d54bf2f2efffe5e8d8ee04a2a9b6c028a3db9d500a422572875f9a6",
+    "evaluate-duplicate-final_test.json": "3c960711c499de22f3befab0ab1eb96f2cc8490905f58f98b39498c9388ea5aa",
+    "evaluate-duplicate-leave_training_group_out.json": "3beb39775981c6a86bf0d8361e1a2ba36a1ec97442c7a9078356d4ab81d5fadb",
+    "evaluate-duplicate-validation.json": "8ca63701ee3decd471ea1db61a245b97e6927c9eeb213cae9c9d8e449ed586c9",
+    "evaluate-failed-effect-final_test.json": "9cb5ae0de7fa81076212a6ee8fac1c526bfedf7dc67fb77a8ca5dc1a348a8cdd",
+    "evaluate-failed-effect-leave_training_group_out.json": "8fc71740a83d85e5b8a90d3e8631c0c9a0adbc7e567dbbda441a1330b668c7d4",
+    "evaluate-failed-effect-validation.json": "93bf11271db659e454ddd90056246934b980df5db50da19b5681f49c8903bb51",
+    "evaluate-missing-final_test.json": "553708958648dccb34b169dc4db4ae195ef2935ca04c417bc100c6cea2d91629",
+    "evaluate-missing-leave_training_group_out.json": "3e2d34f1647a11d265965b63045c541b799702c3ce473090bb09ba07149d97f1",
+    "evaluate-missing-validation.json": "997f77064e411e95e238c982c5a88068a9c63a6c057cdf23fddaa58985ddc3e9",
+    "evaluate-mixed-settings-final_test.json": "a0969817f20ab40b4d4dfcd8d4ddfd52c47834c010d3f944353e7cbad058b333",
+    "evaluate-mixed-settings-leave_training_group_out.json": "9d5ca0dfebbbdd8544a3af44de1713d30ec48a06d531f4447ab98e543a2b06cf",
+    "evaluate-mixed-settings-validation.json": "b4666c0820f508a97ac200cfa354fa9f2aa01ee5abb7bcf9927cb671f07db7aa",
+    "evaluate-reviewed-response-final_test.json": "e5d22ec619de9b070549499d5d47db5689bc11d706fbc738e2f5a5b522b97a4c",
+    "evaluate-reviewed-response-leave_training_group_out.json": "54a34a2237e8066dbcf9f9f1e9a8646a3e3603a202be049d38071825c63b69a3",
+    "evaluate-reviewed-response-validation.json": "2999e994819c5ff24bae49a1fdfc666252722dae89474e779a8b1d6c5c0541f8",
+    "evaluate-reviewed-roles-final_test.json": "2f1dc8a045a640e1af5f63ee0106ec031a598c241b9dc0d05805e04d3d55877e",
+    "evaluate-reviewed-roles-leave_training_group_out.json": "2707c74ed578009fbc51c5aa25c6e5b31f4b1ca36f2453082de1883387c86457",
+    "evaluate-reviewed-roles-validation.json": "543314b0edc6bd1baa1f196114f782b01f05fa2c15f06882db7bdff058c20270",
+    "evaluation-final-test.json": "fc8e8504817444acb18cfc170fbee47be1b6f19fa9b79d02df35bc8ce4fa2b7d",
+    "evaluation-validation.json": "0a54975141d27e61a9c315f5c4e0c0fccd46fb66c07880d0842d985a9bee244b",
+    "finite-mean.json": "6ae304379a9188839f370861d8777b37c7e96df76c74f0f43231b61f347c50cc",
+    "invalid-policy.json": "c57b72bacbd7155fd13ea7b484bda7978ca682bbd0766c2f854a177eb80e41bc",
+    "invalid-snapshot.json": "164a31b6c8191dc29c500fb62f71bee98fde6b9073e95b498193cc630d1eacdd",
+    "margin-below.json": "50b8f903e674fdd5406eaa2aa28fb85abb696c6aed30e2d92ea8f22d05199771",
+    "margin-boundary.json": "2a9ae72664e7b5a4e817b35a70ecbfbb537098b39f004b71f957715f5300270d",
+    "match-baseline.json": "7a7dab6562f28965d57ee53525897021723b8427993c6e13ee75f123edf009cb",
+    "match-confounded.json": "8f28022cceea4e8a5a6671509b2a6ce5a61bf1903ea440b67e52ccb1e44081be",
+    "match-controlled-healthy.json": "1e98db0249476dbb6b3bc3c65de5ccac2f3ec40eadc8deb592b8f9b351f04bef",
+    "match-controlled-host.json": "4a3d76d6da5544278323f1824ff4b7cce78487930d6896206bbf64808b987689",
+    "match-controlled-pacing.json": "db6a50e0727df4d30913f26fe4465608aca44e18d80b55011bb4ef3b13cd8cd2",
+    "match-declared.json": "a0593728d6b175eb493a4a76336efa679fc98c220d585ece900ade9560aa07e2",
+    "match-duplicate.json": "9bed917faa1a949e10d3fe9f7376f2c7004f600d6b8e7f1ba1a35641bbbbb164",
+    "match-failed-effect.json": "ddd1c9aa9a9438aaf5de8ac63ae01704d7362d7f16d8d4d5255c5a256a1a03bd",
+    "match-missing.json": "fd3f8d91dfb1e585358e8c3d211ee0bf1c3f845aecf6c82c0345c89494a5a896",
+    "match-mixed-settings.json": "3b7ab67860d0d7b41a973e8864c0a7ec96803e5e4b4378b654e9e6443b1868b3",
+    "match-reviewed-response.json": "5381992331e9a9a6fbb2bfc538d23b2f352fd136827e2f145b66623c3a6986cb",
+    "match-reviewed-roles.json": "cd07e6d703c3dedf90fed61c3a9264d0d9dfa16a17c3fabf2bf98a0f5c58a6c9",
+    "match-six-groups.json": "ca24d64ecd7493e1e05d2f04111517a6f23b6a70532c85d5e67c031f0904561a",
+    "match-supported.json": "7f403fc21a4589748144f7d043d08c10d9bab041565b445e7a39810c39f810ba",
+    "policy.json": "f71cd5a54fd0efdbe305058101735337c11a0124a787c148689362694fb19dd0",
+    "refits-supported.json": "8a639d3e1ad86d2ec47c0f9d7f517e8ca1b606fa8a41c857d31f062d0d3a345d",
+    "refits-unsupported.json": "7d071af6457c54541f149fdfbd622a2fc038c5376433cc01156dc5a304e47bef",
+    "signed-zero.json": "4734350fb828c36e30a406dca2395c777124f826988f3307e9fe60e6c16d1e1f",
+    "snapshot-baseline.json": "d31c1b0f8c956a0fc05cf386c082c7089f544bafe452e4e0d695c7b5bbe4dcae",
+    "snapshot-confounded.json": "b32ca8c825398e56ea26bf893daa015a97f0af6629aff56ec522d4c6edc082c4",
+    "snapshot-controlled-healthy.json": "264ee1bc6796032772b9bb688e4723c3548bcfee1639139cad7096bd6dd82a90",
+    "snapshot-controlled-host.json": "d94578ec3cd2b08aa8466f2ac64b389bc67a6d85fe131a9fc482a6b05cda98c3",
+    "snapshot-controlled-pacing.json": "8d4c41e29cf302c479a97626add57a4a4d2dde9a0e0db09b5ba3e4e1cc5e9a14",
+    "snapshot-declared.json": "e5a9887e97cb9d535f349194208e001fee9496f1ff72c4d8085d83df26e4c96f",
+    "snapshot-duplicate.json": "48a231c815429b3081ed39b888e275242ddd24042209cbec5122a2cd29b33072",
+    "snapshot-failed-effect.json": "c17345b9cb1d2a36568f1424b3c63d52a6c71454470dbf9a6075487f8f93f0bb",
+    "snapshot-missing.json": "59e00e74da6aa77c1ba1264f9a6b2678926f472671a6e8220d8d74c7faa0161c",
+    "snapshot-mixed-settings.json": "6dcdbaa6347497cb4c483dadfd0e7b46aa5e1788788a5ad28bf985b1f9b96d4c",
+    "snapshot-reviewed-response.json": "bedcd2ae0ae0712c23b08aabd7ad7d18fe338d5e54c0e95d5c770a9493870539",
+    "snapshot-reviewed-roles.json": "7832215899ad3d0e78fb92b701aec8ec0bcdaec258dd256bf738b07f84ea47ac",
+    "tie.json": "179a8bd731f502a0b1c450d9e9eab04c526d28114d8f055098891133309d17f7"
+  }
+}
