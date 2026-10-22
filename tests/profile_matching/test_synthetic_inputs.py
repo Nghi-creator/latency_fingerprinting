@@ -1,6 +1,7 @@
 """Actual frozen synthetic N6 evidence stays unknown; no model-only positive is relabelled real."""
 
 import copy
+import json
 
 import pytest
 
@@ -181,7 +182,7 @@ def test_skipped_refits_are_total_and_keep_failed_groups_in_accuracy_denominator
     )
     actual = ProfileEvaluationResult.model_validate(payload)
     assert actual.model_dump(mode="json") == payload
-    assert ProfileEvaluationResult.model_validate_json(__import__("json").dumps(payload)) == actual
+    assert ProfileEvaluationResult.model_validate_json(json.dumps(payload)) == actual
     changed = copy.deepcopy(payload)
     changed["refits"][0]["inputs"] = []
     with pytest.raises(ValueError):

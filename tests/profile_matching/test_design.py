@@ -1,4 +1,4 @@
-"""Literal N8 design pins and Decimal oracles, independent of future production code."""
+"""Literal N8 design pins and Decimal oracles, frozen before production code."""
 
 import copy
 import hashlib
