@@ -256,18 +256,30 @@ def test_main_failure_is_private(monkeypatch, capsys):
 
 
 @pytest.mark.parametrize("family", ["n8", "n7", "n6"])
-def test_post_execution_dependency_mutation_is_detected(family, tmp_path):
+def test_post_execution_dependency_mutation_is_detected(family, tmp_path, monkeypatch):
     root = corpus(tmp_path)
     n6, n7 = tmp_path / "calibration", tmp_path / "profiles"
     shutil.copytree(module.N6_FIXTURES, n6)
     shutil.copytree(module.N7_FIXTURES, n7)
+    load = module.load_release
+
+    def one_case(directory=module.FIXTURES):
+        # Keep real full-inventory pin checks before/after execution. These fault
+        # tests need one completed linked case, not three more 75-case replays.
+        release, payloads = load(directory)
+        return {
+            **release,
+            "cases": {"linked": release["cases"]["linked-match-reviewed-roles"]},
+        }, payloads
+
+    monkeypatch.setattr(module, "load_release", one_case)
     calls = 0
 
     def invoke(arguments):
         nonlocal calls
         result = module.invoke_local(arguments)
         calls += 1
-        if calls == len(RELEASE["cases"]):
+        if calls == 1:
             target = dict(
                 n8=root / "policy.json", n7=n7 / "policy.json", n6=n6 / "baseline/response-a.json"
             )[family]
@@ -276,7 +288,7 @@ def test_post_execution_dependency_mutation_is_detected(family, tmp_path):
 
     with pytest.raises(ValueError, match="release pin mismatch"):
         module.check_reproduction(root, n6_directory=n6, n7_directory=n7, invoke=invoke)
-    assert calls == len(RELEASE["cases"])
+    assert calls == 1
 
 
 def test_independent_scoring_and_refit_facts_remain_frozen():

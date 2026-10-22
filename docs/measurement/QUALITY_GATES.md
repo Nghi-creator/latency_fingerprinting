@@ -13,10 +13,17 @@ python -m latency_fingerprinting export-metric-registry \
   --output schemas/metric-registry-v1.json --check
 ```
 
-CI runs the core suite on Python 3.13 and the minimum supported Python 3.11.
+CI checks pushes and pull requests targeting `main` or `phase_2`, using Python
+3.13 and the minimum supported Python 3.11 for the core suite.
 The branch-inclusive coverage floor is 85%. Tests cover P0 compatibility,
 registered aggregation, v2 adoption/matching, trace reconstruction, bounded file
 and archive inputs, finite arithmetic, provenance and scenario inspection.
+
+Each Python job has a 30-minute budget for setup, coverage, independent
+reproductions and the installed-wheel check. The test step is separately bounded
+to 20 minutes and reports its 25 slowest tests. Coverage and case inventories are
+unchanged by these time budgets. A rerun of an old commit still uses that commit's
+workflow; changed budgets take effect on a run containing the workflow update.
 
 ## Frozen fixture reproduction
 
