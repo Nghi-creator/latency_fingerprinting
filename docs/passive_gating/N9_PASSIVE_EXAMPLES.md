@@ -71,7 +71,8 @@ isolate transitions. They are not serialized PassiveReplay records and cannot
 establish real N6 bindings or authenticate a generation. Typed model tests exercise
 representable histories using original N2 windows and retained N6 declarations,
 and reject N2-invalid combinations rather than weakening the upstream contract.
-Complete retained-root reconstruction is implemented; linked source verification
-remains separate.
+Complete retained-root reconstruction and [linked source verification](N9_COMMANDS.md)
+are implemented as separate boundaries. Source-binding tests use artificial
+on-disk N2/N6 records, not measured acquisitions or a frozen runtime corpus.
 Boolean/fractional/out-of-range times, unsafe arithmetic and excessive histories
 fail the operation without a truncated result. No live engine changes occur.

@@ -131,4 +131,6 @@ must satisfy both entry gates again, even when the previous latch had been set.
 No operation starts timers, invokes N8, controls Pixelated or creates execution
 receipts. Frozen design vectors are synthetic operands; typed baseline and result
 models now reconstruct statistics and transitions against their retained N6/N2
-declarations. Linked verification of source bytes remains a subsequent slice.
+declarations. [Linked operations](N9_COMMANDS.md) additionally verify actual source
+bytes, freshly rebuild the entire baseline and extract queries from one shared
+N6 inspection. They preserve the same deterministic transition rules.

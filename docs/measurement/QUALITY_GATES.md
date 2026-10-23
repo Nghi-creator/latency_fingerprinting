@@ -52,8 +52,10 @@ query extraction, group refits and private commands with protected output.
 N9 pins its original design policy/vectors and tests exact pure arithmetic,
 baseline fitting, typed replay histories, immutable full-root reconstruction,
 rehashed tampering, source declarations, bounded inputs and generic validation.
-Its installed-wheel smoke checks all four roots and pure fitting/replay. A frozen
-N9 runtime corpus and linked source-file inspection remain subsequent work.
+Linked N9 checks verify one-inspection source binding, fresh complete fits,
+source-extracted queries, aliases, byte budgets, private errors and protected
+output. Installed-wheel checks exercise all four roots, pure/linked APIs and both
+commands. A frozen N9 runtime corpus remains subsequent work.
 
 ## Installed package
 
@@ -68,7 +70,8 @@ including standalone validation, linked builds, lifecycle operations, private
 errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
 and all three evaluation modes, the complete
 [frozen N8 corpus](../profile_matching/N8_FIXTURES.md), N9 standalone models,
-pure baseline/replay and generic validation, and schema exports.
+pure baseline/replay, linked source verification, both protected N9 commands,
+generic validation and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

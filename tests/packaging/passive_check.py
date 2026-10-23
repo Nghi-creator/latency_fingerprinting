@@ -1,6 +1,7 @@
 """Stage independent N9 model operands for an isolated installed-wheel smoke check."""
 
 from tests.passive_gating.cases import POLICY, baseline, canonical, evidence, replay_payload, window
+from tests.passive_gating.linked_cases import write_source
 
 SCRIPT = """
 import json
@@ -26,8 +27,14 @@ assert all(row.cause_label is None for row in result.rows)
 assert m.PassiveBaseline.model_validate(b) == b
 encoded = result.model_dump_json(by_alias=True)
 assert m.PassiveGateResult.model_validate_json(encoded) == result
-pathlib.Path(sys.argv[2]).write_text(result.model_dump_json(by_alias=True))
-print("Installed N9 pure baseline/replay and all four standalone roots verified.")
+anchors = dict(expected_split_id=p["evidence"]["dataset"]["split"]["split_id"],
+    expected_dataset_content_hash=p["evidence"]["dataset"]["content_hash"])
+fresh = gate.build_passive_baseline(p["source_directory"], p["policy"], **anchors)
+assert fresh == b
+linked = gate.replay_passive_gate(p["source_directory"], b, r, p["policy"], **anchors)
+assert linked == result
+pathlib.Path(sys.argv[2]).write_text(result.model_dump_json())
+print("Installed N9 models, pure replay and linked source verification passed.")
 """
 
 
@@ -40,7 +47,11 @@ def stage(directory):
         ]
     )
     b = baseline(ev, windows)
+    source_directory = directory / "n9-source"
+    _, linked_baseline, _ = write_source(source_directory, ev, windows)
+    assert linked_baseline == b
     data = dict(
+        source_directory=str(source_directory),
         policy=POLICY,
         evidence=ev,
         training={key: value for key, value in windows.items() if key.startswith("train")},

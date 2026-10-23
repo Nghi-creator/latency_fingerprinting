@@ -83,5 +83,7 @@ Identities use normalized `model_dump(mode="json")` content. N2 wire aliases are
 also accepted during parsing and may appear in generic CLI output/schema exports.
 Typed canonical N2 bytes are not an original artifact's raw file SHA. A valid
 standalone declaration does not authenticate reviews, independence, source files,
-the generation, or a real monotonic clock. Linked build/replay commands and frozen
-runtime reproduction remain later work. No `probe` row is an execution receipt.
+the generation, or a real monotonic clock. [Linked build/replay APIs and
+commands](N9_COMMANDS.md) inspect actual source bytes and verify the complete fresh
+fit/query snapshot before evaluation. Frozen runtime reproduction remains later
+work. No `probe` row is an execution receipt.

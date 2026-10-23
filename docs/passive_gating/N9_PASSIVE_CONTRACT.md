@@ -2,8 +2,8 @@
 
 Method release: `n9-passive-gating-v1`. This is the frozen design for an additive
 offline gate. Immutable models, schema exports and pure baseline fitting/replay
-are implemented. Linked source-inspection APIs and dedicated commands remain
-unimplemented; see [models and pure operations](N9_MODELS.md).
+are implemented, together with [linked source-inspection APIs and protected
+commands](N9_COMMANDS.md). See also [models and pure operations](N9_MODELS.md).
 The machine-readable [policy](N9_PASSIVE_POLICY_SPEC.json),
 [replay rules](N9_REPLAY_CONTRACT.md) and [examples](N9_PASSIVE_EXAMPLES.md) form
 one contract. Existing N1–N8 releases keep their identities and behavior.
@@ -224,9 +224,9 @@ input; the zero-stratum empty fit is represented at the baseline root.
 Every limit is checked before unbounded materialization. A legal count does not
 waive byte limits. No truncation, partial successful result or rolling eviction.
 
-## Future linked operations
+## Linked operations
 
-The planned linked operations in `latency_fingerprinting.passive_gating` are:
+The linked operations in `latency_fingerprinting.passive_gating` are:
 
 ```python
 build_passive_baseline(directory, policy, *, expected_split_id=None,
@@ -241,13 +241,14 @@ query windows from the same snapshot. Any source or snapshot discrepancy fails
 the operation. Full replay history is evaluated afresh; no hidden cache, mutable
 continuation or replay ID acting as a durable runtime budget.
 
-Future CLI names are `build-passive-baseline` and `replay-passive-gate`, with required
+CLI names are `build-passive-baseline` and `replay-passive-gate`, with required
 `--directory`, `--policy`, `--output`; replay also requires `--baseline`, `--replay`.
 Optional anchors are `--expected-split-id`, `--expected-dataset-content-hash`.
 Use bounded no-follow inputs, fresh source checks and protected atomic private
 0600 output; refuse output aliases/hardlinks to any input or inspected member.
 Failures preserve existing output and expose only `invalid_passive_baseline` or
 `invalid_passive_replay`. Arithmetic failures are private operation failures,
-never clipped, imputed or successful unknown outcomes. These linked APIs/commands
-belong to the next slice. The four standalone schemas are exported now, bringing
-the total to 36; all 32 earlier schema bytes are preserved.
+never clipped, imputed or successful unknown outcomes. The [command guide](N9_COMMANDS.md)
+describes reusable invocation and output behavior. There are 36 exported schemas;
+this integration preserves all schema bytes, the registry and the original
+policy/design-vector pins. A frozen N9 runtime corpus remains subsequent work.

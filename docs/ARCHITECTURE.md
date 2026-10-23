@@ -99,8 +99,10 @@ healthy training-group FPS baselines from a single declared elapsed replay strea
 It implements persistence, recovery, explicit stale ticks and bounded offline probe
 proposals. Current N2 elapsed time is wall-clock-derived and has no monotonic
 guarantee. [Immutable N9 models and pure operations](passive_gating/N9_MODELS.md)
-reconstruct retained N6/N2 declarations. Linked source-inspection APIs, dedicated
-commands and live producer control remain outside the implemented boundary.
+reconstruct retained N6/N2 declarations. [Linked operations](passive_gating/N9_COMMANDS.md)
+use one N6 inspection to rebuild the exact baseline and verify source-extracted
+queries. Dedicated commands protect inputs and write private atomic output.
+Live producer control remains outside the implemented boundary.
 
 ## File and numeric boundaries
 

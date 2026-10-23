@@ -62,6 +62,7 @@ from .observability import (
     StageTraceSummaryV2,
 )
 from .passive_gating import PassiveBaseline, PassiveGatePolicy, PassiveGateResult, PassiveReplay
+from .passive_gating.commands import register_passive_commands
 from .pipeline import build_observation_record, canonical_json
 from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
 from .profile_matching.commands import register_profile_matching_commands
@@ -421,6 +422,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_calibration_command(subparsers)
     register_profile_commands(subparsers)
     register_profile_matching_commands(subparsers)
+    register_passive_commands(subparsers)
     return parser
 
 
