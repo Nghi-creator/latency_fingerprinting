@@ -94,6 +94,14 @@ retained scoring/evaluation declarations. [Linked N8 operations](profile_matchin
 share one N6 inspection for fresh training verification and query extraction.
 Existing point-fingerprint matching keeps its separate behavior.
 
+The [N9 passive-gating design](passive_gating/N9_PASSIVE_CONTRACT.md) separates
+healthy training-group FPS baselines from a single declared elapsed replay stream.
+It specifies persistence, recovery, explicit stale ticks and bounded offline probe
+proposals. Current N2 elapsed time is wall-clock-derived and has no monotonic
+guarantee. N9 currently supplies a contract, provisional policy and independent
+design vectors; production models/APIs/commands and live producer control are
+not implemented by this design slice.
+
 ## File and numeric boundaries
 
 Public JSON readers reject duplicate keys, nonfinite numbers, excessive nesting,

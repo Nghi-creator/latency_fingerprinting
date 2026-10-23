@@ -1,8 +1,9 @@
 # Documentation
 
 These guides describe the project's contracts, APIs, workflows and limitations.
-The P0 and N1–N8 names identify the original analysis path and its additive
-measurement, analytical, observability, experiment, profile and matching contracts.
+The P0 and N1–N9 names identify the original analysis path and its additive
+measurement, analytical, observability, experiment, profile, matching and passive
+gate contracts. N9 currently has a design contract and independent examples only.
 
 | Topic | Start here |
 | --- | --- |
@@ -21,6 +22,7 @@ measurement, analytical, observability, experiment, profile and matching contrac
 | Calibration evidence | [Evidence, lineage and split contract](calibration/N6_EVIDENCE_CONTRACT.md), [independent examples](calibration/N6_EVIDENCE_EXAMPLES.md), [models and validation](calibration/N6_MODELS.md), [lineage and splits](calibration/N6_LINEAGE.md), [linked inspection and CLI](calibration/N6_INSPECTION.md) |
 | Robust profiles and explicit lifecycle | [Profile contract](profiles/N7_PROFILE_CONTRACT.md), [provisional policy](profiles/N7_PROFILE_POLICY_SPEC.json), [independent examples](profiles/N7_PROFILE_EXAMPLES.md), [models and validation](profiles/N7_MODELS.md), [builder and commands](profiles/N7_COMMANDS.md) |
 | Profile matching and evaluation | [Matching contract](profile_matching/N8_MATCH_CONTRACT.md), [provisional policy](profile_matching/N8_MATCH_POLICY_SPEC.json), [evaluation and refits](profile_matching/N8_EVALUATION_CONTRACT.md), [independent examples](profile_matching/N8_MATCH_EXAMPLES.md), [models and validation](profile_matching/N8_MODELS.md), [linked APIs and commands](profile_matching/N8_COMMANDS.md) |
+| Passive gating (design only) | [Baseline, scope and policy contract](passive_gating/N9_PASSIVE_CONTRACT.md), [ordered replay and persistence](passive_gating/N9_REPLAY_CONTRACT.md), [provisional policy](passive_gating/N9_PASSIVE_POLICY_SPEC.json), [independent examples](passive_gating/N9_PASSIVE_EXAMPLES.md) |
 | Development and reproduction | [Testing/CI](measurement/QUALITY_GATES.md), [arithmetic fixtures](measurement/ARITHMETIC_FIXTURES.md), [observation fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [analytical fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [trace integration](observability/N4_INTEGRATION_VERIFICATION.md), [experiment fixtures](scenarios/N5_EXPERIMENT_FIXTURES.md), [calibration fixtures](calibration/N6_FIXTURES.md), [profile fixtures](profiles/N7_FIXTURES.md), [profile matching fixtures](profile_matching/N8_FIXTURES.md) |
 
 Sanitized recorded experiments and their reusable processing procedure are in

@@ -38,6 +38,7 @@ python -m tests.calibration.check_reproduction
 python -m tests.profiles.check_reproduction
 python -m tests.profile_matching.check_reproduction
 python -m pytest tests/profile_matching
+python -m pytest tests/passive_gating
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
@@ -48,6 +49,10 @@ N8 tests pin independent policy/vectors and check immutable standalone models,
 exact pure scoring/refits, complete result reconstruction and validation dispatch.
 Linked N8 checks cover one-inspection source binding, fresh training verification,
 query extraction, group refits and private commands with protected output.
+N9 currently pins a design policy and synthetic independent baseline, arithmetic,
+eligibility and replay expectations. These tests establish design consistency;
+there is no N9 runtime reproduction, installed-wheel API or source-binding claim
+until the corresponding implementation slices exist.
 
 ## Installed package
 
