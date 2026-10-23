@@ -1,6 +1,6 @@
 # N9 ordered replay and persistence
 
-This document specifies the design-only [passive gate](N9_PASSIVE_CONTRACT.md).
+This document specifies the offline [passive gate](N9_PASSIVE_CONTRACT.md).
 Each event has exactly event_id, kind (`window`, `tick`, `reset`), at_ms, entry_id
 and reset_reason. Window events require entry_id and null reset_reason; ticks
 require both null; resets require null entry_id and one of disconnect,
@@ -75,7 +75,7 @@ specified otherwise. An unavailable outcome recommends no_action.
 4. **Missing / response entry:** clear detector, advance watermark to max(old,
    at_ms), set barrier to watermark; respectively `missing_measurements` or
    `not_passive_window`. Never access a response's FPS.
-5. **Foreign clock/run:** passive source run or domain differs from stream;
+5. **Foreign clock/run:** passive source acquisition namespace, run or domain differs from stream;
    terminal `clock_scope_changed`, preserving watermark/barrier. No subtraction
    or advance in the foreign domain. Namespace/generation are fixed declarations.
 6. **Duplicate:** N6 non-representative or previously seen novelty key;
@@ -129,5 +129,6 @@ preserve this replay's proposal ledger. Subsequent low windows after a break
 must satisfy both entry gates again, even when the previous latch had been set.
 
 No operation starts timers, invokes N8, controls Pixelated or creates execution
-receipts. All vectors in this slice are synthetic design operands; runtime source
-binding and immutable result reconstruction require subsequent implementation.
+receipts. Frozen design vectors are synthetic operands; typed baseline and result
+models now reconstruct statistics and transitions against their retained N6/N2
+declarations. Linked verification of source bytes remains a subsequent slice.

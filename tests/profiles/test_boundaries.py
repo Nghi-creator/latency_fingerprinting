@@ -182,7 +182,7 @@ def test_new_schemas_do_not_modify_any_existing_bytes():
         render_schema,
     )
 
-    assert len(SCHEMA_MODELS) == 32
+    assert len(SCHEMA_MODELS) == 36
     for name, model in SCHEMA_MODELS.items():
         assert (DEFAULT_SCHEMA_DIRECTORY / name).read_text() == render_schema(model)
     assert set(

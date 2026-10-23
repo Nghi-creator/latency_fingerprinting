@@ -1,8 +1,9 @@
-# Passive degradation gate — N9 design contract
+# Passive degradation gate — N9 contract
 
 Method release: `n9-passive-gating-v1`. This is the frozen design for an additive
-offline gate. The policy and independent design vectors are available; production
-models, schema exports, APIs, commands and runtime replay are not implemented yet.
+offline gate. Immutable models, schema exports and pure baseline fitting/replay
+are implemented. Linked source-inspection APIs and dedicated commands remain
+unimplemented; see [models and pure operations](N9_MODELS.md).
 The machine-readable [policy](N9_PASSIVE_POLICY_SPEC.json),
 [replay rules](N9_REPLAY_CONTRACT.md) and [examples](N9_PASSIVE_EXAMPLES.md) form
 one contract. Existing N1–N8 releases keep their identities and behavior.
@@ -120,8 +121,11 @@ Generation is a declaration, not an authenticated live lease. One replay has one
 stream, no restored mutable initial state, and no cross-run rebasing.
 
 Canonical bytes are sorted-key UTF-8 JSON with two-space indentation, finite
-numbers, no ASCII escaping and a final LF. SHA-256 root identity excludes only its
-own ID and `content_hash`. Prefixes and future root contracts:
+numbers, no ASCII escaping and a final LF. Identity uses the validated model's
+`model_dump(mode="json")` field names, normalizing accepted N2 aliases to snake
+case. Generic validation may render N2 wire aliases; raw file receipts remain
+separate from these normalized identities. SHA-256 root identity excludes only
+its own ID and `content_hash`. Prefixes and root contracts:
 
 | Model / schema version | Own ID field / prefix | Other exact root fields |
 | --- | --- | --- |
@@ -193,6 +197,9 @@ healthy_window events, sorted by artifact_id, each `{artifact_id, window}`. Even
 unusable measured queries retain their full N2 input; missing and response entries
 add no window. All references and typed inputs validate before evaluation. A
 standalone root reconstructs declarations, not filesystem authenticity.
+A standalone replay checks its own shape, bounds and identities. It has no
+embedded dataset; exact entry/artifact membership and original-window end times
+are checked when it is evaluated with its baseline or retained in a full result.
 
 FPS operands are finite, nonnegative binary64 numbers; zero FPS is a usable low
 observation. A baseline center must be positive. Compute medians with exact
@@ -219,7 +226,7 @@ waive byte limits. No truncation, partial successful result or rolling eviction.
 
 ## Future linked operations
 
-The intended module is `latency_fingerprinting.passive_gating`:
+The planned linked operations in `latency_fingerprinting.passive_gating` are:
 
 ```python
 build_passive_baseline(directory, policy, *, expected_split_id=None,
@@ -241,5 +248,6 @@ Use bounded no-follow inputs, fresh source checks and protected atomic private
 0600 output; refuse output aliases/hardlinks to any input or inspected member.
 Failures preserve existing output and expose only `invalid_passive_baseline` or
 `invalid_passive_replay`. Arithmetic failures are private operation failures,
-never clipped, imputed or successful unknown outcomes. These APIs/commands and
-the four new schemas belong to subsequent slices; current schema count stays 32.
+never clipped, imputed or successful unknown outcomes. These linked APIs/commands
+belong to the next slice. The four standalone schemas are exported now, bringing
+the total to 36; all 32 earlier schema bytes are preserved.

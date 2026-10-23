@@ -225,3 +225,15 @@ __all__ += ["ProfilePolicy", "ProfileSnapshot"]
 
 
 __all__ += ["ProfileMatchPolicy", "ProfileMatchResult", "ProfileEvaluationResult"]
+
+_PASSIVE_ROOTS = ("PassiveGatePolicy", "PassiveBaseline", "PassiveReplay", "PassiveGateResult")
+__all__ += list(_PASSIVE_ROOTS)
+
+
+def __getattr__(name):
+    # N9 retains N2 windows; resolve its additive exports after model bootstrap.
+    if name in _PASSIVE_ROOTS:
+        from .. import passive_gating
+
+        return getattr(passive_gating, name)
+    raise AttributeError(name)

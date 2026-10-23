@@ -96,11 +96,11 @@ Existing point-fingerprint matching keeps its separate behavior.
 
 The [N9 passive-gating design](passive_gating/N9_PASSIVE_CONTRACT.md) separates
 healthy training-group FPS baselines from a single declared elapsed replay stream.
-It specifies persistence, recovery, explicit stale ticks and bounded offline probe
+It implements persistence, recovery, explicit stale ticks and bounded offline probe
 proposals. Current N2 elapsed time is wall-clock-derived and has no monotonic
-guarantee. N9 currently supplies a contract, provisional policy and independent
-design vectors; production models/APIs/commands and live producer control are
-not implemented by this design slice.
+guarantee. [Immutable N9 models and pure operations](passive_gating/N9_MODELS.md)
+reconstruct retained N6/N2 declarations. Linked source-inspection APIs, dedicated
+commands and live producer control remain outside the implemented boundary.
 
 ## File and numeric boundaries
 

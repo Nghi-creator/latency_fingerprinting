@@ -49,10 +49,11 @@ N8 tests pin independent policy/vectors and check immutable standalone models,
 exact pure scoring/refits, complete result reconstruction and validation dispatch.
 Linked N8 checks cover one-inspection source binding, fresh training verification,
 query extraction, group refits and private commands with protected output.
-N9 currently pins a design policy and synthetic independent baseline, arithmetic,
-eligibility and replay expectations. These tests establish design consistency;
-there is no N9 runtime reproduction, installed-wheel API or source-binding claim
-until the corresponding implementation slices exist.
+N9 pins its original design policy/vectors and tests exact pure arithmetic,
+baseline fitting, typed replay histories, immutable full-root reconstruction,
+rehashed tampering, source declarations, bounded inputs and generic validation.
+Its installed-wheel smoke checks all four roots and pure fitting/replay. A frozen
+N9 runtime corpus and linked source-file inspection remain subsequent work.
 
 ## Installed package
 
@@ -66,7 +67,8 @@ calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md)
 including standalone validation, linked builds, lifecycle operations, private
 errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
 and all three evaluation modes, the complete
-[frozen N8 corpus](../profile_matching/N8_FIXTURES.md), and schema exports.
+[frozen N8 corpus](../profile_matching/N8_FIXTURES.md), N9 standalone models,
+pure baseline/replay and generic validation, and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
 ## Cross-repository checks

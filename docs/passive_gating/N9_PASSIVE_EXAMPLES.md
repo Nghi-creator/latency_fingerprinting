@@ -1,7 +1,7 @@
 # Passive gate design examples
 
 These are synthetic arithmetic and state-machine design operands, not recorded
-experiments, implemented N9 APIs or a runtime acceptance corpus. The
+experiments or a runtime acceptance corpus. The
 [vectors](N9_DESIGN_VECTORS.json) retain literal expectations; the independent
 Decimal oracle is in `tests/passive_gating/test_design.py`. It imports no future
 N9 production module and does not regenerate expectations from actual results.
@@ -68,7 +68,10 @@ baseline or passive query substitute.
 
 The abstract replay operands use short synthetic keys and eligibility flags to
 isolate transitions. They are not serialized PassiveReplay records and cannot
-establish real N6 bindings or authenticate a generation. Linked source verification
-and complete retained-root reconstruction must be tested when those slices exist.
+establish real N6 bindings or authenticate a generation. Typed model tests exercise
+representable histories using original N2 windows and retained N6 declarations,
+and reject N2-invalid combinations rather than weakening the upstream contract.
+Complete retained-root reconstruction is implemented; linked source verification
+remains separate.
 Boolean/fractional/out-of-range times, unsafe arithmetic and excessive histories
 fail the operation without a truncated result. No live engine changes occur.

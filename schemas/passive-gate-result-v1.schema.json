@@ -1,0 +1,3877 @@
+{
+  "$defs": {
+    "AggregationKind": {
+      "enum": [
+        "median",
+        "nearest_rank_p95",
+        "minimum",
+        "maximum",
+        "window_total",
+        "time_weighted_rate"
+      ],
+      "title": "AggregationKind",
+      "type": "string"
+    },
+    "BaselineCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "metadata_eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Metadata Eligible Entries",
+          "type": "integer"
+        },
+        "provisional_strata": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Provisional Strata",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_strata": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Strata",
+          "type": "integer"
+        },
+        "selected_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Selected Entries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "metadata_eligible_entries",
+        "selected_entries",
+        "excluded_entries",
+        "retained_strata",
+        "provisional_strata"
+      ],
+      "title": "BaselineCounts",
+      "type": "object"
+    },
+    "BaselineGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "entry_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Entry Ids",
+          "type": "array"
+        },
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "selected_entry_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "title": "Selected Entry Ids",
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "group_id",
+        "entry_ids",
+        "selected_entry_ids",
+        "value"
+      ],
+      "title": "BaselineGroup",
+      "type": "object"
+    },
+    "BaselineInput": {
+      "additionalProperties": false,
+      "properties": {
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:group-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Group Id"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "not_baseline_window",
+              "not_training",
+              "not_confirmed_healthy",
+              "n6_excluded",
+              "duplicate_evidence",
+              "group_not_explicitly_healthy",
+              "unsupported_metric",
+              "incomplete_metric",
+              "rejected_samples",
+              "insufficient_samples",
+              "unsupported_window_duration"
+            ],
+            "type": "string"
+          },
+          "maxItems": 12,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "selected": {
+          "title": "Selected",
+          "type": "boolean"
+        },
+        "stratum_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:passive-stratum-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Stratum Id"
+        },
+        "window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservationWindowV2"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "entry_id",
+        "group_id",
+        "stratum_id",
+        "window",
+        "selected",
+        "reason_codes"
+      ],
+      "title": "BaselineInput",
+      "type": "object"
+    },
+    "BaselineStratum": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Center"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/$defs/BaselineGroup"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Groups",
+          "type": "array"
+        },
+        "raw_mad": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Raw Mad"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "insufficient_training_groups",
+              "insufficient_metric_groups",
+              "insufficient_availability",
+              "baseline_center_not_positive"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "scope": {
+          "$ref": "#/$defs/PassiveScope"
+        },
+        "state": {
+          "enum": [
+            "provisional",
+            "rejected"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "stratum_id": {
+          "pattern": "^(?:passive-stratum-[a-f0-9]{64})$",
+          "title": "Stratum Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "stratum_id",
+        "scope",
+        "groups",
+        "center",
+        "raw_mad",
+        "state",
+        "reason_codes"
+      ],
+      "title": "BaselineStratum",
+      "type": "object"
+    },
+    "CalibrationArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "file_name": {
+          "maxLength": 135,
+          "title": "File Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "analytical_response",
+            "observation_window",
+            "experiment_bundle"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "kind",
+        "file_name",
+        "sha256",
+        "bytes"
+      ],
+      "title": "CalibrationArtifact",
+      "type": "object"
+    },
+    "CalibrationCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "by_role": {
+          "$ref": "#/$defs/RoleCounts"
+        },
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups",
+        "by_role"
+      ],
+      "title": "CalibrationCounts",
+      "type": "object"
+    },
+    "CalibrationDataset": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/CalibrationArtifact"
+          },
+          "maxItems": 256,
+          "title": "Artifacts",
+          "type": "array"
+        },
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "dataset_id": {
+          "pattern": "^(?:dataset-[a-f0-9]{64})$",
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "derivations": {
+          "items": {
+            "$ref": "#/$defs/SourceEdge"
+          },
+          "maxItems": 512,
+          "title": "Derivations",
+          "type": "array"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/CalibrationEntry"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Entries",
+          "type": "array"
+        },
+        "method_release": {
+          "const": "n6-calibration-evidence-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/$defs/EvidenceReview"
+          },
+          "maxItems": 256,
+          "title": "Reviews",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "calibration-dataset-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/CalibrationSource"
+          },
+          "maxItems": 256,
+          "title": "Sources",
+          "type": "array"
+        },
+        "split": {
+          "$ref": "#/$defs/SplitDeclaration"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "dataset_id",
+        "content_hash",
+        "artifacts",
+        "sources",
+        "derivations",
+        "reviews",
+        "split",
+        "entries"
+      ],
+      "title": "CalibrationDataset",
+      "type": "object"
+    },
+    "CalibrationEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Artifact Id"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "experiment_artifact_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment Artifact Id"
+        },
+        "experiment_phase": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "degraded"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment Phase"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window",
+            "missing"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label"
+        },
+        "label_basis": {
+          "enum": [
+            "controlled_effect",
+            "external_confirmation",
+            "declared_only",
+            "unknown"
+          ],
+          "title": "Label Basis",
+          "type": "string"
+        },
+        "label_review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label Review Id"
+        },
+        "source_bindings": {
+          "items": {
+            "$ref": "#/$defs/SourceBinding"
+          },
+          "maxItems": 2,
+          "title": "Source Bindings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entry_id",
+        "input_kind",
+        "artifact_id",
+        "source_bindings",
+        "label",
+        "label_basis",
+        "label_review_id",
+        "experiment_artifact_id",
+        "experiment_phase"
+      ],
+      "title": "CalibrationEntry",
+      "type": "object"
+    },
+    "CalibrationReport": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_receipts": {
+          "items": {
+            "$ref": "#/$defs/CalibrationArtifact"
+          },
+          "maxItems": 256,
+          "title": "Artifact Receipts",
+          "type": "array"
+        },
+        "assurance": {
+          "const": "external_review_declarations_not_authenticated",
+          "title": "Assurance",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/CalibrationCounts"
+        },
+        "dataset_content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Dataset Content Hash",
+          "type": "string"
+        },
+        "dataset_id": {
+          "pattern": "^(?:dataset-[a-f0-9]{64})$",
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/EntryInspection"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Entries",
+          "type": "array"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/$defs/GroupInspection"
+          },
+          "maxItems": 256,
+          "title": "Groups",
+          "type": "array"
+        },
+        "method_release": {
+          "const": "n6-calibration-evidence-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "partitions": {
+          "items": {
+            "$ref": "#/$defs/PartitionInspection"
+          },
+          "maxItems": 256,
+          "title": "Partitions",
+          "type": "array"
+        },
+        "report_id": {
+          "pattern": "^(?:calibration-report-[a-f0-9]{64})$",
+          "title": "Report Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "calibration-report-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "split_id": {
+          "pattern": "^(?:split-[a-f0-9]{64})$",
+          "title": "Split Id",
+          "type": "string"
+        },
+        "split_mode": {
+          "enum": [
+            "prospective",
+            "retrospective"
+          ],
+          "title": "Split Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "report_id",
+        "dataset_id",
+        "dataset_content_hash",
+        "split_id",
+        "split_mode",
+        "artifact_receipts",
+        "groups",
+        "entries",
+        "partitions",
+        "counts",
+        "assurance"
+      ],
+      "title": "CalibrationReport",
+      "type": "object"
+    },
+    "CalibrationSource": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition_namespace": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Acquisition Namespace",
+          "type": "string"
+        },
+        "bundle_schema_version": {
+          "anyOf": [
+            {
+              "enum": [
+                "1",
+                "2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bundle Schema Version"
+        },
+        "independence_group": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Independence Group",
+          "type": "string"
+        },
+        "review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Review Id"
+        },
+        "run_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "session_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "source_content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Source Content Hash",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_type": {
+          "enum": [
+            "pixelated_bundle",
+            "synthetic_series"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "acquisition_namespace",
+        "run_id",
+        "session_id",
+        "independence_group",
+        "source_type",
+        "source_content_hash",
+        "bundle_schema_version",
+        "review_id"
+      ],
+      "title": "CalibrationSource",
+      "type": "object"
+    },
+    "CaptureMethodReference": {
+      "additionalProperties": false,
+      "properties": {
+        "methodId": {
+          "enum": [
+            "pixelated_bundle_offline",
+            "synthetic_series"
+          ],
+          "title": "Methodid",
+          "type": "string"
+        },
+        "methodVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Methodversion",
+          "type": "string"
+        },
+        "producerVersion": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Producerversion"
+        }
+      },
+      "required": [
+        "methodId",
+        "methodVersion",
+        "producerVersion"
+      ],
+      "title": "CaptureMethodReference",
+      "type": "object"
+    },
+    "ClockBasis": {
+      "description": "The exported elapsed field; monotonic provenance is not implied.",
+      "enum": [
+        "source_elapsed_ms"
+      ],
+      "title": "ClockBasis",
+      "type": "string"
+    },
+    "CounterInterval": {
+      "additionalProperties": false,
+      "description": "Accepted counter transition; rate units are declared by its summary.",
+      "properties": {
+        "delta": {
+          "minimum": 0,
+          "title": "Delta",
+          "type": "number"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "number"
+        },
+        "endElapsedMs": {
+          "minimum": 0,
+          "title": "Endelapsedms",
+          "type": "number"
+        },
+        "endSourceRow": {
+          "exclusiveMinimum": 0,
+          "title": "Endsourcerow",
+          "type": "integer"
+        },
+        "rate": {
+          "minimum": 0,
+          "title": "Rate",
+          "type": "number"
+        },
+        "startElapsedMs": {
+          "minimum": 0,
+          "title": "Startelapsedms",
+          "type": "number"
+        },
+        "startSourceRow": {
+          "exclusiveMinimum": 0,
+          "title": "Startsourcerow",
+          "type": "integer"
+        },
+        "wrapped": {
+          "default": false,
+          "title": "Wrapped",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "startSourceRow",
+        "endSourceRow",
+        "startElapsedMs",
+        "endElapsedMs",
+        "durationMs",
+        "delta",
+        "rate"
+      ],
+      "title": "CounterInterval",
+      "type": "object"
+    },
+    "EntryInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible": {
+          "title": "Eligible",
+          "type": "boolean"
+        },
+        "eligible_feature_count": {
+          "anyOf": [
+            {
+              "maximum": 22,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Eligible Feature Count"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "group_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:group-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Group Id"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window",
+            "missing"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label"
+        },
+        "partition_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:partition-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Partition Id"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "missing_measurements",
+              "engineering_only",
+              "retrospective_split",
+              "split_unverified",
+              "independence_unverified",
+              "synthetic_only",
+              "confounded_response",
+              "insufficient_response_features",
+              "baseline_invalid",
+              "label_unverified",
+              "effect_unverified",
+              "binding_unverified",
+              "duplicate_evidence"
+            ],
+            "type": "string"
+          },
+          "maxItems": 13,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "representative_entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Representative Entry Id",
+          "type": "string"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "engineering",
+                "training",
+                "validation",
+                "final_test"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        }
+      },
+      "required": [
+        "entry_id",
+        "input_kind",
+        "group_id",
+        "role",
+        "partition_id",
+        "label",
+        "eligible",
+        "reason_codes",
+        "representative_entry_id",
+        "eligible_feature_count"
+      ],
+      "title": "EntryInspection",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset": {
+          "$ref": "#/$defs/CalibrationDataset"
+        },
+        "report": {
+          "$ref": "#/$defs/CalibrationReport"
+        }
+      },
+      "required": [
+        "dataset",
+        "report"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "excluded_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Excluded Entries",
+          "type": "integer"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        },
+        "retained_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Groups",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "retained_entries",
+        "eligible_entries",
+        "excluded_entries",
+        "retained_groups",
+        "eligible_groups"
+      ],
+      "title": "EvidenceCounts",
+      "type": "object"
+    },
+    "EvidenceReview": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Evidence Sha256",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "independence",
+            "label_binding",
+            "split_freeze"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "confirmed",
+            "rejected",
+            "uncertain"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "review_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Review Id",
+          "type": "string"
+        },
+        "reviewer_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Reviewer Id",
+          "type": "string"
+        },
+        "subject_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Subject Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "review_id",
+        "reviewer_id",
+        "kind",
+        "subject_ids",
+        "outcome",
+        "evidence_sha256"
+      ],
+      "title": "EvidenceReview",
+      "type": "object"
+    },
+    "GroupInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "independence_review_state": {
+          "enum": [
+            "confirmed",
+            "rejected",
+            "uncertain",
+            "missing"
+          ],
+          "title": "Independence Review State",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "group_id",
+        "source_ids",
+        "role",
+        "independence_review_state"
+      ],
+      "title": "GroupInspection",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MetricKind": {
+      "enum": [
+        "gauge",
+        "cumulative_counter",
+        "event_count",
+        "derived"
+      ],
+      "title": "MetricKind",
+      "type": "string"
+    },
+    "MetricMeasurement": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "analytical_candidate",
+            "audit_only"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/$defs/MetricSeriesSummary"
+        },
+        "support": {
+          "$ref": "#/$defs/MetricSupport"
+        }
+      },
+      "required": [
+        "role",
+        "support",
+        "summary"
+      ],
+      "title": "MetricMeasurement",
+      "type": "object"
+    },
+    "MetricSeriesStatus": {
+      "enum": [
+        "complete",
+        "incomplete",
+        "missing",
+        "rejected"
+      ],
+      "title": "MetricSeriesStatus",
+      "type": "string"
+    },
+    "MetricSeriesSummary": {
+      "additionalProperties": false,
+      "description": "Immutable, finite aggregation result with reconstructable source evidence.",
+      "properties": {
+        "acceptedIntervalCount": {
+          "minimum": 0,
+          "title": "Acceptedintervalcount",
+          "type": "integer"
+        },
+        "aggregates": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/AggregationKind"
+          },
+          "title": "Aggregates",
+          "type": "object"
+        },
+        "availableAggregations": {
+          "items": {
+            "$ref": "#/$defs/AggregationKind"
+          },
+          "minItems": 1,
+          "title": "Availableaggregations",
+          "type": "array"
+        },
+        "cadenceMaximumMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadencemaximumms"
+        },
+        "cadenceMedianMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadencemedianms"
+        },
+        "cadenceMinimumMs": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cadenceminimumms"
+        },
+        "canonicalUnit": {
+          "$ref": "#/$defs/MetricUnit"
+        },
+        "clockBasis": {
+          "$ref": "#/$defs/ClockBasis"
+        },
+        "counterIntervals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CounterInterval"
+          },
+          "title": "Counterintervals",
+          "type": "array"
+        },
+        "coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Coverage",
+          "type": "number"
+        },
+        "gapSourceRows": {
+          "default": [],
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Gapsourcerows",
+          "type": "array"
+        },
+        "intervalRateUnit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MetricUnit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "kind": {
+          "$ref": "#/$defs/MetricKind"
+        },
+        "metricName": {
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$",
+          "title": "Metricname",
+          "type": "string"
+        },
+        "missingReasons": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Missingreasons",
+          "type": "array"
+        },
+        "observedDurationMs": {
+          "minimum": 0,
+          "title": "Observeddurationms",
+          "type": "number"
+        },
+        "primaryAggregation": {
+          "$ref": "#/$defs/AggregationKind"
+        },
+        "rawFields": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Rawfields",
+          "type": "array"
+        },
+        "registryVersion": {
+          "pattern": "^latency-metrics-v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Registryversion",
+          "type": "string"
+        },
+        "rejectedReasons": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Rejectedreasons",
+          "type": "array"
+        },
+        "resetSourceRows": {
+          "default": [],
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Resetsourcerows",
+          "type": "array"
+        },
+        "semanticVersion": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Semanticversion",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "sourceSampleCount": {
+          "minimum": 0,
+          "title": "Sourcesamplecount",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/MetricSeriesStatus"
+        },
+        "usableSampleCount": {
+          "minimum": 0,
+          "title": "Usablesamplecount",
+          "type": "integer"
+        },
+        "usableSourceRows": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "title": "Usablesourcerows",
+          "type": "array"
+        },
+        "warnings": {
+          "default": [],
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "windowDurationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Windowdurationms",
+          "type": "number"
+        },
+        "windowEndMs": {
+          "minimum": 0,
+          "title": "Windowendms",
+          "type": "number"
+        },
+        "windowStartMs": {
+          "minimum": 0,
+          "title": "Windowstartms",
+          "type": "number"
+        }
+      },
+      "required": [
+        "metricName",
+        "semanticVersion",
+        "registryVersion",
+        "source",
+        "rawFields",
+        "kind",
+        "canonicalUnit",
+        "primaryAggregation",
+        "availableAggregations",
+        "clockBasis",
+        "windowStartMs",
+        "windowEndMs",
+        "windowDurationMs",
+        "sourceSampleCount",
+        "usableSampleCount",
+        "usableSourceRows",
+        "acceptedIntervalCount",
+        "observedDurationMs",
+        "coverage",
+        "cadenceMinimumMs",
+        "cadenceMedianMs",
+        "cadenceMaximumMs",
+        "status"
+      ],
+      "title": "MetricSeriesSummary",
+      "type": "object"
+    },
+    "MetricSource": {
+      "enum": [
+        "browser_webrtc",
+        "engine_runtime",
+        "encoder_pipeline"
+      ],
+      "title": "MetricSource",
+      "type": "string"
+    },
+    "MetricSupport": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "enum": [
+            "measurement_declaration",
+            "source_support",
+            "source_rows"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "declaredState": {
+          "anyOf": [
+            {
+              "enum": [
+                "supported",
+                "unsupported",
+                "unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Declaredstate"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "declaredState",
+        "basis"
+      ],
+      "title": "MetricSupport",
+      "type": "object"
+    },
+    "MetricUnit": {
+      "enum": [
+        "fps",
+        "frames/s",
+        "frames",
+        "freezes/min",
+        "freezes",
+        "ms/s",
+        "ms",
+        "packets/s",
+        "packets",
+        "kbps",
+        "percent",
+        "MiB",
+        "buffers"
+      ],
+      "title": "MetricUnit",
+      "type": "string"
+    },
+    "ObservationWindowV2": {
+      "additionalProperties": false,
+      "properties": {
+        "captureMethod": {
+          "$ref": "#/$defs/CaptureMethodReference"
+        },
+        "clock": {
+          "$ref": "#/$defs/WindowClock"
+        },
+        "comparisonCaseId": {
+          "minLength": 1,
+          "title": "Comparisoncaseid",
+          "type": "string"
+        },
+        "confounderCodes": {
+          "default": [],
+          "items": {
+            "enum": [
+              "composite_profile_change",
+              "other_setting_change",
+              "operator_declared"
+            ],
+            "type": "string"
+          },
+          "title": "Confoundercodes",
+          "type": "array"
+        },
+        "context": {
+          "$ref": "#/$defs/V2ContextSnapshot"
+        },
+        "contractVersion": {
+          "const": "2.0.0",
+          "title": "Contractversion",
+          "type": "string"
+        },
+        "effectiveSettings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Effectivesettings",
+          "type": "object"
+        },
+        "measurements": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetricMeasurement"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Measurements",
+          "type": "object"
+        },
+        "phase": {
+          "$ref": "#/$defs/WindowPhase"
+        },
+        "provenance": {
+          "$ref": "#/$defs/ProvenanceKind"
+        },
+        "registry": {
+          "$ref": "#/$defs/RegistryReference"
+        },
+        "runId": {
+          "minLength": 1,
+          "title": "Runid",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "observation-window-v2",
+          "title": "Schemaversion",
+          "type": "string"
+        },
+        "sourceArtifact": {
+          "$ref": "#/$defs/SourceArtifactV2"
+        },
+        "sources": {
+          "additionalProperties": {
+            "$ref": "#/$defs/SourceSupport"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/MetricSource"
+          },
+          "title": "Sources",
+          "type": "object"
+        },
+        "stageTimings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StageTiming"
+          },
+          "title": "Stagetimings",
+          "type": "array"
+        },
+        "validity": {
+          "$ref": "#/$defs/WindowValidityV2"
+        },
+        "windowId": {
+          "minLength": 1,
+          "title": "Windowid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "contractVersion",
+        "runId",
+        "windowId",
+        "comparisonCaseId",
+        "context",
+        "phase",
+        "provenance",
+        "registry",
+        "captureMethod",
+        "clock",
+        "sourceArtifact",
+        "sources",
+        "effectiveSettings",
+        "measurements",
+        "validity"
+      ],
+      "title": "ObservationWindowV2",
+      "type": "object"
+    },
+    "PartitionInspection": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Entries",
+          "type": "integer"
+        },
+        "eligible_groups": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Eligible Groups",
+          "type": "integer"
+        },
+        "input_kind": {
+          "enum": [
+            "response",
+            "healthy_window"
+          ],
+          "title": "Input Kind",
+          "type": "string"
+        },
+        "partition_id": {
+          "pattern": "^(?:partition-[a-f0-9]{64})$",
+          "title": "Partition Id",
+          "type": "string"
+        },
+        "retained_entries": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Retained Entries",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "partition_id",
+        "input_kind",
+        "retained_entries",
+        "eligible_entries",
+        "eligible_groups"
+      ],
+      "title": "PartitionInspection",
+      "type": "object"
+    },
+    "PassiveBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "assurance": {
+          "const": "software_provisional_declared_elapsed_not_live_authority",
+          "title": "Assurance",
+          "type": "string"
+        },
+        "baseline_id": {
+          "pattern": "^(?:passive-baseline-[a-f0-9]{64})$",
+          "title": "Baseline Id",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/BaselineCounts"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "inputs": {
+          "items": {
+            "$ref": "#/$defs/BaselineInput"
+          },
+          "maxItems": 256,
+          "title": "Inputs",
+          "type": "array"
+        },
+        "method_release": {
+          "const": "n9-passive-gating-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "#/$defs/PassiveGatePolicy"
+        },
+        "schema_version": {
+          "const": "passive-baseline-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "provisional",
+            "rejected"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "strata": {
+          "items": {
+            "$ref": "#/$defs/BaselineStratum"
+          },
+          "maxItems": 256,
+          "title": "Strata",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "baseline_id",
+        "content_hash",
+        "policy",
+        "evidence",
+        "inputs",
+        "strata",
+        "state",
+        "counts",
+        "assurance"
+      ],
+      "title": "PassiveBaseline",
+      "type": "object"
+    },
+    "PassiveEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "at_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "At Ms",
+          "type": "integer"
+        },
+        "entry_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entry Id"
+        },
+        "event_id": {
+          "pattern": "^(?:passive-event-[a-f0-9]{64})$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "window",
+            "tick",
+            "reset"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "reset_reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "disconnect",
+                "context_changed",
+                "clock_changed",
+                "generation_changed",
+                "operator_reset",
+                "clock_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reset Reason"
+        }
+      },
+      "required": [
+        "event_id",
+        "kind",
+        "at_ms",
+        "entry_id",
+        "reset_reason"
+      ],
+      "title": "PassiveEvent",
+      "type": "object"
+    },
+    "PassiveGatePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "assurance": {
+          "const": "software_provisional_declared_elapsed_not_live_authority",
+          "title": "Assurance",
+          "type": "string"
+        },
+        "baseline": {
+          "$ref": "#/$defs/PolicyBaseline"
+        },
+        "calibration_method_release": {
+          "const": "n6-calibration-evidence-v1",
+          "title": "Calibration Method Release",
+          "type": "string"
+        },
+        "clock": {
+          "$ref": "#/$defs/PolicyClock"
+        },
+        "content_hash": {
+          "const": "sha256:07beb342e6ae7387a6edb2235ba0b26a5122fb3fffb5f83b7da2e7109f48a5ca",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "evaluation": {
+          "$ref": "#/$defs/PolicyEvaluation"
+        },
+        "gates": {
+          "$ref": "#/$defs/PolicyGates"
+        },
+        "limits": {
+          "$ref": "#/$defs/PolicyLimits"
+        },
+        "method_release": {
+          "const": "n9-passive-gating-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "metric": {
+          "$ref": "#/$defs/PolicyMetric"
+        },
+        "operating_mode": {
+          "const": "offline_provisional",
+          "title": "Operating Mode",
+          "type": "string"
+        },
+        "policy_id": {
+          "const": "passive-gate-policy-07beb342e6ae7387a6edb2235ba0b26a5122fb3fffb5f83b7da2e7109f48a5ca",
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "quality": {
+          "$ref": "#/$defs/PolicyQuality"
+        },
+        "query": {
+          "$ref": "#/$defs/PolicyQuery"
+        },
+        "registry": {
+          "$ref": "#/$defs/PolicyRegistry"
+        },
+        "schema_version": {
+          "const": "passive-gate-policy-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/PolicyScope"
+        }
+      },
+      "required": [
+        "assurance",
+        "baseline",
+        "calibration_method_release",
+        "clock",
+        "content_hash",
+        "evaluation",
+        "gates",
+        "limits",
+        "method_release",
+        "metric",
+        "operating_mode",
+        "policy_id",
+        "quality",
+        "query",
+        "registry",
+        "schema_version",
+        "scope"
+      ],
+      "title": "PassiveGatePolicy",
+      "type": "object"
+    },
+    "PassiveReplay": {
+      "additionalProperties": false,
+      "properties": {
+        "assurance": {
+          "const": "software_provisional_declared_elapsed_not_live_authority",
+          "title": "Assurance",
+          "type": "string"
+        },
+        "baseline_id": {
+          "pattern": "^(?:passive-baseline-[a-f0-9]{64})$",
+          "title": "Baseline Id",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "dataset_id": {
+          "pattern": "^(?:dataset-[a-f0-9]{64})$",
+          "title": "Dataset Id",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/PassiveEvent"
+          },
+          "maxItems": 256,
+          "title": "Events",
+          "type": "array"
+        },
+        "method_release": {
+          "const": "n9-passive-gating-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "validation",
+            "final_test"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "policy_content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Policy Content Hash",
+          "type": "string"
+        },
+        "replay_id": {
+          "pattern": "^(?:passive-replay-[a-f0-9]{64})$",
+          "title": "Replay Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "passive-replay-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "start_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Start Ms",
+          "type": "integer"
+        },
+        "stream": {
+          "$ref": "#/$defs/PassiveStream"
+        },
+        "windows": {
+          "items": {
+            "$ref": "#/$defs/ReplayWindow"
+          },
+          "maxItems": 256,
+          "title": "Windows",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "replay_id",
+        "content_hash",
+        "policy_content_hash",
+        "baseline_id",
+        "dataset_id",
+        "mode",
+        "stream",
+        "start_ms",
+        "windows",
+        "events",
+        "assurance"
+      ],
+      "title": "PassiveReplay",
+      "type": "object"
+    },
+    "PassiveRow": {
+      "additionalProperties": false,
+      "properties": {
+        "cause_label": {
+          "title": "Cause Label",
+          "type": "null"
+        },
+        "classification": {
+          "enum": [
+            "low",
+            "recovered",
+            "band",
+            "unavailable"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "effect_hypothesis": {
+          "anyOf": [
+            {
+              "const": "received_fps_degradation",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Effect Hypothesis"
+        },
+        "entry_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entry Id"
+        },
+        "event_id": {
+          "pattern": "^(?:passive-event-[a-f0-9]{64})$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_index": {
+          "maximum": 255,
+          "minimum": 0,
+          "title": "Event Index",
+          "type": "integer"
+        },
+        "novelty_key": {
+          "anyOf": [
+            {
+              "pattern": "^(?:passive-window-[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Novelty Key"
+        },
+        "observed_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Observed Fps"
+        },
+        "profile_hypotheses": {
+          "const": "unavailable",
+          "title": "Profile Hypotheses",
+          "type": "string"
+        },
+        "reason_codes": {
+          "items": {
+            "enum": [
+              "stream_invalidated",
+              "stream_reset",
+              "clock_reversed",
+              "stale",
+              "tick_only",
+              "missing_measurements",
+              "not_passive_window",
+              "clock_scope_changed",
+              "duplicate_window",
+              "out_of_order",
+              "scope_changed",
+              "overlapping_window",
+              "pre_barrier_window",
+              "gap_reset",
+              "not_requested_role",
+              "n6_excluded",
+              "baseline_unavailable",
+              "source_overlap",
+              "unsupported_metric",
+              "incomplete_metric",
+              "rejected_samples",
+              "insufficient_samples",
+              "unsupported_window_duration",
+              "entry_pending",
+              "proposal_budget_exhausted",
+              "cooldown_active",
+              "persistent_degradation",
+              "recovery_pending",
+              "healthy",
+              "hysteresis_band"
+            ],
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "recommendation": {
+          "enum": [
+            "observe",
+            "probe",
+            "cooldown",
+            "no_action"
+          ],
+          "title": "Recommendation",
+          "type": "string"
+        },
+        "relative_fps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Relative Fps"
+        },
+        "state": {
+          "$ref": "#/$defs/PassiveState"
+        },
+        "window_artifact_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Window Artifact Id"
+        }
+      },
+      "required": [
+        "event_index",
+        "event_id",
+        "entry_id",
+        "window_artifact_id",
+        "novelty_key",
+        "classification",
+        "observed_fps",
+        "relative_fps",
+        "recommendation",
+        "reason_codes",
+        "effect_hypothesis",
+        "cause_label",
+        "profile_hypotheses",
+        "state"
+      ],
+      "title": "PassiveRow",
+      "type": "object"
+    },
+    "PassiveScope": {
+      "additionalProperties": false,
+      "properties": {
+        "capture_method": {
+          "$ref": "#/$defs/CaptureMethodReference"
+        },
+        "clock": {
+          "$ref": "#/$defs/ScopeClock"
+        },
+        "context": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Context",
+          "type": "object"
+        },
+        "effective_settings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Effective Settings",
+          "type": "object"
+        },
+        "provenance": {
+          "$ref": "#/$defs/ProvenanceKind"
+        },
+        "registry": {
+          "$ref": "#/$defs/RegistryReference"
+        },
+        "source_format": {
+          "$ref": "#/$defs/SourceFormat"
+        }
+      },
+      "required": [
+        "registry",
+        "provenance",
+        "capture_method",
+        "clock",
+        "source_format",
+        "context",
+        "effective_settings"
+      ],
+      "title": "PassiveScope",
+      "type": "object"
+    },
+    "PassiveState": {
+      "additionalProperties": false,
+      "properties": {
+        "bad_duration_ms": {
+          "maximum": 2560000,
+          "minimum": 0,
+          "title": "Bad Duration Ms",
+          "type": "integer"
+        },
+        "bad_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Bad Windows",
+          "type": "integer"
+        },
+        "barrier_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Barrier Ms",
+          "type": "integer"
+        },
+        "degraded_latched": {
+          "title": "Degraded Latched",
+          "type": "boolean"
+        },
+        "good_duration_ms": {
+          "maximum": 2560000,
+          "minimum": 0,
+          "title": "Good Duration Ms",
+          "type": "integer"
+        },
+        "good_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Good Windows",
+          "type": "integer"
+        },
+        "last_proposal_ms": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Last Proposal Ms"
+        },
+        "last_valid_end_ms": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Last Valid End Ms"
+        },
+        "last_window_end_ms": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Last Window End Ms"
+        },
+        "proposals": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Proposals",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "unknown",
+            "pending_degradation",
+            "pending_recovery",
+            "healthy",
+            "degraded",
+            "recovering"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "stream_invalidated": {
+          "title": "Stream Invalidated",
+          "type": "boolean"
+        },
+        "watermark_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Watermark Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "status",
+        "degraded_latched",
+        "watermark_ms",
+        "last_window_end_ms",
+        "last_valid_end_ms",
+        "barrier_ms",
+        "bad_windows",
+        "bad_duration_ms",
+        "good_windows",
+        "good_duration_ms",
+        "proposals",
+        "last_proposal_ms",
+        "stream_invalidated"
+      ],
+      "title": "PassiveState",
+      "type": "object"
+    },
+    "PassiveStream": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition_namespace": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Acquisition Namespace",
+          "type": "string"
+        },
+        "clock_domain_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Clock Domain Id",
+          "type": "string"
+        },
+        "generation_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Generation Id",
+          "type": "string"
+        },
+        "run_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "stratum_id": {
+          "pattern": "^(?:passive-stratum-[a-f0-9]{64})$",
+          "title": "Stratum Id",
+          "type": "string"
+        },
+        "stream_id": {
+          "pattern": "^(?:passive-stream-[a-f0-9]{64})$",
+          "title": "Stream Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "acquisition_namespace",
+        "run_id",
+        "clock_domain_id",
+        "generation_id",
+        "stratum_id",
+        "stream_id"
+      ],
+      "title": "PassiveStream",
+      "type": "object"
+    },
+    "PolicyBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "const": "median_of_group_medians",
+          "title": "Center",
+          "type": "string"
+        },
+        "center_strictly_positive": {
+          "title": "Center Strictly Positive",
+          "type": "boolean"
+        },
+        "confirmed_healthy_only": {
+          "title": "Confirmed Healthy Only",
+          "type": "boolean"
+        },
+        "minimum_availability": {
+          "$ref": "#/$defs/PolicyBaselineMinimumAvailability"
+        },
+        "minimum_contributing_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Contributing Groups",
+          "type": "integer"
+        },
+        "minimum_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Groups",
+          "type": "integer"
+        },
+        "spread": {
+          "const": "raw_median_absolute_deviation",
+          "title": "Spread",
+          "type": "string"
+        },
+        "training_only": {
+          "title": "Training Only",
+          "type": "boolean"
+        },
+        "weighting": {
+          "const": "one_connected_source_group_one_vote",
+          "title": "Weighting",
+          "type": "string"
+        },
+        "zero_spread_allowed": {
+          "title": "Zero Spread Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "center",
+        "center_strictly_positive",
+        "confirmed_healthy_only",
+        "minimum_availability",
+        "minimum_contributing_groups",
+        "minimum_groups",
+        "spread",
+        "training_only",
+        "weighting",
+        "zero_spread_allowed"
+      ],
+      "title": "PolicyBaseline",
+      "type": "object"
+    },
+    "PolicyBaselineMinimumAvailability": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyBaselineMinimumAvailability",
+      "type": "object"
+    },
+    "PolicyClock": {
+      "additionalProperties": false,
+      "properties": {
+        "cross_domain_rebase": {
+          "title": "Cross Domain Rebase",
+          "type": "boolean"
+        },
+        "expiration": {
+          "const": "explicit_same_stream_tick",
+          "title": "Expiration",
+          "type": "string"
+        },
+        "generation": {
+          "const": "externally_declared",
+          "title": "Generation",
+          "type": "string"
+        },
+        "integral_milliseconds_only": {
+          "title": "Integral Milliseconds Only",
+          "type": "boolean"
+        },
+        "maximum_elapsed_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Elapsed Ms",
+          "type": "integer"
+        },
+        "monotonic_guarantee": {
+          "title": "Monotonic Guarantee",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cross_domain_rebase",
+        "expiration",
+        "generation",
+        "integral_milliseconds_only",
+        "maximum_elapsed_ms",
+        "monotonic_guarantee"
+      ],
+      "title": "PolicyClock",
+      "type": "object"
+    },
+    "PolicyEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_tuning": {
+          "title": "Automatic Tuning",
+          "type": "boolean"
+        },
+        "empirically_calibrated": {
+          "title": "Empirically Calibrated",
+          "type": "boolean"
+        },
+        "live_execution": {
+          "title": "Live Execution",
+          "type": "boolean"
+        },
+        "trust_promotion": {
+          "title": "Trust Promotion",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "automatic_tuning",
+        "empirically_calibrated",
+        "live_execution",
+        "trust_promotion"
+      ],
+      "title": "PolicyEvaluation",
+      "type": "object"
+    },
+    "PolicyGates": {
+      "additionalProperties": false,
+      "properties": {
+        "low_maximum_ratio": {
+          "$ref": "#/$defs/PolicyGatesLowMaximumRatio"
+        },
+        "maximum_proposals": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Proposals",
+          "type": "integer"
+        },
+        "minimum_bad_duration_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Bad Duration Ms",
+          "type": "integer"
+        },
+        "minimum_bad_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Bad Windows",
+          "type": "integer"
+        },
+        "minimum_good_duration_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Good Duration Ms",
+          "type": "integer"
+        },
+        "minimum_good_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Good Windows",
+          "type": "integer"
+        },
+        "proposal_cooldown_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Proposal Cooldown Ms",
+          "type": "integer"
+        },
+        "recovered_minimum_ratio": {
+          "$ref": "#/$defs/PolicyGatesRecoveredMinimumRatio"
+        },
+        "stale_after_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Stale After Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "low_maximum_ratio",
+        "maximum_proposals",
+        "minimum_bad_duration_ms",
+        "minimum_bad_windows",
+        "minimum_good_duration_ms",
+        "minimum_good_windows",
+        "proposal_cooldown_ms",
+        "recovered_minimum_ratio",
+        "stale_after_ms"
+      ],
+      "title": "PolicyGates",
+      "type": "object"
+    },
+    "PolicyGatesLowMaximumRatio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyGatesLowMaximumRatio",
+      "type": "object"
+    },
+    "PolicyGatesRecoveredMinimumRatio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyGatesRecoveredMinimumRatio",
+      "type": "object"
+    },
+    "PolicyLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum_baseline_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Baseline Windows",
+          "type": "integer"
+        },
+        "maximum_depth": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Depth",
+          "type": "integer"
+        },
+        "maximum_entries": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Entries",
+          "type": "integer"
+        },
+        "maximum_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Events",
+          "type": "integer"
+        },
+        "maximum_group_entry_references": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Group Entry References",
+          "type": "integer"
+        },
+        "maximum_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Groups",
+          "type": "integer"
+        },
+        "maximum_replay_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Replay Windows",
+          "type": "integer"
+        },
+        "maximum_root_bytes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Root Bytes",
+          "type": "integer"
+        },
+        "maximum_strata": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Strata",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maximum_baseline_windows",
+        "maximum_depth",
+        "maximum_entries",
+        "maximum_events",
+        "maximum_group_entry_references",
+        "maximum_groups",
+        "maximum_replay_windows",
+        "maximum_root_bytes",
+        "maximum_strata"
+      ],
+      "title": "PolicyLimits",
+      "type": "object"
+    },
+    "PolicyMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_unit": {
+          "const": "fps",
+          "title": "Canonical Unit",
+          "type": "string"
+        },
+        "clock_basis": {
+          "const": "source_elapsed_ms",
+          "title": "Clock Basis",
+          "type": "string"
+        },
+        "kind": {
+          "const": "gauge",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "const": "client.received_fps",
+          "title": "Name",
+          "type": "string"
+        },
+        "primary_aggregation": {
+          "const": "median",
+          "title": "Primary Aggregation",
+          "type": "string"
+        },
+        "raw_fields": {
+          "items": {
+            "const": "fps",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Raw Fields",
+          "type": "array"
+        },
+        "semantic_version": {
+          "const": "1.0.0",
+          "title": "Semantic Version",
+          "type": "string"
+        },
+        "source": {
+          "const": "browser_webrtc",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "canonical_unit",
+        "clock_basis",
+        "kind",
+        "name",
+        "primary_aggregation",
+        "raw_fields",
+        "semantic_version",
+        "source"
+      ],
+      "title": "PolicyMetric",
+      "type": "object"
+    },
+    "PolicyQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "imputation": {
+          "title": "Imputation",
+          "type": "null"
+        },
+        "maximum_window_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Window Ms",
+          "type": "integer"
+        },
+        "minimum_usable_samples": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Usable Samples",
+          "type": "integer"
+        },
+        "minimum_window_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Window Ms",
+          "type": "integer"
+        },
+        "role": {
+          "const": "analytical_candidate",
+          "title": "Role",
+          "type": "string"
+        },
+        "summary_status": {
+          "const": "complete",
+          "title": "Summary Status",
+          "type": "string"
+        },
+        "support": {
+          "const": "supported",
+          "title": "Support",
+          "type": "string"
+        },
+        "temporal_coverage_claim": {
+          "title": "Temporal Coverage Claim",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "imputation",
+        "maximum_window_ms",
+        "minimum_usable_samples",
+        "minimum_window_ms",
+        "role",
+        "summary_status",
+        "support",
+        "temporal_coverage_claim"
+      ],
+      "title": "PolicyQuality",
+      "type": "object"
+    },
+    "PolicyQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "cause_label": {
+          "title": "Cause Label",
+          "type": "null"
+        },
+        "ignored_n6_reasons": {
+          "items": {
+            "const": "label_unverified",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Ignored N6 Reasons",
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "enum": [
+              "validation",
+              "final_test"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "title": "Modes",
+          "type": "array"
+        },
+        "profile_hypotheses": {
+          "const": "unavailable",
+          "title": "Profile Hypotheses",
+          "type": "string"
+        },
+        "source_overlap_scope": {
+          "const": "all_contributing_baseline_groups",
+          "title": "Source Overlap Scope",
+          "type": "string"
+        },
+        "use_labels": {
+          "title": "Use Labels",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cause_label",
+        "ignored_n6_reasons",
+        "modes",
+        "profile_hypotheses",
+        "source_overlap_scope",
+        "use_labels"
+      ],
+      "title": "PolicyQuery",
+      "type": "object"
+    },
+    "PolicyRegistry": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "const": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content_hash",
+        "registry_version"
+      ],
+      "title": "PolicyRegistry",
+      "type": "object"
+    },
+    "PolicyScope": {
+      "additionalProperties": false,
+      "properties": {
+        "context_excluded_fields": {
+          "items": {
+            "enum": [
+              "context_id",
+              "node_id",
+              "network_scenario"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "title": "Context Excluded Fields",
+          "type": "array"
+        },
+        "fields": {
+          "items": {
+            "enum": [
+              "registry",
+              "provenance",
+              "capture_method",
+              "clock",
+              "source_format",
+              "context",
+              "effective_settings"
+            ],
+            "type": "string"
+          },
+          "maxItems": 7,
+          "minItems": 7,
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "context_excluded_fields",
+        "fields"
+      ],
+      "title": "PolicyScope",
+      "type": "object"
+    },
+    "ProvenanceKind": {
+      "enum": [
+        "synthetic",
+        "controlled_real",
+        "organic_real"
+      ],
+      "title": "ProvenanceKind",
+      "type": "string"
+    },
+    "RegistryReference": {
+      "additionalProperties": false,
+      "properties": {
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "registryVersion": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registryversion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "registryVersion",
+        "contentHash"
+      ],
+      "title": "RegistryReference",
+      "type": "object"
+    },
+    "ReplayCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Accepted Windows",
+          "type": "integer"
+        },
+        "ignored_duplicate_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Ignored Duplicate Windows",
+          "type": "integer"
+        },
+        "ignored_out_of_order_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Ignored Out Of Order Windows",
+          "type": "integer"
+        },
+        "proposals": {
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Proposals",
+          "type": "integer"
+        },
+        "reset_events": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Reset Events",
+          "type": "integer"
+        },
+        "tick_events": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Tick Events",
+          "type": "integer"
+        },
+        "total_events": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Total Events",
+          "type": "integer"
+        },
+        "unavailable_windows": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Unavailable Windows",
+          "type": "integer"
+        },
+        "window_events": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Window Events",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "total_events",
+        "window_events",
+        "tick_events",
+        "reset_events",
+        "accepted_windows",
+        "ignored_duplicate_windows",
+        "ignored_out_of_order_windows",
+        "unavailable_windows",
+        "proposals"
+      ],
+      "title": "ReplayCounts",
+      "type": "object"
+    },
+    "ReplayWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "window": {
+          "$ref": "#/$defs/ObservationWindowV2"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "window"
+      ],
+      "title": "ReplayWindow",
+      "type": "object"
+    },
+    "RoleCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "engineering": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "final_test": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "training": {
+          "$ref": "#/$defs/EvidenceCounts"
+        },
+        "validation": {
+          "$ref": "#/$defs/EvidenceCounts"
+        }
+      },
+      "required": [
+        "engineering",
+        "training",
+        "validation",
+        "final_test"
+      ],
+      "title": "RoleCounts",
+      "type": "object"
+    },
+    "ScopeClock": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "const": "source_elapsed_ms",
+          "title": "Basis",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "wall_clock_derived_elapsed",
+            "synthetic_elapsed"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "basis",
+        "provenance"
+      ],
+      "title": "ScopeClock",
+      "type": "object"
+    },
+    "SourceArtifactV2": {
+      "additionalProperties": false,
+      "properties": {
+        "bundleSchemaVersion": {
+          "anyOf": [
+            {
+              "enum": [
+                "1",
+                "2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bundleschemaversion"
+        },
+        "contentHash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Contenthash",
+          "type": "string"
+        },
+        "sourceType": {
+          "enum": [
+            "pixelated_bundle",
+            "synthetic_series"
+          ],
+          "title": "Sourcetype",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceType",
+        "contentHash",
+        "bundleSchemaVersion"
+      ],
+      "title": "SourceArtifactV2",
+      "type": "object"
+    },
+    "SourceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "window_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Window Id",
+          "type": "string"
+        },
+        "window_role": {
+          "enum": [
+            "degraded",
+            "relief",
+            "healthy"
+          ],
+          "title": "Window Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "window_role",
+        "source_id",
+        "window_id"
+      ],
+      "title": "SourceBinding",
+      "type": "object"
+    },
+    "SourceEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "child_source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Child Source Id",
+          "type": "string"
+        },
+        "parent_source_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Parent Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_source_id",
+        "child_source_id"
+      ],
+      "title": "SourceEdge",
+      "type": "object"
+    },
+    "SourceFormat": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle_schema_version": {
+          "anyOf": [
+            {
+              "enum": [
+                "1",
+                "2"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bundle Schema Version"
+        },
+        "source_type": {
+          "enum": [
+            "pixelated_bundle",
+            "synthetic_series"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_type",
+        "bundle_schema_version"
+      ],
+      "title": "SourceFormat",
+      "type": "object"
+    },
+    "SourceSupport": {
+      "additionalProperties": false,
+      "properties": {
+        "availableRowCount": {
+          "minimum": 0,
+          "title": "Availablerowcount",
+          "type": "integer"
+        },
+        "basis": {
+          "enum": [
+            "source_declaration",
+            "source_rows",
+            "source_absent"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "declaredState": {
+          "anyOf": [
+            {
+              "enum": [
+                "supported",
+                "unsupported",
+                "unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Declaredstate"
+        },
+        "rowCount": {
+          "minimum": 0,
+          "title": "Rowcount",
+          "type": "integer"
+        },
+        "sourceFile": {
+          "anyOf": [
+            {
+              "enum": [
+                "stream-telemetry.csv",
+                "engine-telemetry.csv"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sourcefile"
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "declaredState",
+        "basis",
+        "sourceFile",
+        "rowCount",
+        "availableRowCount"
+      ],
+      "title": "SourceSupport",
+      "type": "object"
+    },
+    "SplitAssignment": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group_id",
+        "role"
+      ],
+      "title": "SplitAssignment",
+      "type": "object"
+    },
+    "SplitDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "assignments": {
+          "items": {
+            "$ref": "#/$defs/SplitAssignment"
+          },
+          "maxItems": 256,
+          "title": "Assignments",
+          "type": "array"
+        },
+        "freeze_review_id": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Freeze Review Id"
+        },
+        "mode": {
+          "enum": [
+            "prospective",
+            "retrospective"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "protocol_sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Protocol Sha256",
+          "type": "string"
+        },
+        "split_id": {
+          "pattern": "^(?:split-[a-f0-9]{64})$",
+          "title": "Split Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "split_id",
+        "mode",
+        "protocol_sha256",
+        "assignments",
+        "freeze_review_id"
+      ],
+      "title": "SplitDeclaration",
+      "type": "object"
+    },
+    "StageTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "clockDomainId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Clockdomainid"
+        },
+        "methodId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Methodid"
+        },
+        "methodVersion": {
+          "anyOf": [
+            {
+              "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Methodversion"
+        },
+        "reasonCode": {
+          "anyOf": [
+            {
+              "enum": [
+                "not_instrumented",
+                "unsupported_source",
+                "source_unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reasoncode"
+        },
+        "sampleCount": {
+          "minimum": 0,
+          "title": "Samplecount",
+          "type": "integer"
+        },
+        "source": {
+          "$ref": "#/$defs/MetricSource"
+        },
+        "stage": {
+          "enum": [
+            "capture",
+            "encode",
+            "decode",
+            "render"
+          ],
+          "title": "Stage",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "measured",
+            "estimated",
+            "unavailable"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "statistic": {
+          "anyOf": [
+            {
+              "const": "sample_mean",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Statistic"
+        },
+        "unit": {
+          "const": "ms",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "stage",
+        "state",
+        "source",
+        "methodId",
+        "methodVersion",
+        "clockDomainId",
+        "unit",
+        "statistic",
+        "value",
+        "sampleCount",
+        "reasonCode"
+      ],
+      "title": "StageTiming",
+      "type": "object"
+    },
+    "V2ContextSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "captureImplementation": {
+          "minLength": 1,
+          "title": "Captureimplementation",
+          "type": "string"
+        },
+        "clientClass": {
+          "minLength": 1,
+          "title": "Clientclass",
+          "type": "string"
+        },
+        "compatibilityGroup": {
+          "minLength": 1,
+          "title": "Compatibilitygroup",
+          "type": "string"
+        },
+        "connectionMode": {
+          "minLength": 1,
+          "title": "Connectionmode",
+          "type": "string"
+        },
+        "contextId": {
+          "minLength": 1,
+          "title": "Contextid",
+          "type": "string"
+        },
+        "edgeNodeClass": {
+          "minLength": 1,
+          "title": "Edgenodeclass",
+          "type": "string"
+        },
+        "encoderFamily": {
+          "minLength": 1,
+          "title": "Encoderfamily",
+          "type": "string"
+        },
+        "encoderProfile": {
+          "minLength": 1,
+          "title": "Encoderprofile",
+          "type": "string"
+        },
+        "networkScenario": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Networkscenario"
+        },
+        "nodeId": {
+          "minLength": 1,
+          "title": "Nodeid",
+          "type": "string"
+        },
+        "nominalStreamProfile": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Nominalstreamprofile",
+          "type": "object"
+        },
+        "operatingSystem": {
+          "minLength": 1,
+          "title": "Operatingsystem",
+          "type": "string"
+        },
+        "runtimeClass": {
+          "minLength": 1,
+          "title": "Runtimeclass",
+          "type": "string"
+        },
+        "transportImplementation": {
+          "minLength": 1,
+          "title": "Transportimplementation",
+          "type": "string"
+        },
+        "versions": {
+          "additionalProperties": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Versions",
+          "type": "object"
+        },
+        "workloadId": {
+          "minLength": 1,
+          "title": "Workloadid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contextId",
+        "compatibilityGroup",
+        "edgeNodeClass",
+        "nodeId",
+        "operatingSystem",
+        "runtimeClass",
+        "workloadId",
+        "captureImplementation",
+        "encoderFamily",
+        "encoderProfile",
+        "transportImplementation",
+        "connectionMode",
+        "clientClass",
+        "nominalStreamProfile",
+        "networkScenario",
+        "versions"
+      ],
+      "title": "V2ContextSnapshot",
+      "type": "object"
+    },
+    "WindowClock": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/ClockBasis"
+        },
+        "domainId": {
+          "minLength": 1,
+          "title": "Domainid",
+          "type": "string"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "number"
+        },
+        "elapsedEndMs": {
+          "minimum": 0,
+          "title": "Elapsedendms",
+          "type": "number"
+        },
+        "elapsedStartMs": {
+          "minimum": 0,
+          "title": "Elapsedstartms",
+          "type": "number"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Endedat"
+        },
+        "provenance": {
+          "enum": [
+            "wall_clock_derived_elapsed",
+            "synthetic_elapsed"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Startedat"
+        }
+      },
+      "required": [
+        "basis",
+        "provenance",
+        "domainId",
+        "elapsedStartMs",
+        "elapsedEndMs",
+        "durationMs",
+        "startedAt",
+        "endedAt"
+      ],
+      "title": "WindowClock",
+      "type": "object"
+    },
+    "WindowPhase": {
+      "enum": [
+        "baseline",
+        "degraded",
+        "relief",
+        "recovery"
+      ],
+      "title": "WindowPhase",
+      "type": "string"
+    },
+    "WindowValidityV2": {
+      "additionalProperties": false,
+      "properties": {
+        "isValid": {
+          "title": "Isvalid",
+          "type": "boolean"
+        },
+        "reasonCodes": {
+          "items": {
+            "enum": [
+              "producer_invalid",
+              "required_source_unavailable",
+              "source_samples_unavailable"
+            ],
+            "type": "string"
+          },
+          "title": "Reasoncodes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "isValid",
+        "reasonCodes"
+      ],
+      "title": "WindowValidityV2",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assurance": {
+      "const": "software_provisional_declared_elapsed_not_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "baseline": {
+      "$ref": "#/$defs/PassiveBaseline"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "counts": {
+      "$ref": "#/$defs/ReplayCounts"
+    },
+    "final_state": {
+      "$ref": "#/$defs/PassiveState"
+    },
+    "method_release": {
+      "const": "n9-passive-gating-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "policy": {
+      "$ref": "#/$defs/PassiveGatePolicy"
+    },
+    "replay": {
+      "$ref": "#/$defs/PassiveReplay"
+    },
+    "result_id": {
+      "pattern": "^(?:passive-gate-[a-f0-9]{64})$",
+      "title": "Result Id",
+      "type": "string"
+    },
+    "rows": {
+      "items": {
+        "$ref": "#/$defs/PassiveRow"
+      },
+      "maxItems": 256,
+      "title": "Rows",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "passive-gate-result-v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "result_id",
+    "content_hash",
+    "policy",
+    "baseline",
+    "replay",
+    "rows",
+    "final_state",
+    "counts",
+    "assurance"
+  ],
+  "title": "PassiveGateResult",
+  "type": "object"
+}

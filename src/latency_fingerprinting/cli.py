@@ -61,6 +61,7 @@ from .observability import (
     StageTraceSummary,
     StageTraceSummaryV2,
 )
+from .passive_gating import PassiveBaseline, PassiveGatePolicy, PassiveGateResult, PassiveReplay
 from .pipeline import build_observation_record, canonical_json
 from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
 from .profile_matching.commands import register_profile_matching_commands
@@ -82,6 +83,10 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "passive-gate-policy-v1": PassiveGatePolicy,
+    "passive-baseline-v1": PassiveBaseline,
+    "passive-replay-v1": PassiveReplay,
+    "passive-gate-result-v1": PassiveGateResult,
     "profile-match-policy-v1": ProfileMatchPolicy,
     "profile-match-result-v1": ProfileMatchResult,
     "profile-evaluation-result-v1": ProfileEvaluationResult,
@@ -134,6 +139,10 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "passive-gate-policy-v1",
+        "passive-baseline-v1",
+        "passive-replay-v1",
+        "passive-gate-result-v1",
         "profile-match-policy-v1",
         "profile-match-result-v1",
         "profile-evaluation-result-v1",
@@ -171,6 +180,10 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            PassiveGatePolicy,
+            PassiveBaseline,
+            PassiveReplay,
+            PassiveGateResult,
             ProfileMatchPolicy,
             ProfileMatchResult,
             ProfileEvaluationResult,

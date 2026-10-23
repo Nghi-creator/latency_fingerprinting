@@ -187,6 +187,22 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.packaging.passive_check import SCRIPT, stage
+
+        passive_operands, passive_result = stage(directory)
+        run(
+            [str(python), "-I", "-c", SCRIPT, str(passive_operands), str(passive_result)],
+            directory=directory,
+        )
+        for payload in ("policy", "baseline", "replay"):
+            passive_input = directory / f"n9-{payload}.json"
+            passive_input.write_text(json.dumps(json.loads(passive_operands.read_bytes())[payload]))
+            code, stdout, stderr = invoke_installed(["validate", passive_input])
+            if code or not stdout or stderr:
+                raise ValueError("installed N9 standalone validation drift")
+        code, stdout, stderr = invoke_installed(["validate", passive_result])
+        if code or not stdout or stderr:
+            raise ValueError("installed N9 result validation drift")
         exported = directory / "schemas"
         run(
             [
@@ -206,7 +222,7 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"{match_release['cases']} N8 cases, entry point "
+            f"{match_release['cases']} N8 cases, N9 pure model/replay smoke, entry point "
             f"and all {len(actual)} schemas verified."
         )
 
