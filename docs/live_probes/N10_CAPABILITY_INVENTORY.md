@@ -62,3 +62,7 @@ roots cannot silently become monotonic live before/during/after evidence.
 Host/runtime acceptance is specific to the tested image and versions; normal
 desktop/picker/reconnect acceptance remains a separate prerequisite for using
 new behavior that depends on those flows.
+
+The [live-evidence design contract](N10_LIVE_EVIDENCE_CONTRACT.md) specifies the
+next ownership, clock, window and recovery boundary. It does not add an accepted
+core artifact or authorize a live adapter.

@@ -1,0 +1,260 @@
+{
+  "cases": [
+    {
+      "case_id": "complete_owned_restore",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": false,
+        "restoration": "verified"
+      },
+      "overrides": {}
+    },
+    {
+      "case_id": "metadata_only",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "capability_qualified": false
+      }
+    },
+    {
+      "case_id": "journal_failure",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "durable_intent": false
+      }
+    },
+    {
+      "case_id": "stale_generation",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "exact_generation": false
+      }
+    },
+    {
+      "case_id": "concurrent_owner",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "exclusive_owner": false
+      }
+    },
+    {
+      "case_id": "no_qualified_limits",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "limits_available": false
+      }
+    },
+    {
+      "case_id": "dirty_before_request",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "prior_dirty": true
+      }
+    },
+    {
+      "case_id": "cancel_before_call",
+      "expected": {
+        "action": "reject",
+        "budget_consumed": false,
+        "dirty": false,
+        "restoration": "not_needed"
+      },
+      "overrides": {
+        "cancelled_before_call": true
+      }
+    },
+    {
+      "case_id": "setter_raised_after_mutation",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": false,
+        "restoration": "verified"
+      },
+      "overrides": {
+        "application": "raised"
+      }
+    },
+    {
+      "case_id": "lost_ack",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": false,
+        "restoration": "verified"
+      },
+      "overrides": {
+        "application": "interrupted"
+      }
+    },
+    {
+      "case_id": "unknown_application",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": false,
+        "restoration": "verified"
+      },
+      "overrides": {
+        "application": "unknown"
+      }
+    },
+    {
+      "case_id": "foreign_change",
+      "expected": {
+        "action": "block_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "observed_value": "foreign"
+      }
+    },
+    {
+      "case_id": "unknown_readback",
+      "expected": {
+        "action": "block_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "observed_value": "unknown"
+      }
+    },
+    {
+      "case_id": "new_generation_after_apply",
+      "expected": {
+        "action": "block_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "observed_value": "new_generation"
+      }
+    },
+    {
+      "case_id": "restore_setter_failed",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "restore_setting": false
+      }
+    },
+    {
+      "case_id": "restore_output_missing",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "restore_output": false
+      }
+    },
+    {
+      "case_id": "receiver_missing",
+      "expected": {
+        "action": "apply_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "restore_receiver": false
+      }
+    },
+    {
+      "case_id": "already_prior_value_requires_effects",
+      "expected": {
+        "action": "observe_prior",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "observed_value": "prior",
+        "restore_output": false
+      }
+    },
+    {
+      "case_id": "prior_value_verified",
+      "expected": {
+        "action": "observe_prior",
+        "budget_consumed": true,
+        "dirty": false,
+        "restoration": "verified"
+      },
+      "overrides": {
+        "observed_value": "prior"
+      }
+    },
+    {
+      "case_id": "failure_not_rolled_back_by_default",
+      "expected": {
+        "action": "block_restore",
+        "budget_consumed": true,
+        "dirty": true,
+        "restoration": "unknown"
+      },
+      "overrides": {
+        "application": "raised",
+        "observed_value": "unknown"
+      }
+    }
+  ],
+  "defaults": {
+    "application": "returned",
+    "cancelled_before_call": false,
+    "capability_qualified": true,
+    "durable_intent": true,
+    "exact_generation": true,
+    "exclusive_owner": true,
+    "limits_available": true,
+    "observed_value": "owned",
+    "prior_dirty": false,
+    "restore_output": true,
+    "restore_receiver": true,
+    "restore_setting": true
+  },
+  "design_revision": "n10-live-evidence-design-v1",
+  "scope": "abstract_software_expectations_not_live_authority"
+}
