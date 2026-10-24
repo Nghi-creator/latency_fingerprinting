@@ -187,6 +187,75 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.passive_gating.check_reproduction import FIXTURES as PASSIVE_FIXTURES
+        from tests.passive_gating.check_reproduction import check_reproduction as check_passive
+
+        passive_corpus = directory / "passive-gating"
+        shutil.copytree(PASSIVE_FIXTURES, passive_corpus)
+        passive_release = check_passive(
+            passive_corpus,
+            n6_directory=corpus,
+            n7_directory=profile_corpus,
+            n8_directory=match_corpus,
+            invoke=invoke_installed,
+        )
+        from tests.packaging.passive_check import SCRIPT, stage
+
+        passive_operands, passive_result = stage(directory)
+        run(
+            [str(python), "-I", "-c", SCRIPT, str(passive_operands), str(passive_result)],
+            directory=directory,
+        )
+        for payload in ("policy", "baseline", "replay"):
+            passive_input = directory / f"n9-{payload}.json"
+            passive_input.write_text(json.dumps(json.loads(passive_operands.read_bytes())[payload]))
+            code, stdout, stderr = invoke_installed(["validate", passive_input])
+            if code or not stdout or stderr:
+                raise ValueError("installed N9 standalone validation drift")
+        code, stdout, stderr = invoke_installed(["validate", passive_result])
+        if code or not stdout or stderr:
+            raise ValueError("installed N9 result validation drift")
+        passive_data = json.loads(passive_operands.read_bytes())
+        for command, extra, expected in (
+            ("build-passive-baseline", [], passive_data["baseline"]),
+            (
+                "replay-passive-gate",
+                [
+                    "--baseline",
+                    directory / "n9-baseline.json",
+                    "--replay",
+                    directory / "n9-replay.json",
+                ],
+                json.loads(passive_result.read_bytes()),
+            ),
+        ):
+            output = directory / f"{command}.json"
+            arguments = [
+                command,
+                "--directory",
+                passive_data["source_directory"],
+                "--policy",
+                directory / "n9-policy.json",
+                *extra,
+                "--expected-dataset-content-hash",
+                passive_data["evidence"]["dataset"]["content_hash"],
+                "--output",
+                output,
+            ]
+            code, stdout, stderr = invoke_installed(arguments)
+            if code or stdout or stderr or json.loads(output.read_bytes()) != expected:
+                raise ValueError("installed N9 linked command drift")
+            protected = directory / ("n9-policy.json" if not extra else "n9-baseline.json")
+            retained = protected.read_bytes()
+            arguments[-1] = protected
+            code, stdout, stderr = invoke_installed(arguments)
+            if (
+                code != 1
+                or stdout
+                or stderr != f"error: {command}: invalid_input_or_output\n".encode()
+                or protected.read_bytes() != retained
+            ):
+                raise ValueError("installed N9 input/output protection drift")
         exported = directory / "schemas"
         run(
             [
@@ -206,7 +275,8 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"{match_release['cases']} N8 cases, entry point "
+            f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
+            f"N9 models/pure/linked APIs and CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )
 

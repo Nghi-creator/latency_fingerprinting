@@ -1,0 +1,3838 @@
+{
+  "baseline_cases": [
+    {
+      "case_id": "constant_zero_mad_valid",
+      "center": 60.0,
+      "groups": [
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ]
+      ],
+      "raw_mad": 0.0,
+      "reasons": []
+    },
+    {
+      "case_id": "one_group_one_vote",
+      "center": 60.0,
+      "groups": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          50.0
+        ],
+        [
+          60.0
+        ],
+        [
+          70.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "raw_mad": 10.0,
+      "reasons": []
+    },
+    {
+      "case_id": "group_and_even_center_medians",
+      "center": 65.0,
+      "groups": [
+        [
+          40.0,
+          60.0
+        ],
+        [
+          50.0
+        ],
+        [
+          60.0
+        ],
+        [
+          70.0
+        ],
+        [
+          80.0
+        ],
+        [
+          90.0
+        ]
+      ],
+      "raw_mad": 15.0,
+      "reasons": []
+    },
+    {
+      "case_id": "availability_equality",
+      "center": 60.0,
+      "groups": [
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [],
+        []
+      ],
+      "raw_mad": 0.0,
+      "reasons": []
+    },
+    {
+      "case_id": "availability_below",
+      "center": 60.0,
+      "groups": [
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [],
+        [],
+        []
+      ],
+      "raw_mad": 0.0,
+      "reasons": [
+        "insufficient_availability"
+      ]
+    },
+    {
+      "case_id": "four_groups_reject",
+      "center": 60.0,
+      "groups": [
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ]
+      ],
+      "raw_mad": 0.0,
+      "reasons": [
+        "insufficient_training_groups",
+        "insufficient_metric_groups"
+      ]
+    },
+    {
+      "case_id": "four_of_five_not_enough_contributors",
+      "center": 60.0,
+      "groups": [
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        [
+          60.0
+        ],
+        []
+      ],
+      "raw_mad": 0.0,
+      "reasons": [
+        "insufficient_metric_groups"
+      ]
+    },
+    {
+      "case_id": "zero_center_reject",
+      "center": 0.0,
+      "groups": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "raw_mad": 0.0,
+      "reasons": [
+        "baseline_center_not_positive"
+      ]
+    },
+    {
+      "case_id": "empty_fit_reject",
+      "center": null,
+      "groups": [],
+      "raw_mad": null,
+      "reasons": [
+        "insufficient_training_groups",
+        "insufficient_metric_groups",
+        "insufficient_availability",
+        "baseline_center_not_positive"
+      ]
+    }
+  ],
+  "classification_cases": [
+    {
+      "case_id": "low_equal",
+      "center": 60.0,
+      "classification": "low",
+      "fps": 48.0
+    },
+    {
+      "case_id": "low_next_below",
+      "center": 60.0,
+      "classification": "low",
+      "fps": 47.99999999999999
+    },
+    {
+      "case_id": "low_next_above",
+      "center": 60.0,
+      "classification": "band",
+      "fps": 48.00000000000001
+    },
+    {
+      "case_id": "recovery_equal",
+      "center": 60.0,
+      "classification": "recovered",
+      "fps": 54.0
+    },
+    {
+      "case_id": "recovery_next_below",
+      "center": 60.0,
+      "classification": "band",
+      "fps": 53.99999999999999
+    },
+    {
+      "case_id": "recovery_next_above",
+      "center": 60.0,
+      "classification": "recovered",
+      "fps": 54.00000000000001
+    },
+    {
+      "case_id": "rounded_ratio_must_not_classify",
+      "center": 1.0,
+      "classification": "band",
+      "fps": 0.8
+    },
+    {
+      "case_id": "decimal_tenth_binary_boundary",
+      "center": 1.0,
+      "classification": "recovered",
+      "fps": 0.9
+    },
+    {
+      "case_id": "zero_valid",
+      "center": 60.0,
+      "classification": "low",
+      "fps": 0.0
+    }
+  ],
+  "method_release": "n9-passive-gating-v1",
+  "numeric_cases": [
+    {
+      "case_id": "midpoint_no_intermediate_overflow",
+      "expected": 1e+308,
+      "operation": "median",
+      "values": [
+        1e+308,
+        1e+308
+      ]
+    },
+    {
+      "case_id": "midpoint_tie_even",
+      "expected": 1.0,
+      "operation": "median",
+      "values": [
+        1.0,
+        1.0000000000000002
+      ]
+    },
+    {
+      "case_id": "midpoint_nonzero_underflow",
+      "error": true,
+      "operation": "median",
+      "values": [
+        0.0,
+        5e-324
+      ]
+    },
+    {
+      "case_id": "ratio_overflow",
+      "error": true,
+      "operation": "ratio",
+      "values": [
+        1e+308,
+        5e-324
+      ]
+    },
+    {
+      "case_id": "ratio_underflow",
+      "error": true,
+      "operation": "ratio",
+      "values": [
+        5e-324,
+        1e+308
+      ]
+    },
+    {
+      "case_id": "zero_ratio",
+      "expected": 0.0,
+      "operation": "ratio",
+      "values": [
+        -0.0,
+        60.0
+      ]
+    },
+    {
+      "case_id": "ratio_normal",
+      "expected": 0.8,
+      "operation": "ratio",
+      "values": [
+        48.0,
+        60.0
+      ]
+    }
+  ],
+  "operand_contract": "abstract_prevalidated_events_not_n6_roots",
+  "policy_content_hash": "sha256:07beb342e6ae7387a6edb2235ba0b26a5122fb3fffb5f83b7da2e7109f48a5ca",
+  "provenance": "synthetic_design_only",
+  "quality_cases": [
+    {
+      "case_id": "valid",
+      "duration_ms": 2000,
+      "median": 60.0,
+      "reasons": [],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "unsupported",
+      "duration_ms": 2000,
+      "median": null,
+      "reasons": [
+        "unsupported_metric",
+        "incomplete_metric",
+        "insufficient_samples"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 0,
+      "status": "missing",
+      "support": "unavailable"
+    },
+    {
+      "case_id": "audit_only",
+      "duration_ms": 2000,
+      "median": 60.0,
+      "reasons": [
+        "unsupported_metric"
+      ],
+      "rejected": false,
+      "role": "audit_only",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "missing",
+      "duration_ms": 2000,
+      "median": null,
+      "reasons": [
+        "incomplete_metric",
+        "insufficient_samples"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 0,
+      "status": "missing",
+      "support": "supported"
+    },
+    {
+      "case_id": "incomplete",
+      "duration_ms": 2000,
+      "median": 60.0,
+      "reasons": [
+        "incomplete_metric"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "incomplete",
+      "support": "supported"
+    },
+    {
+      "case_id": "rejected",
+      "duration_ms": 2000,
+      "median": null,
+      "reasons": [
+        "incomplete_metric",
+        "rejected_samples",
+        "insufficient_samples"
+      ],
+      "rejected": true,
+      "role": "analytical_candidate",
+      "samples": 0,
+      "status": "rejected",
+      "support": "supported"
+    },
+    {
+      "case_id": "single_sample",
+      "duration_ms": 2000,
+      "median": 60.0,
+      "reasons": [
+        "insufficient_samples"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 1,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "duration_minimum",
+      "duration_ms": 1000,
+      "median": 60.0,
+      "reasons": [],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "duration_maximum",
+      "duration_ms": 10000,
+      "median": 60.0,
+      "reasons": [],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "duration_below",
+      "duration_ms": 999,
+      "median": 60.0,
+      "reasons": [
+        "unsupported_window_duration"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    },
+    {
+      "case_id": "duration_above",
+      "duration_ms": 10001,
+      "median": 60.0,
+      "reasons": [
+        "unsupported_window_duration"
+      ],
+      "rejected": false,
+      "role": "analytical_candidate",
+      "samples": 2,
+      "status": "complete",
+      "support": "supported"
+    }
+  ],
+  "query_support_cases": [
+    {
+      "case_id": "unlabelled_query_allowed",
+      "mode": "validation",
+      "n6_reasons": [
+        "label_unverified"
+      ],
+      "reasons": [],
+      "role": "validation"
+    },
+    {
+      "case_id": "healthy_label_does_not_bypass_split",
+      "mode": "validation",
+      "n6_reasons": [],
+      "reasons": [
+        "not_requested_role"
+      ],
+      "role": "training"
+    },
+    {
+      "case_id": "wrong_heldout_role",
+      "mode": "validation",
+      "n6_reasons": [],
+      "reasons": [
+        "not_requested_role"
+      ],
+      "role": "final_test"
+    },
+    {
+      "case_id": "final_test_allowed",
+      "mode": "final_test",
+      "n6_reasons": [
+        "label_unverified"
+      ],
+      "reasons": [],
+      "role": "final_test"
+    },
+    {
+      "case_id": "synthetic_blocks",
+      "mode": "validation",
+      "n6_reasons": [
+        "synthetic_only",
+        "label_unverified"
+      ],
+      "reasons": [
+        "n6_excluded"
+      ],
+      "role": "validation"
+    },
+    {
+      "case_id": "unverified_independence_blocks",
+      "mode": "validation",
+      "n6_reasons": [
+        "independence_unverified",
+        "label_unverified"
+      ],
+      "reasons": [
+        "n6_excluded"
+      ],
+      "role": "validation"
+    },
+    {
+      "case_id": "unverified_binding_blocks",
+      "mode": "validation",
+      "n6_reasons": [
+        "binding_unverified"
+      ],
+      "reasons": [
+        "n6_excluded"
+      ],
+      "role": "validation"
+    },
+    {
+      "case_id": "unverified_split_blocks",
+      "mode": "validation",
+      "n6_reasons": [
+        "split_unverified"
+      ],
+      "reasons": [
+        "n6_excluded"
+      ],
+      "role": "validation"
+    },
+    {
+      "case_id": "engineering_blocks_twice",
+      "mode": "validation",
+      "n6_reasons": [
+        "engineering_only",
+        "label_unverified"
+      ],
+      "reasons": [
+        "not_requested_role",
+        "n6_excluded"
+      ],
+      "role": "engineering"
+    }
+  ],
+  "replay_cases": [
+    {
+      "case_id": "persistent_entry_equality",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "healthy_warmup",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 60.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 60.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 1,
+          "proposals": 0,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_recovery"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 2,
+          "proposals": 0,
+          "reasons": [
+            "healthy"
+          ],
+          "recommendation": "no_action",
+          "status": "healthy"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "transient_then_recovery",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 60.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 1,
+          "proposals": 0,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_recovery"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "recovery_equality",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 54.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        },
+        {
+          "at_ms": 10000,
+          "fps": 54.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": true,
+          "good_windows": 1,
+          "proposals": 1,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "recovering"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 2,
+          "proposals": 1,
+          "reasons": [
+            "healthy"
+          ],
+          "recommendation": "no_action",
+          "status": "healthy"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "entry_count_alone_insufficient",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 1000,
+          "fps": 40.0,
+          "key": "1000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 1000
+        },
+        {
+          "at_ms": 3000,
+          "fps": 40.0,
+          "key": "3000",
+          "kind": "window",
+          "start_ms": 2000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "entry_duration_alone_insufficient",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 0
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "recovery_duration_alone_insufficient",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 10000,
+          "fps": 60.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 0
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 1,
+          "proposals": 0,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_recovery"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "recovery_count_alone_insufficient",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 1000,
+          "fps": 60.0,
+          "key": "1000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 2000,
+          "fps": 60.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 1000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 1,
+          "proposals": 0,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_recovery"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 2,
+          "proposals": 0,
+          "reasons": [
+            "recovery_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_recovery"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "band_breaks_entry",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 51.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "hysteresis_band"
+          ],
+          "recommendation": "observe",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "band_retains_latch_without_proposal",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 51.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "hysteresis_band"
+          ],
+          "recommendation": "observe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "duplicate_does_not_count",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "duplicate_window"
+          ],
+          "recommendation": "no_action",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "alias_before_canonical",
+      "center": 60.0,
+      "events": [
+        {
+          "alias": true,
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "duplicate_window"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "renamed_duplicate_interval",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "renamed",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "out_of_order"
+          ],
+          "recommendation": "no_action",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "late_window_does_not_advance",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 1000,
+          "fps": 40.0,
+          "key": "1000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "out_of_order"
+          ],
+          "recommendation": "no_action",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "overlap_breaks_streak",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 3000,
+          "fps": 40.0,
+          "key": "3000",
+          "kind": "window",
+          "start_ms": 1000
+        },
+        {
+          "at_ms": 5000,
+          "fps": 40.0,
+          "key": "5000",
+          "kind": "window",
+          "start_ms": 3000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "overlapping_window"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "gap_counts_only_new_window",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "gap_reset",
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "fresh_tick_then_stale_equality",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 10999,
+          "kind": "tick"
+        },
+        {
+          "at_ms": 11000,
+          "kind": "tick"
+        },
+        {
+          "at_ms": 11000,
+          "kind": "tick"
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "tick_only"
+          ],
+          "recommendation": "no_action",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stale"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "tick_only"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "stale_barrier_blocks_inflight",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 11000,
+          "kind": "tick"
+        },
+        {
+          "at_ms": 12000,
+          "fps": 40.0,
+          "key": "12000",
+          "kind": "window",
+          "start_ms": 6000
+        },
+        {
+          "at_ms": 14000,
+          "fps": 40.0,
+          "key": "14000",
+          "kind": "window",
+          "start_ms": 12000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stale"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "pre_barrier_window"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "fresh_tick_allows_inflight",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 3000,
+          "kind": "tick"
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "tick_only"
+          ],
+          "recommendation": "no_action",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "reverse_tick_terminal",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 5999,
+          "kind": "tick"
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "clock_reversed"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stream_invalidated"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "reset_terminal",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 6000,
+          "kind": "reset",
+          "reset_reason": "generation_changed"
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stream_reset"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stream_invalidated"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "clock_scope_terminal",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "clock_changed": true,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "clock_scope_changed"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "stream_invalidated"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "scope_terminal",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "scope_changed": true,
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "scope_changed"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "stream_invalidated"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_missing_measurements",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "missing_measurements"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "missing_measurements"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "gap_reset",
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_not_passive_window",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "not_passive_window"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "not_passive_window"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "gap_reset",
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_not_requested_role",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "not_requested_role"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "not_requested_role"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_n6_excluded",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "n6_excluded"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "n6_excluded"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_baseline_unavailable",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "baseline_unavailable"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "baseline_unavailable"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_source_overlap",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "source_overlap"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "source_overlap"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_unsupported_metric",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "unsupported_metric"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "unsupported_metric"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_incomplete_metric",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "incomplete_metric"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "incomplete_metric"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_rejected_samples",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "rejected_samples"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "rejected_samples"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_insufficient_samples",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "insufficient_samples"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "insufficient_samples"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "unavailable_unsupported_window_duration",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 8000,
+          "fps": 40.0,
+          "key": "8000",
+          "kind": "window",
+          "start_ms": 6000,
+          "unavailable": "unsupported_window_duration"
+        },
+        {
+          "at_ms": 10000,
+          "fps": 40.0,
+          "key": "10000",
+          "kind": "window",
+          "start_ms": 8000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "unsupported_window_duration"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        },
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "cooldown_and_budget_boundaries",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 16000,
+          "fps": 40.0,
+          "key": "16000",
+          "kind": "window",
+          "start_ms": 6000
+        },
+        {
+          "at_ms": 26000,
+          "fps": 40.0,
+          "key": "26000",
+          "kind": "window",
+          "start_ms": 16000
+        },
+        {
+          "at_ms": 35999,
+          "fps": 40.0,
+          "key": "35999",
+          "kind": "window",
+          "start_ms": 26000
+        },
+        {
+          "at_ms": 36999,
+          "fps": 40.0,
+          "key": "36999",
+          "kind": "window",
+          "start_ms": 35999
+        },
+        {
+          "at_ms": 46999,
+          "fps": 40.0,
+          "key": "46999",
+          "kind": "window",
+          "start_ms": 36999
+        },
+        {
+          "at_ms": 56999,
+          "fps": 40.0,
+          "key": "56999",
+          "kind": "window",
+          "start_ms": 46999
+        },
+        {
+          "at_ms": 66999,
+          "fps": 40.0,
+          "key": "66999",
+          "kind": "window",
+          "start_ms": 56999
+        },
+        {
+          "at_ms": 76999,
+          "fps": 40.0,
+          "key": "76999",
+          "kind": "window",
+          "start_ms": 66999
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 4,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 5,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 6,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 7,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 2,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 8,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 2,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 9,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 2,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 10,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 3,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 11,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 3,
+          "reasons": [
+            "proposal_budget_exhausted"
+          ],
+          "recommendation": "no_action",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "cooldown_exact_equality",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 16000,
+          "fps": 40.0,
+          "key": "16000",
+          "kind": "window",
+          "start_ms": 6000
+        },
+        {
+          "at_ms": 26000,
+          "fps": 40.0,
+          "key": "26000",
+          "kind": "window",
+          "start_ms": 16000
+        },
+        {
+          "at_ms": 36000,
+          "fps": 40.0,
+          "key": "36000",
+          "kind": "window",
+          "start_ms": 26000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 4,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 5,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "cooldown_active"
+          ],
+          "recommendation": "cooldown",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 6,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 2,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "tick_never_proposes",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 40.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": 40.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 40.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        },
+        {
+          "at_ms": 36000,
+          "kind": "tick"
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        },
+        {
+          "bad_windows": 0,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "stale"
+          ],
+          "recommendation": "no_action",
+          "status": "unknown"
+        }
+      ],
+      "start_ms": 0
+    },
+    {
+      "case_id": "zero_fps_is_low",
+      "center": 60.0,
+      "events": [
+        {
+          "at_ms": 2000,
+          "fps": 0.0,
+          "key": "2000",
+          "kind": "window",
+          "start_ms": 0
+        },
+        {
+          "at_ms": 4000,
+          "fps": -0.0,
+          "key": "4000",
+          "kind": "window",
+          "start_ms": 2000
+        },
+        {
+          "at_ms": 6000,
+          "fps": 0.0,
+          "key": "6000",
+          "kind": "window",
+          "start_ms": 4000
+        }
+      ],
+      "expected": [
+        {
+          "bad_windows": 1,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 2,
+          "degraded_latched": false,
+          "good_windows": 0,
+          "proposals": 0,
+          "reasons": [
+            "entry_pending"
+          ],
+          "recommendation": "observe",
+          "status": "pending_degradation"
+        },
+        {
+          "bad_windows": 3,
+          "degraded_latched": true,
+          "good_windows": 0,
+          "proposals": 1,
+          "reasons": [
+            "persistent_degradation"
+          ],
+          "recommendation": "probe",
+          "status": "degraded"
+        }
+      ],
+      "start_ms": 0
+    }
+  ]
+}

@@ -1,0 +1,2101 @@
+{
+  "capture_method": {
+    "method_id": "pixelated_bundle_offline",
+    "method_version": "1.0.0",
+    "producer_version": null
+  },
+  "clock": {
+    "basis": "source_elapsed_ms",
+    "domain_id": "training-domain-2",
+    "duration_ms": 2000.0,
+    "elapsed_end_ms": 2000.0,
+    "elapsed_start_ms": 0.0,
+    "ended_at": "2026-10-06T00:00:02Z",
+    "provenance": "wall_clock_derived_elapsed",
+    "started_at": "2026-10-06T00:00:00Z"
+  },
+  "comparison_case_id": "case-001",
+  "confounder_codes": [],
+  "context": {
+    "capture_implementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+    "client_class": "sanitized-browser-class",
+    "compatibility_group": "pixelated-controlled-p0-v2",
+    "connection_mode": "localhost-webrtc",
+    "context_id": "pixelated-controlled-context-v2-001",
+    "edge_node_class": "sanitized-local-engine",
+    "encoder_family": "vp8",
+    "encoder_profile": "balanced",
+    "network_scenario": "controlled-lan",
+    "node_id": "anonymous-node-v2-001",
+    "nominal_stream_profile": {
+      "bitrateKbps": 1500,
+      "fps": 60,
+      "id": "balanced"
+    },
+    "operating_system": "sanitized-container-linux",
+    "runtime_class": "pixelated-container",
+    "transport_implementation": "gstreamer-webrtc",
+    "versions": {
+      "pixelatedBundleSchema": "2"
+    },
+    "workload_id": "sanitized-test-workload"
+  },
+  "contract_version": "2.0.0",
+  "effective_settings": {
+    "targetFps": 60
+  },
+  "measurements": {
+    "client.available_incoming_bitrate_kbps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "kbps",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "client.available_incoming_bitrate_kbps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "available_incoming_bitrate_kbps"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.decode_time_mean_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "client.decode_time_mean_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "decode_time_mean_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_decoded_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.frames_decoded_rate_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "frames_decoded"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_decoded_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.frames_decoded_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "frames_decoded"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_dropped_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.frames_dropped_rate_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "frames_dropped"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.frames_dropped_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.frames_dropped_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "frames_dropped"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_count_rate_per_min": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "freezes/min",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "freezes/min",
+        "kind": "cumulative_counter",
+        "metric_name": "client.freeze_count_rate_per_min",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "freeze_count"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_count_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "freezes",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "freezes/min",
+        "kind": "cumulative_counter",
+        "metric_name": "client.freeze_count_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "freeze_count"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_duration_rate_ms_per_s": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "ms/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.freeze_duration_rate_ms_per_s",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "freeze_duration_total_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.freeze_duration_window_total_ms": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "ms/s",
+        "kind": "cumulative_counter",
+        "metric_name": "client.freeze_duration_window_total_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "freeze_duration_total_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.jitter_buffer_delay_mean_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "client.jitter_buffer_delay_mean_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "jitter_buffer_delay_mean_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.received_bitrate_kbps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "kbps",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "client.received_bitrate_kbps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "bitrate_kbps"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "client.received_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "fps",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "client.received_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "fps"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_dropped_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_dropped_rate_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "frames_dropped_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_dropped_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_dropped_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "frames_dropped_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_in_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_in_rate_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "frames_in_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_in_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_in_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "frames_in_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_out_rate_fps": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_out_rate_fps",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "frames_out_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.frames_out_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "frames",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "frames/s",
+        "kind": "cumulative_counter",
+        "metric_name": "encoder.frames_out_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "frames_out_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.pipeline_delay_proxy_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "encoder.pipeline_delay_proxy_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "pipeline_delay_proxy_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "encoder.queue_level_buffers": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "buffers",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "encoder.queue_level_buffers",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "queue_level_buffers"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "encoder_pipeline",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.camera_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "percent",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.camera_cpu_percent",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "camera_cpu_percent"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.camera_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "MiB",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.camera_rss_mib",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "camera_rss_mb"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.game_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "percent",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.game_cpu_percent",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "emulator_cpu_percent"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.game_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "MiB",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.game_rss_mib",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "emulator_rss_mb"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.node_cpu_percent": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "percent",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.node_cpu_percent",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "node_cpu_percent"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "host.node_rss_mib": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "MiB",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "host.node_rss_mib",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "node_rss_mb"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "engine_runtime",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "transport.jitter_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "transport.jitter_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "jitter_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "transport.packets_lost_rate_per_s": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "time_weighted_rate": 0.0
+        },
+        "available_aggregations": [
+          "time_weighted_rate"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "packets/s",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "packets/s",
+        "kind": "cumulative_counter",
+        "metric_name": "transport.packets_lost_rate_per_s",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "time_weighted_rate",
+        "raw_fields": [
+          "packets_lost_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "transport.packets_lost_window_total": {
+      "role": "audit_only",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "window_total": 0.0
+        },
+        "available_aggregations": [
+          "window_total"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "packets",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 1000.0,
+            "end_source_row": 3,
+            "rate": 0.0,
+            "start_elapsed_ms": 0.0,
+            "start_source_row": 2,
+            "wrapped": false
+          },
+          {
+            "delta": 0.0,
+            "duration_ms": 1000.0,
+            "end_elapsed_ms": 2000.0,
+            "end_source_row": 4,
+            "rate": 0.0,
+            "start_elapsed_ms": 1000.0,
+            "start_source_row": 3,
+            "wrapped": false
+          }
+        ],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": "packets/s",
+        "kind": "cumulative_counter",
+        "metric_name": "transport.packets_lost_window_total",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "window_total",
+        "raw_fields": [
+          "packets_lost_total"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    },
+    "transport.round_trip_time_ms": {
+      "role": "analytical_candidate",
+      "summary": {
+        "accepted_interval_count": 2,
+        "aggregates": {
+          "maximum": 60.0,
+          "median": 60.0,
+          "minimum": 60.0,
+          "nearest_rank_p95": 60.0
+        },
+        "available_aggregations": [
+          "maximum",
+          "median",
+          "minimum",
+          "nearest_rank_p95"
+        ],
+        "cadence_maximum_ms": 1000.0,
+        "cadence_median_ms": 1000.0,
+        "cadence_minimum_ms": 1000.0,
+        "canonical_unit": "ms",
+        "clock_basis": "source_elapsed_ms",
+        "counter_intervals": [],
+        "coverage": 1.0,
+        "gap_source_rows": [],
+        "interval_rate_unit": null,
+        "kind": "gauge",
+        "metric_name": "transport.round_trip_time_ms",
+        "missing_reasons": [],
+        "observed_duration_ms": 2000.0,
+        "primary_aggregation": "median",
+        "raw_fields": [
+          "round_trip_time_ms"
+        ],
+        "registry_version": "latency-metrics-v2.0.0",
+        "rejected_reasons": [],
+        "reset_source_rows": [],
+        "semantic_version": "1.0.0",
+        "source": "browser_webrtc",
+        "source_sample_count": 3,
+        "status": "complete",
+        "usable_sample_count": 3,
+        "usable_source_rows": [
+          2,
+          3,
+          4
+        ],
+        "warnings": [],
+        "window_duration_ms": 2000.0,
+        "window_end_ms": 2000.0,
+        "window_start_ms": 0.0
+      },
+      "support": {
+        "basis": "source_rows",
+        "declared_state": null,
+        "state": "supported"
+      }
+    }
+  },
+  "phase": "baseline",
+  "provenance": "controlled_real",
+  "registry": {
+    "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+    "registry_version": "latency-metrics-v2.0.0"
+  },
+  "run_id": "training-2",
+  "schema_version": "observation-window-v2",
+  "source_artifact": {
+    "bundle_schema_version": "2",
+    "content_hash": "sha256:c7b2a4298e841ed22ccb6dde2ddae9467d5b21d59e739a6a8f7739da4cd15005",
+    "source_type": "pixelated_bundle"
+  },
+  "sources": {
+    "browser_webrtc": {
+      "available_row_count": 3,
+      "basis": "source_rows",
+      "declared_state": null,
+      "row_count": 3,
+      "source_file": "stream-telemetry.csv",
+      "state": "supported"
+    },
+    "encoder_pipeline": {
+      "available_row_count": 3,
+      "basis": "source_rows",
+      "declared_state": null,
+      "row_count": 3,
+      "source_file": "engine-telemetry.csv",
+      "state": "supported"
+    },
+    "engine_runtime": {
+      "available_row_count": 3,
+      "basis": "source_rows",
+      "declared_state": null,
+      "row_count": 3,
+      "source_file": "engine-telemetry.csv",
+      "state": "supported"
+    }
+  },
+  "stage_timings": [],
+  "validity": {
+    "is_valid": true,
+    "reason_codes": []
+  },
+  "window_id": "window-2"
+}

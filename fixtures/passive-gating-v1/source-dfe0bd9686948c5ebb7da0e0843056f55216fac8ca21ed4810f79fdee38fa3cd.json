@@ -1,0 +1,318 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "artifact-query-000",
+      "bytes": 60542,
+      "file_name": "artifact-query-000.json",
+      "kind": "observation_window",
+      "sha256": "sha256:256293394218210af76369e22cab7562391f3a6170914dc3b0ccddf1b1e3b9b1"
+    },
+    {
+      "artifact_id": "artifact-train-0",
+      "bytes": 60541,
+      "file_name": "artifact-train-0.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d9c47435a48d67836c6018587c4e0b4d67864482deda6d5bd01cc8518cfc0660"
+    },
+    {
+      "artifact_id": "artifact-train-1",
+      "bytes": 60541,
+      "file_name": "artifact-train-1.json",
+      "kind": "observation_window",
+      "sha256": "sha256:980a040d390889e63e08eb5127da18a74be5a059dbe61c00418c40aaa41a525e"
+    },
+    {
+      "artifact_id": "artifact-train-2",
+      "bytes": 60541,
+      "file_name": "artifact-train-2.json",
+      "kind": "observation_window",
+      "sha256": "sha256:58c247c3f87a31346ded3a1f298ebc8a83403768bd6507ea471c6878342d82a6"
+    },
+    {
+      "artifact_id": "artifact-train-3",
+      "bytes": 60541,
+      "file_name": "artifact-train-3.json",
+      "kind": "observation_window",
+      "sha256": "sha256:16feb40d4863eaabe1a9fa442873c160b83603a63642a216c911bbd7c7783a61"
+    }
+  ],
+  "content_hash": "sha256:484a76e76c4af60413200038721c205fa155561032db62bbdd1e96dc2089df3b",
+  "dataset_id": "dataset-484a76e76c4af60413200038721c205fa155561032db62bbdd1e96dc2089df3b",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "artifact-query-000",
+      "entry_id": "query-000",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-0",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-0",
+      "entry_id": "train-0",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-0",
+      "source_bindings": [
+        {
+          "source_id": "source-train-0",
+          "window_id": "window-0",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-1",
+      "entry_id": "train-1",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-1",
+      "source_bindings": [
+        {
+          "source_id": "source-train-1",
+          "window_id": "window-1",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-2",
+      "entry_id": "train-2",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-2",
+      "source_bindings": [
+        {
+          "source_id": "source-train-2",
+          "window_id": "window-2",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-3",
+      "entry_id": "train-3",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-3",
+      "source_bindings": [
+        {
+          "source_id": "source-train-3",
+          "window_id": "window-3",
+          "window_role": "healthy"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "split-88639d359a917adf1d0728ed8cd793fbb79dfb408d33f57c1da61ad1d088911e"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-0",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-0"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-1",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-1"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-2",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-2"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-3",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-3"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-query-source",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "query-source"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-0",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-0"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-1",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-1"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-2",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-2"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-3",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-3"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-query-source",
+      "review_id": "review-query-source",
+      "run_id": "query-run",
+      "session_id": "session-query-source",
+      "source_content_hash": "sha256:2e8e62a9db675bc07a3649429c8978d6a0d1121cdd8233b6ede72fc6bc593f82",
+      "source_id": "query-source",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-0",
+      "review_id": "review-source-train-0",
+      "run_id": "training-0",
+      "session_id": "session-source-train-0",
+      "source_content_hash": "sha256:912fd7a94b2a04702acde9edec476a76e240b90c49e74d424610c450fbfc89ea",
+      "source_id": "source-train-0",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-1",
+      "review_id": "review-source-train-1",
+      "run_id": "training-1",
+      "session_id": "session-source-train-1",
+      "source_content_hash": "sha256:6e5e32999f1a0cee4cca9f5c5c6c0f454f3c9c8fe8a7ff09d3008656e2a1eece",
+      "source_id": "source-train-1",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-2",
+      "review_id": "review-source-train-2",
+      "run_id": "training-2",
+      "session_id": "session-source-train-2",
+      "source_content_hash": "sha256:c7b2a4298e841ed22ccb6dde2ddae9467d5b21d59e739a6a8f7739da4cd15005",
+      "source_id": "source-train-2",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-3",
+      "review_id": "review-source-train-3",
+      "run_id": "training-3",
+      "session_id": "session-source-train-3",
+      "source_content_hash": "sha256:c7dc90abcac9db68af2f2a340f41afd9de5215efbea949477192f4206351ac07",
+      "source_id": "source-train-3",
+      "source_type": "pixelated_bundle"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-1b68f584544c68198cfc339df3e1d87c8c5e89a512c2c642ad00456e91e3ac22",
+        "role": "training"
+      },
+      {
+        "group_id": "group-543dcf75347f919c1e8091e86d20f18aaec06d2462fac97bcbcc112e0b2e4462",
+        "role": "training"
+      },
+      {
+        "group_id": "group-63b908361c7cc5354545e354679ab75cffe27b5a3f7add7aaf728185f3b01401",
+        "role": "validation"
+      },
+      {
+        "group_id": "group-68366404509509814c0d4eee0e79a4e85e1d7a45e67c05491b8a0c20bcdf7c1c",
+        "role": "training"
+      },
+      {
+        "group_id": "group-73ef9e6bb74a6471b3635ec4b6d69b69ed28d2d615276bbc05d561d4a2836cef",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-88639d359a917adf1d0728ed8cd793fbb79dfb408d33f57c1da61ad1d088911e"
+  }
+}

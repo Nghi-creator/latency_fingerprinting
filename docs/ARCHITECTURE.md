@@ -94,6 +94,18 @@ retained scoring/evaluation declarations. [Linked N8 operations](profile_matchin
 share one N6 inspection for fresh training verification and query extraction.
 Existing point-fingerprint matching keeps its separate behavior.
 
+The [N9 passive-gating design](passive_gating/N9_PASSIVE_CONTRACT.md) separates
+healthy training-group FPS baselines from a single declared elapsed replay stream.
+It implements persistence, recovery, explicit stale ticks and bounded offline probe
+proposals. Current N2 elapsed time is wall-clock-derived and has no monotonic
+guarantee. [Immutable N9 models and pure operations](passive_gating/N9_MODELS.md)
+reconstruct retained N6/N2 declarations. [Linked operations](passive_gating/N9_COMMANDS.md)
+use one N6 inspection to rebuild the exact baseline and verify source-extracted
+queries. Dedicated commands protect inputs and write private atomic output. The
+[frozen N9 corpus](passive_gating/N9_FIXTURES.md) verifies complete independent
+results and original source bytes in both CI Python jobs and the installed wheel.
+Live producer control remains outside the implemented boundary.
+
 ## File and numeric boundaries
 
 Public JSON readers reject duplicate keys, nonfinite numbers, excessive nesting,
