@@ -49,8 +49,8 @@ P0 continues using its original validator and aggregation path.
 [`models/measurement.py`](../../src/latency_fingerprinting/models/measurement.py)
 is a strict frozen model with `elapsedMs`, `capturedAt`, `value`, `available`,
 `sourceRow`, `missingReason` and `rejectionReason`. UTC capture time and separate
-missing/rejection reasons extend the planned internal sample shape to preserve
-audit provenance and distinguish unusable states.
+missing/rejection reasons preserve source provenance and distinguish unusable
+states.
 
 - Usable samples have a finite value, are available and have no reasons.
   Legitimate zero and finite extreme values remain raw evidence.

@@ -136,7 +136,7 @@ All eight P0 delta features are `recomputable_from_raw` when suitable raw counte
 and elapsed samples exist, and `not_recoverable_from_aggregate` when only frozen P0
 records remain. No median interval delta is renamed or numerically reinterpreted
 as a rate or total. Unsupported sources and rejected series stay explicit in the
-future inspection report. The first packet-loss delta is producer-inserted zero;
+[measurement inspection report](MEASUREMENT_INSPECTION.md). The first packet-loss delta is producer-inserted zero;
 N1 derives from `packets_lost_total` and requires two usable samples for an interval.
 
 The supported gauge source values already carry producer assumptions: received

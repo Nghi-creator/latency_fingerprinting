@@ -1,4 +1,4 @@
-"""Frozen design pins and a Decimal arithmetic oracle, independent of future N7 code."""
+"""Frozen design pins and a Decimal arithmetic oracle, independent of N7 production code."""
 
 import hashlib
 import json

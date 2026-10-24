@@ -1,4 +1,4 @@
-"""Offline P0 analysis, N1 diagnostics and additive N2/N3/N4 commands."""
+"""Offline analysis, evidence inspection, profile matching and passive replay commands."""
 
 from __future__ import annotations
 
@@ -314,12 +314,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Offline P0 analysis, N1 diagnostics, N2 adoption and N3 analytics.",
+        description=("Offline analysis, evidence inspection, profile matching and passive replay."),
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate = subparsers.add_parser(
-        "validate", help="validate a P0/N2/N3 root record or N1 registry"
+        "validate", help="validate a supported root record or metric registry"
     )
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)

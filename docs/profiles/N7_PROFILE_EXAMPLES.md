@@ -131,6 +131,6 @@ The design-vector tests use a bounded, high-precision Decimal reference oracle
 and literal expected results; they import no N7 statistics implementation.
 Production is specified to use bounded rational binary64 arithmetic. The policy
 identity and design-vector file are pinned separately. Review a changed policy
-or expected vector explicitly; do not derive expected results from future builder
+or expected vector explicitly; do not derive expected results from production builder
 output to make a failing check pass. These design vectors are not additional
 production schema roots or a runtime fixture-release update mechanism.
