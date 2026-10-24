@@ -20,6 +20,7 @@ from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_model_file, read_bounded_text, strict_json_loads
+from .live_probes import LiveProbeEvidence
 from .matcher import match_observation
 from .measurement.metric_registry import (
     DEFAULT_METRIC_REGISTRY_PATH,
@@ -84,6 +85,7 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "live-probe-evidence-v1": LiveProbeEvidence,
     "passive-gate-policy-v1": PassiveGatePolicy,
     "passive-baseline-v1": PassiveBaseline,
     "passive-replay-v1": PassiveReplay,
@@ -140,6 +142,7 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "live-probe-evidence-v1",
         "passive-gate-policy-v1",
         "passive-baseline-v1",
         "passive-replay-v1",
@@ -181,6 +184,7 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            LiveProbeEvidence,
             PassiveGatePolicy,
             PassiveBaseline,
             PassiveReplay,

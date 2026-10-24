@@ -83,6 +83,9 @@ Start with the [documentation index](docs/README.md) and
 - [Controlled-run processing](experiments/CONTROLLED_RUN_PROCESSING.md) explains
   how to process recorded experiments. Sanitized experimental artifacts remain
   under `experiments/`; synthetic regression inputs remain under `fixtures/`.
+- [Live-probe evidence](docs/live_probes/N10_MODELS.md) validates immutable offline
+  declarations and reconstructs counter/setting observations while retaining
+  unqualified capability and unverified receiver continuity.
 
 P0 and v2 are separate contracts and matching paths. Existing cumulative means and
 proxies are not direct stage latency measurements. The core does not run live

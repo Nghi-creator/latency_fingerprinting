@@ -1,9 +1,9 @@
 # Live-relief evidence — N10 design contract
 
 Design revision: `n10-live-evidence-design-v1`. This is an additive design for a
-future live adapter and offline reconstruction. No public core model, accepted
-artifact schema, execution command or qualified live capability is introduced by
-this document. The [capability inventory](N10_CAPABILITY_INVENTORY.md) remains a
+future live adapter and offline reconstruction. The [offline evidence model](N10_MODELS.md)
+implements a conservative forensic subset with an additive schema and pure
+inspection. No execution command or qualified live capability is implemented. The [capability inventory](N10_CAPABILITY_INVENTORY.md) remains a
 metadata-only preflight. N9 proposals carry no authorization to act.
 
 ## Identity, authority and clocks

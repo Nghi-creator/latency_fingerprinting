@@ -95,6 +95,7 @@ and all three evaluation modes, the complete
 [frozen N8 corpus](../profile_matching/N8_FIXTURES.md), N9 standalone models,
 the complete [frozen N9 corpus](../passive_gating/N9_FIXTURES.md), pure
 baseline/replay, linked source verification, both protected N9 commands,
+N10 forensic evidence validation/pure inspection and generic CLI dispatch,
 generic validation and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 
@@ -114,3 +115,10 @@ For real instrumentation/campaign measurements, use the producer's
 Record exact source versions, workload, environment, all trial outcomes and cleanup.
 Passing software checks does not establish real timing accuracy, acquisition
 independence, diagnosis accuracy or platform behavior.
+
+N10 [offline evidence checks](../live_probes/N10_MODELS.md) cover strict immutable
+roots, content identity, partial setter outcomes, half-open windows, settling
+exclusions, counter resets/missing generations, unrelated controls and unavailable
+receiver/quality evidence. Generic CLI/schema and isolated-wheel checks keep the
+new root additive. These tests do not qualify a producer, verify an actual budget
+or establish safe live restoration.

@@ -1,4 +1,4 @@
-"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2–N9 roots."""
+"""Deterministic JSON Schemas for frozen P0/N1 roots and additive N2–N10 roots."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from typing import TypeAlias
 from pydantic import BaseModel
 
 from .calibration import CalibrationDataset, CalibrationReport
+from .live_probes import LiveProbeEvidence
 from .models import (
     AnalyticalResponseV2,
     ExperimentManifest,
@@ -43,6 +44,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "live-probe-evidence-v1.schema.json": LiveProbeEvidence,
     "passive-gate-policy-v1.schema.json": PassiveGatePolicy,
     "passive-baseline-v1.schema.json": PassiveBaseline,
     "passive-replay-v1.schema.json": PassiveReplay,

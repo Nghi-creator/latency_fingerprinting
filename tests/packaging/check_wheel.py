@@ -256,6 +256,34 @@ def main() -> None:
                 or protected.read_bytes() != retained
             ):
                 raise ValueError("installed N9 input/output protection drift")
+        from tests.live_probes.cases import payload as live_payload
+
+        live_input = directory / "live-evidence.json"
+        live_input.write_text(json.dumps(live_payload()))
+        code, stdout, stderr = invoke_installed(["validate", live_input])
+        if code or stderr or json.loads(stdout) != live_payload():
+            raise ValueError("installed N10 evidence validation drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                (
+                    "import json,sys; "
+                    "from latency_fingerprinting.live_probes import "
+                    "LiveProbeEvidence,inspect_live_probe_evidence; "
+                    "e=LiveProbeEvidence.model_validate_json(open(sys.argv[1]).read()); "
+                    "r=inspect_live_probe_evidence(e); "
+                    "assert r.live_authority is False; "
+                    "assert r.receiver_continuity == 'unverified'; "
+                    "assert r.restoration == 'setting_and_local_progress_only'; "
+                    "assert all(not w.reason_codes and w.decoded_frames_delta == 10 "
+                    "for w in r.windows)"
+                ),
+                str(live_input),
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -276,7 +304,7 @@ def main() -> None:
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
             f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
-            f"N9 models/pure/linked APIs and CLI, entry point "
+            f"N9 models/pure/linked APIs, N10 offline evidence/inspection and CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )
 

@@ -64,5 +64,14 @@ desktop/picker/reconnect acceptance remains a separate prerequisite for using
 new behavior that depends on those flows.
 
 The [live-evidence design contract](N10_LIVE_EVIDENCE_CONTRACT.md) specifies the
-next ownership, clock, window and recovery boundary. It does not add an accepted
-core artifact or authorize a live adapter.
+ownership, clock, window and recovery boundary. The separate [offline evidence
+model](N10_MODELS.md) adds a conservative forensic root; neither inventory nor
+validated evidence authorizes a live adapter.
+
+For encoder feasibility, the producer's [contained bitrate experiment](../../../Pixelated-Studio-Edition/docs/n10-bitrate-feasibility.md)
+has fixed short, settled and unchanged-control protocols. Retain the unchanged
+control as well as changed-bitrate results: scene/warm-up drift can change output
+without a control effect. Its exact byte/duration screens are synthetic experiment
+criteria, not live safety limits or scientific calibration. Even a passed screen
+leaves receiver continuity, quality, bounded stalls, watchdog and owned live
+restoration/recovery unverified. No isolated result grants live authority.
