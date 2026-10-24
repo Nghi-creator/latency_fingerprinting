@@ -103,6 +103,6 @@ error: replay-passive-gate: invalid_input_or_output
 ```
 
 Missing required arguments remain argparse syntax errors. These commands do not
-change any producer settings or earlier measurement/matching releases. A frozen
-N9 runtime reproduction corpus remains separate from these source-binding and
-installed-package checks.
+change any producer settings or earlier measurement/matching releases. The
+[frozen runtime corpus](N9_FIXTURES.md) exercises complete independent outcomes,
+source binding and command behavior in the checkout and installed package.

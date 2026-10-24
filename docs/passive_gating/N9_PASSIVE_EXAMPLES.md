@@ -73,6 +73,7 @@ representable histories using original N2 windows and retained N6 declarations,
 and reject N2-invalid combinations rather than weakening the upstream contract.
 Complete retained-root reconstruction and [linked source verification](N9_COMMANDS.md)
 are implemented as separate boundaries. Source-binding tests use artificial
-on-disk N2/N6 records, not measured acquisitions or a frozen runtime corpus.
+on-disk N2/N6 records, not measured acquisitions. A separate
+[frozen runtime corpus](N9_FIXTURES.md) retains complete roots and source bytes.
 Boolean/fractional/out-of-range times, unsafe arithmetic and excessive histories
 fail the operation without a truncated result. No live engine changes occur.

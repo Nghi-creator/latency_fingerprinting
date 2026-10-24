@@ -37,6 +37,7 @@ python -m tests.scenarios.check_reproduction
 python -m tests.calibration.check_reproduction
 python -m tests.profiles.check_reproduction
 python -m tests.profile_matching.check_reproduction
+python -m tests.passive_gating.check_reproduction
 python -m pytest tests/profile_matching
 python -m pytest tests/passive_gating
 python experiments/controlled-run-001/record_seed_fingerprint.py --check
@@ -55,7 +56,8 @@ rehashed tampering, source declarations, bounded inputs and generic validation.
 Linked N9 checks verify one-inspection source binding, fresh complete fits,
 source-extracted queries, aliases, byte budgets, private errors and protected
 output. Installed-wheel checks exercise all four roots, pure/linked APIs and both
-commands. A frozen N9 runtime corpus remains subsequent work.
+commands. The [frozen N9 corpus](../passive_gating/N9_FIXTURES.md) adds full
+independent results, exact source bytes and before/after dependency pin checks.
 
 ## Installed package
 
@@ -70,7 +72,8 @@ including standalone validation, linked builds, lifecycle operations, private
 errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
 and all three evaluation modes, the complete
 [frozen N8 corpus](../profile_matching/N8_FIXTURES.md), N9 standalone models,
-pure baseline/replay, linked source verification, both protected N9 commands,
+the complete [frozen N9 corpus](../passive_gating/N9_FIXTURES.md), pure
+baseline/replay, linked source verification, both protected N9 commands,
 generic validation and schema exports.
 Normal package-index access is needed for build/runtime dependencies.
 

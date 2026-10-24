@@ -187,6 +187,18 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.passive_gating.check_reproduction import FIXTURES as PASSIVE_FIXTURES
+        from tests.passive_gating.check_reproduction import check_reproduction as check_passive
+
+        passive_corpus = directory / "passive-gating"
+        shutil.copytree(PASSIVE_FIXTURES, passive_corpus)
+        passive_release = check_passive(
+            passive_corpus,
+            n6_directory=corpus,
+            n7_directory=profile_corpus,
+            n8_directory=match_corpus,
+            invoke=invoke_installed,
+        )
         from tests.packaging.passive_check import SCRIPT, stage
 
         passive_operands, passive_result = stage(directory)
@@ -263,7 +275,8 @@ def main() -> None:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
-            f"{match_release['cases']} N8 cases, N9 models/pure/linked APIs and CLI, entry point "
+            f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
+            f"N9 models/pure/linked APIs and CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )
 

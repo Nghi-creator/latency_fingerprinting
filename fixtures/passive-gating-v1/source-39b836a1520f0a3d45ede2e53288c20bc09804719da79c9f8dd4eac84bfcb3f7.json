@@ -1,0 +1,1169 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "artifact-query-000",
+      "bytes": 60542,
+      "file_name": "artifact-query-000.json",
+      "kind": "observation_window",
+      "sha256": "sha256:256293394218210af76369e22cab7562391f3a6170914dc3b0ccddf1b1e3b9b1"
+    },
+    {
+      "artifact_id": "artifact-query-001",
+      "bytes": 60686,
+      "file_name": "artifact-query-001.json",
+      "kind": "observation_window",
+      "sha256": "sha256:dbfe73fd304ead0e88936bc507063f1051c9b955415b54c86bfbe9525cb44a96"
+    },
+    {
+      "artifact_id": "artifact-query-002",
+      "bytes": 60686,
+      "file_name": "artifact-query-002.json",
+      "kind": "observation_window",
+      "sha256": "sha256:7b09e96c9167e8682ae3fc92f809a42b24c94967e22142c9d7350bc9a2c2a85f"
+    },
+    {
+      "artifact_id": "artifact-query-003",
+      "bytes": 60686,
+      "file_name": "artifact-query-003.json",
+      "kind": "observation_window",
+      "sha256": "sha256:5cccb380338a0738c73ee983e1ed53f239019d71aaf0edef60c023110778dae9"
+    },
+    {
+      "artifact_id": "artifact-query-004",
+      "bytes": 60734,
+      "file_name": "artifact-query-004.json",
+      "kind": "observation_window",
+      "sha256": "sha256:71f9a29410558f6cd2cb775f4dbf5e4b77320fa702d2050442b619c61d6eed0c"
+    },
+    {
+      "artifact_id": "artifact-query-005",
+      "bytes": 60814,
+      "file_name": "artifact-query-005.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d3521e0b4254fe5e2e88cc7bc6c8aaecd3fc1d055bf70d302eb98d98d9c84668"
+    },
+    {
+      "artifact_id": "artifact-query-006",
+      "bytes": 60814,
+      "file_name": "artifact-query-006.json",
+      "kind": "observation_window",
+      "sha256": "sha256:8e68e840bb1afd3b016972df514f4a5836e1db2d16d55db968ab620f8d972ee5"
+    },
+    {
+      "artifact_id": "artifact-query-007",
+      "bytes": 60814,
+      "file_name": "artifact-query-007.json",
+      "kind": "observation_window",
+      "sha256": "sha256:f51ac912fd3d8e137d4295b8225c786a97c53aa61e319cf5c8f2921ce64ae036"
+    },
+    {
+      "artifact_id": "artifact-query-008",
+      "bytes": 60814,
+      "file_name": "artifact-query-008.json",
+      "kind": "observation_window",
+      "sha256": "sha256:184bdb9972af14074191f6c751f5b747ffa649671b09a0b81663ae79193a3c56"
+    },
+    {
+      "artifact_id": "artifact-query-009",
+      "bytes": 60814,
+      "file_name": "artifact-query-009.json",
+      "kind": "observation_window",
+      "sha256": "sha256:de9d42d854bb45e366476e974db4c14fb7e5307ba36db80929b909e42b21f995"
+    },
+    {
+      "artifact_id": "artifact-query-010",
+      "bytes": 60815,
+      "file_name": "artifact-query-010.json",
+      "kind": "observation_window",
+      "sha256": "sha256:134133147d1ac7ada0c809d26bb0dc494ffeb355ee722d916fe4ff10782dd320"
+    },
+    {
+      "artifact_id": "artifact-query-011",
+      "bytes": 60815,
+      "file_name": "artifact-query-011.json",
+      "kind": "observation_window",
+      "sha256": "sha256:a63dcf25e91454ff1dd9d2cf7a2c7f2789e79e812851a23966515a2cc856e088"
+    },
+    {
+      "artifact_id": "artifact-query-012",
+      "bytes": 60815,
+      "file_name": "artifact-query-012.json",
+      "kind": "observation_window",
+      "sha256": "sha256:253d90060a706204055caaef5b62f730471478e84739bceed0835f8c3df4e5db"
+    },
+    {
+      "artifact_id": "artifact-query-013",
+      "bytes": 60815,
+      "file_name": "artifact-query-013.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d197af44167234ecd03fbec004011226c754910fd2da36109d0d13b9ffa0caca"
+    },
+    {
+      "artifact_id": "artifact-query-014",
+      "bytes": 60815,
+      "file_name": "artifact-query-014.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d3b4e77fdfeb408e2e422b7eca728fb528f67aa425eafdd8776e49dac5a2aad7"
+    },
+    {
+      "artifact_id": "artifact-query-015",
+      "bytes": 60815,
+      "file_name": "artifact-query-015.json",
+      "kind": "observation_window",
+      "sha256": "sha256:85984ba35043f5dfe65cbdb2db6e0f0b77fcce7c1a08dcdb55e4c37257bfd8d0"
+    },
+    {
+      "artifact_id": "artifact-query-016",
+      "bytes": 60815,
+      "file_name": "artifact-query-016.json",
+      "kind": "observation_window",
+      "sha256": "sha256:2d27a1377e974dd8a702a5ee22947d7b9a086256f0d85540d7526c82267aba4a"
+    },
+    {
+      "artifact_id": "artifact-query-017",
+      "bytes": 60815,
+      "file_name": "artifact-query-017.json",
+      "kind": "observation_window",
+      "sha256": "sha256:27ba4e687b6ecaeb22ad29d35f761fd44426d0b08855113c6b4cef5579bda05f"
+    },
+    {
+      "artifact_id": "artifact-query-018",
+      "bytes": 60815,
+      "file_name": "artifact-query-018.json",
+      "kind": "observation_window",
+      "sha256": "sha256:bbc812407b1ddb4c279edcaf6dade32b506b9535593a5c5c1bb9b19e69d41e71"
+    },
+    {
+      "artifact_id": "artifact-query-019",
+      "bytes": 60815,
+      "file_name": "artifact-query-019.json",
+      "kind": "observation_window",
+      "sha256": "sha256:a7ecd5016b3a6d230af159599f6876e95e94d961ae441e1aa9931adde4e2f406"
+    },
+    {
+      "artifact_id": "artifact-query-020",
+      "bytes": 60815,
+      "file_name": "artifact-query-020.json",
+      "kind": "observation_window",
+      "sha256": "sha256:62d901e2845b9a3629c19ef209e5062b24745a87b2fde69984c6f0dca5a15ad9"
+    },
+    {
+      "artifact_id": "artifact-query-021",
+      "bytes": 60815,
+      "file_name": "artifact-query-021.json",
+      "kind": "observation_window",
+      "sha256": "sha256:c6d1c1e3bdea1719ec149d617a71bb9e58ab8edc85e6e26bf7b2449cec145af3"
+    },
+    {
+      "artifact_id": "artifact-query-022",
+      "bytes": 60815,
+      "file_name": "artifact-query-022.json",
+      "kind": "observation_window",
+      "sha256": "sha256:f097cfca2dcf50fc82d71769e0fdc258716687d43fa244946f15051499c9cbf4"
+    },
+    {
+      "artifact_id": "artifact-query-023",
+      "bytes": 60815,
+      "file_name": "artifact-query-023.json",
+      "kind": "observation_window",
+      "sha256": "sha256:7b88a7369e00e81f48fb2ad5114def6c026360fd4db5e0087422d595c06d2c81"
+    },
+    {
+      "artifact_id": "artifact-query-024",
+      "bytes": 60815,
+      "file_name": "artifact-query-024.json",
+      "kind": "observation_window",
+      "sha256": "sha256:eb9ec27e47820de7b24569a337b28d2cabdef06388b48babf254b8497cc94683"
+    },
+    {
+      "artifact_id": "artifact-query-025",
+      "bytes": 60815,
+      "file_name": "artifact-query-025.json",
+      "kind": "observation_window",
+      "sha256": "sha256:0ece5be123ac27d11391fa95f231cddc38046e46cd43219f8ca7086474de7b3c"
+    },
+    {
+      "artifact_id": "artifact-query-026",
+      "bytes": 60815,
+      "file_name": "artifact-query-026.json",
+      "kind": "observation_window",
+      "sha256": "sha256:13719945a342cf1724f9dbf8e8a671b39be8a167683806fe7c6a7cd013f8b75e"
+    },
+    {
+      "artifact_id": "artifact-query-027",
+      "bytes": 60815,
+      "file_name": "artifact-query-027.json",
+      "kind": "observation_window",
+      "sha256": "sha256:96d69a91fec0babe9b697bffec3f08f1db34a970ec823b6769ed55a74263e362"
+    },
+    {
+      "artifact_id": "artifact-query-028",
+      "bytes": 60815,
+      "file_name": "artifact-query-028.json",
+      "kind": "observation_window",
+      "sha256": "sha256:f1a54b98fa6caf9b684db17dbd143e5b7f3cfb37e608be64f983d41c2934f34c"
+    },
+    {
+      "artifact_id": "artifact-query-029",
+      "bytes": 60815,
+      "file_name": "artifact-query-029.json",
+      "kind": "observation_window",
+      "sha256": "sha256:009476dc9e06774f95682d28d6364b739fd8fa377c81c2dd202a9ef04cf266a0"
+    },
+    {
+      "artifact_id": "artifact-query-030",
+      "bytes": 60815,
+      "file_name": "artifact-query-030.json",
+      "kind": "observation_window",
+      "sha256": "sha256:962c170baaa5f665019dbe6d1201951ca0ce6ae3300cefade25f61760aea50a4"
+    },
+    {
+      "artifact_id": "artifact-query-031",
+      "bytes": 60815,
+      "file_name": "artifact-query-031.json",
+      "kind": "observation_window",
+      "sha256": "sha256:4bdd6761fd9a326e02369b98d38aa345aee25cabd2299f871459e92c0572acb3"
+    },
+    {
+      "artifact_id": "artifact-query-032",
+      "bytes": 60815,
+      "file_name": "artifact-query-032.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d5211b9080f4c7f6da2648e7694270f84be0d149203ed893e027e0368c8a09db"
+    },
+    {
+      "artifact_id": "artifact-query-033",
+      "bytes": 60815,
+      "file_name": "artifact-query-033.json",
+      "kind": "observation_window",
+      "sha256": "sha256:6f94e035310534963cd2b872d88b652440a957e8aac8b369535852a7b57847e2"
+    },
+    {
+      "artifact_id": "artifact-train-0",
+      "bytes": 60541,
+      "file_name": "artifact-train-0.json",
+      "kind": "observation_window",
+      "sha256": "sha256:d9c47435a48d67836c6018587c4e0b4d67864482deda6d5bd01cc8518cfc0660"
+    },
+    {
+      "artifact_id": "artifact-train-1",
+      "bytes": 60541,
+      "file_name": "artifact-train-1.json",
+      "kind": "observation_window",
+      "sha256": "sha256:980a040d390889e63e08eb5127da18a74be5a059dbe61c00418c40aaa41a525e"
+    },
+    {
+      "artifact_id": "artifact-train-2",
+      "bytes": 60541,
+      "file_name": "artifact-train-2.json",
+      "kind": "observation_window",
+      "sha256": "sha256:58c247c3f87a31346ded3a1f298ebc8a83403768bd6507ea471c6878342d82a6"
+    },
+    {
+      "artifact_id": "artifact-train-3",
+      "bytes": 60541,
+      "file_name": "artifact-train-3.json",
+      "kind": "observation_window",
+      "sha256": "sha256:16feb40d4863eaabe1a9fa442873c160b83603a63642a216c911bbd7c7783a61"
+    },
+    {
+      "artifact_id": "artifact-train-4",
+      "bytes": 60541,
+      "file_name": "artifact-train-4.json",
+      "kind": "observation_window",
+      "sha256": "sha256:4551bd8c87b231112f51d72a8288d0fb8edacdf8baf6130081ff19983efe4dfb"
+    }
+  ],
+  "content_hash": "sha256:2e3ac5348215df7f988aba5da42f6cf5d5108c3bcaa063eff93c1da0e8a92e8c",
+  "dataset_id": "dataset-2e3ac5348215df7f988aba5da42f6cf5d5108c3bcaa063eff93c1da0e8a92e8c",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "artifact-query-000",
+      "entry_id": "query-000",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-0",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-001",
+      "entry_id": "query-001",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-1",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-002",
+      "entry_id": "query-002",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-2",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-003",
+      "entry_id": "query-003",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-3",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-004",
+      "entry_id": "query-004",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-4",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-005",
+      "entry_id": "query-005",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-5",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-006",
+      "entry_id": "query-006",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-6",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-007",
+      "entry_id": "query-007",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-7",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-008",
+      "entry_id": "query-008",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-8",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-009",
+      "entry_id": "query-009",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-9",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-010",
+      "entry_id": "query-010",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-10",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-011",
+      "entry_id": "query-011",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-11",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-012",
+      "entry_id": "query-012",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-12",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-013",
+      "entry_id": "query-013",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-13",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-014",
+      "entry_id": "query-014",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-14",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-015",
+      "entry_id": "query-015",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-15",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-016",
+      "entry_id": "query-016",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-16",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-017",
+      "entry_id": "query-017",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-17",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-018",
+      "entry_id": "query-018",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-18",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-019",
+      "entry_id": "query-019",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-19",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-020",
+      "entry_id": "query-020",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-20",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-021",
+      "entry_id": "query-021",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-21",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-022",
+      "entry_id": "query-022",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-22",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-023",
+      "entry_id": "query-023",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-23",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-024",
+      "entry_id": "query-024",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-24",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-025",
+      "entry_id": "query-025",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-25",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-026",
+      "entry_id": "query-026",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-26",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-027",
+      "entry_id": "query-027",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-27",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-028",
+      "entry_id": "query-028",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-28",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-029",
+      "entry_id": "query-029",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-29",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-030",
+      "entry_id": "query-030",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-30",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-031",
+      "entry_id": "query-031",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-31",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-032",
+      "entry_id": "query-032",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-32",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-query-033",
+      "entry_id": "query-033",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": null,
+      "label_basis": "unknown",
+      "label_review_id": null,
+      "source_bindings": [
+        {
+          "source_id": "query-source",
+          "window_id": "window-frozen-33",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-0",
+      "entry_id": "train-0",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-0",
+      "source_bindings": [
+        {
+          "source_id": "source-train-0",
+          "window_id": "window-0",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-1",
+      "entry_id": "train-1",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-1",
+      "source_bindings": [
+        {
+          "source_id": "source-train-1",
+          "window_id": "window-1",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-2",
+      "entry_id": "train-2",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-2",
+      "source_bindings": [
+        {
+          "source_id": "source-train-2",
+          "window_id": "window-2",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-3",
+      "entry_id": "train-3",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-3",
+      "source_bindings": [
+        {
+          "source_id": "source-train-3",
+          "window_id": "window-3",
+          "window_role": "healthy"
+        }
+      ]
+    },
+    {
+      "artifact_id": "artifact-train-4",
+      "entry_id": "train-4",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "healthy_window",
+      "label": "healthy",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-train-4",
+      "source_bindings": [
+        {
+          "source_id": "source-train-4",
+          "window_id": "window-4",
+          "window_role": "healthy"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "split-d118214c663ed1ecda8125ed1055f2017e60a6d22256011d0830b8ee870d6f86"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-0",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-0"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-1",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-1"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-2",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-2"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-3",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-3"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-train-4",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "train-4"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-query-source",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "query-source"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-0",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-0"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-1",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-1"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-2",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-2"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-3",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-3"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "review-source-train-4",
+      "reviewer_id": "operator",
+      "subject_ids": [
+        "source-train-4"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-query-source",
+      "review_id": "review-query-source",
+      "run_id": "query-run",
+      "session_id": "session-query-source",
+      "source_content_hash": "sha256:2e8e62a9db675bc07a3649429c8978d6a0d1121cdd8233b6ede72fc6bc593f82",
+      "source_id": "query-source",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-0",
+      "review_id": "review-source-train-0",
+      "run_id": "training-0",
+      "session_id": "session-source-train-0",
+      "source_content_hash": "sha256:912fd7a94b2a04702acde9edec476a76e240b90c49e74d424610c450fbfc89ea",
+      "source_id": "source-train-0",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-1",
+      "review_id": "review-source-train-1",
+      "run_id": "training-1",
+      "session_id": "session-source-train-1",
+      "source_content_hash": "sha256:6e5e32999f1a0cee4cca9f5c5c6c0f454f3c9c8fe8a7ff09d3008656e2a1eece",
+      "source_id": "source-train-1",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-2",
+      "review_id": "review-source-train-2",
+      "run_id": "training-2",
+      "session_id": "session-source-train-2",
+      "source_content_hash": "sha256:c7b2a4298e841ed22ccb6dde2ddae9467d5b21d59e739a6a8f7739da4cd15005",
+      "source_id": "source-train-2",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-3",
+      "review_id": "review-source-train-3",
+      "run_id": "training-3",
+      "session_id": "session-source-train-3",
+      "source_content_hash": "sha256:c7dc90abcac9db68af2f2a340f41afd9de5215efbea949477192f4206351ac07",
+      "source_id": "source-train-3",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "model-only",
+      "bundle_schema_version": "2",
+      "independence_group": "independent-source-train-4",
+      "review_id": "review-source-train-4",
+      "run_id": "training-4",
+      "session_id": "session-source-train-4",
+      "source_content_hash": "sha256:e5fb6df29ac371615a770e9c34954fec44179fec77a2c0cfd8d40a804f848a8e",
+      "source_id": "source-train-4",
+      "source_type": "pixelated_bundle"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-1b68f584544c68198cfc339df3e1d87c8c5e89a512c2c642ad00456e91e3ac22",
+        "role": "training"
+      },
+      {
+        "group_id": "group-543dcf75347f919c1e8091e86d20f18aaec06d2462fac97bcbcc112e0b2e4462",
+        "role": "training"
+      },
+      {
+        "group_id": "group-63b908361c7cc5354545e354679ab75cffe27b5a3f7add7aaf728185f3b01401",
+        "role": "validation"
+      },
+      {
+        "group_id": "group-68366404509509814c0d4eee0e79a4e85e1d7a45e67c05491b8a0c20bcdf7c1c",
+        "role": "training"
+      },
+      {
+        "group_id": "group-73ef9e6bb74a6471b3635ec4b6d69b69ed28d2d615276bbc05d561d4a2836cef",
+        "role": "training"
+      },
+      {
+        "group_id": "group-dec5bd0613a619ef4dc9397f26821a2cc745af604cee1a6ca0368448f4f81c86",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-d118214c663ed1ecda8125ed1055f2017e60a6d22256011d0830b8ee870d6f86"
+  }
+}

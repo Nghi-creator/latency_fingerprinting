@@ -251,4 +251,5 @@ Failures preserve existing output and expose only `invalid_passive_baseline` or
 never clipped, imputed or successful unknown outcomes. The [command guide](N9_COMMANDS.md)
 describes reusable invocation and output behavior. There are 36 exported schemas;
 this integration preserves all schema bytes, the registry and the original
-policy/design-vector pins. A frozen N9 runtime corpus remains subsequent work.
+policy/design-vector pins. The [frozen runtime corpus](N9_FIXTURES.md) checks
+complete independent outcomes and original source bytes.
