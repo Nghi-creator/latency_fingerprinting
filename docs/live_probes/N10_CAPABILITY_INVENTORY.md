@@ -17,7 +17,7 @@ Existing roots, policies, fixtures and defaults retain their original meaning.
 | Candidate | Existing producer surface | Evidence needed before selecting it |
 | --- | --- | --- |
 | Bitrate relief, first candidate | `vp8enc.target-bitrate`, bits per second; current stream profiles apply a compound preset at launch | Exact live target encoder, bounded application and observed setting, independent encoded/receiver evidence, unchanged unrelated controls, continuity and restoration |
-| Capture-cadence relief, conditional fallback | Camera currently fixes framerate through launch caps; no owned live cadence controller is installed | A genuine bounded controller with negotiated caps, independent frame/cadence evidence and receiver continuity; a profile restart is a different operation |
+| Capture-cadence relief, conditional fallback | Camera currently fixes framerate through launch caps; a [contained source-caps experiment](../../../Pixelated-Studio-Edition/docs/n10-cadence-feasibility.md) is available, but no owned live controller is installed | A genuine bounded controller with negotiated caps, independent frame/cadence evidence and receiver continuity; a profile restart is a different operation |
 | Encoder-cost relief, deferred | Launch profile selects `cpu-used` and `max-quantizer` alongside bitrate/FPS | Version-specific live mutation, output/quality and restoration proof before implementation |
 | Existing N5 capture pacing | Opted-in `identity.sleep-time` adds delay to create a slowdown fault | Removing an owned N5 fault is cleanup, not a general live-relief capability; its leases/evidence cannot be relabelled as N10 proof |
 
@@ -75,3 +75,20 @@ without a control effect. Its exact byte/duration screens are synthetic experime
 criteria, not live safety limits or scientific calibration. Even a passed screen
 leaves receiver continuity, quality, bounded stalls, watchdog and owned live
 restoration/recovery unverified. No isolated result grants live authority.
+
+A successful isolated control/restore screen may select a candidate for a
+default-disabled owned implementation. It does not qualify production activation.
+The [capture-cadence procedure](../../../Pixelated-Studio-Edition/docs/n10-cadence-feasibility.md)
+uses actual source-caps renegotiation rather than N5 delay injection; its private
+static-Xvfb and local-decoder scope leaves moving-game workload, real receiver,
+quality and production ownership/watchdog/recovery acceptance open. Cadence
+operator evidence is distinct from the frozen bitrate-only forensic root; do not
+relabel it as `vp8_target_bitrate`.
+
+The producer's [default-disabled cadence lifecycle kernel](../../../Pixelated-Studio-Edition/docs/n10-cadence-controller.md)
+adds private request/budget/journal/watchdog mechanics for a dedicated worker.
+Its explicit isolated worker now binds its own synthetic Gst WebRTC sender and
+receiver, including cancellation and receiver-loss teardown drills. This is not
+a production camera/browser binding. The additive [cadence evidence format](N10_CADENCE_EVIDENCE.md)
+imports and independently inspects its observations without granting authority.
+Quality/resource qualification and production activation remain unavailable.

@@ -8,6 +8,9 @@ is additive; N1–N9 schemas, clocks, fixtures and response derivations retain t
 meaning. The broader [live-evidence design](N10_LIVE_EVIDENCE_CONTRACT.md) includes
 future production control requirements that this model does not implement.
 
+The separate [capture-cadence evidence contract](N10_CADENCE_EVIDENCE.md) covers
+the isolated Gst WebRTC cadence worker. It does not widen this bitrate root.
+
 ## Read, validate and inspect
 
 ```python

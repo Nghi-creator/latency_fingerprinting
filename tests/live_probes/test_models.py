@@ -284,7 +284,8 @@ def test_one_additive_schema_preserves_previous_36_schema_bytes():
     previous = {
         path.name: hashlib.sha256(path.read_bytes()).hexdigest()
         for path in Path("schemas").glob("*.schema.json")
-        if path.name != "live-probe-evidence-v1.schema.json"
+        if path.name
+        not in {"live-probe-evidence-v1.schema.json", "cadence-probe-evidence-v1.schema.json"}
     }
     assert len(previous) == 36
     assert (

@@ -284,6 +284,40 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.live_probes.cadence_cases import META as cadence_meta
+        from tests.live_probes.cadence_cases import evidence as cadence_evidence
+        from tests.live_probes.cadence_cases import report as cadence_report
+
+        cadence_input = directory / "cadence-report.json"
+        cadence_output = directory / "cadence-evidence.json"
+        cadence_input.write_text(json.dumps(cadence_report()))
+        arguments = ["import-cadence-report", "--report", cadence_input, "--output", cadence_output]
+        for key, value in cadence_meta.items():
+            arguments += ["--" + key.replace("_", "-"), value]
+        code, stdout, stderr = invoke_installed(arguments)
+        expected_cadence = cadence_evidence().model_dump(mode="json")
+        if code or stdout or stderr or json.loads(cadence_output.read_bytes()) != expected_cadence:
+            raise ValueError("installed cadence import drift")
+        code, stdout, stderr = invoke_installed(["validate", cadence_output])
+        if code or stderr or json.loads(stdout) != expected_cadence:
+            raise ValueError("installed cadence validation drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                (
+                    "import sys; from latency_fingerprinting.live_probes import "
+                    "CadenceProbeEvidence,inspect_cadence_probe_evidence; "
+                    "e=CadenceProbeEvidence.model_validate_json(open(sys.argv[1]).read()); "
+                    "r=inspect_cadence_probe_evidence(e); "
+                    "assert r.local_screen == 'met' and r.declared_restoration_supported; "
+                    "assert r.live_authority is False and r.quality == 'not_evaluated'"
+                ),
+                str(cadence_output),
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -304,7 +338,8 @@ def main() -> None:
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
             f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
-            f"N9 models/pure/linked APIs, N10 offline evidence/inspection and CLI, entry point "
+            "N9 models/pure/linked APIs, N10 bitrate/cadence evidence, "
+            "inspection and protected import CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )
 

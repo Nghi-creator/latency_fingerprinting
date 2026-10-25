@@ -13,7 +13,7 @@ from typing import TypeAlias
 from pydantic import BaseModel
 
 from .calibration import CalibrationDataset, CalibrationReport
-from .live_probes import LiveProbeEvidence
+from .live_probes import CadenceProbeEvidence, LiveProbeEvidence
 from .models import (
     AnalyticalResponseV2,
     ExperimentManifest,
@@ -44,6 +44,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "cadence-probe-evidence-v1.schema.json": CadenceProbeEvidence,
     "live-probe-evidence-v1.schema.json": LiveProbeEvidence,
     "passive-gate-policy-v1.schema.json": PassiveGatePolicy,
     "passive-baseline-v1.schema.json": PassiveBaseline,
