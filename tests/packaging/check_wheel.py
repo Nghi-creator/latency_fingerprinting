@@ -318,6 +318,41 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.live_probes.game_browser_cases import META as game_meta
+        from tests.live_probes.game_browser_cases import acquisition as game_acquisition
+        from tests.live_probes.game_browser_cases import evidence as game_evidence
+
+        game_input = directory / "game-browser-acquisition.json"
+        game_output = directory / "game-browser-evidence.json"
+        game_input.write_text(json.dumps(game_acquisition()))
+        arguments = ["import-game-browser-report", "--report", game_input, "--output", game_output]
+        for key, value in game_meta.items():
+            arguments += ["--" + key.replace("_", "-"), value]
+        code, stdout, stderr = invoke_installed(arguments)
+        expected_game = game_evidence().model_dump(mode="json")
+        if code or stdout or stderr or json.loads(game_output.read_bytes()) != expected_game:
+            raise ValueError("installed game/browser import drift")
+        code, stdout, stderr = invoke_installed(["validate", game_output])
+        if code or stderr or json.loads(stdout) != expected_game:
+            raise ValueError("installed game/browser validation drift")
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                (
+                    "import sys; from latency_fingerprinting.live_probes import "
+                    "GameBrowserProbeEvidence,inspect_game_browser_evidence; "
+                    "e=GameBrowserProbeEvidence.model_validate_json(open(sys.argv[1]).read()); "
+                    "r=inspect_game_browser_evidence(e); "
+                    "assert r.engineering_screen == 'met' and r.declared_restoration_supported; "
+                    "assert abs(r.worker_during_to_baseline_cpu_ratio - .8) < 1e-9; "
+                    "assert r.live_authority is False and r.perceptual_quality == 'not_evaluated'"
+                ),
+                str(game_output),
+            ],
+            directory=directory,
+        )
         exported = directory / "schemas"
         run(
             [
@@ -338,7 +373,7 @@ def main() -> None:
         print(
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
             f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
-            "N9 models/pure/linked APIs, N10 bitrate/cadence evidence, "
+            "N9 models/pure/linked APIs, N10 bitrate/cadence/game-browser evidence, "
             "inspection and protected import CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )

@@ -207,7 +207,11 @@ def test_one_additive_schema_keeps_previous_37_bytes():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in Path("schemas").glob("*.schema.json")
-        if p.name != "cadence-probe-evidence-v1.schema.json"
+        if p.name
+        not in {
+            "cadence-probe-evidence-v1.schema.json",
+            "game-browser-probe-evidence-v1.schema.json",
+        }
     }
     assert len(previous) == 37
     # Freeze the pre-cadence inventory, including bitrate-v1, independently.

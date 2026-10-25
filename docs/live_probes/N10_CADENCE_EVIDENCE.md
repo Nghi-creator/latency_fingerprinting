@@ -113,3 +113,11 @@ Every evidence/inspection fixes `live_authority=false` and capability
 quality/resource costs remain `not_evaluated` and diagnostic value `unverified`.
 Game capture, browser presentation, perceptual quality, disturbance/resource
 measurements and production qualification require additional evidence.
+
+
+The producer's separate [game/browser procedure](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md)
+uses a different operator report version and scope for a real 2D game and
+headless presentation/resource measurements. This importer intentionally rejects
+that report rather than broadening its frozen synthetic Gst-to-Gst contract. The
+separate [game/browser evidence contract](N10_GAME_BROWSER_EVIDENCE.md) imports
+those engineering observations without qualifying a capability.

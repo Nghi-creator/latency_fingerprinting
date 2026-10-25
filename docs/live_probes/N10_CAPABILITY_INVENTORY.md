@@ -92,3 +92,11 @@ receiver, including cancellation and receiver-loss teardown drills. This is not
 a production camera/browser binding. The additive [cadence evidence format](N10_CADENCE_EVIDENCE.md)
 imports and independently inspects its observations without granting authority.
 Quality/resource qualification and production activation remain unavailable.
+
+
+The producer also provides a [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md)
+with a fixed Frozen-Bubble level, private display, scripted input and separate
+headless Chromium receiver. It retains temporal/nonblank and resource observations
+in an engineering operator report. The separate
+[game/browser evidence format](N10_GAME_BROWSER_EVIDENCE.md) accepts and inspects
+that scope; it cannot be relabeled into the frozen synthetic Gst cadence root. Perceptual quality and production capability qualification remain separate.

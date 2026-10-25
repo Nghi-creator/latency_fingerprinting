@@ -315,13 +315,17 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
         "passive-replay-v1.schema.json",
         "passive-gate-result-v1.schema.json",
     }
-    assert len(SCHEMA_MODELS) == 38
+    assert len(SCHEMA_MODELS) == 39
     old = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT / "schemas").glob("*.schema.json")
         if p.name
         not in additions
-        | {"live-probe-evidence-v1.schema.json", "cadence-probe-evidence-v1.schema.json"}
+        | {
+            "live-probe-evidence-v1.schema.json",
+            "cadence-probe-evidence-v1.schema.json",
+            "game-browser-probe-evidence-v1.schema.json",
+        }
     }
     assert (
         hashlib.sha256(json.dumps(old, sort_keys=True).encode()).hexdigest()
