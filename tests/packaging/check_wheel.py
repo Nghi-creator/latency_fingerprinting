@@ -390,6 +390,31 @@ def main() -> None:
             or any(r["restoration_independently_verified"] for r in declared["cases"])
         ):
             raise ValueError("installed integrated game declarations gained authority")
+        from tests.live_probes.integrated_reconstruction_cases import cohort as measured_cohort
+
+        integrated_input.write_bytes(json.dumps(measured_cohort()).encode())
+        code, stdout, stderr = invoke_installed(arguments)
+        if code or stdout or stderr:
+            raise ValueError("installed integrated game reconstruction input failed")
+        code, stdout, stderr = invoke_installed(
+            ["reconstruct-integrated-game-record", integrated_output]
+        )
+        reconstructed = json.loads(stdout)
+        if (
+            code
+            or stderr
+            or reconstructed["supplied_observation_screen"] != "met"
+            or (
+                reconstructed["process_lifetime_verification"]
+                != "unavailable_retained_declarations_only"
+            )
+            or reconstructed["live_authority"] is not False
+            or (
+                reconstructed["cases"][0]["windows"][0]["native_resources"]["first"]["cpu_percent"]
+                != 8
+            )
+        ):
+            raise ValueError("installed integrated game reconstruction drift")
         exported = directory / "schemas"
         run(
             [

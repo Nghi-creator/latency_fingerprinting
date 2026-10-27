@@ -75,3 +75,77 @@ diagnostic value stays `unverified`. The root fixes engineering role,
 flags cannot qualify a relief family, enable production dispatch, authorize
 mutation, clear a dirty ledger, or enter calibration/profile/final-test data.
 Independent reconstruction and supported-context qualification are separate work.
+
+## Independent reconstruction of supplied observations
+
+`reconstruct-integrated-game-record /absolute/path/record.json` and the Python
+API `reconstruct_integrated_game_record(record)` provide a separate derived view,
+method `n10-integrated-game-reconstruction-v1`. The original custody root and
+declaration-only inspection retain their meanings and content hashes. The
+derived JSON is an inspection result, not an additional accepted root. It binds
+both the record hash and original report hash and never executes producer code.
+
+The core implementation independently checks these supplied observations:
+
+| Case | Recomputed measurements and consistency checks |
+| --- | --- |
+| Complete action | Three ordered native windows; advancing capture/encode and game/script counters; stable distinct worker identity hashes; fixed encoder settings; source rates; browser decode/presentation rates; drops/freezes; picture variation; continuous callback/media gaps across the action; request/result and retained budget consistency |
+| Cancellation and failures | One scoped request/fault/result sequence; expected clean or dirty reservation; replacement/restart assertions consistent with that outcome; exit and cleanup assertions; viewer epoch/binding counts; independently recomputed sibling browser window |
+
+Native windows contain 10–14 samples spanning 2.5–3 seconds. Read timestamps must
+be integral, nonoverlapping, advance by at most 500 ms and have brackets at most
+50 ms wide. Phases must not overlap. Both workers retain their distinct declared
+identity hashes across the complete-action windows. Every settings sample must
+show the balanced 640×480, 1.5 Mbps, CPU 6, quantizer 48 profile, at 30 FPS except
+the first worker's 24 FPS during window. Source and encoded rates use counter
+deltas over the native read-start interval, with a 10% engineering tolerance.
+Counter resets within or between windows invalidate reconstruction; endpoint
+agreement cannot hide them.
+
+Browser measurement windows span 2–2.5 seconds. Rates use their own callback and
+stats intervals, at 30 FPS or 24 FPS with the same 10% tolerance. Callback/media
+gaps are limited to 250 ms, stats coverage to 500 ms, with no new drops/freezes,
+640×480 dimensions and at least three varying, nonblank picture hashes. Visual
+samples must be ordered, within the window and cover it within 750 ms. Continuous
+traces span 10–26 seconds and must cover each phase frame's exact presentation
+count and media timestamp. Phase presentation counts cannot overlap or reverse.
+No browser-relative timestamp is converted to a native clock.
+
+Native CPU percentages are descriptive tick deltas over native read-start
+intervals using the supplied tick frequency. Read brackets remain in the retained
+report; the point estimate does not eliminate bracket or tick quantization
+uncertainty. RSS maxima describe retained samples, not continuous high-water
+marks. Parent, relay, game and each worker stay separate. Browser CPU uses the
+separate host interval and an unchanged declared process inventory. Missing
+resources, changed inventories, resets or invalid intervals yield unavailable
+CPU with `null`, never zero. Missing browser resource data does not turn an
+otherwise measured temporal window into a failure; no resource budget, CPU
+benefit, causal relief or native/browser combined cost is inferred.
+
+The fixed cancellation reservation is one action and four seconds, with a clean
+ledger and declared verified cancellation. Uncertain failure results must retain
+unknown restoration and a dirty ledger with that same reservation; a supported
+uncertain reason stays unchanged. Receiver loss/reconnect may retain an explicit
+null result as `unavailable_no_result`; source loss requires an explicit unknown
+result. The complete five-second action reserves seven seconds including grace.
+No new reservation is inferred from a replacement or logical owner restart.
+
+`supplied_observation_screen` is `met`, `not_met` or `unavailable`. It describes
+only the supplied measurements and declaration consistency in the table. Missing,
+malformed or contradictory observations make a case unavailable; measured
+temporal/rate/visual limit violations are not met. All five cases remain visible,
+including missing cases, and later cases are evaluated after an unavailable row.
+Any unavailable case keeps the aggregate unavailable. Producer pass/screen flags
+do not substitute for samples or independently determine this result.
+
+The retained failure reports do **not** contain raw process/start-time or pidfd
+observations for the replacement and issuer restart. Capture bindings, opaque
+worker hashes, cleanup, stale-handle rejection and dirty-ledger assertions remain
+producer declarations. Consequently `process_lifetime_verification` remains
+`unavailable_retained_declarations_only` and independent execution verification
+remains unavailable, even when supplied observations are consistent. Neither a
+`met` screen nor a declared clean result verifies durable ownership, restoration,
+authorization, watchdog targeting or journal persistence. Perceptual/audio/desktop
+acceptance, diagnostic value and live capability retain their unavailable or
+unevaluated states. Additional lifetime evidence and supported-context
+qualification remain necessary.

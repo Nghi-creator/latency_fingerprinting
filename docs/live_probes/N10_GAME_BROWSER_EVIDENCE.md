@@ -140,5 +140,5 @@ paired-run response features, or authorize a production mutation. Normal worker
 integration and predeclared quality/disturbance qualification remain separate.
 
 Integrated camera/multiple-peer cohorts have a separate
-[custody record and declaration inspection](N10_INTEGRATED_GAME_RECORD.md).
+[custody record and supplied-observation reconstruction](N10_INTEGRATED_GAME_RECORD.md).
 They cannot be imported into this direct-worker evidence contract.

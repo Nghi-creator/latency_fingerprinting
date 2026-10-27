@@ -12,6 +12,7 @@ from .integrated_game import (
     import_integrated_game_cohort,
     inspect_integrated_game_record,
 )
+from .integrated_game_reconstruction import reconstruct_integrated_game_record
 
 
 class _RawBytes:
@@ -34,6 +35,11 @@ def register_integrated_game_commands(subparsers):
     )
     inspect.add_argument("record", type=Path)
     inspect.set_defaults(handler=_inspect)
+    reconstruct = subparsers.add_parser(
+        "reconstruct-integrated-game-record", help="recompute supplied engineering observations"
+    )
+    reconstruct.add_argument("record", type=Path)
+    reconstruct.set_defaults(handler=_reconstruct)
 
 
 def _import(args):
@@ -56,3 +62,8 @@ def _import(args):
 def _inspect(args):
     record = _Operands().read(args.record, IntegratedGameRecord)
     sys.stdout.write(json.dumps(inspect_integrated_game_record(record), sort_keys=True) + "\n")
+
+
+def _reconstruct(args):
+    record = _Operands().read(args.record, IntegratedGameRecord)
+    sys.stdout.write(json.dumps(reconstruct_integrated_game_record(record), sort_keys=True) + "\n")
