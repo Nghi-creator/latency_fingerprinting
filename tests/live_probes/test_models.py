@@ -289,6 +289,7 @@ def test_one_additive_schema_preserves_previous_36_schema_bytes():
             "live-probe-evidence-v1.schema.json",
             "cadence-probe-evidence-v1.schema.json",
             "game-browser-probe-evidence-v1.schema.json",
+            "integrated-game-cohort-record-v1.schema.json",
         }
     }
     assert len(previous) == 36

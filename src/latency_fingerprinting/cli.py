@@ -20,9 +20,15 @@ from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_model_file, read_bounded_text, strict_json_loads
-from .live_probes import CadenceProbeEvidence, GameBrowserProbeEvidence, LiveProbeEvidence
+from .live_probes import (
+    CadenceProbeEvidence,
+    GameBrowserProbeEvidence,
+    IntegratedGameRecord,
+    LiveProbeEvidence,
+)
 from .live_probes.cadence_commands import register_cadence_command
 from .live_probes.game_browser_commands import register_game_browser_command
+from .live_probes.integrated_game_commands import register_integrated_game_commands
 from .matcher import match_observation
 from .measurement.metric_registry import (
     DEFAULT_METRIC_REGISTRY_PATH,
@@ -87,6 +93,7 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "integrated-game-cohort-record-v1": IntegratedGameRecord,
     "game-browser-probe-evidence-v1": GameBrowserProbeEvidence,
     "cadence-probe-evidence-v1": CadenceProbeEvidence,
     "live-probe-evidence-v1": LiveProbeEvidence,
@@ -146,6 +153,7 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "integrated-game-cohort-record-v1",
         "game-browser-probe-evidence-v1",
         "cadence-probe-evidence-v1",
         "live-probe-evidence-v1",
@@ -190,6 +198,7 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            IntegratedGameRecord,
             GameBrowserProbeEvidence,
             CadenceProbeEvidence,
             LiveProbeEvidence,
@@ -437,6 +446,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_passive_commands(subparsers)
     register_cadence_command(subparsers)
     register_game_browser_command(subparsers)
+    register_integrated_game_commands(subparsers)
     return parser
 
 

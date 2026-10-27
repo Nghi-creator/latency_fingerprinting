@@ -315,7 +315,7 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
         "passive-replay-v1.schema.json",
         "passive-gate-result-v1.schema.json",
     }
-    assert len(SCHEMA_MODELS) == 39
+    assert len(SCHEMA_MODELS) == 40
     old = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT / "schemas").glob("*.schema.json")
@@ -325,6 +325,7 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
             "live-probe-evidence-v1.schema.json",
             "cadence-probe-evidence-v1.schema.json",
             "game-browser-probe-evidence-v1.schema.json",
+            "integrated-game-cohort-record-v1.schema.json",
         }
     }
     assert (

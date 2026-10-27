@@ -211,6 +211,7 @@ def test_one_additive_schema_keeps_previous_37_bytes():
         not in {
             "cadence-probe-evidence-v1.schema.json",
             "game-browser-probe-evidence-v1.schema.json",
+            "integrated-game-cohort-record-v1.schema.json",
         }
     }
     assert len(previous) == 37

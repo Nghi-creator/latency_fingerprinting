@@ -353,6 +353,43 @@ def main() -> None:
             ],
             directory=directory,
         )
+        from tests.live_probes.integrated_game_cases import META as integrated_meta
+        from tests.live_probes.integrated_game_cases import cohort
+
+        integrated_input = directory / "integrated-game-cohort.json"
+        integrated_output = directory / "integrated-game-record.json"
+        integrated_raw = json.dumps(cohort()).encode() + b"\n"
+        integrated_input.write_bytes(integrated_raw)
+        arguments = [
+            "import-integrated-game-cohort",
+            "--report",
+            integrated_input,
+            "--output",
+            integrated_output,
+        ]
+        for key, value in integrated_meta.items():
+            arguments += ["--" + key.replace("_", "-"), value]
+        code, stdout, stderr = invoke_installed(arguments)
+        if code or stdout or stderr:
+            raise ValueError("installed integrated game import failed")
+        sealed = json.loads(integrated_output.read_bytes())
+        if sealed["raw_report"].encode() != integrated_raw:
+            raise ValueError("installed integrated game custody changed original bytes")
+        code, stdout, stderr = invoke_installed(["validate", integrated_output])
+        if code or stderr or json.loads(stdout) != sealed:
+            raise ValueError("installed integrated game validation drift")
+        code, stdout, stderr = invoke_installed(
+            ["inspect-integrated-game-record", integrated_output]
+        )
+        declared = json.loads(stdout)
+        if (
+            code
+            or stderr
+            or declared["live_authority"] is not False
+            or (declared["engineering_screen"] != "unavailable_independent_reconstruction_required")
+            or any(r["restoration_independently_verified"] for r in declared["cases"])
+        ):
+            raise ValueError("installed integrated game declarations gained authority")
         exported = directory / "schemas"
         run(
             [
@@ -374,6 +411,7 @@ def main() -> None:
             f"Installed wheel imports, 14 N6 and {profile_release['cases']} N7 cases, "
             f"{match_release['cases']} N8 and {passive_release['cases']} N9 cases, "
             "N9 models/pure/linked APIs, N10 bitrate/cadence/game-browser evidence, "
+            "integrated cohort custody, "
             "inspection and protected import CLI, entry point "
             f"and all {len(actual)} schemas verified."
         )

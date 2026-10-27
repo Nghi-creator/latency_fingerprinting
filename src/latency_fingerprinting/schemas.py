@@ -13,7 +13,12 @@ from typing import TypeAlias
 from pydantic import BaseModel
 
 from .calibration import CalibrationDataset, CalibrationReport
-from .live_probes import CadenceProbeEvidence, GameBrowserProbeEvidence, LiveProbeEvidence
+from .live_probes import (
+    CadenceProbeEvidence,
+    GameBrowserProbeEvidence,
+    IntegratedGameRecord,
+    LiveProbeEvidence,
+)
 from .models import (
     AnalyticalResponseV2,
     ExperimentManifest,
@@ -44,6 +49,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
+    "integrated-game-cohort-record-v1.schema.json": IntegratedGameRecord,
     "game-browser-probe-evidence-v1.schema.json": GameBrowserProbeEvidence,
     "cadence-probe-evidence-v1.schema.json": CadenceProbeEvidence,
     "live-probe-evidence-v1.schema.json": LiveProbeEvidence,

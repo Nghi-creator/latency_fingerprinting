@@ -138,3 +138,7 @@ is not perceptual fidelity or full desktop playability. These engineering record
 cannot silently enter N6/N7 training or N11 final-test evidence, become N2/N5
 paired-run response features, or authorize a production mutation. Normal worker
 integration and predeclared quality/disturbance qualification remain separate.
+
+Integrated camera/multiple-peer cohorts have a separate
+[custody record and declaration inspection](N10_INTEGRATED_GAME_RECORD.md).
+They cannot be imported into this direct-worker evidence contract.
