@@ -138,8 +138,9 @@ including missing cases, and later cases are evaluated after an unavailable row.
 Any unavailable case keeps the aggregate unavailable. Producer pass/screen flags
 do not substitute for samples or independently determine this result.
 
-The retained failure reports do **not** contain raw process/start-time or pidfd
-observations for the replacement and issuer restart. Capture bindings, opaque
+Reports without separately versioned lifetime observations do **not** contain
+process lifetime observations for the replacement and issuer restart. In this v1
+view, capture bindings, opaque
 worker hashes, cleanup, stale-handle rejection and dirty-ledger assertions remain
 producer declarations. Consequently `process_lifetime_verification` remains
 `unavailable_retained_declarations_only` and independent execution verification
@@ -149,3 +150,62 @@ authorization, watchdog targeting or journal persistence. Perceptual/audio/deskt
 acceptance, diagnostic value and live capability retain their unavailable or
 unevaluated states. Additional lifetime evidence and supported-context
 qualification remain necessary.
+
+## Lifetime and journal comparison
+
+With `--lifetimes`, the reconstruction command produces the additive derived view
+`n10-integrated-game-reconstruction-v2`. Python callers use
+`reconstruct_integrated_game_lifetimes(record)`. The original root, raw bytes,
+schema inventory and default v1 view stay unchanged.
+
+Each failure case needs three `failure_lifetime` events, method
+`n10-contained-game-lifetime-observations-v1`: `active_target` before the fault,
+`replacement_ready` before issuer replacement, and `issuer_restarted` after the
+new issuer's fixed readiness interval. Core checks their placement among the
+scoped action/result events, nonoverlapping read brackets at most 50 ms wide,
+native receipt freshness at most 1.5 seconds, and at least 2.5 seconds between
+replacement-ready and post-restart reads.
+
+The contained producer samples only its current camera, owned game/display and
+supervisor-owned live children. The peer sampler checks the actual owned pidfd
+and Popen handle. PID/boot/start-time preimages stay private; exported hashes
+identify these observed lifetimes for comparisons. Camera/game/display hashes
+must remain stable, game CPU must advance, and the sibling must retain its
+process, generation, token and offer hashes with advancing native counters,
+sequences and child timestamps. The replacement must have a different process,
+generation and token from the old worker, then retain that lifetime across the
+logical issuer restart. The retained old Popen return code must agree with the
+supervisor's exit code: zero for cancellation, minus nine for uncertain faults.
+Worker death is still not restoration.
+
+Camera read/receipt timestamps are relative to the fixture's camera clock.
+Child snapshot clocks keep their separate origins and are compared only within
+the same worker lifetime. The private journal's cooldown timestamp is exported
+as exact bounded decimal text, avoiding JavaScript integer precision loss; it is
+never aligned with camera or browser clocks.
+
+Journal observations are bounded, sanitized projections of complete atomically
+published files. The observer validates owner, mode, directory binding, no-follow
+file rules and the existing journal format/hash without acquiring the writer's
+lease or gaining write capability. Its projection replaces private boot/process
+identities with hashes. `projection_hash` is independently recomputed by core;
+`private_content_hash` references the producer-validated private content whose
+hidden preimage core cannot recompute. Neither hash authenticates execution.
+
+Core binds the single retained request and its preimage/generation to the old
+process hash, reconstructs the one-action/four-second reservation, and checks
+active versus clean/dirty state and retained results. The directory, policy and
+boot bindings must persist. Both the entire projection and private-content hash
+must remain identical across issuer restart. Typed admission outcomes must
+record rejection of the retired draft/receiver and old issuer, plus either a
+read-only draft after clean cancellation or a dirty-ledger rejection. These
+records do not serialize capabilities or independently prove authorization.
+
+`lifetime_cases` contains all four failure cases and
+`supplied_lifetime_screen=met|unavailable` describes only these supplied
+comparisons. Missing historical events stay unavailable; they are never filled
+from flags. Later cases remain visible after an unavailable case. A passing
+result reports `failure_case_hashed_lifetime_comparisons_only`, while independent
+execution verification remains unavailable. This adds engineering evidence; live
+qualification, diagnostic value and perceptual/audio/desktop acceptance remain
+unchanged.

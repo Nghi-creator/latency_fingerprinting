@@ -10,6 +10,7 @@ from .integrated_game import (
     import_integrated_game_cohort,
     inspect_integrated_game_record,
 )
+from .integrated_game_lifetimes import reconstruct_integrated_game_lifetimes
 from .integrated_game_reconstruction import reconstruct_integrated_game_record
 from .models import LiveProbeEvidence, create_live_probe_evidence
 
@@ -18,6 +19,7 @@ __all__ = [
     "import_integrated_game_cohort",
     "inspect_integrated_game_record",
     "reconstruct_integrated_game_record",
+    "reconstruct_integrated_game_lifetimes",
     "GameBrowserProbeEvidence",
     "GameBrowserInspection",
     "import_game_browser_acquisition",

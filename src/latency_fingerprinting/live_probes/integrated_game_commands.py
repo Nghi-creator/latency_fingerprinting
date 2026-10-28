@@ -12,6 +12,7 @@ from .integrated_game import (
     import_integrated_game_cohort,
     inspect_integrated_game_record,
 )
+from .integrated_game_lifetimes import reconstruct_integrated_game_lifetimes
 from .integrated_game_reconstruction import reconstruct_integrated_game_record
 
 
@@ -39,6 +40,9 @@ def register_integrated_game_commands(subparsers):
         "reconstruct-integrated-game-record", help="recompute supplied engineering observations"
     )
     reconstruct.add_argument("record", type=Path)
+    reconstruct.add_argument(
+        "--lifetimes", action="store_true", help="also compare lifetime/journal observations"
+    )
     reconstruct.set_defaults(handler=_reconstruct)
 
 
@@ -66,4 +70,9 @@ def _inspect(args):
 
 def _reconstruct(args):
     record = _Operands().read(args.record, IntegratedGameRecord)
-    sys.stdout.write(json.dumps(reconstruct_integrated_game_record(record), sort_keys=True) + "\n")
+    operation = (
+        reconstruct_integrated_game_lifetimes
+        if args.lifetimes
+        else reconstruct_integrated_game_record
+    )
+    sys.stdout.write(json.dumps(operation(record), sort_keys=True) + "\n")

@@ -415,6 +415,29 @@ def main() -> None:
             )
         ):
             raise ValueError("installed integrated game reconstruction drift")
+        code, stdout, stderr = invoke_installed(
+            ["reconstruct-integrated-game-record", integrated_output, "--lifetimes"]
+        )
+        if code or stderr or json.loads(stdout)["supplied_lifetime_screen"] != "unavailable":
+            raise ValueError("installed lifetime view fabricated missing observations")
+        from tests.live_probes.integrated_lifetime_cases import cohort as lifetime_cohort
+
+        integrated_input.write_bytes(json.dumps(lifetime_cohort()).encode())
+        code, stdout, stderr = invoke_installed(arguments)
+        if code or stdout or stderr:
+            raise ValueError("installed lifetime input failed")
+        code, stdout, stderr = invoke_installed(
+            ["reconstruct-integrated-game-record", integrated_output, "--lifetimes"]
+        )
+        lifetimes = json.loads(stdout)
+        if (
+            code
+            or stderr
+            or lifetimes["supplied_lifetime_screen"] != "met"
+            or (lifetimes["independent_execution_verification"] != "unavailable")
+            or lifetimes["live_authority"] is not False
+        ):
+            raise ValueError("installed lifetime comparison drift")
         exported = directory / "schemas"
         run(
             [

@@ -93,6 +93,18 @@ a production camera/browser binding. The additive [cadence evidence format](N10_
 imports and independently inspects its observations without granting authority.
 Quality/resource qualification and production activation remain unavailable.
 
+The producer's default-off dedicated-peer camera transport also supports a
+[contained game/control harness](../../../Pixelated-Studio-Edition/docs/n10-contained-game-control.md)
+with actual camera routing, isolated owned game/display, two browser receivers
+and per-worker teardown. Its
+[failure procedure](../../../Pixelated-Studio-Edition/docs/n10-contained-game-failures.md)
+exercises cancellation, receiver/source loss, peer replacement and logical local
+issuer restart. Production-source mutation remains rejected. The
+[integrated cohort record](N10_INTEGRATED_GAME_RECORD.md) preserves those reports
+and provides independent supplied-observation and optional hashed
+lifetime/journal comparisons. This scope retains separate clocks, unknown
+outcomes and dirty budgets; it grants no live authority or family qualification.
+
 
 The producer also provides a [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md)
 with a fixed Frozen-Bubble level, private display, scripted input and separate
