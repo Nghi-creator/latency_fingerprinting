@@ -76,7 +76,7 @@ are not reclassified as direct stage latency.
 Two new files are generated additively:
 [window schema](../../schemas/observation-window-v2.schema.json) and
 [observation schema](../../schemas/observation-v2.schema.json).
-`export-schemas --check` now checks all six schema files without writing.
+`export-schemas --check` checks the complete current schema inventory without writing.
 Cross-field rules require Python model validation; JSON Schema alone cannot
 authenticate registry contents or prove numerical/source compatibility.
 

@@ -101,7 +101,7 @@ def replay(case):
     """Test-only oracle on prevalidated abstract operands, not a public API.
 
     Literal tables supply expectations. This deliberately has no N6 reader,
-    production model, production arithmetic or future implementation dependency.
+    production model, production arithmetic or replay implementation dependency.
     """
     if not 0 <= len(case["events"]) <= 256:
         raise ValueError("invalid_design_event_limit")

@@ -1,0 +1,642 @@
+{
+  "$defs": {
+    "CadenceChecks": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_capture_buffers": {
+          "title": "Baseline Capture Buffers",
+          "type": "boolean"
+        },
+        "baseline_receiver_frames": {
+          "title": "Baseline Receiver Frames",
+          "type": "boolean"
+        },
+        "during_capture_buffers": {
+          "title": "During Capture Buffers",
+          "type": "boolean"
+        },
+        "during_receiver_frames": {
+          "title": "During Receiver Frames",
+          "type": "boolean"
+        },
+        "receiver_continuity": {
+          "title": "Receiver Continuity",
+          "type": "boolean"
+        },
+        "restoration_capture_buffers": {
+          "title": "Restoration Capture Buffers",
+          "type": "boolean"
+        },
+        "restoration_receiver_frames": {
+          "title": "Restoration Receiver Frames",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "baseline_capture_buffers",
+        "baseline_receiver_frames",
+        "during_capture_buffers",
+        "during_receiver_frames",
+        "restoration_capture_buffers",
+        "restoration_receiver_frames",
+        "receiver_continuity"
+      ],
+      "title": "CadenceChecks",
+      "type": "object"
+    },
+    "CadenceGeneration": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Owner",
+          "type": "string"
+        },
+        "peer": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Peer",
+          "type": "string"
+        },
+        "pipeline": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Pipeline",
+          "type": "string"
+        }
+      },
+      "required": [
+        "owner",
+        "pipeline",
+        "peer"
+      ],
+      "title": "CadenceGeneration",
+      "type": "object"
+    },
+    "CadenceObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "At Ns",
+          "type": "integer"
+        },
+        "capture_buffers": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Capture Buffers",
+          "type": "integer"
+        },
+        "configured_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Configured Fps",
+          "type": "integer"
+        },
+        "healthy": {
+          "title": "Healthy",
+          "type": "boolean"
+        },
+        "negotiated_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Negotiated Fps",
+          "type": "integer"
+        },
+        "receiver_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Receiver Frames",
+          "type": "integer"
+        },
+        "settings_hash": {
+          "pattern": "^(?:[a-f0-9]{64})$",
+          "title": "Settings Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at_ns",
+        "configured_fps",
+        "negotiated_fps",
+        "capture_buffers",
+        "receiver_frames",
+        "healthy",
+        "settings_hash"
+      ],
+      "title": "CadenceObservation",
+      "type": "object"
+    },
+    "CadenceOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "live_authority": {
+          "const": false,
+          "title": "Live Authority",
+          "type": "boolean"
+        },
+        "outcome": {
+          "enum": [
+            "completed",
+            "aborted",
+            "unknown",
+            "interrupted_teardown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "duration_elapsed",
+            "cancelled",
+            "health_abort",
+            "apply_failed",
+            "restore_failed",
+            "generation_changed",
+            "journal_failed",
+            "worker_terminated"
+          ],
+          "title": "Reason",
+          "type": "string"
+        },
+        "request_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "restoration": {
+          "enum": [
+            "verified_by_port",
+            "unknown",
+            "not_verified_teardown"
+          ],
+          "title": "Restoration",
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "outcome",
+        "restoration",
+        "reason",
+        "live_authority"
+      ],
+      "title": "CadenceOutcome",
+      "type": "object"
+    },
+    "CadenceProtocol": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Baseline Fps",
+          "type": "integer"
+        },
+        "maximum_pts_gap_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Pts Gap Ns",
+          "type": "integer"
+        },
+        "maximum_pull_gap_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Pull Gap Ns",
+          "type": "integer"
+        },
+        "rate_tolerance_percent": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Rate Tolerance Percent",
+          "type": "integer"
+        },
+        "requested_duration_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Requested Duration Ns",
+          "type": "integer"
+        },
+        "settling_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Settling Ns",
+          "type": "integer"
+        },
+        "target_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Target Fps",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "baseline_fps",
+        "target_fps",
+        "requested_duration_ns",
+        "settling_ns",
+        "maximum_pts_gap_ns",
+        "maximum_pull_gap_ns",
+        "rate_tolerance_percent"
+      ],
+      "title": "CadenceProtocol",
+      "type": "object"
+    },
+    "CadenceReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "after_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "After Ns"
+        },
+        "before_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Before Ns",
+          "type": "integer"
+        },
+        "requested_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Requested Fps",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "requested_fps",
+        "before_ns",
+        "after_ns"
+      ],
+      "title": "CadenceReceipt",
+      "type": "object"
+    },
+    "CadenceWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "$ref": "#/$defs/CadenceObservation"
+        },
+        "start": {
+          "$ref": "#/$defs/CadenceObservation"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "CadenceWindow",
+      "type": "object"
+    },
+    "CadenceWindows": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "during": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "restoration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "CadenceWindows",
+      "type": "object"
+    },
+    "CadenceWorkerReport": {
+      "additionalProperties": false,
+      "description": "Frozen normalized report; partial acquisition/failure remains representable.",
+      "properties": {
+        "assessment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeclaredCadenceAssessment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "clock_basis": {
+          "const": "process_monotonic_relative_ns",
+          "title": "Clock Basis",
+          "type": "string"
+        },
+        "diagnostic_value": {
+          "const": "unverified",
+          "title": "Diagnostic Value",
+          "type": "string"
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceGeneration"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "journal_state": {
+          "anyOf": [
+            {
+              "enum": [
+                "clean",
+                "active",
+                "dirty",
+                "restored_pending_watchdog"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Journal State"
+        },
+        "live_authority": {
+          "const": false,
+          "title": "Live Authority",
+          "type": "boolean"
+        },
+        "observations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CadenceObservation"
+          },
+          "maxItems": 512,
+          "title": "Observations",
+          "type": "array"
+        },
+        "protocol": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceProtocol"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pts_basis": {
+          "const": "receiver_pipeline_pts_not_source_or_browser_aligned",
+          "title": "Pts Basis",
+          "type": "string"
+        },
+        "quality": {
+          "const": "not_evaluated",
+          "title": "Quality",
+          "type": "string"
+        },
+        "receipts": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CadenceReceipt"
+          },
+          "maxItems": 2,
+          "title": "Receipts",
+          "type": "array"
+        },
+        "receiver_scope": {
+          "const": "gst_loopback_not_browser",
+          "title": "Receiver Scope",
+          "type": "string"
+        },
+        "receiver_timeline": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ReceivedFrame"
+          },
+          "maxItems": 1200,
+          "title": "Receiver Timeline",
+          "type": "array"
+        },
+        "resource_cost": {
+          "const": "not_evaluated",
+          "title": "Resource Cost",
+          "type": "string"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceOutcome"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "scope": {
+          "const": "disposable_synthetic_gst_webrtc_pair",
+          "title": "Scope",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "observed",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "teardown": {
+          "enum": [
+            "not_created",
+            "null_observed",
+            "unknown"
+          ],
+          "title": "Teardown",
+          "type": "string"
+        },
+        "trial_version": {
+          "const": "n10-isolated-webrtc-controller-v1",
+          "title": "Trial Version",
+          "type": "string"
+        },
+        "windows": {
+          "$ref": "#/$defs/CadenceWindows"
+        }
+      },
+      "required": [
+        "trial_version",
+        "live_authority",
+        "scope",
+        "quality",
+        "resource_cost",
+        "diagnostic_value",
+        "receiver_scope",
+        "clock_basis",
+        "pts_basis",
+        "status",
+        "teardown"
+      ],
+      "title": "CadenceWorkerReport",
+      "type": "object"
+    },
+    "DeclaredCadenceAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "$ref": "#/$defs/CadenceChecks"
+        },
+        "status": {
+          "enum": [
+            "met",
+            "not_met"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "checks",
+        "status"
+      ],
+      "title": "DeclaredCadenceAssessment",
+      "type": "object"
+    },
+    "ReceivedFrame": {
+      "additionalProperties": false,
+      "properties": {
+        "observed_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Observed At Ns",
+          "type": "integer"
+        },
+        "pts_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Pts Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pts_ns",
+        "observed_at_ns"
+      ],
+      "title": "ReceivedFrame",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "acquisition_id": {
+      "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+      "title": "Acquisition Id",
+      "type": "string"
+    },
+    "assurance": {
+      "const": "offline_declared_evidence_not_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "capability": {
+      "const": "unavailable_unqualified",
+      "title": "Capability",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evidence_id": {
+      "pattern": "^(?:cadence-evidence-[a-f0-9]{64})$",
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "image_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Image Hash",
+      "type": "string"
+    },
+    "live_authority": {
+      "const": false,
+      "title": "Live Authority",
+      "type": "boolean"
+    },
+    "method_release": {
+      "const": "n10-cadence-evidence-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "producer_revision": {
+      "pattern": "^(?:[a-f0-9]{40})$",
+      "title": "Producer Revision",
+      "type": "string"
+    },
+    "report": {
+      "$ref": "#/$defs/CadenceWorkerReport"
+    },
+    "schema_version": {
+      "const": "cadence-probe-evidence-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_manifest_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Source Manifest Hash",
+      "type": "string"
+    },
+    "source_report_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Source Report Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "assurance",
+    "acquisition_id",
+    "producer_revision",
+    "image_hash",
+    "source_manifest_hash",
+    "source_report_hash",
+    "report",
+    "live_authority",
+    "capability",
+    "evidence_id",
+    "content_hash"
+  ],
+  "title": "CadenceProbeEvidence",
+  "type": "object"
+}

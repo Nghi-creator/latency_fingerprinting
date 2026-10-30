@@ -239,8 +239,9 @@ Pair construction fails with validation errors when:
 
 Source/metric support and coverage can differ between the windows and must not be
 discarded to force comparability. No normalized vector or raw response delta is
-created by these contracts. A future analytical adoption contract must set minimum
-support, feature normalization/direction and probe compatibility before scoring.
+created by these contracts. The separate [N3 analytical contract](../analysis/N3_ANALYTICAL_CONTRACT.md)
+defines minimum support, feature normalization/direction and probe compatibility
+for explicit v2 response construction and scoring.
 
 ## Optional stage-local timing
 

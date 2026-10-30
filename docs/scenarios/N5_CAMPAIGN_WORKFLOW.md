@@ -10,9 +10,11 @@ Frozen v1 healthy/host contention roots, release/pins, schemas and thresholds ar
 unchanged. Capture pacing uses `experiment-manifest-v2`,
 `experiment-phase-evidence-v2`, `experiment-result-v2` and method
 `n5-capture-pacing-v1`. Only `render_capture_slowdown` is approved in this extension;
-network/encoder/client/mixed/changing controls stay unavailable. The campaign extension adds eight roots to the original fifteen; the
-separate browser execution release adds two more, bringing the current total to
-25 generated schemas. Models and schemas import independently of runtime/file inspection.
+network/encoder/client/mixed/changing controls stay unavailable. The campaign
+extension adds eight roots to the original fifteen, and the separate browser
+execution release adds two more. Later calibration, profile and passive-gate roots
+are additive; `export-schemas --check` verifies the complete current inventory.
+Models and schemas import independently of runtime/file inspection.
 
 The opt-in camera pipeline inserts `identity name=n5_capture_pacer` between the
 capture caps and conversion, default delay zero, with handoffs disabled. Normal

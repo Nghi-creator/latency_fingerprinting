@@ -87,12 +87,12 @@ entirely fresh source acquisitions. The API-reported browser timing limitation
 requires method review before changing timestamp meaning. Current failures remain
 part of the execution record.
 
-## Commit message correction
+## Recorded producer revision mapping
 
-The three local producer fix commits were reworded to the existing `[fix]`
-convention on 2026-10-13. Current producer HEAD is `7e78d483ec3c1c5bf9e6977048591e19415b1ac1`;
-its code tree matches the recorded `ae00593` tree exactly. The ledger records all
-three old/new hash mappings. Original commits remain reachable in Pixelated via
+The recorded producer revision `7e78d483ec3c1c5bf9e6977048591e19415b1ac1`
+has the same code tree as the original acquisition revision `ae00593`. Commit
+metadata was reworded on 2026-10-13; the ledger preserves all three old/new hash
+mappings. Original commits remain reachable in Pixelated via
 `refs/archive/n5-acceptance-ae00593`, so frozen runtime evidence retains its actual
 original commit IDs. No source, measurement or archive receipt was rewritten.
 

@@ -104,7 +104,12 @@ use one N6 inspection to rebuild the exact baseline and verify source-extracted
 queries. Dedicated commands protect inputs and write private atomic output. The
 [frozen N9 corpus](passive_gating/N9_FIXTURES.md) verifies complete independent
 results and original source bytes in both CI Python jobs and the installed wheel.
-Live producer control remains outside the implemented boundary.
+The [N10 forensic evidence root](live_probes/N10_MODELS.md) adds immutable,
+content-bound declarations and pure counter/setting inspection. It retains partial
+outcomes and unverified receiver/quality state without live authority.
+Live producer control remains outside the implemented boundary. The
+[N10 capability inventory](live_probes/N10_CAPABILITY_INVENTORY.md) separates
+read-only target property metadata from live application/restoration proof.
 
 ## File and numeric boundaries
 

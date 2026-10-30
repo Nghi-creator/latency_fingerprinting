@@ -3,7 +3,7 @@
 These are synthetic arithmetic and state-machine design operands, not recorded
 experiments or a runtime acceptance corpus. The
 [vectors](N9_DESIGN_VECTORS.json) retain literal expectations; the independent
-Decimal oracle is in `tests/passive_gating/test_design.py`. It imports no future
+Decimal oracle is in `tests/passive_gating/test_design.py`. It imports no
 N9 production module and does not regenerate expectations from actual results.
 The [policy](N9_PASSIVE_POLICY_SPEC.json) and vector bytes have separate release
 pins in that test. A changed policy/vector requires explicit review and new pins.

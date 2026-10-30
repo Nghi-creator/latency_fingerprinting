@@ -1,0 +1,630 @@
+{
+  "$defs": {
+    "CounterRead": {
+      "additionalProperties": false,
+      "properties": {
+        "bitrate": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bitrate"
+        },
+        "counter_generation": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Counter Generation"
+        },
+        "decoded_dropped": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decoded Dropped"
+        },
+        "decoded_frames": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Decoded Frames"
+        },
+        "encoded_bytes": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Encoded Bytes"
+        },
+        "encoded_frames": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Encoded Frames"
+        },
+        "read_end_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Read End Ns",
+          "type": "integer"
+        },
+        "read_start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Read Start Ns",
+          "type": "integer"
+        },
+        "settings": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EncoderSettings"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "read_start_ns",
+        "read_end_ns",
+        "counter_generation",
+        "bitrate",
+        "encoded_bytes",
+        "encoded_frames",
+        "decoded_frames",
+        "decoded_dropped",
+        "settings"
+      ],
+      "title": "CounterRead",
+      "type": "object"
+    },
+    "EncoderSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "buffer_initial_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Buffer Initial Ms",
+          "type": "integer"
+        },
+        "buffer_optimal_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Buffer Optimal Ms",
+          "type": "integer"
+        },
+        "buffer_size_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Buffer Size Ms",
+          "type": "integer"
+        },
+        "cpu_used": {
+          "maximum": 16,
+          "minimum": -16,
+          "title": "Cpu Used",
+          "type": "integer"
+        },
+        "deadline_us": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Deadline Us",
+          "type": "integer"
+        },
+        "dropframe_threshold": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Dropframe Threshold",
+          "type": "integer"
+        },
+        "end_usage": {
+          "const": "cbr",
+          "title": "End Usage",
+          "type": "string"
+        },
+        "fps_denominator": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Fps Denominator",
+          "type": "integer"
+        },
+        "fps_numerator": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Fps Numerator",
+          "type": "integer"
+        },
+        "height": {
+          "maximum": 16383,
+          "minimum": 1,
+          "title": "Height",
+          "type": "integer"
+        },
+        "keyframe_max_dist": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Keyframe Max Dist",
+          "type": "integer"
+        },
+        "lag_in_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Lag In Frames",
+          "type": "integer"
+        },
+        "max_quantizer": {
+          "maximum": 63,
+          "minimum": 0,
+          "title": "Max Quantizer",
+          "type": "integer"
+        },
+        "min_quantizer": {
+          "maximum": 63,
+          "minimum": 0,
+          "title": "Min Quantizer",
+          "type": "integer"
+        },
+        "resize_allowed": {
+          "title": "Resize Allowed",
+          "type": "boolean"
+        },
+        "threads": {
+          "maximum": 64,
+          "minimum": 0,
+          "title": "Threads",
+          "type": "integer"
+        },
+        "width": {
+          "maximum": 16383,
+          "minimum": 1,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cpu_used",
+        "min_quantizer",
+        "max_quantizer",
+        "width",
+        "height",
+        "fps_numerator",
+        "fps_denominator",
+        "end_usage",
+        "threads",
+        "deadline_us",
+        "keyframe_max_dist",
+        "buffer_initial_ms",
+        "buffer_optimal_ms",
+        "buffer_size_ms",
+        "lag_in_frames",
+        "dropframe_threshold",
+        "resize_allowed"
+      ],
+      "title": "EncoderSettings",
+      "type": "object"
+    },
+    "ProbeIntent": {
+      "additionalProperties": false,
+      "properties": {
+        "application_deadline_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Application Deadline Ns",
+          "type": "integer"
+        },
+        "application_settling_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Application Settling Ns",
+          "type": "integer"
+        },
+        "capability_revision": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Capability Revision",
+          "type": "string"
+        },
+        "control": {
+          "const": "vp8enc.target-bitrate",
+          "title": "Control",
+          "type": "string"
+        },
+        "family": {
+          "const": "vp8_target_bitrate",
+          "title": "Family",
+          "type": "string"
+        },
+        "intent_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Intent At Ns",
+          "type": "integer"
+        },
+        "policy_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Policy Hash",
+          "type": "string"
+        },
+        "prior_value": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Prior Value",
+          "type": "integer"
+        },
+        "request_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "requested_value": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Requested Value",
+          "type": "integer"
+        },
+        "restoration_deadline_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Restoration Deadline Ns",
+          "type": "integer"
+        },
+        "restoration_settling_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Restoration Settling Ns",
+          "type": "integer"
+        },
+        "unit": {
+          "const": "bit_per_second",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "capability_revision",
+        "policy_hash",
+        "family",
+        "control",
+        "unit",
+        "prior_value",
+        "requested_value",
+        "intent_at_ns",
+        "application_deadline_ns",
+        "restoration_deadline_ns",
+        "application_settling_ns",
+        "restoration_settling_ns"
+      ],
+      "title": "ProbeIntent",
+      "type": "object"
+    },
+    "ProbeScope": {
+      "additionalProperties": false,
+      "properties": {
+        "acquisition_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Acquisition Id",
+          "type": "string"
+        },
+        "clock_basis": {
+          "const": "process_monotonic_relative_ns",
+          "title": "Clock Basis",
+          "type": "string"
+        },
+        "clock_domain": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Clock Domain",
+          "type": "string"
+        },
+        "clock_generation": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Clock Generation",
+          "type": "string"
+        },
+        "image_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Image Hash",
+          "type": "string"
+        },
+        "owner_generation": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Owner Generation",
+          "type": "string"
+        },
+        "peer_generation": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Peer Generation"
+        },
+        "pipeline_generation": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Pipeline Generation",
+          "type": "string"
+        },
+        "producer_revision": {
+          "pattern": "^(?:[a-f0-9]{40})$",
+          "title": "Producer Revision",
+          "type": "string"
+        },
+        "provenance": {
+          "enum": [
+            "isolated_synthetic",
+            "declared_producer_capture"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "acquisition_id",
+        "owner_generation",
+        "pipeline_generation",
+        "peer_generation",
+        "clock_domain",
+        "clock_generation",
+        "clock_basis",
+        "provenance",
+        "producer_revision",
+        "image_hash"
+      ],
+      "title": "ProbeScope",
+      "type": "object"
+    },
+    "ProbeWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "end_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "End Ns",
+          "type": "integer"
+        },
+        "phase": {
+          "enum": [
+            "baseline",
+            "during",
+            "restoration"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "samples": {
+          "items": {
+            "$ref": "#/$defs/CounterRead"
+          },
+          "maxItems": 64,
+          "title": "Samples",
+          "type": "array"
+        },
+        "start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Start Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "phase",
+        "start_ns",
+        "end_ns",
+        "samples"
+      ],
+      "title": "ProbeWindow",
+      "type": "object"
+    },
+    "SetterReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "call_end_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Call End Ns"
+        },
+        "call_start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Call Start Ns",
+          "type": "integer"
+        },
+        "outcome": {
+          "enum": [
+            "returned",
+            "raised",
+            "interrupted",
+            "unknown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "application",
+            "restoration",
+            "cleanup"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "requested_value": {
+          "maximum": 2147483647,
+          "minimum": 1,
+          "title": "Requested Value",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "phase",
+        "requested_value",
+        "call_start_ns",
+        "call_end_ns",
+        "outcome"
+      ],
+      "title": "SetterReceipt",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assurance": {
+      "const": "offline_declared_evidence_not_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "capability": {
+      "const": "unavailable_unqualified",
+      "title": "Capability",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evidence_id": {
+      "pattern": "^(?:live-evidence-[a-f0-9]{64})$",
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "intent": {
+      "$ref": "#/$defs/ProbeIntent"
+    },
+    "live_authority": {
+      "const": false,
+      "title": "Live Authority",
+      "type": "boolean"
+    },
+    "method_release": {
+      "const": "n10-live-evidence-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "quality": {
+      "const": "not_evaluated",
+      "title": "Quality",
+      "type": "string"
+    },
+    "reason_codes": {
+      "items": {
+        "enum": [
+          "not_attempted",
+          "capability_unqualified",
+          "cancelled",
+          "setter_failed",
+          "clock_failed",
+          "generation_changed",
+          "counter_unavailable",
+          "receiver_unavailable",
+          "restore_failed",
+          "deadline_exceeded",
+          "foreign_control",
+          "process_interrupted"
+        ],
+        "type": "string"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "Reason Codes",
+      "type": "array"
+    },
+    "receipts": {
+      "items": {
+        "$ref": "#/$defs/SetterReceipt"
+      },
+      "maxItems": 3,
+      "title": "Receipts",
+      "type": "array"
+    },
+    "receiver_continuity": {
+      "const": "unverified",
+      "title": "Receiver Continuity",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "live-probe-evidence-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/ProbeScope"
+    },
+    "windows": {
+      "items": {
+        "$ref": "#/$defs/ProbeWindow"
+      },
+      "maxItems": 3,
+      "title": "Windows",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "assurance",
+    "live_authority",
+    "capability",
+    "receiver_continuity",
+    "quality",
+    "scope",
+    "intent",
+    "receipts",
+    "windows",
+    "reason_codes",
+    "evidence_id",
+    "content_hash"
+  ],
+  "title": "LiveProbeEvidence",
+  "type": "object"
+}

@@ -1,0 +1,1390 @@
+{
+  "$defs": {
+    "BrowserCounters": {
+      "additionalProperties": false,
+      "properties": {
+        "bytesReceived": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bytesreceived"
+        },
+        "frameHeight": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Frameheight"
+        },
+        "frameWidth": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Framewidth"
+        },
+        "framesDecoded": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Framesdecoded"
+        },
+        "framesDropped": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Framesdropped"
+        },
+        "framesReceived": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Framesreceived"
+        },
+        "freezeCount": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Freezecount"
+        },
+        "jitterBufferDelay": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Jitterbufferdelay"
+        },
+        "jitterBufferEmittedCount": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Jitterbufferemittedcount"
+        },
+        "keyFramesDecoded": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Keyframesdecoded"
+        },
+        "packetsLost": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Packetslost"
+        },
+        "totalDecodeTime": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Totaldecodetime"
+        },
+        "totalFreezesDuration": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Totalfreezesduration"
+        }
+      },
+      "required": [
+        "framesReceived",
+        "framesDecoded",
+        "framesDropped",
+        "freezeCount",
+        "totalFreezesDuration",
+        "totalDecodeTime",
+        "jitterBufferDelay",
+        "jitterBufferEmittedCount",
+        "frameWidth",
+        "frameHeight",
+        "keyFramesDecoded",
+        "packetsLost",
+        "bytesReceived"
+      ],
+      "title": "BrowserCounters",
+      "type": "object"
+    },
+    "BrowserFrame": {
+      "additionalProperties": false,
+      "properties": {
+        "browser_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser At Ns",
+          "type": "integer"
+        },
+        "height": {
+          "maximum": 480,
+          "minimum": 480,
+          "title": "Height",
+          "type": "integer"
+        },
+        "presented_frames": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Presented Frames",
+          "type": "integer"
+        },
+        "pts_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Pts Ns",
+          "type": "integer"
+        },
+        "type": {
+          "const": "frame",
+          "title": "Type",
+          "type": "string"
+        },
+        "width": {
+          "maximum": 640,
+          "minimum": 640,
+          "title": "Width",
+          "type": "integer"
+        },
+        "worker_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Worker At Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "pts_ns",
+        "browser_at_ns",
+        "presented_frames",
+        "width",
+        "height",
+        "worker_at_ns"
+      ],
+      "title": "BrowserFrame",
+      "type": "object"
+    },
+    "BrowserStats": {
+      "additionalProperties": false,
+      "properties": {
+        "browser_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser At Ns",
+          "type": "integer"
+        },
+        "type": {
+          "const": "stats",
+          "title": "Type",
+          "type": "string"
+        },
+        "values": {
+          "$ref": "#/$defs/BrowserCounters"
+        },
+        "worker_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Worker At Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "browser_at_ns",
+        "values",
+        "worker_at_ns"
+      ],
+      "title": "BrowserStats",
+      "type": "object"
+    },
+    "BrowserVisual": {
+      "additionalProperties": false,
+      "properties": {
+        "browser_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser At Ns",
+          "type": "integer"
+        },
+        "color_bins": {
+          "maximum": 512,
+          "minimum": 0,
+          "title": "Color Bins",
+          "type": "integer"
+        },
+        "hash": {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "title": "Hash",
+          "type": "integer"
+        },
+        "type": {
+          "const": "visual",
+          "title": "Type",
+          "type": "string"
+        },
+        "worker_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Worker At Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "browser_at_ns",
+        "hash",
+        "color_bins",
+        "worker_at_ns"
+      ],
+      "title": "BrowserVisual",
+      "type": "object"
+    },
+    "CadenceGeneration": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Owner",
+          "type": "string"
+        },
+        "peer": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Peer",
+          "type": "string"
+        },
+        "pipeline": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Pipeline",
+          "type": "string"
+        }
+      },
+      "required": [
+        "owner",
+        "pipeline",
+        "peer"
+      ],
+      "title": "CadenceGeneration",
+      "type": "object"
+    },
+    "CadenceObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "At Ns",
+          "type": "integer"
+        },
+        "capture_buffers": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Capture Buffers",
+          "type": "integer"
+        },
+        "configured_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Configured Fps",
+          "type": "integer"
+        },
+        "healthy": {
+          "title": "Healthy",
+          "type": "boolean"
+        },
+        "negotiated_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Negotiated Fps",
+          "type": "integer"
+        },
+        "receiver_frames": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Receiver Frames",
+          "type": "integer"
+        },
+        "settings_hash": {
+          "pattern": "^(?:[a-f0-9]{64})$",
+          "title": "Settings Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at_ns",
+        "configured_fps",
+        "negotiated_fps",
+        "capture_buffers",
+        "receiver_frames",
+        "healthy",
+        "settings_hash"
+      ],
+      "title": "CadenceObservation",
+      "type": "object"
+    },
+    "CadenceOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "live_authority": {
+          "const": false,
+          "title": "Live Authority",
+          "type": "boolean"
+        },
+        "outcome": {
+          "enum": [
+            "completed",
+            "aborted",
+            "unknown",
+            "interrupted_teardown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "duration_elapsed",
+            "cancelled",
+            "health_abort",
+            "apply_failed",
+            "restore_failed",
+            "generation_changed",
+            "journal_failed",
+            "worker_terminated"
+          ],
+          "title": "Reason",
+          "type": "string"
+        },
+        "request_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "restoration": {
+          "enum": [
+            "verified_by_port",
+            "unknown",
+            "not_verified_teardown"
+          ],
+          "title": "Restoration",
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "outcome",
+        "restoration",
+        "reason",
+        "live_authority"
+      ],
+      "title": "CadenceOutcome",
+      "type": "object"
+    },
+    "CadenceReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "after_ns": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "After Ns"
+        },
+        "before_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Before Ns",
+          "type": "integer"
+        },
+        "requested_fps": {
+          "maximum": 60,
+          "minimum": 24,
+          "title": "Requested Fps",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "requested_fps",
+        "before_ns",
+        "after_ns"
+      ],
+      "title": "CadenceReceipt",
+      "type": "object"
+    },
+    "CadenceWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "$ref": "#/$defs/CadenceObservation"
+        },
+        "start": {
+          "$ref": "#/$defs/CadenceObservation"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "CadenceWindow",
+      "type": "object"
+    },
+    "CadenceWindows": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "during": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "restoration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceWindow"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "CadenceWindows",
+      "type": "object"
+    },
+    "DeclaredGameAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "$ref": "#/$defs/GameBrowserChecks"
+        },
+        "status": {
+          "enum": [
+            "met",
+            "not_met"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "checks"
+      ],
+      "title": "DeclaredGameAssessment",
+      "type": "object"
+    },
+    "GameBrowserAcquisition": {
+      "additionalProperties": false,
+      "properties": {
+        "bounded_stderr_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Bounded Stderr Hash",
+          "type": "string"
+        },
+        "browser_clock_basis": {
+          "const": "browser_performance_relative_ns",
+          "title": "Browser Clock Basis",
+          "type": "string"
+        },
+        "browser_resource_error": {
+          "anyOf": [
+            {
+              "const": "counter_unavailable",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Browser Resource Error"
+        },
+        "browser_resources": {
+          "items": {
+            "$ref": "#/$defs/HostBrowserResources"
+          },
+          "maxItems": 128,
+          "title": "Browser Resources",
+          "type": "array"
+        },
+        "browser_version": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[0-9]{1,4}(?:\\.[0-9]{1,6}){2,3})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Browser Version"
+        },
+        "clock_alignment": {
+          "const": "none",
+          "title": "Clock Alignment",
+          "type": "string"
+        },
+        "container_cleanup": {
+          "enum": [
+            "removed_or_already_removed",
+            "unknown"
+          ],
+          "title": "Container Cleanup",
+          "type": "string"
+        },
+        "failure": {
+          "anyOf": [
+            {
+              "enum": [
+                "setup_failed",
+                "worker_failed",
+                "browser_cleanup_failed",
+                "container_cleanup_failed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Failure"
+        },
+        "host_clock_basis": {
+          "const": "harness_monotonic_relative_ns",
+          "title": "Host Clock Basis",
+          "type": "string"
+        },
+        "image_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Image Hash",
+          "type": "string"
+        },
+        "live_authority": {
+          "const": false,
+          "title": "Live Authority",
+          "type": "boolean"
+        },
+        "mode": {
+          "enum": [
+            "changed",
+            "sham",
+            "cancel",
+            "disconnect"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "receiver_screenshot_hash": {
+          "anyOf": [
+            {
+              "pattern": "^(?:sha256:[a-f0-9]{64})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Receiver Screenshot Hash"
+        },
+        "report": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GameBrowserReport"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_hashes": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SourceBinding"
+          },
+          "maxItems": 32,
+          "title": "Source Hashes",
+          "type": "array"
+        },
+        "stderr_bytes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Stderr Bytes",
+          "type": "integer"
+        },
+        "version": {
+          "const": "n10-game-browser-acquisition-v1",
+          "title": "Version",
+          "type": "string"
+        },
+        "worker_clock_basis": {
+          "const": "worker_monotonic_relative_ns",
+          "title": "Worker Clock Basis",
+          "type": "string"
+        },
+        "worker_exit_code": {
+          "anyOf": [
+            {
+              "maximum": 255,
+              "minimum": -255,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Worker Exit Code"
+        }
+      },
+      "required": [
+        "version",
+        "mode",
+        "image_hash",
+        "live_authority",
+        "browser_clock_basis",
+        "worker_clock_basis",
+        "host_clock_basis",
+        "clock_alignment",
+        "report",
+        "browser_resources",
+        "container_cleanup",
+        "worker_exit_code",
+        "failure",
+        "stderr_bytes",
+        "bounded_stderr_hash"
+      ],
+      "title": "GameBrowserAcquisition",
+      "type": "object"
+    },
+    "GameBrowserChecks": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_capture_buffers": {
+          "title": "Baseline Capture Buffers",
+          "type": "boolean"
+        },
+        "baseline_receiver_frames": {
+          "title": "Baseline Receiver Frames",
+          "type": "boolean"
+        },
+        "during_capture_buffers": {
+          "title": "During Capture Buffers",
+          "type": "boolean"
+        },
+        "during_receiver_frames": {
+          "title": "During Receiver Frames",
+          "type": "boolean"
+        },
+        "nonblank_moving_scene": {
+          "title": "Nonblank Moving Scene",
+          "type": "boolean"
+        },
+        "presentation_continuity": {
+          "title": "Presentation Continuity",
+          "type": "boolean"
+        },
+        "restoration_capture_buffers": {
+          "title": "Restoration Capture Buffers",
+          "type": "boolean"
+        },
+        "restoration_receiver_frames": {
+          "title": "Restoration Receiver Frames",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "baseline_capture_buffers",
+        "baseline_receiver_frames",
+        "during_capture_buffers",
+        "during_receiver_frames",
+        "restoration_capture_buffers",
+        "restoration_receiver_frames",
+        "presentation_continuity",
+        "nonblank_moving_scene"
+      ],
+      "title": "GameBrowserChecks",
+      "type": "object"
+    },
+    "GameBrowserProtocol": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_measure_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Baseline Measure Ns",
+          "type": "integer"
+        },
+        "browser_stats_period_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Browser Stats Period Ns",
+          "type": "integer"
+        },
+        "duration_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Duration Ns",
+          "type": "integer"
+        },
+        "maximum_browser_frames_dropped": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Browser Frames Dropped",
+          "type": "integer"
+        },
+        "maximum_browser_freeze_count": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Browser Freeze Count",
+          "type": "integer"
+        },
+        "maximum_game_inputs": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Game Inputs",
+          "type": "integer"
+        },
+        "maximum_pts_gap_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Pts Gap Ns",
+          "type": "integer"
+        },
+        "maximum_worker_pull_gap_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Worker Pull Gap Ns",
+          "type": "integer"
+        },
+        "minimum_visual_color_bins": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Visual Color Bins",
+          "type": "integer"
+        },
+        "prior_fps": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Prior Fps",
+          "type": "integer"
+        },
+        "rate_tolerance_percent": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Rate Tolerance Percent",
+          "type": "integer"
+        },
+        "restoration_measure_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Restoration Measure Ns",
+          "type": "integer"
+        },
+        "restoration_settling_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Restoration Settling Ns",
+          "type": "integer"
+        },
+        "settling_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Settling Ns",
+          "type": "integer"
+        },
+        "target_fps": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Target Fps",
+          "type": "integer"
+        },
+        "visual_sample_period_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Visual Sample Period Ns",
+          "type": "integer"
+        },
+        "warmup_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Warmup Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prior_fps",
+        "target_fps",
+        "duration_ns",
+        "settling_ns",
+        "maximum_pts_gap_ns",
+        "maximum_worker_pull_gap_ns",
+        "rate_tolerance_percent",
+        "maximum_game_inputs",
+        "maximum_browser_frames_dropped",
+        "maximum_browser_freeze_count",
+        "minimum_visual_color_bins",
+        "warmup_ns",
+        "baseline_measure_ns",
+        "restoration_measure_ns",
+        "restoration_settling_ns",
+        "visual_sample_period_ns",
+        "browser_stats_period_ns"
+      ],
+      "title": "GameBrowserProtocol",
+      "type": "object"
+    },
+    "GameBrowserReport": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeclaredGameAssessment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "browser_stats": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/BrowserStats"
+          },
+          "maxItems": 128,
+          "title": "Browser Stats",
+          "type": "array"
+        },
+        "diagnostic_value": {
+          "const": "unverified",
+          "title": "Diagnostic Value",
+          "type": "string"
+        },
+        "dimensions": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "maximum": 640,
+              "minimum": 640,
+              "type": "integer"
+            },
+            {
+              "maximum": 480,
+              "minimum": 480,
+              "type": "integer"
+            }
+          ],
+          "title": "Dimensions",
+          "type": "array"
+        },
+        "game_inputs": {
+          "anyOf": [
+            {
+              "maximum": 64,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Game Inputs"
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceGeneration"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "journal_state": {
+          "anyOf": [
+            {
+              "enum": [
+                "clean",
+                "active",
+                "dirty",
+                "restored_pending_watchdog"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Journal State"
+        },
+        "live_authority": {
+          "const": false,
+          "title": "Live Authority",
+          "type": "boolean"
+        },
+        "mode": {
+          "enum": [
+            "changed",
+            "sham",
+            "cancel",
+            "disconnect"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "observations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CadenceObservation"
+          },
+          "maxItems": 512,
+          "title": "Observations",
+          "type": "array"
+        },
+        "perceptual_quality": {
+          "const": "not_evaluated",
+          "title": "Perceptual Quality",
+          "type": "string"
+        },
+        "protocol": {
+          "$ref": "#/$defs/GameBrowserProtocol"
+        },
+        "receipts": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CadenceReceipt"
+          },
+          "maxItems": 2,
+          "title": "Receipts",
+          "type": "array"
+        },
+        "receiver_scope": {
+          "const": "dedicated_headless_chromium_video",
+          "title": "Receiver Scope",
+          "type": "string"
+        },
+        "receiver_timeline": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/BrowserFrame"
+          },
+          "maxItems": 1200,
+          "title": "Receiver Timeline",
+          "type": "array"
+        },
+        "resource_clock_ticks_per_second": {
+          "anyOf": [
+            {
+              "maximum": 1000000,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resource Clock Ticks Per Second"
+        },
+        "resource_samples": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/WorkerResources"
+          },
+          "maxItems": 512,
+          "title": "Resource Samples",
+          "type": "array"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CadenceOutcome"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "scene_cleanup": {
+          "enum": [
+            "reaped",
+            "unknown"
+          ],
+          "title": "Scene Cleanup",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "observed",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "teardown": {
+          "enum": [
+            "unknown",
+            "null_observed"
+          ],
+          "title": "Teardown",
+          "type": "string"
+        },
+        "trial_version": {
+          "const": "n10-isolated-game-browser-v1",
+          "title": "Trial Version",
+          "type": "string"
+        },
+        "visual_samples": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/BrowserVisual"
+          },
+          "maxItems": 128,
+          "title": "Visual Samples",
+          "type": "array"
+        },
+        "windows": {
+          "$ref": "#/$defs/CadenceWindows"
+        },
+        "workload": {
+          "const": "frozen_bubble_level_1_scripted_arrows",
+          "title": "Workload",
+          "type": "string"
+        }
+      },
+      "required": [
+        "trial_version",
+        "mode",
+        "live_authority",
+        "workload",
+        "dimensions",
+        "receiver_scope",
+        "perceptual_quality",
+        "diagnostic_value",
+        "status",
+        "teardown",
+        "protocol",
+        "scene_cleanup"
+      ],
+      "title": "GameBrowserReport",
+      "type": "object"
+    },
+    "GameResources": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_ticks": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Cpu Ticks",
+          "type": "integer"
+        },
+        "rss_bytes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Rss Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cpu_ticks",
+        "rss_bytes"
+      ],
+      "title": "GameResources",
+      "type": "object"
+    },
+    "HostBrowserResources": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_seconds": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Cpu Seconds",
+          "type": "number"
+        },
+        "host_at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Host At Ns",
+          "type": "integer"
+        },
+        "inventory_hash": {
+          "pattern": "^(?:[a-f0-9]{64})$",
+          "title": "Inventory Hash",
+          "type": "string"
+        },
+        "process_count": {
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Process Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "host_at_ns",
+        "cpu_seconds",
+        "process_count",
+        "inventory_hash"
+      ],
+      "title": "HostBrowserResources",
+      "type": "object"
+    },
+    "SourceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^(?:(?:private_journal\\.py|live_probe_control/[a-z_]{1,64}\\.py|scripts/n10/[A-Za-z0-9_]{1,64}(?:\\.test)?\\.mjs))$",
+          "title": "Name",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "sha256"
+      ],
+      "title": "SourceBinding",
+      "type": "object"
+    },
+    "WorkerResources": {
+      "additionalProperties": false,
+      "properties": {
+        "at_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "At Ns",
+          "type": "integer"
+        },
+        "game": {
+          "$ref": "#/$defs/GameResources"
+        },
+        "read_end_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Read End Ns",
+          "type": "integer"
+        },
+        "read_start_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Read Start Ns",
+          "type": "integer"
+        },
+        "worker_cpu_ns": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Worker Cpu Ns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "at_ns",
+        "read_start_ns",
+        "read_end_ns",
+        "worker_cpu_ns",
+        "game"
+      ],
+      "title": "WorkerResources",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "acquisition": {
+      "$ref": "#/$defs/GameBrowserAcquisition"
+    },
+    "acquisition_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Acquisition Hash",
+      "type": "string"
+    },
+    "acquisition_id": {
+      "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+      "title": "Acquisition Id",
+      "type": "string"
+    },
+    "assurance": {
+      "const": "offline_declared_engineering_evidence_not_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "capability": {
+      "const": "unavailable_unqualified",
+      "title": "Capability",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evidence_id": {
+      "pattern": "^(?:game-browser-evidence-[a-f0-9]{64})$",
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "evidence_role": {
+      "const": "engineering",
+      "title": "Evidence Role",
+      "type": "string"
+    },
+    "live_authority": {
+      "const": false,
+      "title": "Live Authority",
+      "type": "boolean"
+    },
+    "method_release": {
+      "const": "n10-game-browser-evidence-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "producer_revision": {
+      "pattern": "^(?:[a-f0-9]{40})$",
+      "title": "Producer Revision",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "game-browser-probe-evidence-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_manifest_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Source Manifest Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "assurance",
+    "acquisition_id",
+    "producer_revision",
+    "acquisition_hash",
+    "source_manifest_hash",
+    "acquisition",
+    "evidence_role",
+    "capability",
+    "live_authority",
+    "evidence_id",
+    "content_hash"
+  ],
+  "title": "GameBrowserProbeEvidence",
+  "type": "object"
+}
