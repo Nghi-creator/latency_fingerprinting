@@ -17,7 +17,7 @@ Existing roots, policies, fixtures and defaults retain their original meaning.
 | Candidate | Existing producer surface | Evidence needed before selecting it |
 | --- | --- | --- |
 | Bitrate relief, first candidate | `vp8enc.target-bitrate`, bits per second; current stream profiles apply a compound preset at launch | Exact live target encoder, bounded application and observed setting, independent encoded/receiver evidence, unchanged unrelated controls, continuity and restoration |
-| Capture-cadence relief, conditional fallback | Camera currently fixes framerate through launch caps; a [contained source-caps experiment](../../../Pixelated-Studio-Edition/docs/n10-cadence-feasibility.md) is available, but no owned live controller is installed | A genuine bounded controller with negotiated caps, independent frame/cadence evidence and receiver continuity; a profile restart is a different operation |
+| Capture-cadence relief, conditional fallback | Normal camera profiles set launch caps; a default-disabled owned controller supports isolated synthetic and owned-game engineering dispatch through dedicated peer workers | Supported-context qualification of the bounded operation, unchanged controls, receiver/quality continuity and disturbance cost; normal production sources retain their control guard |
 | Encoder-cost relief, deferred | Launch profile selects `cpu-used` and `max-quantizer` alongside bitrate/FPS | Version-specific live mutation, output/quality and restoration proof before implementation |
 | Existing N5 capture pacing | Opted-in `identity.sleep-time` adds delay to create a slowdown fault | Removing an owned N5 fault is cleanup, not a general live-relief capability; its leases/evidence cannot be relabelled as N10 proof |
 
@@ -41,6 +41,8 @@ preserves isolated control, unrelated settings and output continuity. Prefer
 bitrate only if demonstrated; evaluate a cadence fallback only if justified.
 If no family qualifies, retain unavailable with its evidence gaps. Do not replace
 an unavailable operation with a preset switch, restart or simulated acknowledgement.
+The [qualification requirements](N10_QUALIFICATION.md) distinguish observation
+cost, actual action disturbance, quality acceptance and explicit activation.
 
 The live contract must then bind an explicit request to an exact owned
 pipeline/peer/property generation and preserve:

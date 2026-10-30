@@ -26,6 +26,11 @@ different boundary from the expected output records here. Older versioned famili
 remain active compatibility checks; a newer method does not supersede their
 contract or permit deleting their regression cases.
 
+N10 evidence tests build small synthetic cases under
+[`tests/live_probes/`](../tests/live_probes/) rather than adding native acquisition
+dumps here. Those builders exercise custody, reconstruction and rejection
+boundaries; they are invented test inputs, not qualified runtime evidence.
+
 ## Why complete records grow
 
 A retained result can embed a policy, source dataset/report, fitted baseline,

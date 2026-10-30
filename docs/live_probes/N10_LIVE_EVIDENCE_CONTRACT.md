@@ -1,10 +1,16 @@
 # Live-relief evidence — N10 design contract
 
-Design revision: `n10-live-evidence-design-v1`. This is an additive design for a
-future live adapter and offline reconstruction. The [offline evidence model](N10_MODELS.md)
-implements a conservative forensic subset with an additive schema and pure
-inspection. No execution command or qualified live capability is implemented. The [capability inventory](N10_CAPABILITY_INVENTORY.md) remains a
-metadata-only preflight. N9 proposals carry no authorization to act.
+Design revision: `n10-live-evidence-design-v1`. This specifies the authority and
+evidence requirements for a qualified live adapter and offline reconstruction.
+The [offline evidence model](N10_MODELS.md) implements a conservative bitrate
+forensic subset with an additive schema and pure inspection. The detached core
+provides no execution command or qualified live capability. The producer's
+contained cadence implementation has its own
+[integrated evidence scope](N10_INTEGRATED_GAME_RECORD.md); normal production
+sources retain their control guard. The [capability inventory](N10_CAPABILITY_INVENTORY.md)
+is a metadata-only preflight, and the [qualification requirements](N10_QUALIFICATION.md)
+separate candidate evidence from activation. N9 proposals carry no authorization
+to act.
 
 ## Identity, authority and clocks
 
