@@ -1,4 +1,4 @@
-"""Offline P0 analysis, N1 diagnostics and additive N2/N3/N4 commands."""
+"""Offline analysis, evidence inspection, profile matching and passive replay commands."""
 
 from __future__ import annotations
 
@@ -13,11 +13,22 @@ from pydantic import BaseModel
 
 from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from .calibration import CalibrationDataset, CalibrationReport
+from .calibration.inspection import register_calibration_command
 from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
 from .fingerprints import load_fingerprint_repository
 from .json_io import load_model_file, read_bounded_text, strict_json_loads
+from .live_probes import (
+    CadenceProbeEvidence,
+    GameBrowserProbeEvidence,
+    IntegratedGameRecord,
+    LiveProbeEvidence,
+)
+from .live_probes.cadence_commands import register_cadence_command
+from .live_probes.game_browser_commands import register_game_browser_command
+from .live_probes.integrated_game_commands import register_integrated_game_commands
 from .matcher import match_observation
 from .measurement.metric_registry import (
     DEFAULT_METRIC_REGISTRY_PATH,
@@ -59,7 +70,13 @@ from .observability import (
     StageTraceSummary,
     StageTraceSummaryV2,
 )
+from .passive_gating import PassiveBaseline, PassiveGatePolicy, PassiveGateResult, PassiveReplay
+from .passive_gating.commands import register_passive_commands
 from .pipeline import build_observation_record, canonical_json
+from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
+from .profile_matching.commands import register_profile_matching_commands
+from .profiles import ProfilePolicy, ProfileSnapshot
+from .profiles.commands import register_profile_commands
 from .scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .scenarios.campaign import (
     CampaignIndex,
@@ -76,6 +93,21 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "integrated-game-cohort-record-v1": IntegratedGameRecord,
+    "game-browser-probe-evidence-v1": GameBrowserProbeEvidence,
+    "cadence-probe-evidence-v1": CadenceProbeEvidence,
+    "live-probe-evidence-v1": LiveProbeEvidence,
+    "passive-gate-policy-v1": PassiveGatePolicy,
+    "passive-baseline-v1": PassiveBaseline,
+    "passive-replay-v1": PassiveReplay,
+    "passive-gate-result-v1": PassiveGateResult,
+    "profile-match-policy-v1": ProfileMatchPolicy,
+    "profile-match-result-v1": ProfileMatchResult,
+    "profile-evaluation-result-v1": ProfileEvaluationResult,
+    "profile-policy-v1": ProfilePolicy,
+    "profile-snapshot-v1": ProfileSnapshot,
+    "calibration-dataset-v1": CalibrationDataset,
+    "calibration-report-v1": CalibrationReport,
     "stage-trace-record-v2": StageTraceRecordV2,
     "stage-trace-summary-v2": StageTraceSummaryV2,
     "n5-campaign-report-v1": CampaignReport,
@@ -121,6 +153,21 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "integrated-game-cohort-record-v1",
+        "game-browser-probe-evidence-v1",
+        "cadence-probe-evidence-v1",
+        "live-probe-evidence-v1",
+        "passive-gate-policy-v1",
+        "passive-baseline-v1",
+        "passive-replay-v1",
+        "passive-gate-result-v1",
+        "profile-match-policy-v1",
+        "profile-match-result-v1",
+        "profile-evaluation-result-v1",
+        "profile-policy-v1",
+        "profile-snapshot-v1",
+        "calibration-dataset-v1",
+        "calibration-report-v1",
         "experiment-manifest-v2",
         "experiment-phase-evidence-v2",
         "experiment-result-v2",
@@ -151,6 +198,21 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            IntegratedGameRecord,
+            GameBrowserProbeEvidence,
+            CadenceProbeEvidence,
+            LiveProbeEvidence,
+            PassiveGatePolicy,
+            PassiveBaseline,
+            PassiveReplay,
+            PassiveGateResult,
+            ProfileMatchPolicy,
+            ProfileMatchResult,
+            ProfileEvaluationResult,
+            ProfilePolicy,
+            ProfileSnapshot,
+            CalibrationDataset,
+            CalibrationReport,
             StageTraceRecordV2,
             StageTraceSummaryV2,
             StageTraceRecord,
@@ -273,12 +335,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser = argparse.ArgumentParser(
         prog="latency-fingerprint",
-        description="Offline P0 analysis, N1 diagnostics, N2 adoption and N3 analytics.",
+        description=("Offline analysis, evidence inspection, profile matching and passive replay."),
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate = subparsers.add_parser(
-        "validate", help="validate a P0/N2/N3 root record or N1 registry"
+        "validate", help="validate a supported root record or metric registry"
     )
     validate.add_argument("path", type=Path)
     validate.set_defaults(handler=_validate)
@@ -378,6 +440,13 @@ def build_parser() -> argparse.ArgumentParser:
     register_experiment_commands(subparsers)
     register_campaign_command(subparsers)
     register_overhead_command(subparsers)
+    register_calibration_command(subparsers)
+    register_profile_commands(subparsers)
+    register_profile_matching_commands(subparsers)
+    register_passive_commands(subparsers)
+    register_cadence_command(subparsers)
+    register_game_browser_command(subparsers)
+    register_integrated_game_commands(subparsers)
     return parser
 
 

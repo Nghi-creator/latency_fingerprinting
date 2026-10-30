@@ -1,0 +1,677 @@
+{
+  "$defs": {
+    "PolicyBaseline": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "const": "median_of_group_medians",
+          "title": "Center",
+          "type": "string"
+        },
+        "center_strictly_positive": {
+          "title": "Center Strictly Positive",
+          "type": "boolean"
+        },
+        "confirmed_healthy_only": {
+          "title": "Confirmed Healthy Only",
+          "type": "boolean"
+        },
+        "minimum_availability": {
+          "$ref": "#/$defs/PolicyBaselineMinimumAvailability"
+        },
+        "minimum_contributing_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Contributing Groups",
+          "type": "integer"
+        },
+        "minimum_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Groups",
+          "type": "integer"
+        },
+        "spread": {
+          "const": "raw_median_absolute_deviation",
+          "title": "Spread",
+          "type": "string"
+        },
+        "training_only": {
+          "title": "Training Only",
+          "type": "boolean"
+        },
+        "weighting": {
+          "const": "one_connected_source_group_one_vote",
+          "title": "Weighting",
+          "type": "string"
+        },
+        "zero_spread_allowed": {
+          "title": "Zero Spread Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "center",
+        "center_strictly_positive",
+        "confirmed_healthy_only",
+        "minimum_availability",
+        "minimum_contributing_groups",
+        "minimum_groups",
+        "spread",
+        "training_only",
+        "weighting",
+        "zero_spread_allowed"
+      ],
+      "title": "PolicyBaseline",
+      "type": "object"
+    },
+    "PolicyBaselineMinimumAvailability": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyBaselineMinimumAvailability",
+      "type": "object"
+    },
+    "PolicyClock": {
+      "additionalProperties": false,
+      "properties": {
+        "cross_domain_rebase": {
+          "title": "Cross Domain Rebase",
+          "type": "boolean"
+        },
+        "expiration": {
+          "const": "explicit_same_stream_tick",
+          "title": "Expiration",
+          "type": "string"
+        },
+        "generation": {
+          "const": "externally_declared",
+          "title": "Generation",
+          "type": "string"
+        },
+        "integral_milliseconds_only": {
+          "title": "Integral Milliseconds Only",
+          "type": "boolean"
+        },
+        "maximum_elapsed_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Elapsed Ms",
+          "type": "integer"
+        },
+        "monotonic_guarantee": {
+          "title": "Monotonic Guarantee",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cross_domain_rebase",
+        "expiration",
+        "generation",
+        "integral_milliseconds_only",
+        "maximum_elapsed_ms",
+        "monotonic_guarantee"
+      ],
+      "title": "PolicyClock",
+      "type": "object"
+    },
+    "PolicyEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_tuning": {
+          "title": "Automatic Tuning",
+          "type": "boolean"
+        },
+        "empirically_calibrated": {
+          "title": "Empirically Calibrated",
+          "type": "boolean"
+        },
+        "live_execution": {
+          "title": "Live Execution",
+          "type": "boolean"
+        },
+        "trust_promotion": {
+          "title": "Trust Promotion",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "automatic_tuning",
+        "empirically_calibrated",
+        "live_execution",
+        "trust_promotion"
+      ],
+      "title": "PolicyEvaluation",
+      "type": "object"
+    },
+    "PolicyGates": {
+      "additionalProperties": false,
+      "properties": {
+        "low_maximum_ratio": {
+          "$ref": "#/$defs/PolicyGatesLowMaximumRatio"
+        },
+        "maximum_proposals": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Proposals",
+          "type": "integer"
+        },
+        "minimum_bad_duration_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Bad Duration Ms",
+          "type": "integer"
+        },
+        "minimum_bad_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Bad Windows",
+          "type": "integer"
+        },
+        "minimum_good_duration_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Good Duration Ms",
+          "type": "integer"
+        },
+        "minimum_good_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Good Windows",
+          "type": "integer"
+        },
+        "proposal_cooldown_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Proposal Cooldown Ms",
+          "type": "integer"
+        },
+        "recovered_minimum_ratio": {
+          "$ref": "#/$defs/PolicyGatesRecoveredMinimumRatio"
+        },
+        "stale_after_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Stale After Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "low_maximum_ratio",
+        "maximum_proposals",
+        "minimum_bad_duration_ms",
+        "minimum_bad_windows",
+        "minimum_good_duration_ms",
+        "minimum_good_windows",
+        "proposal_cooldown_ms",
+        "recovered_minimum_ratio",
+        "stale_after_ms"
+      ],
+      "title": "PolicyGates",
+      "type": "object"
+    },
+    "PolicyGatesLowMaximumRatio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyGatesLowMaximumRatio",
+      "type": "object"
+    },
+    "PolicyGatesRecoveredMinimumRatio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "PolicyGatesRecoveredMinimumRatio",
+      "type": "object"
+    },
+    "PolicyLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum_baseline_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Baseline Windows",
+          "type": "integer"
+        },
+        "maximum_depth": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Depth",
+          "type": "integer"
+        },
+        "maximum_entries": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Entries",
+          "type": "integer"
+        },
+        "maximum_events": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Events",
+          "type": "integer"
+        },
+        "maximum_group_entry_references": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Group Entry References",
+          "type": "integer"
+        },
+        "maximum_groups": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Groups",
+          "type": "integer"
+        },
+        "maximum_replay_windows": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Replay Windows",
+          "type": "integer"
+        },
+        "maximum_root_bytes": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Root Bytes",
+          "type": "integer"
+        },
+        "maximum_strata": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Strata",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maximum_baseline_windows",
+        "maximum_depth",
+        "maximum_entries",
+        "maximum_events",
+        "maximum_group_entry_references",
+        "maximum_groups",
+        "maximum_replay_windows",
+        "maximum_root_bytes",
+        "maximum_strata"
+      ],
+      "title": "PolicyLimits",
+      "type": "object"
+    },
+    "PolicyMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_unit": {
+          "const": "fps",
+          "title": "Canonical Unit",
+          "type": "string"
+        },
+        "clock_basis": {
+          "const": "source_elapsed_ms",
+          "title": "Clock Basis",
+          "type": "string"
+        },
+        "kind": {
+          "const": "gauge",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "const": "client.received_fps",
+          "title": "Name",
+          "type": "string"
+        },
+        "primary_aggregation": {
+          "const": "median",
+          "title": "Primary Aggregation",
+          "type": "string"
+        },
+        "raw_fields": {
+          "items": {
+            "const": "fps",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Raw Fields",
+          "type": "array"
+        },
+        "semantic_version": {
+          "const": "1.0.0",
+          "title": "Semantic Version",
+          "type": "string"
+        },
+        "source": {
+          "const": "browser_webrtc",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "canonical_unit",
+        "clock_basis",
+        "kind",
+        "name",
+        "primary_aggregation",
+        "raw_fields",
+        "semantic_version",
+        "source"
+      ],
+      "title": "PolicyMetric",
+      "type": "object"
+    },
+    "PolicyQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "imputation": {
+          "title": "Imputation",
+          "type": "null"
+        },
+        "maximum_window_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Maximum Window Ms",
+          "type": "integer"
+        },
+        "minimum_usable_samples": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Usable Samples",
+          "type": "integer"
+        },
+        "minimum_window_ms": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "title": "Minimum Window Ms",
+          "type": "integer"
+        },
+        "role": {
+          "const": "analytical_candidate",
+          "title": "Role",
+          "type": "string"
+        },
+        "summary_status": {
+          "const": "complete",
+          "title": "Summary Status",
+          "type": "string"
+        },
+        "support": {
+          "const": "supported",
+          "title": "Support",
+          "type": "string"
+        },
+        "temporal_coverage_claim": {
+          "title": "Temporal Coverage Claim",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "imputation",
+        "maximum_window_ms",
+        "minimum_usable_samples",
+        "minimum_window_ms",
+        "role",
+        "summary_status",
+        "support",
+        "temporal_coverage_claim"
+      ],
+      "title": "PolicyQuality",
+      "type": "object"
+    },
+    "PolicyQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "cause_label": {
+          "title": "Cause Label",
+          "type": "null"
+        },
+        "ignored_n6_reasons": {
+          "items": {
+            "const": "label_unverified",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Ignored N6 Reasons",
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "enum": [
+              "validation",
+              "final_test"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "title": "Modes",
+          "type": "array"
+        },
+        "profile_hypotheses": {
+          "const": "unavailable",
+          "title": "Profile Hypotheses",
+          "type": "string"
+        },
+        "source_overlap_scope": {
+          "const": "all_contributing_baseline_groups",
+          "title": "Source Overlap Scope",
+          "type": "string"
+        },
+        "use_labels": {
+          "title": "Use Labels",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cause_label",
+        "ignored_n6_reasons",
+        "modes",
+        "profile_hypotheses",
+        "source_overlap_scope",
+        "use_labels"
+      ],
+      "title": "PolicyQuery",
+      "type": "object"
+    },
+    "PolicyRegistry": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "const": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content_hash",
+        "registry_version"
+      ],
+      "title": "PolicyRegistry",
+      "type": "object"
+    },
+    "PolicyScope": {
+      "additionalProperties": false,
+      "properties": {
+        "context_excluded_fields": {
+          "items": {
+            "enum": [
+              "context_id",
+              "node_id",
+              "network_scenario"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "title": "Context Excluded Fields",
+          "type": "array"
+        },
+        "fields": {
+          "items": {
+            "enum": [
+              "registry",
+              "provenance",
+              "capture_method",
+              "clock",
+              "source_format",
+              "context",
+              "effective_settings"
+            ],
+            "type": "string"
+          },
+          "maxItems": 7,
+          "minItems": 7,
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "context_excluded_fields",
+        "fields"
+      ],
+      "title": "PolicyScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assurance": {
+      "const": "software_provisional_declared_elapsed_not_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "baseline": {
+      "$ref": "#/$defs/PolicyBaseline"
+    },
+    "calibration_method_release": {
+      "const": "n6-calibration-evidence-v1",
+      "title": "Calibration Method Release",
+      "type": "string"
+    },
+    "clock": {
+      "$ref": "#/$defs/PolicyClock"
+    },
+    "content_hash": {
+      "const": "sha256:07beb342e6ae7387a6edb2235ba0b26a5122fb3fffb5f83b7da2e7109f48a5ca",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evaluation": {
+      "$ref": "#/$defs/PolicyEvaluation"
+    },
+    "gates": {
+      "$ref": "#/$defs/PolicyGates"
+    },
+    "limits": {
+      "$ref": "#/$defs/PolicyLimits"
+    },
+    "method_release": {
+      "const": "n9-passive-gating-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "metric": {
+      "$ref": "#/$defs/PolicyMetric"
+    },
+    "operating_mode": {
+      "const": "offline_provisional",
+      "title": "Operating Mode",
+      "type": "string"
+    },
+    "policy_id": {
+      "const": "passive-gate-policy-07beb342e6ae7387a6edb2235ba0b26a5122fb3fffb5f83b7da2e7109f48a5ca",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "quality": {
+      "$ref": "#/$defs/PolicyQuality"
+    },
+    "query": {
+      "$ref": "#/$defs/PolicyQuery"
+    },
+    "registry": {
+      "$ref": "#/$defs/PolicyRegistry"
+    },
+    "schema_version": {
+      "const": "passive-gate-policy-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/PolicyScope"
+    }
+  },
+  "required": [
+    "assurance",
+    "baseline",
+    "calibration_method_release",
+    "clock",
+    "content_hash",
+    "evaluation",
+    "gates",
+    "limits",
+    "method_release",
+    "metric",
+    "operating_mode",
+    "policy_id",
+    "quality",
+    "query",
+    "registry",
+    "schema_version",
+    "scope"
+  ],
+  "title": "PassiveGatePolicy",
+  "type": "object"
+}

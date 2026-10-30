@@ -4,12 +4,15 @@ Imports remain available from :mod:`latency_fingerprinting.models` even though
 the implementation is organized into focused modules.
 """
 
+from ..calibration import CalibrationDataset, CalibrationReport
 from ..observability import (
     StageTraceRecord,
     StageTraceRecordV2,
     StageTraceSummary,
     StageTraceSummaryV2,
 )
+from ..profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
+from ..profiles import ProfilePolicy, ProfileSnapshot
 from ..scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
 from .common import (
     CONTRACT_VERSION,
@@ -213,3 +216,24 @@ __all__ += ["StageTraceRecord", "StageTraceSummary", "StageTraceRecordV2", "Stag
 
 
 __all__ += ["ExperimentManifest", "ExperimentPhaseEvidence", "ExperimentResult"]
+
+
+__all__ += ["CalibrationDataset", "CalibrationReport"]
+
+
+__all__ += ["ProfilePolicy", "ProfileSnapshot"]
+
+
+__all__ += ["ProfileMatchPolicy", "ProfileMatchResult", "ProfileEvaluationResult"]
+
+_PASSIVE_ROOTS = ("PassiveGatePolicy", "PassiveBaseline", "PassiveReplay", "PassiveGateResult")
+__all__ += list(_PASSIVE_ROOTS)
+
+
+def __getattr__(name):
+    # N9 retains N2 windows; resolve its additive exports after model bootstrap.
+    if name in _PASSIVE_ROOTS:
+        from .. import passive_gating
+
+        return getattr(passive_gating, name)
+    raise AttributeError(name)

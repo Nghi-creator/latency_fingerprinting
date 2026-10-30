@@ -1,0 +1,25 @@
+{
+  "format": "n6-design-vectors-v1",
+  "purpose": "Independent group-identity oracles; not a production dataset or released runtime fixture.",
+  "vectors": [
+    {
+      "canonical_sha256": "sha256:c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+      "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+      "source_ids": [
+        "source-a",
+        "source-b"
+      ]
+    },
+    {
+      "canonical_sha256": "sha256:e250939af3c240ca702c3b72b606719e5aa037af411c44983212c0b3d2a35c3d",
+      "group_id": "group-e250939af3c240ca702c3b72b606719e5aa037af411c44983212c0b3d2a35c3d",
+      "source_ids": [
+        "source-a",
+        "source-b",
+        "source-c",
+        "source-d",
+        "source-e"
+      ]
+    }
+  ]
+}

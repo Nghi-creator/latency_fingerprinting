@@ -47,8 +47,10 @@ latency-fingerprint ingest-pixelated path/to/bundle.tar \
   --context path/to/context.json
 ```
 
-Commands emit JSON to stdout and diagnostics to stderr. Use
-`latency-fingerprint --help` for the complete command list.
+Output is command-specific: the validation and matching examples above emit
+JSON to stdout; calibration, profile and passive-gate commands write artifacts
+through required `--output` paths. Diagnostics go to stderr. Use
+`latency-fingerprint --help` and the command guides for exact output behavior.
 
 ## Documentation
 
@@ -68,9 +70,22 @@ Start with the [documentation index](docs/README.md) and
 - [Scenario contracts](docs/scenarios/N5_EXPERIMENT_CONTRACT.md) and
   [campaign workflow](docs/scenarios/N5_CAMPAIGN_WORKFLOW.md) describe experiment
   bundles and detached effect/cleanup verification.
+- [Calibration inspection](docs/calibration/N6_INSPECTION.md) verifies linked
+  source evidence, labels, independent splits and retained eligibility decisions.
+- [Robust profiles](docs/profiles/N7_COMMANDS.md) fit labelled training
+  responses with explicit immutable lifecycle revisions.
+- [Profile matching and evaluation](docs/profile_matching/N8_COMMANDS.md) compare
+  held-out evidence and evaluate whole-source-group refits.
+- [Passive gating](docs/passive_gating/N9_COMMANDS.md) fits healthy FPS baselines
+  and replays degradation, recovery, stale evidence and bounded probe proposals.
+- [Fixture inventory and maintenance](fixtures/README.md) explains the regression
+  families, release pins and why complete retained outcomes are stored.
 - [Controlled-run processing](experiments/CONTROLLED_RUN_PROCESSING.md) explains
   how to process recorded experiments. Sanitized experimental artifacts remain
   under `experiments/`; synthetic regression inputs remain under `fixtures/`.
+- [Live-probe evidence](docs/live_probes/N10_MODELS.md) validates immutable offline
+  declarations and reconstructs counter/setting observations while retaining
+  unqualified capability and unverified receiver continuity.
 
 P0 and v2 are separate contracts and matching paths. Existing cumulative means and
 proxies are not direct stage latency measurements. The core does not run live

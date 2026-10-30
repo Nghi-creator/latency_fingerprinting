@@ -1,0 +1,558 @@
+{
+  "$defs": {
+    "ProfileMatchPolicyEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "const": "correct_groups_over_all_known_truth_groups",
+          "title": "Accuracy",
+          "type": "string"
+        },
+        "automatic_tuning": {
+          "title": "Automatic Tuning",
+          "type": "boolean"
+        },
+        "fold_candidate_inventory": {
+          "const": "original_training_keys",
+          "title": "Fold Candidate Inventory",
+          "type": "string"
+        },
+        "group_prediction": {
+          "const": "unanimous_nonduplicate_response_decisions",
+          "title": "Group Prediction",
+          "type": "string"
+        },
+        "modes": {
+          "items": {
+            "enum": [
+              "validation",
+              "final_test",
+              "leave_training_group_out"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Modes",
+          "type": "array"
+        },
+        "refit": {
+          "const": "remove_whole_component_then_n7_statistics",
+          "title": "Refit",
+          "type": "string"
+        },
+        "trust_promotion": {
+          "title": "Trust Promotion",
+          "type": "boolean"
+        },
+        "truth_coverage": {
+          "const": "known_truth_groups_over_all_response_groups",
+          "title": "Truth Coverage",
+          "type": "string"
+        },
+        "truth_invalid_reasons": {
+          "items": {
+            "enum": [
+              "label_unverified",
+              "effect_unverified",
+              "binding_unverified"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Truth Invalid Reasons",
+          "type": "array"
+        },
+        "unknown_rate": {
+          "const": "unknown_groups_over_all_response_groups",
+          "title": "Unknown Rate",
+          "type": "string"
+        },
+        "voting_unit": {
+          "const": "one_n6_source_group",
+          "title": "Voting Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "accuracy",
+        "automatic_tuning",
+        "fold_candidate_inventory",
+        "group_prediction",
+        "modes",
+        "refit",
+        "trust_promotion",
+        "truth_coverage",
+        "truth_invalid_reasons",
+        "unknown_rate",
+        "voting_unit"
+      ],
+      "title": "ProfileMatchPolicyEvaluation",
+      "type": "object"
+    },
+    "ProfileMatchPolicyGates": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum_best_distance": {
+          "title": "Maximum Best Distance",
+          "type": "number"
+        },
+        "minimum_absolute_margin": {
+          "title": "Minimum Absolute Margin",
+          "type": "number"
+        },
+        "minimum_common_coverage": {
+          "$ref": "#/$defs/ProfileMatchPolicyGatesMinimumCommonCoverage"
+        },
+        "minimum_common_features": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Minimum Common Features",
+          "type": "integer"
+        },
+        "minimum_scored_labels": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Minimum Scored Labels",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maximum_best_distance",
+        "minimum_absolute_margin",
+        "minimum_common_coverage",
+        "minimum_common_features",
+        "minimum_scored_labels"
+      ],
+      "title": "ProfileMatchPolicyGates",
+      "type": "object"
+    },
+    "ProfileMatchPolicyGatesMinimumCommonCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "title": "ProfileMatchPolicyGatesMinimumCommonCoverage",
+      "type": "object"
+    },
+    "ProfileMatchPolicyLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum_candidates": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Candidates",
+          "type": "integer"
+        },
+        "maximum_entries": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Entries",
+          "type": "integer"
+        },
+        "maximum_features": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Features",
+          "type": "integer"
+        },
+        "maximum_json_bytes": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Json Bytes",
+          "type": "integer"
+        },
+        "maximum_json_depth": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Json Depth",
+          "type": "integer"
+        },
+        "maximum_refits": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Refits",
+          "type": "integer"
+        },
+        "maximum_total_candidate_rows": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Total Candidate Rows",
+          "type": "integer"
+        },
+        "maximum_total_feature_rows": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Total Feature Rows",
+          "type": "integer"
+        },
+        "maximum_total_refit_candidates": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Total Refit Candidates",
+          "type": "integer"
+        },
+        "maximum_total_refit_entry_references": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Total Refit Entry References",
+          "type": "integer"
+        },
+        "maximum_total_refit_group_values": {
+          "maximum": 10485760,
+          "minimum": 0,
+          "title": "Maximum Total Refit Group Values",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maximum_candidates",
+        "maximum_entries",
+        "maximum_features",
+        "maximum_json_bytes",
+        "maximum_json_depth",
+        "maximum_refits",
+        "maximum_total_candidate_rows",
+        "maximum_total_feature_rows",
+        "maximum_total_refit_candidates",
+        "maximum_total_refit_entry_references",
+        "maximum_total_refit_group_values"
+      ],
+      "title": "ProfileMatchPolicyLimits",
+      "type": "object"
+    },
+    "ProfileMatchPolicyRegistry": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "const": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "latency-metrics-v2.0.0",
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "content_hash",
+        "registry_version"
+      ],
+      "title": "ProfileMatchPolicyRegistry",
+      "type": "object"
+    },
+    "ProfileMatchPolicyScoring": {
+      "additionalProperties": false,
+      "properties": {
+        "absolute_deviation": {
+          "const": "exact_binary64_difference_round_once",
+          "title": "Absolute Deviation",
+          "type": "string"
+        },
+        "computed_zero": {
+          "const": "positive_zero",
+          "title": "Computed Zero",
+          "type": "string"
+        },
+        "distance": {
+          "const": "positive_weight_mean_absolute_standardized_deviation",
+          "title": "Distance",
+          "type": "string"
+        },
+        "finite_arithmetic": {
+          "const": "reject_unrepresentable",
+          "title": "Finite Arithmetic",
+          "type": "string"
+        },
+        "imputation": {
+          "title": "Imputation",
+          "type": "null"
+        },
+        "label_aggregation": {
+          "const": "one_candidate_per_exact_partition_label",
+          "title": "Label Aggregation",
+          "type": "string"
+        },
+        "margin": {
+          "const": "rounded_score_difference_round_once",
+          "title": "Margin",
+          "type": "string"
+        },
+        "nonzero_to_zero": {
+          "const": "reject",
+          "title": "Nonzero To Zero",
+          "type": "string"
+        },
+        "rank_order": {
+          "items": {
+            "enum": [
+              "distance",
+              "label",
+              "profile_id"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Rank Order",
+          "type": "array"
+        },
+        "scale": {
+          "const": "n7_raw_mad",
+          "title": "Scale",
+          "type": "string"
+        },
+        "scale_floor": {
+          "title": "Scale Floor",
+          "type": "null"
+        },
+        "shared_features": {
+          "const": "intersection_across_all_prequalified_labels",
+          "title": "Shared Features",
+          "type": "string"
+        },
+        "standardized_deviation": {
+          "const": "exact_binary64_ratio_round_once",
+          "title": "Standardized Deviation",
+          "type": "string"
+        },
+        "weighted_mean": {
+          "const": "exact_binary64_weighted_sum_and_division_round_once",
+          "title": "Weighted Mean",
+          "type": "string"
+        }
+      },
+      "required": [
+        "absolute_deviation",
+        "computed_zero",
+        "distance",
+        "finite_arithmetic",
+        "imputation",
+        "label_aggregation",
+        "margin",
+        "nonzero_to_zero",
+        "rank_order",
+        "scale",
+        "scale_floor",
+        "shared_features",
+        "standardized_deviation",
+        "weighted_mean"
+      ],
+      "title": "ProfileMatchPolicyScoring",
+      "type": "object"
+    },
+    "ProfileMatchPolicySource": {
+      "additionalProperties": false,
+      "properties": {
+        "compatibility": {
+          "const": "n6_exact_partition_v1",
+          "title": "Compatibility",
+          "type": "string"
+        },
+        "exclude_duplicates": {
+          "title": "Exclude Duplicates",
+          "type": "boolean"
+        },
+        "label_use": {
+          "const": "evaluation_truth_only",
+          "title": "Label Use",
+          "type": "string"
+        },
+        "overlap": {
+          "const": "whole_n6_connected_component_and_receipts",
+          "title": "Overlap",
+          "type": "string"
+        },
+        "query_roles": {
+          "items": {
+            "enum": [
+              "validation",
+              "final_test"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "title": "Query Roles",
+          "type": "array"
+        },
+        "require_n6_eligible": {
+          "title": "Require N6 Eligible",
+          "type": "boolean"
+        },
+        "scope": {
+          "const": "one_fresh_n6_dataset",
+          "title": "Scope",
+          "type": "string"
+        },
+        "snapshot_selection": {
+          "const": "one_explicit_revision",
+          "title": "Snapshot Selection",
+          "type": "string"
+        },
+        "snapshot_state": {
+          "const": "provisional",
+          "title": "Snapshot State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "compatibility",
+        "exclude_duplicates",
+        "label_use",
+        "overlap",
+        "query_roles",
+        "require_n6_eligible",
+        "scope",
+        "snapshot_selection",
+        "snapshot_state"
+      ],
+      "title": "ProfileMatchPolicySource",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "calibration_method_release": {
+      "const": "n6-calibration-evidence-v1",
+      "title": "Calibration Method Release",
+      "type": "string"
+    },
+    "content_hash": {
+      "const": "sha256:b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evaluation": {
+      "$ref": "#/$defs/ProfileMatchPolicyEvaluation"
+    },
+    "feature_names": {
+      "items": {
+        "enum": [
+          "client.available_incoming_bitrate_kbps",
+          "client.decode_time_mean_ms",
+          "client.frames_decoded_rate_fps",
+          "client.frames_dropped_rate_fps",
+          "client.freeze_count_rate_per_min",
+          "client.freeze_duration_rate_ms_per_s",
+          "client.jitter_buffer_delay_mean_ms",
+          "client.received_bitrate_kbps",
+          "client.received_fps",
+          "encoder.frames_dropped_rate_fps",
+          "encoder.frames_in_rate_fps",
+          "encoder.frames_out_rate_fps",
+          "encoder.queue_level_buffers",
+          "host.camera_cpu_percent",
+          "host.camera_rss_mib",
+          "host.game_cpu_percent",
+          "host.game_rss_mib",
+          "host.node_cpu_percent",
+          "host.node_rss_mib",
+          "transport.jitter_ms",
+          "transport.packets_lost_rate_per_s",
+          "transport.round_trip_time_ms"
+        ],
+        "type": "string"
+      },
+      "maxItems": 22,
+      "minItems": 22,
+      "title": "Feature Names",
+      "type": "array"
+    },
+    "gates": {
+      "$ref": "#/$defs/ProfileMatchPolicyGates"
+    },
+    "limits": {
+      "$ref": "#/$defs/ProfileMatchPolicyLimits"
+    },
+    "method_release": {
+      "const": "n8-profile-matching-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "operating_mode": {
+      "const": "offline_provisional",
+      "title": "Operating Mode",
+      "type": "string"
+    },
+    "parameter_provenance": {
+      "const": "software_provisional",
+      "title": "Parameter Provenance",
+      "type": "string"
+    },
+    "policy_id": {
+      "const": "profile-match-policy-b296df5c172d19e9470f64b3546fcb7af54c6623dd5951bc0c652a94e87b95db",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "policy_version": {
+      "const": "1.0.0",
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "profile_method_release": {
+      "const": "n7-profile-statistics-v1",
+      "title": "Profile Method Release",
+      "type": "string"
+    },
+    "profile_policy_hash": {
+      "const": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+      "title": "Profile Policy Hash",
+      "type": "string"
+    },
+    "registry": {
+      "$ref": "#/$defs/ProfileMatchPolicyRegistry"
+    },
+    "response_policy_hash": {
+      "const": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+      "title": "Response Policy Hash",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "profile-match-policy-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scoring": {
+      "$ref": "#/$defs/ProfileMatchPolicyScoring"
+    },
+    "source": {
+      "$ref": "#/$defs/ProfileMatchPolicySource"
+    }
+  },
+  "required": [
+    "calibration_method_release",
+    "content_hash",
+    "evaluation",
+    "feature_names",
+    "gates",
+    "limits",
+    "method_release",
+    "operating_mode",
+    "parameter_provenance",
+    "policy_id",
+    "policy_version",
+    "profile_method_release",
+    "profile_policy_hash",
+    "registry",
+    "response_policy_hash",
+    "schema_version",
+    "scoring",
+    "source"
+  ],
+  "title": "ProfileMatchPolicy",
+  "type": "object"
+}

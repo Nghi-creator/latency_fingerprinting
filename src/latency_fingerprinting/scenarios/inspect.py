@@ -125,42 +125,47 @@ def inspect_experiment_bundle(path: Path) -> InspectedExperiment:
     """Read only, no extraction/runtime access; errors never expose supplied data."""
     try:
         files = read_members(path)
-        from .pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
-        from .pacing_effect import recompute_pacing
-
-        declaration = decode_trace_json(files["experiment-manifest.json"])
-        if not isinstance(declaration, dict):
-            raise ValueError("experiment manifest must be an object")
-        pacing = declaration.get("schema_version") == "experiment-manifest-v2"
-        manifest_class = ExperimentManifestV2 if pacing else ExperimentManifest
-        result_class = ExperimentResultV2 if pacing else ExperimentResult
-        manifest = manifest_class.model_validate(declaration)
-        result = result_class.model_validate_json(files["experiment-result.json"])
-        if result.manifest_sha256 != hashlib.sha256(files["experiment-manifest.json"]).hexdigest():
-            raise ValueError("manifest checksum mismatch")
-        if set(files) != ROOTS | {a.file_name for a in result.artifacts}:
-            raise ValueError("experiment membership mismatch")
-        classes = {
-            "phase_evidence": ExperimentPhaseEvidenceV2 if pacing else ExperimentPhaseEvidence,
-            "stage_trace": StageTraceRecord,
-            "observation_window": ObservationWindowV2,
-        }
-        models = []
-        for artifact in result.artifacts:
-            data = files[artifact.file_name]
-            if len(data) != artifact.bytes or hashlib.sha256(data).hexdigest() != artifact.sha256:
-                raise ValueError("artifact checksum mismatch")
-            models.append(classes[artifact.role].model_validate(decode_trace_json(data)))
-
-        def calculator(manifest, result, evidence):
-            traces = {
-                ref.phase: model
-                for ref, model in zip(result.artifacts, models, strict=True)
-                if ref.role == "stage_trace"
-            }
-            return recompute_pacing(manifest, result, evidence, traces)
-
-        effect = _linked(manifest, result, models, calculator if pacing else recompute_effect)
-        return InspectedExperiment(manifest, result, effect, tuple(models))
+        return _inspect_experiment_members(files)
     except (OSError, ValueError, KeyError, EOFError, tarfile.TarError, zlib.error):
         raise ValueError("invalid_experiment_bundle") from None
+
+
+def _inspect_experiment_members(files) -> InspectedExperiment:
+    """Validate an already bounded, pinned member snapshot without reopening paths."""
+    from .pacing import ExperimentManifestV2, ExperimentPhaseEvidenceV2, ExperimentResultV2
+    from .pacing_effect import recompute_pacing
+
+    declaration = decode_trace_json(files["experiment-manifest.json"])
+    if not isinstance(declaration, dict):
+        raise ValueError("experiment manifest must be an object")
+    pacing = declaration.get("schema_version") == "experiment-manifest-v2"
+    manifest_class = ExperimentManifestV2 if pacing else ExperimentManifest
+    result_class = ExperimentResultV2 if pacing else ExperimentResult
+    manifest = manifest_class.model_validate(declaration)
+    result = result_class.model_validate_json(files["experiment-result.json"])
+    if result.manifest_sha256 != hashlib.sha256(files["experiment-manifest.json"]).hexdigest():
+        raise ValueError("manifest checksum mismatch")
+    if set(files) != ROOTS | {a.file_name for a in result.artifacts}:
+        raise ValueError("experiment membership mismatch")
+    classes = {
+        "phase_evidence": ExperimentPhaseEvidenceV2 if pacing else ExperimentPhaseEvidence,
+        "stage_trace": StageTraceRecord,
+        "observation_window": ObservationWindowV2,
+    }
+    models = []
+    for artifact in result.artifacts:
+        data = files[artifact.file_name]
+        if len(data) != artifact.bytes or hashlib.sha256(data).hexdigest() != artifact.sha256:
+            raise ValueError("artifact checksum mismatch")
+        models.append(classes[artifact.role].model_validate(decode_trace_json(data)))
+
+    def calculator(manifest, result, evidence):
+        traces = {
+            ref.phase: model
+            for ref, model in zip(result.artifacts, models, strict=True)
+            if ref.role == "stage_trace"
+        }
+        return recompute_pacing(manifest, result, evidence, traces)
+
+    effect = _linked(manifest, result, models, calculator if pacing else recompute_effect)
+    return InspectedExperiment(manifest, result, effect, tuple(models))

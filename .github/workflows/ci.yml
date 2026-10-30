@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
+    branches: [main, phase_2]
   pull_request:
     branches:
       - main
+      - phase_2
   workflow_dispatch:
 
 permissions:
@@ -15,34 +17,74 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  quality:
+  tests:
+    name: tests (Python ${{ matrix.python }}, shard ${{ matrix.shard }})
+    env:
+      PYTHONHASHSEED: "0"
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.11"]
+        shard: [0, 1, 2, 3]
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Set up Python 3.13
+      - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
-          python-version: "3.13"
+          python-version: ${{ matrix.python }}
           cache: pip
           cache-dependency-path: pyproject.toml
 
       - name: Install package and development dependencies
+        run: python -m pip install -e '.[dev]'
+
+      - name: Run test shard with branch coverage
+        timeout-minutes: 20
+        run: >-
+          python -m pytest -p tests.ci.sharding
+          --shard-index=${{ matrix.shard }} --shard-count=4
+          --cov --cov-branch --cov-report= --cov-fail-under=0 --durations=25
+
+      - name: Save shard coverage
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: coverage-${{ matrix.python }}-${{ matrix.shard }}
+          path: .coverage
+          include-hidden-files: true
+          overwrite: true
+          if-no-files-found: error
+          retention-days: 7
+
+  release-checks:
+    name: release checks (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.11"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package and development dependencies
+        run: python -m pip install -e '.[dev]'
+
+      - name: Lint and formatting
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
-
-      - name: Lint
-        run: ruff check .
-
-      - name: Check formatting
-        run: ruff format --check .
-
-      - name: Run tests
-        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
+          ruff check .
+          ruff format --check .
 
       - name: Reproduce pinned N4 stage traces and independent expectations
         run: |
@@ -51,6 +93,18 @@ jobs:
 
       - name: Reproduce pinned N5 experiments and independent expectations
         run: python -m tests.scenarios.check_reproduction
+
+      - name: Reproduce pinned N6 calibration evidence and independent expectations
+        run: python -m tests.calibration.check_reproduction
+
+      - name: Reproduce pinned N7 profiles and independent expectations
+        run: python -m tests.profiles.check_reproduction
+
+      - name: Reproduce pinned N8 matching and independent expectations
+        run: python -m tests.profile_matching.check_reproduction
+
+      - name: Reproduce pinned N9 passive gate and independent expectations
+        run: python -m tests.passive_gating.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
@@ -104,58 +158,65 @@ jobs:
             experiments/controlled-run-002/match-result.json \
             /tmp/controlled-run-002-match-result.json
 
-  python-311-compatibility:
+  coverage:
+    # Preserve the existing required check names and fail if any prerequisite fails.
+    name: ${{ matrix.check }}
+    if: ${{ always() }}
+    needs: [tests, release-checks]
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.13"
+            check: quality
+          - python: "3.11"
+            check: python-311-compatibility
     steps:
+      - name: Require every test shard and release check to pass
+        env:
+          TEST_RESULT: ${{ needs.tests.result }}
+          RELEASE_RESULT: ${{ needs.release-checks.result }}
+        run: |
+          test "$TEST_RESULT" = success
+          test "$RELEASE_RESULT" = success
+
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Set up minimum supported Python
+      - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python }}
           cache: pip
           cache-dependency-path: pyproject.toml
 
       - name: Install package and development dependencies
+        run: python -m pip install -e '.[dev]'
+
+      - name: Download this Python version's coverage shards
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          pattern: coverage-${{ matrix.python }}-*
+          path: coverage-data
+
+      - name: Validate all four branch coverage files
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
+          python - <<'PYCODE'
+          from pathlib import Path
+          from coverage import CoverageData
+          files = sorted(Path('coverage-data').glob('*/.coverage'))
+          if len(files) != 4:
+              raise SystemExit('expected all four coverage shards')
+          for path in files:
+              data = CoverageData(basename=str(path))
+              data.read()
+              if not data.has_arcs() or not data.measured_files():
+                  raise SystemExit(f'missing branch coverage data: {path}')
+          PYCODE
 
-      - name: Run minimum-version test suite
-        run: python -m pytest --cov=latency_fingerprinting --cov-branch --cov-report=term-missing --cov-fail-under=85
-
-      - name: Check generated schemas and canonical registry
+      - name: Combine coverage and enforce the full-suite floor
         run: |
-          python -m latency_fingerprinting export-schemas --output schemas --check
-          python -m latency_fingerprinting export-metric-registry --output schemas/metric-registry-v1.json --check
-
-      - name: Check N1 arithmetic fixture drift
-        run: >-
-          python -c "from tests.measurement.fixture_cases import fixture_drift;
-          assert fixture_drift() == {}"
-
-      - name: Reproduce pinned N1 registry and shadow report
-        run: python -m tests.measurement.check_reproduction
-
-      - name: Reproduce pinned N2 observation fixtures
-        run: python -m tests.observation_v2.check_reproduction
-
-      - name: Reproduce pinned N3 analytical fixtures and independent expectations
-        run: python -m tests.analytical.check_reproduction
-
-      - name: Reproduce pinned N4 stage traces and independent expectations
-        run: |
-          python -m tests.observability.check_reproduction
-          python -m tests.observability.check_browser_execution
-
-      - name: Reproduce pinned N5 experiments and independent expectations
-        run: python -m tests.scenarios.check_reproduction
-
-      - name: Verify isolated installed wheel
-        run: python -m tests.packaging.check_wheel
-
-      - name: Check installed dependencies
-        run: python -m pip check
+          python -m coverage combine coverage-data/*/.coverage
+          python -m coverage report --fail-under=85

@@ -79,6 +79,38 @@ IDs do not prove scientific independence or causality. See the
 [lifecycle](scenarios/N5_RUN_LIFECYCLE.md) and
 [campaign workflow](scenarios/N5_CAMPAIGN_WORKFLOW.md).
 
+## Calibration and profiles
+
+N6 inspects linked evidence, connected source groups and frozen split assignments.
+N7 fits training-only group medians and raw-MAD profiles, retaining exclusions and
+explicit immutable lifecycle revisions. Supported profiles remain provisional.
+See [calibration inspection](calibration/N6_INSPECTION.md) and
+[profile building](profiles/N7_COMMANDS.md).
+
+The additive [N8 matching method](profile_matching/N8_MATCH_CONTRACT.md) specifies
+offline label comparisons on a shared feature mask and whole-source-group refits
+for evaluation. [Standalone N8 models](profile_matching/N8_MODELS.md) reconstruct
+retained scoring/evaluation declarations. [Linked N8 operations](profile_matching/N8_COMMANDS.md)
+share one N6 inspection for fresh training verification and query extraction.
+Existing point-fingerprint matching keeps its separate behavior.
+
+The [N9 passive-gating design](passive_gating/N9_PASSIVE_CONTRACT.md) separates
+healthy training-group FPS baselines from a single declared elapsed replay stream.
+It implements persistence, recovery, explicit stale ticks and bounded offline probe
+proposals. Current N2 elapsed time is wall-clock-derived and has no monotonic
+guarantee. [Immutable N9 models and pure operations](passive_gating/N9_MODELS.md)
+reconstruct retained N6/N2 declarations. [Linked operations](passive_gating/N9_COMMANDS.md)
+use one N6 inspection to rebuild the exact baseline and verify source-extracted
+queries. Dedicated commands protect inputs and write private atomic output. The
+[frozen N9 corpus](passive_gating/N9_FIXTURES.md) verifies complete independent
+results and original source bytes in both CI Python jobs and the installed wheel.
+The [N10 forensic evidence root](live_probes/N10_MODELS.md) adds immutable,
+content-bound declarations and pure counter/setting inspection. It retains partial
+outcomes and unverified receiver/quality state without live authority.
+Live producer control remains outside the implemented boundary. The
+[N10 capability inventory](live_probes/N10_CAPABILITY_INVENTORY.md) separates
+read-only target property metadata from live application/restoration proof.
+
 ## File and numeric boundaries
 
 Public JSON readers reject duplicate keys, nonfinite numbers, excessive nesting,

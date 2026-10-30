@@ -1,0 +1,3958 @@
+{
+  "cases": {
+    "changed-center": {
+      "error": "invalid_profile_build",
+      "operation": "build",
+      "parent": "changed-center.json",
+      "source": "reviewed-roles"
+    },
+    "create": {
+      "expected_file": "draft.json",
+      "operation": "create"
+    },
+    "heldout-values": {
+      "error": "invalid_profile_build",
+      "operation": "build",
+      "parent": "heldout-values.json",
+      "source": "reviewed-roles"
+    },
+    "linked-baseline": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 1,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "baseline_only",
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": []
+      },
+      "operation": "build",
+      "source": "baseline"
+    },
+    "linked-confounded": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "confounded"
+    },
+    "linked-controlled-healthy": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 1,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "baseline_only",
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": []
+      },
+      "operation": "build",
+      "source": "controlled-healthy"
+    },
+    "linked-controlled-host": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "controlled-host"
+    },
+    "linked-controlled-pacing": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "render_capture_slowdown",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "controlled-pacing"
+    },
+    "linked-declared": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "declared"
+    },
+    "linked-duplicate": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 2,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 2,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          },
+          {
+            "entry_id": "entry-b",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded",
+              "duplicate_evidence"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "duplicate"
+    },
+    "linked-failed-effect": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "failed-effect"
+    },
+    "linked-missing": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 1,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "missing_measurements"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": []
+      },
+      "operation": "build",
+      "source": "missing"
+    },
+    "linked-mixed-settings": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 2,
+          "excluded_entries": 2,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 2,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "baseline_only",
+              "n6_excluded"
+            ],
+            "selected": false
+          },
+          {
+            "entry_id": "entry-b",
+            "feature_values": null,
+            "reason_codes": [
+              "baseline_only",
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": []
+      },
+      "operation": "build",
+      "source": "mixed-settings"
+    },
+    "linked-reviewed-response": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 1,
+          "heldout_response_entries": 0,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 1,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "reviewed-response"
+    },
+    "linked-reviewed-roles": {
+      "expected": {
+        "assurance": "software_provisional_external_reviews_not_authenticated",
+        "counts": {
+          "baseline_entries": 0,
+          "excluded_entries": 3,
+          "heldout_response_entries": 2,
+          "missing_entries": 0,
+          "mixed_label_groups": 0,
+          "retained_entries": 3,
+          "selected_entries": 0,
+          "selected_groups": 0
+        },
+        "inputs": [
+          {
+            "entry_id": "entry-a",
+            "feature_values": null,
+            "reason_codes": [
+              "n6_excluded"
+            ],
+            "selected": false
+          },
+          {
+            "entry_id": "entry-b",
+            "feature_values": null,
+            "reason_codes": [
+              "not_training",
+              "n6_excluded"
+            ],
+            "selected": false
+          },
+          {
+            "entry_id": "entry-c",
+            "feature_values": null,
+            "reason_codes": [
+              "not_training",
+              "n6_excluded"
+            ],
+            "selected": false
+          }
+        ],
+        "lifecycle": {
+          "operation": "build",
+          "parent_snapshot_id": null,
+          "reason_code": "no_supported_profiles",
+          "replacement_snapshot_id": null,
+          "review": null,
+          "state": "rejected"
+        },
+        "profiles": [
+          {
+            "active_feature_count": 0,
+            "active_feature_coverage": {
+              "denominator": 22,
+              "numerator": 0,
+              "value": 0.0
+            },
+            "features": {
+              "client.available_incoming_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.decode_time_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_decoded_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_count_rate_per_min": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.freeze_duration_rate_ms_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.jitter_buffer_delay_mean_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_bitrate_kbps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "client.received_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_dropped_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_in_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.frames_out_rate_fps": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "encoder.queue_level_buffers": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.camera_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.game_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_cpu_percent": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "host.node_rss_mib": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.jitter_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.packets_lost_rate_per_s": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              },
+              "transport.round_trip_time_ms": {
+                "availability": {
+                  "denominator": 0,
+                  "numerator": 0,
+                  "value": null
+                },
+                "center": null,
+                "contributing_groups": 0,
+                "dispersion": null,
+                "group_values": [],
+                "reason_codes": [
+                  "missing_measurements",
+                  "insufficient_group_support",
+                  "insufficient_availability"
+                ],
+                "state": "excluded",
+                "weight": 0.0
+              }
+            },
+            "label": "host_contention",
+            "reason_codes": [
+              "insufficient_training_groups",
+              "insufficient_active_features",
+              "insufficient_active_coverage"
+            ],
+            "selected_entry_ids": [],
+            "state": "rejected",
+            "training_group_ids": []
+          }
+        ]
+      },
+      "operation": "build",
+      "source": "reviewed-roles"
+    },
+    "linked-split-leakage": {
+      "error": "invalid_profile_build",
+      "operation": "build",
+      "source": "split-leakage"
+    },
+    "linked-wrong-binding": {
+      "error": "invalid_profile_build",
+      "operation": "build",
+      "source": "wrong-binding"
+    },
+    "model-availability-3of5": {
+      "expected_file": "availability-3of5.json",
+      "operation": "validate",
+      "snapshot": "availability-3of5.json"
+    },
+    "model-availability-4of5": {
+      "expected_file": "availability-4of5.json",
+      "operation": "validate",
+      "snapshot": "availability-4of5.json"
+    },
+    "model-coverage-16": {
+      "expected_file": "coverage-16.json",
+      "operation": "validate",
+      "snapshot": "coverage-16.json"
+    },
+    "model-coverage-17": {
+      "expected_file": "coverage-17.json",
+      "operation": "validate",
+      "snapshot": "coverage-17.json"
+    },
+    "model-draft": {
+      "expected_file": "draft.json",
+      "operation": "validate",
+      "snapshot": "draft.json"
+    },
+    "model-group-votes": {
+      "expected_file": "group-votes.json",
+      "operation": "validate",
+      "snapshot": "group-votes.json"
+    },
+    "model-insufficient-groups": {
+      "expected_file": "insufficient-groups.json",
+      "operation": "validate",
+      "snapshot": "insufficient-groups.json"
+    },
+    "model-policy": {
+      "expected_file": "policy.json",
+      "operation": "validate",
+      "snapshot": "policy.json"
+    },
+    "model-supported": {
+      "expected_file": "supported.json",
+      "operation": "validate",
+      "snapshot": "supported.json"
+    },
+    "model-zero-dispersion": {
+      "expected_file": "zero-dispersion.json",
+      "operation": "validate",
+      "snapshot": "zero-dispersion.json"
+    },
+    "rejected": {
+      "expected_file": "rejected.json",
+      "operation": "reject",
+      "reason": "evidence_rejected",
+      "review": "rejected-review.json",
+      "snapshot": "supported.json"
+    },
+    "rejected-draft": {
+      "expected_file": "rejected-draft.json",
+      "operation": "reject",
+      "reason": "operator_rejected",
+      "review": "rejected-draft-review.json",
+      "snapshot": "draft.json"
+    },
+    "stale": {
+      "expected_file": "stale.json",
+      "operation": "mark_stale",
+      "reason": "external_review",
+      "review": "stale-review.json",
+      "snapshot": "supported.json"
+    },
+    "superseded": {
+      "expected_file": "superseded.json",
+      "operation": "supersede",
+      "reason": "replacement_selected",
+      "replacement": "replacement.json",
+      "review": "superseded-review.json",
+      "snapshot": "supported.json"
+    },
+    "terminal-parent": {
+      "error": "invalid_profile_snapshot",
+      "operation": "mark_stale",
+      "reason": "external_review",
+      "review": "stale-review.json",
+      "snapshot": "superseded.json"
+    },
+    "trusted": {
+      "error": "invalid_profile_build",
+      "operation": "build",
+      "parent": "trusted.json",
+      "source": "reviewed-roles"
+    },
+    "wrong-review-subject": {
+      "error": "invalid_profile_snapshot",
+      "operation": "mark_stale",
+      "reason": "external_review",
+      "review": "wrong-subject-review.json",
+      "snapshot": "supported.json"
+    }
+  },
+  "expectation_provenance": "Independent preimplementation examples and Decimal oracle; linked exclusions from frozen N6 expectations; no N7 production output.",
+  "fixture_release": "1.0.0",
+  "method_release": "n7-profile-statistics-v1",
+  "n6_release_sha256": "f2ff8d1060571096743289cbe28641a9a881c0b76a79787d697452c97b03f823",
+  "provenance": "synthetic_and_model_only",
+  "sha256": {
+    "availability-3of5.json": "0c5a9e8c113a50c56f486849cb39f35c3b3a44f46056e7fea8099e0d8847990b",
+    "availability-4of5.json": "970458e40d1edc5476de0155a00db7dd8e09d6e81df22d5cd9a33a7884d28943",
+    "changed-center.json": "212a14f9274bc568aa26b3b1bdf722bbff3eb818f5b0fb908d5ed3bea272fa6b",
+    "coverage-16.json": "a2bad53a60cbb346200f7985f78c0d8d0774a31e48b15327c49958ff28eeb6a7",
+    "coverage-17.json": "257301be61667f77a82b9647d7bfe1243585fd45a5024904c4186dc3b588d366",
+    "draft.json": "8d26acfc6f8d3e63b7f8df6e44275894cfd6590051f571241df58813797352a3",
+    "group-votes.json": "17e5bb8c079ec7caf4e1e19a38d957ad1129e9e7245240a8ed76f1c4da02b36b",
+    "heldout-values.json": "b1ad42c274c166adb255907f0c3129971301c3808e6399cd067d3011ea1f70ff",
+    "insufficient-groups.json": "555df2d868ae019eed5a7376f3218fcff14d2d75f22623017a935355b8e2dc2f",
+    "policy.json": "407f8aebd043a8761778dbc9a82e9e00ed7cee6a5cb5b2b1f022ecbed9f95ea9",
+    "rejected-draft-review.json": "d82e96d602191489f7248ba79e9beaaacb9434799c6f821179aaed9a25e0867e",
+    "rejected-draft.json": "aa4917627acb4e8db6a899fca54a749e3fcde655cf1f27fbe7216eea58987f40",
+    "rejected-review.json": "eb672e1f44921957809a645b395884451661ca5563740cdb89529c4c3286377c",
+    "rejected.json": "ef421fb4aa23bf596d48d336461fbe315a61663fb9c5962c26834ed8f36c65f3",
+    "replacement.json": "58290611e4cdf6c559c51ad746fe89a2c4f2d4311d700a9ec9b955f9713c9bd7",
+    "stale-review.json": "60054f66ead00b8dae859a401ca2c265e2a0888b882514be6886c10ff401331c",
+    "stale.json": "40ccdf0347b6c763c36490497cf79cacc06e948add29fe59acbfbc548408f5cc",
+    "superseded-review.json": "04835501de75dcdaa6c161f713459515e03c28a3e059aedf13a17732480de766",
+    "superseded.json": "dd18b28655dcc34bc0fbefdf92d418fd415a276189c04947cd75c5a1ed1f701a",
+    "supported.json": "92274e58444234e0e3a635cb29ccc7a87c7d07e69a96276e278c6bdc6e0e3a9a",
+    "trusted.json": "c5ffd6a60d69d030c2e287d99f4429089c4459abeffc3d2361f39513ec5eb268",
+    "wrong-subject-review.json": "26b51c10c2fa33c1e8a80ac8f95af0b1472774e12e46ddda762f7fc2a33e80d7",
+    "zero-dispersion.json": "6ec02263f59917cddd429ad305fdd0ec62a4794e8cd3c538e79c1ba1298ebf71"
+  }
+}

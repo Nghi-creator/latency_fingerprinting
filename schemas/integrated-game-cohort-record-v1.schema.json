@@ -1,0 +1,81 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "acquisition_id": {
+      "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+      "title": "Acquisition Id",
+      "type": "string"
+    },
+    "assurance": {
+      "const": "operator_record_custody_only_not_independent_verification",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "capability": {
+      "const": "unavailable_unqualified",
+      "title": "Capability",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "evidence_role": {
+      "const": "engineering",
+      "title": "Evidence Role",
+      "type": "string"
+    },
+    "live_authority": {
+      "const": false,
+      "title": "Live Authority",
+      "type": "boolean"
+    },
+    "method_release": {
+      "const": "n10-integrated-game-custody-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "producer_revision": {
+      "pattern": "^(?:[a-f0-9]{40})$",
+      "title": "Producer Revision",
+      "type": "string"
+    },
+    "raw_report": {
+      "maxLength": 1048576,
+      "title": "Raw Report",
+      "type": "string"
+    },
+    "raw_report_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Raw Report Hash",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^(?:integrated-game-record-[a-f0-9]{64})$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "integrated-game-cohort-record-v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "assurance",
+    "acquisition_id",
+    "producer_revision",
+    "raw_report",
+    "raw_report_hash",
+    "evidence_role",
+    "capability",
+    "live_authority",
+    "record_id",
+    "content_hash"
+  ],
+  "title": "IntegratedGameRecord",
+  "type": "object"
+}

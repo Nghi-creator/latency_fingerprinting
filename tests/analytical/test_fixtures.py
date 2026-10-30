@@ -199,5 +199,8 @@ def test_reproduction_does_not_create_missing_directories(tmp_path):
 
 def test_two_configured_ci_jobs_run_n3_reproduction():
     workflow = (Path(__file__).parents[2] / ".github/workflows/ci.yml").read_text()
-    assert workflow.count("run: python -m tests.analytical.check_reproduction") == 2
-    assert 'python-version: "3.11"' in workflow and 'python-version: "3.13"' in workflow
+    release_job = workflow.split("  release-checks:\n", 1)[1].split("\n  coverage:", 1)[0]
+    # One command in a two-version matrix still runs on both supported Pythons.
+    assert 'python: ["3.13", "3.11"]' in release_job
+    assert "python-version: ${{ matrix.python }}" in release_job
+    assert "run: python -m tests.analytical.check_reproduction" in release_job
