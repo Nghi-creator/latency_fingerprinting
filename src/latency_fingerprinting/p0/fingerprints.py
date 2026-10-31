@@ -9,13 +9,8 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from .json_io import read_bounded_text, strict_json_loads
-from .models import (
-    CONTRACT_VERSION,
-    FINGERPRINT_SCHEMA_VERSION,
-    Fingerprint,
-    ValidationStatus,
-)
+from ..json_io import read_bounded_text, strict_json_loads
+from .models import CONTRACT_VERSION, FINGERPRINT_SCHEMA_VERSION, Fingerprint, ValidationStatus
 
 MAX_FINGERPRINT_FILES = 4096
 MAX_FINGERPRINT_DIRECTORY_ENTRIES = 32_768

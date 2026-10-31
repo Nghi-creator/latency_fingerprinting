@@ -10,8 +10,8 @@ import tarfile
 import pytest
 
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.observability import StageTraceRecord, bundle, output
-from latency_fingerprinting.pipeline import canonical_json
 from tests.observability.test_contracts import record
 
 

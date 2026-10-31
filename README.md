@@ -92,6 +92,11 @@ proxies are not direct stage latency measurements. The core does not run live
 probes or autonomous recovery, and the supplied experiments do not establish
 cause discrimination, recovery benefit or cross-context generalization.
 
+The original implementation lives under `src/latency_fingerprinting/p0/`, with
+its own models, matching stages, ingestion adapter and synthetic builders.
+Use `latency_fingerprinting.p0.*` for P0 implementation imports. Shared and current
+contracts remain under `models/`; its public P0 model imports still work.
+
 ## Development checks
 
 ```sh

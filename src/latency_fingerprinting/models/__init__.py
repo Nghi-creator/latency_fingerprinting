@@ -1,7 +1,8 @@
-"""Public P0, N1 and additive N2/N3 contract model API.
+"""Public model facade for supported P0 and current contracts.
 
 Imports remain available from :mod:`latency_fingerprinting.models` even though
-the implementation is organized into focused modules.
+P0 implementations live in :mod:`latency_fingerprinting.p0.models`; shared and
+current model implementations remain in this package.
 """
 
 from ..calibration import CalibrationDataset, CalibrationReport
@@ -11,30 +12,32 @@ from ..observability import (
     StageTraceSummary,
     StageTraceSummaryV2,
 )
-from ..profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
-from ..profiles import ProfilePolicy, ProfileSnapshot
-from ..scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
-from .common import (
+from ..p0.models.common import (
     CONTRACT_VERSION,
     FINGERPRINT_SCHEMA_VERSION,
     MATCH_RESULT_SCHEMA_VERSION,
     OBSERVATION_SCHEMA_VERSION,
+    MatchDecision,
+    OutcomeResult,
+    ProbeApplicationMethod,
+    ProbeExecutionStatus,
+    UnknownReason,
+    ValidationStatus,
+)
+from ..profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
+from ..profiles import ProfilePolicy, ProfileSnapshot
+from ..scenarios import ExperimentManifest, ExperimentPhaseEvidence, ExperimentResult
+from .common import (
     ContractModel,
     FiniteFloat,
-    MatchDecision,
     NonEmptyStr,
     NonNegativeFiniteFloat,
     NonNegativeInt,
-    OutcomeResult,
     PositiveFiniteFloat,
     PositiveInt,
-    ProbeApplicationMethod,
-    ProbeExecutionStatus,
     ProvenanceKind,
     RestorationStatus,
     UnitInterval,
-    UnknownReason,
-    ValidationStatus,
     WindowPhase,
 )
 
@@ -95,29 +98,8 @@ __all__ = [
     "MetricSeriesSummary",
     "CounterInterval",
 ]
-from .analytical_response_v2 import (
-    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION,
-    AnalyticalResponseV2,
-    FeatureResponseV2,
-    WindowFeatureEvidenceV2,
-)
-from .context import (
-    ContextKey,
-    MetricAggregate,
-    ObservationWindow,
-    SourceArtifact,
-    TimeBounds,
-    ValidityState,
-)
-from .feature_policy import (
-    FEATURE_POLICY_SCHEMA_VERSION,
-    AnalyticalDecisionPolicyV1,
-    FeaturePolicyParameterV1,
-    FeaturePolicyV1,
-)
-from .fingerprint import CompatibilityKey, Fingerprint
-from .fingerprint_v2 import FINGERPRINT_V2_SCHEMA_VERSION, FingerprintV2
-from .match import (
+from ..p0.models.fingerprint import CompatibilityKey, Fingerprint
+from ..p0.models.match import (
     CompatibilityResult,
     FeatureEvidence,
     MatchResult,
@@ -125,6 +107,35 @@ from .match import (
     RankedCandidate,
     ValidatedOutcome,
 )
+from ..p0.models.observation import (
+    MetricAggregate,
+    ObservationWindow,
+    SourceArtifact,
+    TimeBounds,
+    ValidityState,
+)
+from ..p0.models.response import (
+    FeatureDelta,
+    NormalizedFeature,
+    NormalizedResponse,
+    ObservationRecord,
+    Probe,
+    ResponseDelta,
+)
+from .analytical_response_v2 import (
+    ANALYTICAL_RESPONSE_V2_SCHEMA_VERSION,
+    AnalyticalResponseV2,
+    FeatureResponseV2,
+    WindowFeatureEvidenceV2,
+)
+from .context import ContextKey
+from .feature_policy import (
+    FEATURE_POLICY_SCHEMA_VERSION,
+    AnalyticalDecisionPolicyV1,
+    FeaturePolicyParameterV1,
+    FeaturePolicyV1,
+)
+from .fingerprint_v2 import FINGERPRINT_V2_SCHEMA_VERSION, FingerprintV2
 from .match_v2 import (
     MATCH_RESULT_V2_SCHEMA_VERSION,
     AnalyticalFeatureEvidenceV2,
@@ -151,14 +162,6 @@ from .measurement import (
 )
 from .observation_pair_v2 import InterventionV2, ObservationRecordV2
 from .observation_v2 import MetricMeasurement, ObservationWindowV2
-from .response import (
-    FeatureDelta,
-    NormalizedFeature,
-    NormalizedResponse,
-    ObservationRecord,
-    Probe,
-    ResponseDelta,
-)
 from .v2_common import (
     OBSERVATION_V2_SCHEMA_VERSION,
     OBSERVATION_WINDOW_V2_SCHEMA_VERSION,

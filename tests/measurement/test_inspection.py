@@ -10,16 +10,16 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting import measurement_inspection as inspection
-from latency_fingerprinting.adapters.pixelated_bundle import ingest_pixelated_bundle
 from latency_fingerprinting.cli import main
 from latency_fingerprinting.json_io import load_model_file
-from latency_fingerprinting.measurement import P0_FEATURE_CONFIG
 from latency_fingerprinting.measurement.metric_registry import CANONICAL_METRIC_REGISTRY
 from latency_fingerprinting.models import (
     ContextKey,
     ObservationWindow,
     WindowPhase,
 )
+from latency_fingerprinting.p0.adapters.pixelated_bundle import ingest_pixelated_bundle
+from latency_fingerprinting.p0.feature_config import P0_FEATURE_CONFIG
 
 from .check_reproduction import EXPECTED_REPORT_SHA256
 

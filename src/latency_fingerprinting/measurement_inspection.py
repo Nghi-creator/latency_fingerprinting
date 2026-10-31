@@ -8,8 +8,6 @@ from pathlib import Path
 from types import MappingProxyType
 
 from .adapters import load_pixelated_measurement_samples
-from .adapters.pixelated_bundle import ingest_pixelated_bundle
-from .measurement import P0_FEATURE_CONFIG
 from .measurement.aggregation import aggregate_counter, aggregate_gauge
 from .measurement.metric_registry import CANONICAL_METRIC_REGISTRY, get_metric_definition
 from .models import (
@@ -21,6 +19,8 @@ from .models import (
     ObservationWindow,
     WindowPhase,
 )
+from .p0.adapters.pixelated_bundle import ingest_pixelated_bundle
+from .p0.feature_config import P0_FEATURE_CONFIG
 
 # Reviewed P0-to-N1 naming decisions; neither suffix heuristics nor a new matcher config.
 P0_TO_N1 = MappingProxyType(

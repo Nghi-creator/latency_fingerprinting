@@ -8,7 +8,7 @@ measured acquisitions; consult each family's provenance and contract.
 
 | Family | Purpose and maintenance reference |
 | --- | --- |
-| `reference_cases/`, `query_cases/` | Original P0 fingerprints, responses and positive/unknown match cases; [`synthetic/`](../src/latency_fingerprinting/synthetic/rendering.py) checks deterministic rendering |
+| `reference_cases/`, `query_cases/` | Original P0 fingerprints, responses and positive/unknown match cases; [`synthetic/`](../src/latency_fingerprinting/p0/synthetic/rendering.py) checks deterministic rendering |
 | `measurement/` | [N1 gauge/counter arithmetic](../docs/measurement/ARITHMETIC_FIXTURES.md), including gaps, resets, rejected samples and boundary conditions |
 | `observation-v2/` | [N2 adoption and standalone observation records](../docs/measurement/OBSERVATION_V2_FIXTURES.md) |
 | `analytical-v2/` | [N3 response, fingerprint and matching snapshots](../docs/analysis/N3_ANALYTICAL_FIXTURES.md) with independent numerical expectations |

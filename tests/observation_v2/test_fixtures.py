@@ -9,9 +9,8 @@ from jsonschema import Draft202012Validator
 from pydantic import ValidationError
 
 from latency_fingerprinting.cli import main
-from latency_fingerprinting.json_io import load_json_file
+from latency_fingerprinting.json_io import canonical_json, load_json_file
 from latency_fingerprinting.models import ObservationRecordV2, ObservationWindowV2
-from latency_fingerprinting.pipeline import canonical_json
 
 from . import check_reproduction as reproduction
 from .fixture_cases import DEFAULT_FIXTURE_DIRECTORY, PROJECT_ROOT, fixture_drift

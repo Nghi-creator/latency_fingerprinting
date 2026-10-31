@@ -8,8 +8,8 @@ from pydantic import ValidationError
 
 from latency_fingerprinting.analytical import policy_release
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import FeaturePolicyV1
-from latency_fingerprinting.pipeline import canonical_json
 
 from .cases import POLICY_SPEC, canonical, policy_payload
 

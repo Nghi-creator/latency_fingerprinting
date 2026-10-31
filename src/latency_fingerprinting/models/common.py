@@ -1,4 +1,4 @@
-"""Shared types, versions, and strict base model for the P0 contract."""
+"""Shared strict model foundation, numeric types and cross-version vocabulary."""
 
 from __future__ import annotations
 
@@ -9,11 +9,6 @@ from numbers import Real
 from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-
-CONTRACT_VERSION = "1.0.0"
-OBSERVATION_SCHEMA_VERSION = "observation-v1"
-FINGERPRINT_SCHEMA_VERSION = "fingerprint-v1"
-MATCH_RESULT_SCHEMA_VERSION = "match-result-v1"
 
 NonEmptyStr = Annotated[str, Field(min_length=1, strict=True)]
 FiniteFloat = Annotated[float, Field(allow_inf_nan=False, strict=True)]
@@ -93,51 +88,9 @@ class ProvenanceKind(StrEnum):
     ORGANIC_REAL = "organic_real"
 
 
-class ProbeApplicationMethod(StrEnum):
-    SIMULATED_PAIR = "simulated_pair"
-    PAIRED_RUN = "paired_run"
-    LIVE_BOUNDED_PROBE = "live_bounded_probe"
-
-
-class ProbeExecutionStatus(StrEnum):
-    NOT_EXECUTED = "not_executed"
-    EXECUTED = "executed"
-    FAILED = "failed"
-
-
 class RestorationStatus(StrEnum):
     NOT_APPLICABLE = "not_applicable"
     NOT_EXECUTED = "not_executed"
     RESTORED = "restored"
     NOT_RESTORED = "not_restored"
     UNKNOWN = "unknown"
-
-
-class ValidationStatus(StrEnum):
-    UNVALIDATED = "unvalidated"
-    SOFTWARE_TEST_REFERENCE = "software_test_reference"
-    VALIDATED = "validated"
-    REJECTED = "rejected"
-
-
-class MatchDecision(StrEnum):
-    MATCHED = "matched"
-    UNKNOWN = "unknown"
-
-
-class UnknownReason(StrEnum):
-    INCOMPATIBLE_CONTEXT = "incompatible_context"
-    UNSUPPORTED_PROBE = "unsupported_probe"
-    INSUFFICIENT_FEATURE_COVERAGE = "insufficient_feature_coverage"
-    DEGENERATE_VECTOR = "degenerate_vector"
-    WEAK_MATCH = "weak_match"
-    AMBIGUOUS_MARGIN = "ambiguous_margin"
-    INVALID_OBSERVATION = "invalid_observation"
-    CONFLICTING_EVIDENCE = "conflicting_evidence"
-
-
-class OutcomeResult(StrEnum):
-    IMPROVED = "improved"
-    UNCHANGED = "unchanged"
-    WORSENED = "worsened"
-    INCONCLUSIVE = "inconclusive"

@@ -7,23 +7,25 @@ from typing import Literal
 
 from pydantic import Field, StrictBool, model_validator
 
-from .common import (
-    CONTRACT_VERSION,
-    MATCH_RESULT_SCHEMA_VERSION,
+from ...models.common import (
     ContractModel,
     FiniteFloat,
-    MatchDecision,
     NonEmptyStr,
     NonNegativeFiniteFloat,
     NonNegativeInt,
-    OutcomeResult,
     PositiveInt,
     ProvenanceKind,
     RestorationStatus,
     UnitInterval,
+)
+from .common import (
+    CONTRACT_VERSION,
+    MATCH_RESULT_SCHEMA_VERSION,
+    MatchDecision,
+    OutcomeResult,
     UnknownReason,
 )
-from .context import MetricAggregate
+from .observation import MetricAggregate
 
 
 class RankedCandidate(ContractModel):

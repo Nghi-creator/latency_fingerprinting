@@ -1,4 +1,4 @@
-"""Bounded, duplicate-safe JSON input helpers for public file boundaries."""
+"""Bounded JSON input and deterministic contract serialization helpers."""
 
 from __future__ import annotations
 
@@ -15,6 +15,13 @@ MAX_CONTRACT_JSON_BYTES = 10 * 1024 * 1024
 MAX_JSON_NESTING_DEPTH = 128
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
+
+
+def canonical_json(model: BaseModel) -> str:
+    """Serialize a contract record as deterministic, newline-terminated JSON."""
+
+    payload = model.model_dump(mode="json", by_alias=True)
+    return json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
 def _reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -121,6 +128,7 @@ def load_model_file(path: Path, model: type[ModelT]) -> ModelT:
 
 
 __all__ = [
+    "canonical_json",
     "MAX_CONTRACT_JSON_BYTES",
     "MAX_JSON_NESTING_DEPTH",
     "load_json_file",

@@ -8,11 +8,11 @@ from pathlib import Path
 
 import pytest
 
-from latency_fingerprinting.adapters.pixelated_bundle import (
+from latency_fingerprinting.models import ContextKey, WindowPhase
+from latency_fingerprinting.p0.adapters.pixelated_bundle import (
     PixelatedBundleError,
     ingest_pixelated_bundle,
 )
-from latency_fingerprinting.models import ContextKey, WindowPhase
 
 from .support import (
     VALID_V2_BUNDLE,

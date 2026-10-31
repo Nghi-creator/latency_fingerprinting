@@ -5,7 +5,7 @@ from pathlib import Path
 from latency_fingerprinting.analytical.fingerprints import create_fingerprint_v2
 from latency_fingerprinting.analytical.matching import match_response_v2
 from latency_fingerprinting.analytical.repository import FingerprintRepositoryV2
-from latency_fingerprinting.pipeline import canonical_json
+from latency_fingerprinting.json_io import canonical_json
 from tests.models.v2_cases import window_payload
 
 from .cases import policy_payload

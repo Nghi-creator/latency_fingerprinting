@@ -5,11 +5,11 @@ import csv
 import pytest
 
 from latency_fingerprinting.adapters import load_pixelated_measurement_samples
-from latency_fingerprinting.adapters.pixelated_bundle import (
+from latency_fingerprinting.models import WindowPhase
+from latency_fingerprinting.p0.adapters.pixelated_bundle import (
     PixelatedBundleError,
     ingest_pixelated_bundle,
 )
-from latency_fingerprinting.models import WindowPhase
 
 from .support import copy_v2_bundle
 

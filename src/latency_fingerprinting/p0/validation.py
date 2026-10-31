@@ -6,8 +6,8 @@ import math
 from dataclasses import dataclass
 from enum import StrEnum
 
+from ..models.common import json_values_equal as _json_values_equal
 from .models import ObservationWindow, Probe, WindowPhase
-from .models.common import json_values_equal as _json_values_equal
 
 DEFAULT_DURATION_RELATIVE_TOLERANCE = 0.10
 SUPPORTED_P0_PROBE_TYPES = frozenset({"stream_profile_relief"})

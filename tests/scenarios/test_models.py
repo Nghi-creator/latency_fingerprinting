@@ -10,12 +10,12 @@ import jsonschema
 import pytest
 from pydantic import ValidationError
 
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import (
     ExperimentManifest,
     ExperimentPhaseEvidence,
     ExperimentResult,
 )
-from latency_fingerprinting.pipeline import canonical_json
 from latency_fingerprinting.schemas import render_schema
 
 from .cases import SECOND, aborted, evidence, manifest, result, unsupported

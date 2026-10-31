@@ -10,10 +10,10 @@ from fractions import Fraction
 import pytest
 
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.observability import StageTraceRecord, reconstruct_trace
 from latency_fingerprinting.observability import input as trace_input
 from latency_fingerprinting.observability.input import read_trace_record
-from latency_fingerprinting.pipeline import canonical_json
 from tests.observability.test_contracts import record, summary
 
 SAFE_MAX = 9007199254740991

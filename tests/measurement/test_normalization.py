@@ -7,18 +7,15 @@ import math
 import pytest
 from pydantic import ValidationError
 
-from latency_fingerprinting.measurement import (
-    P0_FEATURE_CONFIG,
-    FeatureNormalizationConfig,
-    normalize_feature_value,
-)
+from latency_fingerprinting.measurement import FeatureNormalizationConfig, normalize_feature_value
 from latency_fingerprinting.models import (
     FeatureDelta,
     NormalizedFeature,
     NormalizedResponse,
     ResponseDelta,
 )
-from latency_fingerprinting.normalization import NormalizationError, normalize_response
+from latency_fingerprinting.p0.feature_config import P0_FEATURE_CONFIG
+from latency_fingerprinting.p0.normalization import NormalizationError, normalize_response
 
 
 def feature(

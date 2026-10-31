@@ -5,8 +5,8 @@ from __future__ import annotations
 import math
 from collections.abc import Mapping, Sequence
 
+from ...adapters.pixelated_bundle_common import PixelatedBundleError, finite_number
 from ..models import MetricAggregate
-from .pixelated_bundle_common import PixelatedBundleError, finite_number
 
 BROWSER_METRIC_COLUMNS: Mapping[str, tuple[str, str]] = {
     "client.received_fps": ("fps", "fps"),

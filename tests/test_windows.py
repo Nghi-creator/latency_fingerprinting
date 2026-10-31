@@ -24,7 +24,7 @@ from latency_fingerprinting.models import (
     ValidityState,
     WindowPhase,
 )
-from latency_fingerprinting.windows import build_response_delta
+from latency_fingerprinting.p0.windows import build_response_delta
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
 

@@ -8,16 +8,9 @@ from typing import Annotated, Literal
 
 from pydantic import Field, model_validator
 
-from .common import (
-    CONTRACT_VERSION,
-    FINGERPRINT_SCHEMA_VERSION,
-    ContractModel,
-    NonEmptyStr,
-    NonNegativeFiniteFloat,
-    ProvenanceKind,
-    ValidationStatus,
-)
-from .context import ContextKey
+from ...models.common import ContractModel, NonEmptyStr, NonNegativeFiniteFloat, ProvenanceKind
+from ...models.context import ContextKey
+from .common import CONTRACT_VERSION, FINGERPRINT_SCHEMA_VERSION, ValidationStatus
 from .response import NormalizedResponse, ResponseDelta, validate_canonical_normalization
 
 

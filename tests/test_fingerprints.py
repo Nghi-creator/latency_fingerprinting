@@ -7,16 +7,16 @@ from pathlib import Path
 
 import pytest
 
-import latency_fingerprinting.fingerprints as fingerprints_module
-from latency_fingerprinting.fingerprints import (
+import latency_fingerprinting.p0.fingerprints as fingerprints_module
+from latency_fingerprinting.models import Fingerprint, ValidationStatus
+from latency_fingerprinting.p0.fingerprints import (
     FingerprintEntry,
     FingerprintRejectionReason,
     FingerprintRepository,
     FingerprintRepositoryError,
     load_fingerprint_repository,
 )
-from latency_fingerprinting.models import Fingerprint, ValidationStatus
-from latency_fingerprinting.synthetic_fixtures import (
+from latency_fingerprinting.p0.synthetic import (
     DEFAULT_FIXTURE_DIRECTORY,
     SYNTHETIC_COMPATIBILITY_GROUP,
 )
@@ -301,7 +301,7 @@ def test_directory_limit_stops_enumeration_before_materializing_all_entries(
     from contextlib import contextmanager
     from types import SimpleNamespace
 
-    from latency_fingerprinting import fingerprints
+    from latency_fingerprinting.p0 import fingerprints
 
     visited: list[int] = []
 

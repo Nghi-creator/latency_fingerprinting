@@ -1,6 +1,6 @@
 """Aggregation evidence keeps original source locations after filtering."""
 
-from latency_fingerprinting.adapters.pixelated_bundle_metrics import engine_metrics
+from latency_fingerprinting.p0.adapters.pixelated_bundle_metrics import engine_metrics
 
 
 def test_engine_rejections_retain_original_csv_row_numbers() -> None:

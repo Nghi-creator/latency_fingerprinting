@@ -8,9 +8,9 @@ import tempfile
 from pathlib import Path
 
 from latency_fingerprinting.cli import main as cli_main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.observability import StageTraceRecord, reconstruct_trace
 from latency_fingerprinting.observability.bundle import ingest_trace_bundle
-from latency_fingerprinting.pipeline import canonical_json
 
 FIXTURES = Path(__file__).resolve().parents[2] / "fixtures/observability"
 CASES = ("host", "browser", "browser-unavailable")

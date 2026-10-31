@@ -9,9 +9,8 @@ from .analytical.fingerprints import create_fingerprint_v2
 from .analytical.matching import match_response_v2
 from .analytical.repository import load_fingerprint_repository_v2
 from .analytical.responses import derive_analytical_response
-from .json_io import MAX_CONTRACT_JSON_BYTES, strict_json_loads
+from .json_io import MAX_CONTRACT_JSON_BYTES, canonical_json, strict_json_loads
 from .models import AnalyticalResponseV2, FeaturePolicyV1, ObservationRecordV2
-from .pipeline import canonical_json
 
 
 def _load_local_model(path: Path, model):

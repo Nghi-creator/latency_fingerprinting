@@ -14,12 +14,7 @@ from ..models import (
     RankedCandidate,
     UnknownReason,
 )
-from .definitions import (
-    FEATURE_BASELINES,
-    QUERY_EXPECTATIONS,
-    QUERY_VECTORS,
-    REFERENCE_VECTORS,
-)
+from .definitions import FEATURE_BASELINES, QUERY_EXPECTATIONS, QUERY_VECTORS, REFERENCE_VECTORS
 
 
 def _candidate_scores(query_vector: Mapping[str, float]) -> list[RankedCandidate]:

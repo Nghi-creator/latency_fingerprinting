@@ -189,8 +189,8 @@ no event-count metric is introduced in this slice.
 ## Source mappings and validation
 
 The mappings are checked against
-[`pixelated_bundle_metrics.py`](../../src/latency_fingerprinting/adapters/pixelated_bundle_metrics.py),
-[`p0_feature_config.py`](../../src/latency_fingerprinting/measurement/p0_feature_config.py),
+[`pixelated_bundle_metrics.py`](../../src/latency_fingerprinting/p0/adapters/pixelated_bundle_metrics.py),
+[P0 feature configuration](../../src/latency_fingerprinting/p0/feature_config.py),
 and the headers in
 [`valid-v2`](../../tests/data/pixelated_bundle/valid-v2/stream-telemetry.csv).
 P0 packet baseline/reset validation is in

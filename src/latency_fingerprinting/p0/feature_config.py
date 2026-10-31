@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from types import MappingProxyType
 
-from .feature_config import FeatureNormalizationConfig
+from ..measurement.feature_config import FeatureNormalizationConfig
 
 P0_FEATURE_CONFIG: Mapping[str, FeatureNormalizationConfig] = MappingProxyType(
     {

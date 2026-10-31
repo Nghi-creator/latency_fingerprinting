@@ -8,9 +8,9 @@ import pytest
 from pydantic import ValidationError
 
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.observability import StageTraceRecord, StageTraceSummary
 from latency_fingerprinting.observability.json import decode_trace_json
-from latency_fingerprinting.pipeline import canonical_json
 
 BOUNDARIES = [
     "render_ready",

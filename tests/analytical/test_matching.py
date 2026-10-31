@@ -11,8 +11,8 @@ from latency_fingerprinting.analytical.matching import verify_match_repository_v
 from latency_fingerprinting.analytical.policy_release import payload_hash
 from latency_fingerprinting.analytical.repository import FingerprintRepositoryV2
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import MatchResultV2
-from latency_fingerprinting.pipeline import canonical_json
 from tests.models.v2_cases import window_payload
 
 from .cases import canonical, policy_payload

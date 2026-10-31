@@ -6,8 +6,8 @@ import pytest
 from pydantic import ValidationError
 
 from latency_fingerprinting.analytical.responses import derive_analytical_response
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import FeaturePolicyV1, ObservationRecordV2
-from latency_fingerprinting.pipeline import canonical_json
 from tests.models.v2_cases import pair_payload, window_payload
 
 from .cases import policy_payload, response_payload

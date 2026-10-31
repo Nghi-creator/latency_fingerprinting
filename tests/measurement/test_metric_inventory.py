@@ -6,13 +6,13 @@ import csv
 from collections import Counter
 from pathlib import Path
 
-from latency_fingerprinting.adapters.pixelated_bundle_metrics import (
+from latency_fingerprinting.p0.adapters.pixelated_bundle_metrics import (
     BROWSER_METRIC_COLUMNS,
     ENCODER_COUNTER_METRICS,
     ENGINE_METRIC_COLUMNS,
     STREAM_COUNTER_METRICS,
 )
-from latency_fingerprinting.measurement import P0_FEATURE_CONFIG
+from latency_fingerprinting.p0.feature_config import P0_FEATURE_CONFIG
 
 ROOT = Path(__file__).resolve().parents[2]
 INVENTORY = ROOT / "docs/measurement/METRIC_SEMANTICS_V2.md"

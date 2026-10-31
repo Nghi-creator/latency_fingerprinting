@@ -7,8 +7,8 @@ from pydantic import ValidationError
 
 from latency_fingerprinting.analytical.matching import match_response_v2, verify_match_repository_v2
 from latency_fingerprinting.analytical.repository import FingerprintRepositoryV2
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import MatchResultV2
-from latency_fingerprinting.pipeline import canonical_json
 
 from .matching_cases import fingerprint, match, response
 
