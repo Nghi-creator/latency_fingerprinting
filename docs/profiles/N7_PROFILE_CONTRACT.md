@@ -266,9 +266,9 @@ also revalidate the supplied parent/replacement and verify exact preservation.
 A standalone file cannot authenticate unseen history or physical acquisitions.
 No ambient clock, automatic expiry/promotion or implicit current-context lookup.
 
-## Planned APIs, commands and failure behavior
+## APIs, commands and failure behavior
 
-These names are frozen for implementation, not currently callable:
+The public `latency_fingerprinting.profiles` API provides:
 
 ```python
 create_profile_snapshot(policy)

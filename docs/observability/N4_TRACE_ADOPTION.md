@@ -81,13 +81,11 @@ is limited to 10 MiB/depth 32; compressed and expanded archives to 32 MiB. Recor
 limits remain sixteen lifetimes, 2000 frames and 10000 events across the whole
 trace. These are provisional resource caps, not measured full-limit throughput.
 
-## Verification and next step
+## Verification
 
 Core and producer tests cover canonical bytes, bounded gzip layout, required
 versions, empty recordings, shutdown persistence, private permissions, hostile
 archive/JSON inputs, resource caps and failed atomic output.
-
-
 
 See [offline reconstruction and inspect-trace](N4_TIMING_RECONSTRUCTION.md),
 [integrated reproduction](N4_INTEGRATION_VERIFICATION.md) and the

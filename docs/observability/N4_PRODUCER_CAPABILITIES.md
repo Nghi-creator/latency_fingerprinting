@@ -5,7 +5,7 @@ runtime checks for the [trace contract](N4_TRACE_CONTRACT.md).
 
 Paths in this document are relative to the sibling `Pixelated-Studio-Edition`
 repository. They identify integration locations, not dependencies the Python core
-loads at runtime. No applicable AGENTS.md was found in either repository/ancestors.
+loads at runtime.
 
 ## Observed source and approved scope
 

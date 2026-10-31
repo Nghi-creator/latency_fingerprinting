@@ -134,36 +134,6 @@ def browser_window(data, expected_fps):
     return dict(trace, met=met, decoded_fps=decode_fps, new_dropped=dropped, new_freezes=freezes)
 
 
-def browser_cpu(data):
-    """Missing/changing inventories stay unavailable, separate from the video screen."""
-    empty = {"state": "unavailable", "cpu_percent": None}
-    try:
-        data = obj(data)
-        require(
-            data["basis"] == "host_hrtime_browser_owned_process_cpu_separate_clock",
-            "browser_resource_basis",
-        )
-        a, b = obj(data["before"]), obj(data["after"])
-        require(
-            digest(a["inventory_hash"]) == digest(b["inventory_hash"]), "browser_inventory_changed"
-        )
-        count = number(a["process_count"], integral=True, maximum=128)
-        require(
-            count > 0 and count == number(b["process_count"], integral=True, maximum=128),
-            "browser_inventory_changed",
-        )
-        wall = number(b["host_at_ns"], integral=True) - number(a["host_at_ns"], integral=True)
-        require(1500000000 <= wall <= 3000000000, "browser_resource_duration")
-        cpu = delta([number(a["cpu_seconds"]), number(b["cpu_seconds"])])
-        return {
-            "state": "observed",
-            "cpu_percent": 100 * cpu * 10**9 / wall,
-            "clock_basis": data["basis"],
-        }
-    except (ValueError, TypeError, KeyError, IndexError, OverflowError):
-        return empty
-
-
 def native_windows(reports):
     """Same declared workers across all phases; never merge replacement lifetimes."""
     require(len(reports) == 3, "native_phase_count")
