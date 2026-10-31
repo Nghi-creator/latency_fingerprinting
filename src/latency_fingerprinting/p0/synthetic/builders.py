@@ -100,6 +100,7 @@ def _window(
         source_artifact=SourceArtifact(
             artifact_id=f"fixture-{case_id}-{phase_name}",
             source_type="synthetic_fixture",
+            # Frozen artifact identity; this label is not an executable import path.
             producer="latency_fingerprinting.synthetic_fixtures",
         ),
         provenance=ProvenanceKind.SYNTHETIC,

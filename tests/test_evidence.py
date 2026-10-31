@@ -9,18 +9,18 @@ from typing import TypeVar
 import pytest
 from pydantic import BaseModel
 
-from latency_fingerprinting.evidence import (
-    DEFAULT_SUPPORT_RESIDUAL_THRESHOLD,
-    EvidenceError,
-    build_candidate_evidence,
-)
 from latency_fingerprinting.models import (
     Fingerprint,
     NormalizedFeature,
     NormalizedResponse,
     ObservationRecord,
 )
-from latency_fingerprinting.synthetic_fixtures import DEFAULT_FIXTURE_DIRECTORY
+from latency_fingerprinting.p0.evidence import (
+    DEFAULT_SUPPORT_RESIDUAL_THRESHOLD,
+    EvidenceError,
+    build_candidate_evidence,
+)
+from latency_fingerprinting.p0.synthetic import DEFAULT_FIXTURE_DIRECTORY
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
 

@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
+from .json_io import canonical_json
 from .observability.output import write_trace_output
-from .pipeline import canonical_json
 from .scenarios.inspect import inspect_experiment_bundle
 
 

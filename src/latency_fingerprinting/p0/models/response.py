@@ -7,21 +7,25 @@ from typing import Annotated, Literal
 
 from pydantic import Field, JsonValue, StrictBool, model_validator
 
-from ..measurement import P0_FEATURE_CONFIG, normalize_feature_value
-from .common import (
-    CONTRACT_VERSION,
-    OBSERVATION_SCHEMA_VERSION,
+from ...measurement import normalize_feature_value
+from ...models.common import (
     ContractModel,
     FiniteFloat,
     NonEmptyStr,
     PositiveFiniteFloat,
-    ProbeApplicationMethod,
-    ProbeExecutionStatus,
     ProvenanceKind,
     RestorationStatus,
     WindowPhase,
 )
-from .context import ContextKey, MetricAggregate, ObservationWindow
+from ...models.context import ContextKey
+from ..feature_config import P0_FEATURE_CONFIG
+from .common import (
+    CONTRACT_VERSION,
+    OBSERVATION_SCHEMA_VERSION,
+    ProbeApplicationMethod,
+    ProbeExecutionStatus,
+)
+from .observation import MetricAggregate, ObservationWindow
 
 
 class Probe(ContractModel):

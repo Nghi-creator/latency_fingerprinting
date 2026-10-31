@@ -46,7 +46,7 @@ def edit_json(bundle: Path, filename: str, edit) -> None:
 def test_all_sources_extract_raw_samples_with_original_rows_and_no_aggregation(
     context_v2: ContextKey, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    from latency_fingerprinting.adapters import pixelated_bundle_metrics
+    from latency_fingerprinting.p0.adapters import pixelated_bundle_metrics
 
     def no_aggregation(*args: object, **kwargs: object) -> None:
         pytest.fail("raw extraction must not aggregate")

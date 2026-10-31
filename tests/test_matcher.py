@@ -10,16 +10,6 @@ from typing import TypeVar
 import pytest
 from pydantic import BaseModel
 
-from latency_fingerprinting.evidence import CandidateEvidence
-from latency_fingerprinting.fingerprints import (
-    FingerprintEntry,
-    FingerprintRejection,
-    FingerprintRejectionReason,
-    FingerprintRepository,
-    load_fingerprint_repository,
-)
-from latency_fingerprinting.matcher import match_observation
-from latency_fingerprinting.matching.scoring import best_availability
 from latency_fingerprinting.models import (
     MatchDecision,
     MatchResult,
@@ -28,7 +18,17 @@ from latency_fingerprinting.models import (
     UnknownReason,
     ValidationStatus,
 )
-from latency_fingerprinting.synthetic_fixtures import (
+from latency_fingerprinting.p0.evidence import CandidateEvidence
+from latency_fingerprinting.p0.fingerprints import (
+    FingerprintEntry,
+    FingerprintRejection,
+    FingerprintRejectionReason,
+    FingerprintRepository,
+    load_fingerprint_repository,
+)
+from latency_fingerprinting.p0.matcher import match_observation
+from latency_fingerprinting.p0.matching.scoring import best_availability
+from latency_fingerprinting.p0.synthetic import (
     DEFAULT_FIXTURE_DIRECTORY,
     QUERY_EXPECTATIONS,
 )
@@ -445,7 +445,7 @@ def test_empty_repository_returns_incompatible_context_unknown() -> None:
 def test_extreme_scoring_arithmetic_returns_unknown_instead_of_crashing_or_matching(
     relief_value: float, weight: float
 ) -> None:
-    from latency_fingerprinting.pipeline import build_observation_record
+    from latency_fingerprinting.p0.pipeline import build_observation_record
     from tests.models.factories import make_fingerprint, make_metric, make_observation
 
     observation = make_observation()

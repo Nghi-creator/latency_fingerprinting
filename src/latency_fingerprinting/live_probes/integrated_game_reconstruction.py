@@ -2,12 +2,12 @@
 
 import re
 
+from .browser_cpu import browser_cpu
 from .cadence import CadenceOutcome
 from .integrated_game import MODES, IntegratedGameRecord, decode_cohort
 from .integrated_game_measurements import (
     PHASES,
     EvidenceGap,
-    browser_cpu,
     browser_window,
     delta,
     digest,

@@ -18,8 +18,8 @@ from latency_fingerprinting.models import (
     Probe,
     ProvenanceKind,
 )
-from latency_fingerprinting.normalization import normalize_response
-from latency_fingerprinting.synthetic_fixtures import (
+from latency_fingerprinting.p0.normalization import normalize_response
+from latency_fingerprinting.p0.synthetic import (
     DEFAULT_FIXTURE_DIRECTORY,
     QUERY_EXPECTATIONS,
     QUERY_VECTORS,
@@ -28,7 +28,7 @@ from latency_fingerprinting.synthetic_fixtures import (
     fixture_drift,
     rendered_fixture_files,
 )
-from latency_fingerprinting.windows import build_response_delta
+from latency_fingerprinting.p0.windows import build_response_delta
 
 REFERENCE_CASES = tuple(sorted(REFERENCE_VECTORS))
 QUERY_CASES = tuple(sorted(QUERY_VECTORS))

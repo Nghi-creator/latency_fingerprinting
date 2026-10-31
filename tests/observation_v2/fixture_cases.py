@@ -3,9 +3,8 @@
 from pathlib import Path
 
 from latency_fingerprinting.adapters import ingest_pixelated_v2
-from latency_fingerprinting.json_io import load_model_file
+from latency_fingerprinting.json_io import canonical_json, load_model_file
 from latency_fingerprinting.models import ContextKey, ObservationRecordV2, WindowPhase
-from latency_fingerprinting.pipeline import canonical_json
 from tests.models.v2_cases import pair_payload
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]

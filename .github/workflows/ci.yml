@@ -120,7 +120,7 @@ jobs:
 
       - name: Check synthetic fixture drift
         run: >-
-          python -c "from latency_fingerprinting.synthetic_fixtures import fixture_drift;
+          python -c "from latency_fingerprinting.p0.synthetic import fixture_drift;
           assert fixture_drift() == {}"
 
       - name: Check N1 arithmetic fixture drift

@@ -9,12 +9,12 @@ from pathlib import Path
 
 import pytest
 
-from latency_fingerprinting.adapters.pixelated_bundle import (
+from latency_fingerprinting.models import ContextKey, WindowPhase
+from latency_fingerprinting.p0.adapters.pixelated_bundle import (
     PixelatedBundleError,
     ingest_pixelated_bundle,
 )
-from latency_fingerprinting.adapters.pixelated_bundle_metrics import mapped_metrics
-from latency_fingerprinting.models import ContextKey, WindowPhase
+from latency_fingerprinting.p0.adapters.pixelated_bundle_metrics import mapped_metrics
 
 from .support import (
     VALID_BUNDLE,
@@ -218,7 +218,7 @@ def test_summary_counts_require_integers(field: str, value: object) -> None:
 
 @pytest.mark.parametrize("value", [True, 1.0])
 def test_metadata_version_requires_an_integer(value: object) -> None:
-    from latency_fingerprinting.adapters.pixelated_bundle import _validate_metadata
+    from latency_fingerprinting.p0.adapters.pixelated_bundle import _validate_metadata
 
     with pytest.raises(PixelatedBundleError, match="schemaVersion 1"):
         _validate_metadata({"schemaVersion": value})

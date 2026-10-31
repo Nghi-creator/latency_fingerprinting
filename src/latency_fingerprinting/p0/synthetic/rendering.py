@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
-from pydantic import BaseModel
-
+from ...json_io import canonical_json as _json
 from .builders import build_fingerprint, build_observation
 from .definitions import (
     QUERY_EXPECTATIONS,
@@ -17,13 +15,8 @@ from .definitions import (
 )
 from .expectations import expected_match_result
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 DEFAULT_FIXTURE_DIRECTORY = PROJECT_ROOT / "fixtures"
-
-
-def _json(model: BaseModel) -> str:
-    payload = model.model_dump(mode="json", by_alias=True)
-    return json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
 def _readme(case_name: str, *, reference: bool, expectation: ExpectedDecision | None) -> str:

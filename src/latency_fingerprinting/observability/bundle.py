@@ -13,8 +13,7 @@ from typing import Annotated, Literal
 from pydantic import Field
 
 from ..adapters.pixelated_bundle_io import _open_bundle
-from ..json_io import MAX_CONTRACT_JSON_BYTES
-from ..pipeline import canonical_json
+from ..json_io import MAX_CONTRACT_JSON_BYTES, canonical_json
 from .browser_v2 import parse_trace_record
 from .contracts import Count, TraceModel
 from .json import decode_trace_json

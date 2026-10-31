@@ -21,10 +21,7 @@ from latency_fingerprinting.models import (
     ValidityState,
     WindowPhase,
 )
-from latency_fingerprinting.validation import (
-    ComparabilityReason,
-    validate_window_comparability,
-)
+from latency_fingerprinting.p0.validation import ComparabilityReason, validate_window_comparability
 
 
 def make_context(**changes: object) -> ContextKey:

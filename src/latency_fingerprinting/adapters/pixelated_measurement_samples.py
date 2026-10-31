@@ -12,14 +12,14 @@ from types import MappingProxyType
 from ..measurement.metric_registry import CANONICAL_METRIC_REGISTRY
 from ..models import ContextKey, MeasurementSample, MetricDefinition, MetricSource, WindowPhase
 from .pixelated_adoption_metadata import PixelatedAdoptionMetadata, adoption_metadata
-from .pixelated_bundle import (
+from .pixelated_bundle_common import PixelatedBundleError, finite_number, utc_datetime
+from .pixelated_bundle_contract import (
     EVENT_COLUMNS,
     READABLE_FILES,
     TELEMETRY_COLUMNS,
     V1_REQUIRED_FILES,
-    _validate_metadata,
+    validate_metadata,
 )
-from .pixelated_bundle_common import PixelatedBundleError, finite_number, utc_datetime
 from .pixelated_bundle_io import bundle_checksum, csv_rows, json_object, read_bundle
 from .pixelated_bundle_v2 import (
     ENGINE_TELEMETRY_COLUMNS,
@@ -195,7 +195,7 @@ def load_pixelated_measurement_samples(
     events = csv_rows(files, "stream-events.csv", EVENT_COLUMNS)
     if not browser_rows:
         raise PixelatedBundleError("stream-telemetry.csv requires at least one data row")
-    run_id, session_id, workload_id, player_mode, settings = _validate_metadata(metadata)
+    run_id, session_id, workload_id, player_mode, settings = validate_metadata(metadata)
     if workload_id != context.workload_id:
         raise PixelatedBundleError(
             "run-metadata.json workload identity disagrees with the explicit context"

@@ -9,7 +9,7 @@ import tempfile
 from pathlib import Path
 
 from latency_fingerprinting.cli import main as cli_main
-from latency_fingerprinting.pipeline import canonical_json
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.scenarios import inspect_experiment_bundle
 from latency_fingerprinting.scenarios.bundle_io import read_members
 

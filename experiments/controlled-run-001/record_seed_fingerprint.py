@@ -8,7 +8,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
-from latency_fingerprinting.json_io import load_model_file
+from latency_fingerprinting.json_io import canonical_json, load_model_file
 from latency_fingerprinting.models import (
     CompatibilityKey,
     Fingerprint,
@@ -16,7 +16,6 @@ from latency_fingerprinting.models import (
     ProvenanceKind,
     ValidationStatus,
 )
-from latency_fingerprinting.pipeline import canonical_json
 
 EXPERIMENT_ROOT = Path(__file__).resolve().parent
 OBSERVATION_PATH = EXPERIMENT_ROOT / "observation.json"

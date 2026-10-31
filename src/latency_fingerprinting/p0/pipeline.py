@@ -2,24 +2,17 @@
 
 from __future__ import annotations
 
-import json
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
-from pydantic import BaseModel
-
+from ..json_io import canonical_json as canonical_json
+from ..json_io import load_model_file
+from ..measurement import FeatureNormalizationConfig
+from .feature_config import P0_FEATURE_CONFIG
 from .fingerprints import FingerprintRepository, load_fingerprint_repository
-from .json_io import load_model_file
 from .matcher import match_observation
-from .measurement import P0_FEATURE_CONFIG, FeatureNormalizationConfig
-from .models import (
-    MatchResult,
-    MatchThresholds,
-    ObservationRecord,
-    ObservationWindow,
-    Probe,
-)
+from .models import MatchResult, MatchThresholds, ObservationRecord, ObservationWindow, Probe
 from .normalization import normalize_response
 from .windows import build_response_delta
 
@@ -28,13 +21,6 @@ from .windows import build_response_delta
 class PipelineResult:
     observation: ObservationRecord
     match_result: MatchResult
-
-
-def canonical_json(model: BaseModel) -> str:
-    """Serialize a contract record as deterministic, newline-terminated JSON."""
-
-    payload = model.model_dump(mode="json", by_alias=True)
-    return json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
 def build_observation_record(

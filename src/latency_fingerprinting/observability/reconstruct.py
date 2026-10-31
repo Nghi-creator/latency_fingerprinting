@@ -102,7 +102,7 @@ def _deadline(stream, age):
 
 def reconstruct_trace(trace: StageTraceRecord) -> StageTraceSummary:
     """Revalidate copies; never bridge clocks, streams, frame aliases or missing endpoints."""
-    from ..pipeline import canonical_json
+    from ..json_io import canonical_json
 
     if not isinstance(trace, StageTraceRecord):
         raise ValueError("reconstruction requires a StageTraceRecord")

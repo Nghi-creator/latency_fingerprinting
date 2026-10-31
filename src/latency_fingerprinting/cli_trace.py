@@ -2,11 +2,11 @@
 
 from pathlib import Path
 
+from .json_io import canonical_json
 from .observability.bundle import ingest_trace_bundle
 from .observability.input import read_trace_record
 from .observability.output import write_trace_output
 from .observability.reconstruct import reconstruct_trace
-from .pipeline import canonical_json
 
 
 def _ingest_trace(args):

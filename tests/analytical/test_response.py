@@ -8,9 +8,8 @@ from jsonschema import Draft202012Validator
 from pydantic import ValidationError
 
 from latency_fingerprinting.cli import main
-from latency_fingerprinting.json_io import load_model_file
+from latency_fingerprinting.json_io import canonical_json, load_model_file
 from latency_fingerprinting.models import AnalyticalResponseV2
-from latency_fingerprinting.pipeline import canonical_json
 
 from .cases import response_payload
 

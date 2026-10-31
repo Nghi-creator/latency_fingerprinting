@@ -11,6 +11,7 @@ import pytest
 from pydantic import ValidationError
 
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.observability import StageTraceRecord, reconstruct_trace
 from latency_fingerprinting.observability.browser_v2 import (
     StageTraceRecordV2,
@@ -18,7 +19,6 @@ from latency_fingerprinting.observability.browser_v2 import (
     parse_trace_record,
 )
 from latency_fingerprinting.observability.bundle import ingest_trace_bundle
-from latency_fingerprinting.pipeline import canonical_json
 from latency_fingerprinting.schemas import SCHEMA_MODELS
 from tests.observability.check_browser_execution import FIXTURES, PINS, check_reproduction
 

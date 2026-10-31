@@ -4,11 +4,8 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
-from .measurement import (
-    P0_FEATURE_CONFIG,
-    FeatureNormalizationConfig,
-    normalize_feature_value,
-)
+from ..measurement import FeatureNormalizationConfig, normalize_feature_value
+from .feature_config import P0_FEATURE_CONFIG
 from .models import NormalizedFeature, NormalizedResponse, ResponseDelta
 
 

@@ -38,12 +38,23 @@ feature policy. Neither path silently changes the other's metric meanings.
   unavailable stage-timing declarations.
 - `adapters/` validates Pixelated archives, CSVs, identity and clocks, then adopts
   source samples and observation records.
-- `models/` defines strict versioned records. Generated JSON Schemas check shape;
+- `models/` contains shared foundations and current strict versioned records,
+  and re-exports supported P0 models for public import compatibility. Generated JSON Schemas check shape;
   Python validators also enforce cross-field and numerical consistency.
 - `analytical/` derives v2 responses, validates stored fingerprints, checks
   compatibility and computes conservative similarity decisions.
-- The original P0 modules retain their separate comparability, normalization and
-  matching behavior.
+- `p0/` contains the original comparability, normalization, fingerprint repository,
+  pipeline and matcher. Its `models/`, `matching/`, `adapters/` and `synthetic/`
+  subpackages keep P0 implementation separate from current stages.
+
+P0 module imports use `latency_fingerprinting.p0`, such as
+`latency_fingerprinting.p0.pipeline` and `latency_fingerprinting.p0.matching`.
+The public `latency_fingerprinting.models` facade and
+`latency_fingerprinting.adapters.ingest_pixelated_bundle` remain available.
+Shared context identity, strict model primitives, generic normalization math,
+JSON I/O and raw bundle validators remain outside P0 because current stages use
+them too. Contract version numbers describe individual formats: a `v1` metric
+registry or policy is not automatically a P0 implementation.
 
 See the [registry](measurement/CANONICAL_REGISTRY.md),
 [observation contract](measurement/OBSERVATION_V2_CONTRACT.md),

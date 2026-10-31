@@ -6,8 +6,8 @@ import shutil
 import tarfile
 from pathlib import Path
 
-from latency_fingerprinting.adapters.pixelated_bundle import ingest_pixelated_bundle
 from latency_fingerprinting.models import ContextKey, WindowPhase
+from latency_fingerprinting.p0.adapters.pixelated_bundle import ingest_pixelated_bundle
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 FIXTURE_ROOT = PROJECT_ROOT / "tests" / "data" / "pixelated_bundle"

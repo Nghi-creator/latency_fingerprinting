@@ -43,7 +43,7 @@ def test_independent_expectations_and_pin_reproduction_are_read_only(records, ca
 @pytest.mark.parametrize("relative", sorted(module.EXPECTED_SHA256))
 def test_each_stored_snapshot_is_canonical_public_validated_json(relative, records, capsys):
     path = DEFAULT_FIXTURE_DIRECTORY / relative
-    from latency_fingerprinting.pipeline import canonical_json
+    from latency_fingerprinting.json_io import canonical_json
 
     assert path.read_bytes() == canonical_json(records[Path(relative)]).encode("utf-8")
     payload = load_json_file(path)
@@ -108,7 +108,7 @@ def test_public_response_and_fingerprint_creation_reproduce_snapshots(records, t
     assert capsys.readouterr().out.encode() == (root / "responses/complete.json").read_bytes()
     reference = records[Path("references/matched/fingerprint.json")]
     path = tmp_path / "response.json"
-    from latency_fingerprinting.pipeline import canonical_json
+    from latency_fingerprinting.json_io import canonical_json
 
     path.write_text(canonical_json(reference.response))
     assert (

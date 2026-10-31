@@ -11,15 +11,13 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
-from .adapters.pixelated_bundle import ingest_pixelated_bundle
 from .adapters.pixelated_observation_v2 import ingest_pixelated_v2
 from .calibration import CalibrationDataset, CalibrationReport
 from .calibration.inspection import register_calibration_command
 from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
-from .fingerprints import load_fingerprint_repository
-from .json_io import load_model_file, read_bounded_text, strict_json_loads
+from .json_io import canonical_json, load_model_file, read_bounded_text, strict_json_loads
 from .live_probes import (
     CadenceProbeEvidence,
     GameBrowserProbeEvidence,
@@ -29,7 +27,6 @@ from .live_probes import (
 from .live_probes.cadence_commands import register_cadence_command
 from .live_probes.game_browser_commands import register_game_browser_command
 from .live_probes.integrated_game_commands import register_integrated_game_commands
-from .matcher import match_observation
 from .measurement.metric_registry import (
     DEFAULT_METRIC_REGISTRY_PATH,
     METRIC_REGISTRY_VERSION,
@@ -70,9 +67,12 @@ from .observability import (
     StageTraceSummary,
     StageTraceSummaryV2,
 )
+from .p0.adapters.pixelated_bundle import ingest_pixelated_bundle
+from .p0.fingerprints import load_fingerprint_repository
+from .p0.matcher import match_observation
+from .p0.pipeline import build_observation_record
 from .passive_gating import PassiveBaseline, PassiveGatePolicy, PassiveGateResult, PassiveReplay
 from .passive_gating.commands import register_passive_commands
-from .pipeline import build_observation_record, canonical_json
 from .profile_matching import ProfileEvaluationResult, ProfileMatchPolicy, ProfileMatchResult
 from .profile_matching.commands import register_profile_matching_commands
 from .profiles import ProfilePolicy, ProfileSnapshot

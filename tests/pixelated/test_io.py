@@ -10,8 +10,8 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.adapters import pixelated_bundle_io
-from latency_fingerprinting.adapters.pixelated_bundle import PixelatedBundleError
 from latency_fingerprinting.models import ContextKey
+from latency_fingerprinting.p0.adapters.pixelated_bundle import PixelatedBundleError
 
 from .support import (
     VALID_BUNDLE,

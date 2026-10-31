@@ -3,10 +3,43 @@
 from __future__ import annotations
 
 import math
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
 
+from ...adapters.pixelated_bundle_common import PixelatedBundleError
+from ...adapters.pixelated_bundle_common import finite_number as _finite_number
+from ...adapters.pixelated_bundle_common import utc_datetime as _utc_datetime
+from ...adapters.pixelated_bundle_contract import (
+    EVENT_COLUMNS,
+    READABLE_FILES,
+    TELEMETRY_COLUMNS,
+    V1_REQUIRED_FILES,
+)
+from ...adapters.pixelated_bundle_contract import validate_metadata as _validate_metadata
+from ...adapters.pixelated_bundle_io import bundle_checksum as _bundle_checksum
+from ...adapters.pixelated_bundle_io import csv_rows as _csv_rows
+from ...adapters.pixelated_bundle_io import json_object as _json_object
+from ...adapters.pixelated_bundle_io import read_bundle as _read_bundle_files
+from ...adapters.pixelated_bundle_v2 import ENGINE_TELEMETRY_COLUMNS, V2_REQUIRED_FILES
+from ...adapters.pixelated_bundle_v2 import engine_effective_settings as _engine_effective_settings
+from ...adapters.pixelated_bundle_v2 import validate_engine_rows as _validate_engine_rows
+from ...adapters.pixelated_bundle_v2 import (
+    validate_engine_window_alignment as _validate_engine_window_alignment,
+)
+from ...adapters.pixelated_bundle_v2 import validate_event_privacy as _validate_event_privacy
+from ...adapters.pixelated_bundle_v2 import validate_manifest as _validate_manifest
+from ...adapters.pixelated_bundle_v2 import (
+    validate_metadata_privacy as _validate_v2_metadata_privacy,
+)
+from ...adapters.pixelated_bundle_v2 import validate_summary as _validate_v2_summary
+from ...adapters.pixelated_bundle_v2 import validity_reasons as _v2_validity_reasons
+from ...adapters.pixelated_bundle_validation import (
+    validate_cross_file_identity as _validate_cross_file_identity,
+)
+from ...adapters.pixelated_bundle_validation import (
+    validate_packet_loss_deltas as _validate_packet_loss_deltas,
+)
+from ...adapters.pixelated_bundle_validation import validity_reasons as _validity_reasons
 from ..models import (
     ContextKey,
     ObservationWindow,
@@ -16,118 +49,14 @@ from ..models import (
     ValidityState,
     WindowPhase,
 )
-from .pixelated_bundle_common import (
-    PixelatedBundleError,
-)
-from .pixelated_bundle_common import (
-    finite_json_number as _finite_json_number,
-)
-from .pixelated_bundle_common import (
-    finite_number as _finite_number,
-)
-from .pixelated_bundle_common import (
-    required_string as _required_string,
-)
-from .pixelated_bundle_common import (
-    utc_datetime as _utc_datetime,
-)
-from .pixelated_bundle_io import (
-    bundle_checksum as _bundle_checksum,
-)
-from .pixelated_bundle_io import (
-    csv_rows as _csv_rows,
-)
-from .pixelated_bundle_io import (
-    json_object as _json_object,
-)
-from .pixelated_bundle_io import (
-    read_bundle as _read_bundle_files,
-)
-from .pixelated_bundle_metrics import (
-    BROWSER_METRIC_COLUMNS as METRIC_COLUMNS,
-)
-from .pixelated_bundle_metrics import (
-    STREAM_COUNTER_METRICS,
-)
-from .pixelated_bundle_metrics import (
-    counter_metrics as _counter_metrics,
-)
-from .pixelated_bundle_metrics import (
-    engine_metrics as _engine_metrics,
-)
-from .pixelated_bundle_metrics import (
-    mapped_metrics as _metrics,
-)
-from .pixelated_bundle_v2 import (
-    ENGINE_TELEMETRY_COLUMNS,
-    V2_REQUIRED_FILES,
-)
-from .pixelated_bundle_v2 import (
-    engine_effective_settings as _engine_effective_settings,
-)
-from .pixelated_bundle_v2 import (
-    validate_engine_rows as _validate_engine_rows,
-)
-from .pixelated_bundle_v2 import (
-    validate_engine_window_alignment as _validate_engine_window_alignment,
-)
-from .pixelated_bundle_v2 import (
-    validate_event_privacy as _validate_event_privacy,
-)
-from .pixelated_bundle_v2 import (
-    validate_manifest as _validate_manifest,
-)
-from .pixelated_bundle_v2 import (
-    validate_metadata_privacy as _validate_v2_metadata_privacy,
-)
-from .pixelated_bundle_v2 import (
-    validate_summary as _validate_v2_summary,
-)
-from .pixelated_bundle_v2 import (
-    validity_reasons as _v2_validity_reasons,
-)
-from .pixelated_bundle_validation import (
-    validate_cross_file_identity as _validate_cross_file_identity,
-)
-from .pixelated_bundle_validation import (
-    validate_packet_loss_deltas as _validate_packet_loss_deltas,
-)
-from .pixelated_bundle_validation import (
-    validity_reasons as _validity_reasons,
-)
+from .pixelated_bundle_metrics import BROWSER_METRIC_COLUMNS as METRIC_COLUMNS
+from .pixelated_bundle_metrics import STREAM_COUNTER_METRICS
+from .pixelated_bundle_metrics import counter_metrics as _counter_metrics
+from .pixelated_bundle_metrics import engine_metrics as _engine_metrics
+from .pixelated_bundle_metrics import mapped_metrics as _metrics
 
-V1_REQUIRED_FILES = frozenset(
-    {
-        "run-metadata.json",
-        "stream-telemetry.csv",
-        "stream-events.csv",
-        "summary.json",
-    }
-)
-READABLE_FILES = V2_REQUIRED_FILES
-# Kept as the public v1 alias for callers that froze the original contract.
+# Original v1 alias retained for P0 callers.
 REQUIRED_FILES = V1_REQUIRED_FILES
-TELEMETRY_COLUMNS = frozenset(
-    {
-        "captured_at",
-        "elapsed_ms",
-        "session_id",
-        "game_id",
-        "player_mode",
-        "status",
-        "fps",
-        "bitrate_kbps",
-        "packets_lost_total",
-        "packets_lost_delta",
-        "jitter_ms",
-        "ice_connection_state",
-        "connection_state",
-        "last_engine_error",
-    }
-)
-EVENT_COLUMNS = frozenset(
-    {"captured_at", "elapsed_ms", "run_id", "session_id", "event", "details_json"}
-)
 
 
 def _read_bundle(path: Path) -> dict[str, bytes]:
@@ -136,55 +65,6 @@ def _read_bundle(path: Path) -> dict[str, bytes]:
         readable_files=READABLE_FILES,
         required_files=V1_REQUIRED_FILES,
     )
-
-
-def _validate_metadata(
-    metadata: Mapping[str, Any],
-) -> tuple[str, str, str, str, dict[str, Any]]:
-    if type(metadata.get("schemaVersion")) is not int or metadata["schemaVersion"] != 1:
-        raise PixelatedBundleError("run-metadata.json requires schemaVersion 1")
-    run_id = _required_string(metadata, "runId", "run-metadata.json")
-    session_id = _required_string(metadata, "sessionId", "run-metadata.json")
-    game = metadata.get("game")
-    if not isinstance(game, dict):
-        raise PixelatedBundleError("run-metadata.json requires object 'game'")
-    workload_id = _required_string(game, "id", "run-metadata.json game")
-    player_mode = _required_string(metadata, "playerMode", "run-metadata.json")
-    profile = metadata.get("streamProfile")
-    if not isinstance(profile, dict):
-        raise PixelatedBundleError("run-metadata.json requires object 'streamProfile'")
-
-    settings: dict[str, Any] = {}
-    for key in ("bitrateKbps", "fps", "id"):
-        if key not in profile:
-            raise PixelatedBundleError(f"run-metadata.json streamProfile requires {key!r}")
-    for key in ("bitrateKbps", "fps"):
-        value = profile[key]
-        if value is None:
-            continue
-        try:
-            number = _finite_json_number(
-                value,
-                source=f"run-metadata.json streamProfile {key!r}",
-            )
-        except PixelatedBundleError as error:
-            raise PixelatedBundleError(
-                f"run-metadata.json streamProfile {key!r} must be finite, "
-                "non-negative, numeric, or null"
-            ) from error
-        if number < 0:
-            raise PixelatedBundleError(
-                f"run-metadata.json streamProfile {key!r} must be finite and non-negative"
-            )
-        settings[key] = value
-    profile_id = profile["id"]
-    if profile_id is not None:
-        if not isinstance(profile_id, str) or not profile_id.strip():
-            raise PixelatedBundleError(
-                "run-metadata.json streamProfile 'id' must be a non-empty string or null"
-            )
-        settings["streamProfileId"] = profile_id.strip()
-    return run_id, session_id, workload_id, player_mode, settings
 
 
 def ingest_pixelated_bundle(

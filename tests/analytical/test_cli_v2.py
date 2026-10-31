@@ -13,8 +13,8 @@ from latency_fingerprinting.analytical.matching import match_response_v2
 from latency_fingerprinting.analytical.repository import FingerprintRepositoryV2
 from latency_fingerprinting.analytical.responses import derive_analytical_response
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import AnalyticalResponseV2, FeaturePolicyV1, ObservationRecordV2
-from latency_fingerprinting.pipeline import canonical_json
 
 from .cases import fingerprint_payload, policy_payload, response_payload
 from .matching_cases import jitter_response

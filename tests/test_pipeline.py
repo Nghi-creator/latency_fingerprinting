@@ -7,13 +7,10 @@ from pathlib import Path
 
 import pytest
 
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import MatchDecision, MatchResult, ObservationRecord
-from latency_fingerprinting.pipeline import (
-    PipelineResult,
-    canonical_json,
-    run_pipeline_from_files,
-)
-from latency_fingerprinting.synthetic_fixtures import (
+from latency_fingerprinting.p0.pipeline import PipelineResult, run_pipeline_from_files
+from latency_fingerprinting.p0.synthetic import (
     DEFAULT_FIXTURE_DIRECTORY,
     QUERY_EXPECTATIONS,
 )
@@ -116,9 +113,9 @@ def test_pipeline_json_uses_contract_aliases_and_finite_numbers() -> None:
 
 
 def test_controlled_run_002_reproduces_frozen_match_bytes() -> None:
-    from latency_fingerprinting.fingerprints import load_fingerprint_repository
     from latency_fingerprinting.json_io import load_model_file
-    from latency_fingerprinting.matcher import match_observation
+    from latency_fingerprinting.p0.fingerprints import load_fingerprint_repository
+    from latency_fingerprinting.p0.matcher import match_observation
 
     seed = PROJECT_ROOT / "experiments" / "controlled-run-001"
     query = PROJECT_ROOT / "experiments" / "controlled-run-002"

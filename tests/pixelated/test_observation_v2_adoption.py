@@ -7,8 +7,8 @@ import pytest
 from latency_fingerprinting.adapters import ingest_pixelated_v2
 from latency_fingerprinting.adapters import pixelated_measurement_samples as extraction
 from latency_fingerprinting.cli import main
+from latency_fingerprinting.json_io import canonical_json
 from latency_fingerprinting.models import ObservationWindowV2, ProvenanceKind, WindowPhase
-from latency_fingerprinting.pipeline import canonical_json
 
 from .support import VALID_BUNDLE, VALID_V2_BUNDLE, copy_v2_bundle, write_tar
 from .test_measurement_samples import edit_json, edit_row
@@ -79,7 +79,7 @@ def test_one_read_and_no_p0_aggregation(context_v2, monkeypatch):
         return original(*args, **kwargs)
 
     monkeypatch.setattr(extraction, "read_bundle", read_once)
-    from latency_fingerprinting.adapters import pixelated_bundle_metrics
+    from latency_fingerprinting.p0.adapters import pixelated_bundle_metrics
 
     monkeypatch.setattr(
         pixelated_bundle_metrics,

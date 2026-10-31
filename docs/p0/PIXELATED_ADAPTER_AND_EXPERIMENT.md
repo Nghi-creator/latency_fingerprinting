@@ -4,7 +4,7 @@ This document defines how one real Pixelated record reaches the detached matcher
 
 ## Bundle adapter
 
-`src/latency_fingerprinting/adapters/pixelated_bundle.py` consumes an existing bundle or extracted directory:
+`src/latency_fingerprinting/p0/adapters/pixelated_bundle.py` consumes an existing bundle or extracted directory:
 
 ```text
 run-metadata.json

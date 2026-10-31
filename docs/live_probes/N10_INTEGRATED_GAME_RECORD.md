@@ -122,6 +122,14 @@ CPU with `null`, never zero. Missing browser resource data does not turn an
 otherwise measured temporal window into a failure; no resource budget, CPU
 benefit, causal relief or native/browser combined cost is inferred.
 
+When native OS counter metadata is supplied, core also recomputes each process's
+tick conversion, inventory hash and aggregate total. Per-process lifetimes and
+timebases must persist, and no process counter may reset behind a rising total.
+Native and host read brackets must be bounded and consistent. Partial or
+contradictory metadata makes CPU unavailable. Historical aggregate-only snapshots
+retain their original, narrower interpretation; neither format authenticates
+process ownership or execution.
+
 The fixed cancellation reservation is one action and four seconds, with a clean
 ledger and declared verified cancellation. Uncertain failure results must retain
 unknown restoration and a dirty ledger with that same reservation; a supported
