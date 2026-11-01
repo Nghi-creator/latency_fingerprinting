@@ -318,7 +318,7 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
     assert len(SCHEMA_MODELS) == 40
     old = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in (ROOT / "schemas").glob("*.schema.json")
+        for p in (ROOT / "schemas").rglob("*.schema.json")
         if p.name
         not in additions
         | {
@@ -333,7 +333,9 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
         == "0ecfacf9a968e43cb6e70b2237855dc54cda2b8f138fbc47e68de1928f0204d9"
     )
     for name in additions:
-        assert (ROOT / "schemas" / name).read_text() == render_schema(SCHEMA_MODELS[name])
+        assert (ROOT / "schemas" / "passive_gating" / name).read_text() == render_schema(
+            SCHEMA_MODELS[f"passive_gating/{name}"]
+        )
 
 
 def test_pure_factories_reject_bad_inventories_with_fixed_errors(roots):

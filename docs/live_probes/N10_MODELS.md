@@ -3,7 +3,7 @@
 `live-probe-evidence-v1`, method `n10-live-evidence-v1`, is an immutable forensic
 record for the initial `vp8_target_bitrate` candidate. It stores declarations and
 observations without executing a request, qualifying a capability or accepting a
-causal/diagnostic response. Its [JSON Schema](../../schemas/live-probe-evidence-v1.schema.json)
+causal/diagnostic response. Its [JSON Schema](../../schemas/live_probes/live-probe-evidence-v1.schema.json)
 is additive; N1–N9 schemas, clocks, fixtures and response derivations retain their
 meaning. The broader [live-evidence design](N10_LIVE_EVIDENCE_CONTRACT.md) includes
 future production control requirements that this model does not implement.

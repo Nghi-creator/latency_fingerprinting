@@ -115,7 +115,7 @@ If no stable response appears, keep the integration artifact and return `unknown
 ## Artifacts
 
 ```text
-experiments/controlled-run-001/
+experiments/p0/controlled-run-001/
 ├── README.md
 ├── context.json
 ├── manifest.json

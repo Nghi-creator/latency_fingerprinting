@@ -10,7 +10,7 @@ ruff format --check .
 python -m pip check
 python -m latency_fingerprinting export-schemas --output schemas --check
 python -m latency_fingerprinting export-metric-registry \
-  --output schemas/metric-registry-v1.json --check
+  --output schemas/measurement/metric-registry-v1.json --check
 ```
 
 CI runs pull requests targeting `main` or `phase_2`, and pushes to those two
@@ -61,7 +61,7 @@ python -m tests.profile_matching.check_reproduction
 python -m tests.passive_gating.check_reproduction
 python -m pytest tests/profile_matching
 python -m pytest tests/passive_gating
-python experiments/controlled-run-001/record_seed_fingerprint.py --check
+python experiments/p0/controlled-run-001/record_seed_fingerprint.py --check
 ```
 
 These commands check release pins and independent expectations without blessing

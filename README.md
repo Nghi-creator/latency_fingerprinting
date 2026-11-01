@@ -24,19 +24,19 @@ python -m pip install -e '.[dev]'
 Validate and match the included synthetic observation:
 
 ```sh
-latency-fingerprint validate fixtures/query_cases/similar_network/observation.json
+latency-fingerprint validate fixtures/p0/query_cases/similar_network/observation.json
 latency-fingerprint match \
-  fixtures/query_cases/similar_network/observation.json \
-  --fingerprints fixtures/reference_cases
+  fixtures/p0/query_cases/similar_network/observation.json \
+  --fingerprints fixtures/p0/reference_cases
 ```
 
 Construct an observation from a degraded/relief pair and a recorded intervention:
 
 ```sh
 latency-fingerprint build-response \
-  --degraded fixtures/query_cases/similar_network/degraded.json \
-  --relief fixtures/query_cases/similar_network/relief.json \
-  --probe fixtures/query_cases/similar_network/probe.json
+  --degraded fixtures/p0/query_cases/similar_network/degraded.json \
+  --relief fixtures/p0/query_cases/similar_network/relief.json \
+  --probe fixtures/p0/query_cases/similar_network/probe.json
 ```
 
 Import a Pixelated research bundle with an explicit context:
@@ -80,9 +80,9 @@ Start with the [documentation index](docs/README.md) and
   and replays degradation, recovery, stale evidence and bounded probe proposals.
 - [Fixture inventory and maintenance](fixtures/README.md) explains the regression
   families, release pins and why complete retained outcomes are stored.
-- [Controlled-run processing](experiments/CONTROLLED_RUN_PROCESSING.md) explains
-  how to process recorded experiments. Sanitized experimental artifacts remain
-  under `experiments/`; synthetic regression inputs remain under `fixtures/`.
+- [Recorded experiments](experiments/README.md) separates the original P0 runs
+  from later evidence. The [P0 processing guide](experiments/p0/CONTROLLED_RUN_PROCESSING.md)
+  covers its frozen workflow; synthetic regression inputs remain under `fixtures/`.
 - [Live-probe evidence](docs/live_probes/N10_MODELS.md) validates immutable offline
   declarations and reconstructs counter/setting observations while retaining
   unqualified capability and unverified receiver continuity.

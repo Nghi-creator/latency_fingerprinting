@@ -76,8 +76,8 @@ bounded no-follow input, duplicate-safe JSON, archive checks and atomic output a
 
 `ingest-trace`, `inspect-trace` and `validate` dispatch explicitly on the root
 version. Public model APIs export `StageTraceRecordV2` and `StageTraceSummaryV2`;
-the v1 model still rejects v2. The generated [record schema](../../schemas/stage-trace-record-v2.schema.json)
-and [summary schema](../../schemas/stage-trace-summary-v2.schema.json) are additive.
+the v1 model still rejects v2. The generated [record schema](../../schemas/observability/stage-trace-record-v2.schema.json)
+and [summary schema](../../schemas/observability/stage-trace-summary-v2.schema.json) are additive.
 
 [Independent release fixtures](../../fixtures/browser-execution-v1/README.md)
 cover paired timestamps, partial capacity and API unavailability. Their integer

@@ -47,4 +47,4 @@ assert ingest_pixelated_bundle is p0
 
 
 def test_synthetic_source_default_still_points_to_the_repository_fixtures():
-    assert Path(__file__).resolve().parents[2] / "fixtures" == DEFAULT_FIXTURE_DIRECTORY
+    assert Path(__file__).resolve().parents[2] / "fixtures" / "p0" == DEFAULT_FIXTURE_DIRECTORY

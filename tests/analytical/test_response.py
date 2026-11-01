@@ -221,7 +221,7 @@ def test_public_validate_failures_are_repeatable_without_partial_json(tmp_path, 
 def test_existing_p0_builders_and_matcher_reject_analytical_roots(tmp_path, capsys):
     path = tmp_path / "response.json"
     path.write_text(canonical_json(AnalyticalResponseV2.model_validate(response_payload())))
-    assert main(["match", str(path), "--fingerprints", "fixtures/reference_cases"]) == 1
+    assert main(["match", str(path), "--fingerprints", "fixtures/p0/reference_cases"]) == 1
     assert capsys.readouterr().out == ""
     assert (
         main(
@@ -232,7 +232,7 @@ def test_existing_p0_builders_and_matcher_reject_analytical_roots(tmp_path, caps
                 "--relief",
                 str(path),
                 "--probe",
-                "fixtures/query_cases/similar_network/probe.json",
+                "fixtures/p0/query_cases/similar_network/probe.json",
             ]
         )
         == 1

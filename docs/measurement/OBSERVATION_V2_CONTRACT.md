@@ -42,7 +42,7 @@ Windows reference a separately verified snapshot; they do **not** embed definiti
 | registryVersion | `latency-metrics-v2.0.0` for the initial N2 release |
 | contentHash | `sha256:<64 lowercase hex digits>`; exact trusted release hash below |
 
-The trusted snapshot is [metric-registry-v1.json](../../schemas/metric-registry-v1.json).
+The trusted snapshot is [metric-registry-v1.json](../../schemas/measurement/metric-registry-v1.json).
 Its hash is SHA-256 of the UTF-8 bytes emitted by `render_metric_registry`, including
 the final newline, rather than arbitrary JSON reformatting or the input TAR bytes:
 

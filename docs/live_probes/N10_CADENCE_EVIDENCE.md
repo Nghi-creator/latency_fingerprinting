@@ -5,7 +5,7 @@ immutable forensic record for the producer's explicit isolated Gst WebRTC cadenc
 worker. It does not execute control, qualify a policy, clear a dirty runtime
 journal or establish diagnostic relief. The bitrate-only
 [`live-probe-evidence-v1`](N10_MODELS.md) and all earlier schemas retain their
-bytes and meaning. The new [JSON Schema](../../schemas/cadence-probe-evidence-v1.schema.json)
+bytes and meaning. The new [JSON Schema](../../schemas/live_probes/cadence-probe-evidence-v1.schema.json)
 validates the structural format; Python validators additionally enforce hashes,
 chronology and cross-field constraints.
 

@@ -20,7 +20,7 @@ REFERENCE_DIRECTORY = DEFAULT_FIXTURE_DIRECTORY / "reference_cases"
 # Full serialized matcher output, including evidence and decision text. The
 # generated query expectations separately specify expected scores and decisions.
 EXAMPLE_RESULT_PATH = PROJECT_ROOT / "tests" / "data" / "clear-network-match-result.json"
-MATCH_SCHEMA_PATH = PROJECT_ROOT / "schemas" / "match-result-v1.schema.json"
+MATCH_SCHEMA_PATH = PROJECT_ROOT / "schemas" / "p0" / "match-result-v1.schema.json"
 
 
 def run_case(case_name: str) -> PipelineResult:
@@ -117,8 +117,8 @@ def test_controlled_run_002_reproduces_frozen_match_bytes() -> None:
     from latency_fingerprinting.p0.fingerprints import load_fingerprint_repository
     from latency_fingerprinting.p0.matcher import match_observation
 
-    seed = PROJECT_ROOT / "experiments" / "controlled-run-001"
-    query = PROJECT_ROOT / "experiments" / "controlled-run-002"
+    seed = PROJECT_ROOT / "experiments" / "p0" / "controlled-run-001"
+    query = PROJECT_ROOT / "experiments" / "p0" / "controlled-run-002"
     observation = load_model_file(query / "observation.json", ObservationRecord)
     result = match_observation(observation, load_fingerprint_repository(seed))
     assert canonical_json(result).encode("utf-8") == (query / "match-result.json").read_bytes()

@@ -305,7 +305,7 @@ def test_cli_generic_validation_schema_and_no_input_overwrite(tmp_path, capsys):
 def test_additive_schema_preserves_all_previous_38_bytes():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in Path("schemas").glob("*.schema.json")
+        for p in Path("schemas").rglob("*.schema.json")
         if p.name
         not in {
             "game-browser-probe-evidence-v1.schema.json",

@@ -298,7 +298,7 @@ def test_cli_validate_and_p0_commands_remain_isolated(tmp_path, capsys):
     assert load_model_file(path, ObservationWindowV2) == model
     assert main(["validate", str(path)]) == 0
     assert json.loads(capsys.readouterr().out)["schemaVersion"] == "observation-window-v2"
-    assert main(["match", str(path), "--fingerprints", "fixtures/reference_cases"]) == 1
+    assert main(["match", str(path), "--fingerprints", "fixtures/p0/reference_cases"]) == 1
     output = capsys.readouterr()
     assert not output.out and "Traceback" not in output.err
     for p0 in (ObservationWindow, ObservationRecord):
@@ -502,7 +502,7 @@ def test_v2_window_cannot_enter_p0_response_cli(tmp_path, capsys):
                 "--relief",
                 str(path),
                 "--probe",
-                "fixtures/query_cases/similar_network/probe.json",
+                "fixtures/p0/query_cases/similar_network/probe.json",
             ]
         )
         == 1

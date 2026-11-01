@@ -97,8 +97,8 @@ latency-fingerprint export-schemas --output schemas --check
 Generic validation prints the validated canonical root; it does not run linked
 inspection. Its existing bounded root-dispatch reader precedes the N6 JSON entry
 point. The new generated schemas are
-[dataset](../../schemas/calibration-dataset-v1.schema.json) and
-[report](../../schemas/calibration-report-v1.schema.json). JSON Schema validates
+[dataset](../../schemas/calibration/calibration-dataset-v1.schema.json) and
+[report](../../schemas/calibration/calibration-report-v1.schema.json). JSON Schema validates
 shape, closed fields and local type/range bounds. Runtime models also check
 cross-field references, content hashes and reconstructed counts.
 
