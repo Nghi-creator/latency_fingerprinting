@@ -451,8 +451,14 @@ def main() -> None:
             ],
             directory=directory,
         )
-        expected = {p.name: p.read_bytes() for p in (ROOT / "schemas").glob("*.schema.json")}
-        actual = {p.name: p.read_bytes() for p in exported.glob("*.schema.json")}
+        expected = {
+            p.relative_to(ROOT / "schemas").as_posix(): p.read_bytes()
+            for p in (ROOT / "schemas").rglob("*.schema.json")
+        }
+        actual = {
+            p.relative_to(exported).as_posix(): p.read_bytes()
+            for p in exported.rglob("*.schema.json")
+        }
         if not expected or expected != actual:
             raise ValueError("installed wheel schema exports differ from the frozen release")
         print(

@@ -31,18 +31,18 @@ def test_root_schemas_use_contract_json_aliases() -> None:
             metadata = {
                 SCHEMA_MODELS[name]
                 for name in (
-                    "n5-campaign-plan-v1.schema.json",
-                    "n5-campaign-index-v1.schema.json",
-                    "n5-campaign-report-v1.schema.json",
-                    "n4-overhead-evidence-v1.schema.json",
-                    "n4-overhead-report-v1.schema.json",
+                    "scenarios/n5-campaign-plan-v1.schema.json",
+                    "scenarios/n5-campaign-index-v1.schema.json",
+                    "scenarios/n5-campaign-report-v1.schema.json",
+                    "scenarios/n4-overhead-evidence-v1.schema.json",
+                    "scenarios/n4-overhead-report-v1.schema.json",
                 )
             }
             assert ("method_release" in schema["properties"]) == (model not in metadata)
             assert "schemaVersion" not in schema["properties"]
             continue
         assert "schemaVersion" in schema["properties"]
-        if model is not SCHEMA_MODELS["metric-registry-v1.schema.json"]:
+        if model is not SCHEMA_MODELS["measurement/metric-registry-v1.schema.json"]:
             assert "contractVersion" in schema["properties"]
 
 
@@ -66,18 +66,23 @@ def test_schema_export_uses_sibling_atomic_replacements(
     assert all(source.parent == destination.parent for source, destination in replacements)
     assert all(source != destination for source, destination in replacements)
     assert set(paths) == {destination for _, destination in replacements}
-    assert list(tmp_path.glob(".*.tmp")) == []
+    assert list(tmp_path.rglob(".*.tmp")) == []
 
 
 def test_schema_export_cleans_temporary_file_when_replacement_fails(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    target = tmp_path / "fingerprint-v1.schema.json"
+    target = tmp_path / "p0" / "fingerprint-v1.schema.json"
+    target.parent.mkdir()
     target.write_text("existing\n", encoding="utf-8")
 
+    original_replace = Path.replace
+
     def failing_replace(source: Path, destination: Path) -> Path:
-        raise OSError("replacement failed")
+        if destination == target:
+            raise OSError("replacement failed")
+        return original_replace(source, destination)
 
     monkeypatch.setattr(Path, "replace", failing_replace)
 
@@ -85,4 +90,4 @@ def test_schema_export_cleans_temporary_file_when_replacement_fails(
         export_schemas(tmp_path)
 
     assert target.read_text(encoding="utf-8") == "existing\n"
-    assert list(tmp_path.glob(".*.tmp")) == []
+    assert list(tmp_path.rglob(".*.tmp")) == []

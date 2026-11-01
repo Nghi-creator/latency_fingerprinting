@@ -117,7 +117,7 @@ in-process rollback. Logs and idempotency results must survive owner restart.
 
 ## Qualification and isolated experiments
 
-The producer's [isolated trial procedure](../../../Pixelated-Studio-Edition/docs/n10-bitrate-feasibility.md)
+The producer's [isolated trial procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-bitrate-feasibility.md)
 uses a disposable synthetic encoder/decoder to investigate installed-plugin
 behavior. That tool has no live peer and no production journal. Its output is
 operator evidence, not an accepted core root or capability grant. Local decoding

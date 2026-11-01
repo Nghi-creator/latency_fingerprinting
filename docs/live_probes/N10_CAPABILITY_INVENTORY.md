@@ -5,7 +5,7 @@ has no authority to change a producer. N10 begins by inspecting the exact target
 runtime before choosing one isolated live relief family. The detached Python core
 continues to consume evidence; it does not import Gst or control frame callbacks.
 
-The producer's [read-only inventory procedure](../../../Pixelated-Studio-Edition/docs/n10-capability-inventory.md)
+The producer's [read-only inventory procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-capability-inventory.md)
 reports installed Gst properties, read/write/construct flags, advertised PLAYING
 mutability and setting reads from fresh NULL-state elements. It does not inspect
 an existing peer, apply a setting, measure a response or qualify a live adapter.
@@ -70,7 +70,7 @@ ownership, clock, window and recovery boundary. The separate [offline evidence
 model](N10_MODELS.md) adds a conservative forensic root; neither inventory nor
 validated evidence authorizes a live adapter.
 
-For encoder feasibility, the producer's [contained bitrate experiment](../../../Pixelated-Studio-Edition/docs/n10-bitrate-feasibility.md)
+For encoder feasibility, the producer's [contained bitrate experiment](../../../Pixelated-Studio-Edition/docs/research/n10/n10-bitrate-feasibility.md)
 has fixed short, settled and unchanged-control protocols. Retain the unchanged
 control as well as changed-bitrate results: scene/warm-up drift can change output
 without a control effect. Its exact byte/duration screens are synthetic experiment
@@ -80,14 +80,14 @@ restoration/recovery unverified. No isolated result grants live authority.
 
 A successful isolated control/restore screen may select a candidate for a
 default-disabled owned implementation. It does not qualify production activation.
-The [capture-cadence procedure](../../../Pixelated-Studio-Edition/docs/n10-cadence-feasibility.md)
+The [capture-cadence procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-cadence-feasibility.md)
 uses actual source-caps renegotiation rather than N5 delay injection; its private
 static-Xvfb and local-decoder scope leaves moving-game workload, real receiver,
 quality and production ownership/watchdog/recovery acceptance open. Cadence
 operator evidence is distinct from the frozen bitrate-only forensic root; do not
 relabel it as `vp8_target_bitrate`.
 
-The producer's [default-disabled cadence lifecycle kernel](../../../Pixelated-Studio-Edition/docs/n10-cadence-controller.md)
+The producer's [default-disabled cadence lifecycle kernel](../../../Pixelated-Studio-Edition/docs/research/n10/n10-cadence-controller.md)
 adds private request/budget/journal/watchdog mechanics for a dedicated worker.
 Its explicit isolated worker now binds its own synthetic Gst WebRTC sender and
 receiver, including cancellation and receiver-loss teardown drills. This is not
@@ -96,10 +96,10 @@ imports and independently inspects its observations without granting authority.
 Quality/resource qualification and production activation remain unavailable.
 
 The producer's default-off dedicated-peer camera transport also supports a
-[contained game/control harness](../../../Pixelated-Studio-Edition/docs/n10-contained-game-control.md)
+[contained game/control harness](../../../Pixelated-Studio-Edition/docs/research/n10/n10-contained-game-control.md)
 with actual camera routing, isolated owned game/display, two browser receivers
 and per-worker teardown. Its
-[failure procedure](../../../Pixelated-Studio-Edition/docs/n10-contained-game-failures.md)
+[failure procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-contained-game-failures.md)
 exercises cancellation, receiver/source loss, peer replacement and logical local
 issuer restart. Production-source mutation remains rejected. The
 [integrated cohort record](N10_INTEGRATED_GAME_RECORD.md) preserves those reports
@@ -108,7 +108,7 @@ lifetime/journal comparisons. This scope retains separate clocks, unknown
 outcomes and dirty budgets; it grants no live authority or family qualification.
 
 
-The producer also provides a [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md)
+The producer also provides a [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/research/n10/n10-game-browser-trial.md)
 with a fixed Frozen-Bubble level, private display, scripted input and separate
 headless Chromium receiver. It retains temporal/nonblank and resource observations
 in an engineering operator report. The separate

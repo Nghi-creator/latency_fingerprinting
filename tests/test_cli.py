@@ -18,7 +18,7 @@ from latency_fingerprinting.models import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-FIXTURES = PROJECT_ROOT / "fixtures"
+FIXTURES = PROJECT_ROOT / "fixtures" / "p0"
 QUERY_CASES = FIXTURES / "query_cases"
 REFERENCES = FIXTURES / "reference_cases"
 SCHEMAS = PROJECT_ROOT / "schemas"
@@ -115,8 +115,8 @@ def test_export_schemas_writes_then_checks_current_files(
     assert check_code == 0
     assert json.loads(check_stdout)["status"] == "current"
     assert check_stderr == ""
-    assert {path.name for path in output.iterdir()} == {
-        path.name for path in SCHEMAS.glob("*.schema.json")
+    assert {path.relative_to(output) for path in output.rglob("*.schema.json")} == {
+        path.relative_to(SCHEMAS) for path in SCHEMAS.rglob("*.schema.json")
     }
 
 
@@ -126,7 +126,7 @@ def test_export_schema_check_reports_drift_without_rewriting(
 ) -> None:
     output = tmp_path / "schemas"
     invoke(["export-schemas", "--output", str(output)], capsys)
-    changed = output / "observation-v1.schema.json"
+    changed = output / "p0" / "observation-v1.schema.json"
     changed.write_text("modified by test\n", encoding="utf-8")
 
     exit_code, stdout, stderr = invoke(
@@ -267,7 +267,9 @@ def test_match_emits_a_schema_valid_result(
     )
 
     result = MatchResult.model_validate_json(stdout)
-    schema = json.loads((SCHEMAS / "match-result-v1.schema.json").read_text(encoding="utf-8"))
+    schema = json.loads(
+        (SCHEMAS / "p0" / "match-result-v1.schema.json").read_text(encoding="utf-8")
+    )
     payload = json.loads(stdout)
     assert exit_code == 0
     assert result.decision is MatchDecision.MATCHED

@@ -186,9 +186,9 @@ def test_new_schemas_do_not_modify_any_existing_bytes():
     for name, model in SCHEMA_MODELS.items():
         assert (DEFAULT_SCHEMA_DIRECTORY / name).read_text() == render_schema(model)
     assert set(
-        json.loads((DEFAULT_SCHEMA_DIRECTORY / "profile-snapshot-v1.schema.json").read_text())[
-            "properties"
-        ]
+        json.loads(
+            (DEFAULT_SCHEMA_DIRECTORY / "profiles/profile-snapshot-v1.schema.json").read_text()
+        )["properties"]
     ) == set(draft())
 
 

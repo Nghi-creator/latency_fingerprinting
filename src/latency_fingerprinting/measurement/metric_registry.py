@@ -23,7 +23,7 @@ from ..schemas import DEFAULT_SCHEMA_DIRECTORY, _atomic_write_text
 METRIC_REGISTRY_VERSION = "latency-metrics-v2.0.0"
 METRIC_SEMANTIC_VERSION = "1.0.0"
 METRIC_REGISTRY_CREATED_AT = datetime(2026, 10, 6, tzinfo=UTC)
-DEFAULT_METRIC_REGISTRY_PATH = DEFAULT_SCHEMA_DIRECTORY / "metric-registry-v1.json"
+DEFAULT_METRIC_REGISTRY_PATH = DEFAULT_SCHEMA_DIRECTORY / "measurement/metric-registry-v1.json"
 
 
 def _gauge(

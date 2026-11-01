@@ -47,6 +47,12 @@ feature policy. Neither path silently changes the other's metric meanings.
   pipeline and matcher. Its `models/`, `matching/`, `adapters/` and `synthetic/`
   subpackages keep P0 implementation separate from current stages.
 
+P0 regression inputs live under `fixtures/p0/`, and its three generated schemas
+live under `schemas/p0/`. The original recorded runs and their processing guide
+live under `experiments/p0/`. Current fixture families and schemas retain their own
+versioned contracts outside those directories. See the
+[fixture inventory](../fixtures/README.md) and [schema inventory](../schemas/README.md).
+
 P0 module imports use `latency_fingerprinting.p0`, such as
 `latency_fingerprinting.p0.pipeline` and `latency_fingerprinting.p0.matching`.
 The public `latency_fingerprinting.models` facade and

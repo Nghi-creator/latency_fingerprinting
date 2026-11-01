@@ -63,7 +63,7 @@ def test_schema_additions_are_deterministic_and_old_schema_bytes_are_unchanged()
     from latency_fingerprinting.schemas import SCHEMA_MODELS
 
     for name, model in SCHEMA_MODELS.items():
-        if name.startswith("calibration-"):
+        if name.startswith("calibration/"):
             continue
         assert Path("schemas", name).read_text() == render_schema(model)
     for cls in (CalibrationDataset, CalibrationReport):

@@ -1,14 +1,14 @@
 # Regression fixture inventory
 
 These are software-test inputs and expected outcomes. Sanitized recorded
-experiments belong in [`experiments/`](../experiments/CONTROLLED_RUN_PROCESSING.md),
+experiments belong in [`experiments/`](../experiments/README.md),
 and raw/private captures and session notes belong in ignored `local/`.
 Artificial fixtures can exercise controlled-real model branches without being
 measured acquisitions; consult each family's provenance and contract.
 
 | Family | Purpose and maintenance reference |
 | --- | --- |
-| `reference_cases/`, `query_cases/` | Original P0 fingerprints, responses and positive/unknown match cases; [`synthetic/`](../src/latency_fingerprinting/p0/synthetic/rendering.py) checks deterministic rendering |
+| `p0/reference_cases/`, `p0/query_cases/` | Original P0 fingerprints, responses and positive/unknown match cases; [`synthetic/`](../src/latency_fingerprinting/p0/synthetic/rendering.py) checks deterministic rendering |
 | `measurement/` | [N1 gauge/counter arithmetic](../docs/measurement/ARITHMETIC_FIXTURES.md), including gaps, resets, rejected samples and boundary conditions |
 | `observation-v2/` | [N2 adoption and standalone observation records](../docs/measurement/OBSERVATION_V2_FIXTURES.md) |
 | `analytical-v2/` | [N3 response, fingerprint and matching snapshots](../docs/analysis/N3_ANALYTICAL_FIXTURES.md) with independent numerical expectations |
@@ -19,6 +19,9 @@ measured acquisitions; consult each family's provenance and contract.
 | `profiles-v1/` | [N7 fitting and lifecycle outcomes](../docs/profiles/N7_FIXTURES.md) |
 | `profile-matching-v1/` | [N8 matching, evaluation and group-refit outcomes](../docs/profile_matching/N8_FIXTURES.md) |
 | `passive-gating-v1/` | [N9 baseline/replay/results and original source bytes](../docs/passive_gating/N9_FIXTURES.md) |
+
+Only the original P0 corpus lives under `p0/`. Version suffixes on other
+families identify their own releases; they do not mark those families as P0.
 
 [`tests/data/`](../tests/data/pixelated_bundle/README.md) separately supplies small
 upstream adapter inputs and test-support data. Those source examples serve a

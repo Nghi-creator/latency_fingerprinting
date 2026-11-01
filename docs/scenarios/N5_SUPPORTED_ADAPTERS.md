@@ -1,6 +1,6 @@
 # N5 supported adapters and fixed effects
 
-**Producer implementation/API:** [Supported adapter guide](../../../Pixelated-Studio-Edition/docs/n5-adapters.md).
+**Producer implementation/API:** [Supported adapter guide](../../../Pixelated-Studio-Edition/docs/research/n5/n5-adapters.md).
 **Contract:** [Frozen v1](N5_EXPERIMENT_CONTRACT.md).
 **Criteria/availability:** [Capability matrix](N5_ADAPTER_CAPABILITIES.md).
 **Independent expectations:** [tables](N5_EXPERIMENT_EXAMPLES.md).

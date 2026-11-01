@@ -68,7 +68,7 @@ No response may be attributed to only one of those controls.
 ## Private input layout
 
 ```text
-experiments/controlled-run-001/raw/full_data/
+experiments/p0/controlled-run-001/raw/full_data/
 ├── healthy.tar
 ├── degraded.tar
 └── relief.tar
@@ -78,7 +78,7 @@ The accepted bundles are ingested into sanitized, model-valid observation
 windows at:
 
 ```text
-experiments/controlled-run-001/
+experiments/p0/controlled-run-001/
 ├── healthy/window.json
 ├── degraded/window.json
 └── relief/window.json
@@ -98,9 +98,9 @@ exposing their raw path:
 
 ```bash
 python experiments/record_bundle_checksums.py \
-  experiments/controlled-run-001 --write
+  experiments/p0/controlled-run-001 --write
 python experiments/record_bundle_checksums.py \
-  experiments/controlled-run-001 --check
+  experiments/p0/controlled-run-001 --check
 ```
 
 ## Processing commands
@@ -135,7 +135,7 @@ python -m latency_fingerprinting build-response \
   --probe probe.json > observation.json
 
 python -m latency_fingerprinting match observation.json \
-  --fingerprints ../../fixtures/reference_cases > match-result.json
+  --fingerprints ../../../fixtures/p0/reference_cases > match-result.json
 
 python -m latency_fingerprinting validate observation.json
 python -m latency_fingerprinting validate match-result.json

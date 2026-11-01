@@ -22,7 +22,9 @@ NAMES = tuple(reproduction.EXPECTED_SHA256)
 def test_checked_in_roots_validate_and_cli_retains_exact_bytes(name, capsys):
     path = DEFAULT_FIXTURE_DIRECTORY / name
     payload = load_json_file(path)
-    schema = load_json_file(PROJECT_ROOT / f"schemas/{payload['schemaVersion']}.schema.json")
+    schema = load_json_file(
+        PROJECT_ROOT / f"schemas/measurement/{payload['schemaVersion']}.schema.json"
+    )
     Draft202012Validator(schema).validate(payload)
     model_type = ObservationRecordV2 if name == "synthetic-pair.json" else ObservationWindowV2
     model = model_type.model_validate(payload)

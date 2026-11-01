@@ -89,7 +89,7 @@ full fingerprints, checking hashes, vectors, labels and compatibility rejections
 Use it when verifying a stored result against a supplied repository. Producer
 provenance and bottleneck labels remain declared evidence.
 
-The additive [match-result-v2 schema](../../schemas/match-result-v2.schema.json)
+The additive [match-result-v2 schema](../../schemas/analytical/match-result-v2.schema.json)
 is accepted by generic `validate`. The existing `match` command remains v1.
 [Analytical commands](N3_COMMANDS.md) provide `build-response-v2`,
 `build-fingerprint-v2` and `match-v2`. See [synthetic snapshots and pins](N3_ANALYTICAL_FIXTURES.md).

@@ -58,8 +58,8 @@ Existing `validate` recognizes the two new roots and prints canonical JSON:
 .venv/bin/python -m latency_fingerprinting export-schemas --check
 ```
 
-The v1 schemas are [record](../../schemas/stage-trace-record-v1.schema.json) and
-[summary](../../schemas/stage-trace-summary-v1.schema.json). JSON Schema describes
+The v1 schemas are [record](../../schemas/observability/stage-trace-record-v1.schema.json) and
+[summary](../../schemas/observability/stage-trace-summary-v1.schema.json). JSON Schema describes
 shape, closed enums, required fields and local bounds. Runtime validators enforce
 cross-field identity, counts, alias suffix bounds and arithmetic that schemas
 cannot fully express. Generic validate uses its existing file-reading boundary;

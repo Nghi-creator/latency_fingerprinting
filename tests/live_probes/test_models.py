@@ -263,9 +263,9 @@ def test_generic_cli_schema_and_duplicate_safe_json(tmp_path, capsys):
     ):
         with pytest.raises(ValueError):
             LiveProbeEvidence.model_validate_json(invalid)
-    assert Path("schemas/live-probe-evidence-v1.schema.json").read_text() == render_schema(
-        LiveProbeEvidence
-    )
+    assert Path(
+        "schemas/live_probes/live-probe-evidence-v1.schema.json"
+    ).read_text() == render_schema(LiveProbeEvidence)
 
 
 def test_factory_rejects_reserved_fields_and_unsafe_nested_data_before_hashing():
@@ -283,7 +283,7 @@ def test_factory_rejects_reserved_fields_and_unsafe_nested_data_before_hashing()
 def test_one_additive_schema_preserves_previous_36_schema_bytes():
     previous = {
         path.name: hashlib.sha256(path.read_bytes()).hexdigest()
-        for path in Path("schemas").glob("*.schema.json")
+        for path in Path("schemas").rglob("*.schema.json")
         if path.name
         not in {
             "live-probe-evidence-v1.schema.json",

@@ -116,7 +116,7 @@ jobs:
         run: python -m latency_fingerprinting export-schemas --output schemas --check
 
       - name: Check canonical metric registry
-        run: python -m latency_fingerprinting export-metric-registry --output schemas/metric-registry-v1.json --check
+        run: python -m latency_fingerprinting export-metric-registry --output schemas/measurement/metric-registry-v1.json --check
 
       - name: Check synthetic fixture drift
         run: >-
@@ -139,23 +139,23 @@ jobs:
 
       - name: Validate controlled-real P0 artifacts
         run: |
-          python -m latency_fingerprinting validate experiments/controlled-run-001/observation.json > /dev/null
-          python -m latency_fingerprinting validate experiments/controlled-run-001/match-result.json > /dev/null
-          python -m latency_fingerprinting validate experiments/controlled-run-001/fingerprint.json > /dev/null
-          python -m latency_fingerprinting validate experiments/controlled-run-002/observation.json > /dev/null
-          python -m latency_fingerprinting validate experiments/controlled-run-002/match-result.json > /dev/null
+          python -m latency_fingerprinting validate experiments/p0/controlled-run-001/observation.json > /dev/null
+          python -m latency_fingerprinting validate experiments/p0/controlled-run-001/match-result.json > /dev/null
+          python -m latency_fingerprinting validate experiments/p0/controlled-run-001/fingerprint.json > /dev/null
+          python -m latency_fingerprinting validate experiments/p0/controlled-run-002/observation.json > /dev/null
+          python -m latency_fingerprinting validate experiments/p0/controlled-run-002/match-result.json > /dev/null
 
       - name: Check run 001 seed fingerprint drift
-        run: python experiments/controlled-run-001/record_seed_fingerprint.py --check
+        run: python experiments/p0/controlled-run-001/record_seed_fingerprint.py --check
 
       - name: Reproduce run 002 match result
         run: |
           python -m latency_fingerprinting match \
-            experiments/controlled-run-002/observation.json \
-            --fingerprints experiments/controlled-run-001 \
+            experiments/p0/controlled-run-002/observation.json \
+            --fingerprints experiments/p0/controlled-run-001 \
             > /tmp/controlled-run-002-match-result.json
           cmp \
-            experiments/controlled-run-002/match-result.json \
+            experiments/p0/controlled-run-002/match-result.json \
             /tmp/controlled-run-002-match-result.json
 
   coverage:

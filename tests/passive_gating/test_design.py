@@ -241,7 +241,7 @@ def test_policy_pin_and_registry_meaning():
     assert "sha256:" + hashlib.sha256(canonical(content)).hexdigest() == POLICY_HASH
     assert POLICY["content_hash"] == POLICY_HASH
     assert POLICY["policy_id"] == "passive-gate-policy-" + POLICY_HASH[7:]
-    registry_raw = (ROOT / "schemas/metric-registry-v1.json").read_bytes()
+    registry_raw = (ROOT / "schemas/measurement/metric-registry-v1.json").read_bytes()
     # Registry content identity is defined by its existing model, not its file SHA.
     registry = json.loads(registry_raw)
     metric = next(d for d in registry["definitions"] if d["name"] == POLICY["metric"]["name"])

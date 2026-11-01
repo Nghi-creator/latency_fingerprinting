@@ -68,7 +68,7 @@ paths and malformed contents. The P0 loader and its limits remain unchanged.
 
 ## Schema and validation
 
-The [fingerprint-v2 schema](../../schemas/fingerprint-v2.schema.json) describes
+The [fingerprint-v2 schema](../../schemas/analytical/fingerprint-v2.schema.json) describes
 the root accepted by generic `validate`. Runtime validation additionally enforces
 reconstruction and evidence thresholds. V1 matching rejects v2 fingerprints.
 See [commands](N3_COMMANDS.md) for `build-fingerprint-v2` and `match-v2`.

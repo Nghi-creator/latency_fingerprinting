@@ -209,7 +209,7 @@ def test_cli_import_validate_inspect_and_protected_aliases(tmp_path, capsys):
 def test_all_previous_39_schema_bytes_preserved():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in Path("schemas").glob("*.schema.json")
+        for p in Path("schemas").rglob("*.schema.json")
         if p.name != "integrated-game-cohort-record-v1.schema.json"
     }
     assert len(previous) == 39

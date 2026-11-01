@@ -12,7 +12,7 @@ new run number everywhere before running a command.
 Place the three Pixelated exports here without extracting them:
 
 ```text
-experiments/controlled-run-NNN/raw/full_data/
+experiments/p0/controlled-run-NNN/raw/full_data/
 ├── healthy.tar
 ├── degraded.tar
 └── relief.tar
@@ -23,9 +23,9 @@ them:
 
 ```bash
 git check-ignore \
-  experiments/controlled-run-NNN/raw/full_data/healthy.tar \
-  experiments/controlled-run-NNN/raw/full_data/degraded.tar \
-  experiments/controlled-run-NNN/raw/full_data/relief.tar
+  experiments/p0/controlled-run-NNN/raw/full_data/healthy.tar \
+  experiments/p0/controlled-run-NNN/raw/full_data/degraded.tar \
+  experiments/p0/controlled-run-NNN/raw/full_data/relief.tar
 ```
 
 Do not continue unless the embedded bundle manifests have:
@@ -38,7 +38,7 @@ Do not continue unless the embedded bundle manifests have:
 
 ## 2. Finalize `context.json`
 
-Create `experiments/controlled-run-NNN/context.json`. A previous context may be
+Create `experiments/p0/controlled-run-NNN/context.json`. A previous context may be
 used as a starting template only when the environment is genuinely unchanged.
 At minimum, review:
 
@@ -61,7 +61,7 @@ session credential, or device serial.
 
 ## 3. Record restoration evidence
 
-Create `experiments/controlled-run-NNN/restoration-evidence.json` immediately
+Create `experiments/p0/controlled-run-NNN/restoration-evidence.json` immediately
 after the experiment. Record only what was actually observed:
 
 - pressure process completion and worker count;
@@ -85,11 +85,11 @@ Generate and verify `manifest.json`:
 ```bash
 .venv/bin/python \
   experiments/record_bundle_checksums.py \
-  experiments/controlled-run-NNN --write
+  experiments/p0/controlled-run-NNN --write
 
 .venv/bin/python \
   experiments/record_bundle_checksums.py \
-  experiments/controlled-run-NNN --check
+  experiments/p0/controlled-run-NNN --check
 ```
 
 This manifest contains sanitized TAR names, sizes, capture times, schema
@@ -101,34 +101,34 @@ Create the output directories:
 
 ```bash
 mkdir -p \
-  experiments/controlled-run-NNN/healthy \
-  experiments/controlled-run-NNN/degraded \
-  experiments/controlled-run-NNN/relief
+  experiments/p0/controlled-run-NNN/healthy \
+  experiments/p0/controlled-run-NNN/degraded \
+  experiments/p0/controlled-run-NNN/relief
 ```
 
 Ingest each untouched TAR:
 
 ```bash
 .venv/bin/python -m latency_fingerprinting ingest-pixelated \
-  experiments/controlled-run-NNN/raw/full_data/healthy.tar \
+  experiments/p0/controlled-run-NNN/raw/full_data/healthy.tar \
   --phase baseline \
   --comparison-case-id controlled-run-NNN \
-  --context experiments/controlled-run-NNN/context.json \
-  > experiments/controlled-run-NNN/healthy/window.json
+  --context experiments/p0/controlled-run-NNN/context.json \
+  > experiments/p0/controlled-run-NNN/healthy/window.json
 
 .venv/bin/python -m latency_fingerprinting ingest-pixelated \
-  experiments/controlled-run-NNN/raw/full_data/degraded.tar \
+  experiments/p0/controlled-run-NNN/raw/full_data/degraded.tar \
   --phase degraded \
   --comparison-case-id controlled-run-NNN \
-  --context experiments/controlled-run-NNN/context.json \
-  > experiments/controlled-run-NNN/degraded/window.json
+  --context experiments/p0/controlled-run-NNN/context.json \
+  > experiments/p0/controlled-run-NNN/degraded/window.json
 
 .venv/bin/python -m latency_fingerprinting ingest-pixelated \
-  experiments/controlled-run-NNN/raw/full_data/relief.tar \
+  experiments/p0/controlled-run-NNN/raw/full_data/relief.tar \
   --phase relief \
   --comparison-case-id controlled-run-NNN \
-  --context experiments/controlled-run-NNN/context.json \
-  > experiments/controlled-run-NNN/relief/window.json
+  --context experiments/p0/controlled-run-NNN/context.json \
+  > experiments/p0/controlled-run-NNN/relief/window.json
 ```
 
 The generic `validate` command accepts top-level observation, fingerprint, and
@@ -136,7 +136,7 @@ match-result records—not standalone windows. Validate the windows through the
 model instead:
 
 ```bash
-.venv/bin/python -c "from pathlib import Path; from latency_fingerprinting.models import ObservationWindow; root = Path('experiments/controlled-run-NNN'); [ObservationWindow.model_validate_json((root / phase / 'window.json').read_text()) for phase in ('healthy', 'degraded', 'relief')]; print('windows valid')"
+.venv/bin/python -c "from pathlib import Path; from latency_fingerprinting.models import ObservationWindow; root = Path('experiments/p0/controlled-run-NNN'); [ObservationWindow.model_validate_json((root / phase / 'window.json').read_text()) for phase in ('healthy', 'degraded', 'relief')]; print('windows valid')"
 ```
 
 Also inspect the windows for the same run ID, comparison case, context, expected
@@ -144,7 +144,7 @@ profiles, durations, sample counts, validity, missing metrics, and confounders.
 
 ## 6. Finalize `probe.json`
 
-Create `experiments/controlled-run-NNN/probe.json` from the actual degraded and
+Create `experiments/p0/controlled-run-NNN/probe.json` from the actual degraded and
 relief windows. Do not reuse old window IDs. Record:
 
 - the exact degraded and relief `windowId` values;
@@ -175,13 +175,13 @@ Do not attribute the response to only one of those settings.
 
 ```bash
 .venv/bin/python -m latency_fingerprinting build-response \
-  --degraded experiments/controlled-run-NNN/degraded/window.json \
-  --relief experiments/controlled-run-NNN/relief/window.json \
-  --probe experiments/controlled-run-NNN/probe.json \
-  > experiments/controlled-run-NNN/observation.json
+  --degraded experiments/p0/controlled-run-NNN/degraded/window.json \
+  --relief experiments/p0/controlled-run-NNN/relief/window.json \
+  --probe experiments/p0/controlled-run-NNN/probe.json \
+  > experiments/p0/controlled-run-NNN/observation.json
 
 .venv/bin/python -m latency_fingerprinting validate \
-  experiments/controlled-run-NNN/observation.json \
+  experiments/p0/controlled-run-NNN/observation.json \
   > /dev/null
 ```
 
@@ -195,12 +195,12 @@ For a repeat of controlled run 001, use its seed fingerprint repository:
 
 ```bash
 .venv/bin/python -m latency_fingerprinting match \
-  experiments/controlled-run-NNN/observation.json \
-  --fingerprints experiments/controlled-run-001 \
-  > experiments/controlled-run-NNN/match-result.json
+  experiments/p0/controlled-run-NNN/observation.json \
+  --fingerprints experiments/p0/controlled-run-001 \
+  > experiments/p0/controlled-run-NNN/match-result.json
 
 .venv/bin/python -m latency_fingerprinting validate \
-  experiments/controlled-run-NNN/match-result.json \
+  experiments/p0/controlled-run-NNN/match-result.json \
   > /dev/null
 ```
 
@@ -212,12 +212,12 @@ output:
 
 ```bash
 .venv/bin/python -m latency_fingerprinting match \
-  experiments/controlled-run-NNN/observation.json \
-  --fingerprints experiments/controlled-run-001 \
+  experiments/p0/controlled-run-NNN/observation.json \
+  --fingerprints experiments/p0/controlled-run-001 \
   > /tmp/controlled-run-NNN-match-result.json
 
 cmp \
-  experiments/controlled-run-NNN/match-result.json \
+  experiments/p0/controlled-run-NNN/match-result.json \
   /tmp/controlled-run-NNN-match-result.json
 ```
 
@@ -254,7 +254,7 @@ that no raw bundle, ROM, personal path, identity, credential, or secret is
 included. The final run directory should contain:
 
 ```text
-experiments/controlled-run-NNN/
+experiments/p0/controlled-run-NNN/
 ├── README.md
 ├── context.json
 ├── manifest.json
@@ -272,7 +272,7 @@ experiments/controlled-run-NNN/
 ```
 
 The reusable `experiments/record_bundle_checksums.py` and
-`experiments/bounded_cpu_pressure.py` tools live one level above the individual
+`experiments/bounded_cpu_pressure.py` tools live two levels above the individual
 run directories.
 
 Report a successful repeat match only as preliminary within-context

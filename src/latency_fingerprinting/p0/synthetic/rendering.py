@@ -16,7 +16,7 @@ from .definitions import (
 from .expectations import expected_match_result
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
-DEFAULT_FIXTURE_DIRECTORY = PROJECT_ROOT / "fixtures"
+DEFAULT_FIXTURE_DIRECTORY = PROJECT_ROOT / "fixtures" / "p0"
 
 
 def _readme(case_name: str, *, reference: bool, expectation: ExpectedDecision | None) -> str:
@@ -42,7 +42,7 @@ runtime action or restoration occurred.
 
 
 def rendered_fixture_files() -> dict[Path, str]:
-    """Return all expected fixture files keyed by paths relative to ``fixtures``."""
+    """Return all expected fixture files keyed by paths relative to ``fixtures/p0``."""
 
     files: dict[Path, str] = {}
     for label, vector in REFERENCE_VECTORS.items():

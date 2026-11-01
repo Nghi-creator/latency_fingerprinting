@@ -105,7 +105,9 @@ def test_checked_in_registry_is_exact_and_model_valid() -> None:
 
 def test_registry_passes_its_checked_in_json_schema() -> None:
     schema = json.loads(
-        (DEFAULT_SCHEMA_DIRECTORY / "metric-registry-v1.schema.json").read_text(encoding="utf-8")
+        (DEFAULT_SCHEMA_DIRECTORY / "measurement/metric-registry-v1.schema.json").read_text(
+            encoding="utf-8"
+        )
     )
     Draft202012Validator.check_schema(schema)
     validator = Draft202012Validator(schema, format_checker=Draft202012Validator.FORMAT_CHECKER)

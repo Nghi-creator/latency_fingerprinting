@@ -64,8 +64,8 @@ canonical record. For example, the normative policy can be checked read-only:
 .venv/bin/python -m latency_fingerprinting export-schemas --check
 ```
 
-The additive schemas are [feature-policy-v1](../../schemas/feature-policy-v1.schema.json)
-and [analytical-response-v2](../../schemas/analytical-response-v2.schema.json).
+The additive schemas are [feature-policy-v1](../../schemas/analytical/feature-policy-v1.schema.json)
+and [analytical-response-v2](../../schemas/analytical/analytical-response-v2.schema.json).
 JSON Schema describes structure; runtime validation also enforces trusted release
 content and cross-record reconstruction.
 

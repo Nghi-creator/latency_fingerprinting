@@ -60,9 +60,9 @@ latency-fingerprint export-schemas --output schemas --check
 ```
 
 Validation prints the canonical validated root. Three additive schemas describe
-[policy](../../schemas/profile-match-policy-v1.schema.json),
-[match](../../schemas/profile-match-result-v1.schema.json) and
-[evaluation](../../schemas/profile-evaluation-result-v1.schema.json). The earlier
+[policy](../../schemas/profile_matching/profile-match-policy-v1.schema.json),
+[match](../../schemas/profile_matching/profile-match-result-v1.schema.json) and
+[evaluation](../../schemas/profile_matching/profile-evaluation-result-v1.schema.json). The earlier
 29 schema files retain their exact bytes and behavior. JSON Schema checks shape
 and local bounds; runtime models additionally reconstruct arithmetic, references,
 policy approval and content identities.

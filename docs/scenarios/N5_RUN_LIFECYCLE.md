@@ -1,7 +1,7 @@
 # N5 producer lifecycle and recording control
 
 **Contract:** [Experiment contract](N5_EXPERIMENT_CONTRACT.md)
-**Producer guide:** [Pixelated lifecycle](../../../Pixelated-Studio-Edition/docs/n5-lifecycle.md)
+**Producer guide:** [Pixelated lifecycle](../../../Pixelated-Studio-Edition/docs/research/n5/n5-lifecycle.md)
 
 The producer now implements a stdlib-only `scenario_harness` package with strict
 immutable local plans, a single-use six-phase runner, monotonic deadlines,

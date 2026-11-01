@@ -41,13 +41,13 @@ create a qualified capability or override producer source guards.
 ## Comparing cost evidence
 
 The producer's
-[moving observer procedure](../../../Pixelated-Studio-Edition/docs/n10-observer-disturbance.md)
+[moving observer procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-observer-disturbance.md)
 compares read-only observation off/on with fixed paired budgets. Its resource
 scope excludes the cadence controller's active action and restoration. A passing
 observer screen cannot fill the action-disturbance requirement.
 
 The
-[contained control procedure](../../../Pixelated-Studio-Edition/docs/n10-contained-game-control.md)
+[contained control procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-contained-game-control.md)
 retains phase-specific native and browser resource observations. These are useful
 descriptive costs under instrumentation. Successive windows have changing game
 content, and their independent clock domains are not aligned. They cannot become
@@ -55,13 +55,13 @@ matched unchanged/action repetitions, a CPU benefit estimate or a perceptual
 quality decision by subtraction or averaging.
 
 The producer also provides a separate
-[fixed-schedule unchanged/action acquisition](../../../Pixelated-Studio-Edition/docs/n10-action-cost.md).
+[fixed-schedule unchanged/action acquisition](../../../Pixelated-Studio-Edition/docs/research/n10/n10-action-cost.md).
 Its unchanged condition creates no action or reservation, and both conditions
 share fixed script-age windows. A separately versioned fixed-order six-session
 measured-phase comparison is also available
 with explicit context/timing comparability and null deltas for unavailable pairs.
 The separate
-[full-span acquisition](../../../Pixelated-Studio-Edition/docs/n10-full-span-cost.md)
+[full-span acquisition](../../../Pixelated-Studio-Edition/docs/research/n10/n10-full-span-cost.md)
 captures declared native/browser costs through the phase gaps and retains failed
 prefixes. Its matched comparison keeps native, browser and container intervals
 separate; a container CPU checkpoint through cleanup callbacks supplies a bounded
@@ -69,20 +69,20 @@ cleanup interval while excluding later process/container/browser exit. These
 procedures supply descriptive costs for their stated scopes;
 they cannot establish total system/failure-cleanup cost, reviewed cost limits or
 qualification. The producer also provides a separate
-[actual fault-cost acquisition](../../../Pixelated-Studio-Edition/docs/n10-fault-cost.md)
+[actual fault-cost acquisition](../../../Pixelated-Studio-Edition/docs/research/n10/n10-fault-cost.md)
 for cancellation, receiver/source loss and reconnect, preserving their restoration
 and journal rules. Its bounded cleanup intervals do not establish a cost policy
 or parent-death/watchdog-specific cost qualification. A separate
-[owned-game controller-thread-exit procedure](../../../Pixelated-Studio-Edition/docs/n10-fault-cost.md#owned-game-controller-thread-exit-cost)
+[owned-game controller-thread-exit procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-fault-cost.md#owned-game-controller-thread-exit-cost)
 requires observed thread exit and continued media progress before unresolved
 worker teardown. It measures its own bounded costs; it does not establish a
 blocked controller thread, whole-camera death, which guard won the teardown race,
 or acceptance of cost/quality limits. A separate
-[blocked-controller procedure](../../../Pixelated-Studio-Edition/docs/n10-fault-cost.md#owned-game-blocked-controller-cost)
+[blocked-controller procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-fault-cost.md#owned-game-blocked-controller-cost)
 requires a live control thread, elapsed post-fault time and advancing media
 before unresolved teardown. These records retain separate methods and cannot
 be substituted into the earlier fault cohort. A separate
-[whole-camera-death procedure](../../../Pixelated-Studio-Edition/docs/n10-fault-cost.md#whole-camera-death-cost)
+[whole-camera-death procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-fault-cost.md#whole-camera-death-cost)
 pins the exact camera and child lifetimes from an external monitor, retains
 unresolved intent and measures costs through owned descendant cleanup. Its
 interval includes source teardown and differs from camera cleanup-callback
@@ -106,7 +106,7 @@ post-fix cohort a replacement for an earlier failure.
 ## Decision and producer boundary
 
 The producer provides a read-only
-[qualification protocol checker](../../../Pixelated-Studio-Edition/docs/n10-qualification-protocol.md)
+[qualification protocol checker](../../../Pixelated-Studio-Edition/docs/research/n10/n10-qualification-protocol.md)
 for exact context, versioned procedures, cost units/intervals, quality criteria,
 fault-scope and exclusion decisions. It reports missing declarations without
 approving review references or evidence. The separate v2 format declares thread

@@ -56,8 +56,8 @@ latency-fingerprint export-schemas --output schemas --check
 ```
 
 Generic validation prints the canonical validated root. The additive schemas are
-[policy](../../schemas/profile-policy-v1.schema.json) and
-[snapshot](../../schemas/profile-snapshot-v1.schema.json); the earlier 27 schemas
+[policy](../../schemas/profiles/profile-policy-v1.schema.json) and
+[snapshot](../../schemas/profiles/profile-snapshot-v1.schema.json); the earlier 27 schemas
 retain their bytes and meaning. JSON Schema checks shape and local bounds;
 runtime validation additionally reconstructs arithmetic, references, approval and
 content identities. A shape-only schema check is not release approval.

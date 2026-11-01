@@ -40,7 +40,7 @@ run the producer's fixed synthetic driver from its trusted checkout:
 
 ```sh
 mkdir -p /private/tmp/n5-reproduction
-python3 scripts/n5/exportSyntheticExperiments.py /private/tmp/n5-reproduction
+python3 scripts/research/n5/exportSyntheticExperiments.py /private/tmp/n5-reproduction
 ```
 
 Then from the core checkout:

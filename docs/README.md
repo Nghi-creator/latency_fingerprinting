@@ -28,6 +28,6 @@ source inspection through protected commands. It does not execute live probes.
 | Development and reproduction | [Testing/CI](measurement/QUALITY_GATES.md), [fixture inventory and maintenance](../fixtures/README.md), [arithmetic fixtures](measurement/ARITHMETIC_FIXTURES.md), [observation fixtures](measurement/OBSERVATION_V2_FIXTURES.md), [analytical fixtures](analysis/N3_ANALYTICAL_FIXTURES.md), [trace integration](observability/N4_INTEGRATION_VERIFICATION.md), [experiment fixtures](scenarios/N5_EXPERIMENT_FIXTURES.md), [calibration fixtures](calibration/N6_FIXTURES.md), [profile fixtures](profiles/N7_FIXTURES.md), [profile matching fixtures](profile_matching/N8_FIXTURES.md) |
 
 Sanitized recorded experiments and their reusable processing procedure are in
-[experiments](../experiments/CONTROLLED_RUN_PROCESSING.md). Synthetic fixtures and
+[experiments](../experiments/README.md). Synthetic fixtures and
 software checks establish reproducibility and interoperability; they do not
 establish diagnosis accuracy or real runtime performance.

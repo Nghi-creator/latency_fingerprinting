@@ -37,8 +37,8 @@ From the Pixelated checkout:
 
 ```sh
 mkdir -p /private/tmp/n4-step7-bundles
-python3 scripts/n4/exportSyntheticTraces.py /private/tmp/n4-step7-bundles
-node --experimental-strip-types scripts/n4/exportSyntheticTraces.mts /private/tmp/n4-step7-bundles
+python3 scripts/research/n4/exportSyntheticTraces.py /private/tmp/n4-step7-bundles
+node --experimental-strip-types scripts/research/n4/exportSyntheticTraces.mts /private/tmp/n4-step7-bundles
 ```
 
 From the core checkout, using its installed environment:

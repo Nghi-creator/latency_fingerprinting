@@ -49,46 +49,46 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_DIRECTORY = PROJECT_ROOT / "schemas"
 
 SCHEMA_MODELS: Mapping[str, SchemaModel] = {
-    "integrated-game-cohort-record-v1.schema.json": IntegratedGameRecord,
-    "game-browser-probe-evidence-v1.schema.json": GameBrowserProbeEvidence,
-    "cadence-probe-evidence-v1.schema.json": CadenceProbeEvidence,
-    "live-probe-evidence-v1.schema.json": LiveProbeEvidence,
-    "passive-gate-policy-v1.schema.json": PassiveGatePolicy,
-    "passive-baseline-v1.schema.json": PassiveBaseline,
-    "passive-replay-v1.schema.json": PassiveReplay,
-    "passive-gate-result-v1.schema.json": PassiveGateResult,
-    "profile-match-policy-v1.schema.json": ProfileMatchPolicy,
-    "profile-match-result-v1.schema.json": ProfileMatchResult,
-    "profile-evaluation-result-v1.schema.json": ProfileEvaluationResult,
-    "profile-policy-v1.schema.json": ProfilePolicy,
-    "profile-snapshot-v1.schema.json": ProfileSnapshot,
-    "calibration-dataset-v1.schema.json": CalibrationDataset,
-    "calibration-report-v1.schema.json": CalibrationReport,
-    "stage-trace-record-v2.schema.json": StageTraceRecordV2,
-    "stage-trace-summary-v2.schema.json": StageTraceSummaryV2,
-    "n5-campaign-report-v1.schema.json": CampaignReport,
-    "n4-overhead-report-v1.schema.json": OverheadReport,
-    "n5-campaign-plan-v1.schema.json": CampaignPlan,
-    "n5-campaign-index-v1.schema.json": CampaignIndex,
-    "n4-overhead-evidence-v1.schema.json": OverheadEvidence,
-    "experiment-manifest-v2.schema.json": ExperimentManifestV2,
-    "experiment-phase-evidence-v2.schema.json": ExperimentPhaseEvidenceV2,
-    "experiment-result-v2.schema.json": ExperimentResultV2,
-    "experiment-manifest-v1.schema.json": ExperimentManifest,
-    "experiment-phase-evidence-v1.schema.json": ExperimentPhaseEvidence,
-    "experiment-result-v1.schema.json": ExperimentResult,
-    "stage-trace-record-v1.schema.json": StageTraceRecord,
-    "stage-trace-summary-v1.schema.json": StageTraceSummary,
-    "observation-v1.schema.json": ObservationRecord,
-    "fingerprint-v1.schema.json": Fingerprint,
-    "match-result-v1.schema.json": MatchResult,
-    "metric-registry-v1.schema.json": MetricRegistry,
-    "observation-window-v2.schema.json": ObservationWindowV2,
-    "observation-v2.schema.json": ObservationRecordV2,
-    "match-result-v2.schema.json": MatchResultV2,
-    "fingerprint-v2.schema.json": FingerprintV2,
-    "feature-policy-v1.schema.json": FeaturePolicyV1,
-    "analytical-response-v2.schema.json": AnalyticalResponseV2,
+    "live_probes/integrated-game-cohort-record-v1.schema.json": IntegratedGameRecord,
+    "live_probes/game-browser-probe-evidence-v1.schema.json": GameBrowserProbeEvidence,
+    "live_probes/cadence-probe-evidence-v1.schema.json": CadenceProbeEvidence,
+    "live_probes/live-probe-evidence-v1.schema.json": LiveProbeEvidence,
+    "passive_gating/passive-gate-policy-v1.schema.json": PassiveGatePolicy,
+    "passive_gating/passive-baseline-v1.schema.json": PassiveBaseline,
+    "passive_gating/passive-replay-v1.schema.json": PassiveReplay,
+    "passive_gating/passive-gate-result-v1.schema.json": PassiveGateResult,
+    "profile_matching/profile-match-policy-v1.schema.json": ProfileMatchPolicy,
+    "profile_matching/profile-match-result-v1.schema.json": ProfileMatchResult,
+    "profile_matching/profile-evaluation-result-v1.schema.json": ProfileEvaluationResult,
+    "profiles/profile-policy-v1.schema.json": ProfilePolicy,
+    "profiles/profile-snapshot-v1.schema.json": ProfileSnapshot,
+    "calibration/calibration-dataset-v1.schema.json": CalibrationDataset,
+    "calibration/calibration-report-v1.schema.json": CalibrationReport,
+    "observability/stage-trace-record-v2.schema.json": StageTraceRecordV2,
+    "observability/stage-trace-summary-v2.schema.json": StageTraceSummaryV2,
+    "scenarios/n5-campaign-report-v1.schema.json": CampaignReport,
+    "scenarios/n4-overhead-report-v1.schema.json": OverheadReport,
+    "scenarios/n5-campaign-plan-v1.schema.json": CampaignPlan,
+    "scenarios/n5-campaign-index-v1.schema.json": CampaignIndex,
+    "scenarios/n4-overhead-evidence-v1.schema.json": OverheadEvidence,
+    "scenarios/experiment-manifest-v2.schema.json": ExperimentManifestV2,
+    "scenarios/experiment-phase-evidence-v2.schema.json": ExperimentPhaseEvidenceV2,
+    "scenarios/experiment-result-v2.schema.json": ExperimentResultV2,
+    "scenarios/experiment-manifest-v1.schema.json": ExperimentManifest,
+    "scenarios/experiment-phase-evidence-v1.schema.json": ExperimentPhaseEvidence,
+    "scenarios/experiment-result-v1.schema.json": ExperimentResult,
+    "observability/stage-trace-record-v1.schema.json": StageTraceRecord,
+    "observability/stage-trace-summary-v1.schema.json": StageTraceSummary,
+    "p0/observation-v1.schema.json": ObservationRecord,
+    "p0/fingerprint-v1.schema.json": Fingerprint,
+    "p0/match-result-v1.schema.json": MatchResult,
+    "measurement/metric-registry-v1.schema.json": MetricRegistry,
+    "measurement/observation-window-v2.schema.json": ObservationWindowV2,
+    "measurement/observation-v2.schema.json": ObservationRecordV2,
+    "analytical/match-result-v2.schema.json": MatchResultV2,
+    "analytical/fingerprint-v2.schema.json": FingerprintV2,
+    "analytical/feature-policy-v1.schema.json": FeaturePolicyV1,
+    "analytical/analytical-response-v2.schema.json": AnalyticalResponseV2,
 }
 
 
@@ -100,7 +100,7 @@ def render_schema(model: SchemaModel) -> str:
 
 
 def rendered_schemas() -> dict[str, str]:
-    """Return every public schema keyed by its checked-in filename."""
+    """Return every public schema keyed by its path relative to the schema directory."""
 
     return {filename: render_schema(model) for filename, model in SCHEMA_MODELS.items()}
 
@@ -134,7 +134,8 @@ def export_schemas(output_directory: Path = DEFAULT_SCHEMA_DIRECTORY) -> tuple[P
     schemas = rendered_schemas()
     paths = tuple(output_directory / filename for filename in sorted(schemas))
     for path in paths:
-        _atomic_write_text(path, schemas[path.name])
+        path.parent.mkdir(parents=True, exist_ok=True)
+        _atomic_write_text(path, schemas[path.relative_to(output_directory).as_posix()])
     return paths
 
 

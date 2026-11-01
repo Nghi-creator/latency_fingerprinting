@@ -206,7 +206,7 @@ def test_generic_cli_schema_and_protected_import(tmp_path, capsys):
 def test_one_additive_schema_keeps_previous_37_bytes():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in Path("schemas").glob("*.schema.json")
+        for p in Path("schemas").rglob("*.schema.json")
         if p.name
         not in {
             "cadence-probe-evidence-v1.schema.json",

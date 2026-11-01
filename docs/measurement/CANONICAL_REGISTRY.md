@@ -18,8 +18,8 @@ and old P0 delta names. `render_metric_registry()` emits sorted, indented,
 newline-terminated JSON with camelCase aliases. No call reads the current clock.
 
 The checked-in artifacts are
-[`metric-registry-v1.json`](../../schemas/metric-registry-v1.json) and
-[`metric-registry-v1.schema.json`](../../schemas/metric-registry-v1.schema.json).
+[`metric-registry-v1.json`](../../schemas/measurement/metric-registry-v1.json) and
+[`metric-registry-v1.schema.json`](../../schemas/measurement/metric-registry-v1.schema.json).
 The schema uses the strict models described in
 [`REGISTRY_MODELS.md`](REGISTRY_MODELS.md); cross-field invariants still require
 model validation. Neither artifact is an observation or matcher input.
@@ -28,11 +28,11 @@ model validation. Neither artifact is an observation or matcher input.
 
 ```bash
 .venv/bin/python -m latency_fingerprinting export-metric-registry \
-  --output schemas/metric-registry-v1.json
+  --output schemas/measurement/metric-registry-v1.json
 .venv/bin/python -m latency_fingerprinting export-metric-registry \
-  --output schemas/metric-registry-v1.json --check
+  --output schemas/measurement/metric-registry-v1.json --check
 .venv/bin/python -m latency_fingerprinting export-schemas --output schemas --check
-.venv/bin/python -m latency_fingerprinting validate schemas/metric-registry-v1.json
+.venv/bin/python -m latency_fingerprinting validate schemas/measurement/metric-registry-v1.json
 ```
 
 Registry export reuses the schema exporter's sibling temporary-file writer and

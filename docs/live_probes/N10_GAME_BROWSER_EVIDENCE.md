@@ -1,7 +1,7 @@
 # Offline game/browser engineering evidence
 
 `game-browser-probe-evidence-v1`, method `n10-game-browser-evidence-v1`, accepts
-observations from the producer's [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md).
+observations from the producer's [contained game/browser experiment](../../../Pixelated-Studio-Edition/docs/research/n10/n10-game-browser-trial.md).
 It is a separate immutable forensic format. The earlier bitrate-only and
 synthetic Gst-to-Gst cadence schemas retain their bytes, scope and meaning.
 This format accepts evidence structurally; it does not qualify a runtime, policy,
