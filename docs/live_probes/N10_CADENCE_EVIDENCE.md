@@ -11,7 +11,7 @@ chronology and cross-field constraints.
 
 ## Import and inspect
 
-Capture JSON from the producer's [isolated worker](../../../Pixelated-Studio-Edition/docs/n10-cadence-controller.md).
+Capture JSON from the producer's [isolated worker](../../../Pixelated-Studio-Edition/docs/research/n10/n10-cadence-controller.md).
 Retain the original report, its source/image acquisition receipt and any private
 runtime journal separately. Then import offline:
 
@@ -115,7 +115,7 @@ Game capture, browser presentation, perceptual quality, disturbance/resource
 measurements and production qualification require additional evidence.
 
 
-The producer's separate [game/browser procedure](../../../Pixelated-Studio-Edition/docs/n10-game-browser-trial.md)
+The producer's separate [game/browser procedure](../../../Pixelated-Studio-Edition/docs/research/n10/n10-game-browser-trial.md)
 uses a different operator report version and scope for a real 2D game and
 headless presentation/resource measurements. This importer intentionally rejects
 that report rather than broadening its frozen synthetic Gst-to-Gst contract. The

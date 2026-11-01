@@ -75,7 +75,7 @@ python3 -m scenario_harness.campaign_cli submit \
 python3 -m scenario_harness.campaign_cli cancel --directory /n5/control
 ```
 
-The producer's [test procedure](../../../Pixelated-Studio-Edition/docs/n5-live-test-procedure.md)
+The producer's [test procedure](../../../Pixelated-Studio-Edition/docs/research/n5/n5-live-test-procedure.md)
 details image/desktop startup, copying artifacts and the separate overhead request.
 `clear-request` removes only fixed inbox/cancellation/error files under a clean
 lease. It never removes acquired evidence or clears dirty restoration. Stop the

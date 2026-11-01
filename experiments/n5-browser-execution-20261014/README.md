@@ -78,7 +78,7 @@ actual versioned artifacts, separate from the
 The owned receiver processes and scene container are stopped; evidence volumes
 and earlier failed cohorts remain retained.
 
-Use the producer's [manual handoff](../../../Pixelated-Studio-Edition/docs/n5-live-test-procedure.md#final-manual-desktop-and-hosted-checks)
+Use the producer's [manual handoff](../../../Pixelated-Studio-Edition/docs/research/n5/n5-live-test-procedure.md#final-manual-desktop-and-hosted-checks)
 for normal desktop, export-picker and final hosted checks. This method does not
 change N5 host/capture-pacing evidence or close Phase 1 by itself.
 

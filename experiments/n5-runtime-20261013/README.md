@@ -75,7 +75,7 @@ These commands adopt existing evidence; they do not repeat a live acquisition.
 A fresh clone contains the sanitized ledger/reports but not the ignored raw
 archives or cached research base image. The standard native image also builds and passes Gst imports plus bounded
 Frozen Bubble/Neverball package smoke. Its image identity/lock hash are in the
-ledger. Normal desktop/picker interaction and Pixelated hosted CI remain unverified. Use the producer's [live test procedure](../../../Pixelated-Studio-Edition/docs/n5-live-test-procedure.md)
+ledger. Normal desktop/picker interaction and Pixelated hosted CI remain unverified. Use the producer's [live test procedure](../../../Pixelated-Studio-Edition/docs/research/n5/n5-live-test-procedure.md)
 for a new run, selecting new campaign/output/volume IDs and freezing versions,
 workload, allocation and schedule before measurements. Start Docker Desktop;
 this host's working CLI is `/Applications/Docker.app/Contents/Resources/bin/docker`.

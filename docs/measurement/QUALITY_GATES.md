@@ -111,7 +111,7 @@ also exercises browser interactions and TLS isolation. Hosted workflows provide
 Linux, image-security and desktop-platform checks.
 
 For real instrumentation/campaign measurements, use the producer's
-[live test procedure](../../../Pixelated-Studio-Edition/docs/n5-live-test-procedure.md).
+[live test procedure](../../../Pixelated-Studio-Edition/docs/research/n5/n5-live-test-procedure.md).
 Record exact source versions, workload, environment, all trial outcomes and cleanup.
 Passing software checks does not establish real timing accuracy, acquisition
 independence, diagnosis accuracy or platform behavior.

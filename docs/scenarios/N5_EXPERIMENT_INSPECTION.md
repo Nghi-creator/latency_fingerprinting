@@ -6,7 +6,7 @@ See the [experiment contract](N5_EXPERIMENT_CONTRACT.md) and
 Pixelated's `scenario_harness` exports `experiment_bundle_bytes(manifest, plan,
 execution, recordings=(), observation_windows=())`, `unsupported_bundle_bytes(manifest)`
 and `write_experiment_bundle(path, payload)`. The producer guide is
-`Pixelated-Studio-Edition/docs/n5-experiment-export.md`. Export runs after collection
+`Pixelated-Studio-Edition/docs/research/n5/n5-experiment-export.md`. Export runs after collection
 freezes and cleanup completes, outside frame callbacks. Caller-declared sanitized
 runtime/workload/seed metadata must agree with the validated plan. No core dependency
 enters the producer runtime.
