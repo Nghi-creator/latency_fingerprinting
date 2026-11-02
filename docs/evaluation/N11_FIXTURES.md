@@ -52,3 +52,13 @@ in the corpus.
 This checks the composer/archive interface. It does not run a live collector, test
 native control lifecycle, qualify real labels/clocks or establish empirical study
 acceptance. All reviews and telemetry in this release remain artificial.
+
+For the wider sample-to-export boundary, use
+`tests/evaluation/export_producer_samples.mjs` in the same way and pass
+`--full-sample-export` to the checker. This exercises the producer's real browser,
+engine and event CSV writers plus derived support declarations, manifest and TAR.
+The [sampled fixture](../../tests/data/pixelated_bundle/README.md) pins its output.
+Numeric summaries and source rows must remain equal; support provenance changes
+from sparse source fallback to explicit declarations where the producer supplies
+them. Packet-loss totals retain the current source-support fallback. These are
+artificial samples, with no runtime/process/clock authenticity claim.

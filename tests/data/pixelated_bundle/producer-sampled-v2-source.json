@@ -1,0 +1,15 @@
+{
+  "archive_sha256": "8e74ee4b0f289f6b302de52006c2b3f6c6dbe5051561e8f3346a6333bac20618",
+  "producer_revision": "3af7446f5867c915aaafa55c92f755fba6e16750",
+  "provenance": "artificial_samples_real_producer_export_writers_no_acquisition",
+  "source_sha256": {
+    "apps/web/src/features/player/research/researchBundleManifest.ts": "2cb0cc0d36edb7f610db479b2214623b949309b83bfded178952dc5893091ec7",
+    "apps/web/src/features/player/research/researchBundleV2.ts": "94a5ac738867fd20897baed900a84acd5c1d2088fc52b0bbe10f83e603187630",
+    "apps/web/src/features/player/research/researchRunBundle.ts": "ed04291993741cadf4c1f04ebe9339d9f61d158ddf8bf879bea23dd63cf97ae5",
+    "apps/web/src/features/player/research/researchRunEvents.ts": "92f84619f3f3b03ff46fb66e4604220095b0b016866ff4696b10d3f14da32d4e",
+    "apps/web/src/features/player/research/researchRunExportArtifacts.ts": "2d82c2c26366271cfd87ffa425eba9bf758f761768d189f3fd849d4c1b2f0a3b",
+    "apps/web/src/features/player/telemetry/engineResearchTelemetryCsv.ts": "ec0efeceb045d32a390ec8e96b05f838582fd5057cc53afa47adb210b9b3d0aa",
+    "apps/web/src/features/player/telemetry/streamTelemetryExport.ts": "fa86d245de5154e2c545bfd09fa89c75a3c4126394c3020b2126d747e496fe1b",
+    "apps/web/src/features/research-mode/researchTelemetryContract.ts": "f63c5d67bee9d2b643e8a5a28a998c081709ab7f70f5f19ee6811ccf7c5bbc97"
+  }
+}
