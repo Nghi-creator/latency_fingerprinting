@@ -122,3 +122,17 @@ exclusions, counter resets/missing generations, unrelated controls and unavailab
 receiver/quality evidence. Generic CLI/schema and isolated-wheel checks keep the
 new root additive. These tests do not qualify a producer, verify an actual budget
 or establish safe live restoration.
+
+## N11 offline evaluation
+
+```sh
+python -m pytest tests/evaluation
+```
+
+N11 tests verify exact raw boundary arithmetic, source rows/clocks, read-only
+extraction, receipt tampering, source-group aliases, failed/missing denominators,
+actual N6/N9 source-window reconstruction, original N3 same-label margin behavior,
+N10 engineering-only scope and protected CLI writes. Artificial raw fixtures and
+review declarations exercise software branches only; they are not real study
+acquisitions. The isolated-wheel gate exercises both new commands, reconstruction,
+generic validation and SDK imports. All forty pre-N11 schema bytes remain pinned.

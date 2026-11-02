@@ -14,10 +14,11 @@ same contract stay together; a `v1` suffix does not imply legacy P0 code.
 | [`profiles/`](profiles/) | Profile policy and fitted snapshot |
 | [`profile_matching/`](profile_matching/) | Match policy, result and evaluation |
 | [`passive_gating/`](passive_gating/) | Gate policy, baseline, replay and result |
+| [`evaluation/`](evaluation/) | Offline N11 manifest and failure-retaining report |
 | [`live_probes/`](live_probes/) | Bitrate/cadence/game-browser probe evidence and integrated cohort record |
 
 Run `latency-fingerprint export-schemas --output schemas --check` to check all
-40 generated schemas. Exporting without `--check` writes this directory layout
+42 generated schemas. Exporting without `--check` writes this directory layout
 beneath the requested output directory. Schema keys in the exporter and CLI
 reports are paths relative to that directory.
 

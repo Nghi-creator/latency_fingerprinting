@@ -3,7 +3,7 @@
 **Method release:** `n6-calibration-evidence-v1`.
 **Specification:** 1.0.0. [Standalone models, schemas and generic validation](N6_MODELS.md)
 and [pure source-component/split checks](N6_LINEAGE.md) are implemented.
-Linked file inspection remains a specified interface, not an implemented capability.
+Linked file inspection is implemented; see the [inspection guide](N6_INSPECTION.md).
 **Independent examples:** [Evidence and split examples](N6_EVIDENCE_EXAMPLES.md).
 
 ## Purpose and limits

@@ -276,11 +276,12 @@ def test_all_old_schema_bytes_are_pinned_and_three_exports_are_additive():
         "profile-match-result-v1.schema.json",
         "profile-evaluation-result-v1.schema.json",
     }
-    assert len(SCHEMA_MODELS) == 40
+    assert len(SCHEMA_MODELS) == 42
     old = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in DEFAULT_SCHEMA_DIRECTORY.rglob("*.schema.json")
-        if p.name
+        if p.parent.name != "evaluation"
+        and p.name
         not in additions
         | {
             "game-browser-probe-evidence-v1.schema.json",

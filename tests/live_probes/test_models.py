@@ -284,7 +284,8 @@ def test_one_additive_schema_preserves_previous_36_schema_bytes():
     previous = {
         path.name: hashlib.sha256(path.read_bytes()).hexdigest()
         for path in Path("schemas").rglob("*.schema.json")
-        if path.name
+        if path.parent.name != "evaluation"
+        and path.name
         not in {
             "live-probe-evidence-v1.schema.json",
             "cadence-probe-evidence-v1.schema.json",

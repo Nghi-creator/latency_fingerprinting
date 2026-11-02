@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import math
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from types import MappingProxyType
 
 from ..measurement.metric_registry import CANONICAL_METRIC_REGISTRY
 from ..models import ContextKey, MeasurementSample, MetricDefinition, MetricSource, WindowPhase
-from .pixelated_adoption_metadata import PixelatedAdoptionMetadata, adoption_metadata
+from .pixelated_adoption_metadata import PixelatedAdoptionMetadata, _available, adoption_metadata
 from .pixelated_bundle_common import PixelatedBundleError, finite_number, utc_datetime
 from .pixelated_bundle_contract import (
     EVENT_COLUMNS,
@@ -62,6 +62,9 @@ class PixelatedMeasurementSamples:
         "Exported elapsed timestamps are wall-clock-derived; monotonic capture is unverified.",
     )
     adoption: PixelatedAdoptionMetadata | None = None
+    available_source_rows: Mapping[MetricSource, tuple[int, ...]] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
 
 
 def _source_file(source: MetricSource) -> str:
@@ -293,6 +296,16 @@ def load_pixelated_measurement_samples(
         elapsed_start_ms=elapsed_start,
         elapsed_end_ms=elapsed_end,
         series=MappingProxyType(series),
+        available_source_rows=MappingProxyType(
+            {
+                source: tuple(
+                    index
+                    for index, row in zip(source_indices[source], rows, strict=True)
+                    if _available(row, source)
+                )
+                for source, rows in source_rows.items()
+            }
+        ),
         adoption=adoption_metadata(
             run_id=run_id,
             version=version,

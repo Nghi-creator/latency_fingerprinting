@@ -54,6 +54,21 @@ def ingest_pixelated_v2(
         comparison_case_id=comparison_case_id,
         include_adoption_metadata=True,
     )
+    return _adopt_samples(raw, snapshot, phase, comparison_case_id, provenance, confounder_codes)
+
+
+def _adopt_samples(
+    raw,
+    snapshot,
+    phase,
+    comparison_case_id,
+    provenance,
+    confounder_codes,
+    *,
+    window_id=None,
+    method_version="1.0.0",
+):
+    """Shared N1 aggregation; callers must supply validated raw sample snapshots."""
     metadata = raw.adoption
     if metadata is None:
         raise PixelatedBundleError("adoption metadata is required from the validated raw envelope")
@@ -107,7 +122,7 @@ def ingest_pixelated_v2(
         schema_version="observation-window-v2",
         contract_version="2.0.0",
         run_id=metadata.run_id,
-        window_id=f"pixelated-v2-{raw.checksum}-{phase.value}",
+        window_id=window_id or f"pixelated-v2-{raw.checksum}-{phase.value}",
         comparison_case_id=comparison_case_id,
         context=snapshot,
         phase=phase,
@@ -117,7 +132,7 @@ def ingest_pixelated_v2(
         ),
         capture_method=CaptureMethodReference(
             method_id="pixelated_bundle_offline",
-            method_version="1.0.0",
+            method_version=method_version,
             producer_version=metadata.producer_version,
         ),
         clock=WindowClock(

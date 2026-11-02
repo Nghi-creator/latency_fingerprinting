@@ -123,6 +123,20 @@ def main() -> None:
             )
             return completed.returncode, completed.stdout, completed.stderr
 
+        from tests.packaging.evaluation_check import check_evaluation
+
+        check_evaluation(directory, invoke_installed)
+        run(
+            [
+                str(python),
+                "-I",
+                "-c",
+                "from latency_fingerprinting.evaluation import run_evaluation, EvaluationManifest; "
+                "from latency_fingerprinting.adapters import ingest_pixelated_windows",
+            ],
+            directory=directory,
+        )
+
         profile_release = check_profiles(
             profile_corpus,
             n6_directory=corpus,

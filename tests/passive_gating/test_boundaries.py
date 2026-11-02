@@ -315,11 +315,12 @@ def test_additive_exports_keep_all_32_previous_schema_bytes():
         "passive-replay-v1.schema.json",
         "passive-gate-result-v1.schema.json",
     }
-    assert len(SCHEMA_MODELS) == 40
+    assert len(SCHEMA_MODELS) == 42
     old = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT / "schemas").rglob("*.schema.json")
-        if p.name
+        if p.parent.name != "evaluation"
+        and p.name
         not in additions
         | {
             "live-probe-evidence-v1.schema.json",

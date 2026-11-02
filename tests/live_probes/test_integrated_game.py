@@ -210,7 +210,8 @@ def test_all_previous_39_schema_bytes_preserved():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in Path("schemas").rglob("*.schema.json")
-        if p.name != "integrated-game-cohort-record-v1.schema.json"
+        if p.parent.name != "evaluation"
+        and p.name != "integrated-game-cohort-record-v1.schema.json"
     }
     assert len(previous) == 39
     # Independently pinned before this root was added.

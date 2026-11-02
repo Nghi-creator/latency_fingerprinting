@@ -150,7 +150,10 @@ class CaptureMethodReference(V2Model):
 
     @model_validator(mode="after")
     def validate_method(self):
-        if self.method_version != "1.0.0":
+        versions = (
+            ("1.0.0", "1.1.0") if self.method_id == "pixelated_bundle_offline" else ("1.0.0",)
+        )
+        if self.method_version not in versions:
             raise ValueError("capture method/version is not approved")
         return self
 

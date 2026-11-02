@@ -31,3 +31,11 @@ Sanitized recorded experiments and their reusable processing procedure are in
 [experiments](../experiments/README.md). Synthetic fixtures and
 software checks establish reproducibility and interoperability; they do not
 establish diagnosis accuracy or real runtime performance.
+
+## Offline study evaluation
+
+[N11 reconstruction](evaluation/N11_OFFLINE_EVALUATION.md) links the existing
+diagnostic/passive/engineering APIs with a complete planned-slot ledger.
+[Same-source raw windows](evaluation/N11_RAW_WINDOWS.md) supply bounded N9 input
+windows without stitching separate clock domains. These are software/historical
+interfaces, not empirical acceptance or live dispatch.

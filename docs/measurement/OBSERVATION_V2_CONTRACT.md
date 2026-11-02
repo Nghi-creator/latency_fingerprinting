@@ -100,6 +100,9 @@ The explicit context's `versions.pixelatedBundleSchema` must match a Pixelated i
 CaptureMethodReference contains `methodId`, semantic `methodVersion` and required
 nullable `producerVersion`. Initial allowed method pairs are
 `pixelated_bundle_offline / 1.0.0` and `synthetic_series / 1.0.0`.
+N11 adds `pixelated_bundle_offline / 1.1.0` for
+[exact-anchor same-source subwindows](../evaluation/N11_RAW_WINDOWS.md), with
+separate method compatibility and unchanged 1.0.0 semantics/schema bytes.
 The first versions the offline extraction/adoption meaning; it does not identify
 a proven instrumentation revision. Producer version is null unless declared by
 the producer; never infer it from a checkout, file date or current software.
@@ -112,7 +115,7 @@ required `contentHash` with the SHA-256 syntax above, and `bundleSchemaVersion`
 synthetic windows require null. Pixelated contentHash uses N1's checksum over
 readable bundle contents, independent of directory/TAR packaging. Synthetic hashes
 identify deterministic fixture input bytes. No source path or arbitrary producer
-text is included. Derive Pixelated windowId as `pixelated-v2-<checksum hex>-<phase>`; take
+text is included. Derive whole-bundle 1.0.0 Pixelated windowId as `pixelated-v2-<checksum hex>-<phase>`; take
 runId from validated sanitized metadata and comparisonCaseId from the explicit
 caller/manifest agreement. Do not mint random IDs during adoption.
 

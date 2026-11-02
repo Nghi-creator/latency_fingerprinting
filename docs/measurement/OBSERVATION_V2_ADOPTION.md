@@ -104,3 +104,10 @@ directory/TAR/repeated-output equality, unchanged input bytes, one read, caller
 context isolation, immutable opt-in metadata, declarations over stale values,
 zero/reset/gap arithmetic, partial/absent sources, producer versions, fixed
 diagnostics, CLI validation and repeatable bounded failure handling.
+
+## Same-source subwindows
+
+The separate [N11 window method](../evaluation/N11_RAW_WINDOWS.md) adds version
+1.1.0 for exact-anchor 1–10 s windows from one raw source. The existing
+`ingest-pixelated-v2` command remains whole-bundle version 1.0.0. Source identity
+and clock domain survive slicing; window exports do not become independent runs.

@@ -83,6 +83,9 @@ Start with the [documentation index](docs/README.md) and
 - [Recorded experiments](experiments/README.md) separates the original P0 runs
   from later evidence. The [P0 processing guide](experiments/p0/CONTROLLED_RUN_PROCESSING.md)
   covers its frozen workflow; synthetic regression inputs remain under `fixtures/`.
+- [Offline study evaluation](docs/evaluation/N11_OFFLINE_EVALUATION.md) links
+  verified sources and retains planned failures, with
+  [exact-anchor windows](docs/evaluation/N11_RAW_WINDOWS.md) for same-source replay.
 - [Live-probe evidence](docs/live_probes/N10_MODELS.md) validates immutable offline
   declarations and reconstructs counter/setting observations while retaining
   unqualified capability and unverified receiver continuity.

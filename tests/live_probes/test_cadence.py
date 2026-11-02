@@ -207,7 +207,8 @@ def test_one_additive_schema_keeps_previous_37_bytes():
     previous = {
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in Path("schemas").rglob("*.schema.json")
-        if p.name
+        if p.parent.name != "evaluation"
+        and p.name
         not in {
             "cadence-probe-evidence-v1.schema.json",
             "game-browser-probe-evidence-v1.schema.json",

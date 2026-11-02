@@ -1,0 +1,822 @@
+{
+  "$defs": {
+    "Dataset": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "dataset_key": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Dataset Key",
+          "type": "string"
+        },
+        "manifest_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Manifest Receipt",
+          "type": "string"
+        },
+        "split_id": {
+          "pattern": "^(?:split-[a-f0-9]{64})$",
+          "title": "Split Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataset_key",
+        "manifest_receipt",
+        "content_hash",
+        "split_id"
+      ],
+      "title": "Dataset",
+      "type": "object"
+    },
+    "Diagnosis": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_key": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Dataset Key",
+          "type": "string"
+        },
+        "job_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Job Id",
+          "type": "string"
+        },
+        "match_policy_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Match Policy Receipt",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "validation",
+            "final_test"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "response_policy_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Response Policy Receipt",
+          "type": "string"
+        },
+        "snapshot_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Snapshot Receipt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_id",
+        "dataset_key",
+        "snapshot_receipt",
+        "response_policy_receipt",
+        "match_policy_receipt",
+        "mode"
+      ],
+      "title": "Diagnosis",
+      "type": "object"
+    },
+    "EvaluationCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "failed_slots": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Failed Slots",
+          "type": "integer"
+        },
+        "held_out_slots": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Held Out Slots",
+          "type": "integer"
+        },
+        "not_started_slots": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Not Started Slots",
+          "type": "integer"
+        },
+        "planned_slots": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Planned Slots",
+          "type": "integer"
+        },
+        "point_correct": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "point_unknown": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "point_wrong": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "profile_correct": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "profile_unknown": {
+          "$ref": "#/$defs/Ratio"
+        },
+        "profile_wrong": {
+          "$ref": "#/$defs/Ratio"
+        }
+      },
+      "required": [
+        "planned_slots",
+        "held_out_slots",
+        "failed_slots",
+        "not_started_slots",
+        "profile_correct",
+        "profile_wrong",
+        "profile_unknown",
+        "point_correct",
+        "point_wrong",
+        "point_unknown"
+      ],
+      "title": "EvaluationCounts",
+      "type": "object"
+    },
+    "EvaluationManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "datasets": {
+          "items": {
+            "$ref": "#/$defs/Dataset"
+          },
+          "maxItems": 160,
+          "title": "Datasets",
+          "type": "array"
+        },
+        "diagnoses": {
+          "items": {
+            "$ref": "#/$defs/Diagnosis"
+          },
+          "maxItems": 160,
+          "title": "Diagnoses",
+          "type": "array"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/$defs/GroupBinding"
+          },
+          "maxItems": 4096,
+          "title": "Groups",
+          "type": "array"
+        },
+        "live": {
+          "items": {
+            "$ref": "#/$defs/Live"
+          },
+          "maxItems": 128,
+          "title": "Live",
+          "type": "array"
+        },
+        "manifest_id": {
+          "pattern": "^evaluation-manifest-[a-f0-9]{64}$",
+          "title": "Manifest Id",
+          "type": "string"
+        },
+        "method_release": {
+          "const": "n11-offline-evaluation-v1",
+          "title": "Method Release",
+          "type": "string"
+        },
+        "passive": {
+          "items": {
+            "$ref": "#/$defs/Passive"
+          },
+          "maxItems": 128,
+          "title": "Passive",
+          "type": "array"
+        },
+        "protocol_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Protocol Receipt",
+          "type": "string"
+        },
+        "raw_derivations": {
+          "items": {
+            "$ref": "#/$defs/RawDerivation"
+          },
+          "maxItems": 4096,
+          "title": "Raw Derivations",
+          "type": "array"
+        },
+        "receipts": {
+          "items": {
+            "$ref": "#/$defs/Receipt"
+          },
+          "maxItems": 4096,
+          "minItems": 1,
+          "title": "Receipts",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "n11-evaluation-manifest-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scope": {
+          "const": "offline_separate_tracks_no_live_response_bridge",
+          "title": "Scope",
+          "type": "string"
+        },
+        "slots": {
+          "items": {
+            "$ref": "#/$defs/Slot"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Slots",
+          "type": "array"
+        },
+        "study_mode": {
+          "enum": [
+            "software_only",
+            "exploratory_historical"
+          ],
+          "title": "Study Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method_release",
+        "manifest_id",
+        "content_hash",
+        "study_mode",
+        "scope",
+        "protocol_receipt",
+        "receipts",
+        "datasets",
+        "groups",
+        "raw_derivations",
+        "diagnoses",
+        "passive",
+        "live",
+        "slots"
+      ],
+      "title": "EvaluationManifest",
+      "type": "object"
+    },
+    "GroupBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_key": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Dataset Key",
+          "type": "string"
+        },
+        "group_id": {
+          "pattern": "^(?:group-[a-f0-9]{64})$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "study_group": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Study Group",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataset_key",
+        "group_id",
+        "study_group"
+      ],
+      "title": "GroupBinding",
+      "type": "object"
+    },
+    "Live": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Evidence Receipt",
+          "type": "string"
+        },
+        "job_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Job Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_id",
+        "evidence_receipt"
+      ],
+      "title": "Live",
+      "type": "object"
+    },
+    "Passive": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Baseline Receipt",
+          "type": "string"
+        },
+        "dataset_key": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Dataset Key",
+          "type": "string"
+        },
+        "job_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Job Id",
+          "type": "string"
+        },
+        "policy_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Policy Receipt",
+          "type": "string"
+        },
+        "replay_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Replay Receipt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_id",
+        "dataset_key",
+        "baseline_receipt",
+        "replay_receipt",
+        "policy_receipt"
+      ],
+      "title": "Passive",
+      "type": "object"
+    },
+    "Ratio": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Denominator",
+          "type": "integer"
+        },
+        "numerator": {
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Numerator",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "numerator",
+        "denominator",
+        "value"
+      ],
+      "title": "Ratio",
+      "type": "object"
+    },
+    "RawDerivation": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_key": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Dataset Key",
+          "type": "string"
+        },
+        "entry_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "raw_receipt": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Raw Receipt",
+          "type": "string"
+        },
+        "window_role": {
+          "enum": [
+            "healthy",
+            "degraded",
+            "relief"
+          ],
+          "title": "Window Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataset_key",
+        "entry_id",
+        "window_role",
+        "raw_receipt"
+      ],
+      "title": "RawDerivation",
+      "type": "object"
+    },
+    "Receipt": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 67108864,
+          "minimum": 1,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "protocol",
+            "raw_bundle",
+            "dataset_manifest",
+            "profile_snapshot",
+            "response_policy",
+            "match_policy",
+            "passive_baseline",
+            "passive_replay",
+            "passive_policy",
+            "game_evidence",
+            "integrated_evidence"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "receipt_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Receipt Id",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "receipt_id",
+        "kind",
+        "sha256",
+        "bytes"
+      ],
+      "title": "Receipt",
+      "type": "object"
+    },
+    "ResultReference": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "pattern": "^(?:sha256:[a-f0-9]{64})$",
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "job_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Job Id",
+          "type": "string"
+        },
+        "root_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "job_id",
+        "root_id",
+        "content_hash"
+      ],
+      "title": "ResultReference",
+      "type": "object"
+    },
+    "Slot": {
+      "additionalProperties": false,
+      "properties": {
+        "diagnosis_job": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Diagnosis Job"
+        },
+        "failure_code": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Failure Code"
+        },
+        "live_job": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Live Job"
+        },
+        "passive_job": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Passive Job"
+        },
+        "role": {
+          "enum": [
+            "engineering",
+            "training",
+            "validation",
+            "final_test"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "slot_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Slot Id",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "retained",
+            "failed",
+            "not_started"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "study_group": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Study Group",
+          "type": "string"
+        },
+        "truth_label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Truth Label"
+        }
+      },
+      "required": [
+        "slot_id",
+        "study_group",
+        "role",
+        "truth_label",
+        "state",
+        "failure_code",
+        "diagnosis_job",
+        "passive_job",
+        "live_job"
+      ],
+      "title": "Slot",
+      "type": "object"
+    },
+    "SlotOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "diagnosis_state": {
+          "enum": [
+            "computed",
+            "unavailable",
+            "not_requested"
+          ],
+          "title": "Diagnosis State",
+          "type": "string"
+        },
+        "first_proposal_ms": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "First Proposal Ms"
+        },
+        "live_state": {
+          "enum": [
+            "not_requested",
+            "engineering_only"
+          ],
+          "title": "Live State",
+          "type": "string"
+        },
+        "passive_state": {
+          "enum": [
+            "computed",
+            "unavailable",
+            "not_requested"
+          ],
+          "title": "Passive State",
+          "type": "string"
+        },
+        "point_label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Point Label"
+        },
+        "profile_label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Profile Label"
+        },
+        "proposals": {
+          "anyOf": [
+            {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Proposals"
+        },
+        "reason_codes": {
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+            "type": "string"
+          },
+          "maxItems": 8,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "slot_id": {
+          "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9_-]{0,127})$",
+          "title": "Slot Id",
+          "type": "string"
+        },
+        "truth_label": {
+          "anyOf": [
+            {
+              "enum": [
+                "healthy",
+                "host_contention",
+                "render_capture_slowdown"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Truth Label"
+        }
+      },
+      "required": [
+        "slot_id",
+        "truth_label",
+        "profile_label",
+        "point_label",
+        "diagnosis_state",
+        "reason_codes",
+        "passive_state",
+        "proposals",
+        "first_proposal_ms",
+        "live_state"
+      ],
+      "title": "SlotOutcome",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assurance": {
+      "const": "offline_source_bindings_external_truth_not_authenticated_no_live_authority",
+      "title": "Assurance",
+      "type": "string"
+    },
+    "content_hash": {
+      "pattern": "^(?:sha256:[a-f0-9]{64})$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "counts": {
+      "$ref": "#/$defs/EvaluationCounts"
+    },
+    "empirical_acceptance": {
+      "const": "unavailable_not_a_frozen_real_study",
+      "title": "Empirical Acceptance",
+      "type": "string"
+    },
+    "manifest": {
+      "$ref": "#/$defs/EvaluationManifest"
+    },
+    "method_release": {
+      "const": "n11-offline-evaluation-v1",
+      "title": "Method Release",
+      "type": "string"
+    },
+    "report_id": {
+      "pattern": "^evaluation-report-[a-f0-9]{64}$",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "results": {
+      "items": {
+        "$ref": "#/$defs/ResultReference"
+      },
+      "maxItems": 4096,
+      "title": "Results",
+      "type": "array"
+    },
+    "rows": {
+      "items": {
+        "$ref": "#/$defs/SlotOutcome"
+      },
+      "maxItems": 256,
+      "title": "Rows",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "n11-evaluation-report-v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "method_release",
+    "report_id",
+    "content_hash",
+    "manifest",
+    "results",
+    "rows",
+    "counts",
+    "empirical_acceptance",
+    "assurance"
+  ],
+  "title": "EvaluationReport",
+  "type": "object"
+}

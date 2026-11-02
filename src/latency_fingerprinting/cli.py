@@ -17,6 +17,8 @@ from .calibration.inspection import register_calibration_command
 from .cli_experiment import register_experiment_commands
 from .cli_trace import register_trace_commands
 from .cli_v2 import register_v2_commands
+from .evaluation import EvaluationManifest, EvaluationReport
+from .evaluation.commands import register_evaluation_commands
 from .json_io import canonical_json, load_model_file, read_bounded_text, strict_json_loads
 from .live_probes import (
     CadenceProbeEvidence,
@@ -93,6 +95,8 @@ ModelT = TypeVar("ModelT", bound=BaseModel)
 
 
 ROOT_MODELS: dict[str, type[BaseModel]] = {
+    "n11-evaluation-manifest-v1": EvaluationManifest,
+    "n11-evaluation-report-v1": EvaluationReport,
     "integrated-game-cohort-record-v1": IntegratedGameRecord,
     "game-browser-probe-evidence-v1": GameBrowserProbeEvidence,
     "cadence-probe-evidence-v1": CadenceProbeEvidence,
@@ -153,6 +157,8 @@ def _validate(args: argparse.Namespace) -> None:
 
     schema_version = payload.get("schemaVersion")
     if schema_version is None and payload.get("schema_version") in (
+        "n11-evaluation-manifest-v1",
+        "n11-evaluation-report-v1",
         "integrated-game-cohort-record-v1",
         "game-browser-probe-evidence-v1",
         "cadence-probe-evidence-v1",
@@ -198,6 +204,8 @@ def _validate(args: argparse.Namespace) -> None:
         model.model_validate_json(input_text)
         if model
         in (
+            EvaluationManifest,
+            EvaluationReport,
             IntegratedGameRecord,
             GameBrowserProbeEvidence,
             CadenceProbeEvidence,
@@ -441,6 +449,7 @@ def build_parser() -> argparse.ArgumentParser:
     register_campaign_command(subparsers)
     register_overhead_command(subparsers)
     register_calibration_command(subparsers)
+    register_evaluation_commands(subparsers)
     register_profile_commands(subparsers)
     register_profile_matching_commands(subparsers)
     register_passive_commands(subparsers)
