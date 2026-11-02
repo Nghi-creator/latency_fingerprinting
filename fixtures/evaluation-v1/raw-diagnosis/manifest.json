@@ -1,0 +1,307 @@
+{
+  "content_hash": "sha256:bae98c6551c99e9e01c42314c74dda5692c62a6d76e67231f4258fac2e1c2a1d",
+  "datasets": [
+    {
+      "content_hash": "sha256:0d3f138933f1338d4823e44e09523cfc4bd41a14cddca9089b24849aca355421",
+      "dataset_key": "paired",
+      "manifest_receipt": "dataset",
+      "split_id": "split-afc1861cec02c93e655e0ae668502fbc06e3ddee9c5841cb641d069ab162a3a8"
+    }
+  ],
+  "diagnoses": [
+    {
+      "dataset_key": "paired",
+      "job_id": "diagnosis",
+      "match_policy_receipt": "match-policy",
+      "mode": "validation",
+      "response_policy_receipt": "response-policy",
+      "snapshot_receipt": "snapshot"
+    }
+  ],
+  "groups": [
+    {
+      "dataset_key": "paired",
+      "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+      "study_group": "study-case-3"
+    },
+    {
+      "dataset_key": "paired",
+      "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+      "study_group": "study-case-1"
+    },
+    {
+      "dataset_key": "paired",
+      "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+      "study_group": "study-case-4"
+    },
+    {
+      "dataset_key": "paired",
+      "group_id": "group-71a867541e9089fa6d6b6089b61a4cda0c4196ad0cc859bb5e2ac376045c0690",
+      "study_group": "study-case-5"
+    },
+    {
+      "dataset_key": "paired",
+      "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+      "study_group": "study-case-2"
+    },
+    {
+      "dataset_key": "paired",
+      "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+      "study_group": "study-case-0"
+    }
+  ],
+  "live": [],
+  "manifest_id": "evaluation-manifest-bae98c6551c99e9e01c42314c74dda5692c62a6d76e67231f4258fac2e1c2a1d",
+  "method_release": "n11-offline-evaluation-v1",
+  "passive": [],
+  "protocol_receipt": "protocol",
+  "raw_derivations": [
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-0",
+      "raw_receipt": "raw-case-0-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-0",
+      "raw_receipt": "raw-case-0-relief",
+      "window_role": "relief"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-1",
+      "raw_receipt": "raw-case-1-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-1",
+      "raw_receipt": "raw-case-1-relief",
+      "window_role": "relief"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-2",
+      "raw_receipt": "raw-case-2-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-2",
+      "raw_receipt": "raw-case-2-relief",
+      "window_role": "relief"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-3",
+      "raw_receipt": "raw-case-3-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-3",
+      "raw_receipt": "raw-case-3-relief",
+      "window_role": "relief"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-4",
+      "raw_receipt": "raw-case-4-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-4",
+      "raw_receipt": "raw-case-4-relief",
+      "window_role": "relief"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-5",
+      "raw_receipt": "raw-case-5-degraded",
+      "window_role": "degraded"
+    },
+    {
+      "dataset_key": "paired",
+      "entry_id": "case-5",
+      "raw_receipt": "raw-case-5-relief",
+      "window_role": "relief"
+    }
+  ],
+  "receipts": [
+    {
+      "bytes": 16674,
+      "kind": "dataset_manifest",
+      "receipt_id": "dataset",
+      "sha256": "sha256:21d0e6880ce3b98b7a330e93a9adec2ea3ffe1ee6ad53a4df8ff637eafc3d7b3"
+    },
+    {
+      "bytes": 4248,
+      "kind": "match_policy",
+      "receipt_id": "match-policy",
+      "sha256": "sha256:f71cd5a54fd0efdbe305058101735337c11a0124a787c148689362694fb19dd0"
+    },
+    {
+      "bytes": 64,
+      "kind": "protocol",
+      "receipt_id": "protocol",
+      "sha256": "sha256:0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-0-degraded",
+      "sha256": "sha256:1ee709965a6c8520c20dc02aab8d9070a93c5e2675df6051def918cb35ca427b"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-0-relief",
+      "sha256": "sha256:46d3c5e42853da179e41c74fe0822835a8c366ff537e7f52c6a87f600ede9050"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-1-degraded",
+      "sha256": "sha256:957d241d076b434be03bb9a3f6559d56a928ffbfdacf675b35f4e3fbf704b665"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-1-relief",
+      "sha256": "sha256:aa8f81cecfd1ee1c4fa88b7766bd043f2153bef633b4231383965cdb30ae906d"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-2-degraded",
+      "sha256": "sha256:5a1d80774a8863d3d78fb5a7aed0f26fb726fb4425011aadc858fd5be73a9d6c"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-2-relief",
+      "sha256": "sha256:6418b5628c034f1f436af5aa4d4a4020d388f4b3e93edd6fa0e170b4cc5566fe"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-3-degraded",
+      "sha256": "sha256:47fa656902e30d8c60a649752348cdadb89db1490e6a7a58ca3c9e0fa0e4daf8"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-3-relief",
+      "sha256": "sha256:c29d0da141831d593ded8dd696d673ddc4f787483d4a6eb733fc73c282a4545f"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-4-degraded",
+      "sha256": "sha256:373caeb74bae403c2c72b6110fa7a9925f68ee97265f5bb3d14117c96a783555"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-4-relief",
+      "sha256": "sha256:91b80cf1332165189240d0101422492d2af92380baaaff543e244e99eed3b339"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-5-degraded",
+      "sha256": "sha256:4e9fa3dfbe358d273ca788d97c6b1150a3bc6cdd5abd5ba98419a64e65e79dc2"
+    },
+    {
+      "bytes": 10240,
+      "kind": "raw_bundle",
+      "receipt_id": "raw-case-5-relief",
+      "sha256": "sha256:d6d9a5b79e72da2872983ba55fb01ba6b53feadfff8a1156aefd659e1e997226"
+    },
+    {
+      "bytes": 10394,
+      "kind": "response_policy",
+      "receipt_id": "response-policy",
+      "sha256": "sha256:e3f54c5eb4b8fd4d406a9b201584a28db97c15b04478ae9226f854bb580bad7e"
+    },
+    {
+      "bytes": 52717,
+      "kind": "profile_snapshot",
+      "receipt_id": "snapshot",
+      "sha256": "sha256:adbf714f9580754283936e42fc4fe10ffea0f5c8aa35ebcdeedb559da7a1014e"
+    }
+  ],
+  "schema_version": "n11-evaluation-manifest-v1",
+  "scope": "offline_separate_tracks_no_live_response_bridge",
+  "slots": [
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "case-0",
+      "state": "retained",
+      "study_group": "study-case-0",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "case-1",
+      "state": "retained",
+      "study_group": "study-case-1",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "case-2",
+      "state": "retained",
+      "study_group": "study-case-2",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "case-3",
+      "state": "retained",
+      "study_group": "study-case-3",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "case-4",
+      "state": "retained",
+      "study_group": "study-case-4",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": "diagnosis",
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "validation",
+      "slot_id": "case-5",
+      "state": "retained",
+      "study_group": "study-case-5",
+      "truth_label": "host_contention"
+    }
+  ],
+  "study_mode": "software_only"
+}

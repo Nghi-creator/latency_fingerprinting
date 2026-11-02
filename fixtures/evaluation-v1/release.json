@@ -1,0 +1,261 @@
+{
+  "expectations": {
+    "planned-ledger": {
+      "failed": 1,
+      "held_out": 3,
+      "not_started": 1,
+      "planned": 5,
+      "point_unknown": 3,
+      "profile_unknown": 3,
+      "rows": [
+        [
+          "a-training",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "b-failed",
+          "not_requested",
+          "not_requested",
+          null,
+          [
+            "acquisition_failed"
+          ]
+        ],
+        [
+          "c-unstarted",
+          "not_requested",
+          "not_requested",
+          null,
+          [
+            "acquisition_not_started"
+          ]
+        ],
+        [
+          "d-unknown",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "e-engineering",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ]
+      ]
+    },
+    "raw-diagnosis": {
+      "failed": 0,
+      "held_out": 1,
+      "not_started": 0,
+      "planned": 6,
+      "point_unknown": 1,
+      "profile_unknown": 1,
+      "rows": [
+        [
+          "case-0",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "case-1",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "case-2",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "case-3",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "case-4",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "case-5",
+          "computed",
+          "not_requested",
+          null,
+          []
+        ]
+      ]
+    },
+    "raw-passive": {
+      "failed": 0,
+      "held_out": 1,
+      "not_started": 0,
+      "planned": 6,
+      "point_unknown": 1,
+      "profile_unknown": 1,
+      "rows": [
+        [
+          "query",
+          "not_requested",
+          "computed",
+          0,
+          []
+        ],
+        [
+          "train-0",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "train-1",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "train-2",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "train-3",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ],
+        [
+          "train-4",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ]
+      ]
+    },
+    "unverified-diagnosis": {
+      "failed": 0,
+      "held_out": 2,
+      "not_started": 0,
+      "planned": 3,
+      "point_unknown": 2,
+      "profile_unknown": 2,
+      "rows": [
+        [
+          "case-0",
+          "unavailable",
+          "not_requested",
+          null,
+          [
+            "raw_sources_unverified"
+          ]
+        ],
+        [
+          "case-1",
+          "unavailable",
+          "not_requested",
+          null,
+          [
+            "raw_sources_unverified"
+          ]
+        ],
+        [
+          "case-2",
+          "not_requested",
+          "not_requested",
+          null,
+          []
+        ]
+      ]
+    }
+  },
+  "provenance": "artificial_unauthenticated_reviews_no_real_acquisitions",
+  "release": "n11-software-corpus-v1",
+  "sha256": {
+    "README.md": "71d35e2e1c6fbe9c3b930c0f47a89ba25d43ed4f1d3f85398533c8bd7829b1a4",
+    "planned-ledger/manifest.json": "47b85e61d61fc79a3a6062a85b8d85466a41c36d3a4649f7aaad721632cd4793",
+    "planned-ledger/operands/protocol.txt": "0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7",
+    "planned-ledger/paths.json": "b75c616a999ed23384e8c92f0fa2027d00eb3e5448465fb2fab2b344cfba03fe",
+    "planned-ledger/report.json": "f012d8865fcde359f74e6877ea2b98fd61626aede08bba1cccbe1c8384e15191",
+    "producer-source.json": "4ba6bc7a0fcd9cd445dd6e54c4d9d9f5e77620001005bbadc4c56a56e8fb5567",
+    "producer-window.tar": "09cb7cc7643ee45d0b6bb3f497e2f54b552e083860141d20c9e53234c74ad6a4",
+    "raw-diagnosis/manifest.json": "1f24f24e0e3ff4d6aa5adff08f5ca991a2d87ad68140ffd7554b11426211327a",
+    "raw-diagnosis/operands/match-policy.json": "f71cd5a54fd0efdbe305058101735337c11a0124a787c148689362694fb19dd0",
+    "raw-diagnosis/operands/protocol.txt": "0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7",
+    "raw-diagnosis/operands/raw-case-0-degraded.tar": "1ee709965a6c8520c20dc02aab8d9070a93c5e2675df6051def918cb35ca427b",
+    "raw-diagnosis/operands/raw-case-0-relief.tar": "46d3c5e42853da179e41c74fe0822835a8c366ff537e7f52c6a87f600ede9050",
+    "raw-diagnosis/operands/raw-case-1-degraded.tar": "957d241d076b434be03bb9a3f6559d56a928ffbfdacf675b35f4e3fbf704b665",
+    "raw-diagnosis/operands/raw-case-1-relief.tar": "aa8f81cecfd1ee1c4fa88b7766bd043f2153bef633b4231383965cdb30ae906d",
+    "raw-diagnosis/operands/raw-case-2-degraded.tar": "5a1d80774a8863d3d78fb5a7aed0f26fb726fb4425011aadc858fd5be73a9d6c",
+    "raw-diagnosis/operands/raw-case-2-relief.tar": "6418b5628c034f1f436af5aa4d4a4020d388f4b3e93edd6fa0e170b4cc5566fe",
+    "raw-diagnosis/operands/raw-case-3-degraded.tar": "47fa656902e30d8c60a649752348cdadb89db1490e6a7a58ca3c9e0fa0e4daf8",
+    "raw-diagnosis/operands/raw-case-3-relief.tar": "c29d0da141831d593ded8dd696d673ddc4f787483d4a6eb733fc73c282a4545f",
+    "raw-diagnosis/operands/raw-case-4-degraded.tar": "373caeb74bae403c2c72b6110fa7a9925f68ee97265f5bb3d14117c96a783555",
+    "raw-diagnosis/operands/raw-case-4-relief.tar": "91b80cf1332165189240d0101422492d2af92380baaaff543e244e99eed3b339",
+    "raw-diagnosis/operands/raw-case-5-degraded.tar": "4e9fa3dfbe358d273ca788d97c6b1150a3bc6cdd5abd5ba98419a64e65e79dc2",
+    "raw-diagnosis/operands/raw-case-5-relief.tar": "d6d9a5b79e72da2872983ba55fb01ba6b53feadfff8a1156aefd659e1e997226",
+    "raw-diagnosis/operands/response-policy.json": "e3f54c5eb4b8fd4d406a9b201584a28db97c15b04478ae9226f854bb580bad7e",
+    "raw-diagnosis/operands/snapshot.json": "adbf714f9580754283936e42fc4fe10ffea0f5c8aa35ebcdeedb559da7a1014e",
+    "raw-diagnosis/paths.json": "e7923be08fc009f3b2c72262569599f2da00dd5a9c453334f9781b8f3001a581",
+    "raw-diagnosis/report.json": "48147fcc3e3fb7dfaed1c2d46bdebbc252b3c5f11893db6e74b052b2ef120fe0",
+    "raw-diagnosis/sources/calibration-dataset.json": "21d0e6880ce3b98b7a330e93a9adec2ea3ffe1ee6ad53a4df8ff637eafc3d7b3",
+    "raw-diagnosis/sources/case-0.json": "6ee9181232b189a153427f0dd09f1067986606d5dc40078d514a5a49f3f41c6a",
+    "raw-diagnosis/sources/case-1.json": "c54be8a96eb66938e2fcd6643173fa71aff32f308fc7c010b5e115b56323dcc1",
+    "raw-diagnosis/sources/case-2.json": "4d3f804272107ccb754d608c9922e5d3604ff981650d4880bd8aaddb1df7c71b",
+    "raw-diagnosis/sources/case-3.json": "368159ecea622a2ccbdf219b5fb09d2b782c4f375e3870c7167430bfa0b74aab",
+    "raw-diagnosis/sources/case-4.json": "3bbd5149f548dc57b3868024877b3459be43958d58e7fecbada514465ab8ec03",
+    "raw-diagnosis/sources/case-5.json": "d3690b0a8936542a9e11cc555570f81a3c383404fb42c39cee30f2386946a6cc",
+    "raw-passive/manifest.json": "9f8ccf81c4f4615819766a5e58598202c399e02c80aba61dc5f9780f0b8215fe",
+    "raw-passive/operands/baseline.json": "af9ab9ba8c6eb33079efdb67e12d3dcc99a5903f871ff261531000842b62c428",
+    "raw-passive/operands/policy.json": "551facf7597bfd82d33d49f97c80ff95378500f964ed9c57be3a00ff43b1eaca",
+    "raw-passive/operands/protocol.txt": "0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7",
+    "raw-passive/operands/raw-query.tar": "4295fe51a00ffd9afe42d095240c888ae0b74f01a4c534a2cebab5da69f216aa",
+    "raw-passive/operands/raw-train-0.tar": "da2abe54b02783f9fdf959cbc79ff7a536fce78afa1ae06a482b678f8add57eb",
+    "raw-passive/operands/raw-train-1.tar": "80823b7b433a791e232fe5c94cd9497faff9777443d7dc12dc3a21d4405b68d4",
+    "raw-passive/operands/raw-train-2.tar": "01a177817253e747f53bda71df384775ca75f50fde2231c8bffc33322c63c138",
+    "raw-passive/operands/raw-train-3.tar": "c7ea445cf1444c5e0f01c20a0f06c776bc3fb02632624910051529423a59f7dc",
+    "raw-passive/operands/raw-train-4.tar": "2a27370f7318633db2eb3e8efd854af6a35f1546d8fecfcd2948a90641899b32",
+    "raw-passive/operands/replay.json": "4d9f321ef1283b0b5718b4e95b3672d1fd98184dfa6558fda271da9c9e92ed05",
+    "raw-passive/paths.json": "c893ff890431bdeb80ba105db72c1c6c5c2e6978ea8e115fc6881bd82c9a1a07",
+    "raw-passive/report.json": "6e3b35788f43dd42ff0a7be871550a062e615dfaf5426f01c1017717e3672abf",
+    "raw-passive/sources/artifact-query-000.json": "d75ef30f3c93306d322b739dfad61fa3bc916a80cb907de43d80f7c166b03089",
+    "raw-passive/sources/artifact-query-001.json": "5f8a2dda532d373394f6d1d4a8b33a14afccfdf173a6e1169b94353146d9c45b",
+    "raw-passive/sources/artifact-train-0.json": "391e51f2be20080cf30df335baaadab56148ffacfb0ac217765b8511896ef36f",
+    "raw-passive/sources/artifact-train-1.json": "cc37db3c8f3940eea5d725be49d184ef2903b25efed89244c1e36fb4d4c6ff7a",
+    "raw-passive/sources/artifact-train-2.json": "380082a97de4b228b4840ed95502ed828a06ad84ee494fc0b26ec8a91fd6286d",
+    "raw-passive/sources/artifact-train-3.json": "4446dcace2aa0291818dabb22900f8ec09d8e54abc45b4bd0316093e740dad92",
+    "raw-passive/sources/artifact-train-4.json": "a68f042b323ccaf507c9ff56d8e5df6b66ad8c4a8af126eb800d41f6e3e21c32",
+    "raw-passive/sources/calibration-dataset.json": "d3693658f254c1d40de6d6c9a689febe5c9e02866c796a962cde2fe011aee6cc",
+    "unverified-diagnosis/manifest.json": "75f015b384416da1478b9e2340439ce1d4eb1964c9f91964b83993dcde0dee45",
+    "unverified-diagnosis/operands/match-policy.json": "f71cd5a54fd0efdbe305058101735337c11a0124a787c148689362694fb19dd0",
+    "unverified-diagnosis/operands/protocol.txt": "0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7",
+    "unverified-diagnosis/operands/response-policy.json": "e3f54c5eb4b8fd4d406a9b201584a28db97c15b04478ae9226f854bb580bad7e",
+    "unverified-diagnosis/operands/snapshot.json": "7832215899ad3d0e78fb92b701aec8ec0bcdaec258dd256bf738b07f84ea47ac",
+    "unverified-diagnosis/paths.json": "88f8c4d3776d9ab95e757e7823daf7d682b47269813ee374074e7800ffb365e4",
+    "unverified-diagnosis/report.json": "9f7a8aecb453111f2f3b219e1fd9ad40a71a130cd07a4391b08c76eb0a534ace",
+    "unverified-diagnosis/sources/calibration-dataset.json": "b131877a19b9e68d30cefcae187e48e0aa411f82fc7677c11b4b55bb0845b3e5",
+    "unverified-diagnosis/sources/response-a.json": "479608d66b6453d5be28deda66bc3034d5fd150aa355e0eb0d1342714d461c00",
+    "unverified-diagnosis/sources/response-b.json": "7c9e06a7f696319322a55f1013926e0de981065e2d19ead576e6c7d7bd760c91",
+    "unverified-diagnosis/sources/response-c.json": "35324f0e13f329a6d11b2d02717f0b8058638a4006bfcc7935edfce5a1830661"
+  }
+}

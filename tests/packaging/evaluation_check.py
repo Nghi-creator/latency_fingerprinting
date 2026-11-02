@@ -1,6 +1,7 @@
 """Independent N11 wheel/CLI checks outside the checkout; no real study data."""
 
 import json
+import shutil
 
 from tests.evaluation.support import base, canonical, slot
 from tests.evaluation.test_windows import context
@@ -9,6 +10,36 @@ from tests.pixelated.support import VALID_V2_BUNDLE, write_tar
 
 def check_evaluation(directory, invoke_installed):
     from latency_fingerprinting.evaluation import seal_manifest
+    from tests.evaluation.check_reproduction import FIXTURES, load_release, operands
+
+    release = load_release()
+    corpus = directory / "n11-frozen"
+    shutil.copytree(FIXTURES, corpus)
+    for name in release["expectations"]:
+        case = corpus / name
+        pathmap = directory / (name + "-operands.json")
+        pathmap.write_bytes(canonical(dict(paths={k: str(v) for k, v in operands(case).items()})))
+        result_path = directory / (name + "-report.json")
+        code, stdout, stderr = invoke_installed(
+            [
+                "evaluate-study",
+                "--manifest",
+                case / "manifest.json",
+                "--operands",
+                pathmap,
+                "--verify-report",
+                case / "report.json",
+                "--output",
+                result_path,
+            ]
+        )
+        if (
+            code
+            or stdout
+            or stderr
+            or result_path.read_bytes() != (case / "report.json").read_bytes()
+        ):
+            raise ValueError("installed frozen N11 corpus drift")
 
     payload, paths = base(directory)
     payload["slots"] = [slot("failed", state="failed"), slot("unstarted", state="not_started")]

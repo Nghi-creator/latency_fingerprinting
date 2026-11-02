@@ -1,0 +1,13 @@
+{
+  "baseline": "operands/baseline.json",
+  "dataset": "sources/calibration-dataset.json",
+  "policy": "operands/policy.json",
+  "protocol": "operands/protocol.txt",
+  "raw-query": "operands/raw-query.tar",
+  "raw-train-0": "operands/raw-train-0.tar",
+  "raw-train-1": "operands/raw-train-1.tar",
+  "raw-train-2": "operands/raw-train-2.tar",
+  "raw-train-3": "operands/raw-train-3.tar",
+  "raw-train-4": "operands/raw-train-4.tar",
+  "replay": "operands/replay.json"
+}

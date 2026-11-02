@@ -1,0 +1,191 @@
+{
+  "assurance": "offline_source_bindings_external_truth_not_authenticated_no_live_authority",
+  "content_hash": "sha256:7d895f1cf6d04dd23b5a48d12fabbd1a7524e2294b9edbeb84344f36684fb688",
+  "counts": {
+    "failed_slots": 1,
+    "held_out_slots": 3,
+    "not_started_slots": 1,
+    "planned_slots": 5,
+    "point_correct": {
+      "denominator": 3,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "point_unknown": {
+      "denominator": 3,
+      "numerator": 3,
+      "value": 1.0
+    },
+    "point_wrong": {
+      "denominator": 3,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_correct": {
+      "denominator": 3,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_unknown": {
+      "denominator": 3,
+      "numerator": 3,
+      "value": 1.0
+    },
+    "profile_wrong": {
+      "denominator": 3,
+      "numerator": 0,
+      "value": 0.0
+    }
+  },
+  "empirical_acceptance": "unavailable_not_a_frozen_real_study",
+  "manifest": {
+    "content_hash": "sha256:b7708789507c8261256318fec69a3d5ad79c7f00b4c00bc46b17a631dac03a38",
+    "datasets": [],
+    "diagnoses": [],
+    "groups": [],
+    "live": [],
+    "manifest_id": "evaluation-manifest-b7708789507c8261256318fec69a3d5ad79c7f00b4c00bc46b17a631dac03a38",
+    "method_release": "n11-offline-evaluation-v1",
+    "passive": [],
+    "protocol_receipt": "protocol",
+    "raw_derivations": [],
+    "receipts": [
+      {
+        "bytes": 64,
+        "kind": "protocol",
+        "receipt_id": "protocol",
+        "sha256": "sha256:0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7"
+      }
+    ],
+    "schema_version": "n11-evaluation-manifest-v1",
+    "scope": "offline_separate_tracks_no_live_response_bridge",
+    "slots": [
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "a-training",
+        "state": "retained",
+        "study_group": "study-a-training",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": "test_failure",
+        "live_job": null,
+        "passive_job": null,
+        "role": "final_test",
+        "slot_id": "b-failed",
+        "state": "failed",
+        "study_group": "study-b-failed",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "final_test",
+        "slot_id": "c-unstarted",
+        "state": "not_started",
+        "study_group": "study-c-unstarted",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "final_test",
+        "slot_id": "d-unknown",
+        "state": "retained",
+        "study_group": "study-d-unknown",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "engineering",
+        "slot_id": "e-engineering",
+        "state": "retained",
+        "study_group": "study-e-engineering",
+        "truth_label": "host_contention"
+      }
+    ],
+    "study_mode": "software_only"
+  },
+  "method_release": "n11-offline-evaluation-v1",
+  "report_id": "evaluation-report-7d895f1cf6d04dd23b5a48d12fabbd1a7524e2294b9edbeb84344f36684fb688",
+  "results": [],
+  "rows": [
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "a-training",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [
+        "acquisition_failed"
+      ],
+      "slot_id": "b-failed",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [
+        "acquisition_not_started"
+      ],
+      "slot_id": "c-unstarted",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "d-unknown",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "e-engineering",
+      "truth_label": null
+    }
+  ],
+  "schema_version": "n11-evaluation-report-v1"
+}

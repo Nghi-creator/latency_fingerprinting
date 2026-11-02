@@ -1,0 +1,365 @@
+{
+  "assurance": "offline_source_bindings_external_truth_not_authenticated_no_live_authority",
+  "content_hash": "sha256:ea10f76f21a7f5bb0ecf68ec3c636ac37be6fcdd3f900391878dfe2772919b15",
+  "counts": {
+    "failed_slots": 0,
+    "held_out_slots": 1,
+    "not_started_slots": 0,
+    "planned_slots": 6,
+    "point_correct": {
+      "denominator": 1,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "point_unknown": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "point_wrong": {
+      "denominator": 1,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_correct": {
+      "denominator": 1,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_unknown": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "profile_wrong": {
+      "denominator": 1,
+      "numerator": 0,
+      "value": 0.0
+    }
+  },
+  "empirical_acceptance": "unavailable_not_a_frozen_real_study",
+  "manifest": {
+    "content_hash": "sha256:9fcc25b83b343378f75a839dc319fce7f1a728b18162cccc586183d742f13657",
+    "datasets": [
+      {
+        "content_hash": "sha256:798422c211b910eaeca048b8995dc4e0aba6ebbdd815032d11eb4a03c9770a0a",
+        "dataset_key": "sources",
+        "manifest_receipt": "dataset",
+        "split_id": "split-d118214c663ed1ecda8125ed1055f2017e60a6d22256011d0830b8ee870d6f86"
+      }
+    ],
+    "diagnoses": [],
+    "groups": [
+      {
+        "dataset_key": "sources",
+        "group_id": "group-1b68f584544c68198cfc339df3e1d87c8c5e89a512c2c642ad00456e91e3ac22",
+        "study_group": "study-train-2"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-543dcf75347f919c1e8091e86d20f18aaec06d2462fac97bcbcc112e0b2e4462",
+        "study_group": "study-train-3"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-63b908361c7cc5354545e354679ab75cffe27b5a3f7add7aaf728185f3b01401",
+        "study_group": "study-query"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-68366404509509814c0d4eee0e79a4e85e1d7a45e67c05491b8a0c20bcdf7c1c",
+        "study_group": "study-train-1"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-73ef9e6bb74a6471b3635ec4b6d69b69ed28d2d615276bbc05d561d4a2836cef",
+        "study_group": "study-train-0"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-dec5bd0613a619ef4dc9397f26821a2cc745af604cee1a6ca0368448f4f81c86",
+        "study_group": "study-train-4"
+      }
+    ],
+    "live": [],
+    "manifest_id": "evaluation-manifest-9fcc25b83b343378f75a839dc319fce7f1a728b18162cccc586183d742f13657",
+    "method_release": "n11-offline-evaluation-v1",
+    "passive": [
+      {
+        "baseline_receipt": "baseline",
+        "dataset_key": "sources",
+        "job_id": "passive",
+        "policy_receipt": "policy",
+        "replay_receipt": "replay"
+      }
+    ],
+    "protocol_receipt": "protocol",
+    "raw_derivations": [
+      {
+        "dataset_key": "sources",
+        "entry_id": "query-000",
+        "raw_receipt": "raw-query",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "query-001",
+        "raw_receipt": "raw-query",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "train-0",
+        "raw_receipt": "raw-train-0",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "train-1",
+        "raw_receipt": "raw-train-1",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "train-2",
+        "raw_receipt": "raw-train-2",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "train-3",
+        "raw_receipt": "raw-train-3",
+        "window_role": "healthy"
+      },
+      {
+        "dataset_key": "sources",
+        "entry_id": "train-4",
+        "raw_receipt": "raw-train-4",
+        "window_role": "healthy"
+      }
+    ],
+    "receipts": [
+      {
+        "bytes": 391161,
+        "kind": "passive_baseline",
+        "receipt_id": "baseline",
+        "sha256": "sha256:af9ab9ba8c6eb33079efdb67e12d3dcc99a5903f871ff261531000842b62c428"
+      },
+      {
+        "bytes": 13341,
+        "kind": "dataset_manifest",
+        "receipt_id": "dataset",
+        "sha256": "sha256:d3693658f254c1d40de6d6c9a689febe5c9e02866c796a962cde2fe011aee6cc"
+      },
+      {
+        "bytes": 3333,
+        "kind": "passive_policy",
+        "receipt_id": "policy",
+        "sha256": "sha256:551facf7597bfd82d33d49f97c80ff95378500f964ed9c57be3a00ff43b1eaca"
+      },
+      {
+        "bytes": 64,
+        "kind": "protocol",
+        "receipt_id": "protocol",
+        "sha256": "sha256:0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-query",
+        "sha256": "sha256:4295fe51a00ffd9afe42d095240c888ae0b74f01a4c534a2cebab5da69f216aa"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-train-0",
+        "sha256": "sha256:da2abe54b02783f9fdf959cbc79ff7a536fce78afa1ae06a482b678f8add57eb"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-train-1",
+        "sha256": "sha256:80823b7b433a791e232fe5c94cd9497faff9777443d7dc12dc3a21d4405b68d4"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-train-2",
+        "sha256": "sha256:01a177817253e747f53bda71df384775ca75f50fde2231c8bffc33322c63c138"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-train-3",
+        "sha256": "sha256:c7ea445cf1444c5e0f01c20a0f06c776bc3fb02632624910051529423a59f7dc"
+      },
+      {
+        "bytes": 10240,
+        "kind": "raw_bundle",
+        "receipt_id": "raw-train-4",
+        "sha256": "sha256:2a27370f7318633db2eb3e8efd854af6a35f1546d8fecfcd2948a90641899b32"
+      },
+      {
+        "bytes": 144735,
+        "kind": "passive_replay",
+        "receipt_id": "replay",
+        "sha256": "sha256:4d9f321ef1283b0b5718b4e95b3672d1fd98184dfa6558fda271da9c9e92ed05"
+      }
+    ],
+    "schema_version": "n11-evaluation-manifest-v1",
+    "scope": "offline_separate_tracks_no_live_response_bridge",
+    "slots": [
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": "passive",
+        "role": "validation",
+        "slot_id": "query",
+        "state": "retained",
+        "study_group": "study-query",
+        "truth_label": null
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "train-0",
+        "state": "retained",
+        "study_group": "study-train-0",
+        "truth_label": "healthy"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "train-1",
+        "state": "retained",
+        "study_group": "study-train-1",
+        "truth_label": "healthy"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "train-2",
+        "state": "retained",
+        "study_group": "study-train-2",
+        "truth_label": "healthy"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "train-3",
+        "state": "retained",
+        "study_group": "study-train-3",
+        "truth_label": "healthy"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "train-4",
+        "state": "retained",
+        "study_group": "study-train-4",
+        "truth_label": "healthy"
+      }
+    ],
+    "study_mode": "software_only"
+  },
+  "method_release": "n11-offline-evaluation-v1",
+  "report_id": "evaluation-report-ea10f76f21a7f5bb0ecf68ec3c636ac37be6fcdd3f900391878dfe2772919b15",
+  "results": [
+    {
+      "content_hash": "sha256:f14d4700351e4f256d6d458802ec7f7f8a842cebcf03129bb56c8cc5e7b93e73",
+      "job_id": "passive",
+      "root_id": "passive-gate-f14d4700351e4f256d6d458802ec7f7f8a842cebcf03129bb56c8cc5e7b93e73"
+    }
+  ],
+  "rows": [
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "computed",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": 0,
+      "reason_codes": [],
+      "slot_id": "query",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "train-0",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "train-1",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "train-2",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "train-3",
+      "truth_label": null
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "train-4",
+      "truth_label": null
+    }
+  ],
+  "schema_version": "n11-evaluation-report-v1"
+}

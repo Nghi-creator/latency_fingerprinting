@@ -91,7 +91,7 @@ checkout. It verifies the import location, console entry point, all frozen N6
 calibration cases and the [frozen N7 profile corpus](../profiles/N7_FIXTURES.md),
 including standalone validation, linked builds, lifecycle operations, private
 errors/preserved output, N8 standalone match/evaluation roots, linked N8 match
-and all three evaluation modes, the complete
+and all four evaluation modes, the complete
 [frozen N8 corpus](../profile_matching/N8_FIXTURES.md), N9 standalone models,
 the complete [frozen N9 corpus](../passive_gating/N9_FIXTURES.md), pure
 baseline/replay, linked source verification, both protected N9 commands,
@@ -126,6 +126,7 @@ or establish safe live restoration.
 ## N11 offline evaluation
 
 ```sh
+python -m tests.evaluation.check_reproduction
 python -m pytest tests/evaluation
 ```
 
@@ -136,3 +137,8 @@ N10 engineering-only scope and protected CLI writes. Artificial raw fixtures and
 review declarations exercise software branches only; they are not real study
 acquisitions. The isolated-wheel gate exercises both new commands, reconstruction,
 generic validation and SDK imports. All forty pre-N11 schema bytes remain pinned.
+
+The [N11 frozen corpus](../evaluation/N11_FIXTURES.md) pins complete reports and
+source inventories. CI runs its read-only reproduction; the installed-wheel gate
+reconstructs all four cases through the isolated CLI. Producer composer/TAR
+interoperability uses artificial telemetry and does not qualify live acquisition.

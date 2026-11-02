@@ -1,0 +1,80 @@
+{
+  "content_hash": "sha256:b7708789507c8261256318fec69a3d5ad79c7f00b4c00bc46b17a631dac03a38",
+  "datasets": [],
+  "diagnoses": [],
+  "groups": [],
+  "live": [],
+  "manifest_id": "evaluation-manifest-b7708789507c8261256318fec69a3d5ad79c7f00b4c00bc46b17a631dac03a38",
+  "method_release": "n11-offline-evaluation-v1",
+  "passive": [],
+  "protocol_receipt": "protocol",
+  "raw_derivations": [],
+  "receipts": [
+    {
+      "bytes": 64,
+      "kind": "protocol",
+      "receipt_id": "protocol",
+      "sha256": "sha256:0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7"
+    }
+  ],
+  "schema_version": "n11-evaluation-manifest-v1",
+  "scope": "offline_separate_tracks_no_live_response_bridge",
+  "slots": [
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "training",
+      "slot_id": "a-training",
+      "state": "retained",
+      "study_group": "study-a-training",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": "test_failure",
+      "live_job": null,
+      "passive_job": null,
+      "role": "final_test",
+      "slot_id": "b-failed",
+      "state": "failed",
+      "study_group": "study-b-failed",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "final_test",
+      "slot_id": "c-unstarted",
+      "state": "not_started",
+      "study_group": "study-c-unstarted",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "final_test",
+      "slot_id": "d-unknown",
+      "state": "retained",
+      "study_group": "study-d-unknown",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_job": null,
+      "failure_code": null,
+      "live_job": null,
+      "passive_job": null,
+      "role": "engineering",
+      "slot_id": "e-engineering",
+      "state": "retained",
+      "study_group": "study-e-engineering",
+      "truth_label": "host_contention"
+    }
+  ],
+  "study_mode": "software_only"
+}

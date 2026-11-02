@@ -1,0 +1,19 @@
+{
+  "dataset": "sources/calibration-dataset.json",
+  "match-policy": "operands/match-policy.json",
+  "protocol": "operands/protocol.txt",
+  "raw-case-0-degraded": "operands/raw-case-0-degraded.tar",
+  "raw-case-0-relief": "operands/raw-case-0-relief.tar",
+  "raw-case-1-degraded": "operands/raw-case-1-degraded.tar",
+  "raw-case-1-relief": "operands/raw-case-1-relief.tar",
+  "raw-case-2-degraded": "operands/raw-case-2-degraded.tar",
+  "raw-case-2-relief": "operands/raw-case-2-relief.tar",
+  "raw-case-3-degraded": "operands/raw-case-3-degraded.tar",
+  "raw-case-3-relief": "operands/raw-case-3-relief.tar",
+  "raw-case-4-degraded": "operands/raw-case-4-degraded.tar",
+  "raw-case-4-relief": "operands/raw-case-4-relief.tar",
+  "raw-case-5-degraded": "operands/raw-case-5-degraded.tar",
+  "raw-case-5-relief": "operands/raw-case-5-relief.tar",
+  "response-policy": "operands/response-policy.json",
+  "snapshot": "operands/snapshot.json"
+}

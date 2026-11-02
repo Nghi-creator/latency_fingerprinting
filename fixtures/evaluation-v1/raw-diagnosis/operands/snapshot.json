@@ -1,0 +1,1664 @@
+{
+  "assurance": "software_provisional_external_reviews_not_authenticated",
+  "content_hash": "sha256:572dda573779f7fd04c5be49755aa79c9b0a87246ac80c745ee1b79e9af8c8de",
+  "counts": {
+    "baseline_entries": 0,
+    "excluded_entries": 1,
+    "heldout_response_entries": 1,
+    "missing_entries": 0,
+    "mixed_label_groups": 0,
+    "retained_entries": 6,
+    "selected_entries": 5,
+    "selected_groups": 5
+  },
+  "inputs": [
+    {
+      "entry_id": "case-0",
+      "feature_values": {
+        "client.available_incoming_bitrate_kbps": 0.0,
+        "client.decode_time_mean_ms": 0.0,
+        "client.frames_decoded_rate_fps": 0.0,
+        "client.frames_dropped_rate_fps": 0.0,
+        "client.freeze_count_rate_per_min": 0.0,
+        "client.freeze_duration_rate_ms_per_s": 0.0,
+        "client.jitter_buffer_delay_mean_ms": 0.0,
+        "client.received_bitrate_kbps": 0.0,
+        "client.received_fps": 0.0,
+        "encoder.frames_dropped_rate_fps": 0.0,
+        "encoder.frames_in_rate_fps": 0.0,
+        "encoder.frames_out_rate_fps": 0.0,
+        "encoder.queue_level_buffers": 0.0,
+        "host.camera_cpu_percent": 0.0,
+        "host.camera_rss_mib": 0.0,
+        "host.game_cpu_percent": 0.0,
+        "host.game_rss_mib": 0.0,
+        "host.node_cpu_percent": 0.0,
+        "host.node_rss_mib": 0.0,
+        "transport.jitter_ms": 0.0,
+        "transport.packets_lost_rate_per_s": 0.0,
+        "transport.round_trip_time_ms": 0.0
+      },
+      "reason_codes": [],
+      "selected": true
+    },
+    {
+      "entry_id": "case-1",
+      "feature_values": {
+        "client.available_incoming_bitrate_kbps": 0.0,
+        "client.decode_time_mean_ms": 0.0,
+        "client.frames_decoded_rate_fps": 0.0,
+        "client.frames_dropped_rate_fps": 0.0,
+        "client.freeze_count_rate_per_min": 0.0,
+        "client.freeze_duration_rate_ms_per_s": 0.0,
+        "client.jitter_buffer_delay_mean_ms": 0.0,
+        "client.received_bitrate_kbps": 0.0,
+        "client.received_fps": 0.0,
+        "encoder.frames_dropped_rate_fps": 0.0,
+        "encoder.frames_in_rate_fps": 0.0,
+        "encoder.frames_out_rate_fps": 0.0,
+        "encoder.queue_level_buffers": 0.0,
+        "host.camera_cpu_percent": 0.0,
+        "host.camera_rss_mib": 0.0,
+        "host.game_cpu_percent": 0.0,
+        "host.game_rss_mib": 0.0,
+        "host.node_cpu_percent": 0.0,
+        "host.node_rss_mib": 0.0,
+        "transport.jitter_ms": 0.0,
+        "transport.packets_lost_rate_per_s": 0.0,
+        "transport.round_trip_time_ms": 0.0
+      },
+      "reason_codes": [],
+      "selected": true
+    },
+    {
+      "entry_id": "case-2",
+      "feature_values": {
+        "client.available_incoming_bitrate_kbps": 0.0,
+        "client.decode_time_mean_ms": 0.0,
+        "client.frames_decoded_rate_fps": 0.0,
+        "client.frames_dropped_rate_fps": 0.0,
+        "client.freeze_count_rate_per_min": 0.0,
+        "client.freeze_duration_rate_ms_per_s": 0.0,
+        "client.jitter_buffer_delay_mean_ms": 0.0,
+        "client.received_bitrate_kbps": 0.0,
+        "client.received_fps": 0.0,
+        "encoder.frames_dropped_rate_fps": 0.0,
+        "encoder.frames_in_rate_fps": 0.0,
+        "encoder.frames_out_rate_fps": 0.0,
+        "encoder.queue_level_buffers": 0.0,
+        "host.camera_cpu_percent": 0.0,
+        "host.camera_rss_mib": 0.0,
+        "host.game_cpu_percent": 0.0,
+        "host.game_rss_mib": 0.0,
+        "host.node_cpu_percent": 0.0,
+        "host.node_rss_mib": 0.0,
+        "transport.jitter_ms": 0.0,
+        "transport.packets_lost_rate_per_s": 0.0,
+        "transport.round_trip_time_ms": 0.0
+      },
+      "reason_codes": [],
+      "selected": true
+    },
+    {
+      "entry_id": "case-3",
+      "feature_values": {
+        "client.available_incoming_bitrate_kbps": 0.0,
+        "client.decode_time_mean_ms": 0.0,
+        "client.frames_decoded_rate_fps": 0.0,
+        "client.frames_dropped_rate_fps": 0.0,
+        "client.freeze_count_rate_per_min": 0.0,
+        "client.freeze_duration_rate_ms_per_s": 0.0,
+        "client.jitter_buffer_delay_mean_ms": 0.0,
+        "client.received_bitrate_kbps": 0.0,
+        "client.received_fps": 0.0,
+        "encoder.frames_dropped_rate_fps": 0.0,
+        "encoder.frames_in_rate_fps": 0.0,
+        "encoder.frames_out_rate_fps": 0.0,
+        "encoder.queue_level_buffers": 0.0,
+        "host.camera_cpu_percent": 0.0,
+        "host.camera_rss_mib": 0.0,
+        "host.game_cpu_percent": 0.0,
+        "host.game_rss_mib": 0.0,
+        "host.node_cpu_percent": 0.0,
+        "host.node_rss_mib": 0.0,
+        "transport.jitter_ms": 0.0,
+        "transport.packets_lost_rate_per_s": 0.0,
+        "transport.round_trip_time_ms": 0.0
+      },
+      "reason_codes": [],
+      "selected": true
+    },
+    {
+      "entry_id": "case-4",
+      "feature_values": {
+        "client.available_incoming_bitrate_kbps": 0.0,
+        "client.decode_time_mean_ms": 0.0,
+        "client.frames_decoded_rate_fps": 0.0,
+        "client.frames_dropped_rate_fps": 0.0,
+        "client.freeze_count_rate_per_min": 0.0,
+        "client.freeze_duration_rate_ms_per_s": 0.0,
+        "client.jitter_buffer_delay_mean_ms": 0.0,
+        "client.received_bitrate_kbps": 0.0,
+        "client.received_fps": 0.0,
+        "encoder.frames_dropped_rate_fps": 0.0,
+        "encoder.frames_in_rate_fps": 0.0,
+        "encoder.frames_out_rate_fps": 0.0,
+        "encoder.queue_level_buffers": 0.0,
+        "host.camera_cpu_percent": 0.0,
+        "host.camera_rss_mib": 0.0,
+        "host.game_cpu_percent": 0.0,
+        "host.game_rss_mib": 0.0,
+        "host.node_cpu_percent": 0.0,
+        "host.node_rss_mib": 0.0,
+        "transport.jitter_ms": 0.0,
+        "transport.packets_lost_rate_per_s": 0.0,
+        "transport.round_trip_time_ms": 0.0
+      },
+      "reason_codes": [],
+      "selected": true
+    },
+    {
+      "entry_id": "case-5",
+      "feature_values": null,
+      "reason_codes": [
+        "not_training"
+      ],
+      "selected": false
+    }
+  ],
+  "lifecycle": {
+    "operation": "build",
+    "parent_snapshot_id": null,
+    "reason_code": "no_supported_profiles",
+    "replacement_snapshot_id": null,
+    "review": null,
+    "state": "rejected"
+  },
+  "method_release": "n7-profile-statistics-v1",
+  "policy": {
+    "calibration_method_release": "n6-calibration-evidence-v1",
+    "content_hash": "sha256:8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+    "feature_names": [
+      "client.available_incoming_bitrate_kbps",
+      "client.decode_time_mean_ms",
+      "client.frames_decoded_rate_fps",
+      "client.frames_dropped_rate_fps",
+      "client.freeze_count_rate_per_min",
+      "client.freeze_duration_rate_ms_per_s",
+      "client.jitter_buffer_delay_mean_ms",
+      "client.received_bitrate_kbps",
+      "client.received_fps",
+      "encoder.frames_dropped_rate_fps",
+      "encoder.frames_in_rate_fps",
+      "encoder.frames_out_rate_fps",
+      "encoder.queue_level_buffers",
+      "host.camera_cpu_percent",
+      "host.camera_rss_mib",
+      "host.game_cpu_percent",
+      "host.game_rss_mib",
+      "host.node_cpu_percent",
+      "host.node_rss_mib",
+      "transport.jitter_ms",
+      "transport.packets_lost_rate_per_s",
+      "transport.round_trip_time_ms"
+    ],
+    "gates": {
+      "minimum_active_coverage": {
+        "denominator": 4,
+        "numerator": 3
+      },
+      "minimum_active_features": 17,
+      "minimum_feature_availability": {
+        "denominator": 5,
+        "numerator": 4
+      },
+      "minimum_feature_groups": 5,
+      "minimum_training_groups": 5
+    },
+    "method_release": "n7-profile-statistics-v1",
+    "parameter_provenance": "software_provisional",
+    "policy_id": "profile-policy-8e805ffb205e7808559c0eac30d286f3395f006c358b100aef1e95fc705ec641",
+    "policy_version": "1.0.0",
+    "registry": {
+      "content_hash": "sha256:50329d193303c271194b28e9164ae8627dd257d7620174c5ab136ba209864884",
+      "registry_version": "latency-metrics-v2.0.0"
+    },
+    "response_policy_hash": "sha256:96457b318cc714f3d9d0d63a35b12548f6e030b10057b2c8e5a3a77e352fe1af",
+    "schema_version": "profile-policy-v1",
+    "selection": {
+      "exclude_duplicates": true,
+      "input_kind": "response",
+      "mixed_group_labels": "exclude_partition_group",
+      "partition_method": "n6_exact_partition_v1",
+      "require_n6_eligible": true,
+      "role": "training"
+    },
+    "statistics": {
+      "absolute_deviation": "exact_binary64_difference_round_once",
+      "center": "median",
+      "computed_zero": "positive_zero",
+      "dispersion": "raw_mad",
+      "dispersion_floor": null,
+      "empty_feature": "unavailable",
+      "even_median": "exact_binary64_midpoint_round_once",
+      "finite_arithmetic": "reject_unrepresentable",
+      "nonzero_to_zero": "reject",
+      "within_group": "median",
+      "zero_dispersion": "exclude"
+    },
+    "weights": {
+      "excluded": 0.0,
+      "supported": 1.0
+    }
+  },
+  "profiles": [
+    {
+      "active_feature_count": 0,
+      "active_feature_coverage": {
+        "denominator": 22,
+        "numerator": 0,
+        "value": 0.0
+      },
+      "features": {
+        "client.available_incoming_bitrate_kbps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.decode_time_mean_ms": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.frames_decoded_rate_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.frames_dropped_rate_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.freeze_count_rate_per_min": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.freeze_duration_rate_ms_per_s": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.jitter_buffer_delay_mean_ms": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.received_bitrate_kbps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "client.received_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "encoder.frames_dropped_rate_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "encoder.frames_in_rate_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "encoder.frames_out_rate_fps": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "encoder.queue_level_buffers": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.camera_cpu_percent": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.camera_rss_mib": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.game_cpu_percent": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.game_rss_mib": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.node_cpu_percent": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "host.node_rss_mib": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "transport.jitter_ms": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "transport.packets_lost_rate_per_s": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        },
+        "transport.round_trip_time_ms": {
+          "availability": {
+            "denominator": 5,
+            "numerator": 5,
+            "value": 1.0
+          },
+          "center": 0.0,
+          "contributing_groups": 5,
+          "dispersion": 0.0,
+          "group_values": [
+            {
+              "entry_ids": [
+                "case-3"
+              ],
+              "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-1"
+              ],
+              "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-4"
+              ],
+              "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-2"
+              ],
+              "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+              "median": 0.0
+            },
+            {
+              "entry_ids": [
+                "case-0"
+              ],
+              "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+              "median": 0.0
+            }
+          ],
+          "reason_codes": [
+            "zero_dispersion"
+          ],
+          "state": "excluded",
+          "weight": 0.0
+        }
+      },
+      "label": "host_contention",
+      "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+      "profile_id": "profile-8003fc616a4ff52401ebc0721a4e3339157a3645cdd0fe7665cb4947fadc0fe2",
+      "reason_codes": [
+        "insufficient_active_features",
+        "insufficient_active_coverage"
+      ],
+      "selected_entry_ids": [
+        "case-0",
+        "case-1",
+        "case-2",
+        "case-3",
+        "case-4"
+      ],
+      "state": "rejected",
+      "training_group_ids": [
+        "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+        "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+        "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+        "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+        "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5"
+      ]
+    }
+  ],
+  "schema_version": "profile-snapshot-v1",
+  "snapshot_id": "profile-snapshot-572dda573779f7fd04c5be49755aa79c9b0a87246ac80c745ee1b79e9af8c8de",
+  "source_report": {
+    "artifact_receipts": [
+      {
+        "artifact_id": "case-0",
+        "bytes": 184606,
+        "file_name": "case-0.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:6ee9181232b189a153427f0dd09f1067986606d5dc40078d514a5a49f3f41c6a"
+      },
+      {
+        "artifact_id": "case-1",
+        "bytes": 184606,
+        "file_name": "case-1.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:c54be8a96eb66938e2fcd6643173fa71aff32f308fc7c010b5e115b56323dcc1"
+      },
+      {
+        "artifact_id": "case-2",
+        "bytes": 184606,
+        "file_name": "case-2.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:4d3f804272107ccb754d608c9922e5d3604ff981650d4880bd8aaddb1df7c71b"
+      },
+      {
+        "artifact_id": "case-3",
+        "bytes": 184606,
+        "file_name": "case-3.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:368159ecea622a2ccbdf219b5fb09d2b782c4f375e3870c7167430bfa0b74aab"
+      },
+      {
+        "artifact_id": "case-4",
+        "bytes": 184606,
+        "file_name": "case-4.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:3bbd5149f548dc57b3868024877b3459be43958d58e7fecbada514465ab8ec03"
+      },
+      {
+        "artifact_id": "case-5",
+        "bytes": 184606,
+        "file_name": "case-5.json",
+        "kind": "analytical_response",
+        "sha256": "sha256:d3690b0a8936542a9e11cc555570f81a3c383404fb42c39cee30f2386946a6cc"
+      }
+    ],
+    "assurance": "external_review_declarations_not_authenticated",
+    "counts": {
+      "by_role": {
+        "engineering": {
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "excluded_entries": 0,
+          "retained_entries": 0,
+          "retained_groups": 0
+        },
+        "final_test": {
+          "eligible_entries": 0,
+          "eligible_groups": 0,
+          "excluded_entries": 0,
+          "retained_entries": 0,
+          "retained_groups": 0
+        },
+        "training": {
+          "eligible_entries": 5,
+          "eligible_groups": 5,
+          "excluded_entries": 0,
+          "retained_entries": 5,
+          "retained_groups": 5
+        },
+        "validation": {
+          "eligible_entries": 1,
+          "eligible_groups": 1,
+          "excluded_entries": 0,
+          "retained_entries": 1,
+          "retained_groups": 1
+        }
+      },
+      "eligible_entries": 6,
+      "eligible_groups": 6,
+      "excluded_entries": 0,
+      "retained_entries": 6,
+      "retained_groups": 6
+    },
+    "dataset_content_hash": "sha256:0d3f138933f1338d4823e44e09523cfc4bd41a14cddca9089b24849aca355421",
+    "dataset_id": "dataset-0d3f138933f1338d4823e44e09523cfc4bd41a14cddca9089b24849aca355421",
+    "entries": [
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-0",
+        "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-0",
+        "role": "training"
+      },
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-1",
+        "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-1",
+        "role": "training"
+      },
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-2",
+        "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-2",
+        "role": "training"
+      },
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-3",
+        "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-3",
+        "role": "training"
+      },
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-4",
+        "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-4",
+        "role": "training"
+      },
+      {
+        "eligible": true,
+        "eligible_feature_count": 22,
+        "entry_id": "case-5",
+        "group_id": "group-71a867541e9089fa6d6b6089b61a4cda0c4196ad0cc859bb5e2ac376045c0690",
+        "input_kind": "response",
+        "label": "host_contention",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "reason_codes": [],
+        "representative_entry_id": "case-5",
+        "role": "validation"
+      }
+    ],
+    "groups": [
+      {
+        "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+        "independence_review_state": "confirmed",
+        "role": "training",
+        "source_ids": [
+          "case-3-degraded",
+          "case-3-relief"
+        ]
+      },
+      {
+        "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+        "independence_review_state": "confirmed",
+        "role": "training",
+        "source_ids": [
+          "case-1-degraded",
+          "case-1-relief"
+        ]
+      },
+      {
+        "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+        "independence_review_state": "confirmed",
+        "role": "training",
+        "source_ids": [
+          "case-4-degraded",
+          "case-4-relief"
+        ]
+      },
+      {
+        "group_id": "group-71a867541e9089fa6d6b6089b61a4cda0c4196ad0cc859bb5e2ac376045c0690",
+        "independence_review_state": "confirmed",
+        "role": "validation",
+        "source_ids": [
+          "case-5-degraded",
+          "case-5-relief"
+        ]
+      },
+      {
+        "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+        "independence_review_state": "confirmed",
+        "role": "training",
+        "source_ids": [
+          "case-2-degraded",
+          "case-2-relief"
+        ]
+      },
+      {
+        "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+        "independence_review_state": "confirmed",
+        "role": "training",
+        "source_ids": [
+          "case-0-degraded",
+          "case-0-relief"
+        ]
+      }
+    ],
+    "method_release": "n6-calibration-evidence-v1",
+    "partitions": [
+      {
+        "eligible_entries": 6,
+        "eligible_groups": 6,
+        "input_kind": "response",
+        "partition_id": "partition-983b2c6b7b60def6da388f455548b57e1f99b1a265bd12c9c77f0f7c4ff495c2",
+        "retained_entries": 6
+      }
+    ],
+    "report_id": "calibration-report-b59eac43b395477160fbc61fc28a9f8ace14ae1dad2d35b692d9f2332c42761f",
+    "schema_version": "calibration-report-v1",
+    "split_id": "split-afc1861cec02c93e655e0ae668502fbc06e3ddee9c5841cb641d069ab162a3a8",
+    "split_mode": "prospective"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "provenance": "actual_producer_composer_artificial_telemetry",
+  "revision": "3af7446f5867c915aaafa55c92f755fba6e16750",
+  "source_sha256": {
+    "apps/web/src/features/player/research/researchBundleManifest.ts": "2cb0cc0d36edb7f610db479b2214623b949309b83bfded178952dc5893091ec7",
+    "apps/web/src/features/player/research/researchBundleV2.ts": "94a5ac738867fd20897baed900a84acd5c1d2088fc52b0bbe10f83e603187630",
+    "apps/web/src/features/player/research/researchRunBundle.ts": "ed04291993741cadf4c1f04ebe9339d9f61d158ddf8bf879bea23dd63cf97ae5"
+  }
+}

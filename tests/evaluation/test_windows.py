@@ -170,3 +170,28 @@ def test_raw_source_and_metric_declarations_are_preserved(tmp_path):
     assert first.sources["browser_webrtc"].available_row_count == 2
     assert first.measurements["client.received_fps"].summary.value is None
     assert first.measurements["client.received_fps"].support.state == "unsupported"
+
+
+def test_counter_reset_is_rejected_inside_its_slice_without_borrowing_an_interval(tmp_path):
+    from tests.pixelated.support import copy_v2_bundle
+    from tests.pixelated.test_measurement_samples import edit_row
+
+    directory = copy_v2_bundle(tmp_path)
+    edit_row(directory, "stream-telemetry.csv", 1, frames_decoded="50")
+    first, second = adopt(directory)
+    reset = first.measurements["client.frames_decoded_rate_fps"].summary
+    following = second.measurements["client.frames_decoded_rate_fps"].summary
+    assert reset.status == "rejected"
+    assert reset.value is None and reset.reset_source_rows == (3,)
+    assert reset.accepted_interval_count == 0
+    # After the reset, 700 - 50 over 5 seconds is 130 fps; no interpolation.
+    assert following.value == 130
+    assert following.usable_source_rows == (3, 4)
+    assert following.counter_intervals[0].delta == 650
+
+
+def test_frozen_actual_producer_composer_archive():
+    from .check_reproduction import FIXTURES
+    from .producer_boundary import check_producer_bundle
+
+    check_producer_bundle(FIXTURES / "producer-window.tar")

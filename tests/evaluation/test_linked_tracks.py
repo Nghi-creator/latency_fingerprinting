@@ -212,7 +212,7 @@ def test_live_forensics_stays_engineering_only(tmp_path, kind):
     assert result.report.empirical_acceptance == "unavailable_not_a_frozen_real_study"
 
 
-def test_point_baseline_runs_original_n3_on_verified_paired_bytes(tmp_path):
+def raw_diagnosis_case(tmp_path):
     """Artificial reviews/raw fixtures exercise code, never scientific labels."""
     from latency_fingerprinting.adapters import ingest_pixelated_v2
     from latency_fingerprinting.analytical.responses import derive_analytical_response
@@ -434,7 +434,12 @@ def test_point_baseline_runs_original_n3_on_verified_paired_bytes(tmp_path):
         )
     ]
     manifest["groups"].sort(key=lambda x: (x["dataset_key"], x["group_id"]))
-    result = run_evaluation(seal_manifest(manifest), paths)
+    return seal_manifest(manifest), paths
+
+
+def test_point_baseline_runs_original_n3_on_verified_paired_bytes(tmp_path):
+    manifest, paths = raw_diagnosis_case(tmp_path)
+    result = run_evaluation(manifest, paths)
     query = result.report.rows[-1]
     assert query.diagnosis_state == "computed"
     # All five identical same-label references compete in the original N3

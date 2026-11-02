@@ -1,0 +1,220 @@
+{
+  "assurance": "offline_source_bindings_external_truth_not_authenticated_no_live_authority",
+  "content_hash": "sha256:c9ab0551425af669aaa17adb3b00369bca6a8add30de8670546c8dc033d53def",
+  "counts": {
+    "failed_slots": 0,
+    "held_out_slots": 2,
+    "not_started_slots": 0,
+    "planned_slots": 3,
+    "point_correct": {
+      "denominator": 2,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "point_unknown": {
+      "denominator": 2,
+      "numerator": 2,
+      "value": 1.0
+    },
+    "point_wrong": {
+      "denominator": 2,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_correct": {
+      "denominator": 2,
+      "numerator": 0,
+      "value": 0.0
+    },
+    "profile_unknown": {
+      "denominator": 2,
+      "numerator": 2,
+      "value": 1.0
+    },
+    "profile_wrong": {
+      "denominator": 2,
+      "numerator": 0,
+      "value": 0.0
+    }
+  },
+  "empirical_acceptance": "unavailable_not_a_frozen_real_study",
+  "manifest": {
+    "content_hash": "sha256:153491d6d7337546d7958e72df332d5c78ddcffbb7e8f81cc7c7400f7cb86983",
+    "datasets": [
+      {
+        "content_hash": "sha256:04f2e9e8116e79a5ce2de0cfd60f4cf5a7b520af186b761608e701aec76ca6b4",
+        "dataset_key": "sources",
+        "manifest_receipt": "dataset",
+        "split_id": "split-a58c64fed7fc2b79041878d55ed6d6cee77c2aaa681e4d570a29ab4f931df456"
+      }
+    ],
+    "diagnoses": [
+      {
+        "dataset_key": "sources",
+        "job_id": "final_test",
+        "match_policy_receipt": "match-policy",
+        "mode": "final_test",
+        "response_policy_receipt": "response-policy",
+        "snapshot_receipt": "snapshot"
+      },
+      {
+        "dataset_key": "sources",
+        "job_id": "validation",
+        "match_policy_receipt": "match-policy",
+        "mode": "validation",
+        "response_policy_receipt": "response-policy",
+        "snapshot_receipt": "snapshot"
+      }
+    ],
+    "groups": [
+      {
+        "dataset_key": "sources",
+        "group_id": "group-6f7d5e604f6516e398cce97e8828ee1619092b3e0f8eb72dd83bd6a12dc5430d",
+        "study_group": "study-case-0"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-b2b7ed705ebdeb2b2d571253881ace3fda0727f205cc537edd2575050800de0f",
+        "study_group": "study-case-1"
+      },
+      {
+        "dataset_key": "sources",
+        "group_id": "group-c20aec20097c7f36fc39d247bac3ce3bd0d5a644cac9669eb3fa9389b9da977e",
+        "study_group": "study-case-2"
+      }
+    ],
+    "live": [],
+    "manifest_id": "evaluation-manifest-153491d6d7337546d7958e72df332d5c78ddcffbb7e8f81cc7c7400f7cb86983",
+    "method_release": "n11-offline-evaluation-v1",
+    "passive": [],
+    "protocol_receipt": "protocol",
+    "raw_derivations": [],
+    "receipts": [
+      {
+        "bytes": 8281,
+        "kind": "dataset_manifest",
+        "receipt_id": "dataset",
+        "sha256": "sha256:b131877a19b9e68d30cefcae187e48e0aa411f82fc7677c11b4b55bb0845b3e5"
+      },
+      {
+        "bytes": 4248,
+        "kind": "match_policy",
+        "receipt_id": "match-policy",
+        "sha256": "sha256:f71cd5a54fd0efdbe305058101735337c11a0124a787c148689362694fb19dd0"
+      },
+      {
+        "bytes": 64,
+        "kind": "protocol",
+        "receipt_id": "protocol",
+        "sha256": "sha256:0ebddf4ebd4e448d23817312922942c5853f889e8cfacbc8ee8f40ce8d5527c7"
+      },
+      {
+        "bytes": 10394,
+        "kind": "response_policy",
+        "receipt_id": "response-policy",
+        "sha256": "sha256:e3f54c5eb4b8fd4d406a9b201584a28db97c15b04478ae9226f854bb580bad7e"
+      },
+      {
+        "bytes": 21015,
+        "kind": "profile_snapshot",
+        "receipt_id": "snapshot",
+        "sha256": "sha256:7832215899ad3d0e78fb92b701aec8ec0bcdaec258dd256bf738b07f84ea47ac"
+      }
+    ],
+    "schema_version": "n11-evaluation-manifest-v1",
+    "scope": "offline_separate_tracks_no_live_response_bridge",
+    "slots": [
+      {
+        "diagnosis_job": "final_test",
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "final_test",
+        "slot_id": "case-0",
+        "state": "retained",
+        "study_group": "study-case-0",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": "validation",
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "validation",
+        "slot_id": "case-1",
+        "state": "retained",
+        "study_group": "study-case-1",
+        "truth_label": "host_contention"
+      },
+      {
+        "diagnosis_job": null,
+        "failure_code": null,
+        "live_job": null,
+        "passive_job": null,
+        "role": "training",
+        "slot_id": "case-2",
+        "state": "retained",
+        "study_group": "study-case-2",
+        "truth_label": "host_contention"
+      }
+    ],
+    "study_mode": "software_only"
+  },
+  "method_release": "n11-offline-evaluation-v1",
+  "report_id": "evaluation-report-c9ab0551425af669aaa17adb3b00369bca6a8add30de8670546c8dc033d53def",
+  "results": [
+    {
+      "content_hash": "sha256:43bfb85cbf721e48ab37602e81e410602ebfdd7b1fe679773e14c80488807ca4",
+      "job_id": "final_test",
+      "root_id": "profile-evaluation-43bfb85cbf721e48ab37602e81e410602ebfdd7b1fe679773e14c80488807ca4"
+    },
+    {
+      "content_hash": "sha256:2e398e45785ecfa9f8f8f222cd24aafd3f8ef59272be77d7b5efb11ad2cbd27c",
+      "job_id": "validation",
+      "root_id": "profile-evaluation-2e398e45785ecfa9f8f8f222cd24aafd3f8ef59272be77d7b5efb11ad2cbd27c"
+    }
+  ],
+  "rows": [
+    {
+      "diagnosis_state": "unavailable",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [
+        "raw_sources_unverified"
+      ],
+      "slot_id": "case-0",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_state": "unavailable",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [
+        "raw_sources_unverified"
+      ],
+      "slot_id": "case-1",
+      "truth_label": "host_contention"
+    },
+    {
+      "diagnosis_state": "not_requested",
+      "first_proposal_ms": null,
+      "live_state": "not_requested",
+      "passive_state": "not_requested",
+      "point_label": null,
+      "profile_label": null,
+      "proposals": null,
+      "reason_codes": [],
+      "slot_id": "case-2",
+      "truth_label": null
+    }
+  ],
+  "schema_version": "n11-evaluation-report-v1"
+}

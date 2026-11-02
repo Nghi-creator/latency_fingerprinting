@@ -1,0 +1,7 @@
+{
+  "dataset": "sources/calibration-dataset.json",
+  "match-policy": "operands/match-policy.json",
+  "protocol": "operands/protocol.txt",
+  "response-policy": "operands/response-policy.json",
+  "snapshot": "operands/snapshot.json"
+}

@@ -159,3 +159,6 @@ with the same study group/role map; do not silently drop queries to fit a call.
 All 40 preceding schema files and all existing policy/fixture bytes remain pinned.
 The two additive schemas describe software/historical evaluation, not a new live
 response contract or a prospective empirical acceptance format.
+
+The [frozen software corpus and producer packaging checks](N11_FIXTURES.md) verify
+complete report reconstruction and independent ledger/window expectations.

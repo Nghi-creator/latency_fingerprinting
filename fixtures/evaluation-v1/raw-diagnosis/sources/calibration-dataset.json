@@ -1,0 +1,489 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "case-0",
+      "bytes": 184606,
+      "file_name": "case-0.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:6ee9181232b189a153427f0dd09f1067986606d5dc40078d514a5a49f3f41c6a"
+    },
+    {
+      "artifact_id": "case-1",
+      "bytes": 184606,
+      "file_name": "case-1.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:c54be8a96eb66938e2fcd6643173fa71aff32f308fc7c010b5e115b56323dcc1"
+    },
+    {
+      "artifact_id": "case-2",
+      "bytes": 184606,
+      "file_name": "case-2.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:4d3f804272107ccb754d608c9922e5d3604ff981650d4880bd8aaddb1df7c71b"
+    },
+    {
+      "artifact_id": "case-3",
+      "bytes": 184606,
+      "file_name": "case-3.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:368159ecea622a2ccbdf219b5fb09d2b782c4f375e3870c7167430bfa0b74aab"
+    },
+    {
+      "artifact_id": "case-4",
+      "bytes": 184606,
+      "file_name": "case-4.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:3bbd5149f548dc57b3868024877b3459be43958d58e7fecbada514465ab8ec03"
+    },
+    {
+      "artifact_id": "case-5",
+      "bytes": 184606,
+      "file_name": "case-5.json",
+      "kind": "analytical_response",
+      "sha256": "sha256:d3690b0a8936542a9e11cc555570f81a3c383404fb42c39cee30f2386946a6cc"
+    }
+  ],
+  "content_hash": "sha256:0d3f138933f1338d4823e44e09523cfc4bd41a14cddca9089b24849aca355421",
+  "dataset_id": "dataset-0d3f138933f1338d4823e44e09523cfc4bd41a14cddca9089b24849aca355421",
+  "derivations": [],
+  "entries": [
+    {
+      "artifact_id": "case-0",
+      "entry_id": "case-0",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-0",
+      "source_bindings": [
+        {
+          "source_id": "case-0-degraded",
+          "window_id": "pixelated-v2-96a3eb328b02b3ead0f3708a94618c9297bb00d1e58c8e475512274d01a6b2ec-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-0-relief",
+          "window_id": "pixelated-v2-058204683becf8c0a4a7fa0538504e000cbdc5963272f777d37182b364cad3fb-relief",
+          "window_role": "relief"
+        }
+      ]
+    },
+    {
+      "artifact_id": "case-1",
+      "entry_id": "case-1",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-1",
+      "source_bindings": [
+        {
+          "source_id": "case-1-degraded",
+          "window_id": "pixelated-v2-ced3502b140ccf8b40a46a356a3c4fa94b8e63f12f2423c204a62dfd02370f36-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-1-relief",
+          "window_id": "pixelated-v2-02f688c936a8905f4663142e4b71b1251f323415621cbcdb2a97d552bf638e86-relief",
+          "window_role": "relief"
+        }
+      ]
+    },
+    {
+      "artifact_id": "case-2",
+      "entry_id": "case-2",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-2",
+      "source_bindings": [
+        {
+          "source_id": "case-2-degraded",
+          "window_id": "pixelated-v2-cb9fd6d1d2101ac25a91cbbabe4a9351e8c321eed804ccd1a59aa81d5a49d1f9-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-2-relief",
+          "window_id": "pixelated-v2-29ba372cdc92a31710e45c047b39589a5f61b08ac41700d6c9bec129bf162a41-relief",
+          "window_role": "relief"
+        }
+      ]
+    },
+    {
+      "artifact_id": "case-3",
+      "entry_id": "case-3",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-3",
+      "source_bindings": [
+        {
+          "source_id": "case-3-degraded",
+          "window_id": "pixelated-v2-e9b22b0ae3e2100823d1ab816761a9fad6d7db62155bc70db3d276e8cf78d71e-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-3-relief",
+          "window_id": "pixelated-v2-06a0cd5f7dd3b4bf553af985da042a18ebfed1438ea4a076f35f917f50b0f17b-relief",
+          "window_role": "relief"
+        }
+      ]
+    },
+    {
+      "artifact_id": "case-4",
+      "entry_id": "case-4",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-4",
+      "source_bindings": [
+        {
+          "source_id": "case-4-degraded",
+          "window_id": "pixelated-v2-cce22ccdd19742a40e6974747b7e54270a4542976c6a0ff70dc71aa60cb6aec7-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-4-relief",
+          "window_id": "pixelated-v2-fd969851caee007e15a02c7621074300d530db33bc11b1b711a710f566b24c85-relief",
+          "window_role": "relief"
+        }
+      ]
+    },
+    {
+      "artifact_id": "case-5",
+      "entry_id": "case-5",
+      "experiment_artifact_id": null,
+      "experiment_phase": null,
+      "input_kind": "response",
+      "label": "host_contention",
+      "label_basis": "external_confirmation",
+      "label_review_id": "label-case-5",
+      "source_bindings": [
+        {
+          "source_id": "case-5-degraded",
+          "window_id": "pixelated-v2-8ee3534fc2da6463b66235cc4937ab6f265ff4d1ae47d134e0c1b7a182c9009c-degraded",
+          "window_role": "degraded"
+        },
+        {
+          "source_id": "case-5-relief",
+          "window_id": "pixelated-v2-039e238491cce1301fb5f1c1681f963f0b6a72eaee563e2ad676d67442e963d7-relief",
+          "window_role": "relief"
+        }
+      ]
+    }
+  ],
+  "method_release": "n6-calibration-evidence-v1",
+  "reviews": [
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "split_freeze",
+      "outcome": "confirmed",
+      "review_id": "freeze",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "split-afc1861cec02c93e655e0ae668502fbc06e3ddee9c5841cb641d069ab162a3a8"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-0",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-0-degraded",
+        "case-0-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-1",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-1-degraded",
+        "case-1-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-2",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-2-degraded",
+        "case-2-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-3",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-3-degraded",
+        "case-3-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-4",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-4-degraded",
+        "case-4-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "independence",
+      "outcome": "confirmed",
+      "review_id": "ind-case-5",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-5-degraded",
+        "case-5-relief"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-0",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-0"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-1",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-1"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-2",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-2"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-3",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-3"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-4",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-4"
+      ]
+    },
+    {
+      "evidence_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "kind": "label_binding",
+      "outcome": "confirmed",
+      "review_id": "label-case-5",
+      "reviewer_id": "software-fixture-only",
+      "subject_ids": [
+        "case-5"
+      ]
+    }
+  ],
+  "schema_version": "calibration-dataset-v1",
+  "sources": [
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-0",
+      "review_id": "ind-case-0",
+      "run_id": "raw-case-0-degraded",
+      "session_id": "session-case-0",
+      "source_content_hash": "sha256:96a3eb328b02b3ead0f3708a94618c9297bb00d1e58c8e475512274d01a6b2ec",
+      "source_id": "case-0-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-0",
+      "review_id": "ind-case-0",
+      "run_id": "raw-case-0-relief",
+      "session_id": "session-case-0",
+      "source_content_hash": "sha256:058204683becf8c0a4a7fa0538504e000cbdc5963272f777d37182b364cad3fb",
+      "source_id": "case-0-relief",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-1",
+      "review_id": "ind-case-1",
+      "run_id": "raw-case-1-degraded",
+      "session_id": "session-case-1",
+      "source_content_hash": "sha256:ced3502b140ccf8b40a46a356a3c4fa94b8e63f12f2423c204a62dfd02370f36",
+      "source_id": "case-1-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-1",
+      "review_id": "ind-case-1",
+      "run_id": "raw-case-1-relief",
+      "session_id": "session-case-1",
+      "source_content_hash": "sha256:02f688c936a8905f4663142e4b71b1251f323415621cbcdb2a97d552bf638e86",
+      "source_id": "case-1-relief",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-2",
+      "review_id": "ind-case-2",
+      "run_id": "raw-case-2-degraded",
+      "session_id": "session-case-2",
+      "source_content_hash": "sha256:cb9fd6d1d2101ac25a91cbbabe4a9351e8c321eed804ccd1a59aa81d5a49d1f9",
+      "source_id": "case-2-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-2",
+      "review_id": "ind-case-2",
+      "run_id": "raw-case-2-relief",
+      "session_id": "session-case-2",
+      "source_content_hash": "sha256:29ba372cdc92a31710e45c047b39589a5f61b08ac41700d6c9bec129bf162a41",
+      "source_id": "case-2-relief",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-3",
+      "review_id": "ind-case-3",
+      "run_id": "raw-case-3-degraded",
+      "session_id": "session-case-3",
+      "source_content_hash": "sha256:e9b22b0ae3e2100823d1ab816761a9fad6d7db62155bc70db3d276e8cf78d71e",
+      "source_id": "case-3-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-3",
+      "review_id": "ind-case-3",
+      "run_id": "raw-case-3-relief",
+      "session_id": "session-case-3",
+      "source_content_hash": "sha256:06a0cd5f7dd3b4bf553af985da042a18ebfed1438ea4a076f35f917f50b0f17b",
+      "source_id": "case-3-relief",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-4",
+      "review_id": "ind-case-4",
+      "run_id": "raw-case-4-degraded",
+      "session_id": "session-case-4",
+      "source_content_hash": "sha256:cce22ccdd19742a40e6974747b7e54270a4542976c6a0ff70dc71aa60cb6aec7",
+      "source_id": "case-4-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-4",
+      "review_id": "ind-case-4",
+      "run_id": "raw-case-4-relief",
+      "session_id": "session-case-4",
+      "source_content_hash": "sha256:fd969851caee007e15a02c7621074300d530db33bc11b1b711a710f566b24c85",
+      "source_id": "case-4-relief",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-5",
+      "review_id": "ind-case-5",
+      "run_id": "raw-case-5-degraded",
+      "session_id": "session-case-5",
+      "source_content_hash": "sha256:8ee3534fc2da6463b66235cc4937ab6f265ff4d1ae47d134e0c1b7a182c9009c",
+      "source_id": "case-5-degraded",
+      "source_type": "pixelated_bundle"
+    },
+    {
+      "acquisition_namespace": "software-fixture",
+      "bundle_schema_version": "2",
+      "independence_group": "case-5",
+      "review_id": "ind-case-5",
+      "run_id": "raw-case-5-relief",
+      "session_id": "session-case-5",
+      "source_content_hash": "sha256:039e238491cce1301fb5f1c1681f963f0b6a72eaee563e2ad676d67442e963d7",
+      "source_id": "case-5-relief",
+      "source_type": "pixelated_bundle"
+    }
+  ],
+  "split": {
+    "assignments": [
+      {
+        "group_id": "group-254684d735070ef6f8f71d40d0e8c02dda34c31140f3d287cd2be693b717e43e",
+        "role": "training"
+      },
+      {
+        "group_id": "group-33963bd68c0bf22d905f8dc8f14ec69e86a2ad290b164f164b2e15f0c5080432",
+        "role": "training"
+      },
+      {
+        "group_id": "group-6baf6288b317711b585f05315e9030e0473b92706e68e854fd0b607d3ef78030",
+        "role": "training"
+      },
+      {
+        "group_id": "group-71a867541e9089fa6d6b6089b61a4cda0c4196ad0cc859bb5e2ac376045c0690",
+        "role": "validation"
+      },
+      {
+        "group_id": "group-7e580dbf62099e52ca7afeb04310c896a086e77144d61ec14bc2b5dd04e11b85",
+        "role": "training"
+      },
+      {
+        "group_id": "group-9bc3818d1dd40ac89b1f40c9c503e23eb8dac9ecb564bf78604b64c7ad3b85f5",
+        "role": "training"
+      }
+    ],
+    "freeze_review_id": "freeze",
+    "mode": "prospective",
+    "protocol_sha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "split_id": "split-afc1861cec02c93e655e0ae668502fbc06e3ddee9c5841cb641d069ab162a3a8"
+  }
+}
