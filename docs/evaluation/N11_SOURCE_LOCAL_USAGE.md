@@ -49,3 +49,11 @@ For fresh contained observations, the producer exposes the explicit
 Retain the original acquisition bytes matching `evidenceSha256`, source snapshots,
 plan, raw bundle and any failed prefix. Do not retrofit declarations into earlier
 real acquisitions to change their reported outcome.
+
+The producer's additive `exportObservedPhase` preparation API supports explicitly
+recorded degraded/relief/recovery phases for a fixed 30→24→30 FPS example. Its short
+four-row format uses a separate acquisition-protocol context partition. The
+[artificial interoperability fixture](../../fixtures/paired-phase-v1/README.md)
+checks original timestamps, source spans, effective settings and N2/N3 arithmetic.
+It does not implement native dispatch, a persistent fault or restoration proof.
+A recovery-phase export alone cannot supply a paired intervention outcome or label.

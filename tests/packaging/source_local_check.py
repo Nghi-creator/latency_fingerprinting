@@ -52,3 +52,39 @@ def check_source_local(directory, invoke_installed):
         or archive.read_bytes() != original
     ):
         raise ValueError("installed source-local input protection failed")
+    # Actual producer exports of invented short phases: installed code must retain
+    # their explicit roles/settings, rather than treating each as a healthy 30 FPS run.
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2] / "fixtures/paired-phase-v1"
+    contexts = []
+    for phase, fps in [("degraded", 30), ("relief", 24), ("recovery", 30)]:
+        output = case / f"{phase}.json"
+        code, stdout, stderr = invoke_installed(
+            [
+                "ingest-pixelated-source-local",
+                "--bundle",
+                root / f"{phase}.tar",
+                "--context",
+                root / f"{phase}-context.json",
+                "--phase",
+                phase,
+                "--comparison-case-id",
+                "n11-raw-paired-fixture",
+                "--output",
+                output,
+            ]
+        )
+        if code or stdout or stderr:
+            raise ValueError("installed producer short-phase adoption failed")
+        body = json.loads(output.read_bytes())
+        if (
+            body["phase"] != phase
+            or body["effectiveSettings"]["fps"] != fps
+            or body["effectiveSettings"]["targetFps"] != fps
+            or body["clock"]["durationMs"] != 3000
+        ):
+            raise ValueError("installed producer short-phase settings drift")
+        contexts.append(body["context"])
+    if contexts[0] != contexts[1] or contexts[0] != contexts[2]:
+        raise ValueError("installed producer phase context drift")

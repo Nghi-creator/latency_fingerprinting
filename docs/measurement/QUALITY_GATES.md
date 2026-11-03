@@ -147,3 +147,9 @@ Source-local method tests pin independently authored asynchronous arithmetic,
 per-source duration checks, strict phase declarations, missingness and old-method
 separation. The installed wheel exercises its SDK import, protected CLI and root
 validation while replaying every old frozen case.
+
+Paired-phase export tests adopt the producer's frozen artificial four-row phases,
+validate shared context and distinct observed 30/24 FPS settings, and derive the
+independently expected −0.2 encoder-input response. Exact fixture bytes are pinned;
+the installed-wheel gate adopts all three archives. Native paired acquisition,
+fault persistence and verified restoration remain separate runtime gates.

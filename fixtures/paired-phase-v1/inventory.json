@@ -1,0 +1,13 @@
+{
+  "README.md": "8c403039c563933c770bcd14c3401ee66ffa35aae65be77dc53fc0a5ad922adf",
+  "degraded-acquisition.json": "77600c214d9b51e27be0c1185e54dfeaec297309c6f45fa49edcfa785051c636",
+  "degraded-context.json": "55d7ce9583b20e58801b2d3b819e51694b95a892ad54900bd6eeddcdd6c6b7f4",
+  "degraded.tar": "4b4de8afc35c80196b0cb2cea78860f5d2fe333e5e6758b1ada40fa3f5583fac",
+  "expectations.json": "e5abb6c637c4f0afca52e42e57711f4eb62513fd7c356c8a203281cbafd30ce6",
+  "recovery-acquisition.json": "9b89a1d276586227dd92c506a95295554806108b08cb94d0a9e17921e06c2b88",
+  "recovery-context.json": "55d7ce9583b20e58801b2d3b819e51694b95a892ad54900bd6eeddcdd6c6b7f4",
+  "recovery.tar": "d94d5461e4e1831357655bf397824a9a1774be614ae3e858cc8662cec954df02",
+  "relief-acquisition.json": "d24cbacdd5f23b73a24c876171ff1255d8e20b3e82ecfa3fc83b69c64d1e6b44",
+  "relief-context.json": "55d7ce9583b20e58801b2d3b819e51694b95a892ad54900bd6eeddcdd6c6b7f4",
+  "relief.tar": "b9bd8db61f08771b431e604e3d78ea7d14865852eb8b1d9600ead5bae2189900"
+}

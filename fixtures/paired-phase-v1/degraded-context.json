@@ -1,0 +1,30 @@
+{
+  "captureImplementation": "pixelated-browser-webrtc-stats-plus-engine-v2",
+  "clientClass": "contained-chromium-invented-fixture-browser",
+  "compatibilityGroup": "contained-native-paired-source-local-v1",
+  "connectionMode": "loopback-signaling-docker-ice",
+  "contextId": "n11-raw-paired-fixture-context",
+  "edgeNodeClass": "docker-desktop-linux-fixture",
+  "encoderFamily": "vp8",
+  "encoderProfile": "balanced",
+  "networkScenario": "local-docker-bridge",
+  "nodeId": "contained-node-001",
+  "nominalStreamProfile": {
+    "bitrateKbps": 1500,
+    "fps": 30,
+    "id": "balanced"
+  },
+  "operatingSystem": "container-linux",
+  "runtimeClass": "contained-native-engine-fixture",
+  "transportImplementation": "gstreamer-webrtc",
+  "workloadId": "frozen-bubble-fixture",
+  "versions": {
+    "pixelatedBundleSchema": "2",
+    "pixelatedSourceRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "n11SourceManifest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "nativeImage": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "fixture": "fixed_perl_srand_v1_seed_1",
+    "pixelatedTemporalContract": "source_local_stable_phase_v1",
+    "pixelatedAcquisitionProtocol": "n11-contained-paired-phase-v1"
+  }
+}

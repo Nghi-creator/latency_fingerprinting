@@ -71,3 +71,8 @@ members already share identical source bytes across histories.
 Run the relevant read-only reproductions and installed-wheel checks from the
 [testing guide](../docs/measurement/QUALITY_GATES.md). Fixture changes require
 reviewed expectations, not an automatic bless/update mode.
+
+The [paired-phase export fixture](paired-phase-v1/README.md) pins invented short
+30→24→30 phases from the producer's sampled export path. Core and installed-wheel
+checks verify explicit phase/settings identity and unchanged N1/N2/N3 semantics;
+these files are not native acquisitions or diagnostic label evidence.
