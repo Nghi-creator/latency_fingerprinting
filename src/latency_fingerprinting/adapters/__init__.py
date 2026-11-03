@@ -7,6 +7,7 @@ from .pixelated_measurement_samples import (
     load_pixelated_measurement_samples,
 )
 from .pixelated_observation_v2 import ingest_pixelated_v2
+from .pixelated_source_local import ingest_pixelated_source_local
 from .pixelated_windows import WindowBounds, ingest_pixelated_windows
 
 __all__ = [
@@ -16,6 +17,7 @@ __all__ = [
     "PixelatedMeasurementSamples",
     "load_pixelated_measurement_samples",
     "ingest_pixelated_v2",
+    "ingest_pixelated_source_local",
     "WindowBounds",
     "ingest_pixelated_windows",
 ]

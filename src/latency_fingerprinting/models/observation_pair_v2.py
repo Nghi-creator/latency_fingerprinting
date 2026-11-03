@@ -97,6 +97,21 @@ class ObservationRecordV2(V2Model):
         durations = (degraded.clock.duration_ms, relief.clock.duration_ms)
         if abs(durations[0] - durations[1]) / max(durations) > 0.10:
             raise ValueError("paired durations differ by more than 10 percent")
+        if degraded.capture_method.method_version == "1.2.0":
+            for source in degraded.sources:
+                if min(degraded.sources[source].row_count, relief.sources[source].row_count) < 2:
+                    continue
+                summaries = [
+                    next(
+                        m.summary
+                        for m in window.measurements.values()
+                        if m.summary.source == source
+                    )
+                    for window in (degraded, relief)
+                ]
+                durations = [s.window_duration_ms for s in summaries]
+                if abs(durations[0] - durations[1]) / max(durations) > 0.10:
+                    raise ValueError("paired source-local durations differ by more than 10 percent")
         synthetic = degraded.provenance is ProvenanceKind.SYNTHETIC
         if (probe.application_method == "simulated_pair") != synthetic:
             raise ValueError(

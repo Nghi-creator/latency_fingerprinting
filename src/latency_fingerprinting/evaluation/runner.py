@@ -9,6 +9,7 @@ from types import SimpleNamespace
 from pydantic import BaseModel, TypeAdapter
 
 from ..adapters.pixelated_observation_v2 import ingest_pixelated_v2
+from ..adapters.pixelated_source_local import ingest_pixelated_source_local
 from ..adapters.pixelated_windows import WindowBounds, ingest_pixelated_windows
 from ..analytical.fingerprints import create_fingerprint_v2
 from ..analytical.matching import match_response_v2
@@ -81,7 +82,9 @@ def _raw_proofs(manifest, inspected, inputs, temporary):
                     provenance=window.provenance,
                     confounder_codes=window.confounder_codes,
                 )
-                if window.capture_method.method_version == "1.1.0":
+                if window.capture_method.method_version == "1.2.0":
+                    rebuilt = ingest_pixelated_source_local(staged[raw_id], **arguments)
+                elif window.capture_method.method_version == "1.1.0":
                     start, end = window.clock.elapsed_start_ms, window.clock.elapsed_end_ms
                     if not start.is_integer() or not end.is_integer():
                         raise ValueError("windowed extraction requires integral bounds")

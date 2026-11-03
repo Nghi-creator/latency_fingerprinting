@@ -10,6 +10,8 @@ from .contracts import MAX_TIME, METRIC, GateModel
 
 
 def bounds(window):
+    if window.capture_method.method_version == "1.2.0":
+        raise ValueError("N9 does not accept source-local phase windows")
     clock = window.clock
     values = (clock.elapsed_start_ms, clock.elapsed_end_ms, clock.duration_ms)
     if any(not value.is_integer() or not 0 <= value <= MAX_TIME for value in values):

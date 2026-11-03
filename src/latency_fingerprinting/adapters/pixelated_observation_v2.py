@@ -67,6 +67,7 @@ def _adopt_samples(
     *,
     window_id=None,
     method_version="1.0.0",
+    source_local=False,
 ):
     """Shared N1 aggregation; callers must supply validated raw sample snapshots."""
     metadata = raw.adoption
@@ -79,7 +80,7 @@ def _adopt_samples(
         declaration = metadata.metric_declarations[definition.name]
         state, basis = resolve_metric_support(metadata.sources[definition.source], declaration)
         samples = series.samples
-        if state != "supported":
+        if state != "supported" or source_local and len(samples) < 2:
             key = (definition.source, definition.raw_fields)
             if key not in masked:
                 masked[key] = tuple(
@@ -95,11 +96,14 @@ def _adopt_samples(
                 )
             samples = masked[key]
         aggregate = aggregate_gauge if definition.kind is MetricKind.GAUGE else aggregate_counter
+        start, end = raw.elapsed_start_ms, raw.elapsed_end_ms
+        if source_local and len(samples) >= 2:
+            start, end = samples[0].elapsed_ms, samples[-1].elapsed_ms
         summary = aggregate(
             definition,
             samples,
-            window_start_ms=raw.elapsed_start_ms,
-            window_end_ms=raw.elapsed_end_ms,
+            window_start_ms=start,
+            window_end_ms=end,
             registry_version=raw.registry_version,
             warnings=raw.warnings,
             source_missing_reason=series.missing_reason,

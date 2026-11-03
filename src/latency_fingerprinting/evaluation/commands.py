@@ -6,6 +6,7 @@ from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..adapters.pixelated_source_local import ingest_pixelated_source_local
 from ..adapters.pixelated_windows import WindowBounds, ingest_pixelated_windows
 from ..analytical.policy_release import canonical_payload_bytes
 from ..calibration.contracts import Alias
@@ -64,6 +65,26 @@ def register_evaluation_commands(subparsers):
         choices=("composite_profile_change", "other_setting_change", "operator_declared"),
     )
     window.set_defaults(handler=_window)
+    local = subparsers.add_parser(
+        "ingest-pixelated-source-local",
+        help="adopt a declared source-local stable phase",
+    )
+    for name in ("bundle", "context", "output"):
+        local.add_argument("--" + name, type=Path, required=True)
+    local.add_argument(
+        "--phase", choices=("baseline", "degraded", "relief", "recovery"), required=True
+    )
+    local.add_argument("--comparison-case-id", required=True)
+    local.add_argument(
+        "--provenance", choices=("controlled_real", "organic_real"), default="controlled_real"
+    )
+    local.add_argument(
+        "--confounder-code",
+        action="append",
+        default=[],
+        choices=("composite_profile_change", "other_setting_change", "operator_declared"),
+    )
+    local.set_defaults(handler=_window, source_local=True)
 
 
 def _evaluate(args):
@@ -101,25 +122,33 @@ def _window(args):
     from .inputs import FileOperands
 
     operands = FileOperands()
+    source_local = getattr(args, "source_local", False)
+    command = "ingest-pixelated-source-local" if source_local else "ingest-pixelated-window"
     try:
         context = operands.read(args.context, _Context)
         raw = operands._archive(args.bundle, 64 * 1024 * 1024)
         with tempfile.TemporaryDirectory(prefix="n11-window-") as temporary:
             path = Path(temporary).resolve() / "bundle.tar"
             path.write_bytes(raw)
-            result = ingest_pixelated_windows(
-                path,
+            arguments = dict(
                 context=context,
                 phase=args.phase,
                 comparison_case_id=args.comparison_case_id,
-                windows=[WindowBounds(start_ms=args.start_ms, end_ms=args.end_ms)],
                 provenance=args.provenance,
                 confounder_codes=args.confounder_code,
-            )[0]
+            )
+            if source_local:
+                result = ingest_pixelated_source_local(path, **arguments)
+            else:
+                result = ingest_pixelated_windows(
+                    path,
+                    windows=[WindowBounds(start_ms=args.start_ms, end_ms=args.end_ms)],
+                    **arguments,
+                )[0]
         write_trace_output(
             args.output,
             canonical_payload_bytes(result.model_dump(mode="json", by_alias=True)),
             target_guard=operands.protect_target,
         )
     except (OSError, ValueError, TypeError, KeyError, AttributeError, OverflowError):
-        raise ValueError("ingest-pixelated-window: invalid_input_or_output") from None
+        raise ValueError(f"{command}: invalid_input_or_output") from None

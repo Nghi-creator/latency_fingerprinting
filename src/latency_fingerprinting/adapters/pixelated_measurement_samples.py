@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import math
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
@@ -61,6 +62,7 @@ class PixelatedMeasurementSamples:
     warnings: tuple[str, ...] = (
         "Exported elapsed timestamps are wall-clock-derived; monotonic capture is unverified.",
     )
+    source_local_phase_json: bytes | None = None
     adoption: PixelatedAdoptionMetadata | None = None
     available_source_rows: Mapping[MetricSource, tuple[int, ...]] = field(
         default_factory=lambda: MappingProxyType({})
@@ -289,6 +291,11 @@ def load_pixelated_measurement_samples(
             missing_reason="source has no supplied rows" if not source_rows[source] else None,
         )
     return PixelatedMeasurementSamples(
+        source_local_phase_json=json.dumps(
+            manifest["sourceLocalPhase"], sort_keys=True, allow_nan=False
+        ).encode()
+        if manifest is not None and "sourceLocalPhase" in manifest
+        else None,
         registry_version=CANONICAL_METRIC_REGISTRY.registry_version,
         checksum=bundle_checksum(files),
         started_at=started_at,

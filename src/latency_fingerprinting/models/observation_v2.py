@@ -76,7 +76,7 @@ class MetricMeasurement(V2Model):
         return self
 
 
-def _validate_registered_summary(summary, definition, registry, clock):
+def _validate_registered_summary(summary, definition, registry, clock, *, source_local=False):
     fields = (
         "semantic_version",
         "source",
@@ -91,7 +91,7 @@ def _validate_registered_summary(summary, definition, registry, clock):
         getattr(summary, field) != getattr(definition, field) for field in fields
     ):
         raise ValueError("summary meaning must match its trusted registry definition")
-    if (
+    if not source_local and (
         summary.window_start_ms != clock.elapsed_start_ms
         or summary.window_end_ms != clock.elapsed_end_ms
         or summary.window_duration_ms != clock.duration_ms
@@ -190,14 +190,44 @@ class ObservationWindowV2(V2Model):
         definitions = {item.name: item for item in trusted_registry().definitions}
         if set(self.measurements) != set(definitions):
             raise ValueError("measurements must contain exactly the 31 registered outputs")
+        local = self.capture_method.method_version == "1.2.0"
+        marker = self.context.versions.get("pixelatedTemporalContract")
+        if local != (marker == "source_local_stable_phase_v1"):
+            raise ValueError("temporal contract and capture method disagree")
+        if local and not 1000 <= self.clock.duration_ms <= 10000:
+            raise ValueError("source-local phase must be 1–10 seconds")
+        source_bounds = {}
         counter_groups = {}
         for name, measurement in self.measurements.items():
             summary = measurement.summary
             definition = definitions[name]
             if summary.metric_name != name:
                 raise ValueError("measurement map key must equal summary metric name")
-            _validate_registered_summary(summary, definition, self.registry, self.clock)
+            _validate_registered_summary(
+                summary, definition, self.registry, self.clock, source_local=local
+            )
             source = self.sources[definition.source]
+            if local:
+                bounds = (summary.window_start_ms, summary.window_end_ms)
+                phase_bounds = (self.clock.elapsed_start_ms, self.clock.elapsed_end_ms)
+                if not phase_bounds[0] <= bounds[0] < bounds[1] <= phase_bounds[1]:
+                    raise ValueError("source-local bounds must be contained in the phase")
+                if source_bounds.setdefault(definition.source, bounds) != bounds:
+                    raise ValueError("all metrics of one source require identical local bounds")
+                if (
+                    definition.source is MetricSource.BROWSER_WEBRTC or source.row_count < 2
+                ) and bounds != phase_bounds:
+                    raise ValueError("browser/insufficient source must retain phase bounds")
+                if source.row_count < 2:
+                    if (
+                        summary.status is not MetricSeriesStatus.MISSING
+                        or summary.usable_sample_count
+                    ):
+                        raise ValueError(
+                            "insufficient source cannot claim local measurement support"
+                        )
+                elif not 1000 <= summary.window_duration_ms <= 10000:
+                    raise ValueError("source-local duration must be 1–10 seconds")
             if summary.source_sample_count != source.row_count or summary.usable_sample_count > (
                 source.available_row_count
             ):

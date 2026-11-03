@@ -1,0 +1,29 @@
+{
+  "scope": "artificial_method_fixtures_not_real_phase_truth",
+  "asynchronous": {
+    "root_bounds_ms": [0, 10000],
+    "browser_bounds_ms": [0, 10000],
+    "engine_bounds_ms": [500, 5500],
+    "engine_coverage": 1.0,
+    "camera_cpu_median": 32.5,
+    "encoder_frames_in_rate_fps": 60.0,
+    "encoder_frames_out_rate_fps": 59.4
+  },
+  "missing_metric": {
+    "source_bounds_ms": [500, 5500],
+    "usable_samples": 1,
+    "coverage": 0.0,
+    "status": "incomplete"
+  },
+  "one_point_source": {
+    "bounds_policy": "phase_bounds_with_missing_metrics",
+    "usable_samples": 0,
+    "status": "missing"
+  },
+  "pair": {
+    "maximum_per_source_duration_relative_difference": 0.1,
+    "mismatched_source_duration_outcome": "reject"
+  },
+  "passive": "reject_phase_local_method",
+  "old_methods": "common_bounds_unchanged"
+}

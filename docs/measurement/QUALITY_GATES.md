@@ -142,3 +142,8 @@ The [N11 frozen corpus](../evaluation/N11_FIXTURES.md) pins complete reports and
 source inventories. CI runs its read-only reproduction; the installed-wheel gate
 reconstructs all four cases through the isolated CLI. Producer composer/TAR
 interoperability uses artificial telemetry and does not qualify live acquisition.
+
+Source-local method tests pin independently authored asynchronous arithmetic,
+per-source duration checks, strict phase declarations, missingness and old-method
+separation. The installed wheel exercises its SDK import, protected CLI and root
+validation while replaying every old frozen case.

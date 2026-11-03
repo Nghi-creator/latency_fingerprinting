@@ -162,3 +162,7 @@ response contract or a prospective empirical acceptance format.
 
 The [frozen software corpus and producer packaging checks](N11_FIXTURES.md) verify
 complete report reconstruction and independent ledger/window expectations.
+
+[Source-local stable-phase adoption](N11_SOURCE_LOCAL_USAGE.md) adds explicit method
+1.2.0 raw reconstruction for phase-level diagnosis. Its source spans are declared
+individually, and current N9 passive timing rejects that method.

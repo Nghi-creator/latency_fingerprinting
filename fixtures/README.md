@@ -18,6 +18,7 @@ measured acquisitions; consult each family's provenance and contract.
 | `calibration-v1/` | [N6 source/label/split inspection cases](../docs/calibration/N6_FIXTURES.md), retaining excluded and invalid evidence |
 | `profiles-v1/` | [N7 fitting and lifecycle outcomes](../docs/profiles/N7_FIXTURES.md) |
 | `profile-matching-v1/` | [N8 matching, evaluation and group-refit outcomes](../docs/profile_matching/N8_FIXTURES.md) |
+| `source-local-v1/` | [Independent stable-phase method vectors](../docs/evaluation/N11_SOURCE_LOCAL_METHOD.md) |
 | `evaluation-v1/` | [N11 complete offline reports, raw-window sources and producer packaging](../docs/evaluation/N11_FIXTURES.md) |
 | `passive-gating-v1/` | [N9 baseline/replay/results and original source bytes](../docs/passive_gating/N9_FIXTURES.md) |
 

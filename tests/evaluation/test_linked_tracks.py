@@ -212,7 +212,7 @@ def test_live_forensics_stays_engineering_only(tmp_path, kind):
     assert result.report.empirical_acceptance == "unavailable_not_a_frozen_real_study"
 
 
-def raw_diagnosis_case(tmp_path):
+def raw_diagnosis_case(tmp_path, *, source_local=False):
     """Artificial reviews/raw fixtures exercise code, never scientific labels."""
     from latency_fingerprinting.adapters import ingest_pixelated_v2
     from latency_fingerprinting.analytical.responses import derive_analytical_response
@@ -242,6 +242,16 @@ def raw_diagnosis_case(tmp_path):
     policy = FeaturePolicyV1.model_validate_json(
         (ROOT / "docs/analysis/N3_FEATURE_POLICY_SPEC.json").read_bytes()
     )
+    if source_local:
+        ctx = ContextKey.model_validate(
+            {
+                **ctx.model_dump(mode="json"),
+                "versions": {
+                    **ctx.versions,
+                    "pixelatedTemporalContract": "source_local_stable_phase_v1",
+                },
+            }
+        )
     output = tmp_path / "paired"
     output.mkdir()
     for index in range(6):
@@ -284,9 +294,32 @@ def raw_diagnosis_case(tmp_path):
                 )
                 for row in (1, 3, 5):
                     edit_row(source, "engine-telemetry.csv", row, target_fps="30")
+            if source_local:
+                edit_json(
+                    source,
+                    "bundle-manifest.json",
+                    lambda value, phase=phase, name=name: value.update(
+                        sourceLocalPhase=dict(
+                            schemaVersion="source-local-stable-phase-v1",
+                            basis="operator_declared_not_authenticated",
+                            phase=phase,
+                            comparisonCaseId=name,
+                            elapsedStartMs=0,
+                            elapsedEndMs=10000,
+                            evidenceSha256=HASH,
+                        )
+                    ),
+                )
             archive = tmp_path / (sid + ".tar")
             write_tar(source, archive)
-            w = ingest_pixelated_v2(archive, context=ctx, phase=phase, comparison_case_id=name)
+            if source_local:
+                from latency_fingerprinting.adapters import ingest_pixelated_source_local
+
+                w = ingest_pixelated_source_local(
+                    archive, context=ctx, phase=phase, comparison_case_id=name
+                )
+            else:
+                w = ingest_pixelated_v2(archive, context=ctx, phase=phase, comparison_case_id=name)
             original[phase] = w
             d["sources"].append(
                 dict(

@@ -326,3 +326,13 @@ the [model guide](OBSERVATION_V2_MODELS.md).
 Design 1.0.2 records Pixelated stage/source associations and explicit
 unavailable population policy. Root contract versions, schemas and registry
 meaning are unchanged.
+
+## Additive source-local phase method
+
+`pixelated_bundle_offline / 1.2.0` is a separately declared stable-phase method.
+Its per-source summaries carry actual native source bounds within the phase; every
+metric of a source shares those bounds. Common-window equality rules remain in
+force for 1.0.0/1.1.0. See the [explicit temporal contract](../evaluation/N11_SOURCE_LOCAL_METHOD.md)
+and [API](../evaluation/N11_SOURCE_LOCAL_USAGE.md) for declaration, context marker,
+missing-source, duration, raw-proof and passive exclusions. Existing schema shapes
+and registry/policy bytes are unchanged; no clock synchronization is asserted.
