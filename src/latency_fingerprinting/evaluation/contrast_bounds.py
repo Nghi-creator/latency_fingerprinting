@@ -182,10 +182,14 @@ def inspect_native_counter_reads(acquisition):
     This checks declared internal consistency, not authenticity of raw execution,
     controller qualification, underlying counter update times, or N9 latency.
     """
+    return _inspect_native_counter_reads(acquisition, "n11-contained-pacing-contrast-v1")
+
+
+def _inspect_native_counter_reads(acquisition, expected_method):
     if (
         not isinstance(acquisition, Mapping)
         or acquisition.get("status") != "passed"
-        or acquisition.get("method") != "n11-contained-pacing-contrast-v1"
+        or acquisition.get("method") != expected_method
         or acquisition.get("live_authority") is not False
     ):
         raise ValueError(ERROR)
