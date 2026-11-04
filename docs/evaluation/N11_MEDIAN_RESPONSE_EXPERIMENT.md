@@ -121,3 +121,8 @@ Native overhead may erase the modeled crossing; measured initial/relief progress
 complete source support, ownership and cleanup must be checked prospectively.
 The function always reports measured contrast/utility unavailable and acquisition
 authority false. It grants no setter or production capability.
+
+The additive [counter/contrast bounds APIs](N11_COUNTER_CONTRAST_BOUNDS.md) require
+explicit extra-period assumptions and preserve worker read brackets for guarded
+finite-window analysis. They do not fit overhead from this cohort, revise an old
+pilot, substitute for primary N3 clocks or create diagnostic acceptance.
