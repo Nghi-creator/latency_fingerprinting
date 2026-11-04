@@ -166,3 +166,8 @@ complete report reconstruction and independent ledger/window expectations.
 [Source-local stable-phase adoption](N11_SOURCE_LOCAL_USAGE.md) adds explicit method
 1.2.0 raw reconstruction for phase-level diagnosis. Its source spans are declared
 individually, and current N9 passive timing rejects that method.
+
+The opt-in [median-response engineering experiment](N11_MEDIAN_RESPONSE_EXPERIMENT.md)
+is separate from this runner. Its summaries are not N7 snapshots, cannot be used
+as N8 policies or N11 diagnosis-job receipts, and cannot change this release's
+empirical-acceptance state. A future study integration needs an explicit contract.
