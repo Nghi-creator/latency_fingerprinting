@@ -30,7 +30,9 @@ lists and no partial distance. Non-finite or non-numeric values are invalid
 inputs. Queries never update support, change the mask, or alter scale. A changed
 value on a constant feature is outside support and remains unavailable.
 
-A future recognition method would need its own reviewed specification: fit rank
+The separate [rank-condition fold candidate](N11_RANK_CONDITION_CANDIDATE.md)
+implements a synthetic-qualified wrapper around this primitive. A prospective
+recognition method still needs a reviewed specification: fit rank
 support inside each fitting fold, transform each training observation before
 forming class centers, retain all failed folds, freeze final support and centers
 before later queries, and define abstention and threshold calibration explicitly.
