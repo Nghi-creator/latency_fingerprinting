@@ -28,6 +28,9 @@ N11 operator utilities are also tracked here:
 - [`archive_evidence.py`](archive_evidence.py) creates an exclusive local archive
   with a checksum manifest and verifies every member; it can also verify an
   existing archive and bind a prior archive by its expected SHA-256.
+- [`run_study_job.py`](run_study_job.py) supervises one bounded POSIX command in
+  detached process sessions, with heartbeat, logs, terminal result and token-bound
+  stop requests. It never retries or resumes a study.
 
 See the [N11 operator tools guide](../docs/evaluation/N11_OPERATOR_TOOLS.md).
 Frozen historical scripts and private study assignments remain in ignored `local/`.
