@@ -104,3 +104,7 @@ Post restoration follows fault removal; it is not evidence of probe benefit.
 Outputs always deny acquisition authority and empirical acceptance, retain zero
 independent support/accepted diagnostic groups, and provide no diagnostic label
 or confidence. No physical capture-latency or N9 clock acceptance follows.
+
+The separate [temporal interval fitting/scoring candidate](N11_TEMPORAL_INTERVAL_CANDIDATE.md)
+consumes this response without replacing intervals by midpoints. It carries its
+own method identity and does not change this response contract.
