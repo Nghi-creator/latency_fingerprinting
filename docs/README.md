@@ -34,6 +34,9 @@ establish diagnosis accuracy or real runtime performance.
 
 ## Offline study evaluation
 
+[N11 operator tools](evaluation/N11_OPERATOR_TOOLS.md) describes reusable export
+verification, evidence archives and frozen producer session orchestration.
+
 [N11 reconstruction](evaluation/N11_OFFLINE_EVALUATION.md) links the existing
 diagnostic/passive/engineering APIs with a complete planned-slot ledger.
 [Same-source raw windows](evaluation/N11_RAW_WINDOWS.md) supply bounded N9 input

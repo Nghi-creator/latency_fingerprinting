@@ -18,3 +18,16 @@ contracts or production behavior.
 [`bounded_cpu_pressure.py`](bounded_cpu_pressure.py) and
 [`record_bundle_checksums.py`](record_bundle_checksums.py) are shared capture
 utilities. They remain outside `p0/`; callers supply the run directory explicitly.
+
+N11 operator utilities are also tracked here:
+
+- [`verify_native_exports.py`](verify_native_exports.py) replays a condition case's
+  source hashes, native/phase receipt links, producer condition inspector, SDK/CLI
+  windows and N2/N3 response. Its default is read-only. `--write-derived` creates
+  missing derived files exclusively for the fixed condition-plan recipe.
+- [`archive_evidence.py`](archive_evidence.py) creates an exclusive local archive
+  with a checksum manifest and verifies every member; it can also verify an
+  existing archive and bind a prior archive by its expected SHA-256.
+
+See the [N11 operator tools guide](../docs/evaluation/N11_OPERATOR_TOOLS.md).
+Frozen historical scripts and private study assignments remain in ignored `local/`.
