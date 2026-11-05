@@ -48,3 +48,7 @@ confidence intervals or generalization claims.
 Frozen historical studies stay unchanged and excluded. Neither implementing this
 method nor completing a same-session run closes the original separate-session or
 broad N11 empirical acceptance gates.
+
+A separate [pooled-rank geometry candidate](N11_RANK_GEOMETRY.md) explores bounded
+feature contributions. It is a numerical primitive only and does not modify this
+method, its protocol, calibration or acceptance gates.
