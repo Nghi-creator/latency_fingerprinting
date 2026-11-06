@@ -64,6 +64,47 @@ def phase_manifest(path: Path) -> dict:
         return value
 
 
+def replay_inspector(case: Path, *, producer: Path, resource: bool = False) -> None:
+    """Replay the explicit source inspector and resource export without native actions."""
+    name = "resourceReceipt.mjs" if resource else "conditionReceipt.mjs"
+    inspector = producer / "engine/runtime/scripts/research/n11" / name
+    script = (
+        "import fs from 'node:fs';import assert from 'node:assert/strict';"
+        "import {createHash} from 'node:crypto';"
+        "const module=await import(process.argv[1]);"
+        "const d=process.argv[2],resource=process.argv[3]==='true';"
+        "const p=JSON.parse(fs.readFileSync(d+'/plan.json'));"
+        "const raw=fs.readFileSync(d+'/acquisition.json');"
+        "const inspect=resource?module.inspectResourceConditionAcquisition:"
+        "module.inspectConditionAcquisition;"
+        "const receipt=inspect(JSON.parse(raw),{condition:p.condition.name});"
+        "assert.deepEqual(receipt,JSON.parse(fs.readFileSync(d+'/control-receipt.json')));"
+        "if(resource){const protocol=await import("
+        "new URL('./resourceProtocol.mjs',process.argv[1]));"
+        "assert.equal(p.schema_version,'n11-contained-resource-condition-plan-v1');"
+        "assert.equal(p.mode,protocol.resourceMode(p.condition.name));"
+        "assert.deepEqual(p.resources,protocol.resourceDeclaration());"
+        "const sha='sha256:'+createHash('sha256').update(raw).digest('hex');"
+        "assert.deepEqual(module.resourceObservationArtifact(receipt,sha),"
+        "JSON.parse(fs.readFileSync(d+'/resource-observation.json')));}"
+    )
+    node = shutil.which("node")
+    require(node is not None, "Node.js executable required")
+    subprocess.run(  # noqa: S603
+        [
+            node,
+            "--input-type=module",
+            "-e",
+            script,
+            inspector.as_uri(),
+            str(case),
+            "true" if resource else "false",
+        ],
+        check=True,
+        timeout=30,
+    )
+
+
 def verify_case(case: Path, *, producer: Path, policy: Path, write_derived: bool = False) -> dict:
     """Replay existing artifacts; CLI outputs are written only to a temporary directory.
 
@@ -86,24 +127,18 @@ def verify_case(case: Path, *, producer: Path, policy: Path, write_derived: bool
     source_hash = "sha256:" + hashlib.sha256(source_bytes).hexdigest()
     require(source_hash == plan["source_manifest_hash"], "source manifest hash mismatch")
     require(bool(plan.get("condition")), "condition-witness case required")
-    # Reuse the producer inspector rather than copying its ownership/timing semantics.
-    inspector = producer / "engine/runtime/scripts/research/n11/conditionReceipt.mjs"
-    script = (
-        "import fs from 'node:fs';import assert from 'node:assert/strict';"
-        "const {inspectConditionAcquisition}=await import(process.argv[1]);"
-        "const d=process.argv[2],p=JSON.parse(fs.readFileSync(d+'/plan.json'));"
-        "assert.deepEqual(inspectConditionAcquisition("
-        "JSON.parse(fs.readFileSync(d+'/acquisition.json')),{condition:p.condition.name}),"
-        "JSON.parse(fs.readFileSync(d+'/control-receipt.json')));"
-    )
-    node = shutil.which("node")
-    require(node is not None, "Node.js executable required")
-    # Explicit caller-selected checkout; argument vector, never a shell command.
-    subprocess.run(  # noqa: S603
-        [node, "--input-type=module", "-e", script, inspector.as_uri(), str(case)],
-        check=True,
-        timeout=30,
-    )
+    resource = plan.get("schema_version") == "n11-contained-resource-condition-plan-v1"
+    if resource:
+        for dependency in (
+            "scripts/research/n11/resourceReceipt.mjs",
+            "scripts/research/n11/resourceProtocol.mjs",
+            "research/resource_observation/contained_condition.py",
+            "research/resource_observation/cgroup_cpu.py",
+            "research/resource_observation/modes.py",
+        ):
+            require(dependency in plan["source_sha256"], "unbound resource dependency")
+        load(case / "resource-observation.json")  # Strict JSON before the Node replay.
+    replay_inspector(case, producer=producer, resource=resource)
     whole = "sha256:" + digest(case / "acquisition.json")
     windows = {}
     derived = {}
@@ -161,9 +196,16 @@ def verify_case(case: Path, *, producer: Path, policy: Path, write_derived: bool
         a.context.versions.get("n11ConditionProtocol") == plan["condition"]["recipe"],
         "condition protocol context mismatch",
     )
+    if resource:
+        require(
+            a.context.versions.get("n11ResourceProtocol") == plan["resources"]["method"]
+            and a.context.compatibility_group == "contained-resource-condition-source-local-v1",
+            "resource protocol context mismatch",
+        )
     observation_file = case / "observation.json"
     require(
-        plan["schema_version"] == "n11-contained-condition-plan-v1"
+        plan["schema_version"]
+        in ("n11-contained-condition-plan-v1", "n11-contained-resource-condition-plan-v1")
         and plan["target_fps"] == [30, 24, 30]
         and plan["action_duration_ms"] == 5000,
         "unsupported condition-plan derivation recipe",

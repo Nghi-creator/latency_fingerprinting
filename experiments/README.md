@@ -34,3 +34,7 @@ N11 operator utilities are also tracked here:
 
 See the [N11 operator tools guide](../docs/evaluation/N11_OPERATOR_TOOLS.md).
 Frozen historical scripts and private study assignments remain in ignored `local/`.
+
+`check_resource_inspector.py --producer ROOT` exercises source inspector replay
+and resource/raw-byte tamper rejection with synthetic producer fixtures. It runs
+no acquisition and requires an explicitly selected producer checkout.

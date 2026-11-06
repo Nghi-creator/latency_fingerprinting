@@ -139,3 +139,14 @@ never evidence that acquisition completed or permission to retry. Detachment
 survives the caller exiting; it does not guarantee survival of host failure or a
 forced supervisor kill. Missing terminal acquisition receipts remain uncertain
 attempts and the study's no-retry/failure rules still apply.
+
+
+Resource-condition plans use the producer's explicit resource inspector. Replay
+also checks `resource-observation.json` against the original acquisition bytes,
+context and sampled windows; all new inspector/observer dependencies must appear
+in the frozen source manifest. Resource phase contexts use their own compatibility
+group. Ordinary condition replay remains unchanged. The standalone synthetic
+cross-repo check is `python experiments/check_resource_inspector.py --producer ROOT`;
+it verifies a valid export and rejection of auxiliary/raw-byte tampering without
+native acquisition. The producer's `docs/research/n11/resource-observation.md` describes mode and
+artifact semantics.
