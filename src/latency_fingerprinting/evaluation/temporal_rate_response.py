@@ -217,10 +217,17 @@ def project_temporal_rate_response(acquisition):
     Source hashes bind bytes represented by the supplied JSON payload, not the
     authenticity of an execution. No runner or acquisition is invoked.
     """
+    return _project_temporal_source(
+        acquisition, "n11-contained-condition-witness-v1", temporal_rate_projection_spec()
+    )
+
+
+def _project_temporal_source(acquisition, expected_method, projection_spec):
+    """Shared arithmetic seam; callers supply a separately identified source contract."""
     from .contrast_bounds import _inspect_native_counter_reads
 
     try:
-        inspected = _inspect_native_counter_reads(acquisition, "n11-contained-condition-witness-v1")
+        inspected = _inspect_native_counter_reads(acquisition, expected_method)
         if inspected["state"] != "available":
             raise ValueError(ERROR)
         events = acquisition["events"]
@@ -277,8 +284,8 @@ def project_temporal_rate_response(acquisition):
                 projected[phase].append({**read, "sequence": sequence})
         windows = {phase: projected[phase] for phase in PHASES}
         return dict(
-            projection_release=PROJECTION_RELEASE,
-            projection_spec=temporal_rate_projection_spec(),
+            projection_release=projection_spec["release"],
+            projection_spec=deepcopy(projection_spec),
             source_payload_hash=payload_hash(acquisition),
             all_sample_counts={phase: len(rows) for phase, rows in projected.items()},
             omitted_coordinate_phases=["recovery"],

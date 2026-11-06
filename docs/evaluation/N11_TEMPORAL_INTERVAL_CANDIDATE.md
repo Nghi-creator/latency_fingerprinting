@@ -77,3 +77,7 @@ false. A complete software test or retrospective fitting result does not approve
 collection or establish prospective recognition, broad diagnosis, probe benefit,
 N9 clock authority or physical capture latency. Preserve rational JSON integers
 losslessly when storing or transporting artifacts.
+
+The separate [combined interval candidate](N11_COMBINED_INTERVAL_CANDIDATE.md)
+binds both source-local components to one raw acquisition. It does not change
+this contract or automatically enrol engineering sources in a study.
