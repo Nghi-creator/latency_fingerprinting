@@ -108,3 +108,7 @@ or confidence. No physical capture-latency or N9 clock acceptance follows.
 The separate [temporal interval fitting/scoring candidate](N11_TEMPORAL_INTERVAL_CANDIDATE.md)
 consumes this response without replacing intervals by midpoints. It carries its
 own method identity and does not change this response contract.
+
+A separate [CPU resource difference candidate](N11_CPU_RESOURCE_RESPONSE.md) uses
+controller-clock generic resource reads. It neither changes this worker-clock
+response nor automatically adds coordinates to an existing classifier.
