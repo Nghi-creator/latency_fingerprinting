@@ -33,6 +33,10 @@ N11 operator utilities are also tracked here:
   stop requests. It never retries or resumes a study.
 
 See the [N11 operator tools guide](../docs/evaluation/N11_OPERATOR_TOOLS.md).
+The [engineering pipeline qualification](../docs/evaluation/N11_PIPELINE_QUALIFICATION.md)
+uses `qualify_resource_pipeline.py` for separate counter-specific projection,
+fitting and truth-free scoring. Its engineering-only acquisitions are excluded
+from prospective studies; accuracy is not a qualification gate.
 Frozen historical scripts and private study assignments remain in ignored `local/`.
 
 `check_resource_inspector.py --producer ROOT` exercises source inspector replay

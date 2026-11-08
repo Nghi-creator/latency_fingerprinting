@@ -110,13 +110,20 @@ def _distance_report(distances):
     return {c: dict(lower=_ratio(d[0]), upper=_ratio(d[1])) for c, d in distances.items()}
 
 
-def _binding(projected, *, condition, context_hash, inspection_sha256):
+def _binding(
+    projected,
+    *,
+    condition,
+    context_hash,
+    inspection_sha256,
+    binding_release="n11-combined-resource-condition-binding-candidate-v1",
+):
     if type(condition) is not str or condition not in CONDITIONS:
         raise ValueError(ERROR)
     _hash(context_hash)
     _hash(inspection_sha256)
     return dict(
-        release="n11-combined-resource-condition-binding-candidate-v1",
+        release=binding_release,
         condition=condition,
         context_hash=context_hash,
         inspection_sha256=inspection_sha256,
@@ -141,7 +148,12 @@ def declare_combined_condition_binding(source, *, condition, context_hash, inspe
         raise ValueError(ERROR) from None
 
 
-def _prepare(blocks):
+def _prepare(
+    blocks,
+    *,
+    projector=project_combined_resource,
+    binding_release="n11-combined-resource-condition-binding-candidate-v1",
+):
     if not isinstance(blocks, Mapping) or not 1 <= len(blocks) <= 6:
         raise ValueError(ERROR)
     prepared, contexts, origins, clocks, inspections, bindings, missing, unavailable = (
@@ -167,7 +179,7 @@ def _prepare(blocks):
                 continue
             if not isinstance(slot, Mapping) or set(slot) != {"source", "binding"}:
                 raise ValueError(ERROR)
-            projected = project_combined_resource(slot["source"])
+            projected = projector(slot["source"])
             binding = slot["binding"]
             if not isinstance(binding, Mapping):
                 raise ValueError(ERROR)
@@ -176,6 +188,7 @@ def _prepare(blocks):
                 condition=condition,
                 context_hash=binding.get("context_hash"),
                 inspection_sha256=binding.get("inspection_sha256"),
+                binding_release=binding_release,
             )
             if dict(binding) != expected:
                 raise ValueError(ERROR)
@@ -202,7 +215,19 @@ def _prepare(blocks):
     return prepared, next(iter(contexts), None), origins, clocks, bindings, missing, unavailable
 
 
-def _fit(prepared, context, origins, clocks, bindings, missing, unavailable, session_id):
+def _fit(
+    prepared,
+    context,
+    origins,
+    clocks,
+    bindings,
+    missing,
+    unavailable,
+    session_id,
+    *,
+    method_spec=None,
+):
+    method_spec = combined_interval_candidate_spec() if method_spec is None else method_spec
     _alias(session_id)
     reasons = []
     if len(prepared) < 6:
@@ -244,8 +269,8 @@ def _fit(prepared, context, origins, clocks, bindings, missing, unavailable, ses
         if not all(f["complete_and_correct"] for f in folds):
             reasons.append("calibration_folds_not_all_robustly_correct")
     payload = dict(
-        method_release=RELEASE,
-        method_spec=combined_interval_candidate_spec(),
+        method_release=method_spec["release"],
+        method_spec=deepcopy(method_spec),
         state="unavailable" if reasons else "candidate_calibration_available",
         reason_codes=reasons,
         session_id=session_id,
@@ -296,15 +321,48 @@ def score_combined_interval_candidate(
     source, blocks, *, session_id, query_session_id, query_block_id, context_hash
 ):
     """Predict only under robust interval separation and rebuilt fold radius/gap limits."""
+    return _score_candidate(
+        source,
+        blocks,
+        session_id=session_id,
+        query_session_id=query_session_id,
+        query_block_id=query_block_id,
+        context_hash=context_hash,
+    )
+
+
+def _score_candidate(
+    source,
+    blocks,
+    *,
+    session_id,
+    query_session_id,
+    query_block_id,
+    context_hash,
+    projector=project_combined_resource,
+    method_spec=None,
+    binding_release="n11-combined-resource-condition-binding-candidate-v1",
+):
+    method_spec = combined_interval_candidate_spec() if method_spec is None else method_spec
     try:
         _alias(query_session_id)
         _alias(query_block_id)
         _hash(context_hash)
-        prepared, context, origins, clocks, bindings, missing, unavailable = _prepare(blocks)
-        fitted = _fit(
-            prepared, context, origins, clocks, bindings, missing, unavailable, session_id
+        prepared, context, origins, clocks, bindings, missing, unavailable = _prepare(
+            blocks, projector=projector, binding_release=binding_release
         )
-        projected = project_combined_resource(source)
+        fitted = _fit(
+            prepared,
+            context,
+            origins,
+            clocks,
+            bindings,
+            missing,
+            unavailable,
+            session_id,
+            method_spec=method_spec,
+        )
+        projected = projector(source)
         response = projected
         reasons, distances, gap, prediction = [], {}, None, None
         if query_session_id != session_id:
@@ -337,7 +395,7 @@ def score_combined_interval_candidate(
                 if not reasons:
                     prediction = winner
         return dict(
-            method_release=RELEASE,
+            method_release=method_spec["release"],
             experiment_id=fitted["experiment_id"],
             state="abstain" if reasons else "candidate_condition_prediction",
             reason_codes=reasons,
