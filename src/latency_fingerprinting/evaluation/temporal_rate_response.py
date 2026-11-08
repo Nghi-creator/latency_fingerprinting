@@ -222,11 +222,17 @@ def project_temporal_rate_response(acquisition):
     )
 
 
-def _project_temporal_source(acquisition, expected_method, projection_spec):
+def _project_temporal_source(
+    acquisition, expected_method, projection_spec, *, counter_read_key="native_read"
+):
     """Shared arithmetic seam; callers supply a separately identified source contract."""
     from .contrast_bounds import _inspect_native_counter_reads
 
     try:
+        if counter_read_key not in ("native_read", "encoded_counter_read") or (
+            projection_spec.get("counter_read_field", "native_read") != counter_read_key
+        ):
+            raise ValueError(ERROR)
         inspected = _inspect_native_counter_reads(acquisition, expected_method)
         if inspected["state"] != "available":
             raise ValueError(ERROR)
@@ -270,7 +276,45 @@ def _project_temporal_source(acquisition, expected_method, projection_spec):
                     for key in ("configured_fps", "negotiated_fps")
                 ):
                     raise ValueError(ERROR)
-                read = {key: native[key] for key in ("clock_id", "read_start_ns", "read_end_ns")}
+                selected_read = native
+                if counter_read_key == "encoded_counter_read":
+                    point = row.get(counter_read_key)
+                    if (
+                        not isinstance(point, Mapping)
+                        or set(point)
+                        != {
+                            "method",
+                            "clock_id",
+                            "basis",
+                            "read_start_ns",
+                            "read_end_ns",
+                            "value",
+                            "scope",
+                            "underlying_counter_freshness",
+                            "live_authority",
+                        }
+                        or point["method"] != "native-encoded-counter-read-brackets-v1"
+                        or point["clock_id"] != native["clock_id"]
+                        or point["basis"] != native["basis"]
+                        or point["scope"]
+                        != "reported_encoded_counter_only_not_other_snapshot_fields"
+                        or point["underlying_counter_freshness"]
+                        != "not_authenticated_by_read_brackets"
+                        or point["live_authority"] is not False
+                        or type(point["value"]) is not int
+                        or point["value"] != row.get("encoded_buffers")
+                        or type(point["read_start_ns"]) is not int
+                        or type(point["read_end_ns"]) is not int
+                        or not native["read_start_ns"]
+                        <= point["read_start_ns"]
+                        <= point["read_end_ns"]
+                        <= native["read_end_ns"]
+                    ):
+                        raise ValueError(ERROR)
+                    selected_read = point
+                read = {
+                    key: selected_read[key] for key in ("clock_id", "read_start_ns", "read_end_ns")
+                }
                 read["counter"] = row.get("encoded_buffers")
                 _, start, end, counter = _read(read)
                 sequence = row.get("sequence")

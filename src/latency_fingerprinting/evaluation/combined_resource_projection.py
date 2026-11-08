@@ -54,6 +54,15 @@ def _exact(value, keys):
 
 def project_combined_resource(source):
     """Rebuild from raw JSON text and its auxiliary artifact; never accept cached scores."""
+    return _project_combined_resource(
+        source, projection_spec=combined_resource_projection_spec(), temporal_spec=TEMPORAL_SPEC
+    )
+
+
+def _project_combined_resource(
+    source, *, projection_spec, temporal_spec, counter_read_key="native_read"
+):
+    """Shared byte/ownership/CPU seam; callers fix a separately identified read contract."""
     try:
         _exact(source, ("acquisition_json", "resource_artifact"))
         text, artifact = source["acquisition_json"], source["resource_artifact"]
@@ -105,7 +114,9 @@ def project_combined_resource(source):
             or artifact["acquisition_authority"] is not False
         ):
             raise ValueError(ERROR)
-        encoded = _project_temporal_source(acquisition, SOURCE_METHOD, TEMPORAL_SPEC)
+        encoded = _project_temporal_source(
+            acquisition, SOURCE_METHOD, temporal_spec, counter_read_key=counter_read_key
+        )
         events = acquisition["events"]
         if any(
             e.get("kind", "").startswith("n11_resource_")
@@ -249,8 +260,8 @@ def project_combined_resource(source):
                 {"resource." + n: row["difference"] for n, row in cpu["features"].items()}
             )
         payload = dict(
-            release=RELEASE,
-            spec=combined_resource_projection_spec(),
+            release=projection_spec["release"],
+            spec=deepcopy(projection_spec),
             state="unavailable" if unavailable else "candidate_combined_response_available",
             reason_codes=["incomplete_component_responses"] if unavailable else [],
             unavailable_components=unavailable,
