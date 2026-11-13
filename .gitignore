@@ -24,3 +24,5 @@ experiments/**/*.tar.gz
 !experiments/**/match-result.json
 
 local/
+/.agents
+/skills-lock.json
