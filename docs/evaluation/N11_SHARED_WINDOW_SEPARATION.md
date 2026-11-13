@@ -2,8 +2,8 @@
 
 `evaluation.shared_window_separation.compare_shared_window_centers` implements
 `n11-shared-window-separation-prototype-v1`. It produces a conditional numerical
-certificate or abstains. It does not acquire data, build profiles, calibrate
-thresholds, or score study cases. Existing methods and study gates are unchanged.
+certificate or abstains. `evaluation.shared_window_candidate` uses this primitive
+for same-session fitting and scoring under a separate method identity.
 
 Supply `phase_rates[group][phase]` for the encoded rate, CPU quota fraction and
 reported throttled seconds per wall second. Each group has healthy, degraded,
@@ -60,6 +60,31 @@ usage and throttling share elapsed time. The prototype preserves dependence
 within each query metric; it does not claim to recover all source or training
 correlations. A nonpositive witness is admissible in this outer model, which
 need not imply that the same witness can occur in a physical run.
+
+## Fitting and query decisions
+
+`declare_shared_window_binding` binds an externally reviewed condition and
+inspection to the shared-window source projection ID. `fit_shared_window_candidate`
+rebuilds the projection from each source and requires six complete blocks with one
+case for each condition. The six leave-block-out folds each build centers from
+the other five blocks. Each center coordinate uses the median of the lower
+endpoints and the median of the upper endpoints across those blocks.
+
+Calibration requires all 18 held-out fitting cases to certify their declared
+condition. For each certified case, its margin is the smaller of its two
+certified lower bounds against the rivals. The minimum of the 18 margins becomes
+the query margin threshold. Each class radius is the maximum upper distance to
+the correct center among its six held-out fitting cases. The radius uses the
+conservative marginal box distance, including all nine coordinates. Failed folds
+leave calibration unavailable with null thresholds.
+
+`score_shared_window_candidate` rebuilds calibration from the original fitting
+sources, then compares the query with centers built from all six fitting blocks.
+The query must have a compatible context and session and a fresh block, source,
+and clocks. A prediction requires a unique certificate, an upper distance within
+its class radius, and a certified margin at least as large as the fitted minimum.
+The reported pairwise comparisons retain the bounds and witnesses, including
+when the radius or margin test leads to abstention.
 
 ## Precision requirements before source integration
 

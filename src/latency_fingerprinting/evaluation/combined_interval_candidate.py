@@ -110,6 +110,12 @@ def _distance_report(distances):
     return {c: dict(lower=_ratio(d[0]), upper=_ratio(d[1])) for c, d in distances.items()}
 
 
+def _evaluate(row, centers, evaluator):
+    if evaluator is not None:
+        return evaluator(row, centers)
+    return (*_score(row["values"], centers), {})
+
+
 def _binding(
     projected,
     *,
@@ -210,6 +216,8 @@ def _prepare(
                 response_id=response["response_id"],
                 values=_intervals(response) if response["state"] != "unavailable" else None,
             )
+            if "phase_rates" in response:
+                prepared[block][condition]["phase_rates"] = response["phase_rates"]
     if len(contexts) > 1:
         raise ValueError(ERROR)
     return prepared, next(iter(contexts), None), origins, clocks, bindings, missing, unavailable
@@ -226,6 +234,7 @@ def _fit(
     session_id,
     *,
     method_spec=None,
+    evaluator=None,
 ):
     method_spec = combined_interval_candidate_spec() if method_spec is None else method_spec
     _alias(session_id)
@@ -243,7 +252,7 @@ def _fit(
             centers = _centers(training)
             results = []
             for truth in CONDITIONS:
-                distances, winner, gap = _score(queries[truth]["values"], centers)
+                distances, winner, gap, details = _evaluate(queries[truth], centers, evaluator)
                 correct = winner == truth
                 results.append(
                     dict(
@@ -253,6 +262,7 @@ def _fit(
                         robust_condition=winner,
                         robust_gap=_ratio(gap) if gap is not None else None,
                         uniquely_correct=correct,
+                        **details,
                     )
                 )
                 if correct:
@@ -342,6 +352,7 @@ def _score_candidate(
     projector=project_combined_resource,
     method_spec=None,
     binding_release="n11-combined-resource-condition-binding-candidate-v1",
+    evaluator=None,
 ):
     method_spec = combined_interval_candidate_spec() if method_spec is None else method_spec
     try:
@@ -361,10 +372,11 @@ def _score_candidate(
             unavailable,
             session_id,
             method_spec=method_spec,
+            evaluator=evaluator,
         )
         projected = projector(source)
         response = projected
-        reasons, distances, gap, prediction = [], {}, None, None
+        reasons, distances, gap, prediction, details = [], {}, None, None, {}
         if query_session_id != session_id:
             reasons.append("different_query_session")
         if query_block_id in prepared:
@@ -381,7 +393,9 @@ def _score_candidate(
         if response["state"] == "unavailable":
             reasons.append("query_response_unavailable")
         if not reasons:
-            distances, winner, gap = _score(_intervals(response), _centers(prepared))
+            distances, winner, gap, details = _evaluate(
+                {**response, "values": _intervals(response)}, _centers(prepared), evaluator
+            )
             if winner is None:
                 reasons.append("ambiguous_interval_distances")
             else:
@@ -414,6 +428,7 @@ def _score_candidate(
             empirical_acceptance=False,
             acquisition_authority=False,
             assurance=_SPEC["assurance"],
+            **details,
         )
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ValueError(ERROR) from None
