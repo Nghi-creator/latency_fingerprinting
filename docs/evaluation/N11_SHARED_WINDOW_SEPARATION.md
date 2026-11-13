@@ -86,14 +86,13 @@ its class radius, and a certified margin at least as large as the fitted minimum
 The reported pairwise comparisons retain the bounds and witnesses, including
 when the radius or margin test leads to abstention.
 
-## Precision requirements before source integration
+## Precision planning for a prospective protocol
 
 1. Keep the current source checks: bound rates from actual counter deltas and
    first/last read brackets, retain one-buffer and one-microsecond guards, and
    require all original windows and coordinates. Existing read-span, duration,
-   order, clock, quota and ownership checks still apply. A future adapter must
-   bind phase rates to verified source bytes, not reconstruct them from finished
-   feature boxes. No replacement timestamp, guard change or zero-MAD exclusion.
+   order, clock, quota and ownership checks still apply. The source adapter
+   binds phase rates to the verified acquisition and resource artifact.
 2. Plan precision in **margin units**, not by timestamp width alone. A guarded
    rate has width `scale × ((delta + guard)/inner − max(0, delta − guard)/outer)`.
    Compute the resulting coordinate hulls from those rate intervals. This
@@ -111,8 +110,14 @@ when the radius or margin test leads to abstention.
 4. Before any prospective use, verify source custody for the selected inputs,
    freeze the profile/calibration contract and justify the precision target on
    evidence appropriate to that design. Keep the existing all-fold requirement
-   and an untouched evaluation. No numeric precision target or collection size
-   is approved by this prototype.
+   and an untouched evaluation.
+
+`experiments/plan_shared_window_precision.py` checks the supplied fitting file's
+SHA-256, then reports the nominal margin, center uncertainty penalty and query
+uncertainty penalty for both rivals in each fitting fold. Its duration scenarios
+hold the observed rate midpoints constant and add explicit timing and counter
+rounding allowances. The resulting budget is a prospective design screen and
+requires evidence that the chosen acquisition can sustain the modeled rates.
 
 Synthetic regressions cover a shared CPU difference and an encoded ratio whose
 independent coordinate extrema cannot occur together, uncertain centers, ties,
