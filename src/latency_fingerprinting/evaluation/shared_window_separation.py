@@ -147,16 +147,9 @@ def _pair(rates, own, rival):
     )
 
 
-def compare_shared_window_centers(phase_rates, centers):
-    """Compare complete rate and center boxes; returns a conditional certificate or abstains.
-
-    Rates are guarded nonnegative intervals; encoded denominators must be positive.
-    Each interval is {lower, upper} with exact {numerator, denominator} endpoints.
-    Inputs alone do not authenticate a source, supply a fit, or authorize a study.
-    """
+def _parse_phase_rates(phase_rates):
     _keys(phase_rates, GROUPS)
-    _keys(centers, CONDITIONS)
-    rates, profiles = {}, {}
+    rates = {}
     for group in GROUPS:
         _keys(phase_rates[group], PHASES)
         rates[group] = {p: _interval(phase_rates[group][p]) for p in PHASES}
@@ -165,6 +158,19 @@ def compare_shared_window_centers(phase_rates, centers):
             for p, (a, _) in rates[group].items()
         ):
             raise ValueError(ERROR)
+    return rates
+
+
+def compare_shared_window_centers(phase_rates, centers):
+    """Compare complete rate and center boxes; returns a conditional certificate or abstains.
+
+    Rates are guarded nonnegative intervals; encoded denominators must be positive.
+    Each interval is {lower, upper} with exact {numerator, denominator} endpoints.
+    Inputs alone do not authenticate a source, supply a fit, or authorize a study.
+    """
+    rates = _parse_phase_rates(phase_rates)
+    _keys(centers, CONDITIONS)
+    profiles = {}
     for c in CONDITIONS:
         _keys(centers[c], FEATURES)
         profiles[c] = {name: _interval(centers[c][name]) for name in FEATURES}

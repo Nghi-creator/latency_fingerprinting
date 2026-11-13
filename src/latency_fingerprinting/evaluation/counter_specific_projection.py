@@ -5,7 +5,7 @@ from copy import deepcopy
 from ..analytical.policy_release import payload_hash
 from .combined_resource_projection import (
     TEMPORAL_SPEC,
-    _project_combined_resource,
+    _project_combined_components,
     combined_resource_projection_spec,
 )
 
@@ -37,8 +37,13 @@ def counter_specific_projection_spec():
 
 def project_counter_specific_resource(source):
     """Use only actually recorded point bounds; CPU, missingness and numeric gates stay fixed."""
+    projection, _, _ = _counter_specific_components(source)
+    return projection
+
+
+def _counter_specific_components(source):
     try:
-        return _project_combined_resource(
+        return _project_combined_components(
             source,
             projection_spec=counter_specific_projection_spec(),
             temporal_spec=ENCODED_SPEC,

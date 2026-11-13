@@ -13,6 +13,16 @@ conditions and all nine existing coordinates. Each interval uses `lower` and
 `denominator`. Rate bounds are nonnegative; healthy and degraded encoded rates
 must have strictly positive lower bounds. Missing and invalid inputs fail closed.
 
+`evaluation.shared_window_projection.project_shared_window_source(source)`
+produces these phase-rate boxes from the same `acquisition_json` and
+`resource_artifact` inputs as the counter-specific projection. It runs the
+existing validators and extracts the guarded rates from the validated component
+responses. It requires exact rational agreement between the resulting marginal
+bounds and all nine counter-specific intervals. An unavailable component yields
+empty rate and marginal maps. The projection ID binds the source bytes, the
+canonical resource artifact, and the original counter-specific response ID.
+Execution provenance still requires the producer inspector and custody replay.
+
 ## Dependence and certificate
 
 For one choice of rates `(H, D, R, P)` in a group, the encoded coordinates are
@@ -73,7 +83,7 @@ need not imply that the same witness can occur in a physical run.
    response and center variation. Failure of this sufficient check can be
    evaluated with the tighter certificate; it is not a license to narrow the
    input bounds. These are design requirements, not fitted tolerances.
-4. Before any prospective use, implement and verify the source-bound adapter,
+4. Before any prospective use, verify source custody for the selected inputs,
    freeze the profile/calibration contract and justify the precision target on
    evidence appropriate to that design. Keep the existing all-fold requirement
    and an untouched evaluation. No numeric precision target or collection size

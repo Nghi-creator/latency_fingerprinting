@@ -62,6 +62,16 @@ def project_combined_resource(source):
 def _project_combined_resource(
     source, *, projection_spec, temporal_spec, counter_read_key="native_read"
 ):
+    projection, _, _ = _project_combined_components(
+        source,
+        projection_spec=projection_spec,
+        temporal_spec=temporal_spec,
+        counter_read_key=counter_read_key,
+    )
+    return projection
+
+
+def _project_combined_components(source, *, projection_spec, temporal_spec, counter_read_key):
     """Shared byte/ownership/CPU seam; callers fix a separately identified read contract."""
     try:
         _exact(source, ("acquisition_json", "resource_artifact"))
@@ -278,7 +288,8 @@ def _project_combined_resource(
             empirical_acceptance=False,
             acquisition_authority=False,
         )
-        return {**payload, "response_id": "combined-resource-" + payload_hash(payload)[7:]}
+        projection = {**payload, "response_id": "combined-resource-" + payload_hash(payload)[7:]}
+        return projection, encoded["response"], cpu
     except (
         ValueError,
         TypeError,
