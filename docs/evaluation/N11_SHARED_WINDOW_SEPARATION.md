@@ -23,6 +23,23 @@ empty rate and marginal maps. The projection ID binds the source bytes, the
 canonical resource artifact, and the original counter-specific response ID.
 Execution provenance still requires the producer inspector and custody replay.
 
+## Event-span source
+
+Pass `event_span=True` to the source projection, binding, fit, and score APIs
+to select the event-span releases. The projection validates the acquisition
+and CPU artifact, then reconstructs the five event windows from recorded
+phase boundaries. It checks the worker generation clock, declared time
+namespace, controller origin, snapshot count reconciliation, and consistency
+with the recorded getter reads. All five phase spans must be eligible,
+including recovery. Missing or unreconciled event evidence makes the encoded
+component unavailable. Bindings identify the selected release and projection.
+
+The event rate uses the number of completed buffer intervals between
+bracketed callbacks inside each phase. The guarded CPU rates use their
+original sample endpoints. Event and CPU windows can therefore cover
+different intervals within a phase. The original polled contracts remain
+the default.
+
 ## Dependence and certificate
 
 For one choice of rates `(H, D, R, P)` in a group, the encoded coordinates are
@@ -88,11 +105,12 @@ when the radius or margin test leads to abstention.
 
 ## Precision planning for a prospective protocol
 
-1. Keep the current source checks: bound rates from actual counter deltas and
+1. For the polled source, bound rates from actual counter deltas and
    first/last read brackets, retain one-buffer and one-microsecond guards, and
    require all original windows and coordinates. Existing read-span, duration,
    order, clock, quota and ownership checks still apply. The source adapter
-   binds phase rates to the verified acquisition and resource artifact.
+   binds phase rates to the verified acquisition and resource artifact. For the
+   event-span source, use the callback timing bounds and retain the CPU guard.
 2. Plan precision in **margin units**, not by timestamp width alone. A guarded
    rate has width `scale × ((delta + guard)/inner − max(0, delta − guard)/outer)`.
    Compute the resulting coordinate hulls from those rate intervals. This

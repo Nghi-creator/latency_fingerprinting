@@ -2,6 +2,7 @@
 
 from copy import deepcopy
 from fractions import Fraction
+from functools import partial
 
 from ..analytical.policy_release import payload_hash
 from .combined_interval_candidate import (
@@ -40,12 +41,21 @@ _SPEC = {
 _SPEC.pop("content_hash")
 
 
-def shared_window_candidate_spec():
-    return {**deepcopy(_SPEC), "content_hash": payload_hash(_SPEC)}
+_EVENT_SPEC = dict(
+    _SPEC,
+    release="n11-shared-window-event-span-condition-candidate-v1",
+    binding_release="n11-shared-window-event-span-condition-binding-v1",
+    projection_contract_hash=shared_window_projection_spec(event_span=True)["content_hash"],
+)
 
 
-def _project(source):
-    projected = project_shared_window_source(source)
+def shared_window_candidate_spec(*, event_span=False):
+    spec = _EVENT_SPEC if event_span else _SPEC
+    return {**deepcopy(spec), "content_hash": payload_hash(spec)}
+
+
+def _project(source, *, event_span):
+    projected = project_shared_window_source(source, event_span=event_span)
     return {
         **projected,
         "response_id": projected["projection_id"],
@@ -70,27 +80,35 @@ def _evaluate(row, centers):
     return distances, winner, gap, {"separation_comparisons": comparisons}
 
 
-def declare_shared_window_binding(source, *, condition, context_hash, inspection_sha256):
+def declare_shared_window_binding(
+    source, *, condition, context_hash, inspection_sha256, event_span=False
+):
     """Bind a caller-reviewed condition and inspection to the shared-window projection."""
+    spec = shared_window_candidate_spec(event_span=event_span)
     try:
         return _binding(
-            _project(source),
+            _project(source, event_span=event_span),
             condition=condition,
             context_hash=context_hash,
             inspection_sha256=inspection_sha256,
-            binding_release=BINDING_RELEASE,
+            binding_release=spec["binding_release"],
         )
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ValueError(ERROR) from None
 
 
-def fit_shared_window_candidate(blocks, *, session_id):
+def fit_shared_window_candidate(blocks, *, session_id, event_span=False):
     """Rebuild six leave-block-out folds and require all eighteen certificates."""
+    spec = shared_window_candidate_spec(event_span=event_span)
     try:
         return _fit(
-            *_prepare(blocks, projector=_project, binding_release=BINDING_RELEASE),
+            *_prepare(
+                blocks,
+                projector=partial(_project, event_span=event_span),
+                binding_release=spec["binding_release"],
+            ),
             session_id,
-            method_spec=shared_window_candidate_spec(),
+            method_spec=spec,
             evaluator=_evaluate,
         )
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
@@ -98,9 +116,10 @@ def fit_shared_window_candidate(blocks, *, session_id):
 
 
 def score_shared_window_candidate(
-    source, blocks, *, session_id, query_session_id, query_block_id, context_hash
+    source, blocks, *, session_id, query_session_id, query_block_id, context_hash, event_span=False
 ):
     """Rebuild calibration before testing a fresh query against the learned limits."""
+    spec = shared_window_candidate_spec(event_span=event_span)
     try:
         result = _score_candidate(
             source,
@@ -109,9 +128,9 @@ def score_shared_window_candidate(
             query_session_id=query_session_id,
             query_block_id=query_block_id,
             context_hash=context_hash,
-            projector=_project,
-            binding_release=BINDING_RELEASE,
-            method_spec=shared_window_candidate_spec(),
+            projector=partial(_project, event_span=event_span),
+            binding_release=spec["binding_release"],
+            method_spec=spec,
             evaluator=_evaluate,
         )
         return {"separation_comparisons": {}, **result}

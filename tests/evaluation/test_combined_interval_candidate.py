@@ -15,11 +15,15 @@ from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
 CONTEXT = "sha256:" + "c" * 64
 
 
-def source(identifier, arm=0, identical=False):
+def source(
+    identifier, arm=0, identical=False, *, step_ns=500_000_000, controller_origin_ns="12345"
+):
     generation = dict(owner=identifier, pipeline="pipe", peer="peer")
     worker_clock = native_worker_clock_id(generation)
     context = dict(
-        method=projection.SOURCE_METHOD, generation=generation, controller_origin_ns="12345"
+        method=projection.SOURCE_METHOD,
+        generation=generation,
+        controller_origin_ns=controller_origin_ns,
     )
     clock = (
         "controller-monotonic-"
@@ -51,7 +55,7 @@ def source(identifier, arm=0, identical=False):
         throttle_step = 200000 if arm == 2 and phase in ("degraded", "relief", "recovery") else 0
         rows, samples[phase] = [], []
         for j in range(7):
-            start = i * 4_000_000_000 + j * 500_000_000
+            start = i * 4_000_000_000 + j * step_ns
             cpu = dict(
                 **CONSTANTS,
                 phase=phase,
@@ -106,7 +110,7 @@ def source(identifier, arm=0, identical=False):
                 dict(
                     kind="n11_pair_phase_completed",
                     phase=phase,
-                    at_ns=i * 4_000_000_000 + 3_000_100_000,
+                    at_ns=i * 4_000_000_000 + 6 * step_ns + 100_000,
                 )
             )
         summaries.append(
@@ -115,8 +119,8 @@ def source(identifier, arm=0, identical=False):
                 sample_count=7,
                 read_start_ns=samples[phase][0]["read_start_ns"],
                 read_end_ns=samples[phase][-1]["read_end_ns"],
-                inner_duration_ns=2_999_999_000,
-                outer_duration_ns=3_000_001_000,
+                inner_duration_ns=6 * step_ns - 1000,
+                outer_duration_ns=6 * step_ns + 1000,
             )
         )
     raw = dict(
