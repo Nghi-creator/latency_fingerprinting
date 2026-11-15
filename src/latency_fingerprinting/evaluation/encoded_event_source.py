@@ -77,7 +77,9 @@ def _prefix(trace):
 
 
 def _check_polled_counts(samples, rows, read_start):
-    # The same generation's getter values must be possible within their read brackets.
+    # Identity increments before pushing from its source pad. In the serialized
+    # buffer stream, at most the last counted buffer can still be waiting for its
+    # callback. The prior callback must have completed before identity counts it.
     for phase_rows in samples.values():
         for sample in phase_rows:
             read = sample["encoded_counter_read"]
@@ -85,8 +87,8 @@ def _check_polled_counts(samples, rows, read_start):
             if (
                 read["read_end_ns"] > read_start
                 or count > len(rows)
-                or count
-                and rows[count - 1][1] > read["read_end_ns"]
+                or count >= 2
+                and rows[count - 2][2] > read["read_end_ns"]
                 or count < len(rows)
                 and rows[count][2] <= read["read_start_ns"]
             ):

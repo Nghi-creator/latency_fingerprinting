@@ -200,3 +200,17 @@ def test_explicit_unreconciled_trace_is_unavailable_without_polled_fallback():
     assert result["state"] == "unavailable"
     assert result["encoded_event_reason_codes"] == ["identity_prefix_not_reconciled"]
     assert result["phase_rates"] == result["marginal_bounds"] == {}
+
+
+def test_identity_getter_can_count_one_buffer_before_its_source_pad_callback():
+    value = event_source()
+    raw = json.loads(value["acquisition_json"])
+    sample = list(rows(raw))[2]
+    point = sample["encoded_counter_read"]
+    callback_start = raw["events"][-1]["trace"]["rows"][point["value"] - 1][1]
+    bracket = dict(read_start_ns=callback_start - 100_000, read_end_ns=callback_start - 50_000)
+    point.update(bracket)
+    sample["native_read"].update(bracket)
+    result = project_shared_window_source(seal(value, raw), event_span=True)
+    assert result["state"] == "shared_window_rates_available"
+    assert len(result["encoded_event_spans"]) == 5
