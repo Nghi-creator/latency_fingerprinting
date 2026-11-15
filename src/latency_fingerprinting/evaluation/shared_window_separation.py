@@ -43,8 +43,20 @@ _SPEC = dict(
 ERROR = "invalid_shared_window_separation_input"
 
 
-def shared_window_separation_spec():
-    return {**deepcopy(_SPEC), "content_hash": payload_hash(_SPEC)}
+_CONDITION_SPEC = dict(
+    _SPEC,
+    release="n11-condition-specific-shared-window-separation-v1",
+    pair_groups={
+        "no_injected_fault_vs_owned_identity_delay": ["encoded"],
+        "comparisons_involving_owned_cpu_pressure": list(GROUPS),
+    },
+    pair_normalization="mean_over_coordinates_in_selected_groups",
+)
+
+
+def shared_window_separation_spec(*, condition_specific=False):
+    spec = _CONDITION_SPEC if condition_specific else _SPEC
+    return {**deepcopy(spec), "content_hash": payload_hash(spec)}
 
 
 def _keys(value, keys):
@@ -113,7 +125,7 @@ def _pair(rates, own, rival):
         witness = sum(upper.values())
         if lower > 0 or witness <= 0 or splits == MAX_SPLITS:
             break
-        group = max(GROUPS, key=lambda g: upper[g] - leaves[g][0][0])
+        group = max(rates, key=lambda g: upper[g] - leaves[g][0][0])
         parent_lower, _, box = heappop(leaves[group])
 
         def relative_width(phase, root=rates[group], cell=box):
@@ -131,15 +143,16 @@ def _pair(rates, own, rival):
             if ub < upper[group]:
                 upper[group], witnesses[group] = ub, point
         splits += 1
+    coordinate_count = sum(len(GROUPS[group]) for group in rates)
     return dict(
         state="strictly_separated"
         if lower > 0
         else "nonpositive_witness"
         if witness <= 0
         else "unresolved_at_split_limit",
-        lower=_ratio(lower / len(FEATURES)),
-        upper=_ratio(witness / len(FEATURES)),
-        root_lower=_ratio(root_lower / len(FEATURES)),
+        lower=_ratio(lower / coordinate_count),
+        upper=_ratio(witness / coordinate_count),
+        root_lower=_ratio(root_lower / coordinate_count),
         splits=splits,
         witness_rates={
             g: {p: _ratio(x) for p, x in point.items()} for g, point in witnesses.items()
@@ -161,7 +174,7 @@ def _parse_phase_rates(phase_rates):
     return rates
 
 
-def compare_shared_window_centers(phase_rates, centers):
+def compare_shared_window_centers(phase_rates, centers, *, condition_specific=False):
     """Compare complete rate and center boxes; returns a conditional certificate or abstains.
 
     Rates are guarded nonnegative intervals; encoded denominators must be positive.
@@ -174,10 +187,19 @@ def compare_shared_window_centers(phase_rates, centers):
     for c in CONDITIONS:
         _keys(centers[c], FEATURES)
         profiles[c] = {name: _interval(centers[c][name]) for name in FEATURES}
-    comparisons = {
-        c: {r: _pair(rates, profiles[c], profiles[r]) for r in CONDITIONS if r != c}
-        for c in CONDITIONS
-    }
+    comparisons = {}
+    for condition in CONDITIONS:
+        comparisons[condition] = {}
+        for rival in CONDITIONS:
+            if condition == rival:
+                continue
+            pair_rates = rates
+            if condition_specific and {condition, rival} == {
+                "no_injected_fault",
+                "owned_identity_delay",
+            }:
+                pair_rates = {"encoded": rates["encoded"]}
+            comparisons[condition][rival] = _pair(pair_rates, profiles[condition], profiles[rival])
     winners = [
         c
         for c, rows in comparisons.items()
@@ -188,7 +210,7 @@ def compare_shared_window_centers(phase_rates, centers):
         state="conditional_separation_certificate" if winner is not None else "abstain",
         separated_condition=winner,
         comparisons=comparisons,
-        method_spec=shared_window_separation_spec(),
+        method_spec=shared_window_separation_spec(condition_specific=condition_specific),
         empirical_acceptance=False,
         acquisition_authority=False,
     )

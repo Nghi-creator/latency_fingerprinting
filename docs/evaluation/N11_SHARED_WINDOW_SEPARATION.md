@@ -103,6 +103,22 @@ its class radius, and a certified margin at least as large as the fitted minimum
 The reported pairwise comparisons retain the bounds and witnesses, including
 when the radius or margin test leads to abstention.
 
+## Condition-specific event-span recognition
+
+Pass `condition_specific=True` to binding, fit, and score to select the
+condition-specific event-span release. Delay versus no fault compares the
+three encoded coordinates in both directions. A comparison involving owned
+CPU pressure uses all nine coordinates. Each certificate averages over
+its selected coordinates and the witness lists the corresponding rate
+groups. This reflects the effects targeted by the two controlled
+interventions and avoids using CPU variation as direct delay evidence.
+
+All nine coordinates and all five source phases are required. Each candidate
+must certify separation from both rivals. If no candidate does so, the
+classifier abstains, including when pairwise preferences form a cycle. The
+original all-coordinate class radius and the all-fold calibration requirement
+also apply. Binding releases keep calibration inputs for each method distinct.
+
 ## Precision planning for a prospective protocol
 
 1. For the polled source, bound rates from actual counter deltas and

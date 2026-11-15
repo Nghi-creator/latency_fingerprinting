@@ -144,3 +144,27 @@ def test_invalid_inputs_never_produce_a_certificate(invalid):
         rates[CPU]["post"] = interval(2, 1)
     with pytest.raises(ValueError, match=model.ERROR):
         model.compare_shared_window_centers(rates, centers)
+
+
+def test_condition_specific_comparison_uses_encoded_only_between_delay_and_no_fault():
+    zero = interval(0)
+    one = interval(1)
+    half = interval(F(1, 2))
+    rates = {group: dict.fromkeys(model.PHASES, one) for group in model.GROUPS}
+    no_fault, delay, pressure = model.CONDITIONS
+    names = [name for terms in model.GROUPS.values() for name in terms]
+    centers = {
+        no_fault: {n: zero if n.startswith("encoded.") else half for n in names},
+        delay: {n: half if n.startswith("encoded.") else zero for n in names},
+        pressure: dict.fromkeys(names, one),
+    }
+    assert model.compare_shared_window_centers(rates, centers)["separated_condition"] == delay
+    result = model.compare_shared_window_centers(rates, centers, condition_specific=True)
+    assert result["separated_condition"] == no_fault
+    pair = result["comparisons"][no_fault][delay]
+    assert pair["lower"] == pair["upper"] == half["lower"]
+    assert set(pair["witness_rates"]) == {"encoded"}
+    assert (
+        result["comparisons"][no_fault][pressure]
+        == (model.compare_shared_window_centers(rates, centers)["comparisons"][no_fault][pressure])
+    )

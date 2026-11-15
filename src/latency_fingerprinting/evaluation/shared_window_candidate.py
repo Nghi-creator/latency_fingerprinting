@@ -49,13 +49,25 @@ _EVENT_SPEC = dict(
 )
 
 
-def shared_window_candidate_spec(*, event_span=False):
+_CONDITION_SPEC = dict(
+    _EVENT_SPEC,
+    release="n11-condition-specific-event-span-candidate-v1",
+    binding_release="n11-condition-specific-event-span-binding-v1",
+    separation_contract_hash=shared_window_separation_spec(condition_specific=True)["content_hash"],
+    distance="pair_specific_separation_and_all_nine_coordinate_radius",
+)
+
+
+def shared_window_candidate_spec(*, event_span=False, condition_specific=False):
+    """Condition-specific recognition uses the reconciled event-span source."""
     spec = _EVENT_SPEC if event_span else _SPEC
+    if condition_specific:
+        spec = _CONDITION_SPEC
     return {**deepcopy(spec), "content_hash": payload_hash(spec)}
 
 
-def _project(source, *, event_span):
-    projected = project_shared_window_source(source, event_span=event_span)
+def _project(source, *, event_span, condition_specific):
+    projected = project_shared_window_source(source, event_span=event_span or condition_specific)
     return {
         **projected,
         "response_id": projected["projection_id"],
@@ -66,10 +78,12 @@ def _project(source, *, event_span):
     }
 
 
-def _evaluate(row, centers):
+def _evaluate(row, centers, *, condition_specific):
     distances = {c: _distance(row["values"], center) for c, center in centers.items()}
     center_boxes = {c: _distance_report(coordinates) for c, coordinates in centers.items()}
-    certificate = compare_shared_window_centers(row["phase_rates"], center_boxes)
+    certificate = compare_shared_window_centers(
+        row["phase_rates"], center_boxes, condition_specific=condition_specific
+    )
     winner = certificate["separated_condition"]
     comparisons = certificate["comparisons"]
     gap = (
@@ -81,13 +95,21 @@ def _evaluate(row, centers):
 
 
 def declare_shared_window_binding(
-    source, *, condition, context_hash, inspection_sha256, event_span=False
+    source,
+    *,
+    condition,
+    context_hash,
+    inspection_sha256,
+    event_span=False,
+    condition_specific=False,
 ):
     """Bind a caller-reviewed condition and inspection to the shared-window projection."""
-    spec = shared_window_candidate_spec(event_span=event_span)
+    spec = shared_window_candidate_spec(
+        event_span=event_span, condition_specific=condition_specific
+    )
     try:
         return _binding(
-            _project(source, event_span=event_span),
+            _project(source, event_span=event_span, condition_specific=condition_specific),
             condition=condition,
             context_hash=context_hash,
             inspection_sha256=inspection_sha256,
@@ -97,29 +119,43 @@ def declare_shared_window_binding(
         raise ValueError(ERROR) from None
 
 
-def fit_shared_window_candidate(blocks, *, session_id, event_span=False):
+def fit_shared_window_candidate(blocks, *, session_id, event_span=False, condition_specific=False):
     """Rebuild six leave-block-out folds and require all eighteen certificates."""
-    spec = shared_window_candidate_spec(event_span=event_span)
+    spec = shared_window_candidate_spec(
+        event_span=event_span, condition_specific=condition_specific
+    )
     try:
         return _fit(
             *_prepare(
                 blocks,
-                projector=partial(_project, event_span=event_span),
+                projector=partial(
+                    _project, event_span=event_span, condition_specific=condition_specific
+                ),
                 binding_release=spec["binding_release"],
             ),
             session_id,
             method_spec=spec,
-            evaluator=_evaluate,
+            evaluator=partial(_evaluate, condition_specific=condition_specific),
         )
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ValueError(ERROR) from None
 
 
 def score_shared_window_candidate(
-    source, blocks, *, session_id, query_session_id, query_block_id, context_hash, event_span=False
+    source,
+    blocks,
+    *,
+    session_id,
+    query_session_id,
+    query_block_id,
+    context_hash,
+    event_span=False,
+    condition_specific=False,
 ):
     """Rebuild calibration before testing a fresh query against the learned limits."""
-    spec = shared_window_candidate_spec(event_span=event_span)
+    spec = shared_window_candidate_spec(
+        event_span=event_span, condition_specific=condition_specific
+    )
     try:
         result = _score_candidate(
             source,
@@ -128,10 +164,12 @@ def score_shared_window_candidate(
             query_session_id=query_session_id,
             query_block_id=query_block_id,
             context_hash=context_hash,
-            projector=partial(_project, event_span=event_span),
+            projector=partial(
+                _project, event_span=event_span, condition_specific=condition_specific
+            ),
             binding_release=spec["binding_release"],
             method_spec=spec,
-            evaluator=_evaluate,
+            evaluator=partial(_evaluate, condition_specific=condition_specific),
         )
         return {"separation_comparisons": {}, **result}
     except (ValueError, TypeError, KeyError, AttributeError, OverflowError):

@@ -161,8 +161,8 @@ def test_positive_certificate_below_frozen_gap_still_abstains(monkeypatch):
     minimum_gap = fit["thresholds"]["minimum_gap"]
     compare = method.compare_shared_window_centers
 
-    def weaker_query_certificate(phase_rates, centers):
-        certificate = compare(phase_rates, centers)
+    def weaker_query_certificate(phase_rates, centers, **kwargs):
+        certificate = compare(phase_rates, centers, **kwargs)
         # Fold centers use five samples. The final full-training center is called last.
         if weaker_query_certificate.calls == 18:
             for pair in certificate["comparisons"][CONDITIONS[0]].values():

@@ -146,7 +146,8 @@ def test_inconsistent_reconciled_trace_is_rejected(damage):
         project_shared_window_source(seal(value, raw), event_span=True)
 
 
-def test_event_span_fitting_and_query_share_a_separate_binding_release():
+@pytest.mark.parametrize("options", [{"event_span": True}, {"condition_specific": True}])
+def test_event_span_fitting_and_query_share_a_separate_binding_release(options):
     from latency_fingerprinting.evaluation import shared_window_candidate as candidate
     from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
 
@@ -162,13 +163,14 @@ def test_event_span_fitting_and_query_share_a_separate_binding_release():
                 condition=condition,
                 context_hash=context,
                 inspection_sha256="sha256:" + hashlib.sha256(identifier.encode()).hexdigest(),
-                event_span=True,
+                **options,
             )
             block[condition] = dict(source=value, binding=binding)
         blocks[f"block-{i}"] = block
 
-    fit = candidate.fit_shared_window_candidate(blocks, session_id="fixture", event_span=True)
+    fit = candidate.fit_shared_window_candidate(blocks, session_id="fixture", **options)
     assert fit["state"] == "candidate_calibration_available"
+    assert fit["method_spec"] == candidate.shared_window_candidate_spec(**options)
     assert fit["calibration_query_count"] == 18
     for arm, condition in enumerate(CONDITIONS):
         report = candidate.score_shared_window_candidate(
@@ -178,7 +180,7 @@ def test_event_span_fitting_and_query_share_a_separate_binding_release():
             query_session_id="fixture",
             query_block_id="query",
             context_hash=context,
-            event_span=True,
+            **options,
         )
         assert report["predicted_condition"] == condition
         assert report["experiment_id"] == fit["experiment_id"]
