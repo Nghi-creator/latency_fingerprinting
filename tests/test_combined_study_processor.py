@@ -8,6 +8,8 @@ import pytest
 
 from tests.evaluation.test_combined_interval_candidate import source
 from tests.evaluation.test_combined_study_protocol import draft, reseal
+from tests.evaluation.test_counter_specific_candidate import point_source
+from tests.evaluation.test_event_span_projection import event_source
 
 
 def processor():
@@ -22,9 +24,9 @@ def write(path, value):
     path.write_text(json.dumps(value), encoding="utf-8")
 
 
-def allocation(tmp_path):
+def allocation(tmp_path, *, event_span=False, trace_missing=False):
     module = processor()
-    p = draft()
+    p = draft(event_span=event_span)
     p["image_sha256"] = "sha256:" + "a" * 64
     p["tool_hashes"]["processor"] = module.sha(Path(module.__file__))
     p["review"].update(
@@ -45,9 +47,17 @@ def allocation(tmp_path):
                 source_manifest_hash=p["source_manifest_hash"],
                 image=p["image_sha256"],
             )
+            if event_span:
+                plan["observation_recipe"] = module.EVENT_SPAN_RECIPE
             if block["role"] == "training":
                 directory.mkdir()
-                raw = source(identifier, list(block["acquisition_ids"]).index(condition))
+                arm = list(block["acquisition_ids"]).index(condition)
+                if event_span and not (trace_missing and not sessions and not slots):
+                    raw = event_source(identifier, arm)
+                else:
+                    raw = (
+                        source(identifier, arm) if not event_span else point_source(identifier, arm)
+                    )
                 (directory / "acquisition.json").write_text(raw["acquisition_json"])
                 write(directory / "resource-observation.json", raw["resource_artifact"])
                 write(directory / "plan.json", plan)
@@ -193,3 +203,32 @@ def test_query_score_reads_only_measurements_and_rejects_changed_calibration(tmp
     fitted["calibration"]["thresholds"]["minimum_gap"] = {"numerator": 0, "denominator": 1}
     with pytest.raises(ValueError, match="changed calibration"):
         module.score_case(fitted, query, block_id="new", session_id=fitted["session_id"])
+
+
+def test_event_span_processor_fits_and_scores_without_query_truth(tmp_path):
+    module, path, value, _ = allocation(tmp_path, event_span=True)
+    fitted = module.fit_allocation(path)
+    assert fitted["calibration"]["state"] == "candidate_calibration_available"
+    assert fitted["calibration"]["method_release"] == module.EVENT_METHOD
+    assert fitted["calibration"]["calibration_query_count"] == 18
+    query = tmp_path / "query"
+    query.mkdir()
+    raw = event_source("fresh-event-span-query", 1)
+    (query / "acquisition.json").write_text(raw["acquisition_json"])
+    write(query / "resource-observation.json", raw["resource_artifact"])
+    (query / "plan.json").write_text("invalid truth")
+    (query / "control-receipt.json").write_text("invalid truth")
+    result = module.score_case(fitted, query, block_id="query", session_id=fitted["session_id"])
+    assert result["predicted_condition"] == "owned_identity_delay"
+    assert all(
+        not Path(slot["output"]).exists()
+        for block in value["sessions"][6:]
+        for slot in block["slots"]
+    )
+
+
+def test_missing_event_span_disables_calibration(tmp_path):
+    module, path, _, _ = allocation(tmp_path, event_span=True, trace_missing=True)
+    calibration = module.fit_allocation(path)["calibration"]
+    assert calibration["state"] == "unavailable"
+    assert calibration["thresholds"] is None

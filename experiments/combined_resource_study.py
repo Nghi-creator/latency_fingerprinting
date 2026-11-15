@@ -4,18 +4,34 @@
 import argparse
 import hashlib
 import json
+from functools import partial
 from pathlib import Path
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
 from latency_fingerprinting.evaluation.combined_interval_candidate import (
+    combined_interval_candidate_spec,
     declare_combined_condition_binding,
     fit_combined_interval_candidate,
     score_combined_interval_candidate,
 )
 from latency_fingerprinting.evaluation.combined_study_protocol import (
+    EVENT_SPAN_RECIPE,
+    EVENT_SPAN_RELEASE,
     inspect_combined_study_protocol,
 )
+from latency_fingerprinting.evaluation.shared_window_candidate import (
+    declare_shared_window_binding,
+    fit_shared_window_candidate,
+    score_shared_window_candidate,
+    shared_window_candidate_spec,
+)
 from latency_fingerprinting.json_io import strict_json_loads
+
+EVENT_METHOD = shared_window_candidate_spec(condition_specific=True)["release"]
+LEGACY_METHOD = combined_interval_candidate_spec()["release"]
+EVENT_BIND = partial(declare_shared_window_binding, condition_specific=True)
+EVENT_FIT = partial(fit_shared_window_candidate, condition_specific=True)
+EVENT_SCORE = partial(score_shared_window_candidate, condition_specific=True)
 
 
 def load(path):
@@ -53,6 +69,9 @@ def fit_allocation(path):
     context_hash = payload_hash(dict(protocol_id=protocol["protocol_id"], scope=protocol["scope"]))
     if sha(Path(__file__)) != protocol["tool_hashes"]["processor"]:
         raise ValueError("changed processor tool")
+    event_span = protocol["schema_version"] == EVENT_SPAN_RELEASE
+    bind = EVENT_BIND if event_span else declare_combined_condition_binding
+    fit = EVENT_FIT if event_span else fit_combined_interval_candidate
     training = {}
     for index, declared in enumerate(protocol["blocks"][:6]):
         block = allocation["sessions"][index]
@@ -79,6 +98,7 @@ def fit_allocation(path):
                 slot["acquisition_id"] != identifier
                 or plan["acquisition_id"] != identifier
                 or plan["schema_version"] != "n11-contained-resource-condition-plan-v1"
+                or plan.get("observation_recipe") != (EVENT_SPAN_RECIPE if event_span else None)
                 or plan["condition"]["name"] != condition
                 or plan["source_manifest_hash"] != protocol["source_manifest_hash"]
                 or plan["image"] != protocol["image_sha256"]
@@ -99,7 +119,7 @@ def fit_allocation(path):
                 != protocol["image_sha256"]
             ):
                 raise ValueError("source image differs from protocol")
-            binding = declare_combined_condition_binding(
+            binding = bind(
                 source,
                 condition=condition,
                 context_hash=context_hash,
@@ -113,16 +133,23 @@ def fit_allocation(path):
         session_id=session_id,
         context_hash=context_hash,
         protocol_id=protocol["protocol_id"],
-        calibration=fit_combined_interval_candidate(training, session_id=session_id),
+        calibration=fit(training, session_id=session_id),
     )
 
 
 def score_case(fitted, directory, *, block_id, session_id):
-    rebuilt = fit_combined_interval_candidate(fitted["training"], session_id=fitted["session_id"])
+    method = fitted["calibration"]["method_release"]
+    if method == EVENT_METHOD:
+        fit, score = EVENT_FIT, EVENT_SCORE
+    elif method == LEGACY_METHOD:
+        fit, score = fit_combined_interval_candidate, score_combined_interval_candidate
+    else:
+        raise ValueError("unknown calibration method")
+    rebuilt = fit(fitted["training"], session_id=fitted["session_id"])
     if payload_hash(rebuilt) != payload_hash(fitted["calibration"]):
         raise ValueError("changed calibration")
     # Query plan, receipt and condition truth are deliberately not opened here.
-    return score_combined_interval_candidate(
+    return score(
         source_at(directory),
         fitted["training"],
         session_id=fitted["session_id"],

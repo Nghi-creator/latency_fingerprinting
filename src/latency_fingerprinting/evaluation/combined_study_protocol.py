@@ -7,10 +7,17 @@ from ..analytical.policy_release import payload_hash
 from .combined_interval_candidate import combined_interval_candidate_spec
 from .fixture_conditions import CONDITIONS, _hash
 from .median_response import _alias
+from .shared_window_candidate import shared_window_candidate_spec
 
 METHOD_CONTENT_HASH = combined_interval_candidate_spec()["content_hash"]
 
 RELEASE = "n11-combined-resource-study-protocol-v1"
+EVENT_SPAN_RELEASE = "n11-condition-specific-event-span-study-protocol-v1"
+EVENT_SPAN_RECIPE = "n11-contained-encoded-event-trace-v1"
+METHOD_HASHES = {
+    RELEASE: METHOD_CONTENT_HASH,
+    EVENT_SPAN_RELEASE: shared_window_candidate_spec(condition_specific=True)["content_hash"],
+}
 ERROR = "invalid_combined_study_protocol"
 KEYS = {
     "schema_version",
@@ -46,13 +53,14 @@ def _content(plan):
 
 
 def create_combined_study_protocol(
-    *, blocks, excluded_case_ids, source_manifest_hash, image_sha256, tool_hashes
+    *, blocks, excluded_case_ids, source_manifest_hash, image_sha256, tool_hashes, event_span=False
 ):
+    release = EVENT_SPAN_RELEASE if event_span else RELEASE
     plan = deepcopy(
         dict(
-            schema_version=RELEASE,
+            schema_version=release,
             tool_hashes=tool_hashes,
-            method_content_hash=METHOD_CONTENT_HASH,
+            method_content_hash=METHOD_HASHES[release],
             source_manifest_hash=source_manifest_hash,
             image_sha256=image_sha256,
             condition_protocol="n11-contained-condition-resource-candidate-v1",
@@ -84,9 +92,9 @@ def inspect_combined_study_protocol(plan):
                 raise ValueError(ERROR)
 
         require(type(plan) is dict and set(plan) == KEYS)
-        require(
-            plan["schema_version"] == RELEASE and plan["method_content_hash"] == METHOD_CONTENT_HASH
-        )
+        release = plan["schema_version"]
+        require(plan["method_content_hash"] == METHOD_HASHES[release])
+        prefix = "n11-raw-es-" if release == EVENT_SPAN_RELEASE else "n11-raw-cs-"
         require(plan["protocol_id"] == _identity(plan) and plan["content_hash"] == _content(plan))
         require(plan["condition_protocol"] == "n11-contained-condition-resource-candidate-v1")
         require(type(plan["session_components"]) is int and plan["session_components"] == 1)
@@ -136,7 +144,7 @@ def inspect_combined_study_protocol(plan):
             )
             for identifier in block["acquisition_ids"].values():
                 _alias(identifier)
-                require(identifier.startswith("n11-raw-cs-") and len(identifier) <= 48)
+                require(identifier.startswith(prefix) and len(identifier) <= 48)
                 require(identifier not in ids and identifier not in excluded)
                 ids.add(identifier)
         require(len(sessions) == 1)
@@ -162,7 +170,7 @@ def inspect_combined_study_protocol(plan):
             _hash(review["evidence_sha256"])
         available = review["state"] == "confirmed"
         return dict(
-            method_release=RELEASE,
+            method_release=release,
             protocol_id=plan["protocol_id"],
             state="reviewed_combined_study_declarations_complete" if available else "unavailable",
             reason_codes=[] if available else ["protocol_review_" + review["state"]],

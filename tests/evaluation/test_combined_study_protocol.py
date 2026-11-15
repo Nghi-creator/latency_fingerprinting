@@ -12,9 +12,10 @@ from latency_fingerprinting.evaluation.within_session_protocol import (
 )
 
 
-def draft():
+def draft(*, event_span=False):
     orders = list(permutations(CONDITIONS))
     blocks = []
+    prefix = "es" if event_span else "cs"
     for i in range(12):
         blocks.append(
             dict(
@@ -23,11 +24,12 @@ def draft():
                 host_id="one-host",
                 session_id="one-session",
                 condition_order=list(orders[i if i < 6 else 11 - i]),
-                acquisition_ids={c: f"n11-raw-cs-{i}-{j}" for j, c in enumerate(CONDITIONS)},
+                acquisition_ids={c: f"n11-raw-{prefix}-{i}-{j}" for j, c in enumerate(CONDITIONS)},
             )
         )
     return protocol.create_combined_study_protocol(
         blocks=blocks,
+        event_span=event_span,
         excluded_case_ids=["n11-raw-old"],
         source_manifest_hash="sha256:" + "a" * 64,
         image_sha256="sha256:" + "b" * 64,
@@ -143,3 +145,14 @@ def test_proposal_detaches_inputs_and_supports_complete_historical_exclusion_bud
     reseal(value)
     assert protocol.inspect_combined_study_protocol(value)["state"] == "unavailable"
     assert before["excluded_case_ids"] == ["n11-raw-old"]
+
+
+def test_event_span_protocol_rejects_legacy_method_even_with_resealed_identity():
+    value = draft(event_span=True)
+    result = protocol.inspect_combined_study_protocol(value)
+    assert result["method_release"] == protocol.EVENT_SPAN_RELEASE
+    assert result["state"] == "unavailable"
+    assert result["reason_codes"] == ["protocol_review_pending"]
+    value["method_content_hash"] = protocol.METHOD_CONTENT_HASH
+    with pytest.raises(ValueError, match=protocol.ERROR):
+        protocol.inspect_combined_study_protocol(reseal(value))
