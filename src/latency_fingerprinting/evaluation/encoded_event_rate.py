@@ -20,8 +20,9 @@ def encoded_event_rate(events, *, phase_start_ns, phase_end_ns):
     """Bound event-span rate when read brackets enclose actual counted buffer events.
 
     The caller supplies one complete trace with strictly consecutive worker event
-    ordinals. Boundary events must establish coverage of the whole phase. This
-    numerical check cannot establish that the producer observed every buffer.
+    ordinals. Outside witnesses must bracket the phase. Rate endpoints use
+    only callbacks whose brackets lie wholly inside the phase, so an edge
+    crossing cannot affect their ordinal difference or elapsed bounds.
     """
     if (
         type(events) not in (tuple, list)
@@ -49,13 +50,7 @@ def encoded_event_rate(events, *, phase_start_ns, phase_end_ns):
     ):
         raise ValueError(ERROR)
     inside = [e for e in parsed if phase_start_ns <= e[1] and e[2] < phase_end_ns]
-    outside = [e for e in parsed if e[2] < phase_start_ns or phase_end_ns <= e[1]]
-    if (
-        len(inside) < 2
-        or len(inside) + len(outside) != len(parsed)
-        or parsed[0][2] >= phase_start_ns
-        or parsed[-1][1] < phase_end_ns
-    ):
+    if len(inside) < 2 or parsed[0][2] >= phase_start_ns or parsed[-1][1] < phase_end_ns:
         return _report(events, phase_start_ns, phase_end_ns, "phase_coverage_unavailable")
     first, last = inside[0], inside[-1]
     inner, outer = last[1] - first[2], last[2] - first[1]

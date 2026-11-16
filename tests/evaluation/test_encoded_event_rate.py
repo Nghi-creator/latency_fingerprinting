@@ -51,7 +51,6 @@ def test_damaged_sequence_rejected(issue):
     "issue,reason",
     [
         ("missing_suffix", "phase_coverage_unavailable"),
-        ("ambiguous_boundary", "phase_coverage_unavailable"),
         ("short", "event_span_outside_limits"),
         ("wide", "elapsed_uncertainty_exceeds_budget"),
     ],
@@ -60,8 +59,6 @@ def test_unresolved_trace_cannot_supply_a_rate(issue, reason):
     events, start, end = trace(), START, END
     if issue == "missing_suffix":
         events = events[:85]
-    elif issue == "ambiguous_boundary":
-        start = events[3]["read_start_ns"] + 1
     elif issue == "short":
         end = 2_000_000_000
     else:
@@ -69,3 +66,20 @@ def test_unresolved_trace_cannot_supply_a_rate(issue, reason):
     report = encoded_event_rate(events, phase_start_ns=start, phase_end_ns=end)
     assert report["reason"] == reason
     assert report["state"] == "unavailable" and report["rate_fps"] is None
+
+
+def test_edge_crossing_callbacks_are_not_used_as_in_phase_endpoints():
+    events = trace()
+    start = events[3]["read_start_ns"] + 1
+    end = events[84]["read_start_ns"] + 1
+    result = encoded_event_rate(events, phase_start_ns=start, phase_end_ns=end)
+    assert result["state"] == "candidate_event_span_available"
+    span = result["span"]
+    assert span["first_ordinal"] == 4 and span["last_ordinal"] == 83
+    assert span["completed_intervals"] == 79
+    assert Fraction(**result["rate_fps"]["lower"]) == Fraction(79_000_000_000, 3_160_200_000)
+    assert Fraction(**result["rate_fps"]["upper"]) == Fraction(79_000_000_000, 3_159_800_000)
+
+    for without_witness in (events[3:], events[:85]):
+        report = encoded_event_rate(without_witness, phase_start_ns=start, phase_end_ns=end)
+        assert report["reason"] == "phase_coverage_unavailable"
