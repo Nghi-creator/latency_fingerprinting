@@ -157,3 +157,32 @@ Synthetic regressions cover a shared CPU difference and an encoded ratio whose
 independent coordinate extrema cannot occur together, uncertain centers, ties,
 search exhaustion and witness replay against an independently evaluated grid.
 They establish arithmetic behavior, not recognition performance.
+
+## Frozen calibration across documented sessions
+
+`evaluation.cross_session_candidate.score_cross_session_candidate` uses a
+separate release for transfer queries. Supply the exact frozen fitting JSON
+and its expected SHA-256, a session record and its expected canonical hash,
+the query source, declared query and block IDs, and prior prediction receipts.
+The scorer rebuilds the fitting artifact and verifies its identity before
+applying its centers, radii and minimum gap. It reports calibration and query
+session IDs separately.
+
+The session record identifies the prior session end and current session
+start, operator documentation and observed host, boot, browser, source and
+runtime context. Its hash must be bound by the operator's custody workflow.
+The scorer checks the record's structure and runtime compatibility. Execution
+provenance and the truth of a session boundary require external records.
+
+The scorer abstains when the session matches calibration, the runtime is
+incompatible, a fitting block/source/clock is reused, a prior query ID/source/
+clock is reused, or a block appears under conflicting sessions. Complete
+measurements and the existing certificate, radius and minimum-gap rules
+apply. Malformed records and changed calibration raise a validation error.
+
+`experiments/cross_session_study.py` inspects a pinned transfer protocol and
+scores its next declared query. It verifies scorer dependencies, checks the
+ordered prior-prediction ledger and writes the new prediction exclusively.
+The caller supplies the full ledger and the externally verified acquisition.
+Three documented host sessions are reported as session groups. Statistical
+independence requires additional evidence.

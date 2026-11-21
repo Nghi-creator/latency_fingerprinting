@@ -341,6 +341,25 @@ def score_combined_interval_candidate(
     )
 
 
+def _classify_candidate(response, centers, limits, evaluator):
+    """Apply the shared certificate, radius and minimum-gap decision."""
+    distances, winner, gap, details = _evaluate(
+        {**response, "values": _intervals(response)}, centers, evaluator
+    )
+    reasons = []
+    if winner is None:
+        reasons.append("ambiguous_interval_distances")
+    else:
+        radius = limits["class_radius"][winner]
+        minimum = limits["minimum_gap"]
+        if distances[winner][1] > Fraction(radius["numerator"], radius["denominator"]):
+            reasons.append("outside_condition_radius")
+        if gap < Fraction(minimum["numerator"], minimum["denominator"]):
+            reasons.append("insufficient_robust_gap")
+    prediction = winner if not reasons else None
+    return reasons, distances, gap, prediction, details
+
+
 def _score_candidate(
     source,
     blocks,
@@ -393,21 +412,9 @@ def _score_candidate(
         if response["state"] == "unavailable":
             reasons.append("query_response_unavailable")
         if not reasons:
-            distances, winner, gap, details = _evaluate(
-                {**response, "values": _intervals(response)}, _centers(prepared), evaluator
+            reasons, distances, gap, prediction, details = _classify_candidate(
+                response, _centers(prepared), fitted["thresholds"], evaluator
             )
-            if winner is None:
-                reasons.append("ambiguous_interval_distances")
-            else:
-                limits = fitted["thresholds"]
-                radius = limits["class_radius"][winner]
-                minimum = limits["minimum_gap"]
-                if distances[winner][1] > Fraction(radius["numerator"], radius["denominator"]):
-                    reasons.append("outside_condition_radius")
-                if gap < Fraction(minimum["numerator"], minimum["denominator"]):
-                    reasons.append("insufficient_robust_gap")
-                if not reasons:
-                    prediction = winner
         return dict(
             method_release=method_spec["release"],
             experiment_id=fitted["experiment_id"],

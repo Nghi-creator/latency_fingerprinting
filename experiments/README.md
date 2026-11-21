@@ -48,3 +48,14 @@ Frozen historical scripts and private study assignments remain in ignored `local
 `check_resource_inspector.py --producer ROOT` exercises source inspector replay
 and resource/raw-byte tamper rejection with synthetic producer fixtures. It runs
 no acquisition and requires an explicitly selected producer checkout.
+
+`check_event_span_challenges.py --study PATH --expected-fit-sha256 HASH`
+replays frozen event-span query predictions, checks missing and inconsistent
+source evidence, and exercises an arithmetic rate hull spanning the supplied
+query conditions. Derived inputs stay in memory. The output distinguishes
+source rejection, abstention and synthetic ambiguity checks.
+
+`cross_session_study.py inspect --protocol PATH --expected-protocol-sha256 HASH`
+checks a transfer protocol and frozen-calibration identity. Its `score` mode
+requires a hashed session record, next query ID, case directory, ordered prior
+prediction files, and an exclusive output path.
