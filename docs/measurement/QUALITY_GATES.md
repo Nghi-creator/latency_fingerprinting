@@ -138,7 +138,7 @@ review declarations exercise software branches only; they are not real study
 acquisitions. The isolated-wheel gate exercises both new commands, reconstruction,
 generic validation and SDK imports. All forty pre-N11 schema bytes remain pinned.
 
-The [N11 frozen corpus](../evaluation/N11_FIXTURES.md) pins complete reports and
+The [N11 frozen corpus](../evaluation/study/N11_FIXTURES.md) pins complete reports and
 source inventories. CI runs its read-only reproduction; the installed-wheel gate
 reconstructs all four cases through the isolated CLI. Producer composer/TAR
 interoperability uses artificial telemetry and does not qualify live acquisition.

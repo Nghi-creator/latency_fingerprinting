@@ -1,0 +1,14 @@
+{
+  "schema_version": "sha256-file-manifest-v1",
+  "algorithm": "sha256",
+  "files": {
+    "README.md": "sha256:3c5fcf73c135796aed595f395052fbb9a1e512fa33e9ff1605abf39d18a5c3d2",
+    "calibration.json": "sha256:032b679b2237410b9d3ee27b07900a49fc0a87e90341906c7f629c81615abaab",
+    "history.json": "sha256:0aaf801045a5b8d1cd52e0351bc34f9df44558cf19b841f89805461e28c0230c",
+    "outcomes.json": "sha256:8bd467b809b897ba98d4cdd1c691f84843f10d989213655a98ca517c0e7855b4",
+    "protocol.json": "sha256:5fb212045445ff14ca37cad7d09a6be4ac953783cc5b653f2bef95446ee33b54",
+    "provenance.json": "sha256:3061f6355374a87d22adcfa7f8890024278bed89b2bc4d3bffef568647c092df",
+    "verification.json": "sha256:271214b7cfba8a0d5adc30f33602e143ce1575fceaf87462ddfe4c6d2aa519de",
+    "verify_results.py": "sha256:bee8c3828417ef55e35f0a605707a926c5f0cf1eef0b63b721262af9d34ba7c4"
+  }
+}

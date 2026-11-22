@@ -107,7 +107,7 @@ diagnostics, CLI validation and repeatable bounded failure handling.
 
 ## Same-source subwindows
 
-The separate [N11 window method](../evaluation/N11_RAW_WINDOWS.md) adds version
+The separate [N11 window method](../evaluation/measurement/N11_RAW_WINDOWS.md) adds version
 1.1.0 for exact-anchor 1–10 s windows from one raw source. The existing
 `ingest-pixelated-v2` command remains whole-bundle version 1.0.0. Source identity
 and clock domain survive slicing; window exports do not become independent runs.

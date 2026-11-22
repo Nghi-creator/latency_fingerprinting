@@ -1,7 +1,7 @@
 # Conditional contrast bounds and worker counter reads
 
 These opt-in engineering APIs supplement the
-[median-response experiment](N11_MEDIAN_RESPONSE_EXPERIMENT.md). They emit no
+[median-response experiment](../methods/N11_MEDIAN_RESPONSE_EXPERIMENT.md). They emit no
 cause diagnosis, accepted profile, calibration or acquisition authority. Existing
 N3/N7/N8/N11 methods and prior acquisition results retain their meanings.
 

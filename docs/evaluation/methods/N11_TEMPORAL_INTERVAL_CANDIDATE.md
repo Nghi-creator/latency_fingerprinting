@@ -2,7 +2,7 @@
 
 `evaluation.temporal_interval_candidate` defines
 `n11-temporal-interval-condition-candidate-v1`, a separate fitting/scoring
-candidate over the [temporal-rate response](N11_TEMPORAL_RATE_RESPONSE.md).
+candidate over the [temporal-rate response](../bounds/N11_TEMPORAL_RATE_RESPONSE.md).
 It does not alter N3, the rank candidates, any original study protocol, or a live
 acquisition path. `temporal_interval_candidate_spec()` returns its identity.
 

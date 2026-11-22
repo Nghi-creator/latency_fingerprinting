@@ -54,7 +54,7 @@ The SDK exposes `ValueError("invalid_evaluation")` or
 
 ## Manifest fields
 
-The [manifest schema](../../schemas/evaluation/n11-evaluation-manifest-v1.schema.json)
+The [manifest schema](../../../schemas/evaluation/n11-evaluation-manifest-v1.schema.json)
 is normative. All keys are required, including nullable fields; types are strict,
 collections ordered/unique and nested models immutable. `seal_manifest(payload)`
 computes its content identity; it is not a protocol approval operation.
@@ -97,7 +97,7 @@ reviews remain unauthenticated declarations.
 
 Each supplied raw derivation is rebuilt with the real adopter, original context,
 phase, comparison case, provenance and confounders. Version 1.0.0 reproduces the
-whole bundle; [version 1.1.0](N11_RAW_WINDOWS.md) reproduces exact subwindow bounds.
+whole bundle; [version 1.1.0](../measurement/N11_RAW_WINDOWS.md) reproduces exact subwindow bounds.
 The entire resulting N2 window must agree. Wrong supplied raw bytes fail; absent
 raw links retain `raw_sources_unverified` and cannot produce a source-verified
 diagnostic or passive outcome. A response's declared checksum is not a substitute
@@ -121,7 +121,7 @@ declared study slot. N9 produces proposals only, with no cause prediction.
 
 ## Reports and interpretation
 
-The [report schema](../../schemas/evaluation/n11-evaluation-report-v1.schema.json)
+The [report schema](../../../schemas/evaluation/n11-evaluation-report-v1.schema.json)
 embeds the manifest once, ordered result links and one outcome per planned slot.
 Every linked job has a result reference. Failed/unstarted slots cannot claim
 computed diagnosis or passive observations. Source-unavailable rows keep null
@@ -163,11 +163,11 @@ response contract or a prospective empirical acceptance format.
 The [frozen software corpus and producer packaging checks](N11_FIXTURES.md) verify
 complete report reconstruction and independent ledger/window expectations.
 
-[Source-local stable-phase adoption](N11_SOURCE_LOCAL_USAGE.md) adds explicit method
+[Source-local stable-phase adoption](../measurement/N11_SOURCE_LOCAL_USAGE.md) adds explicit method
 1.2.0 raw reconstruction for phase-level diagnosis. Its source spans are declared
 individually, and current N9 passive timing rejects that method.
 
-The opt-in [median-response engineering experiment](N11_MEDIAN_RESPONSE_EXPERIMENT.md)
+The opt-in [median-response engineering experiment](../methods/N11_MEDIAN_RESPONSE_EXPERIMENT.md)
 is separate from this runner. Its summaries are not N7 snapshots, cannot be used
 as N8 policies or N11 diagnosis-job receipts, and cannot change this release's
 empirical-acceptance state. A future study integration needs an explicit contract.

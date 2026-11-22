@@ -49,10 +49,10 @@ Frozen historical studies stay unchanged and excluded. Neither implementing this
 method nor completing a same-session run closes the original separate-session or
 broad N11 empirical acceptance gates.
 
-A separate [pooled-rank geometry candidate](N11_RANK_GEOMETRY.md) explores bounded
+A separate [pooled-rank geometry candidate](../bounds/N11_RANK_GEOMETRY.md) explores bounded
 feature contributions. It is a numerical primitive only and does not modify this
 method, its protocol, calibration or acceptance gates.
 
-The separate [temporal-rate response candidate](N11_TEMPORAL_RATE_RESPONSE.md)
+The separate [temporal-rate response candidate](../bounds/N11_TEMPORAL_RATE_RESPONSE.md)
 retains healthy and post native rate references. It does not change this
 experiment's response inputs, feature mask or collection protocol.

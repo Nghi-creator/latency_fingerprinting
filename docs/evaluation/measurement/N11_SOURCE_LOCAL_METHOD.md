@@ -63,7 +63,7 @@ it does not acquire passive onset/detection-time authority.
 
 ## Independent expectations
 
-[Method vectors](../../fixtures/source-local-v1/expectations.json) were authored
+[Method vectors](../../../fixtures/source-local-v1/expectations.json) were authored
 before implementation. An artificial browser interval [0,10000] and engine interval
 [500,5500] yield engine coverage 1, 32.5 median camera CPU, 60 input fps and 59.4
 output fps. An internal missing metric remains incomplete on [500,5500]. Old methods

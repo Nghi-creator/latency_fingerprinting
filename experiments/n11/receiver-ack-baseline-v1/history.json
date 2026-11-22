@@ -1,0 +1,49 @@
+{
+  "schema_version": "n11-interim-history-v1",
+  "scope": "selected directly relevant predecessor cohorts; not an exhaustive experiment registry",
+  "pooling_allowed": false,
+  "independent_support_groups": 0,
+  "cohorts": [
+    {
+      "cohort_id": "event-span-prospective-v6",
+      "scope": "earlier same-session fixture study",
+      "source_manifest_sha256": "sha256:ac3f2eac8e94883fef339e8b56e593c17513ae32d7e8300ec804cd969a0474e6",
+      "status": "complete_within_session_evaluation",
+      "planned_acquisitions": 36,
+      "verified_acquisitions": 36,
+      "failed_acquisitions": 0,
+      "unstarted_acquisitions": 0,
+      "correct_queries": 18,
+      "abstentions": 0,
+      "incorrect_predictions": 0
+    },
+    {
+      "cohort_id": "cross-session-transfer-v1",
+      "scope": "later-session transfer using original V6 fit",
+      "source_manifest_sha256": "sha256:ac3f2eac8e94883fef339e8b56e593c17513ae32d7e8300ec804cd969a0474e6",
+      "status": "closed_failed_no_retry",
+      "planned_acquisitions": 18,
+      "verified_acquisitions": 6,
+      "failed_acquisitions": 1,
+      "unstarted_acquisitions": 11,
+      "correct_queries": 3,
+      "abstentions": 3,
+      "incorrect_predictions": 0,
+      "limitation": "Fresh-source admission rejection; pacing cleanup unknown; initiating cause not established."
+    },
+    {
+      "cohort_id": "admission-repair-baseline-v1",
+      "scope": "same-session baseline after native admission repair",
+      "source_manifest_sha256": "sha256:9a524c9da641de3c25543e4009348f8a72a80b4232bb912fb62f7cf968d32e4f",
+      "status": "closed_failed_no_retry",
+      "planned_acquisitions": 36,
+      "verified_acquisitions": 24,
+      "failed_acquisitions": 1,
+      "unstarted_acquisitions": 11,
+      "correct_queries": 6,
+      "abstentions": 0,
+      "incorrect_predictions": 0,
+      "limitation": "Receiver arrival compression invalidated the binding; browser unbind timeout stopped collection."
+    }
+  ]
+}

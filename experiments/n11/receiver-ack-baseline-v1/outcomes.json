@@ -1,0 +1,192 @@
+{
+  "schema_version": "n11-interim-outcomes-v1",
+  "cohort_id": "receiver-ack-baseline-v1",
+  "queries": [
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-01-1",
+      "block_id": "es-rx1-query-01",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:6f982271c1e91389666e991bd2a0b65086ca39a54d9d915cc4b61728cb4559d5",
+      "original_acquisition_sha256": "sha256:ede6b6fc45be29f7a76efc6ca46505460d8acdb961396bc7be6faa3b3022f49c"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-01-2",
+      "block_id": "es-rx1-query-01",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:278862b3da4492af5001befe6eecc84587cb90dc7dbdfdec303d9ac1b06d92da",
+      "original_acquisition_sha256": "sha256:895f3f82172f3b9cd29b1fbef3ccc15a04bc45d848baa650adf328837386dc9a"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-01-3",
+      "block_id": "es-rx1-query-01",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "abstain",
+      "predicted_condition": null,
+      "reason_codes": [
+        "outside_condition_radius"
+      ],
+      "original_prediction_sha256": "sha256:da039e2e2193228b65708f5f06423d3b9450f1f024dcdea0f5080373675a19d2",
+      "original_acquisition_sha256": "sha256:b65b62b61eeff2fddeae3a4d7af956452c59aad1441fc4ee723fe7c431389a39"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-02-1",
+      "block_id": "es-rx1-query-02",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:de0af29b54fb96efce6803f7445630669a9c3aa4f2da530b5039638d7129b85a",
+      "original_acquisition_sha256": "sha256:5bf26939bd7bbebe5a28cfd7d83841e2a014ba0fd1802a4fe0cb495cc3e461ef"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-02-2",
+      "block_id": "es-rx1-query-02",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "abstain",
+      "predicted_condition": null,
+      "reason_codes": [
+        "outside_condition_radius"
+      ],
+      "original_prediction_sha256": "sha256:c25ab228fe8cc6a234c86da583dfb66575fd23f70bd64ea6694d93ead2ed45e0",
+      "original_acquisition_sha256": "sha256:c64c957db6391c79398338db1148aeed095e0f59a36032a96fe2b4b99ceba2c6"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-02-3",
+      "block_id": "es-rx1-query-02",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:920059032e8bbef5d12a3b0a5f738b5f154b6b80e3bd73e228473ed4443b8c2a",
+      "original_acquisition_sha256": "sha256:e0f642d8ff354d61c77dc221c1bd672865f028818fa974010a83857b2d916fed"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-03-1",
+      "block_id": "es-rx1-query-03",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:6db600a63faf641c172d2de13e23746dcabaa5e38f0b532612e9289dce73dec7",
+      "original_acquisition_sha256": "sha256:52060579dea6f645043bf2c0222fa018c7e4331d5b2e64db66ac06871863df81"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-03-2",
+      "block_id": "es-rx1-query-03",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:086ed52f84c40e2bf81f1fe5a910a5fb0c5dea8792e62c63994040eb2030423c",
+      "original_acquisition_sha256": "sha256:690eea650f9b5166dad9798551dee43086b053e7627a5beabff7e9128d7a19a3"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-03-3",
+      "block_id": "es-rx1-query-03",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "abstain",
+      "predicted_condition": null,
+      "reason_codes": [
+        "query_response_unavailable"
+      ],
+      "original_prediction_sha256": "sha256:cbaaeda2a876694f9f59043213e777eea44876654b78942ba599b1558893a6a9",
+      "original_acquisition_sha256": "sha256:edc0dee467e557ea6e09099480f97d932ddef0185de44781d2c9780360ac98bd"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-04-1",
+      "block_id": "es-rx1-query-04",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:49d77c09d1ced09de08f392bdbc711633c30f7dd65ebab1efc5e0bf487fa9647",
+      "original_acquisition_sha256": "sha256:6f01c848eba733b74b5474624e61506a94825410942c1bc71591cbddc5332318"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-04-2",
+      "block_id": "es-rx1-query-04",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "no_injected_fault",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:7c7554d86867bea4b4cf23f0a628d27127ae662b29726a2be583e9b092e62fc9",
+      "original_acquisition_sha256": "sha256:3946463fd7d1665fb1e228930b2b55104dd825ec65c21e9e56bfd2c4d4f72c8d"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-04-3",
+      "block_id": "es-rx1-query-04",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:26a58a76736454a1028dcc655fca2ff5adbd4a76fddc1a381abdf9dd4d4a13ec",
+      "original_acquisition_sha256": "sha256:adef2df762ce5b32b3bf339e73654c77cac1e9d1e25b9d72643a129648217cd7"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-05-1",
+      "block_id": "es-rx1-query-05",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "no_injected_fault",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:133503aafeae70f8f819a4fe77b11e238093833a42bdb28687f3059eaaf66b4e",
+      "original_acquisition_sha256": "sha256:317d13ca621793b45d64e20de6d4d46c4d1b570800cdcf0196696176d6413c68"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-05-2",
+      "block_id": "es-rx1-query-05",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:65cf8dfe2dfa1594e873142d8a76db605f1ca5317c6e18c078df74d4cf44aa21",
+      "original_acquisition_sha256": "sha256:6864652e78fe07b9e12929de827125a47034a31a57fb910d8acac9064591ec96"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-05-3",
+      "block_id": "es-rx1-query-05",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:7512a98ed0a0dc4fb885e279df4e84a1f1f5de719215137c4d5aedca2421a425",
+      "original_acquisition_sha256": "sha256:74227922af23bb235d37fd06c6683489393c9ed995a56f16d1ce33af975ed01e"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-06-1",
+      "block_id": "es-rx1-query-06",
+      "declared_fixture_condition": "no_injected_fault",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "no_injected_fault",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:b5221506ad860660313412c34bd656cab3dc3b45d9384704804dfe9eff58f8f8",
+      "original_acquisition_sha256": "sha256:324c5ab1fd0b961a416a7f9d57a94fc98e33b3198933fb5bdb8bf1f6b5afd625"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-06-2",
+      "block_id": "es-rx1-query-06",
+      "declared_fixture_condition": "owned_identity_delay",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_identity_delay",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:0db6038e8fbec51d0aef870e45211a74ce7ce3c711fec5451f264ec56a9a752e",
+      "original_acquisition_sha256": "sha256:c3e5c42d40aeec77731b88c9465a4e9510a652dd971016963a0e8c3d25094584"
+    },
+    {
+      "acquisition_id": "n11-raw-es-rx1-query-06-3",
+      "block_id": "es-rx1-query-06",
+      "declared_fixture_condition": "owned_cpu_pressure",
+      "state": "candidate_condition_prediction",
+      "predicted_condition": "owned_cpu_pressure",
+      "reason_codes": [],
+      "original_prediction_sha256": "sha256:1b0807e0e21395c7c46faa197189785d7e124bebc35fe9d882ecdf3719fd893d",
+      "original_acquisition_sha256": "sha256:1563441260379b1dbec42751b6e6178dd2e5c865b5622d25d02def277f2ef8cc"
+    }
+  ]
+}

@@ -101,7 +101,7 @@ CaptureMethodReference contains `methodId`, semantic `methodVersion` and require
 nullable `producerVersion`. Initial allowed method pairs are
 `pixelated_bundle_offline / 1.0.0` and `synthetic_series / 1.0.0`.
 N11 adds `pixelated_bundle_offline / 1.1.0` for
-[exact-anchor same-source subwindows](../evaluation/N11_RAW_WINDOWS.md), with
+[exact-anchor same-source subwindows](../evaluation/measurement/N11_RAW_WINDOWS.md), with
 separate method compatibility and unchanged 1.0.0 semantics/schema bytes.
 The first versions the offline extraction/adoption meaning; it does not identify
 a proven instrumentation revision. Producer version is null unless declared by
@@ -332,7 +332,7 @@ meaning are unchanged.
 `pixelated_bundle_offline / 1.2.0` is a separately declared stable-phase method.
 Its per-source summaries carry actual native source bounds within the phase; every
 metric of a source shares those bounds. Common-window equality rules remain in
-force for 1.0.0/1.1.0. See the [explicit temporal contract](../evaluation/N11_SOURCE_LOCAL_METHOD.md)
-and [API](../evaluation/N11_SOURCE_LOCAL_USAGE.md) for declaration, context marker,
+force for 1.0.0/1.1.0. See the [explicit temporal contract](../evaluation/measurement/N11_SOURCE_LOCAL_METHOD.md)
+and [API](../evaluation/measurement/N11_SOURCE_LOCAL_USAGE.md) for declaration, context marker,
 missing-source, duration, raw-proof and passive exclusions. Existing schema shapes
 and registry/policy bytes are unchanged; no clock synchronization is asserted.

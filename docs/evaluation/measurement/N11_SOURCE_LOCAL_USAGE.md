@@ -45,7 +45,7 @@ counter reset/gap evidence survive, and no acceptance mode or numeric target cha
 
 For fresh contained observations, the producer exposes the explicit
 `prepare-source-local` command documented in its
-[collector guide](../../../Pixelated-Studio-Edition/docs/research/n11/n11-raw-observation.md).
+[collector guide](../../../../Pixelated-Studio-Edition/docs/research/n11/n11-raw-observation.md).
 Retain the original acquisition bytes matching `evidenceSha256`, source snapshots,
 plan, raw bundle and any failed prefix. Do not retrofit declarations into earlier
 real acquisitions to change their reported outcome.
@@ -53,7 +53,7 @@ real acquisitions to change their reported outcome.
 The producer's additive `exportObservedPhase` preparation API supports explicitly
 recorded degraded/relief/recovery phases for a fixed 30→24→30 FPS example. Its short
 four-row format uses a separate acquisition-protocol context partition. The
-[artificial interoperability fixture](../../fixtures/paired-phase-v1/README.md)
+[artificial interoperability fixture](../../../fixtures/paired-phase-v1/README.md)
 checks original timestamps, source spans, effective settings and N2/N3 arithmetic.
 It does not implement native dispatch, a persistent fault or restoration proof.
 A recovery-phase export alone cannot supply a paired intervention outcome or label.
@@ -98,7 +98,7 @@ screen cannot establish reproducibility, accepted labels or N7 profile support.
 Retain failed and unstarted slots under the predeclared stopping rule; never pool
 incompatible source versions or replace failures to reach a desired group count.
 
-The separately versioned [median-response engineering experiment](N11_MEDIAN_RESPONSE_EXPERIMENT.md)
+The separately versioned [median-response engineering experiment](../methods/N11_MEDIAN_RESPONSE_EXPERIMENT.md)
 can explore stable normalized responses without a learned dispersion divisor.
 It emits descriptive centers/distances only, preserves missingness and known source
 alias exclusions, and supplies no cause label or accepted N6/N7 profile. Its pure

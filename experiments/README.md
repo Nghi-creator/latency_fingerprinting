@@ -6,6 +6,7 @@ raw/private captures and session notes remain ignored.
 
 | Directory | Scope |
 | --- | --- |
+| [`n11/receiver-ack-baseline-v1/`](n11/receiver-ack-baseline-v1/README.md) | Interim same-session fixture results: 15 correct / 3 abstain / 0 incorrect, with all 18 query outcomes and public consistency verification |
 | [`p0/controlled-run-001/`](p0/controlled-run-001/) | Original P0 feasibility record and unvalidated seed fingerprint |
 | [`p0/controlled-run-002/`](p0/controlled-run-002/) | Independent P0 repeat query against the run 001 seed |
 | [`n5-runtime-20261013/`](n5-runtime-20261013/) | N5 runtime campaign and overhead evidence |
@@ -32,8 +33,8 @@ N11 operator utilities are also tracked here:
   detached process sessions, with heartbeat, logs, terminal result and token-bound
   stop requests. It never retries or resumes a study.
 
-See the [N11 operator tools guide](../docs/evaluation/N11_OPERATOR_TOOLS.md).
-The [engineering pipeline qualification](../docs/evaluation/N11_PIPELINE_QUALIFICATION.md)
+See the [N11 operator tools guide](../docs/evaluation/operations/N11_OPERATOR_TOOLS.md).
+The [engineering pipeline qualification](../docs/evaluation/operations/N11_PIPELINE_QUALIFICATION.md)
 uses `qualify_resource_pipeline.py` for separate counter-specific projection,
 fitting and truth-free scoring. Its engineering-only acquisitions are excluded
 from prospective studies; accuracy is not a qualification gate.

@@ -34,11 +34,16 @@ establish diagnosis accuracy or real runtime performance.
 
 ## Offline study evaluation
 
-[N11 operator tools](evaluation/N11_OPERATOR_TOOLS.md) describes reusable export
+The [evaluation guide index](evaluation/README.md) organizes study design,
+measurement, candidate methods, bounds and operator procedures. The
+[interim fixture results](../experiments/n11/receiver-ack-baseline-v1/README.md)
+separate the completed single-session result from broader open N11 requirements.
+
+[N11 operator tools](evaluation/operations/N11_OPERATOR_TOOLS.md) describes reusable export
 verification, evidence archives and frozen producer session orchestration.
 
-[N11 reconstruction](evaluation/N11_OFFLINE_EVALUATION.md) links the existing
+[N11 reconstruction](evaluation/study/N11_OFFLINE_EVALUATION.md) links the existing
 diagnostic/passive/engineering APIs with a complete planned-slot ledger.
-[Same-source raw windows](evaluation/N11_RAW_WINDOWS.md) supply bounded N9 input
+[Same-source raw windows](evaluation/measurement/N11_RAW_WINDOWS.md) supply bounded N9 input
 windows without stitching separate clock domains. These are software/historical
 interfaces, not empirical acceptance or live dispatch.

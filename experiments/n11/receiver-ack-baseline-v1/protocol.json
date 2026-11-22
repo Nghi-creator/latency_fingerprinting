@@ -1,0 +1,188 @@
+{
+  "schema_version": "n11-interim-protocol-summary-v1",
+  "cohort_id": "receiver-ack-baseline-v1",
+  "original_protocol_id": "combined-study-protocol-54d629598d5d86e4a839e4aed6b54d810ce0195a4763247f35f2b7d1b20dbb05",
+  "scope": "one_correlated_host_session_later_block_condition_recognition_only",
+  "method_content_hash": "sha256:7bfbb577f3c35c17fbcc45eeec0e8d73ead972b42a2e3636f1ea80186e788b9a",
+  "condition_protocol": "n11-contained-condition-resource-candidate-v1",
+  "source_manifest_sha256": "sha256:45a2334e0ccc12c956f9321bbd25f2744f6efa0c371981f76e712d9243867784",
+  "image_sha256": "sha256:57b41b066c420e81170a052d6b7ba5eeacbe591ce42a5f21147c788ca255c724",
+  "session_components": 1,
+  "independent_support_groups": 0,
+  "calibration_acquisitions": 18,
+  "evaluation_acquisitions": 18,
+  "maximum_acquisitions": 36,
+  "retries": false,
+  "execution_rule": "stop_entire_suffix_no_retries_no_evaluation_if_calibration_unavailable",
+  "previous_ids_excluded": 924,
+  "blocks": [
+    {
+      "block_id": "es-rx1-fit-01",
+      "role": "training",
+      "condition_order": [
+        "no_injected_fault",
+        "owned_identity_delay",
+        "owned_cpu_pressure"
+      ],
+      "acquisition_ids": {
+        "no_injected_fault": "n11-raw-es-rx1-fit-01-1",
+        "owned_identity_delay": "n11-raw-es-rx1-fit-01-2",
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-01-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-fit-02",
+      "role": "training",
+      "condition_order": [
+        "no_injected_fault",
+        "owned_cpu_pressure",
+        "owned_identity_delay"
+      ],
+      "acquisition_ids": {
+        "no_injected_fault": "n11-raw-es-rx1-fit-02-1",
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-02-2",
+        "owned_identity_delay": "n11-raw-es-rx1-fit-02-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-fit-03",
+      "role": "training",
+      "condition_order": [
+        "owned_identity_delay",
+        "no_injected_fault",
+        "owned_cpu_pressure"
+      ],
+      "acquisition_ids": {
+        "owned_identity_delay": "n11-raw-es-rx1-fit-03-1",
+        "no_injected_fault": "n11-raw-es-rx1-fit-03-2",
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-03-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-fit-04",
+      "role": "training",
+      "condition_order": [
+        "owned_identity_delay",
+        "owned_cpu_pressure",
+        "no_injected_fault"
+      ],
+      "acquisition_ids": {
+        "owned_identity_delay": "n11-raw-es-rx1-fit-04-1",
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-04-2",
+        "no_injected_fault": "n11-raw-es-rx1-fit-04-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-fit-05",
+      "role": "training",
+      "condition_order": [
+        "owned_cpu_pressure",
+        "no_injected_fault",
+        "owned_identity_delay"
+      ],
+      "acquisition_ids": {
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-05-1",
+        "no_injected_fault": "n11-raw-es-rx1-fit-05-2",
+        "owned_identity_delay": "n11-raw-es-rx1-fit-05-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-fit-06",
+      "role": "training",
+      "condition_order": [
+        "owned_cpu_pressure",
+        "owned_identity_delay",
+        "no_injected_fault"
+      ],
+      "acquisition_ids": {
+        "owned_cpu_pressure": "n11-raw-es-rx1-fit-06-1",
+        "owned_identity_delay": "n11-raw-es-rx1-fit-06-2",
+        "no_injected_fault": "n11-raw-es-rx1-fit-06-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-01",
+      "role": "evaluation",
+      "condition_order": [
+        "owned_cpu_pressure",
+        "owned_identity_delay",
+        "no_injected_fault"
+      ],
+      "acquisition_ids": {
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-01-1",
+        "owned_identity_delay": "n11-raw-es-rx1-query-01-2",
+        "no_injected_fault": "n11-raw-es-rx1-query-01-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-02",
+      "role": "evaluation",
+      "condition_order": [
+        "owned_cpu_pressure",
+        "no_injected_fault",
+        "owned_identity_delay"
+      ],
+      "acquisition_ids": {
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-02-1",
+        "no_injected_fault": "n11-raw-es-rx1-query-02-2",
+        "owned_identity_delay": "n11-raw-es-rx1-query-02-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-03",
+      "role": "evaluation",
+      "condition_order": [
+        "owned_identity_delay",
+        "owned_cpu_pressure",
+        "no_injected_fault"
+      ],
+      "acquisition_ids": {
+        "owned_identity_delay": "n11-raw-es-rx1-query-03-1",
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-03-2",
+        "no_injected_fault": "n11-raw-es-rx1-query-03-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-04",
+      "role": "evaluation",
+      "condition_order": [
+        "owned_identity_delay",
+        "no_injected_fault",
+        "owned_cpu_pressure"
+      ],
+      "acquisition_ids": {
+        "owned_identity_delay": "n11-raw-es-rx1-query-04-1",
+        "no_injected_fault": "n11-raw-es-rx1-query-04-2",
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-04-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-05",
+      "role": "evaluation",
+      "condition_order": [
+        "no_injected_fault",
+        "owned_cpu_pressure",
+        "owned_identity_delay"
+      ],
+      "acquisition_ids": {
+        "no_injected_fault": "n11-raw-es-rx1-query-05-1",
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-05-2",
+        "owned_identity_delay": "n11-raw-es-rx1-query-05-3"
+      }
+    },
+    {
+      "block_id": "es-rx1-query-06",
+      "role": "evaluation",
+      "condition_order": [
+        "no_injected_fault",
+        "owned_identity_delay",
+        "owned_cpu_pressure"
+      ],
+      "acquisition_ids": {
+        "no_injected_fault": "n11-raw-es-rx1-query-06-1",
+        "owned_identity_delay": "n11-raw-es-rx1-query-06-2",
+        "owned_cpu_pressure": "n11-raw-es-rx1-query-06-3"
+      }
+    }
+  ]
+}

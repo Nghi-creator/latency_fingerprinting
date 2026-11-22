@@ -1,0 +1,162 @@
+{
+  "schema_version": "n11-interim-calibration-summary-v1",
+  "state": "candidate_calibration_available",
+  "method_release": "n11-condition-specific-event-span-candidate-v1",
+  "method_content_hash": "sha256:7bfbb577f3c35c17fbcc45eeec0e8d73ead972b42a2e3636f1ea80186e788b9a",
+  "frozen_fit_sha256": "sha256:b401e214dc6cad61c883e1bec039b9644463115256e91185be7453b40ed238eb",
+  "evaluation_acquisitions_started_at_freeze": 0,
+  "certificate_count": 18,
+  "reason_codes": [],
+  "folds": [
+    {
+      "held_out_block_id": "es-rx1-fit-01",
+      "training_block_ids": [
+        "es-rx1-fit-02",
+        "es-rx1-fit-03",
+        "es-rx1-fit-04",
+        "es-rx1-fit-05",
+        "es-rx1-fit-06"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    },
+    {
+      "held_out_block_id": "es-rx1-fit-02",
+      "training_block_ids": [
+        "es-rx1-fit-01",
+        "es-rx1-fit-03",
+        "es-rx1-fit-04",
+        "es-rx1-fit-05",
+        "es-rx1-fit-06"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    },
+    {
+      "held_out_block_id": "es-rx1-fit-03",
+      "training_block_ids": [
+        "es-rx1-fit-01",
+        "es-rx1-fit-02",
+        "es-rx1-fit-04",
+        "es-rx1-fit-05",
+        "es-rx1-fit-06"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    },
+    {
+      "held_out_block_id": "es-rx1-fit-04",
+      "training_block_ids": [
+        "es-rx1-fit-01",
+        "es-rx1-fit-02",
+        "es-rx1-fit-03",
+        "es-rx1-fit-05",
+        "es-rx1-fit-06"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    },
+    {
+      "held_out_block_id": "es-rx1-fit-05",
+      "training_block_ids": [
+        "es-rx1-fit-01",
+        "es-rx1-fit-02",
+        "es-rx1-fit-03",
+        "es-rx1-fit-04",
+        "es-rx1-fit-06"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    },
+    {
+      "held_out_block_id": "es-rx1-fit-06",
+      "training_block_ids": [
+        "es-rx1-fit-01",
+        "es-rx1-fit-02",
+        "es-rx1-fit-03",
+        "es-rx1-fit-04",
+        "es-rx1-fit-05"
+      ],
+      "complete_and_correct": true,
+      "certificates": [
+        {
+          "condition": "no_injected_fault",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_identity_delay",
+          "uniquely_correct": true
+        },
+        {
+          "condition": "owned_cpu_pressure",
+          "uniquely_correct": true
+        }
+      ]
+    }
+  ]
+}

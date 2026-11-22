@@ -74,6 +74,6 @@ authority/empirical acceptance false. A future combined fitting/scoring method
 must explicitly specify context binding, coordinates, arithmetic, abstention,
 calibration and prospective protocol under its own identity.
 
-The separate [combined interval candidate](N11_COMBINED_INTERVAL_CANDIDATE.md)
+The separate [combined interval candidate](../methods/N11_COMBINED_INTERVAL_CANDIDATE.md)
 binds both source-local components to one raw acquisition. It does not change
 this contract or automatically enrol engineering sources in a study.

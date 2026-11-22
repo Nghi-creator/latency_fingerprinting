@@ -1,0 +1,23 @@
+{
+  "schema_version": "n11-interim-provenance-v1",
+  "cohort_id": "receiver-ack-baseline-v1",
+  "recorded_date": "2026-11-22",
+  "producer_revision": "4d20742af5fe5a3b36bf9e9904d8324554e0be5c",
+  "core_revision": "9f684c4663bcf6827c503628590b90d4de7ea66a",
+  "source_manifest_sha256": "sha256:45a2334e0ccc12c956f9321bbd25f2744f6efa0c371981f76e712d9243867784",
+  "runtime_context_sha256": "sha256:433ef3f21f51e310af9b61aa3688a61c3e3f4b244d898dda54b7b0de51e8e218",
+  "frozen_fit_sha256": "sha256:b401e214dc6cad61c883e1bec039b9644463115256e91185be7453b40ed238eb",
+  "original_protocol_sha256": "sha256:6c589135e5da626322c29ae2bcd2f3026c9cf6f1becde919b7a4d5893e7429ad",
+  "original_terminal_verification_sha256": "sha256:714fc3f2e640bb36e75b8a1009f406cc74dcec79617457f87f6ba0a36c2f9c6b",
+  "original_query_outcomes_sha256": "sha256:d5b635a2fe6e51ab23a5ac92eaa7458137fc645064d6500589db76b8622bb18e",
+  "qualification": "single correlated host session; contained Frozen-Bubble/Linux fixture",
+  "source_revision_note": "Commit IDs provide context; the source manifest identifies recorded file bytes. Later layout refactors do not rewrite these identities.",
+  "redaction": "Allowlisted summaries only; raw telemetry, absolute paths, host/worker/session identities and private logs are excluded.",
+  "public_replay": "Published count/ledger/checksum consistency only; private raw inputs are required to refit or reproduce original prediction hashes.",
+  "tool_sha256": {
+    "processor": "sha256:9cb4a835433040a0db37520cee834cd550ec9d4e94fe84812aff700db75fb45d",
+    "verifier": "sha256:7ca0034e75bc1f3cf374682eaeae366cf5169bf8d7b50d827f7567e19755a9e7",
+    "supervisor": "sha256:d164ff37a03b29b174f19b5f874a377568a39bd14925743190060e7acbe05d65",
+    "runner": "sha256:ffb634ce4f3018563a2903046d934b3c72715a50142e604a839d9510f34a1b0a"
+  }
+}

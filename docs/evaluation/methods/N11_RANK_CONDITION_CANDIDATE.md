@@ -56,4 +56,4 @@ runs would pass. The candidate needs design review before prospective use.
 Rank scaling also discards magnitude and can magnify the importance of tiny
 fluctuations. It cannot make equal-valued features informative or restore a
 signal absent from the underlying response. See the
-[geometry contract](N11_RANK_GEOMETRY.md) for numerical details and limitations.
+[geometry contract](../bounds/N11_RANK_GEOMETRY.md) for numerical details and limitations.

@@ -23,7 +23,7 @@ projection, retaining exact nine-coordinate interval arithmetic and the original
 all-eighteen-fold calibration gate. It accepts zero within-condition dispersion
 without dividing by MAD or inventing a denominator. Legacy combined methods and
 their frozen results remain unchanged. See the
-[counter-specific projection contract](N11_COUNTER_SPECIFIC_PROJECTION.md).
+[counter-specific projection contract](../measurement/N11_COUNTER_SPECIFIC_PROJECTION.md).
 
 The original Python fitting bytes are saved and hashed before the first query
 acquisition. Each query is scored without supplying its expected condition, plan

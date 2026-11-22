@@ -109,6 +109,9 @@ jobs:
       - name: Reproduce pinned N11 offline evaluation and independent expectations
         run: python -m tests.evaluation.support.check_reproduction
 
+      - name: Verify published interim N11 results
+        run: python experiments/n11/receiver-ack-baseline-v1/verify_results.py
+
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel
 

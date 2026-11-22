@@ -1,6 +1,6 @@
 # N11 operator tools
 
-The [separate within-session experiment](N11_WITHIN_SESSION.md) has its own SDK
+The [separate within-session experiment](../study/N11_WITHIN_SESSION.md) has its own SDK
 method/protocol and producer runner. It does not relax the independent-session API.
 
 Reusable cross-repository processing and custody commands live in `experiments/`.
