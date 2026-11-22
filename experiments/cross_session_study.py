@@ -7,12 +7,12 @@ import json
 from pathlib import Path
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.cross_session_candidate import (
+from latency_fingerprinting.evaluation.candidates.cross_session_candidate import (
     cross_session_candidate_spec,
     score_cross_session_candidate,
 )
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS, _hash
-from latency_fingerprinting.evaluation.median_response import _alias
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS, _hash
+from latency_fingerprinting.evaluation.responses.median_response import _alias
 from latency_fingerprinting.json_io import strict_json_loads
 
 
@@ -119,7 +119,7 @@ def score_next(protocol, slots, *, session_file, session_hash, case, query_id, h
         raise ValueError("session host differs")
     if context["runtime_context_hash"] != fitted["calibration"]["runtime_context_hash"]:
         raise ValueError("session runtime differs")
-    from latency_fingerprinting.evaluation.cross_session_candidate import _timestamp
+    from latency_fingerprinting.evaluation.candidates.cross_session_candidate import _timestamp
 
     if _timestamp(record["prior_session_ended_at_utc"]) < _timestamp(
         protocol["calibration_session_ended_at_utc"]

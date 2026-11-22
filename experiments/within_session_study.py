@@ -6,13 +6,15 @@ import hashlib
 import json
 from pathlib import Path
 
-from latency_fingerprinting.evaluation.fixture_conditions import declare_fixture_condition_binding
-from latency_fingerprinting.evaluation.within_session import (
+from latency_fingerprinting.evaluation.candidates.within_session import (
     fit_within_session,
     score_within_session,
 )
-from latency_fingerprinting.evaluation.within_session_protocol import (
+from latency_fingerprinting.evaluation.protocols.within_session_protocol import (
     inspect_within_session_protocol,
+)
+from latency_fingerprinting.evaluation.responses.fixture_conditions import (
+    declare_fixture_condition_binding,
 )
 from latency_fingerprinting.json_io import strict_json_loads
 from latency_fingerprinting.models import AnalyticalResponseV2

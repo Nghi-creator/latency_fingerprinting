@@ -126,7 +126,7 @@ or establish safe live restoration.
 ## N11 offline evaluation
 
 ```sh
-python -m tests.evaluation.check_reproduction
+python -m tests.evaluation.support.check_reproduction
 python -m pytest tests/evaluation
 ```
 

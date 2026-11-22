@@ -8,8 +8,8 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
-from tests.evaluation.test_counter_specific_candidate import point_source
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS
+from tests.evaluation.candidates.test_counter_specific_candidate import point_source
 from tests.test_n11_experiment_tools import tool
 
 processor = tool("qualify_resource_pipeline")

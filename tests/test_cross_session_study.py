@@ -7,9 +7,11 @@ from pathlib import Path
 import pytest
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.cross_session_candidate import cross_session_candidate_spec
-from tests.evaluation.test_cross_session_candidate import setup  # noqa: F401
-from tests.evaluation.test_event_span_projection import event_source
+from latency_fingerprinting.evaluation.candidates.cross_session_candidate import (
+    cross_session_candidate_spec,
+)
+from tests.evaluation.candidates.test_cross_session_candidate import setup  # noqa: F401
+from tests.evaluation.projections.test_event_span_projection import event_source
 
 
 def test_operator_scores_next_slot_and_rejects_reused_ledger_order(setup, tmp_path):  # noqa: F811

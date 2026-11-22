@@ -8,22 +8,22 @@ from functools import partial
 from pathlib import Path
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.combined_interval_candidate import (
+from latency_fingerprinting.evaluation.candidates.combined_interval_candidate import (
     combined_interval_candidate_spec,
     declare_combined_condition_binding,
     fit_combined_interval_candidate,
     score_combined_interval_candidate,
 )
-from latency_fingerprinting.evaluation.combined_study_protocol import (
-    EVENT_SPAN_RECIPE,
-    EVENT_SPAN_RELEASE,
-    inspect_combined_study_protocol,
-)
-from latency_fingerprinting.evaluation.shared_window_candidate import (
+from latency_fingerprinting.evaluation.candidates.shared_window_candidate import (
     declare_shared_window_binding,
     fit_shared_window_candidate,
     score_shared_window_candidate,
     shared_window_candidate_spec,
+)
+from latency_fingerprinting.evaluation.protocols.combined_study_protocol import (
+    EVENT_SPAN_RECIPE,
+    EVENT_SPAN_RELEASE,
+    inspect_combined_study_protocol,
 )
 from latency_fingerprinting.json_io import strict_json_loads
 

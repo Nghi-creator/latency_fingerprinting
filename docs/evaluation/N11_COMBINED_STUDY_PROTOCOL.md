@@ -41,7 +41,7 @@ Fitting checks the processor hash against the reviewed protocol. Missing query
 paths cannot affect fitting. Output JSON contains opaque source text and exact
 rational integers; store Python stdout bytes unchanged.
 
-The producer `scripts/research/n11/combinedResourceStudy.mjs` provides separate
+The producer `scripts/research/n11/studies/combinedResourceStudy.mjs` provides separate
 `allocate` and `run` commands accepting explicit config JSON. Allocation checks
 all four tool hashes and the dependency closure, validates protocol review, and
 exclusively freezes all 36 resource plans before any source run. Pending drafts

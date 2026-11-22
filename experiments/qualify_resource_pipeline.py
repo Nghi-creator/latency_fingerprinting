@@ -8,17 +8,17 @@ from itertools import permutations
 from pathlib import Path
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.counter_specific_candidate import (
+from latency_fingerprinting.evaluation.candidates.counter_specific_candidate import (
     counter_specific_candidate_spec,
     declare_counter_specific_binding,
     fit_counter_specific_candidate,
     score_counter_specific_candidate,
 )
-from latency_fingerprinting.evaluation.counter_specific_projection import (
+from latency_fingerprinting.evaluation.projections.counter_specific_projection import (
     project_counter_specific_resource,
 )
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS, _hash
-from latency_fingerprinting.evaluation.median_response import _alias
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS, _hash
+from latency_fingerprinting.evaluation.responses.median_response import _alias
 from latency_fingerprinting.json_io import strict_json_loads
 
 RELEASE = "n11-engineering-pipeline-qualification-v1"

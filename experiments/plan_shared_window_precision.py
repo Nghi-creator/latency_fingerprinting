@@ -8,9 +8,7 @@ from fractions import Fraction
 from pathlib import Path
 from statistics import median
 
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
-from latency_fingerprinting.evaluation.shared_window_projection import project_shared_window_source
-from latency_fingerprinting.evaluation.shared_window_separation import (
+from latency_fingerprinting.evaluation.bounds.shared_window_separation import (
     FEATURES,
     GROUPS,
     _contrast,
@@ -19,6 +17,10 @@ from latency_fingerprinting.evaluation.shared_window_separation import (
     _ratio,
     compare_shared_window_centers,
 )
+from latency_fingerprinting.evaluation.projections.shared_window_projection import (
+    project_shared_window_source,
+)
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS
 from latency_fingerprinting.json_io import strict_json_loads
 
 RELEASE = "n11-shared-window-precision-planning-v1"

@@ -6,7 +6,7 @@ expectations. Its exact inventory and release hash are checked before reconstruc
 The checker is read-only and has no regeneration or blessing mode.
 
 ```sh
-python -m tests.evaluation.check_reproduction
+python -m tests.evaluation.support.check_reproduction
 python -m pytest tests/evaluation
 python -m tests.packaging.check_wheel
 ```
@@ -35,9 +35,9 @@ when behavior changes; do not regenerate snapshots solely to pass a regression.
 With a local Pixelated checkout and Node supporting TypeScript stripping:
 
 ```sh
-node --experimental-strip-types tests/evaluation/export_producer_windows.mjs \
+node --experimental-strip-types tests/evaluation/support/export_producer_windows.mjs \
   ../Pixelated-Studio-Edition /tmp/n11-producer-window.tar
-python -m tests.evaluation.producer_boundary /tmp/n11-producer-window.tar
+python -m tests.evaluation.support.producer_boundary /tmp/n11-producer-window.tar
 ```
 
 The exporter requires a new output path and calls the producer's real v2 manifest
@@ -54,7 +54,7 @@ native control lifecycle, qualify real labels/clocks or establish empirical stud
 acceptance. All reviews and telemetry in this release remain artificial.
 
 For the wider sample-to-export boundary, use
-`tests/evaluation/export_producer_samples.mjs` in the same way and pass
+`tests/evaluation/support/export_producer_samples.mjs` in the same way and pass
 `--full-sample-export` to the checker. This exercises the producer's real browser,
 engine and event CSV writers plus derived support declarations, manifest and TAR.
 The [sampled fixture](../../tests/data/pixelated_bundle/README.md) pins its output.

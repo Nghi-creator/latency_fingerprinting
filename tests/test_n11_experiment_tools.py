@@ -139,3 +139,36 @@ def test_changed_frozen_source_fails_before_running_any_inspector(tmp_path):
     )
     with pytest.raises(ValueError, match="frozen source changed"):
         script.verify_case(tmp_path, producer=tmp_path / "absent", policy=tmp_path / "absent.json")
+
+
+@pytest.mark.parametrize("nested", [False, True])
+def test_inspector_replay_uses_the_declared_layout_not_a_newer_unbound_copy(
+    tmp_path, monkeypatch, nested
+):
+    script = tool("verify_native_exports")
+    producer = tmp_path / "producer"
+    root = producer / "engine/runtime/scripts/research/n11"
+    # Both layouts exist; only the plan's declared inspector may be selected.
+    for directory in (root, root / "receipts"):
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / "resourceReceipt.mjs").write_text("unexecuted fixture")
+    relative = (
+        "scripts/research/n11/receipts/resourceReceipt.mjs"
+        if nested
+        else "scripts/research/n11/resourceReceipt.mjs"
+    )
+    (tmp_path / "plan.json").write_text(json.dumps({"source_sha256": {relative: "0" * 64}}))
+    calls = []
+    monkeypatch.setattr(script.shutil, "which", lambda _: "/usr/bin/node")
+    monkeypatch.setattr(script.subprocess, "run", lambda args, **_: calls.append(args))
+    script.replay_inspector(tmp_path, producer=producer, resource=True)
+    assert calls[0][-4] == (producer / "engine/runtime" / relative).as_uri()
+    protocol = root / "protocols/resourceProtocol.mjs" if nested else root / "resourceProtocol.mjs"
+    assert calls[0][-1] == protocol.as_uri()
+
+
+def test_inspector_replay_rejects_an_undeclared_inspector(tmp_path):
+    script = tool("verify_native_exports")
+    (tmp_path / "plan.json").write_text(json.dumps({"source_sha256": {"other.py": "0" * 64}}))
+    with pytest.raises(ValueError, match="unbound inspector"):
+        script.replay_inspector(tmp_path, producer=tmp_path)

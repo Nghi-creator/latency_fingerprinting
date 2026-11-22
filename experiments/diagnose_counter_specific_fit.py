@@ -10,15 +10,15 @@ from pathlib import Path
 from statistics import median
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.combined_interval_candidate import FEATURES
-from latency_fingerprinting.evaluation.counter_specific_candidate import (
+from latency_fingerprinting.evaluation.candidates.combined_interval_candidate import FEATURES
+from latency_fingerprinting.evaluation.candidates.counter_specific_candidate import (
     counter_specific_candidate_spec,
     fit_counter_specific_candidate,
 )
-from latency_fingerprinting.evaluation.counter_specific_projection import (
+from latency_fingerprinting.evaluation.projections.counter_specific_projection import (
     project_counter_specific_resource,
 )
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS
 from latency_fingerprinting.json_io import strict_json_loads
 
 RELEASE = "n11-counter-specific-calibration-diagnosis-v1"

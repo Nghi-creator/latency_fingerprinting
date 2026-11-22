@@ -6,7 +6,7 @@ from fractions import Fraction as F
 
 import pytest
 
-from tests.evaluation.test_counter_specific_candidate import training
+from tests.evaluation.candidates.test_counter_specific_candidate import training
 from tests.test_n11_experiment_tools import tool
 
 planner = tool("plan_shared_window_precision")

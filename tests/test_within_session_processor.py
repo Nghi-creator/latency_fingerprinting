@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from latency_fingerprinting.evaluation import within_session_protocol as protocol
-from tests.evaluation.test_fixture_conditions import slot
-from tests.evaluation.test_within_session import draft
+from latency_fingerprinting.evaluation.protocols import within_session_protocol as protocol
+from tests.evaluation.candidates.test_within_session import draft
+from tests.evaluation.responses.test_fixture_conditions import slot
 
 
 def processor():

@@ -8,11 +8,11 @@ from itertools import combinations_with_replacement, product
 
 import pytest
 
-from latency_fingerprinting.evaluation.counter_specific_candidate import (
+from latency_fingerprinting.evaluation.candidates.counter_specific_candidate import (
     counter_specific_candidate_spec,
     fit_counter_specific_candidate,
 )
-from tests.evaluation.test_counter_specific_candidate import training
+from tests.evaluation.candidates.test_counter_specific_candidate import training
 from tests.test_n11_experiment_tools import tool
 
 diagnostic = tool("diagnose_counter_specific_fit")

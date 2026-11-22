@@ -67,7 +67,23 @@ def phase_manifest(path: Path) -> dict:
 def replay_inspector(case: Path, *, producer: Path, resource: bool = False) -> None:
     """Replay the explicit source inspector and resource export without native actions."""
     name = "resourceReceipt.mjs" if resource else "conditionReceipt.mjs"
-    inspector = producer / "engine/runtime/scripts/research/n11" / name
+    root = producer / "engine/runtime/scripts/research/n11"
+    declared = load(case / "plan.json").get("source_sha256")
+    # Frozen cases select their declared layout, never an unbound newer inspector.
+    if declared:
+        nested = f"scripts/research/n11/receipts/{name}"
+        legacy = f"scripts/research/n11/{name}"
+        require(nested in declared or legacy in declared, "unbound inspector")
+        inspector = producer / "engine/runtime" / (nested if nested in declared else legacy)
+    else:  # Synthetic inspector fixtures do not claim authenticated source custody.
+        inspector = (
+            root / "receipts" / name if (root / "receipts" / name).is_file() else root / name
+        )
+    protocol = (
+        root / "protocols/resourceProtocol.mjs"
+        if inspector.parent.name == "receipts"
+        else root / "resourceProtocol.mjs"
+    )
     script = (
         "import fs from 'node:fs';import assert from 'node:assert/strict';"
         "import {createHash} from 'node:crypto';"
@@ -79,8 +95,7 @@ def replay_inspector(case: Path, *, producer: Path, resource: bool = False) -> N
         "module.inspectConditionAcquisition;"
         "const receipt=inspect(JSON.parse(raw),{condition:p.condition.name});"
         "assert.deepEqual(receipt,JSON.parse(fs.readFileSync(d+'/control-receipt.json')));"
-        "if(resource){const protocol=await import("
-        "new URL('./resourceProtocol.mjs',process.argv[1]));"
+        "if(resource){const protocol=await import(process.argv[4]);"
         "assert.equal(p.schema_version,'n11-contained-resource-condition-plan-v1');"
         "assert.equal(p.mode,protocol.resourceMode(p.condition.name));"
         "assert.deepEqual(p.resources,protocol.resourceDeclaration());"
@@ -99,6 +114,7 @@ def replay_inspector(case: Path, *, producer: Path, resource: bool = False) -> N
             inspector.as_uri(),
             str(case),
             "true" if resource else "false",
+            protocol.as_uri(),
         ],
         check=True,
         timeout=30,
@@ -129,9 +145,14 @@ def verify_case(case: Path, *, producer: Path, policy: Path, write_derived: bool
     require(bool(plan.get("condition")), "condition-witness case required")
     resource = plan.get("schema_version") == "n11-contained-resource-condition-plan-v1"
     if resource:
+        nested = "scripts/research/n11/receipts/resourceReceipt.mjs" in plan["source_sha256"]
         for dependency in (
-            "scripts/research/n11/resourceReceipt.mjs",
-            "scripts/research/n11/resourceProtocol.mjs",
+            "scripts/research/n11/receipts/resourceReceipt.mjs"
+            if nested
+            else "scripts/research/n11/resourceReceipt.mjs",
+            "scripts/research/n11/protocols/resourceProtocol.mjs"
+            if nested
+            else "scripts/research/n11/resourceProtocol.mjs",
             "research/resource_observation/contained_condition.py",
             "research/resource_observation/cgroup_cpu.py",
             "research/resource_observation/modes.py",

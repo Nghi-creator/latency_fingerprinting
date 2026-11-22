@@ -2,8 +2,8 @@
 
 import json
 
-from tests.evaluation.support import canonical
-from tests.evaluation.test_source_local import local_context, source
+from tests.evaluation.study.test_source_local import local_context, source
+from tests.evaluation.support.cases import canonical
 from tests.pixelated.support import write_tar
 
 

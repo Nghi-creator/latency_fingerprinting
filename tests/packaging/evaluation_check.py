@@ -3,14 +3,14 @@
 import json
 import shutil
 
-from tests.evaluation.support import base, canonical, slot
-from tests.evaluation.test_windows import context
+from tests.evaluation.study.test_windows import context
+from tests.evaluation.support.cases import base, canonical, slot
 from tests.pixelated.support import VALID_V2_BUNDLE, write_tar
 
 
 def check_evaluation(directory, invoke_installed):
     from latency_fingerprinting.evaluation import seal_manifest
-    from tests.evaluation.check_reproduction import FIXTURES, load_release, operands
+    from tests.evaluation.support.check_reproduction import FIXTURES, load_release, operands
 
     release = load_release()
     corpus = directory / "n11-frozen"

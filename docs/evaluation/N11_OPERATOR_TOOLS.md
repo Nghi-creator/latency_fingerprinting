@@ -5,7 +5,7 @@ method/protocol and producer runner. It does not relax the independent-session A
 
 Reusable cross-repository processing and custody commands live in `experiments/`.
 Native plan allocation and single-session orchestration live in the producer's
-`engine/runtime/scripts/research/n11/studySession.mjs`. Raw captures, frozen
+`engine/runtime/scripts/research/n11/studies/studySession.mjs`. Raw captures, frozen
 assignments, machine paths, run receipts and personal plans remain in ignored
 `local/`. Frozen scripts are historical evidence; do not replace them retroactively
 with newer utilities.
@@ -105,7 +105,7 @@ terminal or tool session:
 python experiments/run_study_job.py start \
   --job-directory /absolute/run/job --cwd /absolute/core \
   --timeout-seconds 3600 -- \
-  /absolute/node /absolute/producer/engine/runtime/scripts/research/n11/withinSessionStudy.mjs \
+  /absolute/node /absolute/producer/engine/runtime/scripts/research/n11/studies/withinSessionStudy.mjs \
   run /absolute/run/run-config.json
 python experiments/run_study_job.py status /absolute/run/job
 python experiments/run_study_job.py stop /absolute/run/job

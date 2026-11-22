@@ -8,7 +8,7 @@ N3/N7/N8/N11 methods and prior acquisition results retain their meanings.
 ## Processing-envelope model
 
 ```python
-from latency_fingerprinting.evaluation.contrast_bounds import pacing_contrast_bounds
+from latency_fingerprinting.evaluation.bounds.contrast_bounds import pacing_contrast_bounds
 
 unknown = pacing_contrast_bounds(prior_fps=30, target_fps=24, delay_us=37_500)
 ```
@@ -32,7 +32,7 @@ model; its positive ceiling test is insufficient to qualify a native contrast.
 ## Guarded counter windows
 
 ```python
-from latency_fingerprinting.evaluation.contrast_bounds import (
+from latency_fingerprinting.evaluation.bounds.contrast_bounds import (
     native_worker_clock_id,
     counter_rate_bounds,
     compare_counter_rate_bounds,

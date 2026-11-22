@@ -6,10 +6,10 @@ from pathlib import Path
 
 import pytest
 
-from tests.evaluation.test_combined_interval_candidate import source
-from tests.evaluation.test_combined_study_protocol import draft, reseal
-from tests.evaluation.test_counter_specific_candidate import point_source
-from tests.evaluation.test_event_span_projection import event_source
+from tests.evaluation.candidates.test_combined_interval_candidate import source
+from tests.evaluation.candidates.test_counter_specific_candidate import point_source
+from tests.evaluation.projections.test_event_span_projection import event_source
+from tests.evaluation.protocols.test_combined_study_protocol import draft, reseal
 
 
 def processor():

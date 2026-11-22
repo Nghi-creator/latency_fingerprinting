@@ -13,7 +13,7 @@ is a different method, not a successful N7 profile or an epsilon correction.
 ## Rebuilding engineering summaries
 
 ```python
-from latency_fingerprinting.evaluation.median_response import (
+from latency_fingerprinting.evaluation.responses.median_response import (
     median_response_method_spec,
     summarize_engineering_responses,
     compare_engineering_responses,
@@ -102,7 +102,7 @@ here is explicit and remains subject to prospective evaluation.
 ## Pacing contrast preflight
 
 ```python
-from latency_fingerprinting.evaluation.median_response import pacing_contrast_preflight
+from latency_fingerprinting.evaluation.responses.median_response import pacing_contrast_preflight
 
 old = pacing_contrast_preflight(prior_fps=30, target_fps=24, delay_us=50_000)
 candidate = pacing_contrast_preflight(prior_fps=30, target_fps=24, delay_us=37_500)

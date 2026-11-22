@@ -107,7 +107,7 @@ jobs:
         run: python -m tests.passive_gating.check_reproduction
 
       - name: Reproduce pinned N11 offline evaluation and independent expectations
-        run: python -m tests.evaluation.check_reproduction
+        run: python -m tests.evaluation.support.check_reproduction
 
       - name: Verify isolated installed wheel
         run: python -m tests.packaging.check_wheel

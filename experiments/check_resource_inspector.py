@@ -18,7 +18,7 @@ const {fixture}=await import(process.argv[1]);
 const {inspectResourceConditionAcquisition,resourceObservationArtifact}=
  await import(process.argv[2]);
 const {resourceDeclaration,resourceMode}=
- await import(new URL('./resourceProtocol.mjs',process.argv[2]));
+ await import(new URL('../protocols/resourceProtocol.mjs',process.argv[2]));
 const d=process.argv[3],raw=fixture(),condition='no_injected_fault';
 const bytes=JSON.stringify(raw,null,2)+'\\n';
 const receipt=inspectResourceConditionAcquisition(raw,{condition});
@@ -36,8 +36,8 @@ fs.writeFileSync(d+'/resource-observation.json',JSON.stringify(resourceObservati
             "--input-type=module",
             "-e",
             script,
-            (runtime / "scripts/research/n10/resourceReceiptFixture.mjs").as_uri(),
-            (runtime / "scripts/research/n11/resourceReceipt.mjs").as_uri(),
+            (runtime / "scripts/research/n11/receipts/resourceReceiptFixture.mjs").as_uri(),
+            (runtime / "scripts/research/n11/receipts/resourceReceipt.mjs").as_uri(),
             str(tmp_path),
         ],
         check=True,

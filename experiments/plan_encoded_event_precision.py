@@ -16,9 +16,11 @@ from plan_shared_window_precision import (
     planned_rate_bounds,
 )
 
-from latency_fingerprinting.evaluation.fixture_conditions import CONDITIONS
-from latency_fingerprinting.evaluation.shared_window_projection import project_shared_window_source
-from latency_fingerprinting.evaluation.shared_window_separation import _interval
+from latency_fingerprinting.evaluation.bounds.shared_window_separation import _interval
+from latency_fingerprinting.evaluation.projections.shared_window_projection import (
+    project_shared_window_source,
+)
+from latency_fingerprinting.evaluation.responses.fixture_conditions import CONDITIONS
 from latency_fingerprinting.json_io import strict_json_loads
 
 

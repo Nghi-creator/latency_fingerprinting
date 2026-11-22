@@ -19,12 +19,12 @@ source support because the exporter declares packet-loss deltas.
 `producer-sampled-v2-source.json` binds the producer revision, archive hash and
 eight source-module hashes. Its exact bytes
 and independent numerical expectations are checked in
-`tests/evaluation/test_sampled_export.py`. To repeat the boundary on a new path:
+`tests/evaluation/study/test_sampled_export.py`. To repeat the boundary on a new path:
 
 ```sh
-node --experimental-strip-types tests/evaluation/export_producer_samples.mjs \
+node --experimental-strip-types tests/evaluation/support/export_producer_samples.mjs \
   ../Pixelated-Studio-Edition /tmp/n11-producer-samples.tar
-python -m tests.evaluation.producer_boundary /tmp/n11-producer-samples.tar \
+python -m tests.evaluation.support.producer_boundary /tmp/n11-producer-samples.tar \
   --full-sample-export
 ```
 

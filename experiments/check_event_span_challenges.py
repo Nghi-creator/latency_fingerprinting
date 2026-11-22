@@ -8,14 +8,16 @@ from copy import deepcopy
 from pathlib import Path
 
 from latency_fingerprinting.analytical.policy_release import payload_hash
-from latency_fingerprinting.evaluation.shared_window_candidate import (
-    score_shared_window_candidate,
-)
-from latency_fingerprinting.evaluation.shared_window_projection import project_shared_window_source
-from latency_fingerprinting.evaluation.shared_window_separation import (
+from latency_fingerprinting.evaluation.bounds.shared_window_separation import (
     _interval,
     _ratio,
     compare_shared_window_centers,
+)
+from latency_fingerprinting.evaluation.candidates.shared_window_candidate import (
+    score_shared_window_candidate,
+)
+from latency_fingerprinting.evaluation.projections.shared_window_projection import (
+    project_shared_window_source,
 )
 from latency_fingerprinting.json_io import strict_json_loads
 
