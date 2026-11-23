@@ -18,3 +18,7 @@ Method guides specify behavior and evidence gates. Recorded results belong in
 `experiments/`; plans, run logs and raw/private captures stay in ignored `local/`.
 Earlier methods and failed outcomes remain relevant comparisons, rather than
 being removed because a newer method exists.
+
+[Source-local comparison inputs](study/N11_COMPARISON_INPUTS.md) documents raw-linked
+N3 response inspection, fixture-label point comparisons, and the remaining N7/N8
+label/group and N9 clock prerequisites.
