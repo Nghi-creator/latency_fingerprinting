@@ -22,3 +22,7 @@ being removed because a newer method exists.
 [Source-local comparison inputs](study/N11_COMPARISON_INPUTS.md) documents raw-linked
 N3 response inspection, fixture-label point comparisons, and the remaining N7/N8
 label/group and N9 clock prerequisites.
+
+[Physical challenge recipes](study/N11_PHYSICAL_CHALLENGES.md) specify simultaneous
+owned mixtures and between-phase changes, including source, witness and scoring
+boundaries; native execution is not implemented by this metadata interface.
