@@ -3,7 +3,7 @@
 `n11-physical-condition-challenge-recipe-v1` specifies three metadata-only recipes
 for the owned contained fixture. It is separate from the three fixed-condition
 source modes and from the [derived-source challenge checks](N11_OFFLINE_EVALUATION.md).
-It does not implement a native runtime or authorize acquisition.
+The recipe declaration itself does not verify a native runtime or authorize acquisition.
 
 ```python
 from latency_fingerprinting.evaluation.protocols.physical_challenges import (
@@ -13,7 +13,7 @@ from latency_fingerprinting.evaluation.protocols.physical_challenges import (
 
 recipe = physical_challenge_recipe("mixed_delay_pressure")
 declaration = inspect_physical_challenge_recipe(recipe)
-assert declaration["state"] == "declared_recipe_only_runtime_unimplemented"
+assert declaration["state"] == "declared_recipe_only_runtime_unverified"
 ```
 
 Recipes are detached dictionaries with a content hash. Inspection requires the
@@ -114,13 +114,46 @@ constant mixtures and controls still need separate source/projection admission.
 The [synthetic fixture corpus](../../../fixtures/physical-challenge-v1/README.md)
 exercises these boundaries using invented ports and clocks.
 
-The remaining engineering step is wiring an explicit native/browser acquisition
-mode and source-bound raw exports, then complete media/source inspection and
-projection qualification. The native container's hash/mount directory list now
-includes the current N11 helper sources explicitly; this does not qualify the
-changed source. The metadata recipe inspector's runtime-unimplemented
-state describes that missing end-to-end acquisition path. This is followed by a
-concretely reviewed bounded engineering pilot. A
+## Raw acquisition and custody
+
+The producer now wires six closed challenge/control acquisition modes into the
+native/browser driver. Receiver-delivery and encoded-event diagnostics are
+mandatory for this path. Source hashing and container mounts include current N11
+helpers. A shared native-software identity function binds the prepared plan to
+the actual driver context; it is distinct from the broader source-manifest hash.
+
+The one-shot collector retains original acquisition/plan/exclusion bytes,
+complete command strings and three raw phase captures. It never emits an N2
+observation pair or a stable-pair bundle. Failed/partial acquisitions and changed
+sources retain their original artifacts and a failure receipt. A failed overall
+case cannot become a completed case just because some raw bytes replay.
+
+```python
+from latency_fingerprinting.evaluation.protocols.physical_challenge_raw import (
+    inspect_challenge_raw_export,
+)
+
+custody = inspect_challenge_raw_export(
+    original_acquisition_bytes, original_plan_bytes,
+    original_raw_export_bytes, original_exclusion_receipt_bytes,
+)
+assert custody["n2_pair_admitted"] is False
+```
+
+This checks the four byte identities, native/source declarations, excluded-ID
+ledger, all three captures and the embedded lifecycle transcript. Limits are
+4 MiB each for acquisition/export and 1 MiB each for plan/exclusions. It does not
+authenticate execution or verify raw media semantics, actual resource dose or
+source-file contents. All media/dose/N2/empirical acceptance flags remain false.
+Six invented exports produced by the JS exporter pass the Python custody checks;
+they are software vectors, not native cases.
+
+The recipe inspector now reports runtime **unverified** by metadata inspection;
+the recipe content identities and authority/acceptance gates are unchanged. Older
+archived declaration reports retain their original software-state wording.
+
+Next are full source/media inspection and projection qualification, followed by
+a concretely reviewed bounded native engineering pilot. A
 prospective challenge study is a separate collection decision. Numerical counts
 and private session-specific allocations belong in the working plan, not in this
 reusable recipe contract.

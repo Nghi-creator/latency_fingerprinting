@@ -96,7 +96,7 @@ def inspect_physical_challenge_recipe(recipe):
         if canonical_payload_bytes(recipe) != canonical_payload_bytes(expected):
             raise ValueError(ERROR)
         return dict(
-            state="declared_recipe_only_runtime_unimplemented",
+            state="declared_recipe_only_runtime_unverified",
             method_release=RELEASE,
             recipe_hash=expected["content_hash"],
             acquisition_authority=False,

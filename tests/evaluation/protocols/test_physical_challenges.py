@@ -14,7 +14,7 @@ from latency_fingerprinting.evaluation.protocols.physical_challenges import (
 def test_recipes_require_new_source_and_matched_calibration(name):
     recipe = physical_challenge_recipe(name)
     result = inspect_physical_challenge_recipe(recipe)
-    assert result["state"] == "declared_recipe_only_runtime_unimplemented"
+    assert result["state"] == "declared_recipe_only_runtime_unverified"
     assert result["acquisition_authority"] is False
     assert result["empirical_acceptance"] is False
     assert (
