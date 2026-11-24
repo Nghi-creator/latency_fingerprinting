@@ -82,8 +82,45 @@ Report every planned case, including failure and unstarted suffixes, and keep
 source verification, projection availability and numerical decisions separate.
 No threshold tuning, fitting, replacement or retry uses challenge outcomes.
 
-The next engineering step is native source implementation and synthetic lifecycle
-qualification, followed by a concretely reviewed bounded engineering pilot. A
+## Command transcript inspection
+
+The producer implements a separate fixture peer wrapper, bounded private-file
+commands and joint-condition phase observer. The consumer checks their command
+transcript with:
+
+```python
+from latency_fingerprinting.evaluation.protocols.physical_challenge_receipts import (
+    inspect_challenge_transcript,
+)
+
+inspection = inspect_challenge_transcript(original_transcript_json_bytes)
+assert inspection["n2_pair_admitted"] is False
+```
+
+This API accepts at most 4 MiB of strict JSON. It requires ten ordered normal
+commands, exact canonical request/ack strings, original request hashes, unchanged
+event prefixes, generation/channel/clock bindings, phase timing and terminal
+cleanup. It checks controller and worker clocks separately. A failed or partial
+prefix raises `ValueError("invalid_challenge_transcript")`; keep that original
+prefix in the enclosing failed/unavailable case rather than retrying or dropping it.
+The response is an inspection dictionary, not a new generic-validation schema root.
+
+A consistent transcript establishes declared lifecycle consistency only.
+`source_media_verified`, `resource_dose_verified`, `n2_pair_admitted` and
+`empirical_acceptance` remain false. It does not rebuild raw browser/engine media,
+verify numerical resource dose, qualify encoded-counter projection or authenticate
+the supplied records. Changing recipes retain `changing_pair_not_stable`;
+constant mixtures and controls still need separate source/projection admission.
+The [synthetic fixture corpus](../../../fixtures/physical-challenge-v1/README.md)
+exercises these boundaries using invented ports and clocks.
+
+The remaining engineering step is wiring an explicit native/browser acquisition
+mode and source-bound raw exports, then complete media/source inspection and
+projection qualification. The native container's hash/mount directory list now
+includes the current N11 helper sources explicitly; this does not qualify the
+changed source. The metadata recipe inspector's runtime-unimplemented
+state describes that missing end-to-end acquisition path. This is followed by a
+concretely reviewed bounded engineering pilot. A
 prospective challenge study is a separate collection decision. Numerical counts
 and private session-specific allocations belong in the working plan, not in this
 reusable recipe contract.

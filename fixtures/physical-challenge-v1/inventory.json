@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "empirical_acceptance": false,
+  "files": {
+    "transcripts/control_no_injected_fault.json": "sha256:e9aabd3905fb2a6122c18aba804523de9e7fcf5119ff8d410da7b7e512a7a9c8",
+    "transcripts/control_owned_cpu_pressure.json": "sha256:98a26e54f00ac12ace80773dc5ff4bfe1196fdc431334abd0d3cacd35a087fab",
+    "transcripts/control_owned_identity_delay.json": "sha256:ec94741c9b783407588f3799668d4138812ec9e6706f5194efd2197c9964505c",
+    "transcripts/delay_to_pressure.json": "sha256:6243c592058057a89a032bff9c5259f76dcf138beedd25fadd546027f24069d4",
+    "transcripts/mixed_delay_pressure.json": "sha256:a95af52deadd7b7cb15617d272bce8df91983fd08f6b9c314a973ce3811c0acc",
+    "transcripts/pressure_to_delay.json": "sha256:900b24a362237d915bbbc2d9301af8792e99e5a592a2d503dcee51c03ac5a6d7"
+  }
+}
