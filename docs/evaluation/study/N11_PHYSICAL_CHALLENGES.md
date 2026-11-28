@@ -232,9 +232,33 @@ collection, a mismatched prefix or failed marker publication cannot produce a
 successful custody receipt. Older archived v1 inspections are unchanged and do
 not supply this additional evidence.
 
-Joint orchestration, stable-mixture projection and bounded native qualification
-remain separate gates. None of these component APIs authorizes collection or
-turns a changing condition into a stable pair.
+## Joint replay and descriptive projection
+
+The [physical challenge replay tool](../../../experiments/n11/physical_challenges/README.md)
+combines all component checks against one original case. It verifies frozen and
+current producer source files and re-runs the actual producer media-v2 inspector;
+it never substitutes a cached successful report. A failed overall case cannot be
+promoted, and changed sources or original operands fail replay. The tool launches
+no native collection or numerical fitting.
+
+`project_physical_challenge(original_acquisition_bytes)` in
+`evaluation.projections.physical_challenge_projection` supplies the separately
+identified `n11-physical-challenge-event-span-projection-v1`. Constant variants
+use the unchanged exact encoded-rate ratios and CPU interval differences to form
+nine descriptive coordinates. Its numeric rates/hulls match the existing
+arithmetic on equal invented inputs, while its source/method identities remain
+separate. Zero CPU variation uses no MAD divisor. It supplies no diagnostic label
+or scoring authority, and requires joint qualification externally.
+
+Changing variants return `rejected_changing_pair`, reason
+`changing_pair_not_stable`, with empty phase-rate and coordinate dictionaries.
+They cannot be counted as computed abstentions. Constant but ineligible readings
+remain `unavailable`. A mixture has no single-condition training truth, and this
+projection cannot borrow the rx1 fit or authorize a later calibration/query study.
+
+Bounded native qualification remains a separate gate. Joint software replay does
+not authenticate physical execution, establish CPU dose, authorize collection or
+turn a changing condition into a stable pair.
 
 The recipe inspector now reports runtime **unverified** by metadata inspection;
 the recipe content identities and authority/acceptance gates are unchanged. Older
