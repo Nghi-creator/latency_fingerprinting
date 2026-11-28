@@ -63,7 +63,50 @@ def _states(recipe):
     return tuple(value["stages"]["degraded"].values()), tuple(value["stages"]["relief"].values())
 
 
-def inspect_challenge_transcript(raw):
+def _inspect_pressure_start(receipt, before, after):
+    _exact(
+        receipt, "method read_start_ns read_end_ns start_result intent_json clock live_authority"
+    )
+    _require(receipt["method"] == "n11-physical-pressure-start-v1")
+    _require(receipt["clock"] == "worker_monotonic_ns" and receipt["live_authority"] is False)
+    _require(
+        before["read_end_ns"]
+        <= _integer(receipt["read_start_ns"])
+        <= _integer(receipt["read_end_ns"])
+        <= after["read_start_ns"]
+    )
+    result = receipt["start_result"]
+    _exact(
+        result,
+        "workers maximum_active_ns child_failsafe_ns identities intent_sha256 allocation_cores",
+    )
+    for key, expected in (
+        ("workers", 2),
+        ("maximum_active_ns", 20_000_000_000),
+        ("child_failsafe_ns", 40_000_000_000),
+        ("allocation_cores", 2),
+    ):
+        _require(type(result[key]) is int and result[key] == expected)
+    text = receipt["intent_json"]
+    _require(type(text) is str and 0 < len(text.encode()) <= 8192)
+    _require(hashlib.sha256(text.encode()).hexdigest() == result["intent_sha256"])
+    intent = strict_json_loads(text)
+    _exact(intent, "version state workers")
+    _require(intent["version"] == "n11-private-pressure-v1" and intent["state"] == "active")
+    rows = intent["workers"]
+    _require(type(rows) is list and len(rows) == 2)
+    for row in rows:
+        _exact(row, "pid boot start")
+        _require(_integer(row["pid"]) > 0 and _integer(row["start"]) > 0)
+        _require(type(row["boot"]) is str and re.fullmatch(r"[0-9a-f-]{36}", row["boot"]))
+    _require(rows[0]["boot"] == rows[1]["boot"] and rows[0]["pid"] != rows[1]["pid"])
+    identities = [
+        hashlib.sha256(json.dumps(row, sort_keys=True).encode()).hexdigest() for row in rows
+    ]
+    _require(result["identities"] == identities == after["pressure"]["identities"])
+
+
+def inspect_challenge_transcript(raw, *, require_pressure_start=False):
     """Verify declared command/lifecycle consistency; never infer raw media or labels.
 
     Requires all ten normal commands and exact original canonical command/ack
@@ -71,6 +114,7 @@ def inspect_challenge_transcript(raw):
     retain it as a failed/unavailable case. Clocks are checked within each domain.
     """
     try:
+        _require(type(require_pressure_start) is bool)
         _require(type(raw) is bytes and 0 < len(raw) <= 4 * 1024 * 1024)
         root = strict_json_loads(raw.decode())
         _exact(root, "schema_version recipe generation channel_id controller_clock records")
@@ -153,6 +197,8 @@ def inspect_challenge_transcript(raw):
         previous, controller_end, current = [], 0, (0, 0)
         deadline = ready = dispatch = None
         starts = {}
+        start_evidence = []
+        pressure_starts = 0
         for index, (row, op) in enumerate(zip(root["records"], OPS, strict=True), 1):
             _exact(row, "command_json ack_json request_at_ns ack_at_ns")
             _require(controller_end <= _integer(row["request_at_ns"]) <= _integer(row["ack_at_ns"]))
@@ -237,11 +283,26 @@ def inspect_challenge_transcript(raw):
                 e = added[0]
                 _require(e.get("kind") == expected_kind)
                 if expected_kind == "condition_applied":
-                    _exact(e, "kind before after established_not_before_ns")
+                    has_start = "pressure_start" in e
+                    start_evidence.append(has_start)
+                    _require(has_start or not require_pressure_start)
+                    _exact(
+                        e,
+                        "kind before after established_not_before_ns"
+                        + (" pressure_start" if has_start else ""),
+                    )
                     witness(e["before"], current)
+                    old = current
                     current = before if op == "start" else after
                     ready = witness(e["after"], current) + 1_000_000_000
                     _require(_integer(e["established_not_before_ns"]) == ready)
+                    if has_start:
+                        receipt = e["pressure_start"]
+                        if old[1] == 0 and current[1] == 2:
+                            _inspect_pressure_start(receipt, e["before"], e["after"])
+                            pressure_starts += 1
+                        else:
+                            _require(receipt is None)
                 elif expected_kind in ("phase_start", "phase_end"):
                     _exact(e, "kind phase at_ns witness")
                     phase = op.split("_", 1)[1]
@@ -295,7 +356,10 @@ def inspect_challenge_transcript(raw):
             _require(_integer(snap["ready_not_before_ns"]) == ready)
             state["worker"] = snap["observed_ns"]
             previous = events
+        _require(all(start_evidence) or not any(start_evidence))
         return dict(
+            pressure_start_receipts_verified=all(start_evidence),
+            pressure_starts_verified=pressure_starts,
             state="lifecycle_transcript_consistent_media_unverified",
             commands_verified=10,
             phases_verified=3,

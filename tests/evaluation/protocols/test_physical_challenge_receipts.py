@@ -102,3 +102,103 @@ def test_synthetic_fixture_inventory_and_private_path_boundary():
         raw = (base / name).read_bytes()
         assert "sha256:" + hashlib.sha256(raw).hexdigest() == digest
         assert b"/Users/" not in raw
+
+
+def with_start_receipts(recipe="mixed_delay_pressure"):
+    """Invented receipts added in memory; frozen historical vectors stay untouched."""
+    value = json.loads((ROOT / f"{recipe}.json").read_bytes())
+    workers = [
+        dict(pid=i, boot="00000000-0000-0000-0000-000000000001", start=i + 10) for i in (101, 102)
+    ]
+    ids = [hashlib.sha256(json.dumps(w, sort_keys=True).encode()).hexdigest() for w in workers]
+    intent = json.dumps(
+        dict(version="n11-private-pressure-v1", state="active", workers=workers), sort_keys=True
+    )
+    for row in value["records"]:
+        ack = json.loads(row["ack_json"].replace("a" * 64, ids[0]).replace("b" * 64, ids[1]))
+        # Channel is not a pressure identity.
+        ack["channel_id"] = value["channel_id"]
+        ack["snapshot"]["channel_id"] = value["channel_id"]
+        for e in ack["events"]:
+            if e["kind"] != "condition_applied":
+                continue
+            e["pressure_start"] = None
+            if (
+                e["before"]["pressure"]["active_workers"] == 0
+                and e["after"]["pressure"]["active_workers"] == 2
+            ):
+                e["pressure_start"] = dict(
+                    method="n11-physical-pressure-start-v1",
+                    read_start_ns=e["before"]["read_end_ns"],
+                    read_end_ns=e["after"]["read_start_ns"],
+                    clock="worker_monotonic_ns",
+                    live_authority=False,
+                    intent_json=intent,
+                    start_result=dict(
+                        workers=2,
+                        maximum_active_ns=20000000000,
+                        child_failsafe_ns=40000000000,
+                        allocation_cores=2,
+                        identities=ids,
+                        intent_sha256=hashlib.sha256(intent.encode()).hexdigest(),
+                    ),
+                )
+        row["ack_json"] = json.dumps(ack, sort_keys=True, separators=(",", ":"))
+    return value
+
+
+@pytest.mark.parametrize("recipe", [p.stem for p in sorted(ROOT.glob("*.json"))])
+def test_explicit_start_evidence_for_every_recipe(recipe):
+    result = inspect_challenge_transcript(
+        json.dumps(with_start_receipts(recipe)).encode(), require_pressure_start=True
+    )
+    assert result["pressure_start_receipts_verified"] is True
+    assert result["pressure_starts_verified"] == (
+        0 if recipe in ("control_no_injected_fault", "control_owned_identity_delay") else 1
+    )
+    assert result["resource_dose_verified"] is False
+
+
+def test_historical_transcripts_remain_readable_but_do_not_supply_start_evidence():
+    raw = (ROOT / "mixed_delay_pressure.json").read_bytes()
+    assert inspect_challenge_transcript(raw)["pressure_start_receipts_verified"] is False
+    with pytest.raises(ValueError):
+        inspect_challenge_transcript(raw, require_pressure_start=True)
+
+
+@pytest.mark.parametrize(
+    "change",
+    ["missing", "digest", "quota", "bool", "ids", "clock", "bracket", "registry", "pid_reuse"],
+)
+def test_resealed_start_receipt_lies_fail_even_under_legacy_entrypoint(change):
+    value = with_start_receipts()
+    # Change every cumulative copy so rejection is not merely an event-prefix mismatch.
+    for row in value["records"]:
+        ack = json.loads(row["ack_json"])
+        e = ack["events"][0]
+        r = e["pressure_start"]
+        if change == "missing":
+            e["pressure_start"] = None
+        elif change == "digest":
+            r["start_result"]["intent_sha256"] = "0" * 64
+        elif change in ("quota", "bool"):
+            r["start_result"]["allocation_cores"] = True if change == "bool" else 3
+        elif change == "ids":
+            r["start_result"]["identities"].reverse()
+        elif change == "clock":
+            r["clock"] = "controller_monotonic_ns"
+        elif change == "bracket":
+            r["read_end_ns"] = e["after"]["read_start_ns"] + 1
+        elif change in ("registry", "pid_reuse"):
+            intent = json.loads(r["intent_json"])
+            if change == "registry":
+                intent["state"] = "parked"
+            else:
+                intent["workers"][1]["pid"] = intent["workers"][0]["pid"]
+            r["intent_json"] = json.dumps(intent, sort_keys=True)
+            r["start_result"]["intent_sha256"] = hashlib.sha256(
+                r["intent_json"].encode()
+            ).hexdigest()
+        row["ack_json"] = json.dumps(ack, sort_keys=True, separators=(",", ":"))
+    with pytest.raises(ValueError, match="invalid_challenge_transcript"):
+        inspect_challenge_transcript(json.dumps(value).encode())

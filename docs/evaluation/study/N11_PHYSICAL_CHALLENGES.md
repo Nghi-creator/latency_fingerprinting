@@ -114,6 +114,21 @@ constant mixtures and controls still need separate source/projection admission.
 The [synthetic fixture corpus](../../../fixtures/physical-challenge-v1/README.md)
 exercises these boundaries using invented ports and clocks.
 
+New source transcripts additionally retain `n11-physical-pressure-start-v1` in
+each condition-application event: either the original pressure helper result and
+exact active-intent JSON, bracketed on the worker clock, or explicit `null` when
+that operation does not start pressure. Inspection checks the intent hash, two
+distinct PID/start identities, matching worker boot, declared two-core allocation,
+20-second lifetime and 40-second failsafe, and agreement with the first pressure
+witness. These declarations do not authenticate execution or establish actual CPU
+dose. The producer reads the existing durable file before cleanup removes it.
+
+Use `inspect_challenge_transcript(raw, require_pressure_start=True)` for this
+source requirement. The default remains compatible with historical transcripts;
+they return `pressure_start_receipts_verified=False` when this evidence is absent.
+Any supplied receipt is validated even without the requirement. A successful new
+receipt leaves media, dose, N2 admission and empirical acceptance false.
+
 ## Raw acquisition and custody
 
 The producer now wires six closed challenge/control acquisition modes into the
