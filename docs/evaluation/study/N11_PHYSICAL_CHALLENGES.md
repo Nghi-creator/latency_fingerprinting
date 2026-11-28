@@ -163,6 +163,43 @@ source-file contents. All media/dose/N2/empirical acceptance flags remain false.
 Six invented exports produced by the JS exporter pass the Python custody checks;
 they are software vectors, not native cases.
 
+## Raw media and measurement windows
+
+The producer's `inspectPhysicalChallengeMedia` checks the original acquisition
+bytes against the explicit acquisition ID. It reuses the paired cadence and
+restoration checks and raw within-phase settings checks, without declaring an N2
+pair. It additionally checks challenge phase duration, browser connection/counter
+continuity, native source allocation and encoder counter progression, including
+retained prefixes outside the browser window. The collector saves raw artifacts
+before this inspection. A rejection retains those files and closes the attempt
+with `failure.json`; a passed raw acquisition alone is not a successful case.
+
+The SDK can independently reconstruct counter windows:
+
+```python
+from latency_fingerprinting.evaluation.protocols.physical_challenge_measurements import (
+    inspect_challenge_measurements,
+)
+
+measurements = inspect_challenge_measurements(original_acquisition_bytes)
+assert measurements["n2_pair_admitted"] is False
+```
+
+This bounded byte interface requires the explicit challenge method/mode, a
+generation-bound controller context, per-phase CPU samples and original native
+and encoded getter brackets. It reuses the existing CPU interval calculation and
+encoded trace rules under the challenge reference namespace. The original
+fixed-condition entrypoint and its namespace remain unchanged. CPU read limits
+and the 100 ms encoded-getter limit remain in force. A valid missing/ineligible
+trace remains `unavailable`; it does not become a numerical abstention.
+
+These are component checks. They do not yet jointly verify raw browser/controller
+phase alignment, complete command/reference/receiver links, condition ownership
+or dose. Their source/media, N2 and empirical acceptance flags remain false.
+Changing conditions can have reconstructed counters while `stable_condition` is
+false and stable-pair admission remains false. No scoring or fitting uses these
+reports before the separate complete source/projection gate.
+
 The recipe inspector now reports runtime **unverified** by metadata inspection;
 the recipe content identities and authority/acceptance gates are unchanged. Older
 archived declaration reports retain their original software-state wording.

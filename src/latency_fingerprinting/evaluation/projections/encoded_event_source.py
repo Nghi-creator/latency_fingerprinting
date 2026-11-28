@@ -100,6 +100,26 @@ def _check_polled_counts(samples, rows, read_start):
 
 
 def inspect_encoded_event_source(events, *, worker_clock, controller_origin):
+    """Reconstruct the unchanged fixed-condition reference namespace."""
+    return _inspect_encoded_event_source(
+        events,
+        worker_clock=worker_clock,
+        controller_origin=controller_origin,
+        reference_kind="n11_pacing_reference",
+    )
+
+
+def inspect_challenge_encoded_source(events, *, worker_clock, controller_origin):
+    """Explicit challenge namespace, with the same trace and missingness rules."""
+    return _inspect_encoded_event_source(
+        events,
+        worker_clock=worker_clock,
+        controller_origin=controller_origin,
+        reference_kind="n11_challenge_reference",
+    )
+
+
+def _inspect_encoded_event_source(events, *, worker_clock, controller_origin, reference_kind):
     """Return per-phase event-span reports and eligibility reasons for a verified source."""
     traces = [e for e in events if e["kind"] == "n11_encoded_event_trace"]
     if not traces:
@@ -160,7 +180,7 @@ def inspect_encoded_event_source(events, *, worker_clock, controller_origin):
             (samples[phase],) = (
                 e["samples"]
                 for e in events
-                if e["kind"] == "n11_pacing_reference" and e.get("phase") == phase
+                if e["kind"] == reference_kind and e.get("phase") == phase
             )
         else:
             samples[phase] = [
