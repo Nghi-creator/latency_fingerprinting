@@ -193,12 +193,48 @@ fixed-condition entrypoint and its namespace remain unchanged. CPU read limits
 and the 100 ms encoded-getter limit remain in force. A valid missing/ineligible
 trace remains `unavailable`; it does not become a numerical abstention.
 
-These are component checks. They do not yet jointly verify raw browser/controller
-phase alignment, complete command/reference/receiver links, condition ownership
-or dose. Their source/media, N2 and empirical acceptance flags remain false.
+These are component checks. They require the command/reference/delivery joins
+below and joint source qualification; they do not establish dose or numeric
+browser/controller clock alignment. Their source/media, N2 and empirical
+acceptance flags remain false.
 Changing conditions can have reconstructed counters while `stable_condition` is
 false and stable-pair admission remains false. No scoring or fitting uses these
 reports before the separate complete source/projection gate.
+
+## Command, reference and delivery links
+
+`inspect_challenge_links(original_acquisition_bytes)` replays the original
+transcript with pressure-start evidence required, matches every controller ACK
+to that transcript, and brackets each measured phase with its begin/end commands.
+It binds generation and source identities and requires fresh healthy/post
+snapshots of owned absence, on the proper side of activation/cleanup. Controller
+and lifecycle-worker times are checked separately. Its
+`command_phase_links_verified` result is component consistency, not authentication.
+
+`inspect_challenge_delivery(original_acquisition_bytes)` joins browser sequence
+and elapsed values through relay and bridge records, then local sequence and
+observation identities through owner/worker receipts. It requires advancing
+browser media reports inside all five phase windows, worker delivery support
+during relief, and exact sequence/counter/read-bracket matches to the native
+snapshot trace. Browser and relay timestamps are checked only in their own
+domains. Worker/controller receipt comparisons require a matching declared Linux
+time namespace. The result is `receiver_path_consistent`, with broader source,
+dose, N2 and empirical acceptance still false. These byte interfaces share the
+4 MiB limit and must be combined with custody and measurement inspection.
+
+The producer's media inspection is now separately identified as
+`n11-physical-challenge-media-inspection-v2`. It requires a per-phase browser
+custody record: the native phase-start hash was observed before collection,
+the raw capture hash matches, and the owned completion marker was published
+after collection. This records causal containment without subtracting host,
+browser or container clocks. Numeric clock alignment remains false. Failed
+collection, a mismatched prefix or failed marker publication cannot produce a
+successful custody receipt. Older archived v1 inspections are unchanged and do
+not supply this additional evidence.
+
+Joint orchestration, stable-mixture projection and bounded native qualification
+remain separate gates. None of these component APIs authorizes collection or
+turns a changing condition into a stable pair.
 
 The recipe inspector now reports runtime **unverified** by metadata inspection;
 the recipe content identities and authority/acceptance gates are unchanged. Older
